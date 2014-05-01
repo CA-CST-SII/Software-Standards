@@ -19,10 +19,10 @@ Completed:
 
 To be worked:
 
-https://github.com/CA-CST-SII/Software-Standards/wiki/Demo-Oracle-Naming-and-Programming-Standards
+[Consular Systems and Technology Division Oracle Naming and Programming Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo-Oracle-Naming-and-Programming-Standards) Awaiting action
 
-https://github.com/CA-CST-SII/Software-Standards/wiki/Demo-SQL-Server-Coding-Standards
+[Consular Systems and Technology Division SQL Server Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo-SQL-Server-Coding-Standards) Awaiting action
 
-https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:--title-C-PlusPlus--title--Coding-Standards--html
+[Consular Systems and Technology Division C++ Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:--title-C-PlusPlus--title--Coding-Standards--html)Vijay (Under editing)
 
-https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:-C%23-Coding-Standards
+[Consular Systems and Technology Division C# Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:-C%23-Coding-Standards) Johnny (under editing)
