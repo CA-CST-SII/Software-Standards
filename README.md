@@ -21,6 +21,8 @@ Completed:
 
 [Consular Systems and Technology Division Concept of Operations Guide](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo-Concept-of-Operations)
 
+[Consular Systems and Technology Division C# Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:-C%23-Code-Standards) 
+
 To be worked:
 
 [Consular Systems and Technology Division Oracle Naming and Programming Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo-Oracle-Naming-and-Programming-Standards) *Awaiting action
@@ -29,4 +31,3 @@ To be worked:
 
 [Consular Systems and Technology Division C++ Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:--title-C-PlusPlus--title--Coding-Standards--html) *Vijay (Under editing)
 
-[Consular Systems and Technology Division C# Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:-C%23-Coding-Standards) *Johnny (under editing)
