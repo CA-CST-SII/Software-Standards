@@ -19,11 +19,10 @@ Completed:
 
 [Consular Systems and Technology Division CSS Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:-CSS-Coding-Standards.)
 
-[Consular Systems and Technology Division Concept of Operations Guide](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo-Concept-of-Operations)
-
 [Consular Systems and Technology Division C# Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:-C%23-Code-Standards) 
 
-To be worked:
+[Consular Systems and Technology Division C++ Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:-C-PlusPlus-Coding-Standards) 
 
-[Consular Systems and Technology Division C++ Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:-C-PlusPlus-Coding-Standards) *Vijay/ Johnny (Under editing)
+[Consular Systems and Technology Division Concept of Operations Guide](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo-Concept-of-Operations)
+
 
