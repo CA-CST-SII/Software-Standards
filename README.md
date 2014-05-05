@@ -25,5 +25,5 @@ Completed:
 
 To be worked:
 
-[Consular Systems and Technology Division C++ Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:--title-C-PlusPlus--title--Coding-Standards--html) *Vijay/ Johnny (Under editing)
+[Consular Systems and Technology Division C++ Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Demo:-C-PlusPlus-Coding-Standards) *Vijay/ Johnny (Under editing)
 
