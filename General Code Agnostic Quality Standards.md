@@ -34,34 +34,10 @@ The Consortium for IT Software Quality is co-sponsored by the Object Management 
 These coding quality factors are language agnostic, and can be applied to any development, the factors themselves are not tied to a particular languages, but rather follow object oriented design principles.  The prime goal is that **consistency and transparency across all application development is the most important guideline in producing quality application code.** These factors will be addressed in detail for each programming language in separate style guides which will detail The following areas of interest for each programming language for example C#, C++, and JAVA. The subset of quality characteristics described below represent the priorities for the Division with high level approaches to mitigate them and factors to grade systems against.
 
 ##Reliability - Resiliency & Dependability##
-{| class="wikitable" style="text-align:left; color:green; background-color:#ffffcc;" cellpadding="20" style="text-align:left;" style="text-align:left;"
-|+ style="caption-side:bottom;"|''Fig 2  Reliability Element of the CISQ Quality Characteristic Measures''
-|-
-! Coding Errors Impacting the RELIABILITY
-! Context Required
-! Business Impact (est.)
-|-
-| 
-*Error & Exception handling (Unit Level)
-*Complexity of algorithms
-*Error-prone programming
-| Unit Level
-| 10%
-|-
-| 
-*Object-Oriented and Structured Programming best practices (when applicable)
-*Resource bounds management
-| Technology Level
-| 25%
-|-
-| 
-*Multi-layer design compliance
-*Data integrity and consistency
-*Error & Exception handling (across layers)
-*Transaction complexity
-*Time and state / multi-threading programming
-*Null pointers dereference detection
-*Resource bounds management
-| System Level
-| 65%
-|}
+
+| **Coding Errors Impacting the RELIABILITY** | **Context Required** | **Business Impact (est.)** |
+| --------------- | --------------- | --------------- |
+|Error & Exception handling (Unit Level) Complexity of algorithms Error-prone programming |Unit Level |10% |
+|Object-Oriented and Structured Programming best practices (when applicable) Resource bounds management |Technology Level |25% |
+|Multi-layer design compliance Data integrity and consistency Error & Exception handling (across layers) Transaction complexity Time and state / multi-threading programming Null pointers dereference detection Resource bounds management |System Level |65%|
+> Fig 2  Reliability Element of the CISQ Quality Characteristic Measures
