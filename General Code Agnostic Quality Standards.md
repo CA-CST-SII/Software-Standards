@@ -22,35 +22,16 @@ Based on twenty years of research in software engineering & business IT, CISQ no
 ##Key Coding Standard Factors##
 The Consortium for IT Software Quality is co-sponsored by the Object Management Group and the Software Engineering Institute at Carnegie Mellon University with contributing members from 24 companies, many of whom are Fortune Global 200 Companies.  The consortium publishes automated quality measures for technical characteristics as well as underlying rules for good architectural and coding practice.  CISQ classifies Software engineering best practices into two main categories: **rules of good coding practice within a program at the Unit Level** without the full Technology or System Level context in which the program operates, and **rules of good architectural and design practice at the Technology or System level** that take into consideration the broader architectural context within which a unit of code is integrated.   Figure 1 displays examples of these rules at the Unit and Technology/System Level under four CISQ quality characteristic sub classifications defined by ISO/IEC 25010, a series of Software product Quality Requirements and Evaluation standards.
 
+
 |CHARACTERISTIC |GOOD CODING PRACTICES (Unit Level)|GOOD ARCHITECHTURAL PRACTICES (Technology/ Systems Level)|
 | --------------- | --------------- | --------------- |
-|**RELIABILITY – RESILIANCE & DEPENDABILITY**|Protecting state in multi-threaded environments Safe use of inheritance and polymorphism Resource bounds management, Complex code Managing allocated resources, Timeouts,Built-in remote addresses| Multi-layer design compliance 
-Software manages data integrity and consistency 
-Exception handling through transactions Class architecture compliance |
-|**PERFORMANCE EFFICIENCY**| Compliance with Object-Oriented best practices
-Compliance with SQL best practices
-Expensive computations in loops
-Static connections versus connection pools
-Compliance with garbage collection best practices| Appropriate interactions with expensive or remote resources
-Data access performance and data management Memory, network and disk space management 
-Centralized handling of client requests
-Use of middle tier components versus procedures and database functions|
-|**SECURITY & VULNERABILITY** | Use of hard-coded credentials
-Buffer overflows
-Broken or risky cryptographic algorithms
-Missing initialization
-Improper validation of array index
-Improper locking
-References to released resources
-Uncontrolled format string| Input validation SQL injection Cross-site scripting
-Failure to use vetted libraries or frameworks
-Secure architecture design compliance|
-| **MAINTAINABILITY, ADAPTIBILITY & CHANGEABILITY** | Unstructured and Duplicated code High cyclomatic complexity Controlled level of dynamic coding Over-parameterization of methods Hard coding of literals
-Excessive component size
-Compliance with OO best practices| Compliance with initial architecture design
-Strict hierarchy of calling between architectural layers
-Excessive horizontal layers|
+|**RELIABILITY – RESILIANCE & DEPENDABILITY**|Protecting state in multi-threaded environments Safe use of inheritance and polymorphism Resource bounds management, Complex code. Managing allocated resources, Timeouts, Built-in remote addresses| Multi-layer design compliance Software manages data integrity and consistency Exception handling through transactions Class architecture compliance |
+|**PERFORMANCE EFFICIENCY**| Compliance with Object-Oriented best practices Compliance with SQL best practices Expensive computations in loops Static connections versus connection pools Compliance with garbage collection best practices| Appropriate interactions with expensive or remote resources Data access  performance and data management Memory, network and disk space management Centralized handling of client requests Use of middle tier components versus procedures and database functions |
+|**SECURITY & VULNERABILITY**| Use of hard-coded credentials Buffer overflows Broken or risky cryptographic algorithms Missing initialization Improper validation of array index Improper locking References to released resources Uncontrolled format string| Input validation SQL injection Cross-site scripting Failure to use vetted libraries or frameworks Secure architecture design compliance |
+|**MAINTAINABILITY, ADAPTIBILITY & CHANGEABILITY**| Unstructured and Duplicated code High cyclomatic complexity Controlled level of dynamic coding Over-parameterization of methods Hard coding of literals Excessive component size Compliance with OO best practices| Compliance with initial architecture design Strict hierarchy of calling between architectural layers Excessive horizontal layers |
+
 Fig 1  Elements of the CISQ Quality Characteristic Measures
+
 These coding quality factors are language agnostic, and can be applied to any development, the factors themselves are not tied to a particular languages, but rather follow object oriented design principles.  The prime goal is that **consistency and transparency across all application development is the most important guideline in producing quality application code.** These factors will be addressed in detail for each programming language in separate style guides which will detail The following areas of interest for each programming language for example C#, C++, and JAVA. The subset of quality characteristics described below represent the priorities for the Division with high level approaches to mitigate them and factors to grade systems against.
 
 ##Reliability - Resiliency & Dependability##
