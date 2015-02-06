@@ -22,25 +22,85 @@ Based on twenty years of research in software engineering & business IT, CISQ no
 ##Key Coding Standard Factors##
 The Consortium for IT Software Quality is co-sponsored by the Object Management Group and the Software Engineering Institute at Carnegie Mellon University with contributing members from 24 companies, many of whom are Fortune Global 200 Companies.  The consortium publishes automated quality measures for technical characteristics as well as underlying rules for good architectural and coding practice.  CISQ classifies Software engineering best practices into two main categories: **rules of good coding practice within a program at the Unit Level** without the full Technology or System Level context in which the program operates, and **rules of good architectural and design practice at the Technology or System level** that take into consideration the broader architectural context within which a unit of code is integrated.   Figure 1 displays examples of these rules at the Unit and Technology/System Level under four CISQ quality characteristic sub classifications defined by ISO/IEC 25010, a series of Software product Quality Requirements and Evaluation standards.
 
-
-|CHARACTERISTIC |GOOD CODING PRACTICES (Unit Level)|GOOD ARCHITECHTURAL PRACTICES (Technology/ Systems Level)|
-| --------------- | --------------- | --------------- |
-|**RELIABILITY – RESILIANCE & DEPENDABILITY**|Protecting state in multi-threaded environments Safe use of inheritance and polymorphism Resource bounds management, Complex code. Managing allocated resources, Timeouts, Built-in remote addresses| Multi-layer design compliance Software manages data integrity and consistency Exception handling through transactions Class architecture compliance |
-|**PERFORMANCE EFFICIENCY**| Compliance with Object-Oriented best practices Compliance with SQL best practices Expensive computations in loops Static connections versus connection pools Compliance with garbage collection best practices| Appropriate interactions with expensive or remote resources Data access  performance and data management Memory, network and disk space management Centralized handling of client requests Use of middle tier components versus procedures and database functions |
-|**SECURITY & VULNERABILITY**| Use of hard-coded credentials Buffer overflows Broken or risky cryptographic algorithms Missing initialization Improper validation of array index Improper locking References to released resources Uncontrolled format string| Input validation SQL injection Cross-site scripting Failure to use vetted libraries or frameworks Secure architecture design compliance |
-|**MAINTAINABILITY, ADAPTIBILITY & CHANGEABILITY**| Unstructured and Duplicated code High cyclomatic complexity Controlled level of dynamic coding Over-parameterization of methods Hard coding of literals Excessive component size Compliance with OO best practices| Compliance with initial architecture design Strict hierarchy of calling between architectural layers Excessive horizontal layers |
- > Fig 1  Elements of the CISQ Quality Characteristic Measures 
+<table>
+<caption><em>Fig 1 Elements of the CISQ Quality Characteristic Measures</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>CHARACTERISTIC</p></th>
+<th align="left"><p>GOOD CODING PRACTICES (Unit Level)</p></th>
+<th align="left"><p>GOOD ARCHITECHTURAL PRACTICES (Technology/ Systems Level)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>RELIABILITY – RESILIANCE &amp; DEPENDABILITY</p></td>
+<td align="left"><p>Protecting state in multi-threaded environments Safe use of inheritance and polymorphism Resource bounds management, Complex code Managing allocated resources, Timeouts,Built-in remote addresses</p></td>
+<td align="left"><p>Multi-layer design compliance Software manages data integrity and consistency Exception handling through transactions Class architecture compliance</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>PERFORMANCE EFFICIENCY</p></td>
+<td align="left"><p>Compliance with Object-Oriented best practices Compliance with SQL best practices Expensive computations in loops Static connections versus connection pools Compliance with garbage collection best practices</p></td>
+<td align="left"><p>Appropriate interactions with expensive or remote resources Data access performance and data management Memory, network and disk space management Centralized handling of client requests Use of middle tier components versus procedures and database functions</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>SECURITY &amp; VULNERABILITY</p></td>
+<td align="left"><p>Use of hard-coded credentials Buffer overflows Broken or risky cryptographic algorithms Missing initialization Improper validation of array index Improper locking References to released resources Uncontrolled format string</p></td>
+<td align="left"><p>Input validation SQL injection Cross-site scripting Failure to use vetted libraries or frameworks Secure architecture design compliance</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>MAINTAINABILITY, ADAPTIBILITY &amp; CHANGEABILITY</p></td>
+<td align="left"><p>Unstructured and Duplicated code High cyclomatic complexity Controlled level of dynamic coding Over-parameterization of methods Hard coding of literals Excessive component size Compliance with OO best practices</p></td>
+<td align="left"><p>Compliance with initial architecture design Strict hierarchy of calling between architectural layers Excessive horizontal layers</p></td>
+</tr>
+</tbody>
+</table>
 
 These coding quality factors are language agnostic, and can be applied to any development, the factors themselves are not tied to a particular languages, but rather follow object oriented design principles.  The prime goal is that **consistency and transparency across all application development is the most important guideline in producing quality application code.** These factors will be addressed in detail for each programming language in separate style guides which will detail The following areas of interest for each programming language for example C#, C++, and JAVA. The subset of quality characteristics described below represent the priorities for the Division with high level approaches to mitigate them and factors to grade systems against.
 
 ##Reliability - Resiliency & Dependability##
 
-| **Coding Errors Impacting the RELIABILITY** | **Context Required** | **Business Impact (est.)** |
-| --------------- | --------------- | --------------- |
-|Error & Exception handling (Unit Level) Complexity of algorithms Error-prone programming |Unit Level |10% |
-|Object-Oriented and Structured Programming best practices (when applicable) Resource bounds management |Technology Level |25% |
-|Multi-layer design compliance Data integrity and consistency Error & Exception handling (across layers) Transaction complexity Time and state / multi-threading programming Null pointers dereference detection Resource bounds management |System Level |65%|
-> Fig 2  Reliability Element of the CISQ Quality Characteristic Measures
+<table>
+<caption><em>Fig 2 Reliability Element of the CISQ Quality Characteristic Measures</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>Coding Errors Impacting the RELIABILITY</p></th>
+<th align="left"><p>Context Required</p></th>
+<th align="left"><p>Business Impact (est.)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><ul>
+<li>Error &amp; Exception handling (Unit Level)</li>
+<li>Complexity of algorithms</li>
+<li>Error-prone programming</li>
+</ul></td>
+<td align="left"><p>Unit Level</p></td>
+<td align="left"><p>10%</p></td>
+</tr>
+<tr class="even">
+<td align="left"><ul>
+<li>Object-Oriented and Structured Programming best practices (when applicable)</li>
+<li>Resource bounds management</li>
+</ul></td>
+<td align="left"><p>Technology Level</p></td>
+<td align="left"><p>25%</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><ul>
+<li>Multi-layer design compliance</li>
+<li>Data integrity and consistency</li>
+<li>Error &amp; Exception handling (across layers)</li>
+<li>Transaction complexity</li>
+<li>Time and state / multi-threading programming</li>
+<li>Null pointers dereference detection</li>
+<li>Resource bounds management</li>
+</ul></td>
+<td align="left"><p>System Level</p></td>
+<td align="left"><p>65%</p></td>
+</tr>
+</tbody>
+</table>
 
 ###Handling unforeseen situations:###
 Unforeseen IT infrastructure situations occur every day.  For mission critical business systems, the resilience – the ability of withstanding shock without breaking – is one of the most demanded non-functional requirements. It is common to rely on exception or error handling to manage unplanned situations. Yet exception handling is not always the development team’s top priority. It does not really deliver an immediate, tangible value to the end-user because the conditions trapped by the exception or the error do not occur under regular conditions of use. Typically, it’s the type of thing that gets pushed to tomorrow.
