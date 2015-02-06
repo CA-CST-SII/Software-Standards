@@ -11,7 +11,7 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division General Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/General%20Code%20Agnostic%20Quality%20Standards.md)
 
-[Consular Systems and Technology Division Java Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/Genral-Java-Code-Standards)
+[Consular Systems and Technology Division Java Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/Java_Standards.md)
 
 [Consular Systems and Technology Division HTML Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/HTML-Coding-Standards.)
 
