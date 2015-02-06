@@ -96,32 +96,71 @@ to
 Naming Conventions
 ------------------
 
-| Identifier Type          | Naming Rules                                                                                                                                                                                                                                                                                                                                                                     | Example                                   |
-|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
-| Variables                | -   Variables are in mixed case with a lowercase first letter. Internal words start with capital letters.                                                                                                                                                                                                                                                                        
-                            -   Variable names should not start with underscore ‘\_’ or dollar sign ‘$’ characters, even though both are allowed.                                                                                                                                                                                                                                                             
-                            -   Variable names should be short yet meaningful. The choice of a variable name should be mnemonic- that is, designed to indicate to the casual observer the intent of its use. One-character variable names should be avoided except for temporary “throwaway” variables. Common names for temporary variables are i, j, k, m, and n for integers; c, d, and e for characters.  
-                            -   No instance variables should be declared as public; getters and setters should be preferred.                                                                                                                                                                                                                                                                                  | `int     I = 0;`                          
-                                                                                                                                                                                                                                                                                                                                                                                                               `String  xmlDoc = 0;`                      
-                                                                                                                                                                                                                                                                                                                                                                                                               `float   price = 0;`                       |
-| Packages                 | -   The prefix of a unique package name is always written in all-lowercase ASCII letters and should be one of the top-level domain names, currently com, edu, gov, mil, net, org, or one of the English two-letter codes identifying countries as specified in ISO Standard 3166, 1981.                                                                                          
-                            -   Subsequent components of the package name vary according to an organization's own internal naming conventions. Such conventions might specify that certain directory name components be division, department, project, machine, or login names.                                                                                                                               
-                            -   The prefix for an CA/CST package will be (for example) gov.state.ca1.portal.                                                                                                                                                                                                                                                                                                  | `gov.state.ca1. Interface.daos`           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                               `gov.state.ca1.generic.captureapplet.app`  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                               `gov.state.ca1.generic.interfaces`         |
-| Classes and Enumerations | -   Class names and enumeration names should be nouns, in mixed case with the first letter of each internal word capitalized. Try to keep your class names simple and descriptive.                                                                                                                                                                                               
-                            -   Use whole words. Avoid acronyms and abbreviations (unless the abbreviation is much more widely used than the long form, such as URL or HTML).                                                                                                                                                                                                                                 
-                            -   Acronym should be capitalized.                                                                                                                                                                                                                                                                                                                                                | `class ReqReqDAO`                         
-                                                                                                                                                                                                                                                                                                                                                                                                               `class ResReqHome`                         |
-| Constants (user defined) | -   Capitalize all letters in each word.                                                                                                                                                                                                                                                                                                                                         
-                            -   Use underscores in place of spaces.                                                                                                                                                                                                                                                                                                                                           | `static final int MIN_WIDTH = 4;`         |
-| Methods                  | -   Methods should be verbs, in mixed case with the first letter lowercase, with the first letter of each internal word capitalized.                                                                                                                                                                                                                                             
-                            -   Variables in methods should be public only at last resort; getters and setters should be preferred.                                                                                                                                                                                                                                                                           | `getCustomerData();`                      
-                                                                                                                                                                                                                                                                                                                                                                                                               `setCustomerData(int data);`               |
-| Interfaces               | -   Interface names should be capitalized like class names.                                                                                                                                                                                                                                                                                                                      | `interface Storing`                       |
-
+<table>
+<caption><em>Table 4.1. Identifier Naming Rules</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>Identifier Type</p></th>
+<th align="left"><p>Naming Rules</p></th>
+<th align="left"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>Variables</p></td>
+<td align="left"><ul>
+<li>Variables are in mixed case with a lowercase first letter. Internal words start with capital letters.</li>
+<li>Variable names should not start with underscore ‘_’ or dollar sign ‘$’ characters, even though both are allowed.</li>
+<li>Variable names should be short yet meaningful. The choice of a variable name should be mnemonic- that is, designed to indicate to the casual observer the intent of its use. One-character variable names should be avoided except for temporary “throwaway” variables. Common names for temporary variables are i, j, k, m, and n for integers; c, d, and e for characters.</li>
+<li>No instance variables should be declared as public; getters and setters should be preferred.</li>
+</ul></td>
+<td align="left"><p><code>int     I = 0;</code><br /><code>String  xmlDoc = 0;</code><br /><code>float   price = 0;</code></p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Packages</p></td>
+<td align="left"><ul>
+<li>The prefix of a unique package name is always written in all-lowercase ASCII letters and should be one of the top-level domain names, currently com, edu, gov, mil, net, org, or one of the English two-letter codes identifying countries as specified in ISO Standard 3166, 1981.</li>
+<li>Subsequent components of the package name vary according to an organization's own internal naming conventions. Such conventions might specify that certain directory name components be division, department, project, machine, or login names.</li>
+<li>The prefix for an CA/CST package will be (for example) gov.state.ca1.portal.</li>
+</ul></td>
+<td align="left"><p><code>gov.state.ca1. Interface.daos</code></p>
+<p><code>gov.state.ca1.generic.captureapplet.app</code></p>
+<p><code>gov.state.ca1.generic.interfaces</code></p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Classes and Enumerations</p></td>
+<td align="left"><ul>
+<li>Class names and enumeration names should be nouns, in mixed case with the first letter of each internal word capitalized. Try to keep your class names simple and descriptive.</li>
+<li>Use whole words. Avoid acronyms and abbreviations (unless the abbreviation is much more widely used than the long form, such as URL or HTML).</li>
+<li>Acronym should be capitalized.</li>
+</ul></td>
+<td align="left"><p><code>class ReqReqDAO</code><br /><code>class ResReqHome</code></p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Constants (user defined)</p></td>
+<td align="left"><ul>
+<li>Capitalize all letters in each word.</li>
+<li>Use underscores in place of spaces.</li>
+</ul></td>
+<td align="left"><p><code>static final int MIN_WIDTH = 4;</code></p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Methods</p></td>
+<td align="left"><ul>
+<li>Methods should be verbs, in mixed case with the first letter lowercase, with the first letter of each internal word capitalized.</li>
+<li>Variables in methods should be public only at last resort; getters and setters should be preferred.</li>
+</ul></td>
+<td align="left"><p><code>getCustomerData();</code><br /><code>setCustomerData(int data);</code></p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Interfaces</p></td>
+<td align="left"><ul>
+<li>Interface names should be capitalized like class names.</li>
+</ul></td>
+<td align="left"><p><code>interface Storing</code></p></td>
+</tr>
+</tbody>
+</table>
 ### Packages and Files
 
 This section describes the naming conventions for development files created in the Java project. These files will be named according to the following rules:
