@@ -48,35 +48,50 @@ The following sources were used in creation of the original version of this stan
 -   ***Draft Coding Standard***, <http://g.oswego.edu/dl/html/javaCodingStd.html>
 -   ***Exception Handling***, <http://www.onjava.com/lpt/a/4345>
 -   ***Maven 1.x Best Practice***, <http://maven.apache.org/maven-1.x/using/bestpractices.html>
--   ***Javadoc Information***, <http://java.sun.com/j2se/>
+-   ***Javadoc Information***, <http://java.sun.com/j2se/javadoc/writingdoccomments/>
+-   ***Javadoc Tool Information***, <http://www.oracle.com/technetwork/java/index.html>
+-   ***JUnit Information***, <ftp://ftp.sei.cmu.edu/public/documents/97.reports/ps/97hb001.ps> Handbook: CMU/SEI-97-HB-001, January 1997.
+-   ***C4 Software Technology Reference Guide —A Prototype***, Software Engineering Institute, Carnegie Mellon University, Pittsburgh, Pennsylvania 15213
+-   ***A Proposed Taxonomy for Software Development Risks for High-Performance Computing (HPC) Scientific/Engineering applications***, TECHNICAL NOTE, CMU/SEI-2006-TN-039 January 2007, Software Engineering Institute, Carnegie Mellon University, Pittsburgh, Pennsylvania 15213
+-   ***Applying and Interpreting Object Oriented Metrics***, Presenter Dr. Linda H. Rosenberg, <http://www.literateprogramming.com/ooapply.pdf>
+-   ***Minimizing code defects to improve software quality and lower development costs, Development Solutions White paper, October 2008***, IBM/Rational
+-   ***Managing Software Risks in Software Intensive Systems with Metrics and Measures***, Robert A. Martin, MITRE, presentation to SEI/CMU Conference on the Acquisition of Software-Intensive Systems 2003, 30 January 2003.
+-   NIST Special Publication 500-235, ***Structured Testing: A Testing Methodology Using the Cyclomatic Complexity Metric***, Arthur H. Watson, Thomas J. McCabe, Prepared under NIST Contract 43NANB517266 , Dolores R. Wallace, Editor Computer Systems Laboratory, National Institute of Standards and Technology, Gaithersburg, MD 20899-0001, August 1996
+-   Shyam R. Chidamber, Chris F. Kemerer. ***A Metrics suite for Object Oriented design***. M.I.T. Sloan School of Management E53-315. 1993. <http://maisqual.squoring.com/wiki/images/5/5c/Chid_kem_metrics.pdf>
+-   Victor Basili, Lionel Briand and Walcelio Melo. ***A Validation of Object-Oriented Design Metrics as Quality Indicators***. IEEE Transactions on Software Engineering. Vol. 22, No. 10, October 1996.http://www.cs.umd.edu/users/basili/publications/journals/J60.pdf
+-   Laing, Victor & Coleman, Charles: ***Principal Components of Orthogonal Object-Oriented Metrics***. White Paper Analyzing Results of NASA Object-Oriented Data. SATC, NASA, 2001.http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=CB520F14993302E2669C6BD3F4C0AC90?doi=10.1.1.95.6760&rep=rep1&type=pdf
+-   ***O’Rielly On Java.com***; <http://www.onjava.com/>
+-   ***Does Java need Checked Exceptions?*** by Bruce Eckel
+-   ***Exceptional Java,*** by Alan Griffiths
+-   ***The Trouble with Checked Exceptions: A Conversation with Anders Hejlsberg, Part II*** on <http://www.Artima.com>
+-   ***Checked Exceptions are of Dubious Value,*** on <http://www.C2.com>
+
 
 Java Best Practices
 -------------------
 
 This section describes Java coding best practices and the resources used to support the best practices. For more information on the tools, refer to the links provided.
 
+
+to
+ 
+
 -   Use Logback for logging when developing code. For more information on Logback logging, please check the Logback library at URL: <http://Logback.qos.ch/index.html>. Logback implements the SLF4J API and is very flexible. It can, via a configuration file, select log events and filtered content may be sent to different destinations. Proper error logging quickly helps find application errors and business logic issues in development, test, and production environments. Logging should have several levels of detail and each level should be configurable at run-time.
 -   Use Javadoc tool or if not possible, Javadoc comment style for documenting comments within Java programs. Properly commenting the Java Application Programming Interface (API) allows for easier maintenance of the code.
 
-:\#Comment any complex and hard-to-understand code constructions, workarounds or assumptions made by the code.
-
-:\#Remove dead code rather than comment it out.
-
-:\#Use @TODO task tag to comment unfinished tasks or that code requires additional work.
-
-:\#Use FIXME task tag to document issues.
-
-:\#Use XXX task tag to comment any content that may not be appropriate.
-
-:\#All task tags should be handled and removed prior to IV&V Testing.
-
-:\#To add to the traceability of the system you are working on, use class-level comments to point to the system requirements and design that the code implements or the individual enhancement or defect report request that requires the change or update you are working on
-
-:\#Suppress or handle all compiler warnings prior to Test Readiness Review (TRR).
+1. Comment any complex and hard-to-understand code constructions, workarounds or assumptions made by the code.
+2. Remove dead code rather than comment it out.
+3. Use @TODO task tag to comment unfinished tasks or that code requires additional work.
+4. Use FIXME task tag to document issues.
+5. Use XXX task tag to comment any content that may not be appropriate.
+6. All task tags should be handled and removed prior to IV&V Testing.
+7. To add to the traceability of the system you are working on, use class-level comments to point to the system requirements and design that the code implements or the individual enhancement or defect report request that requires the change or update you are working on
+8. Suppress or handle all compiler warnings prior to Test Readiness Review (TRR).
 
 -   If your project compiles with the latest Java release, and you have no need to support previous versions of Java, you are encouraged to use the new release features. New projects are encouraged to use the latest IT CCB approved release to take advantage of new features, as well as implement improved performance.
 -   Follow proper Exception Handling best practices. All exception handling should be logged to the application log. All log files should contain identifiable exceptions for operational debugging purposes. Errors should never be silently ignored. At a minimum, the condition should be logged.
 -   Please refer to our policy on exception handling. Specific exceptions should be used whenever useful, as they allow other code to catch and handle specific problems without falsely handling unrelated issues. If a specific exception does not exist, creating one is encouraged, even if it does not carry data.
+
 
 Naming Conventions
 ------------------
