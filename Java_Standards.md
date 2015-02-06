@@ -1,150 +1,114 @@
-==Introduction==
-This document is derived from the Office of Biometric Information Management (OBIM) Java coding standards developed and leveraged by the United States Visitor and Immigrant Status Indicator Technology (US-VISIT) program team during the course of all Java development activities. 
+Introduction
+------------
 
-===Purpose===
-Coding conventions help make sure that project code has a consistent structure and style. They are intended to make the code easier to read, understand, review, and maintain and further reduce the complexity of the code. 
+This document is derived from the Office of Biometric Information Management (OBIM) Java coding standards developed and leveraged by the United States Visitor and Immigrant Status Indicator Technology (US-VISIT) program team during the course of all Java development activities.
 
-Additional coding guidelines in the form of code metrics (measurements) and coding rules are provided in this document for developers to use. The code metrics guidelines consist of ìhand-calculableî measurements within each method and each class. The coding rules are based on information gathered from multiple sources to enhance the security, reliability, maintainability, testability and performance of the code.
+### Purpose
+
+Coding conventions help make sure that project code has a consistent structure and style. They are intended to make the code easier to read, understand, review, and maintain and further reduce the complexity of the code.
+
+Additional coding guidelines in the form of code metrics (measurements) and coding rules are provided in this document for developers to use. The code metrics guidelines consist of ‚Äúhand-calculable‚Äù measurements within each method and each class. The coding rules are based on information gathered from multiple sources to enhance the security, reliability, maintainability, testability and performance of the code.
 
 This document is intended for the following uses:
-*Desk-side reference for CA/CST Java Web Services developers during coding.
-*Source for GTM code review checklists and criteria.
-*Reference for developers who must develop extend and maintain the CA/CST Java Web Services.
-*As a Governance Tool for CA/CST GTMís.
 
-===Scope===
+-   Desk-side reference for CA/CST Java Web Services developers during coding.
+-   Source for GTM code review checklists and criteria.
+-   Reference for developers who must develop extend and maintain the CA/CST Java Web Services.
+-   As a Governance Tool for CA/CST GTM‚Äôs.
+
+### Scope
+
 This document describes the following for the CA/CST:
-*Naming conventions for projects, files, objects, variables, and other code constructs.
-*Formatting conventions for code modules and their comments.
-*Error handling conventions.
-*Complexity conventions.
-*Section 508 compliance.
-*Security standards.
-*Logging conventions.
-*Coding practices and recommendations.
 
-===Code Change Scope===
+-   Naming conventions for projects, files, objects, variables, and other code constructs.
+-   Formatting conventions for code modules and their comments.
+-   Error handling conventions.
+-   Complexity conventions.
+-   Section 508 compliance.
+-   Security standards.
+-   Logging conventions.
+-   Coding practices and recommendations.
+
+### Code Change Scope
+
 The Java coding standards described in this document apply to new applications (new code) and existing code in the following ways:
-*New code in the middle of an existing file should follow new coding standards with explanations regarding the change being made to be consistent with new guidelines, ensuring no disruption to the existing code structure.
-*Exceptions can be made to this rule if following new guidelines creates significant and unnecessary and potentially dangerous re-work. 
-*New files within existing application must follow the Java coding standards documented in this document.
-*New applications must follow the Java coding standards documented in this document.
 
-==References==
+-   New code in the middle of an existing file should follow new coding standards with explanations regarding the change being made to be consistent with new guidelines, ensuring no disruption to the existing code structure.
+-   Exceptions can be made to this rule if following new guidelines creates significant and unnecessary and potentially dangerous re-work.
+-   New files within existing application must follow the Java coding standards documented in this document.
+-   New applications must follow the Java coding standards documented in this document.
+
+References
+----------
+
 The following sources were used in creation of the original version of this standard.
-*'''''US-VISIT Java Coding Standards Version 1.1 November 19, 2010 CI: USVISIT-TO027-CSD01555-SE-Coding_Standard-001-F'''''
-*'''''Coding Conventions for the Java Programming Language''''', http://www.oracle.com/technetwork/java/codeconvtoc-136057.html 
-*'''''Draft Coding Standard''''', http://g.oswego.edu/dl/html/javaCodingStd.html 
-*'''''Exception Handling''''', http://www.onjava.com/lpt/a/4345
-*'''''Maven 1.x Best Practice''''', http://maven.apache.org/maven-1.x/using/bestpractices.html
-*'''''Javadoc Information''''', http://java.sun.com/j2se/javadoc/writingdoccomments/
-*'''''Javadoc Tool Information''''', http://www.oracle.com/technetwork/java/index.html
-*'''''JUnit Information''''', ftp://ftp.sei.cmu.edu/public/documents/97.reports/ps/97hb001.ps Handbook: CMU/SEI-97-HB-001, January 1997. 
-*'''''C4 Software Technology Reference Guide óA Prototype''''', Software Engineering Institute, Carnegie Mellon University, Pittsburgh, Pennsylvania 15213
-*'''''A Proposed Taxonomy for Software Development Risks for High-Performance Computing (HPC) Scientific/Engineering applications''''', TECHNICAL NOTE, CMU/SEI-2006-TN-039 January 2007, Software Engineering Institute, Carnegie Mellon University, Pittsburgh, Pennsylvania 15213
-*'''''Applying and Interpreting Object Oriented Metrics''''', Presenter Dr. Linda H. Rosenberg, http://www.literateprogramming.com/ooapply.pdf
-*'''''Minimizing code defects to improve software quality and lower development costs, Development Solutions White paper, October 2008''''', IBM/Rational 
-*'''''Managing Software Risks in Software Intensive Systems with Metrics and Measures''''', Robert A. Martin, MITRE, presentation to SEI/CMU Conference on the Acquisition of Software-Intensive Systems 2003, 30 January 2003. 
-*NIST Special Publication 500-235, '''''Structured Testing: A Testing Methodology Using the Cyclomatic Complexity Metric''''', Arthur H. Watson, Thomas J. McCabe, Prepared under NIST Contract 43NANB517266 , Dolores R. Wallace, Editor Computer Systems Laboratory, National Institute of Standards and Technology, Gaithersburg, MD 20899-0001, August 1996 
-*Shyam R. Chidamber, Chris F. Kemerer. '''''A Metrics suite for Object Oriented design'''''. M.I.T. Sloan School of Management E53-315. 1993. http://maisqual.squoring.com/wiki/images/5/5c/Chid_kem_metrics.pdf
-*Victor Basili, Lionel Briand and Walcelio Melo. '''''A Validation of Object-Oriented Design Metrics as Quality Indicators'''''. IEEE Transactions on Software Engineering. Vol. 22, No. 10, October 1996.http://www.cs.umd.edu/users/basili/publications/journals/J60.pdf
-*Laing, Victor & Coleman, Charles: '''''Principal Components of Orthogonal Object-Oriented Metrics'''''. White Paper Analyzing Results of NASA Object-Oriented Data. SATC, NASA, 2001.http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=CB520F14993302E2669C6BD3F4C0AC90?doi=10.1.1.95.6760&rep=rep1&type=pdf
-*'''''OíRielly On Java.com''''';  http://www.onjava.com/
-*'''''Does Java need Checked Exceptions?''''' by Bruce Eckel
-*'''''Exceptional Java,''''' by Alan Griffiths
-*'''''The Trouble with Checked Exceptions: A Conversation with Anders Hejlsberg, Part II''''' on http://www.Artima.com
-*'''''Checked Exceptions are of Dubious Value,''''' on http://www.C2.com
 
-==Java Best Practices==
+-   ***US-VISIT Java Coding Standards Version 1.1 November 19, 2010 CI: USVISIT-TO027-CSD01555-SE-Coding\_Standard-001-F***
+-   ***Coding Conventions for the Java Programming Language***, <http://www.oracle.com/technetwork/java/codeconvtoc-136057.html>
+-   ***Draft Coding Standard***, <http://g.oswego.edu/dl/html/javaCodingStd.html>
+-   ***Exception Handling***, <http://www.onjava.com/lpt/a/4345>
+-   ***Maven 1.x Best Practice***, <http://maven.apache.org/maven-1.x/using/bestpractices.html>
+-   ***Javadoc Information***, <http://java.sun.com/j2se/>
+
+Java Best Practices
+-------------------
+
 This section describes Java coding best practices and the resources used to support the best practices. For more information on the tools, refer to the links provided.
-*Use Logback for logging when developing code. For more information on Logback logging, please check the Logback library at URL: http://Logback.qos.ch/index.html. Logback implements the SLF4J API and is very flexible. It can, via a configuration file, select log events and filtered content may be sent to different destinations. Proper error logging quickly helps find application errors and business logic issues in development, test, and production environments.  Logging should have several levels of detail and each level should be configurable at run-time.
-*Use Javadoc tool or if not possible, Javadoc comment style for documenting comments within Java programs. Properly commenting the Java Application Programming Interface (API) allows for easier maintenance of the code.  
-:#Comment any complex and hard-to-understand code constructions, workarounds or assumptions made by the code.
-:#Remove dead code rather than comment it out.
-:#Use @TODO task tag to comment unfinished tasks or that code requires additional work.  
-:#Use FIXME task tag to document issues.  
-:#Use XXX task tag to comment any content that may not be appropriate.  
-:#All task tags should be handled and removed prior to IV&V Testing.
-:#To add to the traceability of the system you are working on, use class-level comments to point to the system requirements and design that the code implements or the individual enhancement or defect report request that requires the change or update you are working on
-:#Suppress or handle all compiler warnings prior to Test Readiness Review (TRR).
-*If your project compiles with the latest Java release, and you have no need to support previous versions of Java, you are encouraged to use the new release features.  New projects are encouraged to use the latest IT CCB approved release to take advantage of new features, as well as implement improved performance.
-*Follow proper Exception Handling best practices.  All exception handling should be logged to the application log.  All log files should contain identifiable exceptions for operational debugging purposes.  Errors should never be silently ignored.  At a minimum, the condition should be logged. 
-*Please refer to our policy on exception handling.  Specific exceptions should be used whenever useful, as they allow other code to catch and handle specific problems without falsely handling unrelated issues.  If a specific exception does not exist, creating one is encouraged, even if it does not carry data.
 
+-   Use Logback for logging when developing code. For more information on Logback logging, please check the Logback library at URL: <http://Logback.qos.ch/index.html>. Logback implements the SLF4J API and is very flexible. It can, via a configuration file, select log events and filtered content may be sent to different destinations. Proper error logging quickly helps find application errors and business logic issues in development, test, and production environments. Logging should have several levels of detail and each level should be configurable at run-time.
+-   Use Javadoc tool or if not possible, Javadoc comment style for documenting comments within Java programs. Properly commenting the Java Application Programming Interface (API) allows for easier maintenance of the code.
 
-==Naming Conventions==
-The section below contains naming conventions for packages, class names, directory paths and public method names that apply to new applications.  Do not change existing applications since there will be large impact to the existing software. This means new code in the middle of an existing file must follow new guidelines as much as possible without disrupting the existing code.  However, new files within existing application must follow these new naming conventions.
+:\#Comment any complex and hard-to-understand code constructions, workarounds or assumptions made by the code.
 
-Meaningful names are important for maintaining understandable and high-quality code. Developers should take the time to choose names that are descriptive and unambiguous.
+:\#Remove dead code rather than comment it out.
 
-Except for user-defined constants, all identifier names should be written as a mix of upper and lower case letters. This coding standard uses the following rules for formatting identifier names:
+:\#Use @TODO task tag to comment unfinished tasks or that code requires additional work.
 
-{| class="wikitable"style="color:#303030;" cellpadding="20"
-|+ style="caption-side:bottom; color:#0000CC;"|''Table 4.1. Identifier Naming Rules''
-|-
-! scope="col"| Identifier Type
-! scope="col"| Naming Rules
-! scope="col"| Example
-|-
-! scope="row"| Variables
-| 
-*Variables are in mixed case with a lowercase first letter. Internal words start with capital letters. 
-*Variable names should not start with underscore ë_í or dollar sign ë$í characters, even though both are allowed.
-*Variable names should be short yet meaningful. The choice of a variable name should be mnemonic- that is, designed to indicate to the casual observer the intent of its use. One-character variable names should be avoided except for temporary "throwaway" variables. Common names for temporary variables are i, j, k, m, and n for integers; c, d, and e for characters.
-*No instance variables should be declared as public; getters and setters should be preferred.
-| 
-<code>int     I = 0;</code>
-<br />
-<code>String  xmlDoc = 0;</code>
-<br />
-<code>float   price = 0;</code>
-|-
-! scope="row"| Packages 
-| 
-*The prefix of a unique package name is always written in all-lowercase ASCII letters and should be one of the top-level domain names, currently com, edu, gov, mil, net, org, or one of the English two-letter codes identifying countries as specified in ISO Standard 3166, 1981.
-*Subsequent components of the package name vary according to an organization's own internal naming conventions. Such conventions might specify that certain directory name components be division, department, project, machine, or login names.
-*The prefix for an CA/CST package will be (for example) gov.state.ca1.portal.
-| 
-<code>gov.state.ca1. Interface.daos</code>
+:\#Use FIXME task tag to document issues.
 
-<code>gov.state.ca1.generic.captureapplet.app</code>
+:\#Use XXX task tag to comment any content that may not be appropriate.
 
-<code>gov.state.ca1.generic.interfaces</code>
-|-
-! scope="row"| Classes and Enumerations
-|
-*Class names and enumeration names should be nouns, in mixed case with the first letter of each internal word capitalized. Try to keep your class names simple and descriptive. 
-*Use whole words. Avoid acronyms and abbreviations (unless the abbreviation is much more widely used than the long form, such as URL or HTML). 
-*Acronym should be capitalized.
-| 
-<code>class ReqReqDAO</code>
-<br />
-<code>class ResReqHome</code> 
-|-
-! scope="row"|Constants (user defined)
-| 
-*Capitalize all letters in each word.
-*Use underscores in place of spaces.
-| 
-<code>static final int MIN_WIDTH = 4;</code> 
-|-
-! scope="row"| Methods
-| 
-*Methods should be verbs, in mixed case with the first letter lowercase, with the first letter of each internal word capitalized. 
-*Variables in methods should be public only at last resort; getters and setters should be preferred.
-| 
-<code>getCustomerData();</code> 
-<br />
-<code>setCustomerData(int data);</code>
-|-
-! scope="row"|Interfaces
-| 
-*Interface names should be capitalized like class names. 
-| 
-<code>interface Storing</code>
-|}
+:\#All task tags should be handled and removed prior to IV&V Testing.
 
-===Packages and Files===
+:\#To add to the traceability of the system you are working on, use class-level comments to point to the system requirements and design that the code implements or the individual enhancement or defect report request that requires the change or update you are working on
+
+:\#Suppress or handle all compiler warnings prior to Test Readiness Review (TRR).
+
+-   If your project compiles with the latest Java release, and you have no need to support previous versions of Java, you are encouraged to use the new release features. New projects are encouraged to use the latest IT CCB approved release to take advantage of new features, as well as implement improved performance.
+-   Follow proper Exception Handling best practices. All exception handling should be logged to the application log. All log files should contain identifiable exceptions for operational debugging purposes. Errors should never be silently ignored. At a minimum, the condition should be logged.
+-   Please refer to our policy on exception handling. Specific exceptions should be used whenever useful, as they allow other code to catch and handle specific problems without falsely handling unrelated issues. If a specific exception does not exist, creating one is encouraged, even if it does not carry data.
+
+Naming Conventions
+------------------
+
+| Identifier Type          | Naming Rules                                                                                                                                                                                                                                                                                                                                                                     | Example                                   |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
+| Variables                | -   Variables are in mixed case with a lowercase first letter. Internal words start with capital letters.                                                                                                                                                                                                                                                                        
+                            -   Variable names should not start with underscore ‚Äò\_‚Äô or dollar sign ‚Äò$‚Äô characters, even though both are allowed.                                                                                                                                                                                                                                                             
+                            -   Variable names should be short yet meaningful. The choice of a variable name should be mnemonic- that is, designed to indicate to the casual observer the intent of its use. One-character variable names should be avoided except for temporary ‚Äúthrowaway‚Äù variables. Common names for temporary variables are i, j, k, m, and n for integers; c, d, and e for characters.  
+                            -   No instance variables should be declared as public; getters and setters should be preferred.                                                                                                                                                                                                                                                                                  | `int     I = 0;`                          
+                                                                                                                                                                                                                                                                                                                                                                                                               `String  xmlDoc = 0;`                      
+                                                                                                                                                                                                                                                                                                                                                                                                               `float   price = 0;`                       |
+| Packages                 | -   The prefix of a unique package name is always written in all-lowercase ASCII letters and should be one of the top-level domain names, currently com, edu, gov, mil, net, org, or one of the English two-letter codes identifying countries as specified in ISO Standard 3166, 1981.                                                                                          
+                            -   Subsequent components of the package name vary according to an organization's own internal naming conventions. Such conventions might specify that certain directory name components be division, department, project, machine, or login names.                                                                                                                               
+                            -   The prefix for an CA/CST package will be (for example) gov.state.ca1.portal.                                                                                                                                                                                                                                                                                                  | `gov.state.ca1. Interface.daos`           
+                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                               `gov.state.ca1.generic.captureapplet.app`  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                               `gov.state.ca1.generic.interfaces`         |
+| Classes and Enumerations | -   Class names and enumeration names should be nouns, in mixed case with the first letter of each internal word capitalized. Try to keep your class names simple and descriptive.                                                                                                                                                                                               
+                            -   Use whole words. Avoid acronyms and abbreviations (unless the abbreviation is much more widely used than the long form, such as URL or HTML).                                                                                                                                                                                                                                 
+                            -   Acronym should be capitalized.                                                                                                                                                                                                                                                                                                                                                | `class ReqReqDAO`                         
+                                                                                                                                                                                                                                                                                                                                                                                                               `class ResReqHome`                         |
+| Constants (user defined) | -   Capitalize all letters in each word.                                                                                                                                                                                                                                                                                                                                         
+                            -   Use underscores in place of spaces.                                                                                                                                                                                                                                                                                                                                           | `static final int MIN_WIDTH = 4;`         |
+| Methods                  | -   Methods should be verbs, in mixed case with the first letter lowercase, with the first letter of each internal word capitalized.                                                                                                                                                                                                                                             
+                            -   Variables in methods should be public only at last resort; getters and setters should be preferred.                                                                                                                                                                                                                                                                           | `getCustomerData();`                      
+                                                                                                                                                                                                                                                                                                                                                                                                               `setCustomerData(int data);`               |
+| Interfaces               | -   Interface names should be capitalized like class names.                                                                                                                                                                                                                                                                                                                      | `interface Storing`                       |
+
+### Packages and Files
+
 This section describes the naming conventions for development files created in the Java project. These files will be named according to the following rules:
 
 {| class="wikitable"style="color:#303030; margin: auto;" cellpadding="20"|align:center
@@ -209,7 +173,7 @@ The following is an example of specifying a constant:
 
 <pre>
    static final String APP_CODE = "RES";
-        Ö
+        ‚Ä¶
     application_code = APP_CODE;
 </pre>
 
@@ -364,7 +328,7 @@ a += c + d;
     }
     printSize("size is " + foo + "\n");
 </pre>
-*The expressions in a ìforî statement should be separated by blank spaces. Example:
+*The expressions in a ‚Äúfor‚Äù statement should be separated by blank spaces. Example:
 <pre>
 for (expr1; expr2; expr3)
 </pre>
@@ -428,7 +392,7 @@ Note: if statements always use braces {}. Avoid the following error-prone form:
 if (condition) 	//INCORRECT !!
 statement;
 </pre>
-Note: the conditional operator ì?î may be used to replace an ìifî statement if there are only two conditions ì?î statements use the Boolean value of one expression to decide which of two other expressions should be evaluated.:
+Note: the conditional operator ‚Äú?‚Äù may be used to replace an ‚Äúif‚Äù statement if there are only two conditions ‚Äú?‚Äù statements use the Boolean value of one expression to decide which of two other expressions should be evaluated.:
 <pre>
 ConditionalExpression:
     ConditionalOrExpression
@@ -436,7 +400,7 @@ ConditionalExpression:
 </pre>
 
 ===for Statements===
-A ìforî statement should have the following form: 
+A ‚Äúfor‚Äù statement should have the following form: 
 <pre>
 for (initialization; condition; update) {
     statements;
@@ -446,10 +410,10 @@ An empty for statement (one in which all the work is done in the initialization,
 <pre>
 for (initialization; condition; update);
 </pre>
-When using the comma operator in the initialization or update clause of a ìforî statement, avoid the complexity of using more than three variables. If needed, use separate statements before the ìforî loop (for the initialization clause) or at the end of the loop (for the update clause).
+When using the comma operator in the initialization or update clause of a ‚Äúfor‚Äù statement, avoid the complexity of using more than three variables. If needed, use separate statements before the ‚Äúfor‚Äù loop (for the initialization clause) or at the end of the loop (for the update clause).
 
 ===for-each Statements===
-A ìfor-eachî statement should have the following form: 
+A ‚Äúfor-each‚Äù statement should have the following form: 
 <pre>
 for (type var : array or collection) {
     statements;
@@ -457,19 +421,19 @@ for (type var : array or collection) {
 </pre>
 
 ===while Statements===
-A ìwhileî statement should have the following form: 
+A ‚Äúwhile‚Äù statement should have the following form: 
 <pre>
 while (condition) {
     statements;
 }
 </pre>
-An empty ìwhileî statement should have the following form: 
+An empty ‚Äúwhile‚Äù statement should have the following form: 
 <pre>
 while (condition);
 </pre>
 
 ===do-while Statements===
-A ìdo-whileî statement should have the following form: 
+A ‚Äúdo-while‚Äù statement should have the following form: 
 <pre>
 do {
     statements;
@@ -477,7 +441,7 @@ do {
 </pre>
 
 ===switch Statements===
-A ìswitchî statement should have the following form: 
+A ‚Äúswitch‚Äù statement should have the following form: 
 <pre>
 switch (condition) {
 case ABC:
@@ -500,7 +464,7 @@ default:
 Every time a case falls through (does not include a break statement), add a comment where the break statement would normally be. This is shown in the preceding code example with the /* falls through */ comment. Every switch statement should include a default case. The break in the default case is redundant, but it prevents a fall-through error if later another case is added.
 
 ===try-catch Statements===
-A ìtry-catchî statement should have the following format: 
+A ‚Äútry-catch‚Äù statement should have the following format: 
 <pre>
 try {
     statements;
@@ -508,7 +472,7 @@ try {
     statements;
 }
 </pre>
-A ìtry-catchî statement may also be followed by finally, which executes regardless of whether or not the try block has completed successfully. 
+A ‚Äútry-catch‚Äù statement may also be followed by finally, which executes regardless of whether or not the try block has completed successfully. 
 <pre>
 try {
     statements;
@@ -532,7 +496,7 @@ When throwing an exception, the statement should have the following sample forma
             customerData.checkXMLDocument(xmlDoc);
         } catch (RemoteException ex) {
             	throw new 
-	RemoteException("XML is not found.î);
+	RemoteException("XML is not found.‚Äù);
         }
    }
 </pre>
@@ -543,7 +507,7 @@ Examples of correct exception text are:
 *"Incorrect XML document is provided."
 *"XML file not found in given path."
 Examples of incorrect exception text:
-*"Weíre sorry, but we have not implemented the capability to delete entries at the moment."
+*"We‚Äôre sorry, but we have not implemented the capability to delete entries at the moment."
 *"Incorrect password."
 *"Certificate file not there."
 
@@ -551,7 +515,7 @@ Examples of incorrect exception text:
 When catching an exception, the statement should have the following sample format:
 <pre>
     try {
-        OpenXMLDocument(ìc:\\CA1\\î);
+        OpenXMLDocument(‚Äúc:\\CA1\\‚Äù);
     } catch (java.io.IOException ioe) {
         log.error(ioe.getMessage());
     }
@@ -827,14 +791,14 @@ Code level metrics (both at method and class levels) serve to keep the character
 | Count of number of references to classes outside the current class hierarchy and stay within the recommended threshold. 
 | Less than or equal to 2 
 |-
-| Public to Protected Data: (the ratio of Public to Private Data) Large percentages of Public Data violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide ìglobalî data to other classes and methods, making all such units of code dependent on one another; (i.e. coupled with multiple other structures)
+| Public to Protected Data: (the ratio of Public to Private Data) Large percentages of Public Data violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide ‚Äúglobal‚Äù data to other classes and methods, making all such units of code dependent on one another; (i.e. coupled with multiple other structures)
 | The ratio of public data (attributes) in a class to the private data in same class.
 | Less than or equal to 20 % 
 |-
 ! scope="row" style="color: black; background-color: #C8C8C8; text-align:left;" colspan="3"| Method
 |-
 | Cyclomatic Complexity: can make a piece of code; i.e. a method harder to understand, maintain and test. In addition high levels of Cyclomatic complexity can introduce security risks as hard-to-understand code may perform undesirable actions. 
-| The number of linearly-independent paths through a program module ñ roughly the Number of all decisions and loops in a method or number of branches ñ stay within the recommended threshold. 
+| The number of linearly-independent paths through a program module ‚Äì roughly the Number of all decisions and loops in a method or number of branches ‚Äì stay within the recommended threshold. 
 | Less than or equal to 12 
 |-
 | DESIGN Complexity:  this complexity measure evaluates the dependence of a method on other methods and as such is a measure of how encapsulation and modularity (independence) guidelines have been followed.  
@@ -845,7 +809,7 @@ Code level metrics (both at method and class levels) serve to keep the character
 | The level of nesting of loops and decisions making statements.
 | Limit to 5
 |-
-| Global Data Complexity :  This measurement shows the dependence of a module of code on the global data present in a system and as such can violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide ìglobalî data to other classes and methods, making all such units of code dependent on one another; i.e. coupled with multiple other structures.
+| Global Data Complexity :  This measurement shows the dependence of a module of code on the global data present in a system and as such can violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide ‚Äúglobal‚Äù data to other classes and methods, making all such units of code dependent on one another; i.e. coupled with multiple other structures.
 | The count of  number of paths through global data.
 | Less than or equal to 5
 |-
@@ -958,7 +922,7 @@ void myMethod() {
    }
 }
 </pre>
-The one exception to the rule is indexes of ìforî loops, which in Java can be declared in the ìforî statement: 
+The one exception to the rule is indexes of ‚Äúfor‚Äù loops, which in Java can be declared in the ‚Äúfor‚Äù statement: 
 <pre>
 for (int i = 0; i < maxLoops; i++) { 
     ... 
@@ -979,7 +943,7 @@ myMethod() {
 
 ===Class, Enumeration, and Interface Declarations=== 
 When coding Java classes, enumeration, and interfaces, the following formatting rules should be followed: 
-*No space between a method name and the parenthesis "(" starting its parameter list, followed by the parenthesis ì)î.
+*No space between a method name and the parenthesis "(" starting its parameter list, followed by the parenthesis ‚Äú)‚Äù.
 *Open brace "{" appears at the end of the same line as the declaration statement. 
 *Closing brace "}" starts a line by itself indented to match its corresponding opening statement, except when it is a null statement the "}" should appear immediately after the "{". 
 <pre>
@@ -1014,7 +978,7 @@ package logging.example2;
 import java.util.logging.Logger;
 
 public class HelloWorld {
-	private static CLAS_NAME=í HelloWorld.class.getName()î;
+	private static CLAS_NAME=‚Äô HelloWorld.class.getName()‚Äù;
 private static Logger logger = Logger.getLogger(CLAS_NAME);
 
 public static void main(String[] args) {
@@ -1081,15 +1045,15 @@ protected String[] getUserInfo(String firstname, String lastname)
 |} 
 
 ==Database JDBC Best Practice==
-*Use ìPreparedStatementî - This is a very popular JDBC practice widely adopted by industry using the JDBC API in Java. ìPreparedStatementî provides useful services such as prevention from SQL injection, Precompiled SQL queries and use of bind variables.
-*Use ìConnectionPoolî ñ ìConnectionPoolî has become standard now days. Several frameworks provide built in ìconnectionPoolî facility like Database Connection Pool in Spring, DBCP and if running in managed environments like J2EE Application Server (e.g. WAS or JBOSS Server) will provide Connection Pool facility. The rationale behind this JDBC best practice is that creating JDBC connections take relatively longer time which can increase overall response time, by caching JDBC connection in pool application can immediately access database.
+*Use ‚ÄúPreparedStatement‚Äù - This is a very popular JDBC practice widely adopted by industry using the JDBC API in Java. ‚ÄúPreparedStatement‚Äù provides useful services such as prevention from SQL injection, Precompiled SQL queries and use of bind variables.
+*Use ‚ÄúConnectionPool‚Äù ‚Äì ‚ÄúConnectionPool‚Äù has become standard now days. Several frameworks provide built in ‚ÄúconnectionPool‚Äù facility like Database Connection Pool in Spring, DBCP and if running in managed environments like J2EE Application Server (e.g. WAS or JBOSS Server) will provide Connection Pool facility. The rationale behind this JDBC best practice is that creating JDBC connections take relatively longer time which can increase overall response time, by caching JDBC connection in pool application can immediately access database.
 *Disable auto commit mode - This best practice provides substantial performance gain in JDBC batch updates. It is recommended to run SQL query with auto commit mode disable. Rational behind this is that with auto commit mode disabled you can group SQL Statement in one transaction while in case of auto commit mode every SQL statement runs in its own transaction and committed as soon as it finishes. So always run queries with auto commit mode disabled.
-*Use JDBC Batch Update - This JDBC best practice is very popular in industry. JDBC API provides ìaddBatch()î method to add SQL queries into batch and ìexecuteBatch()î to send batch queries for execution. Rational behind this is that, JDBC batch update potentially reduce number of database roundtrip which result in significant performance gain. So always Use JDBC batch update for insertion and update queries. 
-*Access ìResultSetî using column name to avoid ìinvalidColumIndexErrorî - JDBC API allows to access data returned by SELECT query using ìResultSetî, which can further be accessed using either column name or column index. This JDBC best practice suggest using column name over column index in order to avoid ìInvalidColumnIndexExceptionî which comes if index of column is incorrect, most common of them is 0, since ìResultSetî column Index starts from 1, zero is invalid. Also you don't need to change your JDBC access code if order of column changed in SELECT SQL query, which is a major maintenance gain and a robust way to write JDBC code. Some Java programmer may argue that accessing column using index is faster than name, which is true but if you look in terms of maintenance, robustness and readability, It is preferable to access column using name in ìResultSetî iterator.
-*Use Bind variables instead of String concatenation ñ Best practice suggest to use PreparedStatement in Java because of better performance. However performance can only be improved if you use bind variables denoted by ì?î or place holders, which allows database to run same query with different parameter. This JDBC best practice will also result in better performance and provide protection against SQL injection.
+*Use JDBC Batch Update - This JDBC best practice is very popular in industry. JDBC API provides ‚ÄúaddBatch()‚Äù method to add SQL queries into batch and ‚ÄúexecuteBatch()‚Äù to send batch queries for execution. Rational behind this is that, JDBC batch update potentially reduce number of database roundtrip which result in significant performance gain. So always Use JDBC batch update for insertion and update queries. 
+*Access ‚ÄúResultSet‚Äù using column name to avoid ‚ÄúinvalidColumIndexError‚Äù - JDBC API allows to access data returned by SELECT query using ‚ÄúResultSet‚Äù, which can further be accessed using either column name or column index. This JDBC best practice suggest using column name over column index in order to avoid ‚ÄúInvalidColumnIndexException‚Äù which comes if index of column is incorrect, most common of them is 0, since ‚ÄúResultSet‚Äù column Index starts from 1, zero is invalid. Also you don't need to change your JDBC access code if order of column changed in SELECT SQL query, which is a major maintenance gain and a robust way to write JDBC code. Some Java programmer may argue that accessing column using index is faster than name, which is true but if you look in terms of maintenance, robustness and readability, It is preferable to access column using name in ‚ÄúResultSet‚Äù iterator.
+*Use Bind variables instead of String concatenation ‚Äì Best practice suggest to use PreparedStatement in Java because of better performance. However performance can only be improved if you use bind variables denoted by ‚Äú?‚Äù or place holders, which allows database to run same query with different parameter. This JDBC best practice will also result in better performance and provide protection against SQL injection.
 *Always close Statement, PreparedStatement and Connection - Its common Java coding practice to close any resource in finally block as soon as you are done with that. JDBC Connection and other JDBC classes are costly resource and should be closed in finally block to ensure release of connection even in case of any SQLException. From Java 7 onwards Automatic Resource Management (ARM) Block can be used to close resources automatically.
 *Choose suitable JDBC driver for application development - There are 4 types of JDBC driver in Java and it can directly affect the performance of DAO layer. Always use latest JDBC Driver if available and prefer type 4 native JDBC Drivers.
-*Use standard SQL statement and avoid using db specific query until necessary - This JDBC best practice ensures writing portable code. Since most of JDBC code is filled up with SQL query, itís easy to start using database specific feature which may present in MySQL but not in Oracle etc. By using ANSI SQL or by not using DB specific SQL you ensure minimal change in your DAO layer in case you switch to another database.
+*Use standard SQL statement and avoid using db specific query until necessary - This JDBC best practice ensures writing portable code. Since most of JDBC code is filled up with SQL query, it‚Äôs easy to start using database specific feature which may present in MySQL but not in Oracle etc. By using ANSI SQL or by not using DB specific SQL you ensure minimal change in your DAO layer in case you switch to another database.
 *Use correct getXXX() method - This practice suggest using correct getter while getting data from ResultSet to avoid data conversion even though JDBC allows to get any data type using getString()or getObject().
 
 ==Code Example==
