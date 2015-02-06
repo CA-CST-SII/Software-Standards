@@ -672,7 +672,7 @@ Java defines two kinds of exceptions:
 * Unchecked exceptions: RuntimeException also extends from Exception. However, all of the exceptions that inherit from RuntimeException get special treatment. There is no requirement for the client code to deal with them, and hence they are called unchecked exceptions. 
 By way of example, the following shows the hierarchy for NullPointerException:
 
-![Fig6.1](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "hierarchy for NullPointerException")
+![Fig6.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%206.1.jpg "hierarchy for NullPointerException")
 Figure 6-1. NullPointerException hierarchy
 
 
@@ -921,22 +921,7 @@ Code level metrics (both at method and class levels) serve to keep the character
 </tbody>
 </table>
 
-
-|-
-| Global Data Complexity :  This measurement shows the dependence of a module of code on the global data present in a system and as such can violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide “global” data to other classes and methods, making all such units of code dependent on one another; i.e. coupled with multiple other structures.
-| The count of  number of paths through global data.
-| Less than or equal to 5
-|-
-| Avoid high fan-out: high values of this metric indicate excessive interaction between modules and a coupling between disparate structures. This violates encapsulation and modularity guidelines and reduces potential re-use and component development capabilities since they are coupled with multiple other structures.
-| The count of the subordinate modules called from a single super-ordinate module.
-| Less than or equal to 7
-|-
-| Number of Logical Branches in a method: very similar to Cyclomatic complexity. Useful for understanding high paths are in need of testing in any piece of code. A module with a Cyclomatic Complexity of 12 for example, has 22 branches which means the minimum number of paths to cover during testing.
-| Logical branches: Correlates to threshold for Cyclomatic Complexity of 10 - which would equal 19 branches, for a Cyclomatic Complexity of 12 it is approximately 22.
-| Less than or equal to 22
-|}  
-
-##Security Standards##
+## Security Standards
 
 The following Security Standards are derived from the Mitre Common Weakness Enumeration (CWE) dictionary. Not all top 25 errors listed under CWE apply to Java language but we have included them in here as a general reference. The information has been used from this site and edited for brevity and how they apply to CA/CST application development. For more details, please visit  http://cwe.mitre.org/top25/#CWE-79.
 
