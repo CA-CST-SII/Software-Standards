@@ -61,25 +61,51 @@ There are similar but slightly different issues in COBOL that occur when moving 
 The solution is to use automated code quality tools to enforce detection of data truncation and verify code quality at an early stage of development where potential errors are less costly to correct. 
 
 ##Performance Efficiency##
-| Coding Errors Impacting the RELIABILITY                                                                                    | Context Required | Business Impact (est.) |
-|----------------------------------------------------------------------------------------------------------------------------|------------------|------------------------|
-| -   Compliance with garbage collection best practices                                                                      
- -   Expensive computations in loops                                                                                         | Unit Level       | 10%                    |
-| -   Memory, network and disk space management                                                                              
- -   Compliance with Object-Oriented best practices                                                                          
- -   Compliance with SQL best practices                                                                                      | Technology Level | 10%                    |
-| -   Appropriate interactions with expensive and/or remote resources                                                        
- -   Data access performance and data management                                                                             
- -   Centralized handling of client requests\*Use of middle tier components versus stored procedures and database functions  
- -   Algorithm complexity                                                                                                    | System Level     | 80%                    |
+<table>
+<caption><em>Fig 4 Effeciency Element of the CISQ Quality Characteristic Measures</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>Coding Errors Impacting the RELIABILITY</p></th>
+<th align="left"><p>Context Required</p></th>
+<th align="left"><p>Business Impact (est.)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><ul>
+<li>Compliance with garbage collection best practices</li>
+<li>Expensive computations in loops</li>
+</ul></td>
+<td align="left"><p>Unit Level</p></td>
+<td align="left"><p>10%</p></td>
+</tr>
+<tr class="even">
+<td align="left"><ul>
+<li>Memory, network and disk space management</li>
+<li>Compliance with Object-Oriented best practices</li>
+<li>Compliance with SQL best practices</li>
+</ul></td>
+<td align="left"><p>Technology Level</p></td>
+<td align="left"><p>10%</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><ul>
+<li>Appropriate interactions with expensive and/or remote resources</li>
+<li>Data access performance and data management</li>
+<li>Centralized handling of client requests*Use of middle tier components versus stored procedures and database functions</li>
+<li>Algorithm complexity</li>
+</ul></td>
+<td align="left"><p>System Level</p></td>
+<td align="left"><p>80%</p></td>
+</tr>
+</tbody>
+</table>
 
 
 ###Efficient Interaction with Expensive Resources:###
 Studies done after major performance degradations have highlighted an anti-pattern that can be best described as the “remote calls inside loops”, where remote means that the calls are executed on a remote server - web service, database, file system.  More precisely the post-mortem analyses of many performance related crashes have shown that the root cause of such failures is ‘buried’ calls to external resources done inside loops.  These calls are difficult to accurately identify at the Unit or Technology Levels.  When looking at a loop in a Java or C# code, one can only view a simple method call.  Moreover, most of the time, the costly resource is not directly called in the loop.  The actual call might be performed several levels down the call graph of the call made in the loop.  So if the code analysis stops at the loop stage, the problem won’t be trapped and this piece of code will be declared of good quality.  Only further research down the call graph would allow for the identification that the method call is, in fact, an access to an expensive resource such as a costly SQL access.  A concrete example of this anti-pattern between a Java layer and a mainframe back end is shown in the following figure where a Customer Information Control System (CICS) transaction calls an external resource:
 
-<p align="center">
-[[https://cloud.githubusercontent.com/assets/6976295/2800891/c3f02590-cc7a-11e3-981e-4903a41a6d00.jpg]]
-</p> 
+![(CICS)](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Diagram5.jpg "(CICS) transaction calls an external resource")
 
 The detection of such an anti-pattern requires a System Level analysis of the COBOL layer and the calling layer in Java, communicating with the COBOL through CICS.  The COBOL code is analyzed in order to eventually compute the size of the COMMAREA (i.e.  the buffer that will be used in CICS transaction) and the Java code is analyzed in order to detect CICS transaction calls that use a large set of data and also take place in a loop.  While this is COBOL, the same could be applicable to any stored data object.  If not detected, this type of issue could result in slow response time not only for the end-user who has initiated the transaction but also the rest of the end-users impacted by the over consumption of CPU due to the slow transaction.  Another side effect is excessive consumption of CPU cycles leading to an additional cost of running the server. 
 
