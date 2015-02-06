@@ -672,11 +672,9 @@ Java defines two kinds of exceptions:
 * Unchecked exceptions: RuntimeException also extends from Exception. However, all of the exceptions that inherit from RuntimeException get special treatment. There is no requirement for the client code to deal with them, and hence they are called unchecked exceptions. 
 By way of example, the following shows the hierarchy for NullPointerException:
 
-<p align="center">
-![](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%206.1.jpg)
-</p><p align="center">
+![Fig6.1](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "hierarchy for NullPointerException")
 Figure 6-1. NullPointerException hierarchy
-</p>
+
 
 In this diagram, NullPointerException extends from RuntimeException and hence is an unchecked exception. 
 
@@ -691,27 +689,34 @@ public List getAllAccounts() throws
 </pre>
 The method getAllAccounts() throws two checked exceptions. The client of this method has to explicitly deal with the implementation-specific exceptions, even if it has no idea what file or database call has failed within getAllAccounts(), or has no business providing filesystem or database logic. Thus, the exception handling forces an inappropriately tight coupling between the method and its callers.
 
-####Best Practices for Designing the API####
+#### Best Practices for Designing the API
 When deciding on checked exceptions vs. unchecked exceptions, ask yourself, "What action can the client code take when the exception occurs?"
 
 If the client can take some alternate action to recover from the exception, make it a checked exception.  If the client cannot do anything useful, then make the exception unchecked. Take steps to recover from the exception and not just logging the exception. To summarize:
 
-{| class="wikitable"style="color:#303030; margin: auto;" cellpadding="20"
-|+ style="caption-side:bottom; color:#0000CC;"|''Table 6.1. Exceptions''
-|-
-! scope="col"| Client's reaction when exception happens
-! scope="col"| Exception type
-|-
-| Client code cannot do anything
-| Make it an unchecked exception
-|-
-| Client code will take some useful recovery action based on information in exception
-| Make it a checked exception 
-|}
+<table>
+<caption><em>Table 6.1. Exceptions</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>Client's reaction when exception happens</p></th>
+<th align="left"><p>Exception type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>Client code cannot do anything</p></td>
+<td align="left"><p>Make it an unchecked exception</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Client code will take some useful recovery action based on information in exception</p></td>
+<td align="left"><p>Make it a checked exception</p></td>
+</tr>
+</tbody>
+</table>
 
 Moreover, prefer unchecked exceptions for all programming errors:  unchecked exceptions have the benefit of not forcing the client API to explicitly deal with them.  They propagate to where you want to catch them, or they go all the way out and get reported.  The Java API has many unchecked exceptions, such as nullPointerException, IllegalArgumentException, and IllegalStateException.  Work with standard exceptions provided in Java rather than creating my own. They make my code easy to understand and avoid increasing the memory footprint of code. 
 
-####Preserve encapsulation####
+#### Preserve encapsulation
 Never let implementation-specific checked exceptions escalate to the higher layers.  For example, do not propagate SQLException from data access code to the business objects layer.  Business objects layer do not need to know about SQLException.  You have two options:
 * Convert SQLException into another checked exception, if the client code is expected to recuperate from the exception.
 * Convert SQLException into an unchecked exception, if the client code cannot do anything about it.
@@ -737,7 +742,7 @@ public void dataAccessCode(){
 </pre>
 This converts SQLException to RuntimeException. If SQLException occurs, the catch clause throws a new RuntimeException. The execution thread is suspended and the exception gets reported. However, the business object layer is not corrupted layer with unnecessary exception handling, especially since it cannot do anything about an SQLException.  If the catch needs the root exception cause, make use of the getCause() method available in all exception. If you are confident that the business layer can take some recovery action when SQLException occurs, you can convert it into a more meaningful checked exception.
 
-####Document exceptions####
+#### Document exceptions
 Use Javadoc's @throws tag to document both checked and unchecked exceptions that the API throws.  Have some way by which the client code can learn of the exceptions that your API throws.  Here is a sample unit test that tests for IndexOutOfBoundsException:
 <pre>
 public void testIndexOutOfBoundsException() {
@@ -750,11 +755,11 @@ public void testIndexOutOfBoundsException() {
 </pre>
 The code above should throw an IndexOutOfBoundsException when blankList.get(10) is invoked. If it does not, the fail ("Should raise an IndexOutOfBoundsException") statement explicitly fails the test.  By writing unit tests for exceptions, it not only documents how the exceptions work, but also make the code robust by testing for exceptional scenarios.
 
-####Best Practices for Using Exceptions####
+#### Best Practices for Using Exceptions
 The next set of best practices show how the client code should deal with an API that throws checked exceptions.
 * Always clean up after yourself
 Make sure resources like database connections or network connections are cleaned-up. If the API you are invoking uses only unchecked exceptions, clean up resources after use, with try - finally blocks.
-<pre>
+```java
 public void dataAccessCode(){
     Connection conn = null;
     try{
@@ -778,7 +783,7 @@ class DBUtil{
         }
     }
 }
-</pre>
+```
 DBUtil is a utility class that closes the Connection. The important point is the use of finally block, which executes whether or not an exception is caught. In this example, the finally closes the connection and throws a RuntimeException if there is problem with closing the connection.
 * Never use exceptions for flow control
 Generating stack traces is expensive and the value of a stack trace is in debugging. In a flow-control situation, the stack trace would be ignored, since the client just wants to know how to proceed. 
@@ -816,12 +821,12 @@ The code above ignores unchecked exceptions, as well.
 * Log exceptions just once
 Logging the same exception stack trace more than once can confuse the programmer examining the stack trace about the original source of exception. So just log it once.
 
-####Information Exposure through an Error Message####
+#### Information Exposure through an Error Message
 Providing information in your error messages, could disclose secrets. The secrets could cover a wide range of valuable data, including personally identifiable information (PII), authentication credentials, and server configuration.  Sometimes, the secrets might seem harmless and are that are convenient for admins, such as the full installation path of your software.  Ensure that error messages only contain minimal details that are useful to the intended audience, and no one else.  The messages need to strike the balance between too cryptic and not cryptic enough. The messages should not necessarily reveal the methods that were used to determine the error. Such detailed information can help an attacker craft another attack that now will pass through the validation filters.
 
 If errors must be tracked in some detail, capture them in log messages - but consider what could occur if the log messages can be viewed by attackers. Avoid recording highly sensitive information such as passwords in any form. Avoid inconsistent messaging that might accidentally tip off an attacker about internal state, such as whether a username is valid or not
 
-##Resources Management##
+## Resources Management
 Any resource obtained in the try block should be released in the finally block.  It ensures the source code that releases or cleans up the resource will not be bypassed accidentally by a return, continue or break. For example:
 <pre>
    Connection conn = null;
@@ -844,47 +849,79 @@ Any resource obtained in the try block should be released in the finally block. 
    }
 </pre> 
 
-##Code Level Metrics##
+## Code Level Metrics
 Code level metrics (both at method and class levels) serve to keep the characteristics of the code within certain limits in order to enhance the readability/understandability, maintainability, testability, and in certain cases, security and performance of the code.  The most commonly known metric is the Cyclomatic complexity or very roughly, the number of decision-making and/or branches in the code. High levels of complexity lead to difficulty understanding and testing code and therefore reduce the maintainability and testability of the code. The less complexity in the Java code, the less room for error, the easier it is to test and to understand and therefore maintain the code. Ensure your Java code meets the following metrics:
 
-{| class="wikitable"style="text-align:left; color:#303030; margin: auto;" cellpadding="20"
-|+ style="caption-side:bottom; color:#0000CC;"|''Table 8.1. Code level metrics''
-|-
-! scope="col"| Class Level
-! scope="col"| Description and Calculation
-! scope="col"| Recommended Threshold
-|-
-! scope="row" style="color: black; background-color: #C8C8C8; text-align:left;" colspan="3"| Class
-|-
-| Classes with High number of Methods: Such classes are difficult to understand, maintain and test. 
-| Count the number of methods per class and keep them below the recommended threshold. 
-| Less than or equal to 20 
-|-
-| Classes Dependent on their Children: This is a violation of Object Oriented programming guidelines as no parent class shall be dependent on its children. 
-| Do not create class structures that have circular dependencies or parents that make calls to child methods.
-| ZERO 
-|-
-| Highly Coupled Classes: Such classes violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they are coupled with multiple other structures.  
-| Count of number of references to classes outside the current class hierarchy and stay within the recommended threshold. 
-| Less than or equal to 2 
-|-
-| Public to Protected Data: (the ratio of Public to Private Data) Large percentages of Public Data violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide “global” data to other classes and methods, making all such units of code dependent on one another; (i.e. coupled with multiple other structures)
-| The ratio of public data (attributes) in a class to the private data in same class.
-| Less than or equal to 20 % 
-|-
-! scope="row" style="color: black; background-color: #C8C8C8; text-align:left;" colspan="3"| Method
-|-
-| Cyclomatic Complexity: can make a piece of code; i.e. a method harder to understand, maintain and test. In addition high levels of Cyclomatic complexity can introduce security risks as hard-to-understand code may perform undesirable actions. 
-| The number of linearly-independent paths through a program module – roughly the Number of all decisions and loops in a method or number of branches – stay within the recommended threshold. 
-| Less than or equal to 12 
-|-
-| DESIGN Complexity:  this complexity measure evaluates the dependence of a method on other methods and as such is a measure of how encapsulation and modularity (independence) guidelines have been followed.  
-| The number of all decisions and loops that contain calls to subordinate modules.
-| Less than or equal to 7
-|-
-| High Depth of Code: creates complexity that may be hard to understand, follow and maintain.
-| The level of nesting of loops and decisions making statements.
-| Limit to 5
+<table>
+<caption><em>Table 8.1. Code level metrics</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>Class Level</p></th>
+<th align="left"><p>Description and Calculation</p></th>
+<th align="left"><p>Recommended Threshold</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>Class</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Classes with High number of Methods: Such classes are difficult to understand, maintain and test.</p></td>
+<td align="left"><p>Count the number of methods per class and keep them below the recommended threshold.</p></td>
+<td align="left"><p>Less than or equal to 20</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Classes Dependent on their Children: This is a violation of Object Oriented programming guidelines as no parent class shall be dependent on its children.</p></td>
+<td align="left"><p>Do not create class structures that have circular dependencies or parents that make calls to child methods.</p></td>
+<td align="left"><p>ZERO</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Highly Coupled Classes: Such classes violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they are coupled with multiple other structures.</p></td>
+<td align="left"><p>Count of number of references to classes outside the current class hierarchy and stay within the recommended threshold.</p></td>
+<td align="left"><p>Less than or equal to 2</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Public to Protected Data: (the ratio of Public to Private Data) Large percentages of Public Data violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide “global” data to other classes and methods, making all such units of code dependent on one another; (i.e. coupled with multiple other structures)</p></td>
+<td align="left"><p>The ratio of public data (attributes) in a class to the private data in same class.</p></td>
+<td align="left"><p>Less than or equal to 20 %</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Method</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Cyclomatic Complexity: can make a piece of code; i.e. a method harder to understand, maintain and test. In addition high levels of Cyclomatic complexity can introduce security risks as hard-to-understand code may perform undesirable actions.</p></td>
+<td align="left"><p>The number of linearly-independent paths through a program module – roughly the Number of all decisions and loops in a method or number of branches – stay within the recommended threshold.</p></td>
+<td align="left"><p>Less than or equal to 12</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>DESIGN Complexity: this complexity measure evaluates the dependence of a method on other methods and as such is a measure of how encapsulation and modularity (independence) guidelines have been followed.</p></td>
+<td align="left"><p>The number of all decisions and loops that contain calls to subordinate modules.</p></td>
+<td align="left"><p>Less than or equal to 7</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>High Depth of Code: creates complexity that may be hard to understand, follow and maintain.</p></td>
+<td align="left"><p>The level of nesting of loops and decisions making statements.</p></td>
+<td align="left"><p>Limit to 5</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Global Data Complexity : This measurement shows the dependence of a module of code on the global data present in a system and as such can violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide “global” data to other classes and methods, making all such units of code dependent on one another; i.e. coupled with multiple other structures.</p></td>
+<td align="left"><p>The count of number of paths through global data.</p></td>
+<td align="left"><p>Less than or equal to 5</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Avoid high fan-out: high values of this metric indicate excessive interaction between modules and a coupling between disparate structures. This violates encapsulation and modularity guidelines and reduces potential re-use and component development capabilities since they are coupled with multiple other structures.</p></td>
+<td align="left"><p>The count of the subordinate modules called from a single super-ordinate module.</p></td>
+<td align="left"><p>Less than or equal to 7</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Number of Logical Branches in a method: very similar to Cyclomatic complexity. Useful for understanding high paths are in need of testing in any piece of code. A module with a Cyclomatic Complexity of 12 for example, has 22 branches which means the minimum number of paths to cover during testing.</p></td>
+<td align="left"><p>Logical branches: Correlates to threshold for Cyclomatic Complexity of 10 - which would equal 19 branches, for a Cyclomatic Complexity of 12 it is approximately 22.</p></td>
+<td align="left"><p>Less than or equal to 22</p></td>
+</tr>
+</tbody>
+</table>
+
+
 |-
 | Global Data Complexity :  This measurement shows the dependence of a module of code on the global data present in a system and as such can violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide “global” data to other classes and methods, making all such units of code dependent on one another; i.e. coupled with multiple other structures.
 | The count of  number of paths through global data.
