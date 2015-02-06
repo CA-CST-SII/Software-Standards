@@ -249,7 +249,7 @@ The following is an example of specifying a constant:
 </pre>
 
 The following is an example of using type-safe enumeration to specify a group of related constants: (change
-example)<br/>
+example)
 
 ```java
 	public enum Direction {
@@ -264,16 +264,18 @@ example)<br/>
 	   private int getCode() {
 		return code;
 	   }
-```<br/>
+```
 
 The following is an example of using interface to specify a group of related constants:
 
-<br/><pre>public interface Direction {
+```
+public interface Direction {
 		final int EAST = 0;
 		final int SOUTH = 1;
 		final int WEST = 2;
 		final int NORTH = 3;
-	     }</pre>
+	     }
+```	     
 
 
 ##Formatting Conventions##
@@ -294,11 +296,13 @@ The elements of a class or interface file should appear in the following order:
 ###Comments###
 A good metric for comments is that comments should account for minimum 20 percent (ideally more) of the total Lines of Code (LOC). The formatting for class, method, and member comments follow the requirements of the JavaDoc Tool. A documentation comment is made up of two parts -- a description followed by zero or more tags, with a blank line (containing a single asterisk "* ") between these two sections:  
 
-<pre>/* * 
+```
+/* * 
  *  This is the description part of a doc comment
  * 
  *  @tag    Comment for the tag
- * /</pre>
+ * /
+ ```
 The first line is indented to line up with the code below the comment, and starts with the begin-comment symbol (/* * ) followed by a return. Subsequent lines start with an asterisk * . They are indented an additional space so the asterisks line up. A space separates the asterisk from the descriptive text or tag that follows it. Insert a blank comment line between the description and the list of tags. Insert additional blank lines to create "blocks" of related tags. The last line begins with the end-comment symbol (* /) indented so the asterisks line up and followed by a return.
 
 Note that the end-comment symbol contains only a single asterisk (* ). A blank line should precede and follow the comment block. 
