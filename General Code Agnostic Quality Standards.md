@@ -61,34 +61,19 @@ There are similar but slightly different issues in COBOL that occur when moving 
 The solution is to use automated code quality tools to enforce detection of data truncation and verify code quality at an early stage of development where potential errors are less costly to correct. 
 
 ##Performance Efficiency##
-{| class="wikitable" style="text-align:left; color:green; background-color:#ffffcc;" cellpadding="20" style="text-align:left;" style="text-align:left;"
-|+ style="caption-side:bottom;"|''Fig 4  Effeciency Element of the CISQ Quality Characteristic Measures''
-|-
-! Coding Errors Impacting the RELIABILITY
-! Context Required
-! Business Impact (est.)
-|-
-| 
-*Compliance with garbage collection best practices
-*Expensive computations in loops
-| Unit Level
-| 10%
-|-
-| 
-*Memory, network and disk space management
-*Compliance with Object-Oriented best practices
-*Compliance with SQL best practices
-| Technology Level
-| 10%
-|-
-| 
-*Appropriate interactions with expensive and/or remote resources
-*Data access performance and data management
-*Centralized handling of client requests*Use of middle tier components versus stored procedures and database functions
-*Algorithm complexity
-| System Level
-| 80%
-|}
+| Coding Errors Impacting the RELIABILITY                                                                                    | Context Required | Business Impact (est.) |
+|----------------------------------------------------------------------------------------------------------------------------|------------------|------------------------|
+| -   Compliance with garbage collection best practices                                                                      
+ -   Expensive computations in loops                                                                                         | Unit Level       | 10%                    |
+| -   Memory, network and disk space management                                                                              
+ -   Compliance with Object-Oriented best practices                                                                          
+ -   Compliance with SQL best practices                                                                                      | Technology Level | 10%                    |
+| -   Appropriate interactions with expensive and/or remote resources                                                        
+ -   Data access performance and data management                                                                             
+ -   Centralized handling of client requests\*Use of middle tier components versus stored procedures and database functions  
+ -   Algorithm complexity                                                                                                    | System Level     | 80%                    |
+
+
 ###Efficient Interaction with Expensive Resources:###
 Studies done after major performance degradations have highlighted an anti-pattern that can be best described as the “remote calls inside loops”, where remote means that the calls are executed on a remote server - web service, database, file system.  More precisely the post-mortem analyses of many performance related crashes have shown that the root cause of such failures is ‘buried’ calls to external resources done inside loops.  These calls are difficult to accurately identify at the Unit or Technology Levels.  When looking at a loop in a Java or C# code, one can only view a simple method call.  Moreover, most of the time, the costly resource is not directly called in the loop.  The actual call might be performed several levels down the call graph of the call made in the loop.  So if the code analysis stops at the loop stage, the problem won’t be trapped and this piece of code will be declared of good quality.  Only further research down the call graph would allow for the identification that the method call is, in fact, an access to an expensive resource such as a costly SQL access.  A concrete example of this anti-pattern between a Java layer and a mainframe back end is shown in the following figure where a Customer Information Control System (CICS) transaction calls an external resource:
 
