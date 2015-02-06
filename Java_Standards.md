@@ -232,7 +232,7 @@ This section describes the naming conventions for development files created in t
 </tbody>
 </table>
 
-### Constants ###
+### Constants
 * Use keywords enum and static final to declare constants.
 * Use constants to avoid hard-coded values in the code.
 * Use uppercase letters and replace spaces with underscores to format the name of the constant for user-defined constants.
@@ -278,7 +278,7 @@ public interface Direction {
 ```	     
 
 
-##Formatting Conventions##
+## Formatting Conventions
 The length of Java source lines, including comments, should not exceed 79 characters. This ensures that any monitor or printer is useable. Use liberal amounts of white space to improve code readability. When a complete statement or an expression will not fit on a single line, break it according to these general principles:  
 1. Break after a comma.  
 2. Break before an operator.  
@@ -286,14 +286,14 @@ The length of Java source lines, including comments, should not exceed 79 charac
 4. Align the new line with the beginning of the expression at the same level on the previous line.  
 5. If the above rules lead to confusing code or to code that is too flushed against the right margin, outdent one additional level.
 
-###Class File Structure###
+### Class File Structure
 The elements of a class or interface file should appear in the following order: 
 1. Class (static) variables 
-1. Instance variables  
-1. Constructors  
-1. Methods grouped by functionality
+2. Instance variables  
+3. Constructors  
+4. Methods grouped by functionality
 
-###Comments###
+### Comments
 A good metric for comments is that comments should account for minimum 20 percent (ideally more) of the total Lines of Code (LOC). The formatting for class, method, and member comments follow the requirements of the JavaDoc Tool. A documentation comment is made up of two parts -- a description followed by zero or more tags, with a blank line (containing a single asterisk "* ") between these two sections:  
 
 ```
@@ -303,14 +303,15 @@ A good metric for comments is that comments should account for minimum 20 percen
  *  @tag    Comment for the tag
  * /
  ```
-The first line is indented to line up with the code below the comment, and starts with the begin-comment symbol (/* * ) followed by a return. Subsequent lines start with an asterisk * . They are indented an additional space so the asterisks line up. A space separates the asterisk from the descriptive text or tag that follows it. Insert a blank comment line between the description and the list of tags. Insert additional blank lines to create "blocks" of related tags. The last line begins with the end-comment symbol (* /) indented so the asterisks line up and followed by a return.
+The first line is indented to line up with the code below the comment, and starts with the begin-comment symbol `(/** )` followed by a return. Subsequent lines start with an asterisk `*` . They are indented an additional space so the asterisks line up. A space separates the asterisk from the descriptive text or tag that follows it. Insert a blank comment line between the description and the list of tags. Insert additional blank lines to create "blocks" of related tags. The last line begins with the end-comment symbol `(* /)` indented so the asterisks line up and followed by a return.
 
-Note that the end-comment symbol contains only a single asterisk (* ). A blank line should precede and follow the comment block. 
+Note that the end-comment symbol contains only a single asterisk `(* )`. A blank line should precede and follow the comment block. 
 
-####Comments: Class Header####
+#### Comments: Class Header
 The following comments will appear before the definition of every class.
 
-<pre>/* *  
+```java
+/* *  
  *  A description of what the class does. 
  *  
  *  @author      Author name 
@@ -319,9 +320,10 @@ The following comments will appear before the definition of every class.
                 . 
                 . 
  *  @author      Contributor n 
- * /</pre>
+ * /
+ ```
 
-####Comments: Method Header####
+#### Comments: Method Header
 The following comments will appear before every method (including main).
 
 <pre>/* * 
@@ -344,7 +346,7 @@ The following comments will appear before every method (including main).
  *  @post        postcondition after execution
  * /</pre>
 
-####Definition of Comments####
+#### Definition of Comments
 '''@param'''
 
 The @param tag is followed by the name (not type) of the parameter, followed by a description of the parameter. Additional spaces should be inserted between the name and description so that comments line up in a block. Dashes or other punctuation should not be inserted before the description. The name always starts with a lowercase letter. The description is most usually a phrase, starting with a lowercase letter and ending without a period, unless it contains a complete sentence.  
@@ -365,14 +367,14 @@ JavaDoc does not have a tag for preconditions, so the above tag is used. Precond
 
 JavaDoc does not have a tag for postconditions, so the above tag is used. Postconditions should be expressed in prose or in a formal language if it is more appropriate.
 
-####Non-Javadoc Comment####
+#### Non-Javadoc Comment
 Use '''//''' for non-Javadoc comments, including multi-line comments.
 
-###Indentation###
+### Indentation
 Four spaces should be used as the unit of indentation. Do not use Tab for indentation.
 
-###White Space###
-####Blank Lines####
+### White Space
+#### Blank Lines
 Blank lines improve readability by setting off sections of code that are logically related. 
 Two blank lines should always be used in the following circumstances: 
 * Between sections of a source file.
@@ -383,7 +385,7 @@ One blank line should always be used in the following circumstances:
 * Before a block or single-line comment.
 * Between logical sections inside a method to improve readability.
 
-####Blank Spaces####
+#### Blank Spaces
 Blank spaces should be used in the following circumstances: 
 * A keyword followed by a parenthesis should be separated by a space. Example: 
 <pre>
@@ -413,7 +415,7 @@ myMethod((byte) aNum, (Object) x);
 myMethod((int) (cp + 5), ((int) (i + 3))  + 1);
 </pre>
 
-##Statements##
+## Statements
 Each line should contain at most one statement. Example:
 <pre>
 argv++;       	 // Correct
@@ -421,7 +423,7 @@ argc--;       	 // Correct
 argv++; argc--;    // INCORRECT!
 </pre>
 
-###Compound Statements###
+### Compound Statements
 Compound statements are statements that contain lists of statements enclosed in braces "{ statements }". For example:
 <pre>
 	while (!done) {
@@ -433,7 +435,7 @@ Compound statements are statements that contain lists of statements enclosed in 
 * The opening brace should be at the end of the line that begins the compound statement; the closing brace should begin a line and be indented to the beginning of the compound statement. 
 * Braces are used around all statements, even single statements, when they are part of a control structure, such as an if-else or for statement. This makes it easier to add statements without accidentally introducing bugs due to forgetting to add braces.
 
-###Return Statement###
+### Return Statement
 A return statement with a value should not use parentheses unless it is an expression that requires parentheses or the parentheses provide clarity. Example:
 <pre>
 return;
@@ -441,7 +443,7 @@ return myDisk.size();
 return (size ? size : defaultSize);
 </pre>
 
-###if, if-else, if else-if else conditional operator '''?''' Statements###
+### if, if-else, if else-if else conditional operator '''?''' Statements
 The if-else class of statements should have the following form:
 <pre>
 if (condition) {
@@ -474,7 +476,7 @@ ConditionalExpression:
     ConditionalOrExpression ? Expression : ConditionalExpression
 </pre>
 
-###for Statements###
+### for Statements
 A “for” statement should have the following form: 
 <pre>
 for (initialization; condition; update) {
@@ -487,7 +489,7 @@ for (initialization; condition; update);
 </pre>
 When using the comma operator in the initialization or update clause of a “for” statement, avoid the complexity of using more than three variables. If needed, use separate statements before the “for” loop (for the initialization clause) or at the end of the loop (for the update clause).
 
-###for-each Statements###
+### for-each Statements
 A “for-each” statement should have the following form: 
 <pre>
 for (type var : array or collection) {
@@ -495,7 +497,7 @@ for (type var : array or collection) {
 }
 </pre>
 
-###while Statements###
+### while Statements
 A “while” statement should have the following form: 
 <pre>
 while (condition) {
@@ -507,7 +509,7 @@ An empty “while” statement should have the following form:
 while (condition);
 </pre>
 
-###do-while Statements###
+### do-while Statements
 A “do-while” statement should have the following form: 
 <pre>
 do {
@@ -515,7 +517,7 @@ do {
 } while (condition);
 </pre>
 
-###switch Statements###
+### switch Statements
 A “switch” statement should have the following form: 
 <pre>
 switch (condition) {
@@ -538,7 +540,7 @@ default:
 </pre>
 Every time a case falls through (does not include a break statement), add a comment where the break statement would normally be. This is shown in the preceding code example with the /*  falls through * / comment. Every switch statement should include a default case. The break in the default case is redundant, but it prevents a fall-through error if later another case is added.
 
-###try-catch Statements###
+### try-catch Statements
 A “try-catch” statement should have the following format: 
 <pre>
 try {
@@ -558,10 +560,10 @@ try {
 }
 </pre>
 
-###Exceptions### 
-####Throwing An Exception####
+### Exceptions
+#### Throwing An Exception
 When throwing an exception, the statement should have the following sample format:
-<pre>
+```java
     public void getCustomerData(String xmlDoc) 
                              throws RemoteException {
         
@@ -574,7 +576,7 @@ When throwing an exception, the statement should have the following sample forma
 	RemoteException("XML is not found.”);
         }
    }
-</pre>
+```
 A description of the exception should be included while throwing an exception. The text should be as simple and direct as possible, and end with a period. Uppercase is mandatory in the first word of the sentence, and should be used inside the sentence only when required. 
 
 Examples of correct exception text are:
@@ -586,7 +588,7 @@ Examples of incorrect exception text:
 * "Incorrect password."
 * "Certificate file not there."
 
-####Catching An Exception####
+#### Catching An Exception
 When catching an exception, the statement should have the following sample format:
 <pre>
     try {
@@ -597,11 +599,11 @@ When catching an exception, the statement should have the following sample forma
 </pre>
 The catch statement should only print the message supplied by the method throwing the exception.
 
-####Top-Level Exception####
+#### Top-Level Exception
 Top-level java.lang.Exception can be caught in MDB onMessage() method to log all checked and runtime exceptions. 
 
 For example:
-<pre>
+```java
 @Resource
 private MessageDriveContext	mdc;
 
@@ -639,11 +641,11 @@ public void onMessage(final Message msg) {
                 throw new ESBException(unexpectedFailure);
 		}
 	   }
-</pre>
+```
 
-####Best Practices for Exception Handling####
+#### Best Practices for Exception Handling 
 One of the problems with exception handling is knowing when and how to use it. This section covers some of the best practices for exception handling. Programmers want to write quality code that solves problems.  Unfortunately, exceptions come as side effects of code.  Examine the following code:
-<pre>
+```java
 public void consumeAndForgetAllExceptions(){
     try {
         ...some code that throws exceptions
@@ -651,27 +653,27 @@ public void consumeAndForgetAllExceptions(){
         ex.printStacktrace();
     }
 }
-</pre>
+```
 What is wrong with the code above? 
 
 Once an exception is thrown, normal program execution is suspended and control is transferred to the catch block. The catch block catches the exception and just suppresses it.  Execution of the program continues after the catch block, as if nothing had happened.
 
 It took the C++ community several years to decide on how to use exceptions.  This is ongoing in the Java community. If not used correctly, exceptions can slow down programs, as it takes memory and CPU power to create, throw, and catch exceptions. If overused, exceptions make the code difficult to read and frustrating for the programmers using the API.  
 
-####The Nature of Exceptions####
+#### The Nature of Exceptions
 There are three different situations that cause exceptions to be thrown:
 * Exceptions due to programming errors: In this category, exceptions are generated due to programming errors (e.g., NullPointerException and IllegalArgumentException). The client code usually cannot do anything about programming errors.
 * Exceptions due to client code errors: Client code attempts something not allowed by the API, and thereby violates its contract. The client can take some alternative course of action, if there is useful information provided in the exception. For example: an exception is thrown while parsing an XML document that is not well-formed. The exception contains useful information about the location in the XML document that causes the problem. The client can use this information to take recovery steps.
 * Exceptions due to resource failures: Exceptions that get generated when resources fail. For example: the system runs out of memory or a network connection fails. The client's response to resource failures is context- driven. The client can retry the operation after some time or just log the resource failure and bring the application to a halt.
 
-####Types of Exceptions in Java####
+#### Types of Exceptions in Java
 Java defines two kinds of exceptions:
 * Checked exceptions: Exceptions that inherit from the Exception class are checked exceptions. Client code has to handle the checked exceptions thrown by the API, either in a catch clause or by forwarding it outward with the throws clause.
 * Unchecked exceptions: RuntimeException also extends from Exception. However, all of the exceptions that inherit from RuntimeException get special treatment. There is no requirement for the client code to deal with them, and hence they are called unchecked exceptions. 
 By way of example, the following shows the hierarchy for NullPointerException:
 
 <p align="center">
-[[https://cloud.githubusercontent.com/assets/6976295/2803914/abe83b0e-cca2-11e3-9a3a-177d479986c6.jpg]]
+![](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%206.1.jpg)
 </p><p align="center">
 Figure 6-1. NullPointerException hierarchy
 </p>
