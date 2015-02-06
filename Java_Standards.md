@@ -165,64 +165,81 @@ Naming Conventions
 
 This section describes the naming conventions for development files created in the Java project. These files will be named according to the following rules:
 
-{| class="wikitable"style="color:#303030; margin: auto;" cellpadding="20"|align:center
-|+ style="caption-side:bottom; color:#0000CC;"|''Table 4.2. Package and File Naming Rules''
-|-
-! scope="col"| File type
-! scope="col"| Naming Rules
-! scope="col"| Example
-|-
-! scope="row"| Source files
-| The same as the class name in the file.
-| 
-<code>Transaction.java</code>
-|-
-! scope="row"| Compressed package files
-| Name should not be capitalized like class names.
-| 
-<code>ca1-dal-jpa-2.0.jar</code>
-|} 
+<table>
+<caption><em>Table 4.2. Package and File Naming Rules</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>File type</p></th>
+<th align="left"><p>Naming Rules</p></th>
+<th align="left"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>Source files</p></td>
+<td align="left"><p>The same as the class name in the file.</p></td>
+<td align="left"><p><code>Transaction.java</code></p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Compressed package files</p></td>
+<td align="left"><p>Name should not be capitalized like class names.</p></td>
+<td align="left"><p><code>ca1-dal-jpa-2.0.jar</code></p></td>
+</tr>
+</tbody>
+</table>
+<p>The following file extensions will be used for all CA/CST files:</p>
+<table>
+<caption><em>Table 4.3. File Extensions</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>File type</p></th>
+<th align="left"><p>Extension</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>Java source file</p></td>
+<td align="left"><p>.java</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Java class file</p></td>
+<td align="left"><p>.class</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Java compressed package file</p></td>
+<td align="left"><p>.jar</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Java Web Archive file</p></td>
+<td align="left"><p>.war</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Java Enterprise Application Archive file</p></td>
+<td align="left"><p>.ear</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Property files in XML format</p></td>
+<td align="left"><p>.xml</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Resource file</p></td>
+<td align="left"><p>.rar</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Property file</p></td>
+<td align="left"><p>.properties</p></td>
+</tr>
+</tbody>
+</table>
 
-The following file extensions will be used for all CA/CST files:
-{| class="wikitable" style="text-align: left; color: blue;"
-|+ style="caption-side:bottom; color:#0000CC;"|''Table 4.3. File Extensions''
-|-
-! scope="col"|File type     
-! scope="col"|Extension
-|-
-| Java source file
-|.java
-|-
-| Java class file
-| .class
-|- 
-|Java compressed package file
-| .jar
-|-
-|Java Web Archive file
-| .war
-|-
-|Java Enterprise Application Archive file
-| .ear
-|-
-|Property files in XML format
-| .xml
-|- 
-|Resource file
-| .rar
-|-
-|Property file
-| .properties
-|}
-
-===Constants===
-*Use keywords enum and static final to declare constants.
-*Use constants to avoid hard-coded values in the code.
-*Use uppercase letters and replace spaces with underscores to format the name of the constant for user-defined constants.
-*Use common sense and provide meaningful constant names (not e, var, io, etc).
-*If there are several related values, use a type-safe enumeration or a class implementing some interface to group the constants rather than statics.
-*Constants used over multiple files (classes) should be placed in a separate constants file with a meaningful name.
-*Constants which may need to be modified over the lifetime of the project should be placed in properties files or configuration files where they can be modified without recompiling the code.
+###Constants###
+* Use keywords enum and static final to declare constants.
+* Use constants to avoid hard-coded values in the code.
+* Use uppercase letters and replace spaces with underscores to format the name of the constant for user-defined constants.
+* Use common sense and provide meaningful constant names (not e, var, io, etc).
+* If there are several related values, use a type-safe enumeration or a class implementing some interface to group the constants rather than statics.
+* Constants used over multiple files (classes) should be placed in a separate constants file with a meaningful name.
+* Constants which may need to be modified over the lifetime of the project should be placed in properties files or configuration files where they can be modified without recompiling the code.
 The following is an example of specifying a constant:
 
 <pre>
@@ -259,71 +276,71 @@ The following is an example of using interface to specify a group of related con
 	     }</pre>
 
 
-==Formatting Conventions==
+##Formatting Conventions##
 The length of Java source lines, including comments, should not exceed 79 characters. This ensures that any monitor or printer is useable. Use liberal amounts of white space to improve code readability. When a complete statement or an expression will not fit on a single line, break it according to these general principles:  
-#Break after a comma.  
-#Break before an operator.  
-#Prefer higher-level breaks to lower-level breaks.  
-#Align the new line with the beginning of the expression at the same level on the previous line.  
-#If the above rules lead to confusing code or to code that is too flushed against the right margin, outdent one additional level.
+1. Break after a comma.  
+1. Break before an operator.  
+1. Prefer higher-level breaks to lower-level breaks.  
+1. Align the new line with the beginning of the expression at the same level on the previous line.  
+1. If the above rules lead to confusing code or to code that is too flushed against the right margin, outdent one additional level.
 
-===Class File Structure===
+###Class File Structure###
 The elements of a class or interface file should appear in the following order: 
-#Class (static) variables 
-#Instance variables  
-#Constructors  
-#Methods grouped by functionality
+1. Class (static) variables 
+1. Instance variables  
+1. Constructors  
+1. Methods grouped by functionality
 
-===Comments===
-A good metric for comments is that comments should account for minimum 20 percent (ideally more) of the total Lines of Code (LOC). The formatting for class, method, and member comments follow the requirements of the JavaDoc Tool. A documentation comment is made up of two parts -- a description followed by zero or more tags, with a blank line (containing a single asterisk "*") between these two sections:  
+###Comments###
+A good metric for comments is that comments should account for minimum 20 percent (ideally more) of the total Lines of Code (LOC). The formatting for class, method, and member comments follow the requirements of the JavaDoc Tool. A documentation comment is made up of two parts -- a description followed by zero or more tags, with a blank line (containing a single asterisk "* ") between these two sections:  
 
-<pre>/**
- * This is the description part of a doc comment
- *
- * @tag    Comment for the tag
- */</pre>
-The first line is indented to line up with the code below the comment, and starts with the begin-comment symbol (/**) followed by a return. Subsequent lines start with an asterisk *. They are indented an additional space so the asterisks line up. A space separates the asterisk from the descriptive text or tag that follows it. Insert a blank comment line between the description and the list of tags. Insert additional blank lines to create "blocks" of related tags. The last line begins with the end-comment symbol (*/) indented so the asterisks line up and followed by a return.
+<pre>/* * 
+ *  This is the description part of a doc comment
+ * 
+ *  @tag    Comment for the tag
+ * /</pre>
+The first line is indented to line up with the code below the comment, and starts with the begin-comment symbol (/* * ) followed by a return. Subsequent lines start with an asterisk * . They are indented an additional space so the asterisks line up. A space separates the asterisk from the descriptive text or tag that follows it. Insert a blank comment line between the description and the list of tags. Insert additional blank lines to create "blocks" of related tags. The last line begins with the end-comment symbol (* /) indented so the asterisks line up and followed by a return.
 
-Note that the end-comment symbol contains only a single asterisk (*). A blank line should precede and follow the comment block. 
+Note that the end-comment symbol contains only a single asterisk (* ). A blank line should precede and follow the comment block. 
 
-====Comments: Class Header====
+####Comments: Class Header####
 The following comments will appear before the definition of every class.
 
-<pre>/** 
- * A description of what the class does. 
- * 
- * @author      Author name 
- * @author      Contributor 1 
- * @author      Contributor 2 
+<pre>/* *  
+ *  A description of what the class does. 
+ *  
+ *  @author      Author name 
+ *  @author      Contributor 1 
+ *  @author      Contributor 2 
                 . 
                 . 
- * @author      Contributor n 
- */</pre>
+ *  @author      Contributor n 
+ * /</pre>
 
-====Comments: Method Header====
+####Comments: Method Header####
 The following comments will appear before every method (including main).
 
-<pre>/**
- * A description of what the method does
- *
- * @param       name    description
- * @param       name    description
+<pre>/* * 
+ *  A description of what the method does
+ * 
+ *  @param       name    description
+ *  @param       name    description
                .
- * @param       name    description
- *
- * @return              description
- *
- * @exception   name    description
- * @exception   name    description
+ *  @param       name    description
+ * 
+ *  @return              description
+ * 
+ *  @exception   name    description
+ *  @exception   name    description
                  .
                  .
- * @exception   name    description
- *
- * @pre         precondition before execution
- * @post        postcondition after execution
- */</pre>
+ *  @exception   name    description
+ * 
+ *  @pre         precondition before execution
+ *  @post        postcondition after execution
+ * /</pre>
 
-====Definition of Comments====
+####Definition of Comments####
 '''@param'''
 
 The @param tag is followed by the name (not type) of the parameter, followed by a description of the parameter. Additional spaces should be inserted between the name and description so that comments line up in a block. Dashes or other punctuation should not be inserted before the description. The name always starts with a lowercase letter. The description is most usually a phrase, starting with a lowercase letter and ending without a period, unless it contains a complete sentence.  
@@ -344,55 +361,55 @@ JavaDoc does not have a tag for preconditions, so the above tag is used. Precond
 
 JavaDoc does not have a tag for postconditions, so the above tag is used. Postconditions should be expressed in prose or in a formal language if it is more appropriate.
 
-====Non-Javadoc Comment====
+####Non-Javadoc Comment####
 Use '''//''' for non-Javadoc comments, including multi-line comments.
 
-===Indentation===
+###Indentation###
 Four spaces should be used as the unit of indentation. Do not use Tab for indentation.
 
-===White Space===
-====Blank Lines====
+###White Space###
+####Blank Lines####
 Blank lines improve readability by setting off sections of code that are logically related. 
 Two blank lines should always be used in the following circumstances: 
-*Between sections of a source file.
-*Between class and interface definitions. 
+* Between sections of a source file.
+* Between class and interface definitions. 
 One blank line should always be used in the following circumstances: 
-*Between methods.
-*Between the local variables in a method and its first statement.
-*Before a block or single-line comment.
-*Between logical sections inside a method to improve readability.
+* Between methods.
+* Between the local variables in a method and its first statement.
+* Before a block or single-line comment.
+* Between logical sections inside a method to improve readability.
 
-====Blank Spaces====
+####Blank Spaces####
 Blank spaces should be used in the following circumstances: 
-*A keyword followed by a parenthesis should be separated by a space. Example: 
+* A keyword followed by a parenthesis should be separated by a space. Example: 
 <pre>
 while (true) {
            ...
    }
 </pre>
-*Note that a blank space should not be used between a method name and its opening parenthesis. This helps to  distinguish keywords from method calls. 
-*A blank space should appear after commas in argument lists. 
-*All binary operators should be separated from their operands by spaces. Blank spaces should never separate unary operators such as unary minus, increment ("++"), and decrement ("--") from their operands. Example:
+* Note that a blank space should not be used between a method name and its opening parenthesis. This helps to  distinguish keywords from method calls. 
+* A blank space should appear after commas in argument lists. 
+* All binary operators should be separated from their operands by spaces. Blank spaces should never separate unary operators such as unary minus, increment ("++"), and decrement ("--") from their operands. Example:
 <pre>
 a += c + d;
-    a = (a + b) / (c * d);
+    a = (a + b) / (c *  d);
     
-    while (d++ == s++) {
+    while (d++ ## s++) {
         n++;
     }
     printSize("size is " + foo + "\n");
 </pre>
-*The expressions in a “for” statement should be separated by blank spaces. Example:
+* The expressions in a “for” statement should be separated by blank spaces. Example:
 <pre>
 for (expr1; expr2; expr3)
 </pre>
-*Casts should be followed by a blank space. Examples:
+* Casts should be followed by a blank space. Examples:
 <pre>
 myMethod((byte) aNum, (Object) x);
 myMethod((int) (cp + 5), ((int) (i + 3))  + 1);
 </pre>
 
-==Statements==
+##Statements##
 Each line should contain at most one statement. Example:
 <pre>
 argv++;       	 // Correct
@@ -400,7 +417,7 @@ argc--;       	 // Correct
 argv++; argc--;    // INCORRECT!
 </pre>
 
-===Compound Statements===
+###Compound Statements###
 Compound statements are statements that contain lists of statements enclosed in braces "{ statements }". For example:
 <pre>
 	while (!done) {
@@ -408,11 +425,11 @@ Compound statements are statements that contain lists of statements enclosed in 
 	    doMoreThing();
 	}
 </pre>
-*The enclosed statements should be indented one more level than the compound statement. 
-*The opening brace should be at the end of the line that begins the compound statement; the closing brace should begin a line and be indented to the beginning of the compound statement. 
-*Braces are used around all statements, even single statements, when they are part of a control structure, such as an if-else or for statement. This makes it easier to add statements without accidentally introducing bugs due to forgetting to add braces.
+* The enclosed statements should be indented one more level than the compound statement. 
+* The opening brace should be at the end of the line that begins the compound statement; the closing brace should begin a line and be indented to the beginning of the compound statement. 
+* Braces are used around all statements, even single statements, when they are part of a control structure, such as an if-else or for statement. This makes it easier to add statements without accidentally introducing bugs due to forgetting to add braces.
 
-===Return Statement===
+###Return Statement###
 A return statement with a value should not use parentheses unless it is an expression that requires parentheses or the parentheses provide clarity. Example:
 <pre>
 return;
@@ -420,7 +437,7 @@ return myDisk.size();
 return (size ? size : defaultSize);
 </pre>
 
-===if, if-else, if else-if else conditional operator '''?''' Statements===
+###if, if-else, if else-if else conditional operator '''?''' Statements###
 The if-else class of statements should have the following form:
 <pre>
 if (condition) {
@@ -453,7 +470,7 @@ ConditionalExpression:
     ConditionalOrExpression ? Expression : ConditionalExpression
 </pre>
 
-===for Statements===
+###for Statements###
 A “for” statement should have the following form: 
 <pre>
 for (initialization; condition; update) {
@@ -466,7 +483,7 @@ for (initialization; condition; update);
 </pre>
 When using the comma operator in the initialization or update clause of a “for” statement, avoid the complexity of using more than three variables. If needed, use separate statements before the “for” loop (for the initialization clause) or at the end of the loop (for the update clause).
 
-===for-each Statements===
+###for-each Statements###
 A “for-each” statement should have the following form: 
 <pre>
 for (type var : array or collection) {
@@ -474,7 +491,7 @@ for (type var : array or collection) {
 }
 </pre>
 
-===while Statements===
+###while Statements###
 A “while” statement should have the following form: 
 <pre>
 while (condition) {
@@ -486,7 +503,7 @@ An empty “while” statement should have the following form:
 while (condition);
 </pre>
 
-===do-while Statements===
+###do-while Statements###
 A “do-while” statement should have the following form: 
 <pre>
 do {
@@ -494,13 +511,13 @@ do {
 } while (condition);
 </pre>
 
-===switch Statements===
+###switch Statements###
 A “switch” statement should have the following form: 
 <pre>
 switch (condition) {
 case ABC:
     statements;
-    /* falls through */
+    /*  falls through * /
 
 case DEF:
     statements;
@@ -515,9 +532,9 @@ default:
     break;
 }
 </pre>
-Every time a case falls through (does not include a break statement), add a comment where the break statement would normally be. This is shown in the preceding code example with the /* falls through */ comment. Every switch statement should include a default case. The break in the default case is redundant, but it prevents a fall-through error if later another case is added.
+Every time a case falls through (does not include a break statement), add a comment where the break statement would normally be. This is shown in the preceding code example with the /*  falls through * / comment. Every switch statement should include a default case. The break in the default case is redundant, but it prevents a fall-through error if later another case is added.
 
-===try-catch Statements===
+###try-catch Statements###
 A “try-catch” statement should have the following format: 
 <pre>
 try {
@@ -537,8 +554,8 @@ try {
 }
 </pre>
 
-===Exceptions=== 
-====Throwing An Exception====
+###Exceptions### 
+####Throwing An Exception####
 When throwing an exception, the statement should have the following sample format:
 <pre>
     public void getCustomerData(String xmlDoc) 
@@ -557,15 +574,15 @@ When throwing an exception, the statement should have the following sample forma
 A description of the exception should be included while throwing an exception. The text should be as simple and direct as possible, and end with a period. Uppercase is mandatory in the first word of the sentence, and should be used inside the sentence only when required. 
 
 Examples of correct exception text are:
-*"Capability for checking XML document not implemented yet."
-*"Incorrect XML document is provided."
-*"XML file not found in given path."
+* "Capability for checking XML document not implemented yet."
+* "Incorrect XML document is provided."
+* "XML file not found in given path."
 Examples of incorrect exception text:
-*"We’re sorry, but we have not implemented the capability to delete entries at the moment."
-*"Incorrect password."
-*"Certificate file not there."
+* "We’re sorry, but we have not implemented the capability to delete entries at the moment."
+* "Incorrect password."
+* "Certificate file not there."
 
-====Catching An Exception====
+####Catching An Exception####
 When catching an exception, the statement should have the following sample format:
 <pre>
     try {
@@ -576,7 +593,7 @@ When catching an exception, the statement should have the following sample forma
 </pre>
 The catch statement should only print the message supplied by the method throwing the exception.
 
-====Top-Level Exception====
+####Top-Level Exception####
 Top-level java.lang.Exception can be caught in MDB onMessage() method to log all checked and runtime exceptions. 
 
 For example:
@@ -620,7 +637,7 @@ public void onMessage(final Message msg) {
 	   }
 </pre>
 
-====Best Practices for Exception Handling====
+####Best Practices for Exception Handling####
 One of the problems with exception handling is knowing when and how to use it. This section covers some of the best practices for exception handling. Programmers want to write quality code that solves problems.  Unfortunately, exceptions come as side effects of code.  Examine the following code:
 <pre>
 public void consumeAndForgetAllExceptions(){
@@ -637,16 +654,16 @@ Once an exception is thrown, normal program execution is suspended and control i
 
 It took the C++ community several years to decide on how to use exceptions.  This is ongoing in the Java community. If not used correctly, exceptions can slow down programs, as it takes memory and CPU power to create, throw, and catch exceptions. If overused, exceptions make the code difficult to read and frustrating for the programmers using the API.  
 
-====The Nature of Exceptions====
+####The Nature of Exceptions####
 There are three different situations that cause exceptions to be thrown:
-*Exceptions due to programming errors: In this category, exceptions are generated due to programming errors (e.g., NullPointerException and IllegalArgumentException). The client code usually cannot do anything about programming errors.
-*Exceptions due to client code errors: Client code attempts something not allowed by the API, and thereby violates its contract. The client can take some alternative course of action, if there is useful information provided in the exception. For example: an exception is thrown while parsing an XML document that is not well-formed. The exception contains useful information about the location in the XML document that causes the problem. The client can use this information to take recovery steps.
-*Exceptions due to resource failures: Exceptions that get generated when resources fail. For example: the system runs out of memory or a network connection fails. The client's response to resource failures is context- driven. The client can retry the operation after some time or just log the resource failure and bring the application to a halt.
+* Exceptions due to programming errors: In this category, exceptions are generated due to programming errors (e.g., NullPointerException and IllegalArgumentException). The client code usually cannot do anything about programming errors.
+* Exceptions due to client code errors: Client code attempts something not allowed by the API, and thereby violates its contract. The client can take some alternative course of action, if there is useful information provided in the exception. For example: an exception is thrown while parsing an XML document that is not well-formed. The exception contains useful information about the location in the XML document that causes the problem. The client can use this information to take recovery steps.
+* Exceptions due to resource failures: Exceptions that get generated when resources fail. For example: the system runs out of memory or a network connection fails. The client's response to resource failures is context- driven. The client can retry the operation after some time or just log the resource failure and bring the application to a halt.
 
-====Types of Exceptions in Java====
+####Types of Exceptions in Java####
 Java defines two kinds of exceptions:
-*Checked exceptions: Exceptions that inherit from the Exception class are checked exceptions. Client code has to handle the checked exceptions thrown by the API, either in a catch clause or by forwarding it outward with the throws clause.
-*Unchecked exceptions: RuntimeException also extends from Exception. However, all of the exceptions that inherit from RuntimeException get special treatment. There is no requirement for the client code to deal with them, and hence they are called unchecked exceptions. 
+* Checked exceptions: Exceptions that inherit from the Exception class are checked exceptions. Client code has to handle the checked exceptions thrown by the API, either in a catch clause or by forwarding it outward with the throws clause.
+* Unchecked exceptions: RuntimeException also extends from Exception. However, all of the exceptions that inherit from RuntimeException get special treatment. There is no requirement for the client code to deal with them, and hence they are called unchecked exceptions. 
 By way of example, the following shows the hierarchy for NullPointerException:
 
 <p align="center">
@@ -668,7 +685,7 @@ public List getAllAccounts() throws
 </pre>
 The method getAllAccounts() throws two checked exceptions. The client of this method has to explicitly deal with the implementation-specific exceptions, even if it has no idea what file or database call has failed within getAllAccounts(), or has no business providing filesystem or database logic. Thus, the exception handling forces an inappropriately tight coupling between the method and its callers.
 
-====Best Practices for Designing the API====
+####Best Practices for Designing the API####
 When deciding on checked exceptions vs. unchecked exceptions, ask yourself, "What action can the client code take when the exception occurs?"
 
 If the client can take some alternate action to recover from the exception, make it a checked exception.  If the client cannot do anything useful, then make the exception unchecked. Take steps to recover from the exception and not just logging the exception. To summarize:
@@ -688,10 +705,10 @@ If the client can take some alternate action to recover from the exception, make
 
 Moreover, prefer unchecked exceptions for all programming errors:  unchecked exceptions have the benefit of not forcing the client API to explicitly deal with them.  They propagate to where you want to catch them, or they go all the way out and get reported.  The Java API has many unchecked exceptions, such as nullPointerException, IllegalArgumentException, and IllegalStateException.  Work with standard exceptions provided in Java rather than creating my own. They make my code easy to understand and avoid increasing the memory footprint of code. 
 
-====Preserve encapsulation====
+####Preserve encapsulation####
 Never let implementation-specific checked exceptions escalate to the higher layers.  For example, do not propagate SQLException from data access code to the business objects layer.  Business objects layer do not need to know about SQLException.  You have two options:
-*Convert SQLException into another checked exception, if the client code is expected to recuperate from the exception.
-*Convert SQLException into an unchecked exception, if the client code cannot do anything about it.
+* Convert SQLException into another checked exception, if the client code is expected to recuperate from the exception.
+* Convert SQLException into an unchecked exception, if the client code cannot do anything about it.
 Most of the time, client code cannot do anything about SQLExceptions.  Do not hesitate to convert them into unchecked exceptions. Consider the following piece of code:
 <pre>
 public void dataAccessCode(){
@@ -714,7 +731,7 @@ public void dataAccessCode(){
 </pre>
 This converts SQLException to RuntimeException. If SQLException occurs, the catch clause throws a new RuntimeException. The execution thread is suspended and the exception gets reported. However, the business object layer is not corrupted layer with unnecessary exception handling, especially since it cannot do anything about an SQLException.  If the catch needs the root exception cause, make use of the getCause() method available in all exception. If you are confident that the business layer can take some recovery action when SQLException occurs, you can convert it into a more meaningful checked exception.
 
-====Document exceptions====
+####Document exceptions####
 Use Javadoc's @throws tag to document both checked and unchecked exceptions that the API throws.  Have some way by which the client code can learn of the exceptions that your API throws.  Here is a sample unit test that tests for IndexOutOfBoundsException:
 <pre>
 public void testIndexOutOfBoundsException() {
@@ -727,9 +744,9 @@ public void testIndexOutOfBoundsException() {
 </pre>
 The code above should throw an IndexOutOfBoundsException when blankList.get(10) is invoked. If it does not, the fail ("Should raise an IndexOutOfBoundsException") statement explicitly fails the test.  By writing unit tests for exceptions, it not only documents how the exceptions work, but also make the code robust by testing for exceptional scenarios.
 
-====Best Practices for Using Exceptions====
+####Best Practices for Using Exceptions####
 The next set of best practices show how the client code should deal with an API that throws checked exceptions.
-*Always clean up after yourself
+* Always clean up after yourself
 Make sure resources like database connections or network connections are cleaned-up. If the API you are invoking uses only unchecked exceptions, clean up resources after use, with try - finally blocks.
 <pre>
 public void dataAccessCode(){
@@ -757,7 +774,7 @@ class DBUtil{
 }
 </pre>
 DBUtil is a utility class that closes the Connection. The important point is the use of finally block, which executes whether or not an exception is caught. In this example, the finally closes the connection and throws a RuntimeException if there is problem with closing the connection.
-*Never use exceptions for flow control
+* Never use exceptions for flow control
 Generating stack traces is expensive and the value of a stack trace is in debugging. In a flow-control situation, the stack trace would be ignored, since the client just wants to know how to proceed. 
 
 In the code below, a custom exception, MaximumCountReachedException, is used to control the flow.
@@ -779,9 +796,9 @@ public void increaseCount()
 }
 </pre>
 The useExceptionsForFlowControl() uses an infinite loop to increase the count until the exception is thrown.  This not only makes the code difficult to read, but also makes it slower.  Use exception handling only in exceptional situations.
-*Do not suppress or ignore exceptions
+* Do not suppress or ignore exceptions
 When a method from an API throws a checked exception, take some counter action.  If the checked exception does not make sense, do not hesitate to convert it into an unchecked exception and throw it again, but do not ignore it by catching it with {} and then continue as if nothing had happened.
-*Do not catch top-level exceptions
+* Do not catch top-level exceptions
 Unchecked exceptions inherit from the RuntimeException class, which in turn inherits from Exception. By catching the Exception class, catch RuntimeException as in the following code:
 <pre>
 try{
@@ -790,15 +807,15 @@ try{
 }
 </pre>
 The code above ignores unchecked exceptions, as well.
-*Log exceptions just once
+* Log exceptions just once
 Logging the same exception stack trace more than once can confuse the programmer examining the stack trace about the original source of exception. So just log it once.
 
-====Information Exposure through an Error Message====
+####Information Exposure through an Error Message####
 Providing information in your error messages, could disclose secrets. The secrets could cover a wide range of valuable data, including personally identifiable information (PII), authentication credentials, and server configuration.  Sometimes, the secrets might seem harmless and are that are convenient for admins, such as the full installation path of your software.  Ensure that error messages only contain minimal details that are useful to the intended audience, and no one else.  The messages need to strike the balance between too cryptic and not cryptic enough. The messages should not necessarily reveal the methods that were used to determine the error. Such detailed information can help an attacker craft another attack that now will pass through the validation filters.
 
 If errors must be tracked in some detail, capture them in log messages - but consider what could occur if the log messages can be viewed by attackers. Avoid recording highly sensitive information such as passwords in any form. Avoid inconsistent messaging that might accidentally tip off an attacker about internal state, such as whether a username is valid or not
 
-==Resources Management==
+##Resources Management##
 Any resource obtained in the try block should be released in the finally block.  It ensures the source code that releases or cleans up the resource will not be bypassed accidentally by a return, continue or break. For example:
 <pre>
    Connection conn = null;
@@ -821,7 +838,7 @@ Any resource obtained in the try block should be released in the finally block. 
    }
 </pre> 
 
-==Code Level Metrics==
+##Code Level Metrics##
 Code level metrics (both at method and class levels) serve to keep the characteristics of the code within certain limits in order to enhance the readability/understandability, maintainability, testability, and in certain cases, security and performance of the code.  The most commonly known metric is the Cyclomatic complexity or very roughly, the number of decision-making and/or branches in the code. High levels of complexity lead to difficulty understanding and testing code and therefore reduce the maintainability and testability of the code. The less complexity in the Java code, the less room for error, the easier it is to test and to understand and therefore maintain the code. Ensure your Java code meets the following metrics:
 
 {| class="wikitable"style="text-align:left; color:#303030; margin: auto;" cellpadding="20"
@@ -876,11 +893,11 @@ Code level metrics (both at method and class levels) serve to keep the character
 | Less than or equal to 22
 |}  
 
-==Security Standards==
+##Security Standards##
 
 The following Security Standards are derived from the Mitre Common Weakness Enumeration (CWE) dictionary. Not all top 25 errors listed under CWE apply to Java language but we have included them in here as a general reference. The information has been used from this site and edited for brevity and how they apply to CA/CST application development. For more details, please visit  http://cwe.mitre.org/top25/#CWE-79.
 
-==Section 508 Compliance==
+##Section 508 Compliance##
 In order to comply with section 508 guidelines, please visit the following websites and ensure adherence to the guidelines presented therein. 
 http://www.section508.gov/
 
@@ -890,7 +907,7 @@ http://www-03.ibm.com/able/guidelines/software/accesssoftware.html
 General checklist from IBM: 
 http://www-03.ibm.com/able/access_ibm/disability.html
 
-==Simple Coding Guidelines==
+##Simple Coding Guidelines##
 The following coding guidelines assist with understandability, reliability, maintainability and testability of the
 code.
 
@@ -944,8 +961,8 @@ code.
 #Avoid using exception handling inside loops
 #Avoid using fields (non Static final) from other Classes
 
-==Declarations==
-===Number Per Line===
+##Declarations##
+###Number Per Line###
 Maximum one declaration per line is mandatory. The comment describing each variable should be placed above the declaration.
 <pre>
 // Indentation level      
@@ -960,10 +977,10 @@ Do not put different types on the same line. Example:
 int foo, fooArray[]; // INCORRECT!
 </pre>
 
-===Initialization===
+###Initialization###
 Local variables should be initialized where they are declared. The only reason not to initialize a variable where it is declared is if the initial value depends on some computation occurring first.
 
-===Placement===
+###Placement###
 Declarations should be placed only at the beginning of blocks. Do not wait to declare variables until their first use; it can confuse the unwary programmer and hamper code portability within the scope. 
 <pre>
 // beginning of method block
@@ -995,11 +1012,11 @@ myMethod() {
 }
 </pre>
 
-===Class, Enumeration, and Interface Declarations=== 
+###Class, Enumeration, and Interface Declarations### 
 When coding Java classes, enumeration, and interfaces, the following formatting rules should be followed: 
-*No space between a method name and the parenthesis "(" starting its parameter list, followed by the parenthesis “)”.
-*Open brace "{" appears at the end of the same line as the declaration statement. 
-*Closing brace "}" starts a line by itself indented to match its corresponding opening statement, except when it is a null statement the "}" should appear immediately after the "{". 
+* No space between a method name and the parenthesis "(" starting its parameter list, followed by the parenthesis “)”.
+* Open brace "{" appears at the end of the same line as the declaration statement. 
+* Closing brace "}" starts a line by itself indented to match its corresponding opening statement, except when it is a null statement the "}" should appear immediately after the "{". 
 <pre>
 public class Sample extends Object {
     int ivar1 = 0;
@@ -1015,17 +1032,17 @@ public class Sample extends Object {
     ...
 }
 </pre>
-*Methods are separated by a blank line
+* Methods are separated by a blank line
 
-===Visibility===
+###Visibility###
 Java instance variables and methods have four levels of visibility: public, protected, package, and private.  As visibility can have a big impact on maintainability of the software system, it is important to consider the following guidelines:
-*Variables should be declared as locally as possible
-*Variables and methods should have the least possible visibility
-*Public instance variables should be avoided at all costs
-*Protected instance variable should be avoided unless the instance variable is declared as final
-*The only public methods that a class exposes will be the methods of the interface it implements and methods exposing JavaBean properties.
+* Variables should be declared as locally as possible
+* Variables and methods should have the least possible visibility
+* Public instance variables should be avoided at all costs
+* Protected instance variable should be avoided unless the instance variable is declared as final
+* The only public methods that a class exposes will be the methods of the interface it implements and methods exposing JavaBean properties.
 
-==Application Logging==
+##Application Logging##
 Use Logback for logging when developing code. For more information on Logback logging, please check the Logback library at URL: http://Logback.qos.ch/index.html. Logback implements the SLF4J API and is very flexible. It can, via a configuration file, select log events and filtered content may be sent to different destinations. Follow proper error handling and error logging best practices. All exception handling should be logged to the application log and database log as appropriate. All log files should contain identifiable exceptions for operational debugging purposes. Errors should never be silently ignored. Below is a simple example of using Java util logging.
 <pre>
 package logging.example2;
@@ -1068,7 +1085,7 @@ protected String[] getUserInfo(String firstname, String lastname)
       }
 </pre>
 
-===Logging Levels===
+###Logging Levels###
 
 {| class="wikitable"style="text-align:left; color:#303030; margin: auto;" cellpadding="20"
 |+ style="caption-side:bottom; color:#0000CC;"|''Table 13.1. Log Levels''
@@ -1098,19 +1115,19 @@ protected String[] getUserInfo(String firstname, String lastname)
 | The lowest value, greatest detail. A highly detailed trace or debug message.
 |} 
 
-==Database JDBC Best Practice==
-*Use “PreparedStatement” - This is a very popular JDBC practice widely adopted by industry using the JDBC API in Java. “PreparedStatement” provides useful services such as prevention from SQL injection, Precompiled SQL queries and use of bind variables.
-*Use “ConnectionPool” – “ConnectionPool” has become standard now days. Several frameworks provide built in “connectionPool” facility like Database Connection Pool in Spring, DBCP and if running in managed environments like J2EE Application Server (e.g. WAS or JBOSS Server) will provide Connection Pool facility. The rationale behind this JDBC best practice is that creating JDBC connections take relatively longer time which can increase overall response time, by caching JDBC connection in pool application can immediately access database.
-*Disable auto commit mode - This best practice provides substantial performance gain in JDBC batch updates. It is recommended to run SQL query with auto commit mode disable. Rational behind this is that with auto commit mode disabled you can group SQL Statement in one transaction while in case of auto commit mode every SQL statement runs in its own transaction and committed as soon as it finishes. So always run queries with auto commit mode disabled.
-*Use JDBC Batch Update - This JDBC best practice is very popular in industry. JDBC API provides “addBatch()” method to add SQL queries into batch and “executeBatch()” to send batch queries for execution. Rational behind this is that, JDBC batch update potentially reduce number of database roundtrip which result in significant performance gain. So always Use JDBC batch update for insertion and update queries. 
-*Access “ResultSet” using column name to avoid “invalidColumIndexError” - JDBC API allows to access data returned by SELECT query using “ResultSet”, which can further be accessed using either column name or column index. This JDBC best practice suggest using column name over column index in order to avoid “InvalidColumnIndexException” which comes if index of column is incorrect, most common of them is 0, since “ResultSet” column Index starts from 1, zero is invalid. Also you don't need to change your JDBC access code if order of column changed in SELECT SQL query, which is a major maintenance gain and a robust way to write JDBC code. Some Java programmer may argue that accessing column using index is faster than name, which is true but if you look in terms of maintenance, robustness and readability, It is preferable to access column using name in “ResultSet” iterator.
-*Use Bind variables instead of String concatenation – Best practice suggest to use PreparedStatement in Java because of better performance. However performance can only be improved if you use bind variables denoted by “?” or place holders, which allows database to run same query with different parameter. This JDBC best practice will also result in better performance and provide protection against SQL injection.
-*Always close Statement, PreparedStatement and Connection - Its common Java coding practice to close any resource in finally block as soon as you are done with that. JDBC Connection and other JDBC classes are costly resource and should be closed in finally block to ensure release of connection even in case of any SQLException. From Java 7 onwards Automatic Resource Management (ARM) Block can be used to close resources automatically.
-*Choose suitable JDBC driver for application development - There are 4 types of JDBC driver in Java and it can directly affect the performance of DAO layer. Always use latest JDBC Driver if available and prefer type 4 native JDBC Drivers.
-*Use standard SQL statement and avoid using db specific query until necessary - This JDBC best practice ensures writing portable code. Since most of JDBC code is filled up with SQL query, it’s easy to start using database specific feature which may present in MySQL but not in Oracle etc. By using ANSI SQL or by not using DB specific SQL you ensure minimal change in your DAO layer in case you switch to another database.
-*Use correct getXXX() method - This practice suggest using correct getter while getting data from ResultSet to avoid data conversion even though JDBC allows to get any data type using getString()or getObject().
+##Database JDBC Best Practice##
+* Use “PreparedStatement” - This is a very popular JDBC practice widely adopted by industry using the JDBC API in Java. “PreparedStatement” provides useful services such as prevention from SQL injection, Precompiled SQL queries and use of bind variables.
+* Use “ConnectionPool” – “ConnectionPool” has become standard now days. Several frameworks provide built in “connectionPool” facility like Database Connection Pool in Spring, DBCP and if running in managed environments like J2EE Application Server (e.g. WAS or JBOSS Server) will provide Connection Pool facility. The rationale behind this JDBC best practice is that creating JDBC connections take relatively longer time which can increase overall response time, by caching JDBC connection in pool application can immediately access database.
+* Disable auto commit mode - This best practice provides substantial performance gain in JDBC batch updates. It is recommended to run SQL query with auto commit mode disable. Rational behind this is that with auto commit mode disabled you can group SQL Statement in one transaction while in case of auto commit mode every SQL statement runs in its own transaction and committed as soon as it finishes. So always run queries with auto commit mode disabled.
+* Use JDBC Batch Update - This JDBC best practice is very popular in industry. JDBC API provides “addBatch()” method to add SQL queries into batch and “executeBatch()” to send batch queries for execution. Rational behind this is that, JDBC batch update potentially reduce number of database roundtrip which result in significant performance gain. So always Use JDBC batch update for insertion and update queries. 
+* Access “ResultSet” using column name to avoid “invalidColumIndexError” - JDBC API allows to access data returned by SELECT query using “ResultSet”, which can further be accessed using either column name or column index. This JDBC best practice suggest using column name over column index in order to avoid “InvalidColumnIndexException” which comes if index of column is incorrect, most common of them is 0, since “ResultSet” column Index starts from 1, zero is invalid. Also you don't need to change your JDBC access code if order of column changed in SELECT SQL query, which is a major maintenance gain and a robust way to write JDBC code. Some Java programmer may argue that accessing column using index is faster than name, which is true but if you look in terms of maintenance, robustness and readability, It is preferable to access column using name in “ResultSet” iterator.
+* Use Bind variables instead of String concatenation – Best practice suggest to use PreparedStatement in Java because of better performance. However performance can only be improved if you use bind variables denoted by “?” or place holders, which allows database to run same query with different parameter. This JDBC best practice will also result in better performance and provide protection against SQL injection.
+* Always close Statement, PreparedStatement and Connection - Its common Java coding practice to close any resource in finally block as soon as you are done with that. JDBC Connection and other JDBC classes are costly resource and should be closed in finally block to ensure release of connection even in case of any SQLException. From Java 7 onwards Automatic Resource Management (ARM) Block can be used to close resources automatically.
+* Choose suitable JDBC driver for application development - There are 4 types of JDBC driver in Java and it can directly affect the performance of DAO layer. Always use latest JDBC Driver if available and prefer type 4 native JDBC Drivers.
+* Use standard SQL statement and avoid using db specific query until necessary - This JDBC best practice ensures writing portable code. Since most of JDBC code is filled up with SQL query, it’s easy to start using database specific feature which may present in MySQL but not in Oracle etc. By using ANSI SQL or by not using DB specific SQL you ensure minimal change in your DAO layer in case you switch to another database.
+* Use correct getXXX() method - This practice suggest using correct getter while getting data from ResultSet to avoid data conversion even though JDBC allows to get any data type using getString()or getObject().
 
-==Code Example==
+##Code Example##
 The following example shows how to format a Java source file containing a single public class. 
 
 This sample code uses log4J API for logging.  Please remember to use Java util API logging when developing your code.  For more information on Java util logging, please check the Java 5.0 API specification.
