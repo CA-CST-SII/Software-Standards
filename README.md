@@ -1,4 +1,4 @@
-Software-Standards
+Software-Standards-Wiki 
 ==================
 
 ##Demo repository for CA/CST Coding Standards:
