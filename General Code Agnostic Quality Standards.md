@@ -175,35 +175,47 @@ With system level analysis of the critical code sections, queue theory principle
 Big potential performance issues are quite common in applications using relational databases and SQL built dynamically in runtime mode. Such problems are sometimes detected during the costly load-testing phase when it is difficult to fully simulate the operational environment, or more often in production months after the development when the volume of the data increases.  Most of the time the problem is due to a SQL query not leveraging the indexation strategy (for example a query not using any indexed column in its WHERE clause). Such an issue is quite complex to detect due to the nature of Dynamic SQL, the fact that the hints of the performance failure are spread across components and layers including the database itself and the size of the data it contains. Indeed, a SQL query that no index can support is not an issue on a small set of data.  It becomes an application killer if the data size is large.  And again such a performance anti-pattern requires a comprehensive System Level analysis of the client language (Java, .NET, ABAP, etc.), the analysis of the structure of the database including table indexes and table size, and lastly the ability to build the potential dynamic SQL statement that no index could support. 
 
 ##Security - Identifying Vulnerabilities##
-{| class="wikitable" style="text-align:left; color:green; background-color:#ffffcc;" cellpadding="20" style="text-align:left;" style="text-align:left;"
-|+ style="caption-side:bottom;"|''Fig 6  Security Element of the CISQ Quality Characteristic Measures''
-|-
-! Coding Errors Impacting the SECURITY
-! Context Required
-! Business Impact (est.)
-|-
-| 
-*Improper locking
-*Failure to use vetted libraries or frameworks
-*Uncontrolled format string
-*Improper validation of array index
-| Unit Level
-| 10%
-|-
-| 
-*Use of hard-coded credentials
-*References to released resources
-| Technology Level
-| 40%
-|-
-| 
-*Cross-site scripting
-*Buffer overflows
-*SQL injection
-*Secure architecture design compliance
-| System Level
-| 50%
-|} 
+<table>
+<caption><em>Fig 6 Security Element of the CISQ Quality Characteristic Measures</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>Coding Errors Impacting the SECURITY</p></th>
+<th align="left"><p>Context Required</p></th>
+<th align="left"><p>Business Impact (est.)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><ul>
+<li>Improper locking</li>
+<li>Failure to use vetted libraries or frameworks</li>
+<li>Uncontrolled format string</li>
+<li>Improper validation of array index</li>
+</ul></td>
+<td align="left"><p>Unit Level</p></td>
+<td align="left"><p>10%</p></td>
+</tr>
+<tr class="even">
+<td align="left"><ul>
+<li>Use of hard-coded credentials</li>
+<li>References to released resources</li>
+</ul></td>
+<td align="left"><p>Technology Level</p></td>
+<td align="left"><p>40%</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><ul>
+<li>Cross-site scripting</li>
+<li>Buffer overflows</li>
+<li>SQL injection</li>
+<li>Secure architecture design compliance</li>
+</ul></td>
+<td align="left"><p>System Level</p></td>
+<td align="left"><p>50%</p></td>
+</tr>
+</tbody>
+</table>
+
 ###Detecting Unsecure Dynamic SQL Queries thru Multiple Layers:###
 Data intensive enterprise applications may manage data update rights through a single mechanism (layer of classes, SQL stored procedures...).  When looking at the code responsible for executing a SQL table update, the difference between good and bad coding isn’t always obvious and requires a higher degree of code comprehension.  Good and bad outcomes are possible despite invoking the same calling mechanism below: 
 
@@ -214,43 +226,52 @@ The more secure version of the update statement will have the string ‘myquery�
 ###Detecting backdoors:###
 Use of backdoor approaches relies on secrecy of obscure code for security.  When a system is asked to provide credentials to access the authentication server, an elaborate set of application steps may be performed to produce them.  .  Credentials may be stored in another part of the application.  And in order to keep the backdoor as secret as possible the path between the credentials and the authentication server is made complex.  The password, for example, would be stored in multiple string variables located in different classes and files to be concatenated before being sent to the authentication server as shown in the schema below.  The weakness of this approach is that it relies on code secrecy instead of secrecy of keys which may be rotated and changed when necessary.  Changes to code are harder to plan and ultimately is subject to leakage when reviewed.
 
-<p align="center">
-[[https://cloud.githubusercontent.com/assets/6976295/2800899/d83eeb4e-cc7a-11e3-8441-ce928ae79948.jpg]]
-</p>
+![Fig 7](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Diagram7.jpg "authentication server  schema")
 
 To detect a backdoor, looking inside a single code unit or technology layer won’t be of any help. Automated tools will have difficulty in discerning whether code instructions are semantically carrying out misguided backdoor steps or is performing legitimate data processing.  Once again, a System Level analysis with additional dataflow capabilities to identify strings variables used for authentication is needed.  
 
 ##Maintainability - Changeability & Adaptability##
-{| class="wikitable" style="text-align:left; color:green; background-color:#ffffcc;" cellpadding="20" style="text-align:left;" style="text-align:left;"
-|+ style="caption-side:bottom;"|''Fig 8  Maintainability Element of the CISQ Quality Characteristic Measures''
-|-
-! Coding Errors Impacting MAINTAINABILITY
-! Context Required
-! Business Impact (est.)
-|-
-| 
-*Cyclomatic complexity
-*Hard coding of literals
-*Excessive program size
-| Unit Level
-| 25%
-|-
-| 
-*Unstructured and Duplicated code
-*Controlled level of dynamic coding
-*Compliance with OO best practices
-| Technology Level
-| 25%
-|-
-| 
-*Tightly coupled modules
-*Strict hierarchy of calling between architectural layers
-*Data access performance and data management
-*Excessive horizontal layers
-*Encapsulated data access
-| System Level
-| 50%
-|}
+<table>
+<caption><em>Fig 8 Maintainability Element of the CISQ Quality Characteristic Measures</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>Coding Errors Impacting MAINTAINABILITY</p></th>
+<th align="left"><p>Context Required</p></th>
+<th align="left"><p>Business Impact (est.)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><ul>
+<li>Cyclomatic complexity</li>
+<li>Hard coding of literals</li>
+<li>Excessive program size</li>
+</ul></td>
+<td align="left"><p>Unit Level</p></td>
+<td align="left"><p>25%</p></td>
+</tr>
+<tr class="even">
+<td align="left"><ul>
+<li>Unstructured and Duplicated code</li>
+<li>Controlled level of dynamic coding</li>
+<li>Compliance with OO best practices</li>
+</ul></td>
+<td align="left"><p>Technology Level</p></td>
+<td align="left"><p>25%</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><ul>
+<li>Tightly coupled modules</li>
+<li>Strict hierarchy of calling between architectural layers</li>
+<li>Data access performance and data management</li>
+<li>Excessive horizontal layers</li>
+<li>Encapsulated data access</li>
+</ul></td>
+<td align="left"><p>System Level</p></td>
+<td align="left"><p>50%</p></td>
+</tr>
+</tbody>
+</table>
 As defined by CISQ, Maintainability represents the degree of effectiveness and efficiency with which a product or system can be modified by the intended maintainers (ISO 25010).  Maintainability incorporates such concepts as changeability, modularity, understandability, testability, and reusability.   Measuring maintainability is important for business or mission-critical applications where an organization must respond rapidly to regulation, customer, or competitor-driven changes.  It is also a well-known key to keeping IT costs under control. 
 
 Maintainability is usually related to the readability of the code.  This can be achieved through adherence to programming practices, including proper documentation leveraging the possibilities offered by languages such as Java or C# to embed structured, documentation-consistent, and meaningful naming conventions, and a clear programming ‘style’ that is well-structured.  Most of these good programming practices are usually verifiable on a file by file basis, one program at a time, and as such Unit Level analysis is often enough to check these practices, which are done most often by development tools, embedded in the IDE. 
