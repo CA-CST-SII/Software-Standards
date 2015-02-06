@@ -232,7 +232,7 @@ This section describes the naming conventions for development files created in t
 </tbody>
 </table>
 
-###Constants###
+### Constants ###
 * Use keywords enum and static final to declare constants.
 * Use constants to avoid hard-coded values in the code.
 * Use uppercase letters and replace spaces with underscores to format the name of the constant for user-defined constants.
@@ -281,10 +281,10 @@ public interface Direction {
 ##Formatting Conventions##
 The length of Java source lines, including comments, should not exceed 79 characters. This ensures that any monitor or printer is useable. Use liberal amounts of white space to improve code readability. When a complete statement or an expression will not fit on a single line, break it according to these general principles:  
 1. Break after a comma.  
-1. Break before an operator.  
-1. Prefer higher-level breaks to lower-level breaks.  
-1. Align the new line with the beginning of the expression at the same level on the previous line.  
-1. If the above rules lead to confusing code or to code that is too flushed against the right margin, outdent one additional level.
+2. Break before an operator.  
+3. Prefer higher-level breaks to lower-level breaks.  
+4. Align the new line with the beginning of the expression at the same level on the previous line.  
+5. If the above rules lead to confusing code or to code that is too flushed against the right margin, outdent one additional level.
 
 ###Class File Structure###
 The elements of a class or interface file should appear in the following order: 
