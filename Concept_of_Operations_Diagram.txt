@@ -1,1 +1,2 @@
-![](https://cloud.githubusercontent.com/assets/6976295/2853807/e9c804a4-d148-11e3-93aa-115eaea64ce5.png)
+![ConOPs.png](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/ConOPs.png "Concept of operations object")
+
