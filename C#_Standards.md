@@ -92,27 +92,27 @@ Instead modern standards call for names that denote usage rather than type.  In 
 
 One exception to this rule is UI code. All fields and variable names that contain UI elements such as a button should be suffixed with their type name without abbreviations. For example:
 
-```javaSystem.Windows.Forms.Button cancelButton;
-System.Windows.Forms.TextBox firstNameTextBox;```
+```C#
+System.Windows.Forms.Button cancelButton;
+System.Windows.Forms.TextBox firstNameTextBox;
+```
 
-####Capitalization Styles####
-#####Pascal Casing#####
+#### Capitalization Styles
+##### *Pascal Casing*
 This convention capitalizes the first character of each word (e.g., 
 
 <code>StandardsAndGuidelines</code>).
 
-#####Camel Casing#####
+##### *Camel Casing*
 This convention capitalizes the first character of each word except the first one (e.g. 
 
 <code>standardsAndGuidelines</code>).
 
-#####Upper case#####
-Only use all upper case for identifiers if it consists of an abbreviation or acronym that is 
-
-only a few characters long.  Longer identifiers should use Pascal Casing instead.
+##### *Upper case*
+Only use all upper case for identifiers if it consists of an abbreviation or acronym that is only a few characters long.  Longer identifiers should use Pascal Casing instead.
 
 For Example:
-```java
+```C#
 public class Math
 {
     public const PI # ...
@@ -122,34 +122,33 @@ public class Math
 ```
 
 ####Naming Guidelines####
-#####Class Naming Guidelines#####
-*Class names must be nouns or noun phrases.
-*Use Pascal Casing.
-*Do not use any class prefix.
+##### *Class Naming Guidelines
+* Class names must be nouns or noun phrases.
+* Use Pascal Casing.
+* Do not use any class prefix.
 
-#####Interface Naming Guidelines#####
-*Name interfaces with nouns or noun phrases or adjectives describing behavior. (Example 
+##### *Interface Naming Guidelines* * Name interfaces with nouns or noun phrases or adjectives describing behavior. (Example 
 
 IComponent or IEnumberable)
-*Use Pascal Casing.
-*Use I as prefix for the name, it is followed by a capital letter (first char of the 
+* Use Pascal Casing.
+* Use I as prefix for the name, it is followed by a capital letter (first char of the 
 
 interface name)
 
-#####Enum Naming Guidelines#####
-*Use Pascal Casing for enum value names and enum type names.
-*Don’t prefix (or suffix) an enum type or enum values.
-*Use singular names for enums.
+##### *Enum Naming Guidelines* 
+* Use Pascal Casing for enum value names and enum type names.
+* Don’t prefix (or suffix) an enum type or enum values.
+* Use singular names for enums.
 
-#####Static and Const Field Names#####
-*Name static fields with nouns, noun phrases or abbreviations for nouns
-*Use Pascal Casing.
+##### *Static and Const Field Names* 
+* Name static fields with nouns, noun phrases or abbreviations for nouns
+* Use Pascal Casing.
 
-#####Non- const Field /Member Variable Names#####
-*Use descriptive names that, if done properly should be enough to indicate the variable 
+##### *Non- const Field /Member Variable Names* 
+* Use descriptive names that, if done properly should be enough to indicate the variable 
 
 meaning/usage and provide insight into the underlying type.
-*Use an underscore “_” as a prefix for private and protected class member variables (declared 
+* Use an underscore “_” as a prefix for private and protected class member variables (declared 
 
 at the top of the class above any constructors) so they can be easily identified and located.
 *Use Camel Casing after the underscore.
