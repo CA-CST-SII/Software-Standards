@@ -929,4 +929,382 @@ In Visual Studio 2005 consider using the latest 2005 compatible GhostDoc Add-In 
 
 There also exists Add-Ins for previewing your comments, such as QuickDocViewer. 
 # Children Pages# 
-[Appendix A] (https://github.com/CA-CST-SII/Software-Standards/wiki/Appendix-A)
+# Appendix A - XML Documentation Tags
+
+A list of recommended XML tags, with examples, includes:
+
+##Tag: `<c>`
+This tag provides a mechanism to indicate that a fragment of text within a description should be set a special font such as that used for a block of code. (For lines of actual code, use `<code>`) 
+
+Syntax:
+```C#
+<c>text to be set like code</c>
+```
+Example:
+```C#
+/// <remarks>Class <c>Point</c> models a point in a two-d
+/// plane.</remarks>
+public class Point 
+{
+// …
+}
+```
+
+##Tag: `<code>`
+This tag is used to set one or more lines of source code or program output in some special font. (For small code fragments in narrative, use `<c>`.)
+
+Syntax:
+```C#
+<code>source code or program output</code>
+```
+Example:
+```C#
+/// <summary>This method changes the point's location by
+/// the given x- and y-offsets.
+/// <example>For example:
+/// <code>
+///	Point p = new Point( 3, 5 );
+///	p.Translate( -1, 3 );
+/// </code>
+/// results in <c>p</c>'s having the value (2,8).
+/// </example>
+/// </summary>
+public void Translate( int xOr, int yOr ) 
+{
+X += xOr;
+Y += yOr;
+}	
+
+```
+Tag: `<example>`
+This tag allows example code within a comment, to specify how a method or other library member may be used. Ordinarily, this would also involve use of the tag <code> as well.
+
+Syntax:
+```C#
+<example>description</example>
+```
+Example:
+
+See `<code>` for an example.
+
+
+Tag: `<exception>`
+This tag provides a way to document the exceptions a method can throw.
+
+Syntax:
+```C#
+<exception cref="member">description</exception>
+```
+cref="member" – The name of a member. The documentation generator checks that the given member exists and translates member to the canonical element name in the documentation file. 
+description – A description of the circumstances in which the exception is thrown. 
+
+Example:
+```C#
+public class DataBaseOperations
+{
+	/// <exception cref="MasterFileFormatCorruptException"> 
+	/// </exception>
+	/// <exception cref="MasterFileLockedOpenException"> 
+	/// </exception>
+	public static void ReadRecord( int flag ) 
+	{
+		if( flag == 1 )
+			throw new MasterFileFormatCorruptException();
+		else if( flag == 2 )
+			throw new MasterFileLockedOpenException();
+		// …
+	} 
+}
+
+```
+Tag: `<list>`
+This tag is used to create a list or table of items. It may contain a `<listheader>` block to define the heading row of either a table or definition list. (When defining a table, only an entry for term in the heading need be supplied.)
+
+Each item in the list is specified with an <item> block. When creating a definition list, both term and description must be specified. However, for a table, bulleted list, or numbered list, only description need be specified.
+
+Syntax:
+```C#
+<list type="bullet" | "number" | "table">
+	<listheader>
+		<term>term</term>
+		<description>description</description>
+	</listheader>
+	<item>
+		<term>term</term>
+		<description>description</description>
+	</item>
+	…
+	<item>
+		<term>term</term>
+		<description>description</description>
+	</item>
+</list>
+```
+term - The term to define.
+description  - The definition of the term.
+
+Either an item in a bullet or numbered list, or the definition of a term. 
+
+Example:
+```C#
+public class MyClass
+{
+	/// <remarks>Here is an example of a bulleted list:
+	/// <list type="bullet">
+	/// <item>
+	/// <description>Item 1.</description>
+	/// </item>
+	/// <item>
+	/// <description>Item 2.</description>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	public static void Main() 
+	{
+		// …
+	}
+}
+```
+Tag: `<para>`
+This tag is for use inside other tags, such as `<remarks>` or `<returns>`, and permits structure to be added to text.
+
+Syntax:
+
+`<para>content</para>`
+
+content - The text of the paragraph. 
+
+Example:
+```C#
+/// <summary>This is the entry point of the Point class 
+/// testing program.
+/// <para>This program tests each method and operator, 
+/// and is intended to be run after any non-trivial 
+/// maintenance has been performed on the Point 
+/// class.
+/// </para>
+/// </summary>
+public static void Main() 
+{
+	// …
+}
+```
+Tag: `<param>`
+This tag is used to describe a parameter for a method, constructor, or indexer.
+
+Syntax:
+
+`<param name="name">description</param>`
+
+name - The name of the parameter.
+description - A description of the parameter. 
+
+Example:
+```C#
+/// <summary>This method changes the point's location to
+/// the given coordinates.
+/// </summary>
+/// <param><c>xOr</c> is the new x-coordinate.</param>
+/// <param><c>yOr</c> is the new y-coordinate.</param>
+public void Move( int xOr, int yOr ) 
+{
+	X = xOr;
+	Y = yOr;
+}
+```
+
+Tag: `<paramref>`
+This tag is used to indicate that a word is a parameter. The documentation file can be processed to format this parameter in some distinct way.
+
+Syntax:
+
+`<paramref name="name"/>`
+
+name - The name of the parameter.
+
+Example:
+```C#
+/// <summary>This constructor initializes the new Point to
+///	(<paramref name="xOr"/>, <paramref name="yOr"/>).
+/// </summary>
+/// <param><c>xOr</c> is the new Point's x-coordinate.</param>
+/// <param><c>yOr</c> is the new Point's y-coordinate.</param>
+public Point( int xOr, int yOr ) 
+{
+	X = xOr;
+	Y = yOr;
+}
+```
+
+Tag: `<permission>`
+This tag allows the security accessibility of a member to be documented. 
+
+Syntax:
+
+`<permission cref="member">description</permission>`
+ 
+cref="member" - The name of a member. The documentation generator checks that the given code element exists and translates member to the canonical element name in the documentation file.
+description - A description of the access to the member. 
+
+
+Example:
+```C#
+/// <permission cref="System.Security.PermissionSet">Everyone can
+/// access this method.</permission>
+public static void Test() 
+{
+	// …
+}
+```
+
+Tag: `<remarks>`
+This tag is used to specify overview information about a type. (Use `<summary>` to describe the members of a type.)
+
+Syntax:
+
+`<remarks>description</remarks>`
+
+description - The text of the remarks. 
+
+Example:
+```C#
+/// <remarks>Class <c>Point</c> models a point in a two-dimensional 
+/// plane.</remarks>
+public class Point 
+{
+	// …
+}
+
+```
+Tag: `<returns>`
+This tag is used to describe the return value of a method.
+
+Syntax:
+
+`<returns>description</returns>`
+
+description -  A description of the return value. 
+
+Example:
+```C#
+/// <summary>Report a point's location as a string.</summary>
+/// <returns>A string representing a point's location, in the form 
+/// (x,y), without any leading, training, or embedded 
+/// whitespace.
+/// </returns>
+public override string ToString() 
+{
+	return "(" + X + "," + Y + ")";
+}
+
+```
+Tag: `<see>`
+This tag allows a link to be specified within text. (Use `<seealso>` to indicate text that is to appear in a See Also section.)
+
+Syntax:
+
+`<see cref="member"/>`
+
+cref="member" - The name of a member. The documentation generator checks that the given code element exists and passes member to the element name in the documentation file.
+
+Example:
+```C#
+/// <summary>This method changes the point's location to
+/// the given coordinates.
+/// </summary>
+/// <see cref="Translate"/>
+public void Move( int xOr, int yOr ) 
+{
+	X = xOr;
+	Y = yOr;
+}
+/// <summary>This method changes the point's location by
+/// the given x- and y-offsets.
+/// </summary>
+/// <see cref="Move"/>
+public void Translate( int xOr, int yOr ) 
+{
+	X += xOr;
+	Y += yOr;
+}
+```
+
+Tag: `<seealso>`
+This tag allows an entry to be generated for the See Also section. (Use `<see>` to specify a link from within text.)
+
+Syntax:
+
+`<seealso cref="member"/>`
+
+cref="member" - The name of a member. The documentation generator checks that the given code element exists and passes member to the element name in the documentation file.
+
+Example:
+```C#
+/// <summary>This method determines whether two Points have the 
+/// same location.
+/// </summary>
+/// <seealso cref="operator=="/>
+/// <seealso cref="operator!="/>
+public override bool Equals( object o ) 
+{
+	// …
+}
+```
+
+Tag: `<summary>`
+This tag can be used to describe a member for a type. (Use `<remarks>` to describe the type itself.)
+
+Syntax:
+
+`<summary>description</summary>`
+
+description - A summary of the member. 
+
+Example:
+```C#
+/// <summary>This constructor initializes the new Point to 
+/// ( 0, 0 ).
+/// </summary>
+public Point() : this( 0, 0 ) 
+{
+}
+```
+
+Tag: `<value>`
+This tag allows a property to be described.
+
+Syntax:
+
+`<value>property description</value>`
+
+property description - A description for the property. 
+
+Example:
+```C#
+/// <value>Property <c>X</c> represents the point's x-coordinate.</value>
+public int X
+{
+	get { return x; }
+	set { x = value; }
+}
+```
+
+Tag: `<include>`
+This tag is used to reference external files. The file attribute is the name of the file using relative or fully qualified paths. The include file itself in an XML document that holds XML Comments. The path attribute is an XPath statement that points to the parent element of the XML comments in the external document.
+
+Example:
+```C#
+/// <include file=’MyXMLCommentFile.xml’
+/// path=’doc/members/member[@name=”T:MyExampleClass”]/*’/>
+public class MyExampleClass
+{
+
+	/// <include file=’MyXMLCommentFile.xml’
+	/// path=’doc/members/member[@name=”M:MyExampleMethod”]/*’/>
+	public string MyExampleMethod( string returnThis )
+	{
+		return returnThis;
+	}
+
+}
+```
