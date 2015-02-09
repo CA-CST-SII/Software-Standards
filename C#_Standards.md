@@ -1,165 +1,301 @@
-=Development Standards and Guidelines (C#)=
-==About the Guide==
-This guide covers structuring and naming of the Apptis/Project libraries in such a manner that other developers/teams can easily determine whether or not an object that provides desired functionality already exists, easily locate objects slated for modification, and decide where to include new development.  The guide also covers software coding standards; and although the primary focus will be on programs written in C #, many of the rules and principles are useful and apply to programs written in other languages.  Finally, the guide will briefly cover embedded XML documentation and includes a more extensive elaboration on usage in Appendix A - taken from a white paper article written by Anson Horton from the .NET Framework community website. 
-==Purpose==
+# Development Standards and Guidelines (C#)
+## About the Guide
+This guide covers structuring and naming of the Apptis/Project libraries in such a manner 
+
+that other developers/teams can easily determine whether or not an object that provides 
+
+desired functionality already exists, easily locate objects slated for modification, and 
+
+decide where to include new development.  The guide also covers software coding standards; 
+
+and although the primary focus will be on programs written in C #, many of the rules and 
+
+principles are useful and apply to programs written in other languages.  Finally, the guide 
+
+will briefly cover embedded XML documentation and includes a more extensive elaboration on 
+
+usage in Appendix A - taken from a white paper article written by Anson Horton from the .NET 
+
+Framework community website. 
+## Purpose
 Project specific C# coding standards are maintained by the lead developer for each project.
 
-It is expected that all new C# code will adhere to these standards; existing code can be retrofitted to meet the standards to whatever degree possible, as modifications to that code are required. 
+It is expected that all new C# code will adhere to these standards; existing code can be 
 
-==Library Organization== 
-===Library Taxonomy===
-The taxonomy presented in this section is a partial library layout with some explanation.  Structure and usage will be discussed in the subsequent sections.  
-*Apptis
-**Common ñ Houses the companyís core objects that are not ìAccountî specific (e.g., the Data Access Layer) and may be shared across multiple projects/accounts.
-***DataAccess
-****DBConnection.cs
-****DBConnectionFactory.cs
-****Ö
-***Hardware
-****Factory
-*****Ö
-***Helper
-****NumericString.cs
-****XMLHelper.cs
-****ParameterizedString.cs
-****TokenValue.cs
-****Ö
-***MoneyManagement
-****MoneyManager.cs
-***SecurityManagement
-****SecurityManager.cs
-***UI
-****Web
-*****Ö 
-****Windows
-*****DesignSuite
-****Utils
-*****Settings
-***Passport ñ Houses account specific common objects	
-****FEPClient
-***PATS
-****Ö
-***PIERS
-****Ö
-***PRISM
-****Ö
-***TDIS
-****Common ñ Houses project specific common objects
-*****DataAdapter
-*****DataFormatter
-*****Passport
-******Project specific business entity objects.
-*****PassportManagement
-******Project specific business entity management objects.
-****Support
-*****SecurityManagement
-*****SettingsManagement
-****Workflow
-*****Adjudication
-*****SignatureService
-*****QualityControl
+retrofitted to meet the standards to whatever degree possible, as modifications to that code 
 
-===Library Structure===
-The library directory should be structured and named in a manner that makes it intuitive for a developer to easily check for existing functionality.  In general namespaces should match with the corresponding code directory structure (e.g., Apptis.TDIS.Common.Passport would align with the Apptis/TDIS/Common/Passport path).  This makes it easier to map namespaces to the directory layout, and makes it a relatively trivial matter for a developer to look for the appropriate ìusingî directive in a code file and locate the underlying functionality.  
+are required. 
 
-However, this is not to say that every folder MUST map to a namespace.  If youíre creating a sub-folder within a project for organizational purposes, it is recommended that the objects within these folders share the same root namespace as the project (e.g., items within the Apptis/TDIS/Common/Passport/Applicant folder would lie within the Apptis.TDIS.Common.Passport namespace).  Again, this greatly simplifies library inclusion with the ìusingî directive and may vastly reduce the impact of a library consolidation and re-organization.
+## Library Organization
+### Library Taxonomy
+The taxonomy presented in this section is a partial library layout with some explanation.  
 
-===Library Usage===
-The first place a Team/Developer should look for developing a NEW system or Project is in the Apptis.Common section of the library.  If there is no existing functionality for the GENERAL type of development they are performing and it is conceivable that other systems may need the functionality at some future point, it should be implemented within the Apptis.Common section for other Projects to use.  Likewise, this may also be a good time to investigate whether other Developers/Teams have implemented functionality similar to what is needed, and if so, considering abstracting it out into the Apptis.Common section of the library.  
+Structure and usage will be discussed in the subsequent sections.  
+* Apptis
+ * Common ‚Äì Houses the company‚Äôs core objects that are not ‚ÄúAccount‚Äù specific (e.g., the Data 
 
-When adding/extending functionality to an existing Project, a developer should be able to look in the module folder (i.e., look in Apptis.TDIS.ModuleName if modifying an existing module) to see how current functionality has been implemented, and look to the Project and Apptis Common folders for existing business or non-domain specific objects.  If the folder structure is laid out in a sensible fashion and the underlying objects carry with them meaningful names, it should be relatively easy to determine whether or not there are existing pieces to the puzzle they are working on.  Again this is also a good time to look for existing functionality that is not in the Common area and re-factor and move it out if possible.  
+Access Layer) and may be shared across multiple projects/accounts.
+   * DataAccess
+    * DBConnection.cs
+    * DBConnectionFactory.cs
+    * ‚Ä¶
+   * Hardware
+    * Factory
+     * ‚Ä¶
+   * Helper
+    * NumericString.cs
+     * XMLHelper.cs
+     * ParameterizedString.cs
+     * TokenValue.cs
+     * ‚Ä¶
+   * MoneyManagement
+    * MoneyManager.cs
+   * SecurityManagement
+    * SecurityManager.cs
+   * UI
+    * Web
+     * ‚Ä¶ 
+    * Windows
+     * DesignSuite
+   * Utils
+    * Settings
+  * Passport ‚Äì Houses account specific common objects	
+   * FEPClient
+  * PATS
+   * ‚Ä¶
+  * PIERS
+   * ‚Ä¶
+  * PRISM
+   * ‚Ä¶
+  * TDIS
+   * Common ‚Äì Houses project specific common objects
+    * DataAdapter
+    * DataFormatter
+    * Passport
+     * Project specific business entity objects.
+    * PassportManagement
+     * Project specific business entity management objects.
+   * Support
+    * SecurityManagement
+    * SettingsManagement
+   * Workflow
+    * Adjudication
+    * SignatureService
+    * QualityControl
 
-==Programming Standards==
-===About Code Uniformity===
-Whereas most developers are familiar with writing code that a compiler can interpret, this section may be read as a guide that focuses on helping developers adopt code Naming Conventions, Structure, and Documentation/Comments that will help other developers understand the purpose of existing code.  Typically it is much simpler for a developer to familiarize their self with new code that has naming conventions and formatting similar to their own.  
+###Library Structure###
+The library directory should be structured and named in a manner that makes it intuitive for 
 
-===Naming Conventions===
-====Naming Overview====
-In general, put every class in a separate file and name the file like the class name.  An exception to this would be private inner classes.  Class names typically describe the business entity that the class represents or the function or set of functionality the class provides.  This convention makes things much easier to follow and significantly lends to self-documenting code.  Class and file names should NOT include the company and/or project name (e.g. GDSSecurity, TDISPassport, etc.).  Although this may have made some small amount of sense for COM objects, the combination of appropriate module name selection and the namespace paradigm used throughout the .NET framework make this unnecessary.   An obvious exception to this would be Bridge or Adapter classes where the name denotes the systems being bridged (e.g., TDISFEPAdapter).
+a developer to easily check for existing functionality.  In general namespaces should match 
 
-For classes/files/methods keep your source code short, divide your code up into methods that are named such that their purpose is clear.  Unusually long classes/methods are sometimes cumbersome to name (not to mention read through) as they often perform multiple semi-atomic tasks.  This usually a good sign that some method and/or class refactoring is in order.
+with the corresponding code directory structure (e.g., Apptis.TDIS.Common.Passport would 
 
-====Hungarian Notation====
-Generally, the use of Hungarian notation in the naming objects/variables is considered poor practices in terms of modern programming standards.  
+align with the Apptis/TDIS/Common/Passport path).  This makes it easier to map namespaces to 
 
-Hungarian notation is a defined set of prefixes and suffixes, which are applied to names to reflect the type of the variable.  This style of naming was widely used in early Windows programming, but now is obsolete or at least should be considered deprecated.  Using Hungarian notation is not allowed if you follow this guide.
+the directory layout, and makes it a relatively trivial matter for a developer to look for 
 
-Instead modern standards call for names that denote usage rather than type.  In other words a good variable name describes the semantic.
+the appropriate ‚Äúusing‚Äù directive in a code file and locate the underlying functionality.  
 
-One exception to this rule is UI code. All fields and variable names that contain UI elements such as a button should be suffixed with their type name without abbreviations. For example:
+However, this is not to say that every folder MUST map to a namespace.  If you‚Äôre creating a 
+
+sub-folder within a project for organizational purposes, it is recommended that the objects 
+
+within these folders share the same root namespace as the project (e.g., items within the 
+
+Apptis/TDIS/Common/Passport/Applicant folder would lie within the Apptis.TDIS.Common.Passport 
+
+namespace).  Again, this greatly simplifies library inclusion with the ‚Äúusing‚Äù directive and 
+
+may vastly reduce the impact of a library consolidation and re-organization.
+
+###Library Usage###
+The first place a Team/Developer should look for developing a NEW system or Project is in the 
+
+Apptis.Common section of the library.  If there is no existing functionality for the GENERAL 
+
+type of development they are performing and it is conceivable that other systems may need the 
+
+functionality at some future point, it should be implemented within the Apptis.Common section 
+
+for other Projects to use.  Likewise, this may also be a good time to investigate whether 
+
+other Developers/Teams have implemented functionality similar to what is needed, and if so, 
+
+considering abstracting it out into the Apptis.Common section of the library.  
+
+When adding/extending functionality to an existing Project, a developer should be able to 
+
+look in the module folder (i.e., look in Apptis.TDIS.ModuleName if modifying an existing 
+
+module) to see how current functionality has been implemented, and look to the Project and 
+
+Apptis Common folders for existing business or non-domain specific objects.  If the folder 
+
+structure is laid out in a sensible fashion and the underlying objects carry with them 
+
+meaningful names, it should be relatively easy to determine whether or not there are existing 
+
+pieces to the puzzle they are working on.  Again this is also a good time to look for 
+
+existing functionality that is not in the Common area and re-factor and move it out if 
+
+possible.  
+
+##Programming Standards##
+###About Code Uniformity###
+Whereas most developers are familiar with writing code that a compiler can interpret, this 
+
+section may be read as a guide that focuses on helping developers adopt code Naming 
+
+Conventions, Structure, and Documentation/Comments that will help other developers understand 
+
+the purpose of existing code.  Typically it is much simpler for a developer to familiarize 
+
+their self with new code that has naming conventions and formatting similar to their own.  
+
+###Naming Conventions###
+####Naming Overview####
+In general, put every class in a separate file and name the file like the class name.  An 
+
+exception to this would be private inner classes.  Class names typically describe the 
+
+business entity that the class represents or the function or set of functionality the class 
+
+provides.  This convention makes things much easier to follow and significantly lends to 
+
+self-documenting code.  Class and file names should NOT include the company and/or project 
+
+name (e.g. GDSSecurity, TDISPassport, etc.).  Although this may have made some small amount 
+
+of sense for COM objects, the combination of appropriate module name selection and the 
+
+namespace paradigm used throughout the .NET framework make this unnecessary.   An obvious 
+
+exception to this would be Bridge or Adapter classes where the name denotes the systems being 
+
+bridged (e.g., TDISFEPAdapter).
+
+For classes/files/methods keep your source code short, divide your code up into methods that 
+
+are named such that their purpose is clear.  Unusually long classes/methods are sometimes 
+
+cumbersome to name (not to mention read through) as they often perform multiple semi-atomic 
+
+tasks.  This usually a good sign that some method and/or class refactoring is in order.
+
+####Hungarian Notation####
+Generally, the use of Hungarian notation in the naming objects/variables is considered poor 
+
+practices in terms of modern programming standards.  
+
+Hungarian notation is a defined set of prefixes and suffixes, which are applied to names to 
+
+reflect the type of the variable.  This style of naming was widely used in early Windows 
+
+programming, but now is obsolete or at least should be considered deprecated.  Using 
+
+Hungarian notation is not allowed if you follow this guide.
+
+Instead modern standards call for names that denote usage rather than type.  In other words a 
+
+good variable name describes the semantic.
+
+One exception to this rule is UI code. All fields and variable names that contain UI elements 
+
+such as a button should be suffixed with their type name without abbreviations. For example:
 
 <pre>System.Windows.Forms.Button cancelButton;
 System.Windows.Forms.TextBox firstNameTextBox;</pre>
 
-====Capitalization Styles====
-=====Pascal Casing=====
-This convention capitalizes the first character of each word (e.g., <code>StandardsAndGuidelines</code>).
+####Capitalization Styles####
+#####Pascal Casing#####
+This convention capitalizes the first character of each word (e.g., 
 
-=====Camel Casing=====
-This convention capitalizes the first character of each word except the first one (e.g. <code>standardsAndGuidelines</code>).
+<code>StandardsAndGuidelines</code>).
 
-=====Upper case=====
-Only use all upper case for identifiers if it consists of an abbreviation or acronym that is only a few characters long.  Longer identifiers should use Pascal Casing instead.
+#####Camel Casing#####
+This convention capitalizes the first character of each word except the first one (e.g. 
+
+<code>standardsAndGuidelines</code>).
+
+#####Upper case#####
+Only use all upper case for identifiers if it consists of an abbreviation or acronym that is 
+
+only a few characters long.  Longer identifiers should use Pascal Casing instead.
 
 For Example:
 <pre>
 public class Math
 {
-    public const PI = ...
-    public const E = ...
-    public const FeigenBaumNumber = ...
+    public const PI # ...
+    public const E # ...
+    public const FeigenBaumNumber # ...
 }
 </pre>
 
-====Naming Guidelines====
-=====Class Naming Guidelines=====
+####Naming Guidelines####
+#####Class Naming Guidelines#####
 *Class names must be nouns or noun phrases.
 *Use Pascal Casing.
 *Do not use any class prefix.
 
-=====Interface Naming Guidelines=====
-*Name interfaces with nouns or noun phrases or adjectives describing behavior. (Example IComponent or IEnumberable)
-*Use Pascal Casing.
-*Use I as prefix for the name, it is followed by a capital letter (first char of the interface name)
+#####Interface Naming Guidelines#####
+*Name interfaces with nouns or noun phrases or adjectives describing behavior. (Example 
 
-=====Enum Naming Guidelines=====
+IComponent or IEnumberable)
+*Use Pascal Casing.
+*Use I as prefix for the name, it is followed by a capital letter (first char of the 
+
+interface name)
+
+#####Enum Naming Guidelines#####
 *Use Pascal Casing for enum value names and enum type names.
-*Donít prefix (or suffix) an enum type or enum values.
+*Don‚Äôt prefix (or suffix) an enum type or enum values.
 *Use singular names for enums.
 
-=====Static and Const Field Names=====
+#####Static and Const Field Names#####
 *Name static fields with nouns, noun phrases or abbreviations for nouns
 *Use Pascal Casing.
 
-=====Non- const Field /Member Variable Names=====
-*Use descriptive names that, if done properly should be enough to indicate the variable meaning/usage and provide insight into the underlying type.
-*Use an underscore ì_î as a prefix for private and protected class member variables (declared at the top of the class above any constructors) so they can be easily identified and located.
+#####Non- const Field /Member Variable Names#####
+*Use descriptive names that, if done properly should be enough to indicate the variable 
+
+meaning/usage and provide insight into the underlying type.
+*Use an underscore ‚Äú_‚Äù as a prefix for private and protected class member variables (declared 
+
+at the top of the class above any constructors) so they can be easily identified and located.
 *Use Camel Casing after the underscore.
 
-=====Method Names=====
+#####Method Names#####
 *Name methods with verbs or verb phrases.
 *Use Pascal Casing.
 
-=====Method Parameters and Local Variables=====
-*Use descriptive names that, if done properly should be enough to indicate the variable meaning/usage and provide insight into the underlying type.
+#####Method Parameters and Local Variables#####
+*Use descriptive names that, if done properly should be enough to indicate the variable 
+
+meaning/usage and provide insight into the underlying type.
 *Use Camel Casing.
 
-=====Property Names=====
+#####Property Names#####
 *Name properties using nouns or noun phrases.
 *Use Pascal Casing.
-*Consider naming a property with the same name as the underlying class variable (without the underscore prefix).
+*Consider naming a property with the same name as the underlying class variable (without the 
 
-=====Event Names=====
+underscore prefix).
+
+#####Event Names#####
 *Name event handlers with the EventHandler suffix.
 *Use two parameters named sender and e.
 *Use Pascal Casing.
 *Name event argument classes with the EventArgs suffix.
 *Name event names that have a concept of pre and post using the present and past tense.
-*Consider naming events using a verb.  Consider using the ìOnî prefix, e.g., OnStart.
+*Consider naming events using a verb.  Consider using the ‚ÄúOn‚Äù prefix, e.g., OnStart.
 
-=====Capitalization summary=====
-{| class="wikitable" style="text-align:left; color:green; background-color:#ffffcc;" cellpadding="20" style="text-align:left;" style="text-align:left;" style="text-align:left;" 
-|+ style="caption-side:bottom;"|''Table 4.2.4.10 Capitalization summary''
+#####Capitalization summary#####
+{| class#"wikitable" style#"text-align:left; color:green; background-color:#ffffcc;" 
+
+cellpadding#"20" style#"text-align:left;" style#"text-align:left;" style#"text-align:left;" 
+|+ style#"caption-side:bottom;"|''Table 4.2.4.10 Capitalization summary''
 |-
 ! Type
 ! Case
@@ -207,36 +343,66 @@ public class Math
 |-
 | Protected/Private Fields	
 | Camel Casing	
-| Start with ì_î for class level
+| Start with ‚Äú_‚Äù for class level
 |-
 | Parameters/Local Variables 	
 | Camel Casing	
 |
 |}
 
-===Code Structure===
-====Code Separation====
-=====Separation Overview=====
-Imagine trying to read a book or a magazine article with no spaces between the words or any indentation and/or blank lines to set-off or separate paragraphs.  It becomes readily apparent just how powerful these simple formatting tools are in contributing to the flow and readability of the text.  Similarly, the proper usage of indentation, blank lines, and white spaces will vastly improve the flow and readability of source code. 
+###Code Structure###
+####Code Separation####
+#####Separation Overview#####
+Imagine trying to read a book or a magazine article with no spaces between the words or any 
 
-=====Indentation=====
-An indentation standard using spaces never was achieved.  Some people like 2 spaces; some prefer 4 and others 8, or even more spaces.  For this reason it is better use tabs and we define the Tab as the standard indentation character.  Tab characters have some advantages:
+indentation and/or blank lines to set-off or separate paragraphs.  It becomes readily 
+
+apparent just how powerful these simple formatting tools are in contributing to the flow and 
+
+readability of the text.  Similarly, the proper usage of indentation, blank lines, and white 
+
+spaces will vastly improve the flow and readability of source code. 
+
+#####Indentation#####
+An indentation standard using spaces never was achieved.  Some people like 2 spaces; some 
+
+prefer 4 and others 8, or even more spaces.  For this reason it is better use tabs and we 
+
+define the Tab as the standard indentation character.  Tab characters have some advantages:
 
 *Everyone can set their own preferred indentation level
-*It is only 1 keystroke and not 2, 4, or 8Öand will therefore reduce typing (even with ìsmart indentingî you have to set the indentation manually sometimes, or take it back or whatever).
-*If you want to increase the indentation (or decrease), mark one block and increase the indent level with Tab with Shift-Tab you decrease the indentation. This is true for almost any text editor.
+*It is only 1 keystroke and not 2, 4, or 8‚Ä¶and will therefore reduce typing (even with ‚Äúsmart 
+
+indenting‚Äù you have to set the indentation manually sometimes, or take it back or whatever).
+*If you want to increase the indentation (or decrease), mark one block and increase the 
+
+indent level with Tab with Shift-Tab you decrease the indentation. This is true for almost 
+
+any text editor.
 
 Indentation should be used in the following manner:
 
-*Subordinate scopes/clauses should be indented one level in from the next higher scope (see Code Examples).
-**The class, interface, struct, enum, and delegate declarations should be one level in from the namespace declaration.
-**Constructors, Fields, Properties, Methods, etc. should be one level in from the class declaration.
-**Source code within Constructors, Properties, Methods, etc. should be indented one level.
-**Subordinate statements within conditional and flow statements should be indented one level (see Formatting Conditional/Flow Statements).
-*If a declaration or statement continues onto subsequent lines the ìwrappedî portion should be indented (see Wrapping Lines).
+*Subordinate scopes/clauses should be indented one level in from the next higher scope (see 
 
-=====Blank Lines=====
-Blank lines used within and between Methods, Properties, etc. improve readability.  They set off blocks of code that are logically related.
+Code Examples).
+**The class, interface, struct, enum, and delegate declarations should be one level in from 
+
+the namespace declaration.
+**Constructors, Fields, Properties, Methods, etc. should be one level in from the class 
+
+declaration.
+**Source code within Constructors, Properties, Methods, etc. should be indented one level.
+**Subordinate statements within conditional and flow statements should be indented one level 
+
+(see Formatting Conditional/Flow Statements).
+*If a declaration or statement continues onto subsequent lines the ‚Äúwrapped‚Äù portion should 
+
+be indented (see Wrapping Lines).
+
+#####Blank Lines#####
+Blank lines used within and between Methods, Properties, etc. improve readability.  They set 
+
+off blocks of code that are logically related.
 
 Two blank lines should always be used between:
 
@@ -250,15 +416,23 @@ One blank line should always be used between:
 *Local variables in a method and its first statement
 *Logical sections inside a method to improve readability
 
-=====Spacing=====
+#####Spacing#####
 The following spacing rules should be followed:
 *No space between a method name and the opening parenthesis "(".
 *No space between the parentheses for methods with no params in the signature.
-*All items in a Class declaration should be separated by spaces (see Class, Interface, and Method Declarations).
-*All parameters/expressions within parentheses should be separated by spaces located after the opening parenthesis, after the commas or semicolons, and before the closing parenthesis.
-*Nested parentheses should be separated by spaces from the outer parentheses as well as the contained expression.
+*All items in a Class declaration should be separated by spaces (see Class, Interface, and 
+
+Method Declarations).
+*All parameters/expressions within parentheses should be separated by spaces located after 
+
+the opening parenthesis, after the commas or semicolons, and before the closing parenthesis.
+*Nested parentheses should be separated by spaces from the outer parentheses as well as the 
+
+contained expression.
 *No spaces should be used within parentheses that denote an explicit object cast.
-*Surround operators with single spaces (except unary operators like increment or logical not).
+*Surround operators with single spaces (except unary operators like increment or logical 
+
+not).
 
 Method example:
 
@@ -284,79 +458,81 @@ Flow example:
 
 Use:
 <pre>
-for( int loopIndex = 0; loopIndex < 10; loopIndex++ )
+for( int loopIndex # 0; loopIndex < 10; loopIndex++ )
 </pre>
 
 Don't use:
 <pre>
-for(int loopIndex=0; loopIndex<10; loopIndex++)
+for(int loopIndex#0; loopIndex<10; loopIndex++)
 </pre>
 Or
 <pre>
-for(int loopIndex=0;loopIndex<10;loopIndex++)
+for(int loopIndex#0;loopIndex<10;loopIndex++)
 </pre>
 
 Nested parentheses example:
 
 Use:
 <pre>
-if( ( ( printStatus & PrintError ) != PrintError ) ||
-    ( ( printStatus & PrintBypass ) == PrintBypass ) )
+if( ( ( printStatus & PrintError ) !# PrintError ) ||
+    ( ( printStatus & PrintBypass ) ## PrintBypass ) )
 {
-	Ö
+	‚Ä¶
 }
 </pre>
 
-Donít use:
+Don‚Äôt use:
 <pre>
-if( ( (printStatus & PrintError) != PrintError ) ||
-    ( (printStatus & PrintBypass) == PrintBypass ) )
+if( ( (printStatus & PrintError) !# PrintError ) ||
+    ( (printStatus & PrintBypass) ## PrintBypass ) )
 {
-	Ö
+	‚Ä¶
 }
 </pre>
 	Or
 <pre>
-if( ((printStatus & PrintError) != PrintError) ||
-    ((printStatus & PrintBypass) == PrintBypass) )
+if( ((printStatus & PrintError) !# PrintError) ||
+    ((printStatus & PrintBypass) ## PrintBypass) )
 {
-	Ö
+	‚Ä¶
 }
 </pre>
 
 Explicit cast example:
 <pre>
-double someDouble = 1234.7;
+double someDouble # 1234.7;
 int someInt;
 </pre>
 Use:
 <pre>
-someInt = (int) someDouble;
+someInt # (int) someDouble;
 </pre>
 Or
 <pre>
-someInt = (int)someDouble;
+someInt # (int)someDouble;
 </pre>
 
 Don't use:
 <pre>
-someInt = ( int )someDouble;
+someInt # ( int )someDouble;
 </pre>
 
 Operator example:
 
 Use:
 <pre>
-prevVariable = curVariable;
+prevVariable # curVariable;
 </pre>
 
 Don't use:
 <pre>
-prevVariable=curVariable;
+prevVariable#curVariable;
 </pre>
 
-====Wrapping Lines====
-When an expression will not fit on a single line, break it up according to these general principles:
+####Wrapping Lines####
+When an expression will not fit on a single line, break it up according to these general 
+
+principles:
 
 *Break after a comma.
 *Break after an operator.
@@ -377,76 +553,94 @@ Examples of breaking an arithmetic expression:
 
 Use:
 <pre>
-someResult = a * b / ( c - g + f ) + 
+someResult # a * b / ( c - g + f ) + 
 4 * z;
 </pre>
 Or
 <pre>
-someResult = a * b / ( c - g + f ) + 
+someResult # a * b / ( c - g + f ) + 
       4 * z;
 </pre>
 
-Donít use:
+Don‚Äôt use:
 <pre>
-someResult = a * b / ( c - g +
+someResult # a * b / ( c - g +
 f ) + 4 * z;
 </pre>
-The first is preferred since the break occurs outside the parenthesized expression (i.e., flows and reads better with the order of operations in mind).  
+The first is preferred since the break occurs outside the parenthesized expression (i.e., 
+
+flows and reads better with the order of operations in mind).  
 
 
-NOTE: If you prefer to use indentation that lines variables and/or the right hand portion of expressions up with those on the previous line, then you MUST use tabs only to where the previous line began and spaces for the rest of the indentation.  Otherwise, formatting will be disrupted for developers using tab lengths that differ from your own.  
+NOTE: If you prefer to use indentation that lines variables and/or the right hand portion of 
+
+expressions up with those on the previous line, then you MUST use tabs only to where the 
+
+previous line began and spaces for the rest of the indentation.  Otherwise, formatting will 
+
+be disrupted for developers using tab lengths that differ from your own.  
 
 Examples of using tab/char combinations to preserve alignment:
 <pre>
 >MethodCall( variableName1, variableName2, variableName3,
 >............variableName4, variableName5, variableName6 );
 
->var = a * b / ( c - g + f ) +
+>var # a * b / ( c - g + f ) +
 >......4 * z;
 </pre>
-Where '>' are tab chars and '.' are spaces (the spaces after the tab char must begin under the first char of the previous line).  For this reason it may be easier to simply indent with an additional tab rather than align continuations of variable lists and expressions.
+Where '>' are tab chars and '.' are spaces (the spaces after the tab char must begin under 
 
-====Declarations====
-=====Number of Declarations per Line=====
-One declaration per line is recommended since it allows for commenting should the variable name not suffice.  In other words,
+the first char of the previous line).  For this reason it may be easier to simply indent with 
+
+an additional tab rather than align continuations of variable lists and expressions.
+
+####Declarations####
+#####Number of Declarations per Line#####
+One declaration per line is recommended since it allows for commenting should the variable 
+
+name not suffice.  In other words,
 <pre>
 int floorNumber; 	
 int totalFloors; // The total number of floors in the building
 </pre>
 
-Do not put more than one variable on a line unless their usage is closely related.  Do not put variables of different types on the same line when declaring them.  Example:
+Do not put more than one variable on a line unless their usage is closely related.  Do not 
+
+put variables of different types on the same line when declaring them.  Example:
 <pre>
 int a, b; // What is 'a'? What does 'b' stand for?
 </pre>
 The above example also demonstrates the drawbacks of non-obvious variable names.  
 
-=====Initialization=====
+#####Initialization#####
 Wherever possible try to initialize local variables as soon as they are declared. 
 
 For example:
 <pre>
-string mLastName = string.Empty;
+string mLastName # string.Empty;
 </pre>
 Or
 <pre>
-string lastName = curEmployee.LastName;
+string lastName # curEmployee.LastName;
 </pre>
 Or
 <pre>
-double hoursWorked = timePeriod.Hours;
+double hoursWorked # timePeriod.Hours;
 </pre>
 
 Note: If you initialize a dialog try to use the using statement:
 <pre>
-using( OpenFileDialog openFileDialog = new OpenFileDialog() )
+using( OpenFileDialog openFileDialog # new OpenFileDialog() )
 {
 ...
 }
 </pre>
 
-=====Class, Interface, and Method Declarations=====
+#####Class, Interface, and Method Declarations#####
 *The opening brace "{" appears in the next line after the declaration statement.
-*The closing brace "}" starts a line by itself indented to match its corresponding opening brace.
+*The closing brace "}" starts a line by itself indented to match its corresponding opening 
+
+brace.
 
 For example:
 <pre>
@@ -459,9 +653,9 @@ class BoundedCounter : CounterBase, ICounter
  public MySample( int countStart, int upperBound, 
   int lowerBound )
  {
-  _countStart = countStart;
-  _upperBound = upperBound;
-  _lowerBound = lowerBound;
+  _countStart # countStart;
+  _upperBound # upperBound;
+  _lowerBound # lowerBound;
  }
 
  void Increment()
@@ -482,14 +676,14 @@ class BoundedCounter : CounterBase, ICounter
 
  void EmptyMethod()
  {
-	// Howíd I end up here?
+	// How‚Äôd I end up here?
  }
 }
 </pre>
 For a brace placement example see the Brace Example.
 
-====Formatting Conditional/Flow Statements====
-=====Formatting if, if-else, if else-if else Statements=====
+####Formatting Conditional/Flow Statements####
+#####Formatting if, if-else, if else-if else Statements#####
 The if, if-else and else-if else statements should be formatted as follows:
 <pre>
 if( condition )
@@ -527,10 +721,10 @@ else
 </pre>
 Note: Generally use brackets even if there is only one statement in condition.
 
-=====Formatting for / foreach Statements=====
+#####Formatting for / foreach Statements#####
 A for statement should have following format:
 <pre>
-for( int loopIndex = 0; loopIndex < 5; ++ loopIndex )
+for( int loopIndex # 0; loopIndex < 5; ++ loopIndex )
 {
  ...
 }
@@ -549,7 +743,7 @@ foreach( int i in IntList )
 </pre>
 Note: Generally use brackets even if there is only one statement in the loop.
 
-=====Formatting  while/do-while Statements=====
+#####Formatting  while/do-while Statements#####
 A while statement should be written as follows:
 <pre>
 while( condition )
@@ -572,7 +766,7 @@ do
 while( condition );
 </pre>
 
-=====Formatting switch Statements=====
+#####Formatting switch Statements#####
 A switch statement should be of following form:
 <pre>
 switch( condition )
@@ -589,7 +783,7 @@ switch( condition )
 }
 </pre>
 
-=====try-catch Statements=====
+#####try-catch Statements#####
 A try-catch statement should follow this form:
 <pre>
 try
@@ -601,7 +795,9 @@ catch( Exception )
   // We don't care if it fails because we're shutting down anyway.
 }
 </pre>
-NOTE:  If you plan on catching and ignoring the error, a good practice is to place a comment in the catch block explaining why.
+NOTE:  If you plan on catching and ignoring the error, a good practice is to place a comment 
+
+in the catch block explaining why.
 
 Or
 <pre>
@@ -629,33 +825,57 @@ finally
 ...
 }
 </pre>
-====Implementing Structure Standards====
-=====Within Visual Studio=====
-For the most part In Visual Studio 2003 these code formatting practices must be adopted and adhered to via the developerís own diligence.
+####Implementing Structure Standards####
+#####Within Visual Studio#####
+For the most part In Visual Studio 2003 these code formatting practices must be adopted and 
 
-In Visual Studio 2005 the structure rules described above, along with additional layout and formatting rules, must be configured by using the C# Code Options depicted in the screen shots below.
+adhered to via the developer‚Äôs own diligence.
+
+In Visual Studio 2005 the structure rules described above, along with additional layout and 
+
+formatting rules, must be configured by using the C# Code Options depicted in the screen 
+
+shots below.
 
 
 TODO:  Screen Shots to be added.
 
 
-==Best Practices==
-===Visibility===
-Do not make any instance or class variable public make them private or protected.   Instead, use properties if you need to expose a class variable.  You may use public static fields (or const) as an exception to this rule, but it should not be the rule.
+##Best Practices##
+###Visibility###
+Do not make any instance or class variable public make them private or protected.   Instead, 
 
-===No embedded, user-facing strings.===
-No UI elements (Labels, Drop Downs, Text Boxes, Error Messages, etc.) should use text that is embedded in the application.  In .Net much of this can be overcome by enabling localization, and the remainder should rely on some construct that can display the appropriate text from a persistent store such as the Notification layer.
+use properties if you need to expose a class variable.  You may use public static fields (or 
 
-===No 'magic' Numbers===
-Donít use magic numbers, i.e. place constant numerical values directly into the source code. Replacing these later on in case of changes (say, your application can now handle 32767 users instead of the 255 hard-coded into your code in 50 lines scattered throughout your 25000 LOC) is error-prone, not productive, and an all around bad programming practice.  Instead declare a const variable which contains the number:
+const) as an exception to this rule, but it should not be the rule.
+
+###No embedded, user-facing strings.###
+No UI elements (Labels, Drop Downs, Text Boxes, Error Messages, etc.) should use text that is 
+
+embedded in the application.  In .Net much of this can be overcome by enabling localization, 
+
+and the remainder should rely on some construct that can display the appropriate text from a 
+
+persistent store such as the Notification layer.
+
+###No 'magic' Numbers###
+Don‚Äôt use magic numbers, i.e. place constant numerical values directly into the source code. 
+
+Replacing these later on in case of changes (say, your application can now handle 32767 users 
+
+instead of the 255 hard-coded into your code in 50 lines scattered throughout your 25000 LOC) 
+
+is error-prone, not productive, and an all around bad programming practice.  Instead declare 
+
+a const variable which contains the number:
 <pre>
 public class MyMath
 {
-  public const double PI = 3.14159...
+  public const double PI # 3.14159...
 }
 </pre>
-==Code Examples==
-===Brace Placement Example===
+##Code Examples##
+###Brace Placement Example###
 <pre>
 namespace ShowMeTheBracket
 {
@@ -678,13 +898,13 @@ namespace ShowMeTheBracket
 
       set
      {
-       _test = value;
+       _test # value;
      }
     }
 
   void DoSomething()
   {
-    if( _test == Test.TestMe )
+    if( _test ## Test.TestMe )
     {
       //...stuff gets done
     }
@@ -703,26 +923,26 @@ Brackets should begin on a new line after:
 *Looping statements with multiple subordinate statements.
 *Conditional statements with multiple subordinate statements.
 
-===Variable Naming Example===
+###Variable Naming Example###
 
 Instead of:
 <pre>
-for( int i = 1; i < num; i++ )
+for( int i # 1; i < num; i++ )
 {
-  meetsCriteria[i] = true;
+  meetsCriteria[i] # true;
 }
 			
-for( int i = 2; i < num / 2; i++ )
+for( int i # 2; i < num / 2; i++ )
 {
-  int j = i + i;
-  while( j <= num )
+  int j # i + i;
+  while( j <# num )
   {
-    meetsCriteria[j] = false;
-    j += i;
+    meetsCriteria[j] # false;
+    j +# i;
   }
 }
 	
-for( int i = 0; i < num; i++ )
+for( int i # 0; i < num; i++ )
 {
   if( meetsCriteria[i] )
   {
@@ -733,24 +953,24 @@ for( int i = 0; i < num; i++ )
 
 Try intelligent naming:
 <pre>
-for( int primeCandidate = 1; primeCandidate < candidateLimit; 
+for( int primeCandidate # 1; primeCandidate < candidateLimit; 
     primeCandidate++ )
 {
-    _isPrime[primeCandidate] = true;
+    _isPrime[primeCandidate] # true;
 }
 
-for( int factor = 2; factor < candidateLimit / 2; factor++ )
+for( int factor # 2; factor < candidateLimit / 2; factor++ )
 {
-    int factorableNumber = factor + factor;
+    int factorableNumber # factor + factor;
 
-    while( factorableNumber <= candidateLimit )
+    while( factorableNumber <# candidateLimit )
     {
-      _isPrime[factorableNumber] = false;
-      factorableNumber += factor;
+      _isPrime[factorableNumber] # false;
+      factorableNumber +# factor;
     }
 }
 
-for( int primeCandidate = 0; primeCandidate < candidateLimit; 
+for( int primeCandidate # 0; primeCandidate < candidateLimit; 
     primeCandidate++ )
 {
     if( _isPrime[primeCandidate] )
@@ -759,26 +979,70 @@ for( int primeCandidate = 0; primeCandidate < candidateLimit;
     }
 }
 </pre>
-Note: Indexer variables are generally named i,j,k, etc.  But in cases like this, it may make sense to reconsider this rule.  In general, when the same counters or indexers are reused or can provide insight into the functionality, give them meaningful names.
+Note: Indexer variables are generally named i,j,k, etc.  But in cases like this, it may make 
 
-==Embedded Comments and Documentation==
-===Block Comments===
-Block comments should not be used above Constructors, Methods, and Properties.  Instead use the /// XML comments discussed in a later section to give C # standard descriptions.  For the most part, appropriately named classes, methods, properties, and variables should make the code self-explanatory and limit in-line comments to the occasional, single-line // comments.  However, complex algorithms/business rules occasionally do require more verbose in-line commenting.  In these cases if you wish to use block comments you should use the following style:
+sense to reconsider this rule.  In general, when the same counters or indexers are reused or 
+
+can provide insight into the functionality, give them meaningful names.
+
+##Embedded Comments and Documentation##
+###Block Comments###
+Block comments should not be used above Constructors, Methods, and Properties.  Instead use 
+
+the /// XML comments discussed in a later section to give C # standard descriptions.  For the 
+
+most part, appropriately named classes, methods, properties, and variables should make the 
+
+code self-explanatory and limit in-line comments to the occasional, single-line // comments.  
+
+However, complex algorithms/business rules occasionally do require more verbose in-line 
+
+commenting.  In these cases if you wish to use block comments you should use the following 
+
+style:
 <pre>
 /* Line 1
  * Line 2
  * Line 3 
  */
 </pre>
-Lining up the asterisks and closing the comment block on a separate line will visually set the comment block off from code for the (human) reader.   Comment blocks are also useful for ìcommenting outî sections of code during development / debugging; however, functionality being deprecated should not be ìcommented outî and left in the source files.  Instead, rely on the source repository to retain historical functionality.
+Lining up the asterisks and closing the comment block on a separate line will visually set 
 
-===Single-Line Comments===
-Single-line // comments should be used where subtle clarification is needed.  A rule of thumb is that the length of a comment should not exceed the length of the code being explained; and, with the exception of complex algorithms/business rules, the need for long comments is generally an indication of poorly named or structured source code.  Single-line comments may also be used to ìcomment outî code during development / debugging but, again, ìcommented outî code should not be left in the source files.
+the comment block off from code for the (human) reader.   Comment blocks are also useful for 
 
-When single-line comments are used as in-line, code documentation they must be indented to the same level as the code they are clarifying.  When using single-line comments to "comment out" code, place the // comment marks at the beginning of the line to enhance the visibility of commented out code.  
+‚Äúcommenting out‚Äù sections of code during development / debugging; however, functionality 
 
-===XML Documentation Overview===
-In the .NET framework, Microsoft has introduced a documentation generation system based on XML comments. These comments are formally single line C# comments containing XML tags. They follow this pattern for single line comments:
+being deprecated should not be ‚Äúcommented out‚Äù and left in the source files.  Instead, rely 
+
+on the source repository to retain historical functionality.
+
+###Single-Line Comments###
+Single-line // comments should be used where subtle clarification is needed.  A rule of thumb 
+
+is that the length of a comment should not exceed the length of the code being explained; 
+
+and, with the exception of complex algorithms/business rules, the need for long comments is 
+
+generally an indication of poorly named or structured source code.  Single-line comments may 
+
+also be used to ‚Äúcomment out‚Äù code during development / debugging but, again, ‚Äúcommented out‚Äù 
+
+code should not be left in the source files.
+
+When single-line comments are used as in-line, code documentation they must be indented to 
+
+the same level as the code they are clarifying.  When using single-line comments to "comment 
+
+out" code, place the // comment marks at the beginning of the line to enhance the visibility 
+
+of commented out code.  
+
+###XML Documentation Overview###
+In the .NET framework, Microsoft has introduced a documentation generation system based on 
+
+XML comments. These comments are formally single line C# comments containing XML tags. They 
+
+follow this pattern for single line comments:
 <pre>
 /// <summary>
 /// This class...
@@ -786,7 +1050,7 @@ In the .NET framework, Microsoft has introduced a documentation generation syste
 </pre>
 Multi-line XML comments follow this pattern:
 <pre>
-/// <exception cref=îBogusExceptionî>
+/// <exception cref#‚ÄùBogusException‚Äù>
 /// This exception gets thrown as soon as a
 /// Bogus flag gets set.
 /// </exception>
@@ -797,33 +1061,79 @@ Tags fall into two categories:
 *Documentation items
 *Formatting/Referencing
 
-The first category contains tags like <code><summary>, <param> or <exception></code>.  These represent items that are the elements of a program's API, which must be documented for the program to be useful to other programmers.  These tags usually have attributes such as name or cref as demonstrated in the multi-line example above.  The compiler checks these attributes, so they should be valid.
+The first category contains tags like <code><summary>, <param> or <exception></code>.  These 
 
-The latter category governs the layout of the documentation, using tags such as <code><code>, <list> or <para></code>.
+represent items that are the elements of a program's API, which must be documented for the 
 
-For a more complete explanation of XML comments see the Microsoft .NET framework SDK documentation.
+program to be useful to other programmers.  These tags usually have attributes such as name 
 
-====XML Documentation Tag Usage====
-For all classes, types, enums, and class members, a <code><summary></code> tag must be used, regardless of whether they are public, protected, or private.  This can be simply done by positioning the cursor on an empty line above the statement you wish to comment and typing ë///í.  The VS .NET editor will automatically turn this into a correctly structured <code><summary></code> block, and will add <code><param></code> tags also if the statement is a method and has parameters.
+or cref as demonstrated in the multi-line example above.  The compiler checks these 
 
-The <code><remarks></code> tag should be used in addition to the <code><summary></code> tag for any code that does not allow for brief description.  This can be combined with the <code><example></code> tag to demonstrate usage if helpful.
+attributes, so they should be valid.
 
-Any method that includes parameters in its signature must have a <code><param></code> tag for each parameter that describes their purpose.  
+The latter category governs the layout of the documentation, using tags such as <code><code>, 
 
-Any method that throws an exception must have an <code><exception></code> tag to describe the exception that can be thrown and why it would be thrown.  The cref attribute of this tag WILL be evaluated by the compiler, so should refer to the actual Exception class that will be thrown.
+<list> or <para></code>.
 
-Any method with a return value must have a <code><remarks></code> tag describing the return value.
+For a more complete explanation of XML comments see the Microsoft .NET framework SDK 
 
-Once XML documentation has been created, it is only truly useful if transforms are applied to make it readable.  A popular open source application called NDOC does a very good job of this.  NDOC can generate HTML or Windows based .chm help files.  As of the writing of this guide NDOC is available in at the DevSystemSoftware/ndoc share.
+documentation.
+
+####XML Documentation Tag Usage####
+For all classes, types, enums, and class members, a <code><summary></code> tag must be used, 
+
+regardless of whether they are public, protected, or private.  This can be simply done by 
+
+positioning the cursor on an empty line above the statement you wish to comment and typing 
+
+‚Äò///‚Äô.  The VS .NET editor will automatically turn this into a correctly structured 
+
+<code><summary></code> block, and will add <code><param></code> tags also if the statement is 
+
+a method and has parameters.
+
+The <code><remarks></code> tag should be used in addition to the <code><summary></code> tag 
+
+for any code that does not allow for brief description.  This can be combined with the 
+
+<code><example></code> tag to demonstrate usage if helpful.
+
+Any method that includes parameters in its signature must have a <code><param></code> tag for 
+
+each parameter that describes their purpose.  
+
+Any method that throws an exception must have an <code><exception></code> tag to describe the 
+
+exception that can be thrown and why it would be thrown.  The cref attribute of this tag WILL 
+
+be evaluated by the compiler, so should refer to the actual Exception class that will be 
+
+thrown.
+
+Any method with a return value must have a <code><remarks></code> tag describing the return 
+
+value.
+
+Once XML documentation has been created, it is only truly useful if transforms are applied to 
+
+make it readable.  A popular open source application called NDOC does a very good job of 
+
+this.  NDOC can generate HTML or Windows based .chm help files.  As of the writing of this 
+
+guide NDOC is available in at the DevSystemSoftware/ndoc share.
 
 More information on XML Documentation Tags can be found in Appendix A.
 
-====Implementing XML Documentation====
-=====Within Visual Studio=====
-In Visual Studio 2003 consider using the latest 2003 compatible GhostDoc Add-In (1.3.0 as of this writing).
+####Implementing XML Documentation####
+#####Within Visual Studio#####
+In Visual Studio 2003 consider using the latest 2003 compatible GhostDoc Add-In (1.3.0 as of 
 
-In Visual Studio 2005 consider using the latest 2005 compatible GhostDoc Add-In (1.9.2 as of this writing).
+this writing).
+
+In Visual Studio 2005 consider using the latest 2005 compatible GhostDoc Add-In (1.9.2 as of 
+
+this writing).
 
 There also exists Add-Ins for previewing your comments, such as QuickDocViewer. 
-=Children Pages=
+#Children Pages#
 [[Appendix A |https://github.com/CA-CST-SII/Software-Standards/wiki/Appendix-A]]
