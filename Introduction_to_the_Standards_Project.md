@@ -17,7 +17,7 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division CSS Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/CSS_Standards.md)
 
-[Consular Systems and Technology Division C# Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/C%23-Coding-Standards)
+[Consular Systems and Technology Division C# Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md)
 
 [Consular Systems and Technology Division C++ Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/C---Coding-Standards)
 
