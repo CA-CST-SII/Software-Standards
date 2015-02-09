@@ -466,14 +466,15 @@ an additional tab rather than align continuations of variable lists and expressi
 #####*Number of Declarations per Line*#####
 One declaration per line is recommended since it allows for commenting should the variable 
 name not suffice.  In other words,
+
 ```C#
 int floorNumber; 	
 int totalFloors; // The total number of floors in the building
 ```
 
 Do not put more than one variable on a line unless their usage is closely related.  Do not 
-
 put variables of different types on the same line when declaring them.  Example:
+
 ```C#
 int a, b; // What is 'a'? What does 'b' stand for?
 ```
@@ -486,27 +487,30 @@ For example:
 ```C#
 string mLastName # string.Empty;
 ```
-Or```C#
+Or
+```C#
 string lastName # curEmployee.LastName;
 ```
-Or```C#
+Or
+```C#
 double hoursWorked # timePeriod.Hours;
 ```
 
-Note: If you initialize a dialog try to use the using statement:```C#
+Note: If you initialize a dialog try to use the using statement:
+```C#
 using( OpenFileDialog openFileDialog # new OpenFileDialog() )
 {
 ...
 }
 ```
 
-#####Class, Interface, and Method Declarations#####
-*The opening brace "{" appears in the next line after the declaration statement.
-*The closing brace "}" starts a line by itself indented to match its corresponding opening 
-
+#####*Class, Interface, and Method Declarations*#####
+* The opening brace "{" appears in the next line after the declaration statement.
+* The closing brace "}" starts a line by itself indented to match its corresponding opening 
 brace.
 
-For example:```C#
+For example:
+```C#
 class BoundedCounter : CounterBase, ICounter
  {
   int _upperBound;
@@ -546,8 +550,9 @@ class BoundedCounter : CounterBase, ICounter
 For a brace placement example see the Brace Example.
 
 ####Formatting Conditional/Flow Statements####
-#####Formatting if, if-else, if else-if else Statements#####
-The if, if-else and else-if else statements should be formatted as follows:```C#
+#####*Formatting if, if-else, if else-if else Statements*#####
+The if, if-else and else-if else statements should be formatted as follows:
+```C#
 if( condition )
 {
  DoSomething();
@@ -583,18 +588,21 @@ else
 ```
 Note: Generally use brackets even if there is only one statement in condition.
 
-#####Formatting for / foreach Statements#####
-A for statement should have following format:```C#
+#####*Formatting for / foreach Statements*#####
+A for statement should have following format:
+```C#
 for( int loopIndex # 0; loopIndex < 5; ++ loopIndex )
 {
  ...
 }
 ```
-Or single lined (consider using a while statement instead):```C#
+Or single lined (consider using a while statement instead):
+```C#
 for( [initialization expression]; [loop condition]; 
 [update expression] );
 ```
-A foreach should look like:```C#
+A foreach should look like:
+```C#
 foreach( int i in IntList )
 {
  ...
@@ -602,8 +610,9 @@ foreach( int i in IntList )
 ```
 Note: Generally use brackets even if there is only one statement in the loop.
 
-#####Formatting  while/do-while Statements#####
-A while statement should be written as follows:```C#
+#####*Formatting  while/do-while Statements*#####
+A while statement should be written as follows:
+```C#
 while( condition )
 {
  ...
@@ -611,10 +620,12 @@ while( condition )
 ```
 Note: Generally use brackets even if there is only one statement in the loop.
 
-An empty while should have the following form:```C#
+An empty while should have the following form:
+```C#
 while( condition );
 ```
-A do-while statement should have the following form:```C#
+A do-while statement should have the following form:
+```C#
 do
 {
  ...
@@ -622,8 +633,9 @@ do
 while( condition );
 ```
 
-#####Formatting switch Statements#####
-A switch statement should be of following form:```C#
+#####*Formatting switch Statements*#####
+A switch statement should be of following form:
+```C#
 switch( condition )
 {
  case A:
@@ -638,8 +650,9 @@ switch( condition )
 }
 ```
 
-#####try-catch Statements#####
-A try-catch statement should follow this form:```C#
+#####*try-catch Statements*#####
+A try-catch statement should follow this form:
+```C#
 try
 {
  ...
@@ -650,10 +663,10 @@ catch( Exception )
 }
 ```
 NOTE:  If you plan on catching and ignoring the error, a good practice is to place a comment 
-
 in the catch block explaining why.
 
-Or```C#
+Or
+```C#
 try
 {
  ...
@@ -663,7 +676,8 @@ catch( Exception e )
  ...
 }
 ```
-Or```C#
+Or 
+```C#
 try
 {
  ...
@@ -678,15 +692,12 @@ finally
 }
 ```
 ####Implementing Structure Standards####
-#####Within Visual Studio#####
+#####*Within Visual Studio*#####
 For the most part In Visual Studio 2003 these code formatting practices must be adopted and 
-
 adhered to via the developer’s own diligence.
 
 In Visual Studio 2005 the structure rules described above, along with additional layout and 
-
 formatting rules, must be configured by using the C# Code Options depicted in the screen 
-
 shots below.
 
 
@@ -696,37 +707,30 @@ TODO:  Screen Shots to be added.
 ##Best Practices##
 ###Visibility###
 Do not make any instance or class variable public make them private or protected.   Instead, 
-
 use properties if you need to expose a class variable.  You may use public static fields (or 
-
 const) as an exception to this rule, but it should not be the rule.
 
 ###No embedded, user-facing strings.###
 No UI elements (Labels, Drop Downs, Text Boxes, Error Messages, etc.) should use text that is 
-
 embedded in the application.  In .Net much of this can be overcome by enabling localization, 
-
 and the remainder should rely on some construct that can display the appropriate text from a 
-
 persistent store such as the Notification layer.
 
 ###No 'magic' Numbers###
 Don’t use magic numbers, i.e. place constant numerical values directly into the source code. 
-
 Replacing these later on in case of changes (say, your application can now handle 32767 users 
-
 instead of the 255 hard-coded into your code in 50 lines scattered throughout your 25000 LOC) 
-
 is error-prone, not productive, and an all around bad programming practice.  Instead declare 
-
-a const variable which contains the number:```C#
+a const variable which contains the number:
+```C#
 public class MyMath
 {
   public const double PI # 3.14159...
 }
 ```
 ##Code Examples##
-###Brace Placement Example###```C#
+###Brace Placement Example###
+```C#
 namespace ShowMeTheBracket
 {
   public enum Test
@@ -767,15 +771,16 @@ namespace ShowMeTheBracket
 }
 ```
 Brackets should begin on a new line after:
-*Namespace declarations
-*Class/Interface/Struct declarations
-*Method declarations
-*Looping statements with multiple subordinate statements.
-*Conditional statements with multiple subordinate statements.
+* Namespace declarations
+* Class/Interface/Struct declarations
+* Method declarations
+* Looping statements with multiple subordinate statements.
+* Conditional statements with multiple subordinate statements.
 
 ###Variable Naming Example###
 
-Instead of:```C#
+Instead of:
+```C#
 for( int i # 1; i < num; i++ )
 {
   meetsCriteria[i] # true;
@@ -800,7 +805,8 @@ for( int i # 0; i < num; i++ )
 }
 ```
 
-Try intelligent naming:```C#
+Try intelligent naming:
+```C#
 for( int primeCandidate # 1; primeCandidate < candidateLimit; 
     primeCandidate++ )
 {
@@ -828,73 +834,55 @@ for( int primeCandidate # 0; primeCandidate < candidateLimit;
 }
 ```
 Note: Indexer variables are generally named i,j,k, etc.  But in cases like this, it may make 
-
 sense to reconsider this rule.  In general, when the same counters or indexers are reused or 
-
 can provide insight into the functionality, give them meaningful names.
 
 ##Embedded Comments and Documentation##
 ###Block Comments###
 Block comments should not be used above Constructors, Methods, and Properties.  Instead use 
-
-the /// XML comments discussed in a later section to give C # standard descriptions.  For the 
-
+the `///` XML comments discussed in a later section to give C # standard descriptions.  For the 
 most part, appropriately named classes, methods, properties, and variables should make the 
-
-code self-explanatory and limit in-line comments to the occasional, single-line // comments.  
+code self-explanatory and limit in-line comments to the occasional, single-line `//` comments.  
 
 However, complex algorithms/business rules occasionally do require more verbose in-line 
-
 commenting.  In these cases if you wish to use block comments you should use the following 
-
-style:```C#
+style:
+```C#
 /* Line 1
  * Line 2
  * Line 3 
  */
 ```
 Lining up the asterisks and closing the comment block on a separate line will visually set 
-
 the comment block off from code for the (human) reader.   Comment blocks are also useful for 
-
-“commenting out” sections of code during development / debugging; however, functionality 
-
+“commenting out” sections of code during development `/` debugging; however, functionality 
 being deprecated should not be “commented out” and left in the source files.  Instead, rely 
-
 on the source repository to retain historical functionality.
 
 ###Single-Line Comments###
-Single-line // comments should be used where subtle clarification is needed.  A rule of thumb 
-
+Single-line `//` comments should be used where subtle clarification is needed.  A rule of thumb 
 is that the length of a comment should not exceed the length of the code being explained; 
-
 and, with the exception of complex algorithms/business rules, the need for long comments is 
-
 generally an indication of poorly named or structured source code.  Single-line comments may 
-
-also be used to “comment out” code during development / debugging but, again, “commented out” 
-
+also be used to “comment out” code during development `/` debugging but, again, “commented out” 
 code should not be left in the source files.
 
 When single-line comments are used as in-line, code documentation they must be indented to 
-
 the same level as the code they are clarifying.  When using single-line comments to "comment 
-
-out" code, place the // comment marks at the beginning of the line to enhance the visibility 
-
+out" code, place the `//` comment marks at the beginning of the line to enhance the visibility 
 of commented out code.  
 
 ###XML Documentation Overview###
 In the .NET framework, Microsoft has introduced a documentation generation system based on 
-
 XML comments. These comments are formally single line C# comments containing XML tags. They 
-
-follow this pattern for single line comments:```C#
+follow this pattern for single line comments:
+```C#
 /// <summary>
 /// This class...
 /// </summary>
 ```
-Multi-line XML comments follow this pattern:```C#
+Multi-line XML comments follow this pattern:
+```C#
 /// <exception cref#”BogusException”>
 /// This exception gets thrown as soon as a
 /// Bogus flag gets set.
@@ -903,8 +891,8 @@ Multi-line XML comments follow this pattern:```C#
 All lines must be preceded by three slashes to be accepted as XML comment lines.
 Tags fall into two categories:
 
-*Documentation items
-*Formatting/Referencing
+* Documentation items
+* Formatting/Referencing
 
 The first category contains tags like <code><summary>, <param> or <exception></code>.  These 
 
