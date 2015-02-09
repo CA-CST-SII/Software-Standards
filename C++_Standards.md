@@ -8,6 +8,7 @@ This document is intended for the following uses:
 * Source for code review checklists.
 * Reference for developers who extend and maintain the C++ code.
 * As a governance tool for CA-CST.
+
 ### Scope
 This document describes the following for C++:
 * Naming conventions for projects, files, objects, variables, and other code constructs.
@@ -17,36 +18,15 @@ This document describes the following for C++:
 * Section 508 compliance.
 * Security standards.
 * Coding practices and recommendations.
-### Code Change Scope ### 
-The C++ coding standards described in this document apply to new applications (new code) and 
 
-existing code in the following ways:
-* New code in the middle of an existing file should follow new coding standards with 
-
-explanations regarding the change being made to be consistent with new guidelines, ensuring 
-
-no disruption to the existing code structure. Exceptions can be made to this rule if 
-
-following new guidelines creates significant and unnecessary and potentially dangerous re-
-
-work. 
-* New files within existing applications must follow the C++ coding standards documented in 
-
-this document.
+### Code Change Scope
+The C++ coding standards described in this document apply to new applications (new code) and existing code in the following ways:
+* New code in the middle of an existing file should follow new coding standards with explanations regarding the change being made to be consistent with new guidelines, ensuring no disruption to the existing code structure. Exceptions can be made to this rule if following new guidelines creates significant and unnecessary and potentially dangerous re-work. 
+* New files within existing applications must follow the C++ coding standards documented in this document.
 * New applications must follow the C++ coding standards documented in this document.
-* Modifications to existing code will follow the CST C++ coding standards. Exceptions can be 
-
-made to this rule if following new guidelines creates significant and unnecessary and 
-
-potentially dangerous re-work when modifying a subset of code within a larger context.
-* Code that is referenced or imported from existing libraries, open source or commercial, will 
-
-be left unchanged to preserve its integrity and to align with its intended API design.  If 
-
-existing library code is copied and then modified to be part of the code base, then it is 
-
-subject to CST coding standards 
-### References### 
+* Modifications to existing code will follow the CST C++ coding standards. Exceptions can be made to this rule if following new guidelines creates significant and unnecessary and potentially dangerous re-work when modifying a subset of code within a larger context.
+* Code that is referenced or imported from existing libraries, open source or commercial, will be left unchanged to preserve its integrity and to align with its intended API design.  If existing library code is copied and then modified to be part of the code base, then it is subject to CST coding standards 
+### References
 The following sources were used in creation of the original version of this standard.
 * US-VISIT C++ Coding Standards, Version 1.1, November 19, 2010
 * A Java coding standard on a page, http://www.xp123.com/xplor/xp0002f/index.shtml
@@ -54,96 +34,31 @@ The following sources were used in creation of the original version of this stan
 * Javadoc Information, http://java.sun.com/j2se/javadoc/writingdoccomments/
 The following books provide good advice above and beyond language syntax:
 * The C++ Programming Language (2nd Edition), Bjarne Stroustrup, Addison-Wesley, 1991
-* Effective C++: 50 Specific Ways to Improve Your Programs and Design (2nd Edition), Scott 
+* Effective C++: 50 Specific Ways to Improve Your Programs and Design (2nd Edition), Scott Meyers, Addison-Wesley, 1997 
+* Handbook: CMU/SEI-97-HB-001. January 1997. C4 Software Technology Reference Guide —A Prototype, Software Engineering Institute, Carnegie Mellon University, Pittsburgh, Pennsylvania 15213
+* A Proposed Taxonomy for Software Development Risks for High-Performance Computing (HPC) Scientific/Engineering Applications, TECHNICAL NOTE, CMU/SEI-2006-TN-039 January 2007, Software Engineering Institute, Carnegie Mellon University, Pittsburgh, Pennsylvania 15213
+* Applying and Interpreting Object Oriented Metrics, NASA Software Assurance Technology Center (SATC), http://satc.gsfc.nasa.gov/support/STC_APR98/apply_oo/apply_oo.html
+* Minimizing code defects to improve software quality and lower development costs, Development Solutions White paper, October 2008, IBM/Rational 
+* Managing Software Risks in Software Intensive Systems with Metrics and Measures, Robert A. Martin, MITRE, presentation to SEI/CMU Conference on the Acquisition of Software-Intensive Systems 2003, 30 January 2003. 
+* NIST Special Publication 500-235, Structured Testing: A Testing Methodology Using the Cyclomatic Complexity Metric, Arthur H. Watson, Thomas J. McCabe, Prepared under NIST Contract 43NANB517266 , Dolores R. Wallace, Editor Computer Systems Laboratory, National Institute of Standards and Technology, Gaithersburg, MD 20899-0001, August 1996 
+* Shyam R. Chidamber, Chris F. Kemerer. A Metrics suite for Object Oriented design. M.I.T. Sloan School of Management E53-315. 1993. http://uweb.txstate.edu/~mg43/CS5391/Papers/Metrics/OOMetrics.pdf
+* Victor Basili, Lionel Briand and Walcelio Melo. A Validation of Object-Oriented Design Metrics as Quality Indicators. IEEE Transactions on Software Engineering. Vol. 22, No. 10, October 1996. http://www.cs.umd.edu/users/basili/publications/journals/J60.pdf
+* Laing, Victor & Coleman, Charles: Principal Components of Orthogonal Object-Oriented Metrics. White Paper Analyzing Results of NASA Object-Oriented Data. SATC, NASA, 2001. http://satc.gsfc.nasa.gov/support/OSMASAS_SEP01/Principal_Components_of_Orthogonal_Object_Oriented_Metrics.pdf
 
-Meyers, Addison-Wesley, 1997 
-* Handbook: CMU/SEI-97-HB-001. January 1997. C4 Software Technology Reference Guide —A 
+### C++ Best Practices
+This section describes C++ coding best practices and the resources used to support the best practices.
 
-Prototype, Software Engineering Institute, Carnegie Mellon University, Pittsburgh, 
+#### Standard Libraries
+* Try to use the standard C++ libraries whenever they are adequate: for example, STL and iostreams.
+* The old standard C Language library is also part of the C++ standard library.  Try to avoid the old C Language library as much as feasible when the C++ standard library can be used.  For example, use `cout` instead of `printf`.
 
-Pennsylvania 15213
-* A Proposed Taxonomy for Software Development Risks for High-Performance Computing (HPC) 
+#### Mixing C++ with C Language
+One of the primary design goals of C++ was compatibility with millions of lines of existing C code already in existence.  With some precaution, you can safely call C functions from C++.  On the other hand, it may not be safe to call C++ functions from C code even when only C language data types are involved.
 
-Scientific/Engineering Applications, TECHNICAL NOTE, CMU/SEI-2006-TN-039 January 2007, 
+If there is old but reliable C code that can be reused for a project, then it is permissible to reuse the old code.  That is often better than to rewrite a lot of reliable C code strictly in C++.  C++ wrappers or layers can be created.  In a C++ module where C functions are called, just use “extern C” to make sure that parameter passing is compatible.  And obviously, when implementing C function calls from C++ code, in general, only C language data types should be involved—especially when passing a function pointer to a C++ method to some “extern C” code.  (There are some exceptions to this however.)
 
-Software Engineering Institute, Carnegie Mellon University, Pittsburgh, Pennsylvania 15213
-* Applying and Interpreting Object Oriented Metrics, NASA Software Assurance Technology Center 
-
-(SATC), http://satc.gsfc.nasa.gov/support/STC_APR98/apply_oo/apply_oo.html
-* Minimizing code defects to improve software quality and lower development costs, Development 
-
-Solutions White paper, October 2008, IBM/Rational 
-* Managing Software Risks in Software Intensive Systems with Metrics and Measures, Robert A. 
-
-Martin, MITRE, presentation to SEI/CMU Conference on the Acquisition of Software-Intensive 
-
-Systems 2003, 30 January 2003. 
-* NIST Special Publication 500-235, Structured Testing: A Testing Methodology Using the 
-
-Cyclomatic Complexity Metric, Arthur H. Watson, Thomas J. McCabe, Prepared under NIST 
-
-Contract 43NANB517266 , Dolores R. Wallace, Editor Computer Systems Laboratory, National 
-
-Institute of Standards and Technology, Gaithersburg, MD 20899-0001, August 1996 
-* Shyam R. Chidamber, Chris F. Kemerer. A Metrics suite for Object Oriented design. M.I.T. 
-
-Sloan School of Management E53-315. 1993. 
-
-http://uweb.txstate.edu/~mg43/CS5391/Papers/Metrics/OOMetrics.pdf
-* Victor Basili, Lionel Briand and Walcelio Melo. A Validation of Object-Oriented Design 
-
-Metrics as Quality Indicators. IEEE Transactions on Software Engineering. Vol. 22, No. 10, 
-
-October 1996. http://www.cs.umd.edu/users/basili/publications/journals/J60.pdf
-* Laing, Victor & Coleman, Charles: Principal Components of Orthogonal Object-Oriented 
-
-Metrics. White Paper Analyzing Results of NASA Object-Oriented Data. SATC, NASA, 
-
-2001.http://satc.gsfc.nasa.gov/support/OSMASAS_SEP01/Principal_Components_of_Orthogonal_Objec
-
-t_Oriented_Metrics.pdf
-### C++ Best Practices### 
-This section describes C++ coding best practices and the resources used to support the best 
-
-practices.  
-#### Standard Libraries####
-* Try to use the standard C++ libraries whenever they are adequate: for example, STL and 
-
-iostreams.
-* The old standard C Language library is also part of the C++ standard library.  Try to avoid 
-
-the old C Language library as much as feasible when the C++ standard library can be used.  
-
-For example, use cout instead of printf.
-#### Mixing C++ with C Language#### 
-One of the primary design goals of C++ was compatibility with millions of lines of existing C 
-
-code already in existence.  With some precaution, you can safely call C functions from C++.  
-
-On the other hand, it may not be safe to call C++ functions from C code even when only C 
-
-language data types are involved.
-If there is old but reliable C code that can be reused for a project, then it is permissible 
-
-to reuse the old code.  That is often better than to rewrite a lot of reliable C code 
-
-strictly in C++.  C++ wrappers or layers can be created.  In a C++ module where C functions 
-
-are called, just use “extern C” to make sure that parameter passing is compatible.  And 
-
-obviously, when implementing C function calls from C++ code, in general, only C language data 
-
-types should be involved—especially when passing a function pointer to a C++ method to some 
-
-“extern C” code.  (There are some exceptions to this however.)
-Use the definition of the __cplusplus macro to separate C and C++. This macro is most useful 
-
-in guarding the specification of an extern "C" interface for function declarations, as shown 
-
-in the following example. To prevent inconsistent specification of extern "C", never place an 
-
-#include directive within the scope of an extern "C" linkage specification. 
-<pre>
+Use the definition of the __cplusplus macro to separate C and C++. This macro is most useful in guarding the specification of an extern "C" interface for function declarations, as shown in the following example. To prevent inconsistent specification of extern "C", never place an `#include` directive within the scope of an extern "C" linkage specification. 
+```cpp
 #include "header.h"
 ...                     // ... other include files ... 
 #if defined(_ _cplusplus)
@@ -155,12 +70,10 @@ extern "C" {
 #if defined(_ _cplusplus)
 }
 #endif
-</pre>
-#### Header File#### 
-To prevent complications involving multiple inclusions of header files, directly and/or 
-
-indirectly, every element of a header file should have the following enclosure:
-<pre>
+```
+#### Header File
+To prevent complications involving multiple inclusions of header files, directly and/or indirectly, every element of a header file should have the following enclosure:
+```cpp
 <File header documentation.>
 #ifndef __<FILENAME>_H
 #define __<FILENAME>_H
@@ -172,26 +85,18 @@ indirectly, every element of a header file should have the following enclosure:
 .
 .
 #endif 
-</pre>
+```
 <code><FILENAME>_H</code> must be a unique definition among all the source files compiled. 
 
-#### Global Variables#### 
-For each global variable, document how the global variable is initialized, used, and cleaned 
-
-up.
-#### Logging#### 
-* Use the Log class (from the CA-CST C++ Util library) for API for application logging.   
-
-Proper error logging quickly helps to find application errors and business logic issues in 
-
-test or production environment.  Logging should have several levels of detail and each level 
-
-should be configurable at run-time.
+#### Global Variables
+For each global variable, document how the global variable is initialized, used, and cleaned up.
+#### Logging
+* Use the Log class (from the CA-CST C++ Util library) for API for application logging. Proper error logging quickly helps to find application errors and business logic issues in test or production environment.  Logging should have several levels of detail and each level should be configurable at run-time.
 * The following illustrates a log message that indicates an error condition:
-<pre>
+```cpp
 xLog.print(LOG_NORMAL, "Sql Error: " + xErr.context());
-</pre>
-#### Comments#### 
+```
+#### Comments
 * Use Javadoc tool or Javdoc commenting style for documenting comments within C++ programs.  
 
 This allows for a standard comment format across the Java and C++ languages and allows for 
