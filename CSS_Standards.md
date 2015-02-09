@@ -201,12 +201,12 @@ There are numerous ways to input values for properties. Follow the guidelines be
 * Multiple comma-separated values for one property should be separated by either a space or a newline, including within rgba(). Newlines should be used for lengthier multi-part values such as those for shorthand properties like box-shadow and text-shadow. Each subsequent value after the first should then be on a new line, indented to the same level as the selector and then spaced over to left-align with the previous value.
 Correct:
 ```css
-.class { /*  Correct usage of quotes * /
+.class { /*  Correct usage of quotes */
     background-image: url(images/bg.png);
     font-family: "Helvetica Neue", sans-serif;
 }
  
-.class { /*  Correct usage of zero values * /
+.class { /*  Correct usage of zero values */
     font-family: Georgia, serif;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5),
                        0 1px 0 #fff;
@@ -214,11 +214,11 @@ Correct:
 ```
 Incorrect:
 ```css
-.class { /*  Avoid missing space and semicolon * /
+.class { /*  Avoid missing space and semicolon */
     background:#fff
 }
  
-.class { /*  Avoid adding a unit on a zero value * /
+.class { /*  Avoid adding a unit on a zero value */
     margin: 0px 0px 20px 0px;
 }
 ```
@@ -665,7 +665,7 @@ display: block;	                   Basic syntax
 color: #fff                        Use shorthand syntax for hexadecimal colors when possible 
 color: #df7dcf	                   Always use lowercase
 font-family: "Frutiger Ultra"	   Use double quotes instead of single quotes
-text-shadow: 0 0 2px #ddd	   Do not attach units to zero-values
+text-shadow: 0 0 2px #ddd	     Do not attach units to zero-values
 color: rgba(0, 136, 18, 0.8)	   Spaces MUST follow commas in property or function values
 ```
 
