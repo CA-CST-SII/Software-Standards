@@ -122,18 +122,15 @@ public class Math
 ```
 
 ####Naming Guidelines####
-##### *Class Naming Guidelines
+##### *Class Naming Guidelines*
 * Class names must be nouns or noun phrases.
 * Use Pascal Casing.
 * Do not use any class prefix.
 
-##### *Interface Naming Guidelines* * Name interfaces with nouns or noun phrases or adjectives describing behavior. (Example 
-
-IComponent or IEnumberable)
+##### *Interface Naming Guidelines* 
+* Name interfaces with nouns or noun phrases or adjectives describing behavior. (Example IComponent or IEnumberable)
 * Use Pascal Casing.
-* Use I as prefix for the name, it is followed by a capital letter (first char of the 
-
-interface name)
+* Use I as prefix for the name, it is followed by a capital letter (first char of the interface name)
 
 ##### *Enum Naming Guidelines* 
 * Use Pascal Casing for enum value names and enum type names.
@@ -145,32 +142,24 @@ interface name)
 * Use Pascal Casing.
 
 ##### *Non- const Field /Member Variable Names* 
-* Use descriptive names that, if done properly should be enough to indicate the variable 
-
-meaning/usage and provide insight into the underlying type.
-* Use an underscore “_” as a prefix for private and protected class member variables (declared 
-
-at the top of the class above any constructors) so they can be easily identified and located.
+* Use descriptive names that, if done properly should be enough to indicate the variable meaning/usage and provide insight into the underlying type.
+* Use an underscore “_” as a prefix for private and protected class member variables (declared at the top of the class above any constructors) so they can be easily identified and located.
 *Use Camel Casing after the underscore.
 
-#####Method Names#####
+##### *Method Names*#####
 *Name methods with verbs or verb phrases.
 *Use Pascal Casing.
 
-#####Method Parameters and Local Variables#####
-*Use descriptive names that, if done properly should be enough to indicate the variable 
-
-meaning/usage and provide insight into the underlying type.
+##### *Method Parameters and Local Variables*#####
+*Use descriptive names that, if done properly should be enough to indicate the variable meaning/usage and provide insight into the underlying type.
 *Use Camel Casing.
 
-#####Property Names#####
+##### *Property Names*#####
 *Name properties using nouns or noun phrases.
 *Use Pascal Casing.
-*Consider naming a property with the same name as the underlying class variable (without the 
+*Consider naming a property with the same name as the underlying class variable (without the underscore prefix).
 
-underscore prefix).
-
-#####Event Names#####
+##### *Event Names*#####
 *Name event handlers with the EventHandler suffix.
 *Use two parameters named sender and e.
 *Use Pascal Casing.
@@ -178,64 +167,79 @@ underscore prefix).
 *Name event names that have a concept of pre and post using the present and past tense.
 *Consider naming events using a verb.  Consider using the “On” prefix, e.g., OnStart.
 
-#####Capitalization summary#####
-{| class#"wikitable" style#"text-align:left; color:green; background-color:#ffffcc;" 
-
-cellpadding#"20" style#"text-align:left;" style#"text-align:left;" style#"text-align:left;" 
-|+ style#"caption-side:bottom;"|''Table 4.2.4.10 Capitalization summary''
-|-
-! Type
-! Case
-! Notes
-|-
-| Class/Struct	
-| Pascal Casing
-|
-|-	
-| Interface	
-| Pascal Casing	
-| Start with I
-|-
-| Enum values	
-| Pascal Casing	
-|
-|-
-| Enum type	
-| Pascal Casing
-|
-|-	
-| Events	
-| Pascal Casing	
-|
-|-
-| Exception class	
-| Pascal Casing	
-| End with Exception
-|-
-| Public Fields	
-| Pascal Casing
-|
-|-	
-| Methods	
-| Pascal Casing	
-|
-|-
-| Namespace	
-| Pascal Casing	
-|
-|-
-| Property	
-| Pascal Casing	
-|
-|-
-| Protected/Private Fields	
-| Camel Casing	
-| Start with “_” for class level
-|-
-| Parameters/Local Variables 	
-| Camel Casing	
-|
-|}
+#####*Capitalization summary*#####
+<table>
+<caption>style#“caption-side:bottom;”|<em>Table 4.2.4.10 Capitalization Summary</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>Type</p></th>
+<th align="left"><p>Case</p></th>
+<th align="left"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>Class/Struct</p></td>
+<td align="left"><p>Pascal Casing</p></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Interface</p></td>
+<td align="left"><p>Pascal Casing</p></td>
+<td align="left"><p>Start with I</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Enum values</p></td>
+<td align="left"><p>Pascal Casing</p></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Enum type</p></td>
+<td align="left"><p>Pascal Casing</p></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Events</p></td>
+<td align="left"><p>Pascal Casing</p></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Exception class</p></td>
+<td align="left"><p>Pascal Casing</p></td>
+<td align="left"><p>End with Exception</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Public Fields</p></td>
+<td align="left"><p>Pascal Casing</p></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Methods</p></td>
+<td align="left"><p>Pascal Casing</p></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Namespace</p></td>
+<td align="left"><p>Pascal Casing</p></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Property</p></td>
+<td align="left"><p>Pascal Casing</p></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Protected/Private Fields</p></td>
+<td align="left"><p>Camel Casing</p></td>
+<td align="left"><p>Start with “_” for class level</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Parameters/Local Variables</p></td>
+<td align="left"><p>Camel Casing</p></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
 
 ###Code Structure###
 ####Code Separation####
