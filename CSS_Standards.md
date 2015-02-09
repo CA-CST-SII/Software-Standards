@@ -116,32 +116,14 @@ Similar to selectors, properties that are too specific will hinder the flexibili
 “Group like properties together, especially if you have a lot of them.”
 – Nacin
 ```
-Above all else, choose something that is meaningful to you and semantic in some way. Random 
-
-ordering is chaos, not poetry. In WordPress Core, our choice is logical or grouped ordering, 
-
-wherein properties are grouped by meaning and ordered specifically within those groups. The 
-
-properties within groups are also strategically ordered to create transitions between 
-
-sections, such as background directly before color. The baseline for ordering is:
+Above all else, choose something that is meaningful to you and semantic in some way. Random ordering is chaos, not poetry. In WordPress Core, our choice is logical or grouped ordering, wherein properties are grouped by meaning and ordered specifically within those groups. The properties within groups are also strategically ordered to create transitions between sections, such as background directly before color. The baseline for ordering is:
 * Display
 * Positioning
 * Box model
 * Colors and Typography
 * Other
-Things that are not yet used in core itself, such as CSS3 animations, may not have a 
-
-prescribed place above but likely would fit into one of the above in a logical manner. Just 
-
-as CSS is evolving, so our standards will evolve with it.
-Top/Right/Bottom/Left (TRBL/trouble) should be the order for any relevant properties (e.g. 
-
-margin), much as the order goes in values. Corner specifiers ```(e.g. border-radius-*-* )``` should 
-
-be top-left, top-right, bottom-right, bottom-left. This is derived from how shorthand values 
-
-would be ordered.
+Things that are not yet used in core itself, such as CSS3 animations, may not have a prescribed place above but likely would fit into one of the above in a logical manner. Just as CSS is evolving, so our standards will evolve with it.
+Top/Right/Bottom/Left (TRBL/trouble) should be the order for any relevant properties (e.g. margin), much as the order goes in values. Corner specifiers ```(e.g. border-radius-*-* )``` should be top-left, top-right, bottom-right, bottom-left. This is derived from how shorthand values would be ordered.
 Example:
 ```css
 #overlay {
@@ -152,9 +134,7 @@ Example:
     color: #777;
 }
 ```
-Another method that is often used, including by the Automattic/WordPress.com Themes Team, is 
-
-to order properties alphabetically, with or without certain exceptions.
+Another method that is often used, including by the Automattic/WordPress.com Themes Team, is to order properties alphabetically, with or without certain exceptions.
 Example:
 ```css
 #overlay {
@@ -167,9 +147,7 @@ Example:
 ```
 
 ## Vendor Prefixes```#```
-Vendor prefixes should go longest (-webkit-) to shortest (unprefixed). Values should be left 
-
-aligned with spaces after the colon provided that all the values are the same across all prefixes.
+Vendor prefixes should go longest (-webkit-) to shortest (unprefixed). Values should be left aligned with spaces after the colon provided that all the values are the same across all prefixes.
 
 Preferred method:
 ```css
@@ -212,31 +190,15 @@ Special case for CSS gradients:
 ```
 
 ## Values```#```
-There are numerous ways to input values for properties. Follow the guidelines below to help 
-
-us retain a high degree of consistency.
+There are numerous ways to input values for properties. Follow the guidelines below to help us retain a high degree of consistency.
 * Space before the value, after the colon
 * Do not pad parentheses with spaces
 * Always end in a semicolon
-* Use double quotes rather than single quotes, and only when needed, such as when a font name 
-
-has a space.
+* Use double quotes rather than single quotes, and only when needed, such as when a font name has a space.
 * ```0``` values should not have units unless necessary, such as with transition-duration.
-* Line height should also be unit-less, unless necessary to be defined as a specific pixel 
-
-value. This is more than just a style convention, but is worth mentioning here. More 
-
-information: http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
+* Line height should also be unit-less, unless necessary to be defined as a specific pixel value. This is more than just a style convention, but is worth mentioning here. More information: http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
 * Use a leading zero for decimal values, including in rgba().
-* Multiple comma-separated values for one property should be separated by either a space or a 
-
-newline, including within rgba(). Newlines should be used for lengthier multi-part values 
-
-such as those for shorthand properties like box-shadow and text-shadow. Each subsequent value 
-
-after the first should then be on a new line, indented to the same level as the selector and 
-
-then spaced over to left-align with the previous value.
+* Multiple comma-separated values for one property should be separated by either a space or a newline, including within rgba(). Newlines should be used for lengthier multi-part values such as those for shorthand properties like box-shadow and text-shadow. Each subsequent value after the first should then be on a new line, indented to the same level as the selector and then spaced over to left-align with the previous value.
 Correct:
 ```css
 .class { /*  Correct usage of quotes * /
@@ -261,50 +223,28 @@ Incorrect:
 }
 ```
 ## Media Queries```#```
-Media queries allow us to gracefully degrade the DOM for different screen sizes. If you are 
-
-adding any, be sure to test above and below the break-point you are targeting.
-* It is generally advisable to keep media queries grouped by media at the bottom of the 
-
-stylesheet.
-* An exception is made for the wp-admin.css file in core, as it is very large and each section 
-
-essentially represents a stylesheet of its own. Media queries are therefore added at the 
-
-bottom of sections as applicable.
+Media queries allow us to gracefully degrade the DOM for different screen sizes. If you are adding any, be sure to test above and below the break-point you are targeting.
+* It is generally advisable to keep media queries grouped by media at the bottom of the stylesheet.
+* An exception is made for the wp-admin.css file in core, as it is very large and each section essentially represents a stylesheet of its own. Media queries are therefore added at the bottom of sections as applicable.
 * Rule sets for media queries should be indented one level in.
 Example:
 ```css
 @media all and (max-width: 699px) and (min-width: 520px) {
  
-        /*  Your selectors * /
+        /*  Your selectors */
 }
 ```
 ## Commenting```#```
-* Comment, and comment liberally. If there are concerns about file size, utilize minified 
-
-files and the SCRIPT_DEBUG constant. Long comments should manually break the line length at 
-
-80 characters.
-* A table of contents should be utilized for longer stylesheets, especially those that are 
-
-highly sectioned. Using an index number (1.0, 1.1, 2.0, etc.) aids in searching and jumping 
-
-to a location.
-* Comments should be formatted much as PHPDoc is. The CSSDoc standard is not necessarily 
-
-widely accepted or used but some aspects of it may be adopted over time. Section/subsection 
-
-headers should have newlines before and after. Inline comments should not have empty newlines 
-
-separating the comment from the item to which it relates.
+* Comment, and comment liberally. If there are concerns about file size, utilize minified files and the SCRIPT_DEBUG constant. Long comments should manually break the line length at ```80``` characters.
+* A table of contents should be utilized for longer stylesheets, especially those that are highly sectioned. Using an index number (```1.0, 1.1, 2.0, etc.```) aids in searching and jumping to a location.
+* Comments should be formatted much as PHPDoc is. The CSSDoc standard is not necessarily widely accepted or used but some aspects of it may be adopted over time. Section/subsection headers should have newlines before and after. Inline comments should not have empty newlines separating the comment from the item to which it relates.
 For sections and subsections:
 ```css
-/* * 
+/** 
 *  #.# Section title
 * 
 *  Description of section, whether or not it has media queries, etc.
-* /
+*/
  
 .selector {
     float: left;
@@ -312,58 +252,34 @@ For sections and subsections:
 ```
 For inline:
 ```css
-/*  This is a comment about this selector * /
+/*  This is a comment about this selector */
  
 .another-selector {
     position: absolute;
-    top: 0 !important; /*  I should explain why this is so !important * /
+    top: 0 !important; /*  I should explain why this is so !important */
 }
 ```
 
 ## Best Practices```#```
-Stylesheets tend to get long in length. Focus slowly gets lost whilst intended goals start 
-
-repeating and overlapping. Writing smart code from the outset helps us retain the overview 
-
-whilst remaining flexible throughout change.
+Stylesheets tend to get long in length. Focus slowly gets lost whilst intended goals start repeating and overlapping. Writing smart code from the outset helps us retain the overview whilst remaining flexible throughout change.
 * If you are attempting to fix an issue, attempt to remove code before adding more.
-* Magic Numbers are unlucky. These are numbers that are used as quick fixes on a one-off 
-
-basis. Example:``` .box { margin-top: 37px }```.
-* DOM will change over time, target the element you want to use as opposed to “finding it” 
-
-through its parents. Example: Use ```.highlight``` on the element as opposed to ```.highlight a``` (where 
-
-the selector is on the parent)
-* Know when to use the height property. It should be used when you are including outside 
-
-elements (such as images). Otherwise use line-height for more flexibility.
-* Do not restate default property & value combinations (for instance ```display: block;``` on 
-
-block-level elements).
+* Magic Numbers are unlucky. These are numbers that are used as quick fixes on a one-off basis. Example:``` .box { margin-top: 37px }```.
+* DOM will change over time, target the element you want to use as opposed to “finding it” through its parents. Example: Use ```.highlight``` on the element as opposed to ```.highlight a``` (where the selector is on the parent)
+* Know when to use the height property. It should be used when you are including outside elements (such as images). Otherwise use line-height for more flexibility.
+* Do not restate default property & value combinations (for instance ```display: block;``` on block-level elements).
 
 ## CSS Validity
 Use valid CSS where possible.
 Unless dealing with CSS validator bugs or requiring proprietary syntax, use valid CSS code.
 Use tools such as the [W3C CSS validator] (http://jigsaw.w3.org/css-validator/) to test.
-Using valid CSS is a measurable baseline quality attribute that allows to spot CSS code that 
-
-may not have any effect and can be removed, and that ensures proper CSS usage.
+Using valid CSS is a measurable baseline quality attribute that allows to spot CSS code that may not have any effect and can be removed, and that ensures proper CSS usage.
 
 ## ID and Class Naming
 Use meaningful or generic ID and class names.
-Instead of presentational or cryptic names, always use ID and class names that reflect the 
-
-purpose of the element in question, or that are otherwise generic.
-Names that are specific and reflect the purpose of the element should be preferred as these 
-
-are most understandable and the least likely to change.
-Generic names are simply a fallback for elements that have no particular or no meaning 
-
-different from their siblings. They are typically needed as “helpers.”
-Using functional or generic names reduces the probability of unnecessary document or template 
-
-changes.
+Instead of presentational or cryptic names, always use ID and class names that reflect the purpose of the element in question, or that are otherwise generic.
+Names that are specific and reflect the purpose of the element should be preferred as these are most understandable and the least likely to change.
+Generic names are simply a fallback for elements that have no particular or no meaning different from their siblings. They are typically needed as “helpers.”
+Using functional or generic names reduces the probability of unnecessary document or template changes.
 ```css
 /*  Not recommended: meaningless */ #yee-1901 {}  /*  Not recommended: presentational */ 
 
@@ -387,9 +303,7 @@ code efficiency.
 
 ## Type Selectors
 Avoid qualifying ID and class names with type selectors.
-Unless necessary (for example with helper classes), do not use element names in conjunction 
-
-with IDs or classes.
+Unless necessary (for example with helper classes), do not use element names in conjunction with IDs or classes.
 Avoiding unnecessary ancestor selectors is useful for performance reasons.
 ```css
 /*  Not recommended */ ul#example {} div.error {}
@@ -398,9 +312,7 @@ Avoiding unnecessary ancestor selectors is useful for performance reasons.
 
 ## Shorthand Properties
 Use shorthand properties where possible.
-CSS offers a variety of shorthand properties (like font) that should be used whenever 
-
-possible, even in cases where only one value is explicitly set.
+CSS offers a variety of shorthand properties (like font) that should be used whenever possible, even in cases where only one value is explicitly set.
 Using shorthand properties is useful for code efficiency and understandability.
 ```css
 /*  Not recommended */ 
@@ -428,41 +340,31 @@ font-size: .8em;
 
 ## Hexadecimal Notation
 Use ```3``` character hexadecimal notation where possible.
-For color values that permit it, ```3``` character hexadecimal notation is shorter and more 
-
-succinct.
+For color values that permit it, ```3``` character hexadecimal notation is shorter and more succinct.
 ```css
-/*  Not recommended * / color: #eebbcc;
-/*  Recommended * / color: #ebc;
+/*  Not recommended */ color: #eebbcc;
+/*  Recommended */ color: #ebc;
 ```
 
 ## Prefixes
 Prefix selectors with an application-specific prefix (optional).
-In large projects as well as for code that gets embedded in other projects or on external 
-
-sites use prefixes (as namespaces) for ID and class names. Use short, unique identifiers 
-
-followed by a dash.
-Using namespaces helps preventing naming conflicts and can make maintenance easier, for 
-
-example in search and replace operations.
+In large projects as well as for code that gets embedded in other projects or on external sites use prefixes (as namespaces) for ID and class names. Use short, unique identifiers followed by a dash.
+Using namespaces helps preventing naming conflicts and can make maintenance easier, for example in search and replace operations.
 ```css
-.adw-help {} /*  AdWords * / #maia-note {} /*  Maia * /
+.adw-help {} /*  AdWords */ #maia-note {} /*  Maia */
 ```
 
 ## ID and Class Name Delimiters
 Separate words in ID and class names by a hyphen.
-Do not concatenate words and abbreviations in selectors by any characters (including none at 
-
-all) other than hyphens, in order to improve understanding and scannability.
+Do not concatenate words and abbreviations in selectors by any characters (including none at all) other than hyphens, in order to improve understanding and scannability.
 ```css
-/*  Not recommended: does not separate the words “demo” and “image” * /
+/*  Not recommended: does not separate the words “demo” and “image” */
  .demoimage {}
   
-/*  Not recommended: uses underscore instead of hyphen * / 
+/*  Not recommended: uses underscore instead of hyphen */ 
 .error_status {}
 
-/*  Recommended * / 
+/*  Recommended */ 
 #video-id {} .ads-sample {}
 ```
 
@@ -473,9 +375,7 @@ It’s tempting to address styling differences over user agent detection or spec
 
 ## Declaration Order
 Alphabetize declarations.
-Put declarations in alphabetical order in order to achieve consistent code in a way that is 
-
-easy to remember and maintain.
+Put declarations in alphabetical order in order to achieve consistent code in a way that is easy to remember and maintain.
 Ignore vendor-specific prefixes for sorting purposes. However, multiple vendor-specific prefixes for a certain CSS property should be kept sorted ```(e.g. -moz prefix comes before -webkit)```.
 ```css
 background: fuchsia; border: 1px solid; -moz-border-radius: 4px; 
@@ -485,7 +385,6 @@ color: black; text-align: center; text-indent: 2em;
 
 ## Block Content Indentation
 Indent all block content.
-
 Indent all block content, that is rules within rules as well as declarations, so to reflect hierarchy and improve understanding.
 ```css
 @media screen, projection {    html {     background: #fff;     color: #444;   }  }
@@ -496,20 +395,18 @@ Use a semicolon after every declaration.
 
 End every declaration with a semicolon for consistency and extensibility reasons.
 ```css
-/*  Not recommended * / .test {   display: block;   height: 100px }
+/*  Not recommended */ .test {   display: block;   height: 100px }
 
-/*  Recommended * / .test {   display: block;   height: 100px; }
+/*  Recommended */ .test {   display: block;   height: 100px; }
 ```
 
 ## Property Name Stops
 Use a space after a property name’s colon.
-Always use a single space between property and value (but no space between property and 
-
-colon) for consistency reasons.
+Always use a single space between property and value (but no space between property and colon) for consistency reasons.
 ```css
-/*  Not recommended * / h3 {   font-weight:bold; }
+/*  Not recommended */ h3 {   font-weight:bold; }
 
-/*  Recommended * / h3 {   font-weight: bold; }
+/*  Recommended */ h3 {   font-weight: bold; }
 ```
 
 ## Declaration Block Separation
@@ -517,13 +414,13 @@ Use a space between the last selector and the declaration block.
 Always use a single space between the last selector and the opening brace that begins the declaration block.
 The opening brace should be on the same line as the last selector in a given rule.
 ```css
-/*  Not recommended: missing space * / 
+/*  Not recommended: missing space */ 
 #video{   margin-top: 1em; }
   
-/*  Not recommended: unnecessary line break * / 
+/*  Not recommended: unnecessary line break */ 
 #video {   margin-top: 1em; }
 
-/*  Recommended * / 
+/*  Recommended */ 
 #video {   margin-top: 1em; }
 ```
 
@@ -531,10 +428,10 @@ The opening brace should be on the same line as the last selector in a given rul
 Separate selectors and declarations by new lines.
 Always start a new line for each selector and declaration.
 ```css
-/*  Not recommended * / 
+/*  Not recommended */ 
 a:focus, a:active {   position: relative; top: 1px; }
 
-/*  Recommended * / 
+/*  Recommended */ 
 h1, h2, h3 {   font-weight: normal;   line-height: 1.2; }
 ```
 
@@ -548,18 +445,14 @@ body {   margin: auto;   width: 50%; }
 
 ## CSS Quotation Marks
 Use single quotation marks for attribute selectors and property values.
-Use single ```('')``` rather than double ```("")``` quotation marks for attribute selectors or property 
-
-values. Do not use quotation marks in URI values ```(url())```.
-Exception: If you do need to use the ```@charset``` rule, use double quotation marks—single 
-
-quotation marks are not permitted.
+Use single ```('')``` rather than double ```("")``` quotation marks for attribute selectors or property values. Do not use quotation marks in URI values ```(url())```.
+Exception: If you do need to use the ```@charset``` rule, use double quotation marks—single quotation marks are not permitted.
 ```css
-/*  Not recommended * / 
+/*  Not recommended */ 
 @import url("//www.google.com/css/maia.css");  
 html {   font-family: "open sans", arial, sans-serif; }
 
-/*  Recommended * / 
+/*  Recommended */ 
 @import url(//www.google.com/css/maia.css);  
 html {   font-family: 'open sans', arial, sans-serif; }
 ```
@@ -567,13 +460,11 @@ html {   font-family: 'open sans', arial, sans-serif; }
 ## CSS Meta Rules
 ### Section Comments
 Group sections by a section comment (optional).
-If possible, group style sheet sections together by using comments. Separate sections with 
-
-new lines.
+If possible, group style sheet sections together by using comments. Separate sections with new lines.
 ```css
-/*  Header * /  #adw-header {}  
-/*  Footer * /  #adw-footer {}  
-/*  Gallery * /  .adw-gallery {}
+/*  Header */  #adw-header {}  
+/*  Footer */  #adw-footer {}  
+/*  Gallery */  .adw-gallery {}
 ``` 
 
 ## CSS formatting guidelines
@@ -581,9 +472,7 @@ Last updated February 7, 2014. Created by JohnAlbin on January 14, 2013.
 Edited by LewisNyman, hmmdinger, hass, echoz. https://drupal.org/user?destination=node/1887862.
 
 ### Terminology
-For those unfamiliar with CSS terminology, these are the concise terms used in these 
-
-standards.
+For those unfamiliar with CSS terminology, these are the concise terms used in these standards.
 ```css
 selector {
   property: value;
@@ -601,9 +490,9 @@ Using tabs for indentation leads to inconsistent display of the source code, sin
 * Comments should be indented the same amount as the declaration or ruleset they describe.
 ```css
 @media print {
-  /*  This line is indented with 2 spaces, 2 spaces x 1 level of indentation. * /
+  /*  This line is indented with 2 spaces, 2 spaces x 1 level of indentation. */
   .example {
-    /*  This line is indented with 4 spaces, 2 spaces x 2 levels of indentation. * /
+    /*  This line is indented with 4 spaces, 2 spaces x 2 levels of indentation. */
     padding: 0;
   }
 }
@@ -613,7 +502,7 @@ Using tabs for indentation leads to inconsistent display of the source code, sin
 * If a ruleset has a proceeding Doxygen-style or single-line-style comment that describes it, place a blank line before the comment.
 * If two rulesets have no interleaving blank line, they must be logically related. If they are not logically related to each other, add a blank line and a comment describing the second ruleset.
 ```css
-/*  A comment describing the ruleset. * /
+/*  A comment describing the ruleset. */
 .selector-1,
 .selector-2,
 .selector-3[type="text"] {
@@ -627,20 +516,20 @@ Using tabs for indentation leads to inconsistent display of the source code, sin
   background: #fff;
   background: linear-gradient(#fff, rgba(0, 0, 0, 0.8));
 }
-/* * 
+/** 
 *  A longer comment describing this ruleset. Note
 *  the blank line before the docblock.
-* /
+*/
 .selector-4,
 .selector-5 {
   padding: 10px;
 }
-/*  This logical grouping of rulesets has no interleaving blank lines. * /
+/*  This logical grouping of rulesets has no interleaving blank lines. */
 .profile {
   margin: 1em 0;
 }
 .profile__picture {
-  float: right; /*  LTR * /
+  float: right; /*  LTR */
 }
 ```
 
@@ -658,20 +547,20 @@ To stay consistent with the rest of Drupal's code base, we borrow some of the CS
 #### File comments
 Each file should start with a comment describing what the file does. For example:
 ```css
-/* * 
+/** 
 *  @file
 *  Short description describing the file.
 * 
 *  The first sentence of the long description starts here and continues on this
 *  line for a while finally concluding here at the end of this paragraph.
-* /
+*/
 ```
 Note that a blank line should follow a @file documentation block. And keep line-lengths to ```80``` columns, when possible. For more information, see the PHP file comment standards.
 
 #### Multi-line comments
 When describing a ruleset or set of rulesets, any comment that requires 2 or more lines (wrapped to 80 characters) must follow the Doxygen comment style (also called a “docblock”).
 ```css
-/* * 
+/** 
 *  Short description using Doxygen-style comment format.
 * 
 *  The first sentence of the long description starts here and continues on this
@@ -680,7 +569,7 @@ When describing a ruleset or set of rulesets, any comment that requires 2 or mor
 *  The long description is ideal for more detailed explanations and
 *  documentation. It can include example HTML, URLs, or any other information
 *  that is deemed necessary or useful.
-* /
+*/
 .example-rule {
 }
 ```
@@ -690,10 +579,10 @@ Place the comment on the line immediately above the ruleset (or rulesets) it des
 When describing a property or ruleset, any comment that can be written inside the ```80``` character line length limit can use a simple CSS comment style.
 ```css
 .example {
-  /*  Override the default margins. * /
+  /*  Override the default margins. */
   margin: 0;
 }
-/*  This is a variant of the .example component * /
+/*  This is a variant of the .example component */
 .example--item {
   display: inline;
 }
@@ -790,17 +679,17 @@ Vendor prefixed properties should be directly before their non-prefixed version.
 Again, the order of properties are meant to reinforce the purpose of the ruleset. As such, it is much more important to add comments to the ruleset then to worry about property ordering.
 ```css
 .selector {
-  /*  Positioning declarations * /
+  /*  Positioning declarations */
   position: absolute;
   top: 0;
   left: 0;
   z-index: 10;
-  /*  Box model declarations * /
+  /*  Box model declarations */
   display: inline-block;
   width: 100px;
   padding: 10px;
   border: 1px solid #333;
-  /*  Other declarations * /
+  /*  Other declarations */
   background: #000;
   color: #fff;
   font-family: sans-serif;
@@ -833,7 +722,7 @@ Media queries should be written in the same style as ruleset. Any containing rul
 * All values to be written in ems unless it is inappropriate.
 * Add the pixel value in a comment directly after the the opening brace.
 ```css
-@media screen and (min-width: 28.125em) { /*  450px * /
+@media screen and (min-width: 28.125em) { /*  450px */
   #page {
     margin-left: 1.25em;
     margin-right: 1.25em;
@@ -848,11 +737,11 @@ This means CSS files MUST NOT include any ```@charset``` statements. The default
 ### Practical Example
 An example of various conventions.
 ```css
-/* * 
+/** 
 *  @file
 *  Layouts for this theme.
-* /
-/* * 
+*/
+/** 
 *  Column layout with horizontal scroll.
 * 
 *  This creates a single row of full-height, non-wrapping columns that can be
@@ -865,50 +754,50 @@ An example of various conventions.
 *    <div class="cell cell-3"></div>
 *    <div class="cell cell-3"></div>
 *  </div>
-* /
-/* * 
+*/
+/** 
 *  Grid container
 * 
 *  Must only contain '.cell' children.
-* /
+*/
 .grid {
   height: 100%;
-  /*  Remove inter-cell whitespace * /
+  /*  Remove inter-cell whitespace */
   font-size: 0;
-  /*  Prevent inline-block cells wrapping * /
+  /*  Prevent inline-block cells wrapping */
   white-space: nowrap;
 }
-/* * 
+/** 
 *  Grid cells
 * 
 *  No explicit width by default. Extend with '.cell-n' classes.
-* /
+*/
 .cell {
   position: relative;
   display: inline-block;
   overflow: hidden;
   box-sizing: border-box;
   height: 100%;
-  /*  Set the inter-cell spacing * /
+  /*  Set the inter-cell spacing */
   padding: 0 10px;
   border: 2px solid #333;
   vertical-align: top;
-  /*  Reset white-space * /
+  /*  Reset white-space */
   white-space: normal;
-  /*  Reset font-size * /
+  /*  Reset font-size */
   font-size: 16px;
 }
-/*  Cell states * /
+/*  Cell states */
 .cell.is-animating {
   background-color: #fffdec;
 }
-/*  Cell dimensions * /
+/*  Cell dimensions */
 .cell-1 { width: 10%; }
 .cell-2 { width: 20%; }
 .cell-3 { width: 30%; }
 .cell-4 { width: 40%; }
 .cell-5 { width: 50%; }
-/*  Cell modifiers * /
+/*  Cell modifiers */
 .cell--detail,
 .cell--important {
   border-width: 4px;
