@@ -168,6 +168,7 @@ public class Math
 *Consider naming events using a verb.  Consider using the “On” prefix, e.g., OnStart.
 
 #####*Capitalization summary*#####
+
 <table>
 <caption>style#“caption-side:bottom;”|<em>Table 4.2.4.10 Capitalization Summary</em></caption>
 <thead>
@@ -243,128 +244,111 @@ public class Math
 
 ###Code Structure###
 ####Code Separation####
-#####Separation Overview#####
+#####*Separation Overview*#####
 Imagine trying to read a book or a magazine article with no spaces between the words or any 
-
 indentation and/or blank lines to set-off or separate paragraphs.  It becomes readily 
-
 apparent just how powerful these simple formatting tools are in contributing to the flow and 
-
 readability of the text.  Similarly, the proper usage of indentation, blank lines, and white 
-
 spaces will vastly improve the flow and readability of source code. 
 
-#####Indentation#####
+#####*Indentation*#####
 An indentation standard using spaces never was achieved.  Some people like 2 spaces; some 
-
 prefer 4 and others 8, or even more spaces.  For this reason it is better use tabs and we 
-
 define the Tab as the standard indentation character.  Tab characters have some advantages:
 
-*Everyone can set their own preferred indentation level
-*It is only 1 keystroke and not 2, 4, or 8…and will therefore reduce typing (even with “smart 
-
+* Everyone can set their own preferred indentation level
+* It is only 1 keystroke and not 2, 4, or 8…and will therefore reduce typing (even with “smart 
 indenting” you have to set the indentation manually sometimes, or take it back or whatever).
-*If you want to increase the indentation (or decrease), mark one block and increase the 
-
+* If you want to increase the indentation (or decrease), mark one block and increase the 
 indent level with Tab with Shift-Tab you decrease the indentation. This is true for almost 
-
 any text editor.
 
 Indentation should be used in the following manner:
 
-*Subordinate scopes/clauses should be indented one level in from the next higher scope (see 
-
+* Subordinate scopes/clauses should be indented one level in from the next higher scope (see 
 Code Examples).
-**The class, interface, struct, enum, and delegate declarations should be one level in from 
-
+  * The class, interface, struct, enum, and delegate declarations should be one level in from 
 the namespace declaration.
-**Constructors, Fields, Properties, Methods, etc. should be one level in from the class 
-
+  * Constructors, Fields, Properties, Methods, etc. should be one level in from the class 
 declaration.
-**Source code within Constructors, Properties, Methods, etc. should be indented one level.
-**Subordinate statements within conditional and flow statements should be indented one level 
-
+  * Source code within Constructors, Properties, Methods, etc. should be indented one level.
+  * Subordinate statements within conditional and flow statements should be indented one level 
 (see Formatting Conditional/Flow Statements).
-*If a declaration or statement continues onto subsequent lines the “wrapped” portion should 
-
+* If a declaration or statement continues onto subsequent lines the “wrapped” portion should 
 be indented (see Wrapping Lines).
 
-#####Blank Lines#####
+#####*Blank Lines*#####
 Blank lines used within and between Methods, Properties, etc. improve readability.  They set 
-
 off blocks of code that are logically related.
 
 Two blank lines should always be used between:
 
-*Logical sections of a source file (e.g., between code regions).
-*Class and interface definitions (use one class/interface per file to prevent this case).
+* Logical sections of a source file (e.g., between code regions).
+* Class and interface definitions (use one class/interface per file to prevent this case).
 
 One blank line should always be used between:
 
-*Methods
-*Properties
-*Local variables in a method and its first statement
-*Logical sections inside a method to improve readability
+* Methods
+* Properties
+* Local variables in a method and its first statement
+* Logical sections inside a method to improve readability
 
-#####Spacing#####
+#####*Spacing*#####
 The following spacing rules should be followed:
-*No space between a method name and the opening parenthesis "(".
-*No space between the parentheses for methods with no params in the signature.
-*All items in a Class declaration should be separated by spaces (see Class, Interface, and 
+* No space between a method name and the opening parenthesis "(".
+* No space between the parentheses for methods with no params in the signature.
+* All items in a Class declaration should be separated by spaces (see Class, Interface, and 
 
 Method Declarations).
-*All parameters/expressions within parentheses should be separated by spaces located after 
+* All parameters/expressions within parentheses should be separated by spaces located after 
 
 the opening parenthesis, after the commas or semicolons, and before the closing parenthesis.
-*Nested parentheses should be separated by spaces from the outer parentheses as well as the 
-
+* Nested parentheses should be separated by spaces from the outer parentheses as well as the 
 contained expression.
 *No spaces should be used within parentheses that denote an explicit object cast.
 *Surround operators with single spaces (except unary operators like increment or logical 
-
 not).
 
 Method example:
 
 Use:
-```java
+```C#
 TestMethod();
 ```
 Or
-```java
+```C#
 TestMethod( paramName1, paramName2, paramName3 );
 ```
 
 Don't use: 
-```java
+```C#
 TestMethod(paramName1,paramName2,paramName3);
 ```
 Or
-```java
+```C#
 TestMethod(paramName1, paramName2, paramName3);
 ```
 
 Flow example:
 
 Use:
-```java
+```C#
 for( int loopIndex # 0; loopIndex < 10; loopIndex++ )
 ```
 
 Don't use:
-```java
+```C#
 for(int loopIndex#0; loopIndex<10; loopIndex++)
 ```
 Or
-```java
+```C#
 for(int loopIndex#0;loopIndex<10;loopIndex++)
 ```
 
 Nested parentheses example:
 
 Use:
-```java
+```C#
 if( ( ( printStatus & PrintError ) !# PrintError ) ||
     ( ( printStatus & PrintBypass ) ## PrintBypass ) )
 {
@@ -373,7 +357,7 @@ if( ( ( printStatus & PrintError ) !# PrintError ) ||
 ```
 
 Don’t use:
-```java
+```C#
 if( ( (printStatus & PrintError) !# PrintError ) ||
     ( (printStatus & PrintBypass) ## PrintBypass ) )
 {
@@ -381,7 +365,7 @@ if( ( (printStatus & PrintError) !# PrintError ) ||
 }
 ```
 	Or
-```java
+```C#
 if( ((printStatus & PrintError) !# PrintError) ||
     ((printStatus & PrintBypass) ## PrintBypass) )
 {
@@ -390,52 +374,51 @@ if( ((printStatus & PrintError) !# PrintError) ||
 ```
 
 Explicit cast example:
-```java
+```C#
 double someDouble # 1234.7;
 int someInt;
 ```
 Use:
-```java
+```C#
 someInt # (int) someDouble;
 ```
 Or
-```java
+```C#
 someInt # (int)someDouble;
 ```
 
 Don't use:
-```java
+```C#
 someInt # ( int )someDouble;
 ```
 
 Operator example:
 
 Use:
-```java
+```C#
 prevVariable # curVariable;
 ```
 
 Don't use:
-```java
+```C#
 prevVariable#curVariable;
 ```
 
 ####Wrapping Lines####
 When an expression will not fit on a single line, break it up according to these general 
-
 principles:
 
-*Break after a comma.
-*Break after an operator.
-*Prefer higher-level breaks to lower-level breaks.
+* Break after a comma.
+* Break after an operator.
+* Prefer higher-level breaks to lower-level breaks.
 
 Example of breaking up method calls:
-```java
+```C#
 MethodCall( variableName1, variableName2, variableName3,
 	variableName4, variableName5 );
 ```
 Or
-```java
+```C#
 MethodCall( variableName1, variableName2, variableName3,
             variableName4, variableName5 );
 ```
@@ -443,54 +426,47 @@ MethodCall( variableName1, variableName2, variableName3,
 Examples of breaking an arithmetic expression:
 
 Use:
-```java
+```C#
 someResult # a * b / ( c - g + f ) + 
 4 * z;
 ```
 Or
-```java
+```C#
 someResult # a * b / ( c - g + f ) + 
       4 * z;
 ```
 
 Don’t use:
-```java
+```C#
 someResult # a * b / ( c - g +
 f ) + 4 * z;
 ```
 The first is preferred since the break occurs outside the parenthesized expression (i.e., 
-
 flows and reads better with the order of operations in mind).  
 
 
 NOTE: If you prefer to use indentation that lines variables and/or the right hand portion of 
-
 expressions up with those on the previous line, then you MUST use tabs only to where the 
-
 previous line began and spaces for the rest of the indentation.  Otherwise, formatting will 
-
 be disrupted for developers using tab lengths that differ from your own.  
 
 Examples of using tab/char combinations to preserve alignment:
-```java
+```C#
 >MethodCall( variableName1, variableName2, variableName3,
 >............variableName4, variableName5, variableName6 );
 
 >var # a * b / ( c - g + f ) +
 >......4 * z;
 ```
-Where '>' are tab chars and '.' are spaces (the spaces after the tab char must begin under 
-
+Where `'>'` are tab chars and `'.'` are spaces (the spaces after the tab char must begin under 
 the first char of the previous line).  For this reason it may be easier to simply indent with 
-
 an additional tab rather than align continuations of variable lists and expressions.
 
 ####Declarations####
-#####Number of Declarations per Line#####
+#####*Number of Declarations per Line*#####
 One declaration per line is recommended since it allows for commenting should the variable 
-
 name not suffice.  In other words,
-```java
+```C#
 int floorNumber; 	
 int totalFloors; // The total number of floors in the building
 ```
@@ -498,29 +474,26 @@ int totalFloors; // The total number of floors in the building
 Do not put more than one variable on a line unless their usage is closely related.  Do not 
 
 put variables of different types on the same line when declaring them.  Example:
-```java
+```C#
 int a, b; // What is 'a'? What does 'b' stand for?
 ```
 The above example also demonstrates the drawbacks of non-obvious variable names.  
 
-#####Initialization#####
+#####*Initialization*#####
 Wherever possible try to initialize local variables as soon as they are declared. 
 
 For example:
-```java
+```C#
 string mLastName # string.Empty;
 ```
-Or
-```java
+Or```C#
 string lastName # curEmployee.LastName;
 ```
-Or
-```java
+Or```C#
 double hoursWorked # timePeriod.Hours;
 ```
 
-Note: If you initialize a dialog try to use the using statement:
-```java
+Note: If you initialize a dialog try to use the using statement:```C#
 using( OpenFileDialog openFileDialog # new OpenFileDialog() )
 {
 ...
@@ -533,8 +506,7 @@ using( OpenFileDialog openFileDialog # new OpenFileDialog() )
 
 brace.
 
-For example:
-```java
+For example:```C#
 class BoundedCounter : CounterBase, ICounter
  {
   int _upperBound;
@@ -575,8 +547,7 @@ For a brace placement example see the Brace Example.
 
 ####Formatting Conditional/Flow Statements####
 #####Formatting if, if-else, if else-if else Statements#####
-The if, if-else and else-if else statements should be formatted as follows:
-```java
+The if, if-else and else-if else statements should be formatted as follows:```C#
 if( condition )
 {
  DoSomething();
@@ -613,20 +584,17 @@ else
 Note: Generally use brackets even if there is only one statement in condition.
 
 #####Formatting for / foreach Statements#####
-A for statement should have following format:
-```java
+A for statement should have following format:```C#
 for( int loopIndex # 0; loopIndex < 5; ++ loopIndex )
 {
  ...
 }
 ```
-Or single lined (consider using a while statement instead):
-```java
+Or single lined (consider using a while statement instead):```C#
 for( [initialization expression]; [loop condition]; 
 [update expression] );
 ```
-A foreach should look like:
-```java
+A foreach should look like:```C#
 foreach( int i in IntList )
 {
  ...
@@ -635,8 +603,7 @@ foreach( int i in IntList )
 Note: Generally use brackets even if there is only one statement in the loop.
 
 #####Formatting  while/do-while Statements#####
-A while statement should be written as follows:
-```java
+A while statement should be written as follows:```C#
 while( condition )
 {
  ...
@@ -644,12 +611,10 @@ while( condition )
 ```
 Note: Generally use brackets even if there is only one statement in the loop.
 
-An empty while should have the following form:
-```java
+An empty while should have the following form:```C#
 while( condition );
 ```
-A do-while statement should have the following form:
-```java
+A do-while statement should have the following form:```C#
 do
 {
  ...
@@ -658,8 +623,7 @@ while( condition );
 ```
 
 #####Formatting switch Statements#####
-A switch statement should be of following form:
-```java
+A switch statement should be of following form:```C#
 switch( condition )
 {
  case A:
@@ -675,8 +639,7 @@ switch( condition )
 ```
 
 #####try-catch Statements#####
-A try-catch statement should follow this form:
-```java
+A try-catch statement should follow this form:```C#
 try
 {
  ...
@@ -690,8 +653,7 @@ NOTE:  If you plan on catching and ignoring the error, a good practice is to pla
 
 in the catch block explaining why.
 
-Or
-```java
+Or```C#
 try
 {
  ...
@@ -701,8 +663,7 @@ catch( Exception e )
  ...
 }
 ```
-Or
-```java
+Or```C#
 try
 {
  ...
@@ -758,16 +719,14 @@ instead of the 255 hard-coded into your code in 50 lines scattered throughout yo
 
 is error-prone, not productive, and an all around bad programming practice.  Instead declare 
 
-a const variable which contains the number:
-```java
+a const variable which contains the number:```C#
 public class MyMath
 {
   public const double PI # 3.14159...
 }
 ```
 ##Code Examples##
-###Brace Placement Example###
-```java
+###Brace Placement Example###```C#
 namespace ShowMeTheBracket
 {
   public enum Test
@@ -816,8 +775,7 @@ Brackets should begin on a new line after:
 
 ###Variable Naming Example###
 
-Instead of:
-```java
+Instead of:```C#
 for( int i # 1; i < num; i++ )
 {
   meetsCriteria[i] # true;
@@ -842,8 +800,7 @@ for( int i # 0; i < num; i++ )
 }
 ```
 
-Try intelligent naming:
-```java
+Try intelligent naming:```C#
 for( int primeCandidate # 1; primeCandidate < candidateLimit; 
     primeCandidate++ )
 {
@@ -890,8 +847,7 @@ However, complex algorithms/business rules occasionally do require more verbose 
 
 commenting.  In these cases if you wish to use block comments you should use the following 
 
-style:
-```java
+style:```C#
 /* Line 1
  * Line 2
  * Line 3 
@@ -933,14 +889,12 @@ In the .NET framework, Microsoft has introduced a documentation generation syste
 
 XML comments. These comments are formally single line C# comments containing XML tags. They 
 
-follow this pattern for single line comments:
-```java
+follow this pattern for single line comments:```C#
 /// <summary>
 /// This class...
 /// </summary>
 ```
-Multi-line XML comments follow this pattern:
-```java
+Multi-line XML comments follow this pattern:```C#
 /// <exception cref#”BogusException”>
 /// This exception gets thrown as soon as a
 /// Bogus flag gets set.
@@ -1133,8 +1087,7 @@ good variable name describes the semantic.
 One exception to this rule is UI code. All fields and variable names that contain UI elements 
 
 such as a button should be suffixed with their type name without abbreviations. For example:
-
-```javaSystem.Windows.Forms.Button cancelButton;
+```C#System.Windows.Forms.Button cancelButton;
 System.Windows.Forms.TextBox firstNameTextBox;```
 
 ####Capitalization Styles####
@@ -1153,8 +1106,7 @@ Only use all upper case for identifiers if it consists of an abbreviation or acr
 
 only a few characters long.  Longer identifiers should use Pascal Casing instead.
 
-For Example:
-```java
+For Example:```C#
 public class Math
 {
     public const PI # ...
@@ -1366,44 +1318,36 @@ not).
 
 Method example:
 
-Use:
-```java
+Use:```C#
 TestMethod();
 ```
-Or
-```java
+Or```C#
 TestMethod( paramName1, paramName2, paramName3 );
 ```
 
-Don't use: 
-```java
+Don't use: ```C#
 TestMethod(paramName1,paramName2,paramName3);
 ```
-Or
-```java
+Or```C#
 TestMethod(paramName1, paramName2, paramName3);
 ```
 
 Flow example:
 
-Use:
-```java
+Use:```C#
 for( int loopIndex # 0; loopIndex < 10; loopIndex++ )
 ```
 
-Don't use:
-```java
+Don't use:```C#
 for(int loopIndex#0; loopIndex<10; loopIndex++)
 ```
-Or
-```java
+Or```C#
 for(int loopIndex#0;loopIndex<10;loopIndex++)
 ```
 
 Nested parentheses example:
 
-Use:
-```java
+Use:```C#
 if( ( ( printStatus & PrintError ) !# PrintError ) ||
     ( ( printStatus & PrintBypass ) ## PrintBypass ) )
 {
@@ -1411,16 +1355,14 @@ if( ( ( printStatus & PrintError ) !# PrintError ) ||
 }
 ```
 
-Don’t use:
-```java
+Don’t use:```C#
 if( ( (printStatus & PrintError) !# PrintError ) ||
     ( (printStatus & PrintBypass) ## PrintBypass ) )
 {
 	…
 }
 ```
-	Or
-```java
+	Or```C#
 if( ((printStatus & PrintError) !# PrintError) ||
     ((printStatus & PrintBypass) ## PrintBypass) )
 {
@@ -1428,34 +1370,28 @@ if( ((printStatus & PrintError) !# PrintError) ||
 }
 ```
 
-Explicit cast example:
-```java
+Explicit cast example:```C#
 double someDouble # 1234.7;
 int someInt;
 ```
-Use:
-```java
+Use:```C#
 someInt # (int) someDouble;
 ```
-Or
-```java
+Or```C#
 someInt # (int)someDouble;
 ```
 
-Don't use:
-```java
+Don't use:```C#
 someInt # ( int )someDouble;
 ```
 
 Operator example:
 
-Use:
-```java
+Use:```C#
 prevVariable # curVariable;
 ```
 
-Don't use:
-```java
+Don't use:```C#
 prevVariable#curVariable;
 ```
 
@@ -1468,32 +1404,27 @@ principles:
 *Break after an operator.
 *Prefer higher-level breaks to lower-level breaks.
 
-Example of breaking up method calls:
-```java
+Example of breaking up method calls:```C#
 MethodCall( variableName1, variableName2, variableName3,
 	variableName4, variableName5 );
 ```
-Or
-```java
+Or```C#
 MethodCall( variableName1, variableName2, variableName3,
             variableName4, variableName5 );
 ```
 
 Examples of breaking an arithmetic expression:
 
-Use:
-```java
+Use:```C#
 someResult # a * b / ( c - g + f ) + 
 4 * z;
 ```
-Or
-```java
+Or```C#
 someResult # a * b / ( c - g + f ) + 
       4 * z;
 ```
 
-Don’t use:
-```java
+Don’t use:```C#
 someResult # a * b / ( c - g +
 f ) + 4 * z;
 ```
@@ -1510,8 +1441,7 @@ previous line began and spaces for the rest of the indentation.  Otherwise, form
 
 be disrupted for developers using tab lengths that differ from your own.  
 
-Examples of using tab/char combinations to preserve alignment:
-```java
+Examples of using tab/char combinations to preserve alignment:```C#
 >MethodCall( variableName1, variableName2, variableName3,
 >............variableName4, variableName5, variableName6 );
 
@@ -1528,16 +1458,14 @@ an additional tab rather than align continuations of variable lists and expressi
 #####Number of Declarations per Line#####
 One declaration per line is recommended since it allows for commenting should the variable 
 
-name not suffice.  In other words,
-```java
+name not suffice.  In other words,```C#
 int floorNumber; 	
 int totalFloors; // The total number of floors in the building
 ```
 
 Do not put more than one variable on a line unless their usage is closely related.  Do not 
 
-put variables of different types on the same line when declaring them.  Example:
-```java
+put variables of different types on the same line when declaring them.  Example:```C#
 int a, b; // What is 'a'? What does 'b' stand for?
 ```
 The above example also demonstrates the drawbacks of non-obvious variable names.  
@@ -1545,21 +1473,17 @@ The above example also demonstrates the drawbacks of non-obvious variable names.
 #####Initialization#####
 Wherever possible try to initialize local variables as soon as they are declared. 
 
-For example:
-```java
+For example:```C#
 string mLastName # string.Empty;
 ```
-Or
-```java
+Or```C#
 string lastName # curEmployee.LastName;
 ```
-Or
-```java
+Or```C#
 double hoursWorked # timePeriod.Hours;
 ```
 
-Note: If you initialize a dialog try to use the using statement:
-```java
+Note: If you initialize a dialog try to use the using statement:```C#
 using( OpenFileDialog openFileDialog # new OpenFileDialog() )
 {
 ...
@@ -1572,8 +1496,7 @@ using( OpenFileDialog openFileDialog # new OpenFileDialog() )
 
 brace.
 
-For example:
-```java
+For example:```C#
 class BoundedCounter : CounterBase, ICounter
  {
   int _upperBound;
@@ -1614,8 +1537,7 @@ For a brace placement example see the Brace Example.
 
 ####Formatting Conditional/Flow Statements####
 #####Formatting if, if-else, if else-if else Statements#####
-The if, if-else and else-if else statements should be formatted as follows:
-```java
+The if, if-else and else-if else statements should be formatted as follows:```C#
 if( condition )
 {
  DoSomething();
@@ -1652,20 +1574,17 @@ else
 Note: Generally use brackets even if there is only one statement in condition.
 
 #####Formatting for / foreach Statements#####
-A for statement should have following format:
-```java
+A for statement should have following format:```C#
 for( int loopIndex # 0; loopIndex < 5; ++ loopIndex )
 {
  ...
 }
 ```
-Or single lined (consider using a while statement instead):
-```java
+Or single lined (consider using a while statement instead):```C#
 for( [initialization expression]; [loop condition]; 
 [update expression] );
 ```
-A foreach should look like:
-```java
+A foreach should look like:```C#
 foreach( int i in IntList )
 {
  ...
@@ -1674,8 +1593,7 @@ foreach( int i in IntList )
 Note: Generally use brackets even if there is only one statement in the loop.
 
 #####Formatting  while/do-while Statements#####
-A while statement should be written as follows:
-```java
+A while statement should be written as follows:```C#
 while( condition )
 {
  ...
@@ -1683,12 +1601,10 @@ while( condition )
 ```
 Note: Generally use brackets even if there is only one statement in the loop.
 
-An empty while should have the following form:
-```java
+An empty while should have the following form:```C#
 while( condition );
 ```
-A do-while statement should have the following form:
-```java
+A do-while statement should have the following form:```C#
 do
 {
  ...
@@ -1697,8 +1613,7 @@ while( condition );
 ```
 
 #####Formatting switch Statements#####
-A switch statement should be of following form:
-```java
+A switch statement should be of following form:```C#
 switch( condition )
 {
  case A:
@@ -1714,8 +1629,7 @@ switch( condition )
 ```
 
 #####try-catch Statements#####
-A try-catch statement should follow this form:
-```java
+A try-catch statement should follow this form:```C#
 try
 {
  ...
@@ -1729,8 +1643,7 @@ NOTE:  If you plan on catching and ignoring the error, a good practice is to pla
 
 in the catch block explaining why.
 
-Or
-```java
+Or```C#
 try
 {
  ...
@@ -1740,8 +1653,7 @@ catch( Exception e )
  ...
 }
 ```
-Or
-```java
+Or```C#
 try
 {
  ...
@@ -1797,16 +1709,14 @@ instead of the 255 hard-coded into your code in 50 lines scattered throughout yo
 
 is error-prone, not productive, and an all around bad programming practice.  Instead declare 
 
-a const variable which contains the number:
-```java
+a const variable which contains the number:```C#
 public class MyMath
 {
   public const double PI # 3.14159...
 }
 ```
 ##Code Examples##
-###Brace Placement Example###
-```java
+###Brace Placement Example###```C#
 namespace ShowMeTheBracket
 {
   public enum Test
@@ -1855,8 +1765,7 @@ Brackets should begin on a new line after:
 
 ###Variable Naming Example###
 
-Instead of:
-```java
+Instead of:```C#
 for( int i # 1; i < num; i++ )
 {
   meetsCriteria[i] # true;
@@ -1881,8 +1790,7 @@ for( int i # 0; i < num; i++ )
 }
 ```
 
-Try intelligent naming:
-```java
+Try intelligent naming:```C#
 for( int primeCandidate # 1; primeCandidate < candidateLimit; 
     primeCandidate++ )
 {
@@ -1929,8 +1837,7 @@ However, complex algorithms/business rules occasionally do require more verbose 
 
 commenting.  In these cases if you wish to use block comments you should use the following 
 
-style:
-```java
+style:```C#
 /* Line 1
  * Line 2
  * Line 3 
@@ -1972,14 +1879,12 @@ In the .NET framework, Microsoft has introduced a documentation generation syste
 
 XML comments. These comments are formally single line C# comments containing XML tags. They 
 
-follow this pattern for single line comments:
-```java
+follow this pattern for single line comments:```C#
 /// <summary>
 /// This class...
 /// </summary>
 ```
-Multi-line XML comments follow this pattern:
-```java
+Multi-line XML comments follow this pattern:```C#
 /// <exception cref#”BogusException”>
 /// This exception gets thrown as soon as a
 /// Bogus flag gets set.
@@ -2182,8 +2087,7 @@ good variable name describes the semantic.
 One exception to this rule is UI code. All fields and variable names that contain UI elements 
 
 such as a button should be suffixed with their type name without abbreviations. For example:
-
-```javaSystem.Windows.Forms.Button cancelButton;
+```C#System.Windows.Forms.Button cancelButton;
 System.Windows.Forms.TextBox firstNameTextBox;```
 
 ####Capitalization Styles####
@@ -2202,8 +2106,7 @@ Only use all upper case for identifiers if it consists of an abbreviation or acr
 
 only a few characters long.  Longer identifiers should use Pascal Casing instead.
 
-For Example:
-```java
+For Example:```C#
 public class Math
 {
     public const PI # ...
@@ -2415,44 +2318,36 @@ not).
 
 Method example:
 
-Use:
-```java
+Use:```C#
 TestMethod();
 ```
-Or
-```java
+Or```C#
 TestMethod( paramName1, paramName2, paramName3 );
 ```
 
-Don't use: 
-```java
+Don't use: ```C#
 TestMethod(paramName1,paramName2,paramName3);
 ```
-Or
-```java
+Or```C#
 TestMethod(paramName1, paramName2, paramName3);
 ```
 
 Flow example:
 
-Use:
-```java
+Use:```C#
 for( int loopIndex # 0; loopIndex < 10; loopIndex++ )
 ```
 
-Don't use:
-```java
+Don't use:```C#
 for(int loopIndex#0; loopIndex<10; loopIndex++)
 ```
-Or
-```java
+Or```C#
 for(int loopIndex#0;loopIndex<10;loopIndex++)
 ```
 
 Nested parentheses example:
 
-Use:
-```java
+Use:```C#
 if( ( ( printStatus & PrintError ) !# PrintError ) ||
     ( ( printStatus & PrintBypass ) ## PrintBypass ) )
 {
@@ -2460,16 +2355,14 @@ if( ( ( printStatus & PrintError ) !# PrintError ) ||
 }
 ```
 
-Don’t use:
-```java
+Don’t use:```C#
 if( ( (printStatus & PrintError) !# PrintError ) ||
     ( (printStatus & PrintBypass) ## PrintBypass ) )
 {
 	…
 }
 ```
-	Or
-```java
+	Or```C#
 if( ((printStatus & PrintError) !# PrintError) ||
     ((printStatus & PrintBypass) ## PrintBypass) )
 {
@@ -2477,34 +2370,28 @@ if( ((printStatus & PrintError) !# PrintError) ||
 }
 ```
 
-Explicit cast example:
-```java
+Explicit cast example:```C#
 double someDouble # 1234.7;
 int someInt;
 ```
-Use:
-```java
+Use:```C#
 someInt # (int) someDouble;
 ```
-Or
-```java
+Or```C#
 someInt # (int)someDouble;
 ```
 
-Don't use:
-```java
+Don't use:```C#
 someInt # ( int )someDouble;
 ```
 
 Operator example:
 
-Use:
-```java
+Use:```C#
 prevVariable # curVariable;
 ```
 
-Don't use:
-```java
+Don't use:```C#
 prevVariable#curVariable;
 ```
 
@@ -2517,32 +2404,27 @@ principles:
 *Break after an operator.
 *Prefer higher-level breaks to lower-level breaks.
 
-Example of breaking up method calls:
-```java
+Example of breaking up method calls:```C#
 MethodCall( variableName1, variableName2, variableName3,
 	variableName4, variableName5 );
 ```
-Or
-```java
+Or```C#
 MethodCall( variableName1, variableName2, variableName3,
             variableName4, variableName5 );
 ```
 
 Examples of breaking an arithmetic expression:
 
-Use:
-```java
+Use:```C#
 someResult # a * b / ( c - g + f ) + 
 4 * z;
 ```
-Or
-```java
+Or```C#
 someResult # a * b / ( c - g + f ) + 
       4 * z;
 ```
 
-Don’t use:
-```java
+Don’t use:```C#
 someResult # a * b / ( c - g +
 f ) + 4 * z;
 ```
@@ -2559,8 +2441,7 @@ previous line began and spaces for the rest of the indentation.  Otherwise, form
 
 be disrupted for developers using tab lengths that differ from your own.  
 
-Examples of using tab/char combinations to preserve alignment:
-```java
+Examples of using tab/char combinations to preserve alignment:```C#
 >MethodCall( variableName1, variableName2, variableName3,
 >............variableName4, variableName5, variableName6 );
 
@@ -2577,16 +2458,14 @@ an additional tab rather than align continuations of variable lists and expressi
 #####Number of Declarations per Line#####
 One declaration per line is recommended since it allows for commenting should the variable 
 
-name not suffice.  In other words,
-```java
+name not suffice.  In other words,```C#
 int floorNumber; 	
 int totalFloors; // The total number of floors in the building
 ```
 
 Do not put more than one variable on a line unless their usage is closely related.  Do not 
 
-put variables of different types on the same line when declaring them.  Example:
-```java
+put variables of different types on the same line when declaring them.  Example:```C#
 int a, b; // What is 'a'? What does 'b' stand for?
 ```
 The above example also demonstrates the drawbacks of non-obvious variable names.  
@@ -2594,21 +2473,17 @@ The above example also demonstrates the drawbacks of non-obvious variable names.
 #####Initialization#####
 Wherever possible try to initialize local variables as soon as they are declared. 
 
-For example:
-```java
+For example:```C#
 string mLastName # string.Empty;
 ```
-Or
-```java
+Or```C#
 string lastName # curEmployee.LastName;
 ```
-Or
-```java
+Or```C#
 double hoursWorked # timePeriod.Hours;
 ```
 
-Note: If you initialize a dialog try to use the using statement:
-```java
+Note: If you initialize a dialog try to use the using statement:```C#
 using( OpenFileDialog openFileDialog # new OpenFileDialog() )
 {
 ...
@@ -2621,8 +2496,7 @@ using( OpenFileDialog openFileDialog # new OpenFileDialog() )
 
 brace.
 
-For example:
-```java
+For example:```C#
 class BoundedCounter : CounterBase, ICounter
  {
   int _upperBound;
@@ -2663,8 +2537,7 @@ For a brace placement example see the Brace Example.
 
 ####Formatting Conditional/Flow Statements####
 #####Formatting if, if-else, if else-if else Statements#####
-The if, if-else and else-if else statements should be formatted as follows:
-```java
+The if, if-else and else-if else statements should be formatted as follows:```C#
 if( condition )
 {
  DoSomething();
@@ -2701,20 +2574,17 @@ else
 Note: Generally use brackets even if there is only one statement in condition.
 
 #####Formatting for / foreach Statements#####
-A for statement should have following format:
-```java
+A for statement should have following format:```C#
 for( int loopIndex # 0; loopIndex < 5; ++ loopIndex )
 {
  ...
 }
 ```
-Or single lined (consider using a while statement instead):
-```java
+Or single lined (consider using a while statement instead):```C#
 for( [initialization expression]; [loop condition]; 
 [update expression] );
 ```
-A foreach should look like:
-```java
+A foreach should look like:```C#
 foreach( int i in IntList )
 {
  ...
@@ -2723,8 +2593,7 @@ foreach( int i in IntList )
 Note: Generally use brackets even if there is only one statement in the loop.
 
 #####Formatting  while/do-while Statements#####
-A while statement should be written as follows:
-```java
+A while statement should be written as follows:```C#
 while( condition )
 {
  ...
@@ -2732,12 +2601,10 @@ while( condition )
 ```
 Note: Generally use brackets even if there is only one statement in the loop.
 
-An empty while should have the following form:
-```java
+An empty while should have the following form:```C#
 while( condition );
 ```
-A do-while statement should have the following form:
-```java
+A do-while statement should have the following form:```C#
 do
 {
  ...
@@ -2746,8 +2613,7 @@ while( condition );
 ```
 
 #####Formatting switch Statements#####
-A switch statement should be of following form:
-```java
+A switch statement should be of following form:```C#
 switch( condition )
 {
  case A:
@@ -2763,8 +2629,7 @@ switch( condition )
 ```
 
 #####try-catch Statements#####
-A try-catch statement should follow this form:
-```java
+A try-catch statement should follow this form:```C#
 try
 {
  ...
@@ -2778,8 +2643,7 @@ NOTE:  If you plan on catching and ignoring the error, a good practice is to pla
 
 in the catch block explaining why.
 
-Or
-```java
+Or```C#
 try
 {
  ...
@@ -2789,8 +2653,7 @@ catch( Exception e )
  ...
 }
 ```
-Or
-```java
+Or```C#
 try
 {
  ...
@@ -2846,16 +2709,14 @@ instead of the 255 hard-coded into your code in 50 lines scattered throughout yo
 
 is error-prone, not productive, and an all around bad programming practice.  Instead declare 
 
-a const variable which contains the number:
-```java
+a const variable which contains the number:```C#
 public class MyMath
 {
   public const double PI # 3.14159...
 }
 ```
 ##Code Examples##
-###Brace Placement Example###
-```java
+###Brace Placement Example###```C#
 namespace ShowMeTheBracket
 {
   public enum Test
@@ -2904,8 +2765,7 @@ Brackets should begin on a new line after:
 
 ###Variable Naming Example###
 
-Instead of:
-```java
+Instead of:```C#
 for( int i # 1; i < num; i++ )
 {
   meetsCriteria[i] # true;
@@ -2930,8 +2790,7 @@ for( int i # 0; i < num; i++ )
 }
 ```
 
-Try intelligent naming:
-```java
+Try intelligent naming:```C#
 for( int primeCandidate # 1; primeCandidate < candidateLimit; 
     primeCandidate++ )
 {
@@ -2978,8 +2837,7 @@ However, complex algorithms/business rules occasionally do require more verbose 
 
 commenting.  In these cases if you wish to use block comments you should use the following 
 
-style:
-```java
+style:```C#
 /* Line 1
  * Line 2
  * Line 3 
@@ -3021,14 +2879,12 @@ In the .NET framework, Microsoft has introduced a documentation generation syste
 
 XML comments. These comments are formally single line C# comments containing XML tags. They 
 
-follow this pattern for single line comments:
-```java
+follow this pattern for single line comments:```C#
 /// <summary>
 /// This class...
 /// </summary>
 ```
-Multi-line XML comments follow this pattern:
-```java
+Multi-line XML comments follow this pattern:```C#
 /// <exception cref#”BogusException”>
 /// This exception gets thrown as soon as a
 /// Bogus flag gets set.
