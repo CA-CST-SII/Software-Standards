@@ -60,11 +60,11 @@ this document.
 ## References
 The following sources were used in creation of the original version of this standard.
 
-[http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml]
+* http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml
 
-[http://make.wordpress.org/core/handbook/coding-standards/html/]
+* http://make.wordpress.org/core/handbook/coding-standards/html/
 
-## Structure
+## Structure```#```
 There are plenty of different methods for structuring a stylesheet. With the CSS in core, it 
 
 is important to retain a high degree of legibility. This enables subsequent contributors to 
@@ -100,7 +100,7 @@ Incorrect:
 #selector-1 { background: #fff; color: #000; }
 ```
 
-## Selectors
+## Selectors```#```
 With specificity, comes great responsibility. Broad selectors allow us to be efficient, yet 
 
 can have adverse consequences if not tested. Location-specific selectors can save us time, 
@@ -110,7 +110,7 @@ but will quickly lead to a cluttered stylesheet. Exercise your best judgement to
 selectors that find the right balance between contributing to the overall style and layout of 
 
 the DOM.
-* Similar to the WordPress Coding Standards for file names, use lowercase and separate words 
+* Similar to the [WordPress Coding Standards](http://codex.wordpress.org/WordPress_Coding_Standards) for file names, use lowercase and separate words 
 
 with hyphens when naming selectors. Avoid camelcase and underscores.
 * Use human readable selectors that describe what element(s) they style.
