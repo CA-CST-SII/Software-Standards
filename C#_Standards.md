@@ -1,7 +1,7 @@
 # Development Standards and Guidelines (C#)
 
 ## About the Guide
-This guide covers structuring and naming of the Apptis/Project libraries in such a manner that other developers/teams can easily determine whether or not an object that provides desired functionality already exists, easily locate objects slated for modification, and decide where to include new development.  The guide also covers software coding standards; and although the primary focus will be on programs written in C #, many of the rules and principles are useful and apply to programs written in other languages.  Finally, the guide will briefly cover embedded XML documentation and includes a more extensive elaboration on usage in Appendix A - taken from a white paper article written by Anson Horton from the .NET Framework community website. 
+This guide covers structuring and naming of the Apptis/Project libraries in such a manner that other developers/teams can easily determine whether or not an object that provides desired functionality already exists, easily locate objects slated for modification, and decide where to include new development.  The guide also covers software coding standards; and although the primary focus will be on programs written in C #, many of the rules and principles are useful and apply to programs written in other languages.  Finally, the guide will briefly cover embedded XML documentation and includes a more extensive elaboration on usage in [Appendix A] (https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md#appendix-a---xml-documentation-tags) - taken from a white paper article written by Anson Horton from the .NET Framework community website. 
 
 ## Purpose
 Project specific C# coding standards are maintained by the lead developer for each project.
@@ -919,7 +919,7 @@ Any method with a return value must have a `<remarks>` tag describing the return
 
 Once XML documentation has been created, it is only truly useful if transforms are applied to make it readable.  A popular open source application called NDOC does a very good job of this.  NDOC can generate HTML or Windows based .chm help files. As of the writing of this guide NDOC is available in at the DevSystemSoftware/ndoc share.
 
-More information on XML Documentation Tags can be found in Appendix A.
+More information on XML Documentation Tags can be found in [Appendix A] (https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md#appendix-a---xml-documentation-tags).
 
 ####Implementing XML Documentation####
 #####*Within Visual Studio*#####
