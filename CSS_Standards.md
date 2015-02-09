@@ -665,7 +665,7 @@ display: block;	                   Basic syntax
 color: #fff                        Use shorthand syntax for hexadecimal colors when possible 
 color: #df7dcf	                   Always use lowercase
 font-family: "Frutiger Ultra"	   Use double quotes instead of single quotes
-text-shadow: 0 0 2px #ddd	     Do not attach units to zero-values
+text-shadow: 0 0 2px #ddd	        Do not attach units to zero-values
 color: rgba(0, 136, 18, 0.8)	   Spaces MUST follow commas in property or function values
 ```
 
