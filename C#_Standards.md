@@ -32,58 +32,54 @@ The taxonomy presented in this section is a partial library layout with some exp
 
 Structure and usage will be discussed in the subsequent sections.  
 * Apptis
- * Common – Houses the company’s core objects that are not “Account” specific (e.g., the Data Access Layer) and may be shared across multiple projects/accounts.
-   * DataAccess
+  * Common – Houses the company’s core objects that are not “Account” specific (e.g., the Data Access Layer) and may be shared across multiple projects/accounts.
+    * DataAccess
       * DBConnection.cs
       * DBConnectionFactory.cs
       * …
-
     * Hardware
       * Factory
         * …
-        
-     * Helper
+    * Helper
       * NumericString.cs
       * XMLHelper.cs
       * ParameterizedString.cs
       * TokenValue.cs
       * …
-     
     * MoneyManagement
-     * MoneyManager.cs
+      * MoneyManager.cs
     * SecurityManagement
-     * SecurityManager.cs
+      * SecurityManager.cs
     * UI
-     * Web
-      * … 
-      
-    * Windows
-     * DesignSuite
-   * Utils
-    * Settings
+      * Web
+        * … 
+      * Windows
+        * DesignSuite
+    * Utils
+      * Settings
   * Passport – Houses account specific common objects	
-   * FEPClient
+    * FEPClient
   * PATS
-   * …
+    * …
   * PIERS
-   * …
+    * …
   * PRISM
-   * …
+    * …
   * TDIS
-   * Common – Houses project specific common objects
-    * DataAdapter
-    * DataFormatter
-    * Passport
-     * Project specific business entity objects.
-    * PassportManagement
-     * Project specific business entity management objects.
-   * Support
-    * SecurityManagement
-    * SettingsManagement
-   * Workflow
-    * Adjudication
-    * SignatureService
-    * QualityControl
+    * Common – Houses project specific common objects
+      * DataAdapter
+      * DataFormatter
+      * Passport
+      * Project specific business entity objects.
+      * PassportManagement
+      * Project specific business entity management objects.
+    * Support
+      * SecurityManagement
+      * SettingsManagement
+    * Workflow
+      * Adjudication
+      * SignatureService
+      * QualityControl
 
 ###Library Structure###
 The library directory should be structured and named in a manner that makes it intuitive for 
