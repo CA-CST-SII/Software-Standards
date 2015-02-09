@@ -37,23 +37,26 @@ Structure and usage will be discussed in the subsequent sections.
       * DBConnection.cs
       * DBConnectionFactory.cs
       * …
-      * 
-   * Hardware
+
+    * Hardware
       * Factory
-       * …
-   * Helper
-     * NumericString.cs
-     * XMLHelper.cs
-     * ParameterizedString.cs
-     * TokenValue.cs
-     * …
-   * MoneyManagement
-    * MoneyManager.cs
-   * SecurityManagement
-    * SecurityManager.cs
-   * UI
-    * Web
-     * … 
+        * …
+        
+     * Helper
+      * NumericString.cs
+      * XMLHelper.cs
+      * ParameterizedString.cs
+      * TokenValue.cs
+      * …
+     
+    * MoneyManagement
+     * MoneyManager.cs
+    * SecurityManagement
+     * SecurityManager.cs
+    * UI
+     * Web
+      * … 
+      
     * Windows
      * DesignSuite
    * Utils
