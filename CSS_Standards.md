@@ -152,7 +152,7 @@ input[type=text] { /*  Should be [type="text"] * /
 }
 ```
 
-## Properties
+## Properties```#```
 Similar to selectors, properties that are too specific will hinder the flexibility of the 
 
 design. Less is more. Make sure you are not repeating styling or introducing fixed dimensions 
@@ -171,10 +171,11 @@ margin, and padding values as much as possible. (For a shorthand reference, see 
 
 Shorthand.)
 
-## Property Ordering 
+## Property Ordering```#```
+```
 “Group like properties together, especially if you have a lot of them.”
 – Nacin
-
+```
 Above all else, choose something that is meaningful to you and semantic in some way. Random 
 
 ordering is chaos, not poetry. In WordPress Core, our choice is logical or grouped ordering, 
@@ -196,7 +197,7 @@ prescribed place above but likely would fit into one of the above in a logical m
 as CSS is evolving, so our standards will evolve with it.
 Top/Right/Bottom/Left (TRBL/trouble) should be the order for any relevant properties (e.g. 
 
-margin), much as the order goes in values. Corner specifiers (e.g. border-radius-* -* ) should 
+margin), much as the order goes in values. Corner specifiers ```(e.g. border-radius-*-* )``` should 
 
 be top-left, top-right, bottom-right, bottom-left. This is derived from how shorthand values 
 
@@ -225,12 +226,11 @@ Example:
 }
 ```
 
-## Vendor Prefixes
+## Vendor Prefixes```#```
 Vendor prefixes should go longest (-webkit-) to shortest (unprefixed). Values should be left 
 
-aligned with spaces after the colon provided that all the values are the same across all 
+aligned with spaces after the colon provided that all the values are the same across all prefixes.
 
-prefixes.
 Preferred method:
 ```css
 .koop-shiny {
@@ -271,7 +271,7 @@ Special case for CSS gradients:
 }
 ```
 
-## Values
+## Values```#```
 There are numerous ways to input values for properties. Follow the guidelines below to help 
 
 us retain a high degree of consistency.
@@ -286,7 +286,7 @@ has a space.
 
 value. This is more than just a style convention, but is worth mentioning here. More 
 
-information:http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
+information: http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
 * Use a leading zero for decimal values, including in rgba().
 * Multiple comma-separated values for one property should be separated by either a space or a 
 
@@ -320,7 +320,7 @@ Incorrect:
     margin: 0px 0px 20px 0px;
 }
 ```
-## Media Queries
+## Media Queries```#```
 Media queries allow us to gracefully degrade the DOM for different screen sizes. If you are 
 
 adding any, be sure to test above and below the break-point you are targeting.
@@ -340,7 +340,7 @@ Example:
         /*  Your selectors * /
 }
 ```
-## Commenting
+## Commenting```#```
 * Comment, and comment liberally. If there are concerns about file size, utilize minified 
 
 files and the SCRIPT_DEBUG constant. Long comments should manually break the line length at 
@@ -380,7 +380,7 @@ For inline:
 }
 ```
 
-## Best Practices
+## Best Practices```#```
 Stylesheets tend to get long in length. Focus slowly gets lost whilst intended goals start 
 
 repeating and overlapping. Writing smart code from the outset helps us retain the overview 
@@ -392,20 +392,20 @@ whilst remaining flexible throughout change.
 basis. Example:``` .box { margin-top: 37px }```.
 * DOM will change over time, target the element you want to use as opposed to “finding it” 
 
-through its parents. Example: Use .highlight on the element as opposed to .highlight a (where 
+through its parents. Example: Use ```.highlight``` on the element as opposed to ```.highlight a``` (where 
 
 the selector is on the parent)
 * Know when to use the height property. It should be used when you are including outside 
 
 elements (such as images). Otherwise use line-height for more flexibility.
-* Do not restate default property & value combinations (for instance display: block; on 
+* Do not restate default property & value combinations (for instance ```display: block;``` on 
 
 block-level elements).
 
 ## CSS Validity
 Use valid CSS where possible.
 Unless dealing with CSS validator bugs or requiring proprietary syntax, use valid CSS code.
-Use tools such as the W3C CSS validator to test.
+Use tools such as the [W3C CSS validator] (http://jigsaw.w3.org/css-validator/) to test.
 Using valid CSS is a measurable baseline quality attribute that allows to spot CSS code that 
 
 may not have any effect and can be removed, and that ensures proper CSS usage.
@@ -425,11 +425,11 @@ Using functional or generic names reduces the probability of unnecessary documen
 
 changes.
 ```css
-/*  Not recommended: meaningless * / #yee-1901 {}  /*  Not recommended: presentational * / 
+/*  Not recommended: meaningless */ #yee-1901 {}  /*  Not recommended: presentational */ 
 
 .button-green {} .clear {}
 
-/*  Recommended: specific * / #gallery {} #login {} .video {}  /*  Recommended: generic * / .aux 
+/*  Recommended: specific */ #gallery {} #login {} .video {}  /*  Recommended: generic */ .aux 
 
 {} .alt {}
 ```
@@ -441,8 +441,8 @@ Using ID and class names this way contributes to acceptable levels of understand
 
 code efficiency.
 ```css
-/*  Not recommended * / #navigation {} .atr {}
-/*  Recommended * / #nav {} .author {}
+/*  Not recommended */ #navigation {} .atr {}
+/*  Recommended */ #nav {} .author {}
 ```
 
 ## Type Selectors
@@ -452,8 +452,8 @@ Unless necessary (for example with helper classes), do not use element names in 
 with IDs or classes.
 Avoiding unnecessary ancestor selectors is useful for performance reasons.
 ```css
-/*  Not recommended * / ul#example {} div.error {}
-/*  Recommended * / #example {} .error {}
+/*  Not recommended */ ul#example {} div.error {}
+/*  Recommended */ #example {} .error {}
 ```
 
 ## Shorthand Properties
@@ -463,32 +463,32 @@ CSS offers a variety of shorthand properties (like font) that should be used whe
 possible, even in cases where only one value is explicitly set.
 Using shorthand properties is useful for code efficiency and understandability.
 ```css
-/*  Not recommended * / 
+/*  Not recommended */ 
 border-top-style: none; font-family: palatino, georgia, serif; font-size: 100%; 
 line-height: 1.6; padding-bottom: 2em; padding-left: 1em; padding-right: 1em; 
 padding-top: 0;
 
-/*  Recommended * / 
+/*  Recommended */ 
 border-top: 0; font: 100%/1.6 palatino, georgia, serif; padding: 0 1em 2em;
 ```
 
-## 0 and Units
-Omit unit specification after “0” values.
-Do not use units after 0 values unless they are required.
+## ```0``` and Units
+Omit unit specification after ```0``` values.
+Do not use units after ```0``` values unless they are required.
 ```css
 margin: 0; padding: 0;
 ```
 
-## Leading 0s
-Omit leading “0”s in values.
-Do not use put 0s in front of values or lengths between -1 and 1.
+## Leading ```0```s
+Omit leading ```0```s in values.
+Do not use put ```0```s in front of values or lengths between ```-1``` and ```1```.
 ```css
 font-size: .8em;
 ```
 
 ## Hexadecimal Notation
-Use 3 character hexadecimal notation where possible.
-For color values that permit it, 3 character hexadecimal notation is shorter and more 
+Use ```3``` character hexadecimal notation where possible.
+For color values that permit it, ```3``` character hexadecimal notation is shorter and more 
 
 succinct.
 ```css
@@ -528,28 +528,15 @@ all) other than hyphens, in order to improve understanding and scannability.
 
 ## Hacks
 Avoid user agent detection as well as CSS “hacks”—try a different approach first.
-It’s tempting to address styling differences over user agent detection or special CSS 
 
-filters, workarounds, and hacks. Both approaches should be considered last resort in order to 
-
-achieve and maintain an efficient and manageable code base. Put another way, giving detection 
-
-and hacks a free pass will hurt projects in the long run as projects tend to take the way of 
-
-least resistance. That is, allowing and making it easy to use detection and hacks means using 
-
-detection and hacks more frequently—and more frequently is too frequently.
+It’s tempting to address styling differences over user agent detection or special CSSfilters, workarounds, and hacks. Both approaches should be considered last resort in order toachieve and maintain an efficient and manageable code base. Put another way, giving detection and hacks a free pass will hurt projects in the long run as projects tend to take the way of least resistance. That is, allowing and making it easy to use detection and hacks means using detection and hacks more frequently—and more frequently is too frequently.
 
 ## Declaration Order
 Alphabetize declarations.
 Put declarations in alphabetical order in order to achieve consistent code in a way that is 
 
 easy to remember and maintain.
-Ignore vendor-specific prefixes for sorting purposes. However, multiple vendor-specific 
-
-prefixes for a certain CSS property should be kept sorted (e.g. -moz prefix comes before -
-
-webkit).
+Ignore vendor-specific prefixes for sorting purposes. However, multiple vendor-specific prefixes for a certain CSS property should be kept sorted ```(e.g. -moz prefix comes before -webkit)```.
 ```css
 background: fuchsia; border: 1px solid; -moz-border-radius: 4px; 
 -webkit-border-radius: 4px; border-radius: 4px; 
@@ -558,15 +545,15 @@ color: black; text-align: center; text-indent: 2em;
 
 ## Block Content Indentation
 Indent all block content.
-Indent all block content, that is rules within rules as well as declarations, so to reflect 
 
-hierarchy and improve understanding.
+Indent all block content, that is rules within rules as well as declarations, so to reflect hierarchy and improve understanding.
 ```css
 @media screen, projection {    html {     background: #fff;     color: #444;   }  }
 ```
 
 ## Declaration Stops
 Use a semicolon after every declaration.
+
 End every declaration with a semicolon for consistency and extensibility reasons.
 ```css
 /*  Not recommended * / .test {   display: block;   height: 100px }
@@ -587,9 +574,7 @@ colon) for consistency reasons.
 
 ## Declaration Block Separation
 Use a space between the last selector and the declaration block.
-Always use a single space between the last selector and the opening brace that begins the 
-
-declaration block.
+Always use a single space between the last selector and the opening brace that begins the declaration block.
 The opening brace should be on the same line as the last selector in a given rule.
 ```css
 /*  Not recommended: missing space * / 
@@ -623,10 +608,10 @@ body {   margin: auto;   width: 50%; }
 
 ## CSS Quotation Marks
 Use single quotation marks for attribute selectors and property values.
-Use single ('') rather than double ("") quotation marks for attribute selectors or property 
+Use single ```('')``` rather than double ```("")``` quotation marks for attribute selectors or property 
 
-values. Do not use quotation marks in URI values (url()).
-Exception: If you do need to use the @charset rule, use double quotation marks—single 
+values. Do not use quotation marks in URI values ```(url())```.
+Exception: If you do need to use the ```@charset``` rule, use double quotation marks—single 
 
 quotation marks are not permitted.
 ```css
@@ -653,7 +638,7 @@ new lines.
 
 ## CSS formatting guidelines
 Last updated February 7, 2014. Created by JohnAlbin on January 14, 2013.
-Edited by LewisNyman, hmmdinger, hass, echoz. [Log in to edit this page].
+Edited by LewisNyman, hmmdinger, hass, echoz. https://drupal.org/user?destination=node/1887862.
 
 ### Terminology
 For those unfamiliar with CSS terminology, these are the concise terms used in these 
@@ -665,27 +650,14 @@ selector {
 }
 ```
 
-A rule set (also called a rule) consists of a selector followed by a declaration block.
-The selector consists of everything up to (but not including) the first left curly brace ({).
-A declaration block starts with a left curly brace ({) and ends with the matching right curly 
-
-brace (}). In between there must be a list of zero or more semicolon-separated (;) 
-
-declarations.
+A rule set (also called a rule) consists of a selector followed by a declaration block. The selector consists of everything up to (but not including) the first left curly brace ```({)```. A declaration block starts with a left curly brace ```({)``` and ends with the matching right curly brace ```(})```. In between there must be a list of zero or more semicolon-separated ```(;)`` declarations.
 A declaration consists of a property name, followed by a colon (:), followed by a value.
 
 ### Whitespace
 #### Indentation
-Using tabs for indentation leads to inconsistent display of the source code, since many text 
-
-editors and most text viewers (like web browsers) cannot have their “tab size” configured.
-For lines needing indenting, use 2 spaces for each level of indentation, the same standard as 
-
-Drupal’s PHP and JavaScript code.
+Using tabs for indentation leads to inconsistent display of the source code, since many text editors and most text viewers (like web browsers) cannot have their “tab size” configured. For lines needing indenting, use 2 spaces for each level of indentation, the same standard as Drupal’s PHP and JavaScript code.
 * Declarations (property/value pairs) should be indented one level relative to their selector.
-* Rulesets within a media block or a media query should be indented one level relative to the 
-
-media statement.
+* Rulesets within a media block or a media query should be indented one level relative to the media statement.
 * Comments should be indented the same amount as the declaration or ruleset they describe.
 ```css
 @media print {
@@ -698,14 +670,8 @@ media statement.
 ```
 #### Blank lines
 * In general, do NOT separate each ruleset by a blank line.
-* If a ruleset has a proceeding Doxygen-style or single-line-style comment that describes it, 
-
-place a blank line before the comment.
-* If two rulesets have no interleaving blank line, they must be logically related. If they are 
-
-not logically related to each other, add a blank line and a comment describing the second 
-
-ruleset.
+* If a ruleset has a proceeding Doxygen-style or single-line-style comment that describes it, place a blank line before the comment.
+* If two rulesets have no interleaving blank line, they must be logically related. If they are not logically related to each other, add a blank line and a comment describing the second ruleset.
 ```css
 /*  A comment describing the ruleset. * /
 .selector-1,
@@ -739,37 +705,15 @@ ruleset.
 ```
 
 #### Line endings
-There MUST NOT be any whitespace (spaces or tabs) at the end of lines. This means blank lines 
-
-should also not contain any spaces or tabs. Inconsistent trailing whitespace can add lines to 
-
-diffs/patches and makes changes harder to notice.
-All text files should end with a single blank line. This makes git commits easier to read 
-
-since it's clearer what is being changed when lines are added to the end of a file and it 
-
-avoids the verbose \ No newline at end of file warning in patches.
-Files should be formatted with Unix line endings (a newline character, denoted as \n or LF), 
-
-which is also the default in Mac OS X. Do not use Windows line endings (a carriage return 
-
-plus a newline, denoted as \r\n or CRLF).
-Tip: configure your editor to “show invisibles”. This will allow you to eliminate end-of-line 
-
-whitespace, eliminate unintended blank-line whitespace, and avoid polluting commits.
-Drupal 8 includes an EditorConfig file in its root directory to help maintain these 
-
-whitespace conventions.
+There MUST NOT be any whitespace ```(spaces or tabs)``` at the end of lines. This means blank lines should also not contain any spaces or tabs. Inconsistent trailing whitespace can add lines to diffs/patches and makes changes harder to notice.
+All text files should end with a single blank line. This makes git commits easier to read since it's clearer what is being changed when lines are added to the end of a file and it avoids the verbose ```\ No newline at end of file``` warning in patches.
+Files should be formatted with Unix line endings (a newline character, denoted as ```\n or LF```), which is also the default in Mac OS X. Do not use Windows line endings (a carriage return plus a newline, denoted as ```\r\n or CRLF```).
+Tip: configure your editor to “show invisibles”. This will allow you to eliminate end-of-line whitespace, eliminate unintended blank-line whitespace, and avoid polluting commits.
+Drupal 8 includes an EditorConfig file in its root directory to help maintain these whitespace conventions.
 
 ### Comments
-Well commented code is extremely important. Take time to describe components, how they work, 
-
-their limitations, and the way they are constructed. Don't leave others guessing as to the 
-
-purpose of uncommon or non-obvious code.
-To stay consistent with the rest of Drupal's code base, we borrow some of the CSS comment 
-
-styles from the Doxygen and comment formatting conventions for PHP files.
+Well commented code is extremely important. Take time to describe components, how they work, their limitations, and the way they are constructed. Don't leave others guessing as to the purpose of uncommon or non-obvious code.
+To stay consistent with the rest of Drupal's code base, we borrow some of the CSS comment styles from the Doxygen and comment formatting conventions for PHP files.
 
 #### File comments
 Each file should start with a comment describing what the file does. For example:
@@ -782,14 +726,10 @@ Each file should start with a comment describing what the file does. For example
 *  line for a while finally concluding here at the end of this paragraph.
 * /
 ```
-Note that a blank line should follow a @file documentation block. And keep line-lengths to 80 
-
-columns, when possible. For more information, see the PHP file comment standards.
+Note that a blank line should follow a @file documentation block. And keep line-lengths to ```80``` columns, when possible. For more information, see the PHP file comment standards.
 
 #### Multi-line comments
-When describing a ruleset or set of rulesets, any comment that requires 2 or more lines 
-
-(wrapped to 80 characters) must follow the Doxygen comment style (also called a “docblock”).
+When describing a ruleset or set of rulesets, any comment that requires 2 or more lines (wrapped to 80 characters) must follow the Doxygen comment style (also called a “docblock”).
 ```css
 /* * 
 *  Short description using Doxygen-style comment format.
@@ -804,16 +744,10 @@ When describing a ruleset or set of rulesets, any comment that requires 2 or mor
 .example-rule {
 }
 ```
-Place the comment on the line immediately above the ruleset (or rulesets) it describes. Place 
-
-a blank line before the docblock comment. See the Doxygen and comment formatting 
-
-conventionsfor more info.
+Place the comment on the line immediately above the ruleset (or rulesets) it describes. Place a blank line before the docblock comment. See the Doxygen and comment formatting conventionsfor more info.
 
 #### Single-line comments
-When describing a property or ruleset, any comment that can be written inside the 80 
-
-character line length limit can use a simple CSS comment style.
+When describing a property or ruleset, any comment that can be written inside the ```80``` character line length limit can use a simple CSS comment style.
 ```css
 .example {
   /*  Override the default margins. * /
@@ -830,21 +764,13 @@ comment should be indented the same amount as the property or ruleset it describ
 If the comment is describing a ruleset, place a blank line before the comment.
 
 #### Styling for Right-To-Left Languages
-It is common for RTL language websites to have their designs flipped in the left/right 
-
-direction. For direction specific property/values, add the comment /*  LTR * / on the same line 
-
-preceded by a single space. In Drupal 6 and 7, the inclusion of a separate RTL stylesheet is 
-
-automated. In Drupal 8, follow with an additional ruleset containing the inverse 
-
-property/values, beginning with the attribute selector [dir="rtl"].
+It is common for RTL language websites to have their designs flipped in the left/right direction. For direction specific property/values, add the comment ```/*  LTR * /``` on the same line preceded by a single space. In Drupal 6 and 7, the inclusion of a separate RTL stylesheet is automated. In Drupal 8, follow with an additional ruleset containing the inverse property/values, beginning with the attribute selector ``[dir="rtl"]```.
 Example Rulesets for Drupal 6 and Drupal 7
 ```css
 [example.css]
 .example-rule {
-  float: left; /*  LTR * /
-  margin-right: 1.5em; /*  LTR * /
+  float: left; /*  LTR */
+  margin-right: 1.5em; /*  LTR */
   padding: 0 0.25em;
 }
 [example-rtl.css]
@@ -858,8 +784,8 @@ Example Rulesets for Drupal 8
 ```css
 [example.css]
 .example-rule {
-  float: left; /*  LTR * /
-  margin-right: 1.5em; /*  LTR * /
+  float: left; /*  LTR */
+  margin-right: 1.5em; /*  LTR */
   padding: 0 0.25em;
 }
 [dir="rtl"] .example-rule {
@@ -868,25 +794,17 @@ Example Rulesets for Drupal 8
   margin-right: 0;
 }
 ```
-* when you use the keywords, 'left' or 'right' in a property, e.g. float: left;
-* where you use unequal margin, padding or borders on the sides of a box, e.g. margin-left: 
-
-1em; or padding: 0 0 0 2em;
+* when you use the keywords, 'left' or 'right' in a property, e.g.``` float: left;```
+* where you use unequal margin, padding or borders on the sides of a box, e.g. ```margin-left: 1em; or padding: 0 0 0 2em;```
 * where you specify the direction of the language, e.g. direction: ltr;
 
 ### Format
-Our CSS formatting ensures the code is easy to read, easy to clearly comment, minimizes the 
-
-chance of accidentally introducing errors, and results in useful Git diffs and blames.
+Our CSS formatting ensures the code is easy to read, easy to clearly comment, minimizes the chance of accidentally introducing errors, and results in useful Git diffs and blames.
 
 #### Rulesets
-* Use one selector per line when a ruleset has a group of selectors separated by commas.
-* The opening brace ({) of a ruleset’s declaration block should be on the same line as the 
-
-selector (or the same line as the last selector in a group of selectors.) The opening brace 
-
-should include a single space before it.
-* Place the closing brace (}) of a ruleset in the same column as the first character in the 
+* Use one selector per line when a ruleset has a group of selectors separated by commas. 
+* The opening brace ```({)``` of a ruleset’s declaration block should be on the same line as the selector (or the same line as the last selector in a group of selectors.) The opening brace should include a single space before it.
+* Place the closing brace ```(})``` of a ruleset in the same column as the first character in the 
 
 selector of the ruleset.
 * Include one declaration per line in a declaration block.
@@ -902,70 +820,34 @@ Example Ruleset
 
 #### Properties
 * In a declaration, the property name should be immediately followed by a colon, then a single 
-
 space, and then the property’s value.
 * Include a semi-colon at the end of all declarations, including the last declaration in a 
-
 declaration block.
 * When hex values are used for colors, use lowercase and, if possible, the shorthand syntax, 
-
-e.g. #aaa. Colors may be expressed with any valid CSS value, such as hex value, color 
-
-keyword, rgb() or rgba(). Note that IE8 does not support all color syntaxes and will require 
-
-a fallback value.
-* For property values that require quotes, use double quotes instead of single quotes, e.g. 
-
-font-family: "Arial Black", Arial, sans-serif; and content: " ";.
-* Quote attribute values in selectors, e.g. input[type="checkbox"].
-* Where allowed, avoid specifying units for zero-values, e.g. use margin: 0; instead of 
-
-margin: 0px;.
+e.g. ```#aaa```. Colors may be expressed with any valid CSS value, such as hex value, color keyword, rgb() or rgba(). Note that IE8 does not support all color syntaxes and will require a fallback value.
+* For property values that require quotes, use double quotes instead of single quotes, e.g. ```font-family: "Arial Black", Arial, sans-serif; and content: " ";```.
+* Quote attribute values in selectors, e.g. ```input[type="checkbox"]```.
+* Where allowed, avoid specifying units for zero-values, e.g. use ```margin: 0;``` instead of ```margin: 0px;```.
 * Include a space after each comma in comma-separated property or function values.
-* Do not use spaces around the parentheses in a function, e.g. color: rgba(0, 0, 0, 0.8);
+* Do not use spaces around the parentheses in a function, e.g. ```color: rgba(0, 0, 0, 0.8);```
 Example Properties
 ```css
-display: block;	Basic syntax
-color: #fff
-color: #df7dcf	Use shorthand syntax for hexadecimal colors when possible
-Always use lowercase
-font-family: "Frutiger Ultra"	Use double quotes instead of single quotes
-text-shadow: 0 0 2px #ddd	Do not attach units to zero-values
-color: rgba(0, 136, 18, 0.8)	Spaces MUST follow commas in property or function values
+display: block;	                   Basic syntax
+color: #fff                        Use shorthand syntax for hexadecimal colors when possible 
+color: #df7dcf	                   Always use lowercase
+font-family: "Frutiger Ultra"	   Use double quotes instead of single quotes
+text-shadow: 0 0 2px #ddd	   Do not attach units to zero-values
+color: rgba(0, 136, 18, 0.8)	   Spaces MUST follow commas in property or function values
 ```
 
 #### Declaration order
-The declarations in a ruleset should be ordered so that the purpose of the declaration block 
-
-is most obvious. Clarity should be the guiding principle. We can help to achieve this goal by 
-
-placing structurally important properties before others: positioning, box model, then other 
-
-properties.
-1. Positioning properties include: position, float, clear, top, right, bottom, left, direction, 
-
-and z-index.
-2. Box model properties include: display, [(max|min)-]height, [(max|min)-]width, margin, 
-
-padding, border and their various longhand forms (margin-top, etc.) Plus box-sizing.
+The declarations in a ruleset should be ordered so that the purpose of the declaration block is most obvious. Clarity should be the guiding principle. We can help to achieve this goal by placing structurally important properties before others: positioning, box model, then other properties.
+1. Positioning properties include: ```position, float, clear, top, right, bottom, left, direction,``` and ``` z-index```.
+2. Box model properties include: ```display, [(max|min)-]height, [(max|min)-]width, margin,padding, border``` and their various longhand forms (margin-top, etc.) Plus ```box-sizing```.
 3. Other declarations.
-Within each of the above groups, properties can be grouped alphabetically or grouped with 
-
-like properties next to each other, e.g. putting font and text properties next to each other. 
-
-Drupal’s coding standards are purposefully vague here because there is no consensus on this 
-
-issue (as of 2013), but we respect each other’s abilities and preferences.
-Vendor prefixed properties should be directly before their non-prefixed version. This allows 
-
-the official version of the property to override any inconsistencies in the vendor-prefixed 
-
-versions once those browsers implement the official property. If browser bugs or cross-
-
-browser issues necessitate any deviation from this ordering, it should be clearly documented.
-Again, the order of properties are meant to reinforce the purpose of the ruleset. As such, it 
-
-is much more important to add comments to the ruleset then to worry about property ordering.
+Within each of the above groups, properties can be grouped alphabetically or grouped with like properties next to each other, e.g. putting font and text properties next to each other. Drupal’s coding standards are purposefully vague here because there is no consensus on this issue (as of 2013), but we respect each other’s abilities and preferences.
+Vendor prefixed properties should be directly before their non-prefixed version. This allows the official version of the property to override any inconsistencies in the vendor-prefixed versions once those browsers implement the official property. If browser bugs or cross-browser issues necessitate any deviation from this ordering, it should be clearly documented.
+Again, the order of properties are meant to reinforce the purpose of the ruleset. As such, it is much more important to add comments to the ruleset then to worry about property ordering.
 ```css
 .selector {
   /*  Positioning declarations * /
@@ -988,19 +870,13 @@ is much more important to add comments to the ruleset then to worry about proper
 Tools like CSScomb may help with automating the order of properties.
 
 #### Exceptions and slight deviations
-Large blocks of single declarations can use a slightly different, single-line format. In this 
-
-case, a space should be included after the opening brace and before the closing brace.
+Large blocks of single declarations can use a slightly different, single-line format. In this case, a space should be included after the opening brace and before the closing brace.
 ```css
 .selector-1 { width: 10%; }
 .selector-2 { width: 20%; }
 .selector-3 { width: 30%; }
 ```
-Long, comma-separated property values—such as collections of gradients or shadows—can be 
-
-arranged across multiple lines in an effort to improve readability and produce more useful 
-
-diffs.
+Long, comma-separated property values—such as collections of gradients or shadows—can be arranged across multiple lines in an effort to improve readability and produce more useful diffs.
 ```css
 .selector {
   background-image:
@@ -1012,9 +888,7 @@ diffs.
 }
 ```
 #### Media Queries
-Media queries should be written in the same style as ruleset. Any containing rulesets are 
-
-indented by two spaces.
+Media queries should be written in the same style as ruleset. Any containing rulesets are indented by two spaces.
 * One space between the media feature and the value.
 * All values to be written in ems unless it is inappropriate.
 * Add the pixel value in a comment directly after the the opening brace.
@@ -1028,14 +902,8 @@ indented by two spaces.
 ```
 ### Miscellaneous
 #### ```@charset``` statements
-Character set statements (like @charset "UTF-8";) are only valid if they are at the very top 
-
-of a CSS file. Since Drupal’s CSS aggregator combines multiple CSS files into one file, 
-
-Drupal will strip all @charset statements so that the aggregated file remains valid CSS.
-This means CSS files MUST NOT include any @charset statements. The default encoding for CSS 
-
-files is UTF-8. Any CSS comments or content property values MUST be encoded with UTF-8.
+Character set statements (like ```@charset, "UTF-8";```) are only valid if they are at the very top of a CSS file. Since Drupal’s CSS aggregator combines multiple CSS files into one file, Drupal will strip all ```@charset``` statements so that the aggregated file remains valid CSS.
+This means CSS files MUST NOT include any ```@charset``` statements. The default encoding for CSS files is ```UTF-8```. Any CSS comments or content property values MUST be encoded with ```UTF-8```.
 
 ### Practical Example
 An example of various conventions.
@@ -1106,19 +974,19 @@ An example of various conventions.
   border-width: 4px;
 }
 ``` 
-________________________________________
+----------
 
 ## References
-[[#head|Top]]
 
-[[http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml#CSS_Style_Rules]]
 
-[[http://make.wordpress.org/core/handbook/coding-standards/css/]]
+http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml#CSS_Style_Rules
 
-[[https://drupal.org/node/1887862]]
+http://make.wordpress.org/core/handbook/coding-standards/css/
 
-[[http://make.wordpress.org/core/handbook/coding-standards/javascript/]]
+https://drupal.org/node/1887862
 
-[[http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml]]
+http://make.wordpress.org/core/handbook/coding-standards/javascript/
 
-[[https://github.com/rwaldron/idiomatic.js/]]
+http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+
+https://github.com/rwaldron/idiomatic.js/
