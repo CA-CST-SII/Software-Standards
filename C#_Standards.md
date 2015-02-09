@@ -32,18 +32,17 @@ The taxonomy presented in this section is a partial library layout with some exp
 
 Structure and usage will be discussed in the subsequent sections.  
 * Apptis
- * Common – Houses the company’s core objects that are not “Account” specific (e.g., the Data 
-
-Access Layer) and may be shared across multiple projects/accounts.
+ * Common – Houses the company’s core objects that are not “Account” specific (e.g., the Data Access Layer) and may be shared across multiple projects/accounts.
    * DataAccess
-    * DBConnection.cs
-    * DBConnectionFactory.cs
-    * …
+      * DBConnection.cs
+      * DBConnectionFactory.cs
+      * …
+      * 
    * Hardware
-    * Factory
-     * …
+      * Factory
+       * …
    * Helper
-    * NumericString.cs
+     * NumericString.cs
      * XMLHelper.cs
      * ParameterizedString.cs
      * TokenValue.cs
