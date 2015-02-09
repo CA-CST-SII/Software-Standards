@@ -1,28 +1,14 @@
-## Introduction## 
-This document contains the C++ coding standards that the CA-CST development teams follow 
-
-during the development of C++ code. 
-### Purpose### 
-Coding standards help make sure that project code has a consistent structure and style. They 
-
-are intended to make the code easier to read, understand, review and maintain.  They further 
-
-reduce the complexity of the code.
-Additional coding guidelines in the form of code metrics (measurements) and coding rules are 
-
-provided in this document for developers. The code metrics guidelines consist of “hand-
-
-calculable” measurements within each method and each class. The coding rules are based on 
-
-information gathered from multiple sources to enhance the security, reliability, 
-
-maintainability, testability and performance.  
+## Introduction
+This document contains the C++ coding standards that the CA-CST development teams follow during the development of C++ code. 
+### Purpose
+Coding standards help make sure that project code has a consistent structure and style. They are intended to make the code easier to read, understand, review and maintain.  They further reduce the complexity of the code.
+Additional coding guidelines in the form of code metrics (measurements) and coding rules are provided in this document for developers. The code metrics guidelines consist of “hand-calculable” measurements within each method and each class. The coding rules are based on information gathered from multiple sources to enhance the security, reliability, maintainability, testability and performance.  
 This document is intended for the following uses:
 * Desk-side reference for C++ developers during coding.
 * Source for code review checklists.
 * Reference for developers who extend and maintain the C++ code.
 * As a governance tool for CA-CST.
-### Scope### 
+### Scope
 This document describes the following for C++:
 * Naming conventions for projects, files, objects, variables, and other code constructs.
 * Formatting conventions for code modules and their comments.
@@ -31,7 +17,7 @@ This document describes the following for C++:
 * Section 508 compliance.
 * Security standards.
 * Coding practices and recommendations.
-### Code Change Scope### 
+### Code Change Scope ### 
 The C++ coding standards described in this document apply to new applications (new code) and 
 
 existing code in the following ways:
