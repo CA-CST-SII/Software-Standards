@@ -122,9 +122,9 @@ Omit the protocol portion (http:, https:) from URLs pointing to images and other
 
 Omitting the protocol—which makes the URL relative—prevents mixed content issues and results in minor file size savings.
 ```html
-<!- - Not recommended - -> <script src="http://www.google.com/js/gweb/analytics/autotrack.js"></script>"
+<!-- Not recommended --> <script src="http://www.google.com/js/gweb/analytics/autotrack.js"></script>"
 
-<!- - Recommended - -> <script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
+<!-- Recommended --> <script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
 
 /* Not recommended */ .example {   background: url(http://www.google.com/images/example); }
 
@@ -148,9 +148,9 @@ All code has to be lowercase: This applies to HTML element names, attributes, at
 
 CSS selectors, properties, and property values (with the exception of strings).
 ```html
-<!- - Not recommended --> <A HREF="/">Home</A>
+<!-- Not recommended --> <A HREF="/">Home</A>
 
-<!- - Recommended --> <img src="google.png" alt="Google">
+<!-- Recommended --> <img src="google.png" alt="Google">
 
 /* Not recommended */ color: #E5E5E5;
 
@@ -162,9 +162,9 @@ Remove trailing white spaces.
 
 Trailing white spaces are unnecessary and can complicate diffs.
 ```html
-<!- - Not recommended --> <p>What?_
+<!-- Not recommended --> <p>What?_
 
-<!- - Recommended --> <p>Yes please.
+<!-- Recommended --> <p>Yes please.
 ```
 
 ## Encoding  
@@ -190,7 +190,7 @@ Mark todos and action items with TODO. All TODO items should be removed from fin
 ```html
 {# TODO(john.doe): revisit centering #} <center>Test</center>
 
-<!- - TODO: remove optional tags --> <ul>   <li>Apples</li>   <li>Oranges</li> </ul>
+<!-- TODO: remove optional tags --> <ul>   <li>Apples</li>   <li>Oranges</li> </ul>
 ```
 
 ## Document Type  
@@ -209,9 +209,9 @@ Use tools such as the W3C HTML validator to test.
 
 Using valid HTML is a measurable baseline quality attribute that contributes to learning about technical requirements and constraints, and that ensures proper HTML usage.
 ```html
-<!- - Not recommended --> <title>Test</title> <article>This is only a test.
+<!-- Not recommended --> <title>Test</title> <article>This is only a test.
 
-<!- - Recommended --> <!DOCTYPE html> <meta charset="utf-8"> 
+<!-- Recommended --> <!DOCTYPE html> <meta charset="utf-8"> 
 <title>Test</title> <article>This is only a test.</article>
 ```
 
@@ -222,9 +222,9 @@ Use elements (sometimes incorrectly called “tags”) for what they have been c
 
 Using HTML according to its purpose is important for accessibility, reuse, and code efficiency reasons.
 ```html
-<!- - Not recommended --> <div onclick="goToRecommendations();">All recommendations</div>
+<!-- Not recommended --> <div onclick="goToRecommendations();">All recommendations</div>
 
-<!- - Recommended --> <a href="recommendations/">All recommendations</a>
+<!-- Recommended --> <a href="recommendations/">All recommendations</a>
 ```
 
 ## Multimedia Fallback  
@@ -242,9 +242,9 @@ is about without ```@alt```, and other users may have no way of understanding wh
 
 you cannot immediately use CSS for, use no alternative text, as in ```alt=""```.)
 ```html
-<!- - Not recommended --> <img src="spreadsheet.png">
+<!-- Not recommended --> <img src="spreadsheet.png">
 
-<!- - Recommended --> <img src="spreadsheet.png" alt="Spreadsheet screenshot.">
+<!-- Recommended --> <img src="spreadsheet.png" alt="Spreadsheet screenshot.">
 ```
 
 ## Separation of Concerns  
@@ -258,14 +258,14 @@ In addition, keep the contact area as small as possible by linking as few style 
 
 Separating structure from presentation from behavior is important for maintenance reasons. It is always more expensive to change HTML documents and templates than it is to update style sheets and scripts.
 ```html
-<!- - Not recommended --> <!DOCTYPE html> <title>HTML sucks</title> <link rel="stylesheet" href="base.css"
+<!-- Not recommended --> <!DOCTYPE html> <title>HTML sucks</title> <link rel="stylesheet" href="base.css"
 media="screen"> <link rel="stylesheet" href="grid.css" media="screen"> <link rel="stylesheet" href="print.css"
 media="print"> <h1 style="font-size: 1em;">HTML stinks</h1> <p>I’ve read about this on a few sites
  but now I’m sure:
 <u>HTML is stupid!!1</u> <center>I can’t believe there’s no way to control the styling of my website
  without doing everything all over again!</center>
 
-<!- - Recommended --> <!DOCTYPE html> <title>My first CSS-only redesign</title> <link rel="stylesheet" 
+<!-- Recommended --> <!DOCTYPE html> <title>My first CSS-only redesign</title> <link rel="stylesheet" 
 href="default.css"> <h1>My first CSS-only redesign</h1> <p>I’ve read about this on a few sites 
 but today I’m actually doing it: separating concerns and avoiding anything in the HTML of my website
 that is presentational. <p>It’s awesome!
@@ -278,11 +278,11 @@ For file size optimization and scanability purposes, consider omitting optional 
 
 (This approach may require a grace period to be established as a wider guideline as it’s significantly different from what web developers are typically taught. For consistency and simplicity reasons it’s best served omitting all optional tags, not just a selection.)
 ```html
-<!- - Not recommended --> <!DOCTYPE html> <html>   <head>     <title>Spending money, spending bytes</title>   </head>   
+<!-- Not recommended --> <!DOCTYPE html> <html>   <head>     <title>Spending money, spending bytes</title>   </head>   
 
 <body>     <p>Sic.</p>   </body> </html>
 
-<!- - Recommended --> <!DOCTYPE html> <title>Saving money, saving bytes</title> <p>Qed.
+<!-- Recommended --> <!DOCTYPE html> <title>Saving money, saving bytes</title> <p>Qed.
 ```
 
 ## type Attributes  
@@ -292,13 +292,13 @@ Do not use type attributes for style sheets (unless not using CSS) and scripts (
 
 Specifying type attributes in these contexts is not necessary as HTML5 implies text/css and text/javascript as defaults. This can be safely done even for older browsers.
 ```html
-<!- - Not recommended --> <link rel="stylesheet" href="//www.google.com/css/maia.css"   type="text/css">
+<!-- Not recommended --> <link rel="stylesheet" href="//www.google.com/css/maia.css"   type="text/css">
 
-<!- - Recommended --> <link rel="stylesheet" href="//www.google.com/css/maia.css">
+<!-- Recommended --> <link rel="stylesheet" href="//www.google.com/css/maia.css">
 
-<!- - Not recommended --> <script src="//www.google.com/js/gweb/analytics/autotrack.js" type="text/javascript"></script>
+<!-- Not recommended --> <script src="//www.google.com/js/gweb/analytics/autotrack.js" type="text/javascript"></script>
 
-<!- - Recommended --> <script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
+<!-- Recommended --> <script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
 ```
 
 ## General Formatting  
@@ -322,7 +322,7 @@ When quoting attributes values, use double quotation marks.
 
 Use double ```("")``` rather than single quotation marks ```('')``` around attribute values.
 ```html
-<!- - Not recommended --> <a class='maia-button maia-button-secondary'>Sign in</a>
+<!-- Not recommended --> <a class='maia-button maia-button-secondary'>Sign in</a>
 
-<!- - Recommended --> <a class="maia-button maia-button-secondary">Sign in</a>
-```
+<!-- Recommended --> <a class="maia-button maia-button-secondary">Sign in</a>
+`
