@@ -26,6 +26,7 @@ The C++ coding standards described in this document apply to new applications (n
 * New applications must follow the C++ coding standards documented in this document.
 * Modifications to existing code will follow the CST C++ coding standards. Exceptions can be made to this rule if following new guidelines creates significant and unnecessary and potentially dangerous re-work when modifying a subset of code within a larger context.
 * Code that is referenced or imported from existing libraries, open source or commercial, will be left unchanged to preserve its integrity and to align with its intended API design.  If existing library code is copied and then modified to be part of the code base, then it is subject to CST coding standards 
+
 ### References
 The following sources were used in creation of the original version of this standard.
 * US-VISIT C++ Coding Standards, Version 1.1, November 19, 2010
@@ -85,9 +86,9 @@ To prevent complications involving multiple inclusions of header files, directly
 .
 .
 #endif 
-```
-<code><FILENAME>_H</code> must be a unique definition among all the source files compiled. 
 
+<FILENAME>_H must be a unique definition among all the source files compiled. 
+```
 #### Global Variables
 For each global variable, document how the global variable is initialized, used, and cleaned up.
 #### Logging
@@ -97,13 +98,7 @@ For each global variable, document how the global variable is initialized, used,
 xLog.print(LOG_NORMAL, "Sql Error: " + xErr.context());
 ```
 #### Comments
-* Use Javadoc tool or Javdoc commenting style for documenting comments within C++ programs.  
-
-This allows for a standard comment format across the Java and C++ languages and allows for 
-
-generation of documentation via tools like Doxygen.  In addition to file, class, method and 
-
-member level comments, note the following:
+* Use Javadoc tool or Javdoc commenting style for documenting comments within C++ programs.  This allows for a standard comment format across the Java and C++ languages and allows for generation of documentation via tools like Doxygen.  In addition to file, class, method and member level comments, note the following:
 * Comment any complex and hard-to-understand code constructions, workarounds or assumptions 
 
 made by the code.
