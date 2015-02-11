@@ -743,15 +743,16 @@ Code level metrics serve to keep the characteristics of the code within certain 
 <td align="left"><p>High Depth of Code: creates complexity that may be hard to understand, follow and maintain.</p></td>
 <td align="left"><p>The level of nesting of loops and decisions making statements.</p></td>
 <td align="left"><p>Limit to 5</p></td>
+<tr class="even">
 <td align="left"><p>Global Data Complexity : This measurement shows the dependence of a module of code on the global data present in a system and as such can violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide “global” data to other classes and methods, making all such units of code dependent on one another; i.e. coupled with multiple other structures.</p></td>
 <td align="left"><p>The count of number of paths through global data.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><p>Avoid high fan-out: high values of this metric indicate excessive interaction between modules and a coupling between disparate structures. This violates encapsulation and modularity guidelines and reduces potential re-use and component development capabilities since they are coupled with multiple other structures.</p></td>
 <td align="left"><p>The count of the subordinate modules called from a single super-ordinate module.</p></td>
 <td align="left"><p>Less than or equal to 7</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><p>Number of Logical Branches in a method: very similar to Cyclomatic complexity. Useful for understanding high paths are in need of testing in any piece of code. A module with a Cyclomatic Complexity of 12 for example, has 22 branches which means the minimum number of paths to cover during testing.</p></td>
 <td align="left"><p>Logical branches: Correlates to threshold for Cyclomatic Complexity of 10 - which would equal 19 branches, for a Cyclomatic Complexity of 12 it is approximately 22.</p></td>
 <td align="left"><p>Less than or equal to 22</p></td>
