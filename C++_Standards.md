@@ -100,56 +100,30 @@ xLog.print(LOG_NORMAL, "Sql Error: " + xErr.context());
 ```
 #### Comments
 * Use Javadoc tool or Javdoc commenting style for documenting comments within C++ programs.  This allows for a standard comment format across the Java and C++ languages and allows for generation of documentation via tools like Doxygen.  In addition to file, class, method and member level comments, note the following:
-* Comment any complex and hard-to-understand code constructions, workarounds or assumptions 
-
-made by the code.
+* Comment any complex and hard-to-understand code constructions, workarounds or assumptions made by the code.
 * Remove dead code rather than comment it out.
-* Use @todo directive to comment code which require additional work so they can be easily 
+* Use @todo directive to comment code which require additional work so they can be easily identified and can be extracted by automated tools.  All @todo directives should be handled and removed prior to integration test. 
 
-identified and can be extracted by automated tools.  All @todo directives should be handled 
-
-and removed prior to Product Integration Test (PIT). 
 An example of proper comment is shown in Section 7.0, Code Example, of this document.
-* For more information on Javadoc, refer to: 
 
-http://java.sun.com/j2se/javadoc/writingdoccomments/
+* For more information on Javadoc, refer to: http://java.sun.com/j2se/javadoc/writingdoccomments/
 * For more information on the Doxygen Tool, refer to: http://www.stack.nl/~dimitri/doxygen/ 
-#### Exception Handling#### 
-* Use the Err class for application level exceptions.   Subclassing Err is recommended to 
 
-allow the receiver of the exception to distinguish between error types.  
-* All exception handling should be logged to the application log and such that all logs 
+#### Exception Handling
+* Use the Err class for application level exceptions.   Subclassing Err is recommended to allow the receiver of the exception to distinguish between error types.  
+* All exception handling should be logged to the application log and such that all logs contain identifiable exceptions for operational debugging purposes.  Errors should never be silently ignored.  At a minimum, the condition should be logged.  
 
-contain identifiable exceptions for operational debugging purposes.  Errors should never be 
+##### Error Handling
+The framework will allow a configurable number of exceptions to be thrown prior to killing the daemon. The  transaction  will  instead  be  thrown  into  data_error  when  the  maximum limit  has  been reached. 
 
-silently ignored.  At a minimum, the condition should be logged.  
-##### Error Handling##### 
-The framework will allow a configurable number of exceptions to be thrown prior to killing 
+The programmer is expected to detect any errors which are likely to be caused by bad input data or existing data (e.g. in the database) and use the 'data_error' state. 
 
-the daemon. The  transaction  will  instead  be  thrown  into  data_error  when  the  maximum 
+### Naming Conventions
+This section contains naming conventions that apply.  Do not change existing applications since there will be large impact to the existing software. This means new code in the middle of an existing file must follow new guidelines as much as possible without disrupting the existing code.  However, new files within existing application must follow these new naming conventions.
 
- limit  has  been reached. 
-The programmer is expected to detect any errors which are likely to be caused by bad input 
+Meaningful names are important for maintaining understandable, high-quality code. Developers should take the time to choose names that are descriptive and unambiguous. 
 
-data or existing data (e.g. in the database) and use the 'data_error' state. 
-### Naming Conventions### 
-This section contains naming conventions that apply.  Do not change existing applications 
-
-since there will be large impact to the existing software. This means new code in the middle 
-
-of an existing file must follow new guidelines as much as possible without disrupting the 
-
-existing code.  However, new files within existing application must follow these new naming 
-
-conventions.
-Meaningful names are important for maintaining understandable, high-quality code. Developers 
-
-should take the time to choose names that are descriptive and unambiguous. 
-Except for user-defined constants, all identifier names should be written as a mix of upper 
-
-and lower case letters. This coding standard uses the following rules for formatting 
-
-identifier names:
+Except for user-defined constants, all identifier names should be written as a mix of upper and lower case letters. This coding standard uses the following rules for formatting identifier names:
 
 <table>
 <caption><em>Table 4 1. Formatting Identifier Names</em></caption>
