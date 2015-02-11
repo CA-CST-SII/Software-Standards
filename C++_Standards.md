@@ -704,7 +704,7 @@ Code level metrics serve to keep the characteristics of the code within certain 
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"colspan="3"><p>Class Level</p></td>
+<td align="left"colspan="3"><b>Class Level</b></td>
 </tr>
 <tr class="even">
 <td align="left"><p>Classes with High # of Methods: Such classes are difficult to understand, maintain and test.</p></td>
@@ -727,7 +727,7 @@ Code level metrics serve to keep the characteristics of the code within certain 
 <td align="left"><p>Less than or equal to 20 %</p></td>
 </tr>
 <tr class="even">
-<td align="center"colspan="3"><p>Method Level</p></td>
+<td align="left"colspan="3"><b>Method Level</b></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>Cyclomatic Complexity: can make a piece of code; i.e. a method harder to understand, maintain and test. In addition high levels of Cyclomatic complexity can introduce security risks as hard-to-understand code may perform undesirable actions.</p></td>
@@ -831,3 +831,5 @@ Below is a one-page C++ coding styling standard quick reference using a sample c
 </p><p align="center">
 Figure 12-1. C++ Coding Style Example
 </p> 
+![Fig15.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure 15.1.jpg "Java Code Example")
+Figure 15-1. Java Code Example
