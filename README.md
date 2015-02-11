@@ -8,8 +8,7 @@ The Department of State, Bureau of Consular Affairs, Office of Consular Systems 
 
 This language agnostic guide gives general guidelines applicable to many different types of software code. These general guidelines increase the reliability, performance, security, and maintainability of all systems developed in compliance with this guide. The Language specific Guides contain detailed information about code formatting and best practices that further expand on the topics in the overarching agnostic guide. These standards are understood to be dynamic living documents subject to continuous improvement. The Wiki approach will capture and document real time changes to architecture and Bureau constraints, as well as changes to industry best practices. Input from development staff, software engineering staff, leveraging both private and public sector personnel will be key to the development of the initial drafts and continual updates ensuring constant and continual refinement and quality of these standards.
 
-## Children Pages
-
+## Published standards
 
 [Consular Systems and Technology Division General Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/General%20Code%20Agnostic%20Quality%20Standards.md)
 
