@@ -142,44 +142,24 @@ Except for user-defined constants, all identifier names should be written as a m
 </ul>
 
 <ul>
-<li>Variable types should have the following prefix:</li>
-<li><ul>
-<li>integer - ‘i’</li>
-</li>
-<li><ul>
-<li>long - ‘l’ (lower case L)</li>
-</li>
-<li><ul>
-<li>float - ‘f’</li>
-</li>
-<li><ul>
-<li>double - ‘d’</li>
-</li>
-<li><ul>
-<li>bool - ‘b’</li>
-</li>
-<li><ul>
-<li>char - ‘c’</li>
-</li>
-<li><ul>
-<li>string - ‘str’</li>
-</li>
-<li><ul>
-<li>vector - ‘v’</li>
-</li>
-<li><ul>
-<li>others - ‘x’ (this includes user defined classes)</li>
-</ul></li>
+	<li>Variable types should have the following prefix:</li>
+ 	<ul>
+ 		<li>integer - ‘i’</li>
+		<li>long - ‘l’ (lower case L)</li>
+		<li>float - ‘f’</li>
+		<li>double - ‘d’</li>
+		<li>bool - ‘b’</li>
+		<li>char - ‘c’</li>
+		<li>string - ‘str’</li>
+		<li>vector - ‘v’</li>
+		<li>others - ‘x’ (this includes user defined classes)</li>
+	</ul>
 <li>Additionally, variable modifiers should have the following prefix:</li>
-<li><ul>
-<li>pointer – ‘p’</li>
-</li>
-<li><ul>
-<li>reference – ‘r’</li>
-</li>
-<li><ul>
-<li>member variables – ‘m_’</li>
-</ul></li>
+	<ul>
+		<li>pointer – ‘p’</li>
+		<li>reference – ‘r’</li>
+		<li>member variables – ‘m_’</li>
+	</ul>
 <li>Variable names should be short yet meaningful. The choice of a variable name should be mnemonic- that is, designed to indicate to the casual observer the intent of its use. One-character variable names should be avoided except for temporary “throwaway” variables. Common names for temporary variables are i, j, k, m, and n for integers; c, d, and e for characters.</li>
 <li>No instance variables should be declared as public; getters and setters should be preferred.</li>
 <li>Note that const references should not use the leading ‘r’ in variable names.</li>
