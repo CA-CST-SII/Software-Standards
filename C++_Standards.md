@@ -194,10 +194,9 @@ setCustomerData();</code></pre></td>
 </tr>
 </tbody>
 </table>
-#### Packages and Files#### 
-This section describes the naming conventions for development files created in the C++ 
 
-project.  The following file extensions will be used for all CA-CST files.
+#### Packages and Files
+This section describes the naming conventions for development files created in the C++ project.  The following file extensions will be used for all CA-CST files.
 
 <table>
 <caption><em>Table 4 2. CA-CST file extensions</em></caption>
@@ -227,116 +226,91 @@ project.  The following file extensions will be used for all CA-CST files.
 </tbody>
 </table>
 
-#### Constants#### 
+#### Constants
 * Always use “const” to indicate input only reference parameters, for example:
-<code>
+```cpp
 bool getTxStatus(const string& strID, string& strStatus);
-</code>
+```
 * Use the “static const” keyword to declare member constants.
 * Use constants to avoid hard-coded values in the code.
-* Use uppercase letters and replace spaces with underscores to format the name of the constant 
-
-for user-defined constants.
+* Use uppercase letters and replace spaces with underscores to format the name of the constant for user-defined constants.
 * Use common sense and provide meaningful constant name (not e, var, io, etc).
-* If there are several related integer values, an enumeration type can be used to group the 
+* If there are several related integer values, an enumeration type can be used to group the constants. 
+* No arbitrary numbers should be allowed within the code – these values should be placed in constants files and clearly described.
+* Constants used over multiple files (classes) should be placed in a separate constants file with a meaningful name.
+* Constants which may need to be modified over the lifetime of the project should be placed in header files or configuration files where they can be modified without recompiling the code.
+* Run time configuration variables that are modifiable by the O&M staff should be retrieved from the database globals file.
 
-constants. 
-* No arbitrary numbers should be allowed within the code – these values should be placed in 
-
-constants files and clearly described.
-* Constants used over multiple files (classes) should be placed in a separate constants file 
-
-with a meaningful name.
-* Constants which may need to be modified over the lifetime of the project should be placed in 
-
-header files or configuration files where they can be modified without recompiling the code.
-* Run time configuration variables that are modifiable by the O&M staff should be retrieved 
-
-from the database globals file.
 The following are examples of specifying a constant:
-<pre>
+```cpp
 const int Base_BiographicEnroll:UNASSIGNED_ID = -2;
 
 (Modify the example!)
-</pre>
-The following is an example of using enumeration to specify a group of related integer 
 
-constants:
-<pre>
+```
+The following is an example of using enumeration to specify a group of related integer constants:
+```cpp
 	typedef enum {
 		EAST(0),
 		SOUTH(1),
 		WEST(2},
 		NORTH(3)
 	} Direction;
-</pre>
-### Formatting Conventions### 
+```
+
+### Formatting Conventions
 * Use spaces, not tabs.
 * The length of C++ source lines, including comments, should not exceed 79 characters.  This 
 
 standard is intended to accommodate any printer and text editor.
 * Use liberal amounts of white space to improve code readability.
-* When a complete statement or an expression will not fit on a single line, break it according 
-
-to these general principles:  
-* * Break after a comma.  
-* * Break before an operator.  
-* * Prefer higher-level breaks to lower-level breaks.  
-* * Align the new line with the beginning of the expression at the same level on the previous 
-
-line.  
-* * If the above rules lead to confusing code or to code that's all up against the right 
-
-margin, back up the indentation a few levels as needed for readability. 
-#### Class File Structure#### 
+* When a complete statement or an expression will not fit on a single line, break it according to these general principles: 
+  * Break after a comma.  
+  * Break before an operator.  
+  * Prefer higher-level breaks to lower-level breaks.  
+  * Align the new line with the beginning of the expression at the same level on the previous line.  
+  * If the above rules lead to confusing code or to code that's all up against the right margin, back up the indentation a few levels as needed for readability. 
+ 
+#### Class File Structure
 The elements of a class file should appear in the following order: 
-#Class (static) variables 
-#Member variables  
-#Constructors  
-#Methods grouped by functionality
-#### Comments#### 
-The formatting for comments will follow the Javadoc standard. A documentation comment is made 
+1. Class (static) variables 
+2. Member variables  
+3. Constructors  
+4. Methods grouped by functionality
 
-up of two parts -- a description followed by zero or more tags, with a blank line (containing 
-
-a single asterisk "* ") between these two sections:  
-<pre>
-/* *  
+#### Comments
+The formatting for comments will follow the Javadoc standard. A documentation comment is made up of two parts `--` a description followed by zero or more tags, with a blank line (containing a single asterisk `"*"`) between these two sections:  
+```cpp
+/**  
  *  This is the description part of a doc comment
  * 
  *  @tag    Comment for the tag
- * /
-</pre>
-The first line is indented to line up with the code below the comment, and starts with the 
+ */
+```
+The first line is indented to line up with the code below the comment, and starts with the begin-comment symbol `(/** )` followed by a return.  
+Subsequent lines start with an asterisk `*` . They are indented an additional space so the asterisks line up. A space separates the asterisk from the descriptive text or tag that follows it.  
 
-begin-comment symbol (/* * ) followed by a return.  
-Subsequent lines start with an asterisk * . They are indented an additional space so the 
+Insert a blank comment line between the description and the list of tags, as shown in the preceding example.
 
-asterisks line up. A space separates the asterisk from the descriptive text or tag that 
-
-follows it.  
-Insert a blank comment line between the description and the list of tags, as shown in the 
-
-preceding example.
 Insert additional blank lines to create "blocks" of related tags.  
-The last line begins with the end-comment symbol (* /) indented so the asterisks line up and 
 
-followed by a return. Note that the end-comment symbol contains only a single asterisk (* ).  
+The last line begins with the end-comment symbol `(*/)` indented so the asterisks line up and followed by a return. Note that the end-comment symbol contains only a single asterisk `(*)`.  
+
 A blank line should precede and follow the comment block. 
-### ## Comments: Class Header### ## 
+
+##### Comments: Class Header
 The following comments will appear before the declaration of every class. 
-<pre>
-/* *  
+```cpp
+/**  
  *  A description of what the class does. 
  *  
- * /
-</pre>
-### ## Comments: Method Header### ## 
+ */
+```
+##### Comments: Method Header
 The following comments will appear before every method declaration in the header file 
-
 (including main).  
-<pre>
-/* * 
+```cpp
+/** 
  *  A description of what the method does
  * 
  *  @param       name    description
@@ -352,8 +326,8 @@ The following comments will appear before every method declaration in the header
                  .
  *  @exception   name    description
  * 
- * /
-</pre
+ */
+```
 Definition of Comments
 
 * @param
