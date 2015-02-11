@@ -332,18 +332,18 @@ Definition of Comments
 
 * @param
 
-The @param tag is followed by the name (not type) of the parameter, followed by a description of the parameter. Additional spaces should be inserted between the name and description so that comments line up in a block. Dashes or other punctuation should not be inserted before the description. The name always starts with a lowercase letter. The description is most usually a phrase, starting with a lowercase letter and ending without a period, unless it contains a complete sentence.  
+>The @param tag is followed by the name (not type) of the parameter, followed by a description of the parameter. Additional spaces should be inserted between the name and description so that comments line up in a block. Dashes or other punctuation should not be inserted before the description. The name always starts with a lowercase letter. The description is most usually a phrase, starting with a lowercase letter and ending without a period, unless it contains a complete sentence.  
 
 * @return
   
-The @return tag is followed by a description of the return value. Whenever possible, detailed information (such as returns -1 when an out-of-bounds argument is supplied) should be provided. Spaces should be used to line the description up with the rest of the comments in the method.  
+>The @return tag is followed by a description of the return value. Whenever possible, detailed information (such as returns -1 when an out-of-bounds argument is supplied) should be provided. Spaces should be used to line the description up with the rest of the comments in the method.  
 
 * @exception
   
-An @exception tag should be included for at least any declared (checked) exceptions. It can also document any non-declared exceptions that can be thrown by the method, (normally those that appear directly in the implementation, rather than those that are indirectly thrown).
+>An @exception tag should be included for at least any declared (checked) exceptions. It can also document any non-declared exceptions that can be thrown by the method, (normally those that appear directly in the implementation, rather than those that are indirectly thrown).
  
 * Custom tags
-Java SDK 1.4 and later versions support custom tags to the javadoc tool.  One example is putting @pre and @post tags to describe specific runtime conditions in method headers which appear in the javadoc output just like @param and @return.
+>Java SDK 1.4 and later versions support custom tags to the javadoc tool.  One example is putting @pre and @post tags to describe specific runtime conditions in method headers which appear in the javadoc output just like @param and @return.
 
 Comment Example
 For example, source code that contains the following statements: 
@@ -439,7 +439,7 @@ while (!done) {
 * The enclosed statements should be indented one more level than the compound statement. 
 * The opening brace should be at the end of the same line or on the next line just below the text that begins the compound statement; the closing brace should begin a line and be indented to the beginning of the compound statement. 
 * Braces are used around all statements, even single statements, when they are part of a control structure, such as an if-else or for statement. This makes it easier to add statements without accidentally introducing bugs due to forgetting to add braces. 
-* 
+
 #### Return Statement
 A return statement with a value should not use parentheses unless it is an expression that requires parentheses or the parentheses provide clarity. Example: 
 ```cpp
@@ -477,7 +477,7 @@ If statements containing only two clauses may be shortened by using the ternary 
     largest = a;
 } else if (b > a) {
     largest = b;
-} else /*  a ##  b * / {
+} else /*  a ##  b */ {
     std::cout << "Uh oh, they're the same!\n";
 }
 ```
@@ -509,30 +509,31 @@ When using the comma operator in the initialization or update clause of a “for
 
 #### while Statements
 A “while” statement should have the following form: 
-<pre>
+```cpp
 while (condition) {
     statements;
 }
-</pre>
+```
 An empty “while” statement should have the following form: 
-<pre>
+```cpp
 while (condition);
-</pre>
-#### do-while Statements#### 
+```
+
+#### do-while Statements
 A “do-while” statement should have the following form: 
-<pre>
+```cpp
 do {
     statements;
 } while (condition);
-</pre>
-#### switch Statements#### 
+```
+#### switch Statements
 A “switch” statement should have the following form: 
-<pre>
+```cpp
 switch (condition) {
 case ABC:
 
     statements;
-    /*  falls through * /
+    /*  falls through */
 
 case DEF:
 
@@ -549,62 +550,47 @@ default:
     statements;
     break;
 }
-</pre>
-Every time a case falls through (i.e. does not include a break statement), add a comment 
+```
+Every time a case falls through (i.e. does not include a break statement), add a comment where the break statement would normally be. This is shown in the preceding code example with the `/*`  falls through `*/` comment. 
+Every switch statement should include a default case. The break in the default case is redundant, but it prevents a fall-through error if later another case is added. 
 
-where the break statement would normally be. This is shown in the preceding code example with 
-
-the /*  falls through * / comment. 
-Every switch statement should include a default case. The break in the default case is 
-
-redundant, but it prevents a fall-through error if later another case is added. 
-#### try-catch Statements#### 
+#### try-catch Statements
 A “try-catch” statement should have the following format: 
-<pre>
+```cpp
 try {
     statements;
 } catch (ExceptionClass e) {
     statements;
 }
-</pre>
-#### Exception Statements#### 
-### ## Throwing an Exception### ## 
-Exceptions should contain sufficient context information to indicate where the throw 
+```
+#### Exception Statements
+##### Throwing an Exception
+Exceptions should contain sufficient context information to indicate where the throw occurred. 
 
-occurred. 
-A completed, precise description of the exception should be included while throwing an 
-
-exception. The text should be as simple and direct as possible, and end with a period. 
-
-Uppercase is mandatory in the first word of the sentence, and should be used inside the 
-
-sentence only when required.
+A completed, precise description of the exception should be included while throwing an exception. The text should be as simple and direct as possible, and end with a period. Uppercase is mandatory in the first word of the sentence, and should be used inside the sentence only when required.
 For example: 
-<pre>
+```cpp
       if (m_bDoneTranslation ##  true)
       {
           throw Err("Config::load() error. The config object was 
 already loaded.");
       }
-<\pre>
+```
 Examples of correct exception text are:
 * “Capability for checking document not implemented yet.”
 * “Incorrect document is provided.”
 * “File not found in given path.”
+
 Examples of incorrect exception text:
 * “We’re sorry, but we have not implemented the capability to delete entries at the moment.”
 * “Incorrect password.”
 * “Certificate file not there.”
-The first example politely beats around the bush instead of concisely stating the problem 
 
-such that technical support staff can efficiently correct a problem.  The second example 
+The first example politely beats around the bush instead of concisely stating the problem such that technical support staff can efficiently correct a problem.  The second example treats an ordinary user situation as a program exception.  The last exception lacks sufficient detail.
 
-treats an ordinary user situation as a program exception.  The last exception lacks 
-
-sufficient detail.
-### ## Catching an Exception### ## 
+##### Catching an Exception
 When catching an exception, the statement should have the following sample format:
-<pre>
+```cpp
 void Config::load(string strFullpath) {
     try {
        ...
@@ -613,39 +599,28 @@ void Config::load(string strFullpath) {
         xLog.print(LOG_NORMAL, "Config::load, “ + xErr.context());
     }
 }
-</pre>
-The catch statement should always print the message contained in the exception object or re-
+```
+The catch statement should always print the message contained in the exception object or re-throw the exception to the higher level method.
 
-throw the exception to the higher level method.
-### Declarations### 
-#### Number Per Line#### 
-Maximum one declaration per line is mandatory. The comment describing each variable should be 
-
-placed above the declaration.
-<pre>
+### Declarations
+#### Number Per Line
+Maximum one declaration per line is mandatory. The comment describing each variable should be placed above the declaration.
+```cpp
 // Indentation level      
 int level = 0; 
 
 // Size of table
 int size = 0;  
-</pre>
+```
 The following is not allowed:
-<pre>
+```cpp
 int level, size;
-</pre>
-#### Initialization#### 
-Local variables should be initialized where they are declared. The only reason not to 
-
-initialize a variable where it is declared is if the initial value depends on some 
-
-computation occurring first. 
-#### Placement#### 
-Declarations should be placed only at the beginning of local blocks. Do not wait to declare 
-
-variables until their first use; it can confuse the unwary programmer and hamper code 
-
-portability within the scope.  
-<pre>
+```
+#### Initialization
+Local variables should be initialized where they are declared. The only reason not to initialize a variable where it is declared is if the initial value depends on some computation occurring first. 
+#### Placement
+Declarations should be placed only at the beginning of local blocks. Do not wait to declare variables until their first use; it can confuse the unwary programmer and hamper code portability within the scope.  
+```cpp
 // beginning of method block
 void myMethod() {
     int int1 = 0;         
@@ -655,22 +630,17 @@ void myMethod() {
         ...
  	   }
 }
-</pre>
-Note.  One exception to the placement rule is for “first use” declarations that cannot be 
+```
+Note.  One exception to the placement rule is for “first use” declarations that cannot be initialized until all data required for them is collected.
 
-initialized until all data required for them is collected.
-Another exception to the rule is indexes of for loops, which in C++ can be declared in the 
-
-for statement: 
-<pre>
+Another exception to the rule is indexes of for loops, which in C++ can be declared in the for statement: 
+```cpp
 for (int i = 0; i < iMaxLoops; i++) { 
     ... 
 }
-</pre>
-Avoid local declarations that hide declarations at higher levels. For example, do not declare 
-
-the same variable name in an inner block:
-<pre>
+```
+Avoid local declarations that hide declarations at higher levels. For example, do not declare the same variable name in an inner block:
+```cpp
 int iCount;
 ...
 myMethod() {
@@ -680,52 +650,23 @@ myMethod() {
     }
     ...
 }
-</pre>
-#### Class Declarations####  
+```
+#### Class Declarations
 When coding C++ classes the following formatting rules should be followed: 
-* No space between a method name and the parenthesis "(" starting its parameter list, followed 
+* No space between a method name and the parenthesis "(" starting its parameter list, followed by the parenthesis “)”
+* Open brace "{" appears at the end of the same line as the declaration statement or on the next line directly under the first character of the class name.
 
-by the parenthesis “)”
-* Open brace "{" appears at the end of the same line as the declaration statement or on the 
-
-next line directly under the first character of the class name.
-#### Class Implementations####  
+#### Class Implementations
 When coding C++ classes the following formatting rules should be followed: 
-* Each method implementation shall be preceded by a single line comment that distinguishes the 
+* Each method implementation shall be preceded by a single line comment that distinguishes the encoded method from surrounding source statements.
+* No space between a method name and the parenthesis "(" starting its parameter list, followed by the parenthesis “)”.
+* Open brace "{" appears on the next line by itself directly under the first character of the method name.
+* As noted in the Statements Section, logic statements with the method will include opening braces at the end of the same line or on the next line directly under beginning text of the logical statement. 
 
-encoded method from surrounding source statements.
-* No space between a method name and the parenthesis "(" starting its parameter list, followed 
+About 60-70% of developers append curly braces at the end of the same line, whereas the rest of the people place the opening brace on the end of a line.  A strong argument for not placing braces at the end of lines is two-fold. First, if the line scrolls off the screen, the brace cannot be viewed anymore. Two, when scanning code to find blocks (defined by braces) it is easier and faster to just move eyes vertically, rather that both vertically and horizontally to find them. By placing braces at the beginning of their own lines it is much easier to decipher code blocks. Comments can even be added immediately after the opening brace (on the same line) to hint to what that block is trying to accomplish. 
 
-by the parenthesis “)”.
-* Open brace "{" appears on the next line by itself directly under the first character of the 
-
-method name.
-* As noted in the Statements Section, logic statements with the method will include opening 
-
-braces at the end of the same line or on the next line directly under beginning text of the 
-
-logical statement. 
-About 60-70% of developers append curly braces at the end of the same line, whereas the rest 
-
-of the people place the opening brace on the end of a line.  A strong argument for not 
-
-placing braces at the end of lines is two-fold. First, if the line scrolls off the screen, 
-
-the brace cannot be viewed anymore. Two, when scanning code to find blocks (defined by 
-
-braces) it is easier and faster to just move eyes vertically, rather that both vertically and 
-
-horizontally to find them. By placing braces at the beginning of their own lines it is much 
-
-easier to decipher code blocks. Comments can even be added immediately after the opening 
-
-brace (on the same line) to hint to what that block is trying to accomplish. 
-* Closing brace "}" starts a line by itself indented to match its corresponding opening 
-
-statement, except when it is a null statement the "}" should appear immediately after the 
-
-"{". 
-<pre>
+* Closing brace "}" starts a line by itself indented to match its corresponding opening statement, except when it is a null statement the "}" should appear immediately after the "{". 
+```cpp
 class Sample : public BaseSample {
     int ivar1 = 0;
     int ivar2 = 0;
@@ -737,151 +678,88 @@ class Sample : public BaseSample {
 	 }
     ...
 }
-</pre>
+```
 * Methods are separated by a blank line.
-#### Access Level#### 
-C++ instance variables and methods have three access levels: public, protected, private.  As 
 
-access level can have a big impact on maintainability of the software system, it is important 
+#### Access Level
+C++ instance variables and methods have three access levels: public, protected, private.  As access level can have a big impact on maintainability of the software system, it is important to consider the following guidelines:
+* Variables should be declared as locally as possible.
+* Avoid global variables as much as possible.
+* Variables and methods should have the least possible access level.
+* Public instance variables should be avoided at all costs.
+* Protected instance variable should be avoided unless the instance variable is declared as const
+* The only public methods that a class exposes will be the methods of the interface it implements.
 
-to consider the following guidelines:
-* Variables should be declared as locally as possible
-* Avoid global variables as much as possible
-* Variables and methods should have the least possible access level
-* Public instance variables should be avoided at all costs
-* Protected instance variable should be avoided unless the instance variable is declared as 
+### Code Level Metrics
+Code level metrics serve to keep the characteristics of the code within certain limits in order to enhance the readability/understandability, maintainability, testability, and in certain cases, security and performance of the code. The most commonly known metric is the Cyclomatic complexity or very roughly, the number of decision-making and/or branches in the code. High levels of complexity lead to difficulty understanding and testing code and therefore reduce the maintainability and testability of the code.  The less complexity in the code, the less room for error, the easier it is to test and to understand and therefore maintain the code.  Ensure your C++ code meets the following metrics:
 
-const
-* The only public methods that a class exposes will be the methods of the interface it 
+<table>
+<caption><em>Table 8 1. Code level metrics</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>Class Level</p></th>
+<th align="left"><p>Description and How to Calculate</p></th>
+<th align="left"><p>Recommended Threshold</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>Class Level</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Classes with High # of Methods: Such classes are difficult to understand, maintain and test.</p></td>
+<td align="left"><p>Count the number of methods per class and keep them below the recommended threshold.</p></td>
+<td align="left"><p>Less than or equal to 20</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Classes Dependent on their Children: This is a violation of OO programming guidelines as no parent class shall be dependent on its children.</p></td>
+<td align="left"><p>Do not create class structures that have circular dependencies or parents that make calls to child methods.</p></td>
+<td align="left"><p>ZERO</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Highly Coupled Classes: CBO: Such classes violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they are coupled with multiple other structures.</p></td>
+<td align="left"><p>Count of number of references to classes outside the current class hierarchy and stay within the recommended threshold.</p></td>
+<td align="left"><p>Less than or equal to 2</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Public/Protected Data (PUB_DATA) Ratio of Public/Private Data (Threshold =&lt;20%) Large percentages of Public Data violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide “global” data to other classes and methods, making all such units of code dependent on one another; i.e. coupled with multiple other structures.</p></td>
+<td align="left"><p>The ratio of public data (attributes) in a class to the private data in same class.</p></td>
+<td align="left"><p>Less than or equal to 20 %</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Method Level</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Cyclomatic Complexity: can make a piece of code; i.e. a method harder to understand, maintain and test. In addition high levels of Cyclomatic complexity can introduce security risks as hard-to-understand code may perform undesirable actions.</p></td>
+<td align="left"><p>The number of linearly-independent paths through a program module – roughly the Number of all decisions and loops in a method or number of branches – stay within the recommended threshold.</p></td>
+<td align="left"><p>Less than or equal to 12</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>DESIGN Complexity: this complexity measure evaluates the dependence of a method on other methods and as such is a measure of how encapsulation and modularity (independence) guidelines have been followed.</p></td>
+<td align="left"><p>The number of all decisions and loops that contain calls to subordinate modules.</p></td>
+<td align="left"><p>Less than or equal to 7</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>High Depth of Code: creates complexity that may be hard to understand, follow and maintain.</p></td>
+<td align="left"><p>The level of nesting of loops and decisions making statements.</p></td>
+<td align="left"><p>Limit to 5</p></td>
+<td align="left"><p>Global Data Complexity : This measurement shows the dependence of a module of code on the global data present in a system and as such can violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide “global” data to other classes and methods, making all such units of code dependent on one another; i.e. coupled with multiple other structures.</p></td>
+<td align="left"><p>The count of number of paths through global data.</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Avoid high fan-out: high values of this metric indicate excessive interaction between modules and a coupling between disparate structures. This violates encapsulation and modularity guidelines and reduces potential re-use and component development capabilities since they are coupled with multiple other structures.</p></td>
+<td align="left"><p>The count of the subordinate modules called from a single super-ordinate module.</p></td>
+<td align="left"><p>Less than or equal to 7</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Number of Logical Branches in a method: very similar to Cyclomatic complexity. Useful for understanding high paths are in need of testing in any piece of code. A module with a Cyclomatic Complexity of 12 for example, has 22 branches which means the minimum number of paths to cover during testing.</p></td>
+<td align="left"><p>Logical branches: Correlates to threshold for Cyclomatic Complexity of 10 - which would equal 19 branches, for a Cyclomatic Complexity of 12 it is approximately 22.</p></td>
+<td align="left"><p>Less than or equal to 22</p></td>
+</tr>
+</tbody>
+</table>
 
-implements.
-### Code Level Metrics### 
-Code level metrics serve to keep the characteristics of the code within certain limits in 
-
-order to enhance the readability/understandability, maintainability, testability, and in 
-
-certain cases, security and performance of the code. The most commonly known metric is the 
-
-Cyclomatic complexity or very roughly, the number of decision-making and/or branches in the 
-
-code. High levels of complexity lead to difficulty understanding and testing code and 
-
-therefore reduce the maintainability and testability of the code.  The less complexity in the 
-
-code, the less room for error, the easier it is to test and to understand and therefore 
-
-maintain the code.  Ensure your C++ code meets the following metrics:
-
-{| class="wikitable"style="color:#303030;" cellpadding="20"
-|+ style="caption-side:bottom; color:#0000CC;"|''Table 8 1. Code level metrics''
-|-
-! scope="col"| Class Level	
-! scope="col"| Description and How to Calculate
-! scope="col"| Recommended Threshold	
-|-
-! scope="row" style="color: black; background-color: #C8C8C8; text-align:left;" colspan="3"| 
-
-Class Level
-|-
-| Classes with High # of Methods: Such classes are difficult to understand, maintain and 
-
-test. 		
-| Count the number of methods per class and keep them below the recommended threshold. 	
-| Less than or equal to 20 
-|-
-| Classes Dependent on their Children: This is a violation of OO programming guidelines as no 
-
-parent class shall be dependent on its children. 	
-| Do not create class structures that have circular dependencies or parents that make calls 
-
-to child methods.	
-| ZERO
-|-
-| Highly Coupled Classes:  CBO: Such classes violate encapsulation and modularity guidelines 
-
-and reduce potential re-use and component development capabilities since they are coupled 
-
-with multiple other structures. 	
-| Count of number of references to classes outside the current class hierarchy and stay 
-
-within the recommended threshold. 	
-| Less than or equal to 2 
-|-
-| Public/Protected Data (PUB_DATA)
-Ratio of Public/Private Data (Threshold =<20%)
-Large percentages of Public Data violate encapsulation and modularity guidelines and reduce 
-
-potential re-use and component development capabilities since they provide “global” data to 
-
-other classes and methods, making all such units of code dependent on one another; i.e. 
-
-coupled with multiple other structures.	
-| The ratio of public data (attributes) in a class to the private data in same class.	
-| Less than or equal to 20 %
-|-
-! scope="row" style="color: black; background-color: #C8C8C8; text-align:left;" colspan="3"| 
-
-Method Level
-|-	 	 
-| Cyclomatic Complexity: can make a piece of code; i.e. a method harder to understand, 
-
-maintain and test. In addition high levels of Cyclomatic complexity can introduce security 
-
-risks as hard-to-understand code may perform undesirable actions. 
-| The number of linearly-independent paths through a program module – roughly the Number of 
-
-all decisions and loops in a method or number of branches – stay within the recommended 
-
-threshold. 
-| Less than or equal to 12 
-|-
-| DESIGN Complexity:  this complexity measure evaluates the dependence of a method on other 
-
-methods and as such is a measure of how encapsulation and modularity (independence) 
-
-guidelines have been followed.  
-| The number of all decisions and loops that contain calls to subordinate modules.
-| Less than or equal to 7
-|-
-| High Depth of Code: creates complexity that may be hard to understand, follow and maintain.
-| The level of nesting of loops and decisions making statements.
-| Limit to 5
-|-
-| Global Data Complexity :  This measurement shows the dependence of a module of code on the 
-
-global data present in a system and as such can violate encapsulation and modularity 
-
-guidelines and reduce potential re-use and component development capabilities since they 
-
-provide “global” data to other classes and methods, making all such units of code dependent 
-
-on one another; i.e. coupled with multiple other structures.
-| The count of  number of paths through global data.
-| Less than or equal to 5
-|-
-| Avoid high fan-out: high values of this metric indicate excessive interaction between 
-
-modules and a coupling between disparate structures. This violates encapsulation and 
-
-modularity guidelines and reduces potential re-use and component development capabilities 
-
-since they are coupled with multiple other structures.
-| The count of the subordinate modules called from a single super-ordinate module.
-| Less than or equal to 7
-|-
-| Number of Logical Branches in a method: very similar to Cyclomatic complexity. Useful for 
-
-understanding high paths are in need of testing in any piece of code. A module with a 
-
-Cyclomatic Complexity of 12 for example, has 22 branches which means the minimum number of 
-
-paths to cover during testing.
-| Logical branches: Correlates to threshold for Cyclomatic Complexity of 10 - which would 
-
-equal 19 branches, for a Cyclomatic Complexity of 12 it is approximately 22.
-| Less than or equal to 22
-|}  
-### Security Standards### 
+### Security Standards
 The following Security Standards are derived from ---TBD---. For more details, please visit   
 
 http://---TBD---.
