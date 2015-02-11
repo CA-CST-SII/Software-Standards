@@ -697,14 +697,14 @@ Code level metrics serve to keep the characteristics of the code within certain 
 <caption><em>Table 8 1. Code level metrics</em></caption>
 <thead>
 <tr class="header">
-<th align="left"><p>Class Level</p></th>
+<th align="left"><p>Design Metric</p></th>
 <th align="left"><p>Description and How to Calculate</p></th>
 <th align="left"><p>Recommended Threshold</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><p>Class Level</p></td>
+<td align="center"colspan="3"><p>Class Level</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>Classes with High # of Methods: Such classes are difficult to understand, maintain and test.</p></td>
@@ -727,7 +727,7 @@ Code level metrics serve to keep the characteristics of the code within certain 
 <td align="left"><p>Less than or equal to 20 %</p></td>
 </tr>
 <tr class="even">
-<td align="left"><p>Method Level</p></td>
+<td align="center"colspan="3"><p>Method Level</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>Cyclomatic Complexity: can make a piece of code; i.e. a method harder to understand, maintain and test. In addition high levels of Cyclomatic complexity can introduce security risks as hard-to-understand code may perform undesirable actions.</p></td>
@@ -746,6 +746,7 @@ Code level metrics serve to keep the characteristics of the code within certain 
 <tr class="even">
 <td align="left"><p>Global Data Complexity : This measurement shows the dependence of a module of code on the global data present in a system and as such can violate encapsulation and modularity guidelines and reduce potential re-use and component development capabilities since they provide “global” data to other classes and methods, making all such units of code dependent on one another; i.e. coupled with multiple other structures.</p></td>
 <td align="left"><p>The count of number of paths through global data.</p></td>
+<td align="left"><p>Less than or equal to 5</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>Avoid high fan-out: high values of this metric indicate excessive interaction between modules and a coupling between disparate structures. This violates encapsulation and modularity guidelines and reduces potential re-use and component development capabilities since they are coupled with multiple other structures.</p></td>
@@ -761,14 +762,10 @@ Code level metrics serve to keep the characteristics of the code within certain 
 </table>
 
 ### Security Standards
-The following Security Standards are derived from ---TBD---. For more details, please visit   
+The following Security Standards are derived from ---TBD---. For more details, please visit http://---TBD---.
 
-http://---TBD---.
-
-### Section 508 Compliance### 
-In order to comply with section 508 guidelines, please visit the following websites and 
-
-ensure adherence to the guidelines presented therein. 
+### Section 508 Compliance
+In order to comply with section 508 guidelines, please visit the following websites and ensure adherence to the guidelines presented therein. 
 http://www.section508.gov/
 
 Understanding accessibility: 
@@ -777,60 +774,55 @@ http://www-03.ibm.com/able/guidelines/software/accesssoftware.html
 General checklist from IBM: 
 http://www-03.ibm.com/able/access_ibm/disability.html
 
-### Simple Coding Guidelines### 
-The following coding guidelines assist with understandability, reliability, maintainability 
+### Simple Coding Guidelines
+The following coding guidelines assist with understandability, reliability, maintainability and testability of the code. General research has shown (please see the references section) that units of code following these guidelines are much easier to understand, maintain and test. 
+1. 1.	Avoid artifacts with too many parameters
+2.	Avoid base Classes without virtual Destructors
+3.	Avoid Classes using "new" to allocate Instances but not defining a copy Constructor
+4.	Avoid Classes with a High Depth of Inheritance Tree
+5.	Avoid Classes with a High Number Of Children
+6.	Avoid Classes with a High Public Data Ratio
+7.	Avoid Classes with a very low comment/code ratio
+8.	Avoid Classes with at least one virtual Method and without a virtual Destructor
+9.	Avoid Classes with High Coupling Between Objects
+10.	Avoid Classes with High Weighted Methods per Class
+11.	Avoid Classes with multiple inheritance
+12.	Avoid Data Members that are not Private
+13.	Avoid direct usage of database tables
+14.	Avoid Dynamic SQL Objects With Queries on more than 4 Tables
+15.	Avoid Functions/Methods with a complex SELECT clause
+16.	Avoid Functions/Methods with High RAW SQL Complexity
+17.	Avoid Functions/Methods with queries on too many Tables
+18.	Avoid Functions/Methods with SQL statement including Subqueries
+19.	Avoid Functions/Methods with SQL statement using Group By clause
+20.	Avoid header files circular references
+21.	Avoid High Response for a Class
+22.	Avoid included files including other files
+23.	Avoid including files other than header files
+24.	Avoid inline Constructors and Destructors
+25.	Avoid invocation of virtual Methods of the declared Class in a Constructor or Destructor
+26.	Avoid large Classes - too many Constructors
+27.	Avoid large Classes - too many Data Members
+28.	Avoid large Classes - too many Methods
+29.	Avoid large Interfaces - too many Methods
+30.	Avoid large Methods/Functions - too many Lines of Code
+31.	Avoid undocumented Classes
+32.	Avoid undocumented Functions, Methods, Constructors, and Destructors
+33.	Avoid unreferenced Classes
+34.	Avoid unreferenced Data Members
+35.	Avoid unreferenced Methods
+36.	Avoid using global objects in constructors and destructors
+37.	Avoid using Global Variables
+38.	Avoid using VARIANT Structures
+39.	Class naming convention - case control
+40.	Constant naming convention - case control
+41.	Data Members naming convention - case control
+42.	File naming convention - embedded Class
+43.	Macros naming convention - case control
+44.	Method naming convention - case control
+45.	Never throw an exception from a destructor
 
-and testability of the code. General research has shown (please see the references section) 
-
-that units of code following these guidelines are much easier to understand, maintain and 
-
-test. 
-#Avoid artifacts with too many parameters
-#Avoid base Classes without virtual Destructors
-#Avoid Classes using "new" to allocate Instances but not defining a copy Constructor
-#Avoid Classes with a High Depth of Inheritance Tree
-#Avoid Classes with a High Number Of Children
-#Avoid Classes with a High Public Data Ratio
-#Avoid Classes with a very low comment/code ratio
-#Avoid Classes with at least one virtual Method and without a virtual Destructor
-#Avoid Classes with High Coupling Between Objects
-#Avoid Classes with High Weighted Methods per Class
-#Avoid Classes with multiple inheritance
-#Avoid Data Members that are not Private
-#Avoid direct usage of database tables
-#Avoid Dynamic SQL Objects With Queries on more than 4 Tables
-#Avoid Functions/Methods with a complex SELECT clause
-#Avoid Functions/Methods with High RAW SQL Complexity
-#Avoid Functions/Methods with queries on too many Tables
-#Avoid Functions/Methods with SQL statement including Subqueries
-#Avoid Functions/Methods with SQL statement using Group By clause
-#Avoid header files circular references
-#Avoid High Response for a Class
-#Avoid included files including other files
-#Avoid including files other than header files
-#Avoid inline Constructors and Destructors
-#Avoid invocation of virtual Methods of the declared Class in a Constructor or Destructor
-#Avoid large Classes - too many Constructors
-#Avoid large Classes - too many Data Members
-#Avoid large Classes - too many Methods
-#Avoid large Interfaces - too many Methods
-#Avoid large Methods/Functions - too many Lines of Code
-#Avoid undocumented Classes
-#Avoid undocumented Functions, Methods, Constructors, and Destructors
-#Avoid unreferenced Classes
-#Avoid unreferenced Data Members
-#Avoid unreferenced Methods
-#Avoid using global objects in constructors and destructors
-#Avoid using Global Variables
-#Avoid using VARIANT Structures
-#Class naming convention - case control
-#Constant naming convention - case control
-#Data Members naming convention - case control
-#File naming convention - embedded Class
-#Macros naming convention - case control
-#Method naming convention - case control
-#Never throw an exception from a destructor
-### Code Example (Style)### 
+### Code Example (Style)
 Below is a one-page C++ coding styling standard quick reference using a sample class.
 <p align="center">
 [[https://cloud.githubusercontent.com/assets/6976295/2877797/468d0204-d453-11e3-87a0-
