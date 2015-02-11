@@ -138,45 +138,45 @@ Except for user-defined constants, all identifier names should be written as a m
 <tr class="odd">
 <td align="left"><p>Variables</p></td>
 <td align="left"><ul>
-<li>Variables are in mixed case with a lowercase first letter.</li>
+<li>Variables are in mixed case with a lowercase first letter. Internal words start with capital letters.</li>
 </ul>
-<p>Internal words start with capital letters.</p>
+
 <ul>
 <li>Variable types should have the following prefix:</li>
 <li><ul>
 <li>integer - ‘i’</li>
-</ul></li>
+</li>
 <li><ul>
 <li>long - ‘l’ (lower case L)</li>
-</ul></li>
+</li>
 <li><ul>
 <li>float - ‘f’</li>
-</ul></li>
+</li>
 <li><ul>
 <li>double - ‘d’</li>
-</ul></li>
+</li>
 <li><ul>
 <li>bool - ‘b’</li>
-</ul></li>
+</li>
 <li><ul>
 <li>char - ‘c’</li>
-</ul></li>
+</li>
 <li><ul>
 <li>string - ‘str’</li>
-</ul></li>
+</li>
 <li><ul>
 <li>vector - ‘v’</li>
-</ul></li>
+</li>
 <li><ul>
 <li>others - ‘x’ (this includes user defined classes)</li>
 </ul></li>
 <li>Additionally, variable modifiers should have the following prefix:</li>
 <li><ul>
 <li>pointer – ‘p’</li>
-</ul></li>
+</li>
 <li><ul>
 <li>reference – ‘r’</li>
-</ul></li>
+</li>
 <li><ul>
 <li>member variables – ‘m_’</li>
 </ul></li>
