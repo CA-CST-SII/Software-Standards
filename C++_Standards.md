@@ -332,106 +332,76 @@ Definition of Comments
 
 * @param
 
-The @param tag is followed by the name (not type) of the parameter, followed by a description 
-
-of the parameter. Additional spaces should be inserted between the name and description so 
-
-that comments line up in a block. Dashes or other punctuation should not be inserted before 
-
-the description. The name always starts with a lowercase letter. The description is most 
-
-usually a phrase, starting with a lowercase letter and ending without a period, unless it 
-
-contains a complete sentence.  
+The @param tag is followed by the name (not type) of the parameter, followed by a description of the parameter. Additional spaces should be inserted between the name and description so that comments line up in a block. Dashes or other punctuation should not be inserted before the description. The name always starts with a lowercase letter. The description is most usually a phrase, starting with a lowercase letter and ending without a period, unless it contains a complete sentence.  
 
 * @return
   
-The @return tag is followed by a description of the return value. Whenever possible, detailed 
-
-information (such as returns -1 when an out-of-bounds argument is supplied) should be 
-
-provided. Spaces should be used to line the description up with the rest of the comments in 
-
-the method.  
+The @return tag is followed by a description of the return value. Whenever possible, detailed information (such as returns -1 when an out-of-bounds argument is supplied) should be provided. Spaces should be used to line the description up with the rest of the comments in the method.  
 
 * @exception
   
-An @exception tag should be included for at least any declared (checked) exceptions. It can 
-
-also document any non-declared exceptions that can be thrown by the method, (normally those 
-
-that appear directly in the implementation, rather than those that are indirectly thrown).
+An @exception tag should be included for at least any declared (checked) exceptions. It can also document any non-declared exceptions that can be thrown by the method, (normally those that appear directly in the implementation, rather than those that are indirectly thrown).
  
 * Custom tags
-Java SDK 1.4 and later versions support custom tags to the javadoc tool.  One example is 
+Java SDK 1.4 and later versions support custom tags to the javadoc tool.  One example is putting @pre and @post tags to describe specific runtime conditions in method headers which appear in the javadoc output just like @param and @return.
 
-putting @pre and @post tags to describe specific runtime conditions in method headers which 
-
-appear in the javadoc output just like @param and @return.
 Comment Example
 For example, source code that contains the following statements: 
-<pre>
- /* *  
+```cpp
+ /**  
    *  Determine a birth year given an age 
    *  
    *  @param age how old a person is in standard Earth years. 
    *  @return String the year the person was born 
-   * / 
+   */ 
  public string findYear(int age) {}
-</pre>
+```
 Produces this output: 
-<pre>
+```cpp
 findYear
 public string findYear(int age)
 Determine a birth year given an age
-</pre>
+```
 Parameters: 
-<pre>
+```cpp
 age - how old a person is in standard Earth years 
-</pre>
+```
 Returns: 
-<pre>
+```cpp
 String the year the person was born 
-</pre>
-A complete reference is available at: 
-http://java.sun.com/j2se/1.4/docs/tooldocs/windows/javadoc.html#tag/ 
-### ## Non-Javadoc Comments### ## 
+```
+A complete reference is available at: http://java.sun.com/j2se/1.4/docs/tooldocs/windows/javadoc.html#tag/ 
+
+##### Non-Javadoc Comments
 Use // for non-Javadoc comments, including multi-line comments.
-#### Indentation#### 
-Four spaces should be used as the unit of indentation—tab characters will NOT be used in C++ 
 
-source files.  However, it entirely reasonable to configure editors such as “vim” and “emacs” 
+#### Indentation
+Four spaces should be used as the unit of indentation—tab characters will NOT be used in C++ source files.  However, it entirely reasonable to configure editors such as “vim” and “emacs” to translate tabs to spaces to make indention easier to implement.
 
-to translate tabs to spaces to make indention easier to implement.
-#### White Space#### 
-### ## Blank Lines### ## 
-Blank lines improve readability by setting off sections of code that are logically related. 
-Two blank lines should always be used in the following circumstances: 
+#### White Space
+##### Blank Lines
+Blank lines improve readability by setting off sections of code that are logically related. Two blank lines should always be used in the following circumstances: 
 * Between sections of a source file 
 * Between class and method definitions 
+
 One blank line should always be used in the following circumstances: 
 * Between methods 
 * Between the local variables in a method and its first statement 
 * Before a block or single-line comment 
 * Between logical sections inside a method to improve readability 
-### ## Blank Spaces### ## 
+
+##### Blank Spaces
 Blank spaces should be used in the following circumstances: 
 * A keyword followed by a parenthesis should be separated by a space. Example: 
-<pre>
+```cpp
        while (true) {
        ...
    }
-</pre>
-* Note that a blank space should not be used between a method name and its opening 
-
-parenthesis. This helps to distinguish keywords from method calls.
+```
+* Note that a blank space should not be used between a method name and its opening parenthesis. This helps to distinguish keywords from method calls.
 * A blank space should appear after commas in argument lists. 
-* 	All binary operators should be separated from their operands by spaces. Blank spaces 
-
-should never separate unary operators such as unary minus, increment ("++"), and decrement 
-
-("--") from their operands. Example: 
-<pre>  
+* All binary operators should be separated from their operands by spaces. Blank spaces should never separate unary operators such as unary minus, increment `("++")`, and decrement `("--")` from their operands. Example: 
+```cpp  
  a += c + d;
     a = (a + b) / (c *  d);
     
@@ -439,57 +409,47 @@ should never separate unary operators such as unary minus, increment ("++"), and
         n++;
     }
     printSize("size is " + foo + "\n");
-</pre>
+```
 * The expressions in a for statement should be separated by blank spaces. Example: 
-<pre>
+```cpp
 for (expr1; expr2; expr3)
-</pre
+```
 * Casts should be followed by a blank space. Examples: 
-<pre>   
+```cpp  
 myMethod((float) aNum, (Log) log);
     myMethod((int) (cp + 5), ((int) (i + 3)) + 1);
-</pre>
-### Statements### 
-#### Simple Statements#### 
+```
+
+### Statements
+#### Simple Statements
 Each line should contain at most one statement. Example: 
-<pre>
+```cpp
 argv++;       	// Correct
 argc--;       	// Correct  
 argv++; argc--;   // INCORRECT!
-</pre>
-#### Compound Statements#### 
-Compound statements are statements that contain lists of statements enclosed in braces "{ 
-
-statements }".  See the following example. 
-<pre>
+```
+#### Compound Statements
+Compound statements are statements that contain lists of statements enclosed in braces `"{ statements }"`.  See the following example. 
+```cpp
 while (!done) {
 	    doSomething();
 	    doMoreThing();
 	}
-</pre>
+```
 * The enclosed statements should be indented one more level than the compound statement. 
-* The opening brace should be at the end of the same line or on the next line just below the 
-
-text that begins the compound statement; the closing brace should begin a line and be 
-
-indented to the beginning of the compound statement. 
-* Braces are used around all statements, even single statements, when they are part of a 
-
-control structure, such as an if-else or for statement. This makes it easier to add 
-
-statements without accidentally introducing bugs due to forgetting to add braces. 
-#### Return Statement#### 
-A return statement with a value should not use parentheses unless it is an expression that 
-
-requires parentheses or the parentheses provide clarity. Example: 
-<pre>
+* The opening brace should be at the end of the same line or on the next line just below the text that begins the compound statement; the closing brace should begin a line and be indented to the beginning of the compound statement. 
+* Braces are used around all statements, even single statements, when they are part of a control structure, such as an if-else or for statement. This makes it easier to add statements without accidentally introducing bugs due to forgetting to add braces. 
+* 
+#### Return Statement
+A return statement with a value should not use parentheses unless it is an expression that requires parentheses or the parentheses provide clarity. Example: 
+```cpp
 return;
 return myDisk.size();
 return (size ? size : defaultSize);
-</pre>
-#### if, if-else, if else-if else and ternary operator Statements#### 
+```
+#### if, if-else, if else-if else and ternary operator Statements
 The “if-else” class of statements should have the following form: 
-<pre>
+```cpp
 if (condition) {
     statements;
 }
@@ -510,9 +470,9 @@ if (condition) {
 } else {
     statements;
 }
-</pre>
+```
 If statements containing only two clauses may be shortened by using the ternary operator “?:”
-<pre>
+```cpp
  if (a > b) {
     largest = a;
 } else if (b > a) {
@@ -520,42 +480,34 @@ If statements containing only two clauses may be shortened by using the ternary 
 } else /*  a ##  b * / {
     std::cout << "Uh oh, they're the same!\n";
 }
-</pre>
-Could be shortened using the ternary operator “?:” to the following.
-<pre>
+```
+Could be shortened using the ternary operator `“?:”` to the following.
+```cpp
 largest = ((a > b) ? a : b);
-</pre>
-Nesting ternary operators is not recommended, because even one level of nesting
-makes the code very hard to understand:
-<pre>
+```
+Nesting ternary operators is not recommended, because even one level of nesting makes the code very hard to understand:
+```cpp
 some_val = x >= 0 ? x : ( y >= 0 ) ? y : z;
-</pre>
+```
 Note: “if” statements always use braces {}. Avoid the following error-prone form: 
-<pre>
+```cpp
 if (condition) 	//INCORRECT !!
     statement;
-</pre>
-#### for Statements#### 
+```
+#### for Statements
 A “for” statement should have the following form: 
-<pre>
+```cpp
 for (initialization; condition; update) {
     statements;
 }
-</pre>
-An empty “for” statement (one in which all the work is done in the initialization, condition, 
-
-and update clauses) should have the following form: 
-<pre>
+```
+An empty “for” statement (one in which all the work is done in the initialization, condition, and update clauses) should have the following form: 
+```cpp
 for (initialization; condition; update);
-</pre>
-When using the comma operator in the initialization or update clause of a “for” statement, 
+```
+When using the comma operator in the initialization or update clause of a “for” statement, avoid the complexity of using more than three variables. If needed, use separate statements before the “for” loop (for the initialization clause) or at the end of the loop (for the update clause). 
 
-avoid the complexity of using more than three variables. If needed, use separate statements 
-
-before the “for” loop (for the initialization clause) or at the end of the loop (for the 
-
-update clause). 
-#### while Statements#### 
+#### while Statements
 A “while” statement should have the following form: 
 <pre>
 while (condition) {
