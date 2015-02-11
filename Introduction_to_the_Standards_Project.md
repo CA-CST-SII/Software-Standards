@@ -19,6 +19,6 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division C# Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md)
 
-[Consular Systems and Technology Division C++ Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/wiki/C---Coding-Standards)
+[Consular Systems and Technology Division C++ Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md)
 
 [Consular Systems and Technology Division Concept of Operations Guide](https://github.com/CA-CST-SII/Software-Standards/blob/master/Concept_of_Operations_Diagram.md)
