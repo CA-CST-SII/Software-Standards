@@ -762,7 +762,7 @@ Code level metrics serve to keep the characteristics of the code within certain 
 </table>
 
 ### Security Standards
-The following Security Standards are derived from ---TBD---. For more details, please visit http://---TBD---.
+Suggest removal of this section, referencing content from NIST security coding standards or reduce them to direct C++ guidance.  There are very few direct references to C++.
 
 ### Section 508 Compliance
 In order to comply with section 508 guidelines, please visit the following websites and ensure adherence to the guidelines presented therein. 
@@ -776,51 +776,53 @@ http://www-03.ibm.com/able/access_ibm/disability.html
 
 ### Simple Coding Guidelines
 The following coding guidelines assist with understandability, reliability, maintainability and testability of the code. General research has shown (please see the references section) that units of code following these guidelines are much easier to understand, maintain and test. 
-1. 1.	Avoid artifacts with too many parameters
-2.	Avoid base Classes without virtual Destructors
-3.	Avoid Classes using "new" to allocate Instances but not defining a copy Constructor
-4.	Avoid Classes with a High Depth of Inheritance Tree
-5.	Avoid Classes with a High Number Of Children
-6.	Avoid Classes with a High Public Data Ratio
-7.	Avoid Classes with a very low comment/code ratio
-8.	Avoid Classes with at least one virtual Method and without a virtual Destructor
-9.	Avoid Classes with High Coupling Between Objects
-10.	Avoid Classes with High Weighted Methods per Class
-11.	Avoid Classes with multiple inheritance
-12.	Avoid Data Members that are not Private
-13.	Avoid direct usage of database tables
-14.	Avoid Dynamic SQL Objects With Queries on more than 4 Tables
-15.	Avoid Functions/Methods with a complex SELECT clause
-16.	Avoid Functions/Methods with High RAW SQL Complexity
-17.	Avoid Functions/Methods with queries on too many Tables
-18.	Avoid Functions/Methods with SQL statement including Subqueries
-19.	Avoid Functions/Methods with SQL statement using Group By clause
-20.	Avoid header files circular references
-21.	Avoid High Response for a Class
-22.	Avoid included files including other files
-23.	Avoid including files other than header files
-24.	Avoid inline Constructors and Destructors
-25.	Avoid invocation of virtual Methods of the declared Class in a Constructor or Destructor
-26.	Avoid large Classes - too many Constructors
-27.	Avoid large Classes - too many Data Members
-28.	Avoid large Classes - too many Methods
-29.	Avoid large Interfaces - too many Methods
-30.	Avoid large Methods/Functions - too many Lines of Code
-31.	Avoid undocumented Classes
-32.	Avoid undocumented Functions, Methods, Constructors, and Destructors
-33.	Avoid unreferenced Classes
-34.	Avoid unreferenced Data Members
-35.	Avoid unreferenced Methods
-36.	Avoid using global objects in constructors and destructors
-37.	Avoid using Global Variables
-38.	Avoid using VARIANT Structures
-39.	Class naming convention - case control
-40.	Constant naming convention - case control
-41.	Data Members naming convention - case control
-42.	File naming convention - embedded Class
-43.	Macros naming convention - case control
-44.	Method naming convention - case control
-45.	Never throw an exception from a destructor
+
+1. Avoid artifacts with too many parameters
+2. Avoid base Classes without virtual Destructors
+3. Avoid Classes using "new" to allocate Instances but not defining a copy Constructor
+4. Avoid Classes with a High Depth of Inheritance Tree
+5. Avoid Classes with a High Number Of Children
+6. Avoid Classes with a High Public Data Ratio
+7. Avoid Classes with a very low comment/code ratio
+8. Avoid Classes with at least one virtual Method and without a virtual Destructor
+9. Avoid Classes with High Coupling Between Objects
+10. Avoid Classes with High Weighted Methods per Class
+11. Avoid Classes with multiple inheritance
+12. Avoid Data Members that are not Private
+13. Avoid direct usage of database tables
+14. Avoid Dynamic SQL Objects With Queries on more than 4 Tables
+15. Avoid Functions/Methods with a complex SELECT clause
+16. Avoid Functions/Methods with High RAW SQL Complexity
+17. Avoid Functions/Methods with queries on too many Tables
+18. Avoid Functions/Methods with SQL statement including Subqueries
+19. Avoid Functions/Methods with SQL statement using Group By clause
+20. Avoid header files circular references
+21. Avoid High Response for a Class
+22. Avoid included files including other files
+23. Avoid including files other than header files
+24. Avoid inline Constructors and Destructors
+25. Avoid invocation of virtual Methods of the declared Class in a Constructor or Destructor
+26. Avoid large Classes - too many Constructors
+27. Avoid large Classes - too many Data Members
+28. Avoid large Classes - too many Methods
+29. Avoid large Interfaces - too many Methods
+30. Avoid large Methods/Functions - too many Lines of Code
+31. Avoid undocumented Classes
+32. Avoid undocumented Functions, Methods, Constructors, and Destructors
+33. Avoid unreferenced Classes
+34. Avoid unreferenced Data Members
+35. Avoid unreferenced Methods
+36. Avoid using global objects in constructors and destructors
+37. Avoid using Global Variables
+38. Avoid using VARIANT Structures
+39. Class naming convention - case control
+40. Constant naming convention - case control
+41. Data Members naming convention - case control
+42. File naming convention - embedded Class
+43. Macros naming convention - case control
+44. Method naming convention - case control
+45. Never throw an exception from a destructor
+
 
 ### Code Example (Style)
 Below is a one-page C++ coding styling standard quick reference using a sample class.
