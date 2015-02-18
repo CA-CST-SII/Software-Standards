@@ -24,5 +24,6 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division Concept of Operations Guide](https://github.com/CA-CST-SII/Software-Standards/blob/master/Concept_of_Operations_Diagram.md)
 
+## Draft standards
 
-
+[Draft Word Version Standards Docoments](https://github.com/CA-CST-SII/Software-Standards/tree/master/Draft%20Standard)
