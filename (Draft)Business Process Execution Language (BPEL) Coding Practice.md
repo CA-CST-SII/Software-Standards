@@ -15,11 +15,11 @@
 
 3. Industry Best Coding Practice
 
- 3.1 Create scopes for each step of the flow in the process
+ 3.1. Create scopes for each step of the flow in the process
  
-  Create scopes for each step of the flow in the process so as to make it modular.  This will help in creating local variables within that scope.  Scopes provide a context for the execution and/or documentation of enclosed activities, and they can have variables that are visible and usable at and within the scope level. Scopes can have both default and defined Fault and Event handling logic, and they can be undone, if necessary. Undoing the work of a Scope involves the concept of compensation.  When designing BPEL processes, they should be organized into logical units of work that can be undone.  Scopes can be used as a context to create variables, fault/compensation/event handlers and for organizational purposes. They are the basic building blocks used to assemble a BPEL process.
+   Create scopes for each step of the flow in the process so as to make it modular.  This will help in creating local variables within that scope.  Scopes provide a context for the execution and/or documentation of enclosed activities, and they can have variables that are visible and usable at and within the scope level. Scopes can have both default and defined Fault and Event handling logic, and they can be undone, if necessary. Undoing the work of a Scope involves the concept of compensation.  When designing BPEL processes, they should be organized into logical units of work that can be undone.  Scopes can be used as a context to create variables, fault/compensation/event handlers and for organizational purposes. They are the basic building blocks used to assemble a BPEL process.
 
- 3.2	Use Global variables when required
+ 3.2. Use Global variables when required
  
   This will help in maintainability.  However, declaring many global variables needs to be avoided in a BPEL process, instead use scope or local variables. The variables defined at the Process root are global variables, which have a global visibility throughout the entire process.  The variables defined within a particular Scope are visible only inside that Scope and all nested Scopes.  These variables are called local variables.  A variable defined for an inner Scope element can hide an upper defined variable of the same name.
 
