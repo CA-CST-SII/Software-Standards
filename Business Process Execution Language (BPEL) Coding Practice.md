@@ -1,65 +1,70 @@
 1. Introduction
-Business Process Execution Language for Web Services (BPEL or BPEL4WS) is a language used for the definition and execution of business processes using Web services.  BPEL enables the top-down realization of Service Oriented Architecture (SOA) through composition, orchestration, and coordination of Web services.  BPEL provides a relatively easy and straightforward way to compose several Web services into new composite services called business processes, which is a collection of coordinated service invocations and related activities that produce a result. BPEL builds on the foundation of XML and Web services; it uses an XML-based language that supports the Web services technology stack, including SOAP, WSDL, UDDI, WS-Reliable Messaging, WS-Addressing, WS-Coordination, and WS-Transaction. BPEL is used to standardize enterprise application integration as well as to extend the integration to the Consular Affairs (CA) legacy applications and services where an Oracle Enterprise Service Bus is a middleware solution as an intermediary between service requesters and service providers.
+
+ Business Process Execution Language for Web Services (BPEL or BPEL4WS) is a language used for the definition and execution of business processes using Web services.  BPEL enables the top-down realization of Service Oriented Architecture (SOA) through composition, orchestration, and coordination of Web services.  BPEL provides a relatively easy and straightforward way to compose several Web services into new composite services called business processes, which is a collection of coordinated service invocations and related activities that produce a result.
+
+ BPEL builds on the foundation of XML and Web services; it uses an XML-based language that supports the Web services technology stack, including SOAP, WSDL, UDDI, WS-Reliable Messaging, WS-Addressing, WS-Coordination, and WS-Transaction.
+ 
+ BPEL is used to standardize enterprise application integration as well as to extend the integration to the Consular Affairs (CA) legacy applications and services where an Oracle Enterprise Service Bus is a middleware solution as an intermediary between service requesters and service providers.
 2. Purpose
 
-The purpose is to document industry best practices and recommendations for BPEL coding to improve the overall quality, performance, security, maintainability, and robustness of Oracle BPEL solutions implementation. Conformance to the practices will promote measurable improvements in the performance of codes and a reduction in sustainment costs.  
+ The purpose is to document industry best practices and recommendations for BPEL coding to improve the overall quality, performance, security, maintainability, and robustness of Oracle BPEL solutions implementation. Conformance to the practices will promote measurable improvements in the performance of codes and a reduction in sustainment costs.  
 
-Consular Systems and Technology’s (CST) implements CAST as a quality gate to minimize software risk.  CAST is a software analysis and measurement automation tool that provides on the current and ongoing delivery code quality to reduce production risks and costs for fixes and rework.  Currently, CAST framework has a limited analytical capability in supporting BPEL.  So until BPEL analysis is fully implement by CAST, the best practices will provide guidance in performing manual analysis of systems written in BPEL.
+ Consular Systems and Technology’s (CST) implements CAST as a quality gate to minimize software risk.  CAST is a software analysis and measurement automation tool that provides on the current and ongoing delivery code quality to reduce production risks and costs for fixes and rework.  Currently, CAST framework has a limited analytical capability in supporting BPEL.  So until BPEL analysis is fully implement by CAST, the best practices will provide guidance in performing manual analysis of systems written in BPEL.
 
-This document is intended for the CST Systems Engineering and Integration (SEI) team and development teams.  Upon review of this document, the best practices will be converted to CAST rules.
+ This document is intended for the CST Systems Engineering and Integration (SEI) team and development teams.  Upon review of this document, the best practices will be converted to CAST rules.
 
 3. Industry Best Coding Practice
 
  3.1 Create scopes for each step of the flow in the process
-
-Create scopes for each step of the flow in the process so as to make it modular.  This will help in creating local variables within that scope.  Scopes provide a context for the execution and/or documentation of enclosed activities, and they can have variables that are visible and usable at and within the scope level. Scopes can have both default and defined Fault and Event handling logic, and they can be undone, if necessary. Undoing the work of a Scope involves the concept of compensation.  When designing BPEL processes, they should be organized into logical units of work that can be undone.  Scopes can be used as a context to create variables, fault/compensation/event handlers and for organizational purposes. They are the basic building blocks used to assemble a BPEL process.
+ 
+  Create scopes for each step of the flow in the process so as to make it modular.  This will help in creating local variables within that scope.  Scopes provide a context for the execution and/or documentation of enclosed activities, and they can have variables that are visible and usable at and within the scope level. Scopes can have both default and defined Fault and Event handling logic, and they can be undone, if necessary. Undoing the work of a Scope involves the concept of compensation.  When designing BPEL processes, they should be organized into logical units of work that can be undone.  Scopes can be used as a context to create variables, fault/compensation/event handlers and for organizational purposes. They are the basic building blocks used to assemble a BPEL process.
 
  3.2	Use Global variables when required
-
-This will help in maintainability.  However, declaring many global variables needs to be avoided in a BPEL process, instead use scope or local variables. The variables defined at the Process root are global variables, which have a global visibility throughout the entire process.  The variables defined within a particular Scope are visible only inside that Scope and all nested Scopes.  These variables are called local variables.  A variable defined for an inner Scope element can hide an upper defined variable of the same name.
+ 
+  This will help in maintainability.  However, declaring many global variables needs to be avoided in a BPEL process, instead use scope or local variables. The variables defined at the Process root are global variables, which have a global visibility throughout the entire process.  The variables defined within a particular Scope are visible only inside that Scope and all nested Scopes.  These variables are called local variables.  A variable defined for an inner Scope element can hide an upper defined variable of the same name.
 
  3.3	Consider creating sequences instead of scopes for performance
-
-Do not add too many scopes since it may affect the performance. Instead, consider creating sequences. A Sequence is a structured activity which can contain other activities, all of which will be executed in a specifically defined order.  The purpose of a Sequence, therefore, is to define the execution order for a group of activities.  BPEL Sequences can contain other Sequences and can be nested as deeply as you want.  Sequences have all the standard attributes and elements and they must contain at least one or more activities.
+ 
+  Do not add too many scopes since it may affect the performance. Instead, consider creating sequences. A Sequence is a structured activity which can contain other activities, all of which will be executed in a specifically defined order.  The purpose of a Sequence, therefore, is to define the execution order for a group of activities.  BPEL Sequences can contain other Sequences and can be nested as deeply as you want.  Sequences have all the standard attributes and elements and they must contain at least one or more activities.
 
  3.4	Adopt naming standards for maintainability and scalability
 
-Naming convention is company/project specific that the Department has to come up with its own standards.  This should be part of the governance strategy.  BPEL activities need naming conventions and should not be changed.  Also, activities with default names like ```'Assign_1'```, ```'Assign_2'``` are meaningless and also doesn’t help much during auditing and debugging.
+  Naming convention is company/project specific that the Department has to come up with its own standards.  This should be part of the governance strategy.  BPEL activities need naming conventions and should not be changed.  Also, activities with default names like ```'Assign_1'```, ```'Assign_2'``` are meaningless and also doesn’t help much during auditing and debugging.
 
  3.5	Handle all the exceptions
 
-The ability to specify exceptional conditions and their consequences, including recovery sequences, is at least as important for business processes as the ability to define the behavior in the "all goes well" case.  Use a catch branch for a different scope to catch binding, remote, custom faults, and business faults.
+  The ability to specify exceptional conditions and their consequences, including recovery sequences, is at least as important for business processes as the ability to define the behavior in the "all goes well" case.  Use a catch branch for a different scope to catch binding, remote, custom faults, and business faults.
 
   3.5.1	Using a Fault Handler
 
-The BPEL language provides the capability to catch and manage exceptions using fault handlers. For example, exceptions occur when web services return different data than was expected. If faults are not handled, the entire BPEL process can be thrown into a faulted state. Therefore, to prevent the entire process from fault, add fault handlers to catch and manage exceptions within particular Scopes.
+  The BPEL language provides the capability to catch and manage exceptions using fault handlers. For example, exceptions occur when web services return different data than was expected. If faults are not handled, the entire BPEL process can be thrown into a faulted state. Therefore, to prevent the entire process from fault, add fault handlers to catch and manage exceptions within particular Scopes.
 
-Each fault handler contains an activity that runs in case of an error. For example, a partner service is notified if an error has occurred. Fault handlers can be added to the entire process or to individual Scope elements.
+  Each fault handler contains an activity that runs in case of an error. For example, a partner service is notified if an error has occurred. Fault handlers can be added to the entire process or to individual Scope elements.
 
   3.5.2	Using an Event Handler
 
-The entire BPEL process as well as each individual Scope can be associated with a set of Event Handlers that are invoked concurrently if the corresponding event occurs. The actions taken within an Event Handler can be any type of activity, such as Sequence or Flow.
+  The entire BPEL process as well as each individual Scope can be associated with a set of Event Handlers that are invoked concurrently if the corresponding event occurs. The actions taken within an Event Handler can be any type of activity, such as Sequence or Flow.
 
   3.5.3	Using a Compensation Handler
 
-A business process often contains several nested transactions. The overall business transaction can fail or be cancelled after many enclosed transactions have already been processed. Then it is necessary to reverse the effect obtained during process execution. For example, a travel planning process can include several nested transactions to book a ticket, to reserve a hotel and a car. If the trip is cancelled, the reservation transactions must be compensated for by cancellation transactions in the appropriate order.
+  A business process often contains several nested transactions. The overall business transaction can fail or be cancelled after many enclosed transactions have already been processed. Then it is necessary to reverse the effect obtained during process execution. For example, a travel planning process can include several nested transactions to book a ticket, to reserve a hotel and a car. If the trip is cancelled, the reservation transactions must be compensated for by cancellation transactions in the appropriate order.
 
   3.5.4	Using a Termination Handler
 
-The termination handler is used to control the termination of a running scope. The termination of a running scope happens if a scope or process enclosing it has faulted.  When a fault is thrown inside a scope or process, a fault handler associated with the scope or process should be run, but before that all the running activities inside the faulted scope or process should be terminated. 
+  The termination handler is used to control the termination of a running scope. The termination of a running scope happens if a scope or process enclosing it has faulted.  When a fault is thrown inside a scope or process, a fault handler associated with the scope or process should be run, but before that all the running activities inside the faulted scope or process should be terminated. 
 
  3.6	Use assign activity instead of transform activity
 
-Use assign activity instead of transform activity where ever possible since it take less memory.
+ Use assign activity instead of transform activity where ever possible since it take less memory.
 Assign activity provides a method for data manipulation, such as copying the contents of one variable to another. This activity can contain any number of elementary assignments.  Transform activity enables to create a transformation that maps source elements to target elements (for example, incoming purchase order data into outgoing purchase order acknowledgment data).
 
  3.7	Use XSL to construct messages and do multiple assign statement
 
-Don’t use multiple assign statement to construct a message; use XSL to construct messages.
+ Don’t use multiple assign statement to construct a message; use XSL to construct messages.
 
  3.8	Use XPath Expression constraints to check the data constraints
 
-Don’t loop through the data for checking data constraints; use XPath Expression constraints to check the data constraints. Use Fully Qualified XPath expression.
+ Don’t loop through the data for checking data constraints; use XPath Expression constraints to check the data constraints. Use Fully Qualified XPath expression.
 
 3.9	Initialize a BPEL variable before copying values to internal elements
 
