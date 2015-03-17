@@ -1,4 +1,5 @@
 1. Introduction
+
 Business Process Execution Language for Web Services (BPEL or BPEL4WS) is a language used for the definition and execution of business processes using Web services.  BPEL enables the top-down realization of Service Oriented Architecture (SOA) through composition, orchestration, and coordination of Web services.  BPEL provides a relatively easy and straightforward way to compose several Web services into new composite services called business processes, which is a collection of coordinated service invocations and related activities that produce a result.
 
 BPEL builds on the foundation of XML and Web services; it uses an XML-based language that supports the Web services technology stack, including SOAP, WSDL, UDDI, WS-Reliable Messaging, WS-Addressing, WS-Coordination, and WS-Transaction.
@@ -6,6 +7,7 @@ BPEL builds on the foundation of XML and Web services; it uses an XML-based lang
 BPEL is used to standardize enterprise application integration as well as to extend the integration to the Consular Affairs (CA) legacy applications and services where an Oracle Enterprise Service Bus is a middleware solution as an intermediary between service requesters and service providers.
 
 2. Purpose
+
 The purpose is to document industry best practices and recommendations for BPEL coding to improve the overall quality, performance, security, maintainability, and robustness of Oracle BPEL solutions implementation. Conformance to the practices will promote measurable improvements in the performance of codes and a reduction in sustainment costs.  
 
 Consular Systems and Technology’s (CST) implements CAST as a quality gate to minimize software risk.  CAST is a software analysis and measurement automation tool that provides on the current and ongoing delivery code quality to reduce production risks and costs for fixes and rework.  Currently, CAST framework has a limited analytical capability in supporting BPEL.  So until BPEL analysis is fully implement by CAST, the best practices will provide guidance in performing manual analysis of systems written in BPEL.
