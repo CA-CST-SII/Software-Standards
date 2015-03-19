@@ -164,14 +164,12 @@ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__
 | 	SA00024 	 | 	Variable names are BPELVariableNames, that is, NCNames (as defined in XML Schema specification) but in addition they MUST NOT contain the ?.? character. 	 | 	Section 8.1 	 | 
 | 	SA00025 	 | 	The messageType, type or element attributes are used to specify the type of a variable. Exactly one of these attributes MUST be used. 	 | 	Section 8.1 	 | 
 | 	SA00026 	 | 	Variable initialization logic contained in scopes that contain or whose children contain a start activity MUST only use idempotent functions in the from-spec. 	 | 	Section 8.1 	 | 
-| 	SA00027 	 | 	"When XPath 1.0 is used as an expression language in WS-BPEL there is no context node available. Therefore the legal values of the XPath Expr (http://www.w3.org/TR/xpath#NT-Expr) production must be restricted in order to prevent access to the context node. 
-Specifically, the ""LocationPath"" (http://www.w3.org/TR/xpath#NT-LocationPath) production rule of ""PathExpr"" (http://www.w3.org/TR/xpath#NT-PathExpr) production rule MUST NOT be used when XPath is used as an expression language. "	 | 	Section 8.2.4 	 | 
+| 	SA00027 	 | 	When XPath 1.0 is used as an expression language in WS-BPEL there is no context node available. Therefore the legal values of the XPath Expr (http://www.w3.org/TR/xpath#NT-Expr) production must be restricted in order to prevent access to the context node. Specifically, the ```"LocationPath"``` (http://www.w3.org/TR/xpath#NT-LocationPath) production rule of ```"PathExpr"``` (http://www.w3.org/TR/xpath#NT-PathExpr) production rule MUST NOT be used when XPath is used as an expression language. 	 | 	Section 8.2.4 	 | 
 | 	SA00028 	 | 	WS-BPEL functions MUST NOT be used in joinConditions. 	 | 	Section 8.2.5 	 | 
 | 	SA00029 	 | 	WS-BPEL variables and WS-BPEL functions MUST NOT be used in query expressions of propertyAlias definitions. 	 | 	Section 8.2.6 	 | 
 | 	SA00030 	 | 	The arguments to bpel:getVariableProperty MUST be given as quoted strings. It is therefore illegal to pass into a WS-BPEL XPath function any XPath variables, the output of XPath functions, a XPath location path or any other value that is not a quoted string. 	 | 	Section 8.3	 | 
 | 	SA00031 	 | 	The second argument of the XPath 1.0 extension function bpel:getVariableProperty(string, string) MUST be a string literal conforming to the definition of QName in [XML Namespaces] section 3. 	 | 	Section 8.3 	 | 
-| 	SA00032 	 | 	"For <assign>, the <from> and <to> element MUST be one of the specified variants. 
-The <assign> activity copies a type-compatible value from the source (""from-spec"") to the destination (""to-spec""), using the <copy> element. Except in Abstract Processes, the from-spec MUST be one of the following variants: 
+| 	SA00032 	 | 	For ```<assign>```, the ```<from>``` and ```<to>``` element MUST be one of the specified variants. The ```<assign>``` activity copies a type-compatible value from the source ("from-spec") to the destination ("to-spec"), using the ```<copy>``` element. Except in Abstract Processes, the from-spec MUST be one of the following variants:```
 <from variable=""BPELVariableName"" part=""NCName""?> 
 <query queryLanguage=""anyURI""?>? 
 queryContent 
@@ -187,9 +185,8 @@ expression
 <from> 
 <literal>literal value</literal> 
 </from> 
-<from/> 
-In Abstract Processes, the from-spec MUST be either one of the above or the opaque variant described in section 13.1.3. Hiding Syntactic Elements 
-The to-spec MUST be one of the following variants: 
+<from/> ``` 
+In Abstract Processes, the from-spec MUST be either one of the above or the opaque variant described in section 13.1.3. Hiding Syntactic Elements The to-spec MUST be one of the following variants: ``` 
 <to variable=""BPELVariableName"" part=""NCName""?> 
 <query queryLanguage=""anyURI""?>? 
 queryContent 
@@ -201,8 +198,8 @@ property=""QName"" />
 <to expressionLanguage=""anyURI""?> 
 expression 
 </to> 
-<to/> 
-"	 | 	Section 8.4	 | 
+<to/>``` 
+ | 	Section 8.4	 | 
 | 	SA00033 	 | 	The XPath expression in <to> MUST begin with an XPath VariableReference. 	 | 	Section 8.4 	 | 
 | 	SA00034 	 | 	When the variable used in <from> or <to> is defined using XML Schema types (simple or complex) or element, the part attribute MUST NOT be used. 	 | 	Section 8.4 	 | 
 | 	SA00035 	 | 	In the from-spec of the partnerLink variant of <assign> the value "myRole" for attribute endpointReference is only permitted when the partnerLink specifies the attribute myRole. 	 | 	Section 8.4 	 | 
