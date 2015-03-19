@@ -97,29 +97,34 @@ Assign activity provides a method for data manipulation, such as copying the con
  7.	The first invoke activity receives its callback. The instance is rehydrated during this step.
  8.	The second invoke activity receives its callback. The instance is rehydrated during this step.
 
-  **Conclusion**
+ **Conclusion**
 
  A performance test showed a 30 % improvement in comparison with not using NonBlocking invoke.
 
- 3.11. Keep the number of activities in BPEL as minimal as possible
+ __3.11. Keep the number of activities in BPEL as minimal as possible__
 
   Keep the number of activities in BPEL as minimal as possible; increasing the number of activities will decrease the performance of BPEL Engine.
- 3.12. Avoid empty activity
- 3.13. Avoid unused partner links
- 3.14. Avoid repetitive names for different Activities,
- 3.15. Don’t use BPEL for intensive time scheduled activities
+  
+ __3.12. Avoid empty activity__
+ __3.13. Avoid unused partner links__
+ __3.14. Avoid repetitive names for different Activities__
+ __3.15. Don’t use BPEL for intensive time scheduled activities__
 
   Extensive use of activities such as alarm and wait can lower system performance.
- 3.16. Do not include any special characters in the project name
+  
+ __3.16. Do not include any special characters in the project name__
 
   Special characters (such as periods) in the project name cause errors during compilation.
- 3.17. Don’t use Pick based Initiate pattern for interdependent operations 
+  
+ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__ 
 
-  The pick activity waits for the occurrence of exactly one event from a set of events, then executes the activity associated with that event. After an event has been selected, the other events are no longer accepted by that pick. So, don’t use Pick based Initiate pattern for implementing interdependent operations. If a race condition occurs between multiple events, the choice of the event is implementation dependent. 
- 3.18. Don’t let SOA Composite instance grow exponentially
+  The pick activity waits for the occurrence of exactly one event from a set of events, then executes the activity associated with that event. After an event has been selected, the other events are no longer accepted by that pick. So, don’t use Pick based Initiate pattern for implementing interdependent operations. If a race condition occurs between multiple events, the choice of the event is implementation dependent.
+  
+ __3.18. Don’t let SOA Composite instance grow exponentially__
 
   Define rules to keep the house clean, purge the instances at regular interval to obtain better performance from BPEL engine and Enterprise Manager.
- 3.19. Static Analysis Checks
+  
+ __3.19. Static Analysis Checks__
  
   Systems integration requires more than the ability to conduct simple interactions by using standard protocols. Interoperability between applications can be achieved by using Web standards. To ensure conformant implementations of BPEL, the basic static analysis of a business process must be performed to detect any undefined semantics or invalid semantics within a process definition and reject process definitions that fail any of those static analysis checks. 
  
@@ -127,7 +132,7 @@ Assign activity provides a method for data manipulation, such as copying the con
  
   Note: A WS-BPEL implementation MAY perform extra static analysis checking beyond the basic static analysis required by this specification to signal warnings or even reject process definitions. It is recommended that these non-specified static analysis checks should be configurable to disable.
 
-
+<html>
 <style type="text/css">
 	table.tableizer-table {
 	border: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;
@@ -284,4 +289,4 @@ Assign activity provides a method for data manipulation, such as copying the con
  <tr><td>SA00094 </td><td>For <copy>, when the keepSrcElementName attribute is set to “yes” and the destination element is the Document EII of an element-based variable or an element-based part of a WSDL message-type-based variable, the name of the source element MUST belong to the substitutionGroup of the destination element. This checking MAY be enforced through static analysis of the expression/query language. </td><td>Section 8.4.2</td></tr>
  <tr><td>SA00095 </td><td>For <onEvent>, the variable references are resolved to the associated scope only and MUST NOT be resolved to the ancestor scopes. </td><td>Section 12.7.1</td></tr>
 </table>
-
+</html>
