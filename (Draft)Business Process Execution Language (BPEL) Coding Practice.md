@@ -65,8 +65,8 @@ Assign activity provides a method for data manipulation, such as copying the con
  3.8. Use XPath Expression constraints to check the data constraints
 
  Don’t loop through the data for checking data constraints; use XPath Expression constraints to check the data constraints. Use Fully Qualified XPath expression.
-
-3.9. Initialize a BPEL variable before copying values to internal elements
+ 
+ 3.9. Initialize a BPEL variable before copying values to internal elements
 
  Variables offer the possibility to store messages that hold the state of the process.  Initialize a variable before copying values to internal elements to avoid SelectionFailure faults or "variable counter isn't properly initialized" on execution.
 
@@ -78,7 +78,7 @@ Assign activity provides a method for data manipulation, such as copying the con
 
  The second invoke activity is not executed until the response from the first invoke activity is received. If the number of branches in the flow is large, the delay before the final invoke activity is executed is the sum of all the preceding synchronous invoke activities.
 
-*Solution* 
+**Solution** 
 
 With a nonblocking invoke depicted in Pic 1 and Pic 2, the execution of the synchronous invoke activity is scheduled to be performed by a separate thread in the background. With this change, the initial execution time of the invoke activities is reduced.
 
@@ -87,42 +87,44 @@ With a nonblocking invoke depicted in Pic 1 and Pic 2, the execution of the sync
 
 The sequence of events in Pic 1 and Pic 2 for a nonblocking invoke call is as follows:
 
-1.	The first synchronous invoke activity sends a message to a JMS queue. This activity now waits for the asynchronous response and relinquishes control to the next activity.
-2.	The second synchronous invoke activity sends a message to a JMS queue.
-3.	Since there are no additional activities to execute, the instance now dehydrates.
-4.	The invoke activities cannot complete until they receive their callbacks.
-5.	Two InvokerBean instances pick up the messages in the JMS queue and execute
-the synchronous invoke against the partner endpoint.
-6.	The response from the endpoint is cached and a callback message is scheduled
-with the dispatcher module.
-7.	The first invoke activity receives its callback. The instance is rehydrated during this step.
-8.	The second invoke activity receives its callback. The instance is rehydrated during this step.
+ 1.	The first synchronous invoke activity sends a message to a JMS queue. This activity now waits for the asynchronous response and relinquishes control to the next activity.
+ 2.	The second synchronous invoke activity sends a message to a JMS queue.
+ 3.	Since there are no additional activities to execute, the instance now dehydrates.
+ 4.	The invoke activities cannot complete until they receive their callbacks.
+ 5.	Two InvokerBean instances pick up the messages in the JMS queue and execute the synchronous invoke against the partner endpoint.
+ 6.	The response from the endpoint is cached and a callback message is scheduled with the dispatcher module.
+ 7.	The first invoke activity receives its callback. The instance is rehydrated during this step.
+ 8.	The second invoke activity receives its callback. The instance is rehydrated during this step.
 
- Conclusion
+ **Conclusion**
 
 A performance test showed a 30 % improvement in comparison with not using NonBlocking invoke.
-3.11	Keep the number of activities in BPEL as minimal as possible
 
-Keep the number of activities in BPEL as minimal as possible; increasing the number of activities will decrease the performance of BPEL Engine.
-3.12	Avoid empty activity
-3.13	Avoid unused partner links
-3.14	Avoid repetitive names for different Activities,
-3.15	Don’t use BPEL for intensive time scheduled activities
+ 3.11. Keep the number of activities in BPEL as minimal as possible
 
-Extensive use of activities such as alarm and wait can lower system performance.
-3.16	Do not include any special characters in the project name
+ Keep the number of activities in BPEL as minimal as possible; increasing the number of activities will decrease the performance of BPEL Engine.
+ 3.12. Avoid empty activity
+ 3.13. Avoid unused partner links
+ 3.14. Avoid repetitive names for different Activities,
+ 3.15. Don’t use BPEL for intensive time scheduled activities
 
-Special characters (such as periods) in the project name cause errors during compilation.
-3.17	Don’t use Pick based Initiate pattern for interdependent operations 
+ Extensive use of activities such as alarm and wait can lower system performance.
+ 3.16. Do not include any special characters in the project name
 
-The pick activity waits for the occurrence of exactly one event from a set of events, then executes the activity associated with that event. After an event has been selected, the other events are no longer accepted by that pick. So, don’t use Pick based Initiate pattern for implementing interdependent operations. If a race condition occurs between multiple events, the choice of the event is implementation dependent. 
-3.18	Don’t let SOA Composite instance grow exponentially
+ Special characters (such as periods) in the project name cause errors during compilation.
+ 3.17. Don’t use Pick based Initiate pattern for interdependent operations 
 
-Define rules to keep the house clean, purge the instances at regular interval to obtain better performance from BPEL engine and Enterprise Manager.
-3.19	Static Analysis Checks
-Systems integration requires more than the ability to conduct simple interactions by using standard protocols. Interoperability between applications can be achieved by using Web standards. To ensure conformant implementations of BPEL, the basic static analysis of a business process must be performed to detect any undefined semantics or invalid semantics within a process definition and reject process definitions that fail any of those static analysis checks. 
-The basic static analysis is based on the OASIS WS-BPEL v2.0 specification 0(http://docs.oasis-open.org/wsbpel/2.0/OS/wsbpel-v2.0-OS.pdf).  Below summarize the static analysis requirements listed in Appendix B of the specification.  Please refer to the specification for further details of static analysis fault codes and descriptions.
-Note: A WS-BPEL implementation MAY perform extra static analysis checking beyond the basic static analysis required by this specification to signal warnings or even reject process definitions. It is recommended that these non-specified static analysis checks should be configurable to disable.
+ The pick activity waits for the occurrence of exactly one event from a set of events, then executes the activity associated with that event. After an event has been selected, the other events are no longer accepted by that pick. So, don’t use Pick based Initiate pattern for implementing interdependent operations. If a race condition occurs between multiple events, the choice of the event is implementation dependent. 
+ 3.18. Don’t let SOA Composite instance grow exponentially
+
+ Define rules to keep the house clean, purge the instances at regular interval to obtain better performance from BPEL engine and Enterprise Manager.
+ 3.19. Static Analysis Checks
+ 
+ Systems integration requires more than the ability to conduct simple interactions by using standard protocols. Interoperability between applications can be achieved by using Web standards. To ensure conformant implementations of BPEL, the basic static analysis of a business process must be performed to detect any undefined semantics or invalid semantics within a process definition and reject process definitions that fail any of those static analysis checks. 
+ 
+ The basic static analysis is based on the OASIS WS-BPEL v2.0 specification (http://docs.oasis-open.org/wsbpel/2.0/OS/wsbpel-v2.0-OS.pdf).  Below summarize the static analysis requirements listed in Appendix B of the specification.  Please refer to the specification for further details of static analysis fault codes and descriptions.
+ 
+ Note: A WS-BPEL implementation MAY perform extra static analysis checking beyond the basic static analysis required by this specification to signal warnings or even reject process definitions. It is recommended that these non-specified static analysis checks should be configurable to disable.
 
 
 <style type="text/css">
