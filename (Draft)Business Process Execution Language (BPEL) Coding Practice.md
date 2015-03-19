@@ -135,27 +135,12 @@ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__
  
   Note: A WS-BPEL implementation MAY perform extra static analysis checking beyond the basic static analysis required by this specification to signal warnings or even reject process definitions. It is recommended that these non-specified static analysis checks should be configurable to disable.
 
-<html>
-<style> <type="text/css">
-	table.tableizer-table {
-	border: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-} 
-.tableizer-table td {
-	padding: 4px;
-	margin: 3px;
-	border: 1px solid #ccc;
-}
-.tableizer-table th {
-	background-color: #104E8B; 
-	color: #FFF;
-	font-weight: bold;
-}
-</style><table class="tableizer-table">
+
+<table class="tableizer-table">
 <tr class="tableizer-firstrow"><th>Static Analysis Fault Code</th><th>Static analysis Description</th><th>Section Reference</th></tr>
  <tr><td>SA00001</td><td>A WS-BPEL processor MUST reject a WS-BPEL that refers to solicit-response or notification operations portTypes.</td><td>Section 3</td></tr>
  <tr><td>SA00002</td><td>A WS-BPEL processor MUST reject any WSDL portType definition that includes overloaded operation names.</td><td>Section 3</td></tr>
- <tr><td>SA00003</td><td>If the value of exitOnStandardFault of a or is set to “yes”, then a fault handler that explicitly targets the WS-BPEL standard faults MUST NOT be used in that scope.</td><td>Section 5.2</td></tr>
+ <tr><td>SA00003</td><td>If the value of exitOnStandardFault of a or is set to ?yes?, then a fault handler that explicitly targets the WS-BPEL standard faults MUST NOT be used in that scope.</td><td>Section 5.2</td></tr>
  <tr><td>SA00004</td><td>If any referenced queryLanguage or expressionLanguage is unsupported by the WS-BPEL processor then the processor MUST reject the submitted WS-BPEL process definition.</td><td>Section 5.2</td></tr>
  <tr><td>SA00005</td><td>If the portType attribute is included for readability, in a , , , or element, the value of the portType attribute MUST match the portType value implied by the combination of the specified partnerLink and the role implicitly specified by the activity.</td><td>Section 5.2</td></tr>
  <tr><td>SA00006</td><td>The activity MUST only be used within a faultHandler (i.e. and elements).</td><td>Section 5.2</td></tr>
@@ -172,14 +157,14 @@ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__
  <tr><td>SA00017</td><td>The initializePartnerRole attribute MUST NOT be used on a partnerLink that does not have a partner role.</td><td>Section 6.2</td></tr>
  <tr><td>SA00018</td><td>The name of a partnerLink MUST be unique among the names of all partnerLinks defined within the same immediately enclosing scope.</td><td>Section 6.2</td></tr>
  <tr><td>SA00019</td><td>Either the type or element attributes MUST be present in a element but not both.</td><td>Section 7.2</td></tr>
- <tr><td>SA00020</td><td>"A <vprop:propertyAlias> element MUST use one of the three following combinations of attributes: 
-  messageType and part, 
- type or 
- element "</td><td>Section 7.3 </td></tr>
+ <tr><td>SA00020</td><td>"A<vprop:propertyAlias> element MUST use one of the three following combinations of attributes: </td></tr>
+ <tr><td> messageType and part, </td></tr>
+ <tr><td> type or </td></tr>
+ <tr><td> element "</td><td>Section 7.3 </td></tr>
  <tr><td>SA00021 </td><td>Static analysis MUST detect property usages where propertyAliases for the associated variable's type are not found in any WSDL definitions directly imported by the WS-BPEL process. </td><td>Section 7.3 </td></tr>
  <tr><td>SA00022 </td><td>A WS-BPEL process definition MUST NOT be accepted for processing if it defines two or more propertyAliases for the same property name and WS-BPEL variable type. </td><td>Section 7.3 </td></tr>
  <tr><td>SA00023 </td><td>The name of a variable MUST be unique among the names of all variables defined within the same immediately enclosing scope. </td><td>Section 8.1 </td></tr>
- <tr><td>SA00024 </td><td>Variable names are BPELVariableNames, that is, NCNames (as defined in XML Schema specification) but in addition they MUST NOT contain the “.” character. </td><td>Section 8.1 </td></tr>
+ <tr><td>SA00024 </td><td>Variable names are BPELVariableNames, that is, NCNames (as defined in XML Schema specification) but in addition they MUST NOT contain the ?.? character. </td><td>Section 8.1 </td></tr>
  <tr><td>SA00025 </td><td>The messageType, type or element attributes are used to specify the type of a variable. Exactly one of these attributes MUST be used. </td><td>Section 8.1 </td></tr>
  <tr><td>SA00026 </td><td>Variable initialization logic contained in scopes that contain or whose children contain a start activity MUST only use idempotent functions in the from-spec. </td><td>Section 8.1 </td></tr>
  <tr><td>SA00027 </td><td>"When XPath 1.0 is used as an expression language in WS-BPEL there is no context node available. Therefore the legal values of the XPath Expr (http://www.w3.org/TR/xpath#NT-Expr) production must be restricted in order to prevent access to the context node. </td></tr>
@@ -238,7 +223,7 @@ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__
  <tr><td>SA00044 </td><td>The name of a <correlationSet> MUST be unique among the names of all <correlationSet> defined within the same immediately enclosing scope. </td><td>Section 9.1 </td></tr>
  <tr><td>SA00045 </td><td>Properties used in a <correlationSet> MUST be defined using XML Schema simple types. </td><td>Section 9.2 </td></tr>
  <tr><td>SA00046 </td><td>The pattern attribute used in <correlation> within <invoke> is required for request-response operations, and disallowed when a one-way operation is invoked. </td><td>Section 9.2 </td></tr>
- <tr><td>SA00047 </td><td>One-way invocation requires only the inputVariable (or its equivalent <toPart> elements) since a response is not expected as part of the operation (see section 10.4. Providing Web Service Operations – Receive and Reply ). Request-response invocation requires both an inputVariable (or its equivalent <toPart> elements) and an outputVariable (or its equivalent <fromPart> elements). If a WSDL message definition does not contain any parts, then the associated attributes variable, inputVariable or outputVariable, MAY be omitted,and the <fromParts> or <toParts> construct MUST be omitted. </td><td>"Section 10.3 </td></tr>
+ <tr><td>SA00047 </td><td>One-way invocation requires only the inputVariable (or its equivalent <toPart> elements) since a response is not expected as part of the operation (see section 10.4. Providing Web Service Operations ? Receive and Reply ). Request-response invocation requires both an inputVariable (or its equivalent <toPart> elements) and an outputVariable (or its equivalent <fromPart> elements). If a WSDL message definition does not contain any parts, then the associated attributes variable, inputVariable or outputVariable, MAY be omitted,and the <fromParts> or <toParts> construct MUST be omitted. </td><td>"Section 10.3 </td></tr>
  <tr><td>Section 10.4 </td></tr>
  <tr><td>Section 10.4 </td></tr>
  <tr><td>Section 11.5 </td></tr>
@@ -259,7 +244,7 @@ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__
  <tr><td>SA00061 </td><td>The name used in the optional messageExchange attribute MUST resolve to a messageExchange declared in a scope (where the process is considered the root scope) which encloses the <reply> activity and its corresponding IMA. </td><td>Section 10.4.1 </td></tr>
  <tr><td>SA00062 </td><td>If <pick> has a createInstance attribute with a value of yes, the events in the <pick> MUST all be <onMessage> events. </td><td>Section 11.5 </td></tr>
  <tr><td>SA00063 </td><td>The semantics of the <onMessage> event are identical to a <receive> activity regarding the optional nature of the variable attribute or <fromPart> elements, if <fromPart> elements on an activity then the variable attribute MUST NOT be used on the same activity (see SA00055). </td><td>Section 11.5 </td></tr>
- <tr><td>SA00064 </td><td>For <flow>, a declared link’s name MUST be unique among all <link> names defined within the same immediately enclosing <flow>. </td><td>Section 11.6 </td></tr>
+ <tr><td>SA00064 </td><td>For <flow>, a declared link?s name MUST be unique among all <link> names defined within the same immediately enclosing <flow>. </td><td>Section 11.6 </td></tr>
  <tr><td>SA00065 </td><td>The value of the linkName attribute of <source> or <target> MUST be the name of a <link> declared in an enclosing <flow> activity. </td><td>Section 11.6.1 </td></tr>
  <tr><td>SA00066 </td><td>Every link declared within a <flow> activity MUST have exactly one activity within the <flow> as its source and exactly one activity within the <flow> as its target. </td><td>Section 11.6.1</td></tr>
  <tr><td>SA00067 </td><td>Two different links MUST NOT share the same source and target activities; that is, at most one link may be used to connect two activities. </td><td>Section 11.6.1 </td></tr>
@@ -289,7 +274,6 @@ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__
  <tr><td>SA00091 </td><td>A scope with the isolated attribute set to "yes" is called an isolated scope. Isolated scopes MUST NOT contain other isolated scopes. </td><td>Section 12.8 </td></tr>
  <tr><td>SA00092 </td><td>Within a scope, the name of all named immediately enclosed scopes MUST be unique. </td><td>Section 12.4.3 </td></tr>
  <tr><td>SA00093 </td><td>Identical <catch> constructs MUST NOT exist within a <faultHandlers> element. </td><td>Section 12.5 </td></tr>
- <tr><td>SA00094 </td><td>For <copy>, when the keepSrcElementName attribute is set to “yes” and the destination element is the Document EII of an element-based variable or an element-based part of a WSDL message-type-based variable, the name of the source element MUST belong to the substitutionGroup of the destination element. This checking MAY be enforced through static analysis of the expression/query language. </td><td>Section 8.4.2</td></tr>
+ <tr><td>SA00094 </td><td>For <copy>, when the keepSrcElementName attribute is set to ?yes? and the destination element is the Document EII of an element-based variable or an element-based part of a WSDL message-type-based variable, the name of the source element MUST belong to the substitutionGroup of the destination element. This checking MAY be enforced through static analysis of the expression/query language. </td><td>Section 8.4.2</td></tr>
  <tr><td>SA00095 </td><td>For <onEvent>, the variable references are resolved to the associated scope only and MUST NOT be resolved to the ancestor scopes. </td><td>Section 12.7.1</td></tr>
 </table>
-</html>
