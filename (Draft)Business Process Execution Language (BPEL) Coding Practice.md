@@ -1,76 +1,77 @@
-1. Introduction
+__1. Introduction__
 
  Business Process Execution Language for Web Services (BPEL or BPEL4WS) is a language used for the definition and execution of business processes using Web services.  BPEL enables the top-down realization of Service Oriented Architecture (SOA) through composition, orchestration, and coordination of Web services.  BPEL provides a relatively easy and straightforward way to compose several Web services into new composite services called business processes, which is a collection of coordinated service invocations and related activities that produce a result.
 
  BPEL builds on the foundation of XML and Web services; it uses an XML-based language that supports the Web services technology stack, including SOAP, WSDL, UDDI, WS-Reliable Messaging, WS-Addressing, WS-Coordination, and WS-Transaction.
  
  BPEL is used to standardize enterprise application integration as well as to extend the integration to the Consular Affairs (CA) legacy applications and services where an Oracle Enterprise Service Bus is a middleware solution as an intermediary between service requesters and service providers.
-2. Purpose
+ 
+__2. Purpose__
 
  The purpose is to document industry best practices and recommendations for BPEL coding to improve the overall quality, performance, security, maintainability, and robustness of Oracle BPEL solutions implementation. Conformance to the practices will promote measurable improvements in the performance of codes and a reduction in sustainment costs.  
 
  Consular Systems and Technology’s (CST) implements CAST as a quality gate to minimize software risk.  CAST is a software analysis and measurement automation tool that provides on the current and ongoing delivery code quality to reduce production risks and costs for fixes and rework.  Currently, CAST framework has a limited analytical capability in supporting BPEL.  So until BPEL analysis is fully implement by CAST, the best practices will provide guidance in performing manual analysis of systems written in BPEL.
 
  This document is intended for the CST Systems Engineering and Integration (SEI) team and development teams.  Upon review of this document, the best practices will be converted to CAST rules.
+ 
+__3. Industry Best Coding Practice__
 
-3. Industry Best Coding Practice
-
- 3.1. Create scopes for each step of the flow in the process
+ __3.1. Create scopes for each step of the flow in the process__
  
    Create scopes for each step of the flow in the process so as to make it modular.  This will help in creating local variables within that scope.  Scopes provide a context for the execution and/or documentation of enclosed activities, and they can have variables that are visible and usable at and within the scope level. Scopes can have both default and defined Fault and Event handling logic, and they can be undone, if necessary. Undoing the work of a Scope involves the concept of compensation.  When designing BPEL processes, they should be organized into logical units of work that can be undone.  Scopes can be used as a context to create variables, fault/compensation/event handlers and for organizational purposes. They are the basic building blocks used to assemble a BPEL process.
 
- 3.2. Use Global variables when required
+ __3.2. Use Global variables when required__
  
   This will help in maintainability.  However, declaring many global variables needs to be avoided in a BPEL process, instead use scope or local variables. The variables defined at the Process root are global variables, which have a global visibility throughout the entire process.  The variables defined within a particular Scope are visible only inside that Scope and all nested Scopes.  These variables are called local variables.  A variable defined for an inner Scope element can hide an upper defined variable of the same name.
 
- 3.3. Consider creating sequences instead of scopes for performance
+ __3.3. Consider creating sequences instead of scopes for performance__
  
   Do not add too many scopes since it may affect the performance. Instead, consider creating sequences. A Sequence is a structured activity which can contain other activities, all of which will be executed in a specifically defined order.  The purpose of a Sequence, therefore, is to define the execution order for a group of activities.  BPEL Sequences can contain other Sequences and can be nested as deeply as you want.  Sequences have all the standard attributes and elements and they must contain at least one or more activities.
 
- 3.4. Adopt naming standards for maintainability and scalability
+ __3.4. Adopt naming standards for maintainability and scalability__
 
   Naming convention is company/project specific that the Department has to come up with its own standards.  This should be part of the governance strategy.  BPEL activities need naming conventions and should not be changed.  Also, activities with default names like ```'Assign_1'```, ```'Assign_2'``` are meaningless and also doesn’t help much during auditing and debugging.
 
- 3.5. Handle all the exceptions
+ __3.5. Handle all the exceptions__
 
   The ability to specify exceptional conditions and their consequences, including recovery sequences, is at least as important for business processes as the ability to define the behavior in the "all goes well" case.  Use a catch branch for a different scope to catch binding, remote, custom faults, and business faults.
 
-  3.5.1. Using a Fault Handler
+   _3.5.1. Using a Fault Handler_
 
-  The BPEL language provides the capability to catch and manage exceptions using fault handlers. For example, exceptions occur when web services return different data than was expected. If faults are not handled, the entire BPEL process can be thrown into a faulted state. Therefore, to prevent the entire process from fault, add fault handlers to catch and manage exceptions within particular Scopes.
+   The BPEL language provides the capability to catch and manage exceptions using fault handlers. For example, exceptions occur when web services return different data than was expected. If faults are not handled, the entire BPEL process can be thrown into a faulted state. Therefore, to prevent the entire process from fault, add fault handlers to catch and manage exceptions within particular Scopes.
 
   Each fault handler contains an activity that runs in case of an error. For example, a partner service is notified if an error has occurred. Fault handlers can be added to the entire process or to individual Scope elements.
 
-  3.5.2. Using an Event Handler
+  _3.5.2. Using an Event Handler_
 
   The entire BPEL process as well as each individual Scope can be associated with a set of Event Handlers that are invoked concurrently if the corresponding event occurs. The actions taken within an Event Handler can be any type of activity, such as Sequence or Flow.
 
-  3.5.3. Using a Compensation Handler
+  _3.5.3. Using a Compensation Handler_
 
   A business process often contains several nested transactions. The overall business transaction can fail or be cancelled after many enclosed transactions have already been processed. Then it is necessary to reverse the effect obtained during process execution. For example, a travel planning process can include several nested transactions to book a ticket, to reserve a hotel and a car. If the trip is cancelled, the reservation transactions must be compensated for by cancellation transactions in the appropriate order.
 
-  3.5.4. Using a Termination Handler
+  _3.5.4. Using a Termination Handler_
 
   The termination handler is used to control the termination of a running scope. The termination of a running scope happens if a scope or process enclosing it has faulted.  When a fault is thrown inside a scope or process, a fault handler associated with the scope or process should be run, but before that all the running activities inside the faulted scope or process should be terminated. 
 
- 3.6. Use assign activity instead of transform activity
+ __3.6. Use assign activity instead of transform activity__
 
  Use assign activity instead of transform activity where ever possible since it take less memory.
 Assign activity provides a method for data manipulation, such as copying the contents of one variable to another. This activity can contain any number of elementary assignments.  Transform activity enables to create a transformation that maps source elements to target elements (for example, incoming purchase order data into outgoing purchase order acknowledgment data).
 
- 3.7. Use XSL to construct messages and do multiple assign statement
+ __3.7. Use XSL to construct messages and do multiple assign statement__
 
  Don’t use multiple assign statement to construct a message; use XSL to construct messages.
 
- 3.8. Use XPath Expression constraints to check the data constraints
+ __3.8. Use XPath Expression constraints to check the data constraints__
 
  Don’t loop through the data for checking data constraints; use XPath Expression constraints to check the data constraints. Use Fully Qualified XPath expression.
  
- 3.9. Initialize a BPEL variable before copying values to internal elements
+ __3.9. Initialize a BPEL variable before copying values to internal elements__
 
  Variables offer the possibility to store messages that hold the state of the process.  Initialize a variable before copying values to internal elements to avoid SelectionFailure faults or "variable counter isn't properly initialized" on execution.
 
- 3.10. Use <nonBlockingInvoke> in BPEL flow for Performance improvement
+ __3.10. Use <nonBlockingInvoke> in BPEL flow for Performance improvement__
 
  Normally when executing a synchronous (two-way) invoke activity, Oracle BPEL Server waits for the response from the endpoint before executing the subsequent activity. This behavior can present problems when synchronous invoke activities are placed inside a flow activity, because Oracle BPEL Server executes the flow using pseudo-parallelism.
 
@@ -78,14 +79,14 @@ Assign activity provides a method for data manipulation, such as copying the con
 
  The second invoke activity is not executed until the response from the first invoke activity is received. If the number of branches in the flow is large, the delay before the final invoke activity is executed is the sum of all the preceding synchronous invoke activities.
 
-**Solution** 
+ **Solution** 
 
-With a nonblocking invoke depicted in Pic 1 and Pic 2, the execution of the synchronous invoke activity is scheduled to be performed by a separate thread in the background. With this change, the initial execution time of the invoke activities is reduced.
+ With a nonblocking invoke depicted in Pic 1 and Pic 2, the execution of the synchronous invoke activity is scheduled to be performed by a separate thread in the background. With this change, the initial execution time of the invoke activities is reduced.
 
  
  
 
-The sequence of events in Pic 1 and Pic 2 for a nonblocking invoke call is as follows:
+ The sequence of events in Pic 1 and Pic 2 for a nonblocking invoke call is as follows:
 
  1.	The first synchronous invoke activity sends a message to a JMS queue. This activity now waits for the asynchronous response and relinquishes control to the next activity.
  2.	The second synchronous invoke activity sends a message to a JMS queue.
@@ -96,35 +97,35 @@ The sequence of events in Pic 1 and Pic 2 for a nonblocking invoke call is as fo
  7.	The first invoke activity receives its callback. The instance is rehydrated during this step.
  8.	The second invoke activity receives its callback. The instance is rehydrated during this step.
 
- **Conclusion**
+  **Conclusion**
 
-A performance test showed a 30 % improvement in comparison with not using NonBlocking invoke.
+ A performance test showed a 30 % improvement in comparison with not using NonBlocking invoke.
 
  3.11. Keep the number of activities in BPEL as minimal as possible
 
- Keep the number of activities in BPEL as minimal as possible; increasing the number of activities will decrease the performance of BPEL Engine.
+  Keep the number of activities in BPEL as minimal as possible; increasing the number of activities will decrease the performance of BPEL Engine.
  3.12. Avoid empty activity
  3.13. Avoid unused partner links
  3.14. Avoid repetitive names for different Activities,
  3.15. Don’t use BPEL for intensive time scheduled activities
 
- Extensive use of activities such as alarm and wait can lower system performance.
+  Extensive use of activities such as alarm and wait can lower system performance.
  3.16. Do not include any special characters in the project name
 
- Special characters (such as periods) in the project name cause errors during compilation.
+  Special characters (such as periods) in the project name cause errors during compilation.
  3.17. Don’t use Pick based Initiate pattern for interdependent operations 
 
- The pick activity waits for the occurrence of exactly one event from a set of events, then executes the activity associated with that event. After an event has been selected, the other events are no longer accepted by that pick. So, don’t use Pick based Initiate pattern for implementing interdependent operations. If a race condition occurs between multiple events, the choice of the event is implementation dependent. 
+  The pick activity waits for the occurrence of exactly one event from a set of events, then executes the activity associated with that event. After an event has been selected, the other events are no longer accepted by that pick. So, don’t use Pick based Initiate pattern for implementing interdependent operations. If a race condition occurs between multiple events, the choice of the event is implementation dependent. 
  3.18. Don’t let SOA Composite instance grow exponentially
 
- Define rules to keep the house clean, purge the instances at regular interval to obtain better performance from BPEL engine and Enterprise Manager.
+  Define rules to keep the house clean, purge the instances at regular interval to obtain better performance from BPEL engine and Enterprise Manager.
  3.19. Static Analysis Checks
  
- Systems integration requires more than the ability to conduct simple interactions by using standard protocols. Interoperability between applications can be achieved by using Web standards. To ensure conformant implementations of BPEL, the basic static analysis of a business process must be performed to detect any undefined semantics or invalid semantics within a process definition and reject process definitions that fail any of those static analysis checks. 
+  Systems integration requires more than the ability to conduct simple interactions by using standard protocols. Interoperability between applications can be achieved by using Web standards. To ensure conformant implementations of BPEL, the basic static analysis of a business process must be performed to detect any undefined semantics or invalid semantics within a process definition and reject process definitions that fail any of those static analysis checks. 
  
- The basic static analysis is based on the OASIS WS-BPEL v2.0 specification (http://docs.oasis-open.org/wsbpel/2.0/OS/wsbpel-v2.0-OS.pdf).  Below summarize the static analysis requirements listed in Appendix B of the specification.  Please refer to the specification for further details of static analysis fault codes and descriptions.
+  The basic static analysis is based on the OASIS WS-BPEL v2.0 specification (http://docs.oasis-open.org/wsbpel/2.0/OS/wsbpel-v2.0-OS.pdf).  Below summarize the static analysis requirements listed in Appendix B of the specification.  Please refer to the specification for further details of static analysis fault codes and descriptions.
  
- Note: A WS-BPEL implementation MAY perform extra static analysis checking beyond the basic static analysis required by this specification to signal warnings or even reject process definitions. It is recommended that these non-specified static analysis checks should be configurable to disable.
+  Note: A WS-BPEL implementation MAY perform extra static analysis checking beyond the basic static analysis required by this specification to signal warnings or even reject process definitions. It is recommended that these non-specified static analysis checks should be configurable to disable.
 
 
 <style type="text/css">
