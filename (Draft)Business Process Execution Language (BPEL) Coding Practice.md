@@ -149,8 +149,7 @@ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__
 | 	SA00009	 | 	In the case of mandatory extensions declared in the element not supported by a WS-BPEL implementation, the process definition MUST be rejected.	 | 	Section 5.3	 | 
 | 	SA00010	 | 	A WS-BPEL process definition MUST import all XML Schema and WSDL definitions it uses. This includes all XML Schema type and element definitions, all WSDL port types and message types as well as property and property alias definitions used by the process.	 | 	Section 5.4	 | 
 | 	SA00011	 | 	If a namespace attribute is specified on an then the imported definitions MUST be in that namespace.	 | 	Section 5.4	 | 
-| 	SA00012	 | 	If no namespace is specified then the imported definitions MUST NOT contain a targetNamespace specification.	
-| 	Section 5.4	 | 
+| 	SA00012	 | 	If no namespace is specified then the imported definitions MUST NOT contain a targetNamespace specification. | 	Section 5.4	 | 
 | 	SA00013	 | 	The value of the importType attribute of element MUST be set to http://www.w3.org/2001/XMLSchema when importing XML Schema 1.0 documents, and to http://schemas.xmlsoap.org/wsdl/ when importing WSDL 1.1 documents.	 | 	Section 5.4	 | 
 | 	SA00014	 | 	A WS-BPEL process definition MUST be rejected if the imported documents contain conflicting definitions of a component used by the importing process definition (as could be caused, for example, when the XSD redefinition mechanism is used).	 | 	Section 5.4	 | 
 | 	SA00015	 | 	To be instantiated, an executable business process MUST contain at least one or activity annotated with a createInstance="yes" attribute.	 | 	Section 5.5	 | 
@@ -158,10 +157,7 @@ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__
 | 	SA00017	 | 	The initializePartnerRole attribute MUST NOT be used on a partnerLink that does not have a partner role.	 | 	Section 6.2	 | 
 | 	SA00018	 | 	The name of a partnerLink MUST be unique among the names of all partnerLinks defined within the same immediately enclosing scope.	 | 	Section 6.2	 | 
 | 	SA00019	 | 	Either the type or element attributes MUST be present in a element but not both.	 | 	Section 7.2	 | 
-| 	SA00020	 | 	"A<vprop:propertyAlias> element MUST use one of the three following combinations of attributes: 
- messageType and part, 
- type or 
- element "	 | 	Section 7.3 	 | 
+| 	SA00020	 | 	A ```<vprop:propertyAlias>``` element MUST use one of the three following combinations of attributes: messageType and part, type or element	 | 	Section 7.3 	 | 
 | 	SA00021 	 | 	Static analysis MUST detect property usages where propertyAliases for the associated variable's type are not found in any WSDL definitions directly imported by the WS-BPEL process. 	 | 	Section 7.3 	 | 
 | 	SA00022 	 | 	A WS-BPEL process definition MUST NOT be accepted for processing if it defines two or more propertyAliases for the same property name and WS-BPEL variable type. 	 | 	Section 7.3 	 | 
 | 	SA00023 	 | 	The name of a variable MUST be unique among the names of all variables defined within the same immediately enclosing scope. 	 | 	Section 8.1 	 | 
