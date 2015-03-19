@@ -106,8 +106,11 @@ __3.11. Keep the number of activities in BPEL as minimal as possible__
  Keep the number of activities in BPEL as minimal as possible; increasing the number of activities will decrease the performance of BPEL Engine.
   
 __3.12. Avoid empty activity__
+
 __3.13. Avoid unused partner links__
+
 __3.14. Avoid repetitive names for different Activities__
+
 __3.15. Don’t use BPEL for intensive time scheduled activities__
 
   Extensive use of activities such as alarm and wait can lower system performance.
@@ -133,7 +136,7 @@ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__
   Note: A WS-BPEL implementation MAY perform extra static analysis checking beyond the basic static analysis required by this specification to signal warnings or even reject process definitions. It is recommended that these non-specified static analysis checks should be configurable to disable.
 
 <html>
-<style type="text/css">
+<style> <type="text/css">
 	table.tableizer-table {
 	border: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -169,10 +172,10 @@ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__
  <tr><td>SA00017</td><td>The initializePartnerRole attribute MUST NOT be used on a partnerLink that does not have a partner role.</td><td>Section 6.2</td></tr>
  <tr><td>SA00018</td><td>The name of a partnerLink MUST be unique among the names of all partnerLinks defined within the same immediately enclosing scope.</td><td>Section 6.2</td></tr>
  <tr><td>SA00019</td><td>Either the type or element attributes MUST be present in a element but not both.</td><td>Section 7.2</td></tr>
- <tr><td>SA00020</td><td>"A <vprop:propertyAlias> element MUST use one of the three following combinations of attributes: </td></tr>
- <tr><td> messageType and part, </td></tr>
- <tr><td> type or </td></tr>
- <tr><td> element "</td><td>&nbsp;</td></tr>
+ <tr><td>SA00020</td><td>"A <vprop:propertyAlias> element MUST use one of the three following combinations of attributes: 
+  messageType and part, 
+ type or 
+ element "</td><td>Section 7.3 </td></tr>
  <tr><td>SA00021 </td><td>Static analysis MUST detect property usages where propertyAliases for the associated variable's type are not found in any WSDL definitions directly imported by the WS-BPEL process. </td><td>Section 7.3 </td></tr>
  <tr><td>SA00022 </td><td>A WS-BPEL process definition MUST NOT be accepted for processing if it defines two or more propertyAliases for the same property name and WS-BPEL variable type. </td><td>Section 7.3 </td></tr>
  <tr><td>SA00023 </td><td>The name of a variable MUST be unique among the names of all variables defined within the same immediately enclosing scope. </td><td>Section 8.1 </td></tr>
