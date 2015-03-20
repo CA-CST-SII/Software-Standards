@@ -75,7 +75,7 @@ Assign activity provides a method for data manipulation, such as copying the con
 
  Normally when executing a synchronous (two-way) invoke activity, Oracle BPEL Server waits for the response from the endpoint before executing the subsequent activity. This behavior can present problems when synchronous invoke activities are placed inside a flow activity, because Oracle BPEL Server executes the flow using pseudo-parallelism.
 
- 
+![pseudo-parallelism](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/BPEL_FIG_1.png) 
 
  The second invoke activity is not executed until the response from the first invoke activity is received. If the number of branches in the flow is large, the delay before the final invoke activity is executed is the sum of all the preceding synchronous invoke activities.
 
@@ -83,8 +83,9 @@ Assign activity provides a method for data manipulation, such as copying the con
 
  With a nonblocking invoke depicted in Pic 1 and Pic 2, the execution of the synchronous invoke activity is scheduled to be performed by a separate thread in the background. With this change, the initial execution time of the invoke activities is reduced.
 
+![pic-1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/BPEL_FIG_2.png)  
  
- 
+![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/BPEL_FIG_3.png) 
 
  The sequence of events in Pic 1 and Pic 2 for a nonblocking invoke call is as follows:
 
