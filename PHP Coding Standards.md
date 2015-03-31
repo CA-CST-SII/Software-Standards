@@ -4,77 +4,111 @@ The main purpose of this PHP Standard Reference (PSR) is to provide a complete a
 This document SHALL NOT:
 * Describe a standard for implementing annotations via PHPDoc. Although it does offer versatility which makes it possible to create a subsequent PSR based on current practices. See chapter 5.3 for more information on this topic.
 * Describe best practices or recommendations for Coding Standards on the application of the PHPDoc standard. This document is limited to a formal specification of syntax and intention.
+
 #2. Conventions Used In This Document#
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119.
-3. Definitions
-•	"PHPDoc" is a section of documentation which provides information on several aspects of a "Structural Element".
+
+#3. Definitions#
+* "PHPDoc" is a section of documentation which provides information on several aspects of a "Structural Element".
 It is important to note that the PHPDoc and the DocBlock are two separate entities. The DocBlock is the combination of a DocComment, which is a type of comment, and a PHPDoc entity. It is the PHPDoc entity that contains the syntax as described in chapter 5 such as the description and tags.
-•	"Structural Element" is a collection of Programming Constructs which SHOULD be preceded by a DocBlock. The collection contains the following constructs:
-o	file
-o	require(_once)
-o	include(_once)
-o	class
-o	interface
-o	trait
-o	function (including methods)
-o	property
-o	constant
-o	variables, both local and global scope.
+* "Structural Element" is a collection of Programming Constructs which SHOULD be preceded by a DocBlock. The collection contains the following constructs:
+  o	file
+  o	require(_once)
+  o	include(_once)
+  o	class
+  o	interface
+  o	trait
+  o	function (including methods)
+  o	property
+  o	constant
+  o	variables, both local and global scope.
+
 It is RECOMMENDED to precede a "Structural Element" with a DocBlock with its definition and not with each usage. It is common practice to have the DocBlock precede a Structural Element but it MAY also be separated by a an empty line.
 Example:
+```php
 /** @var int $int This is a counter. */ $int = 0;   // there should be no docblock here $int++;
+```
 or
+```php
   /**    * This class acts as an example on where to position a DocBlock.    */   class Foo   {       /** @var string|null $title contains a title for the Foo with a max. length of 24 characters */       protected $title = null;         /**        * Sets a single-line title.        *        * @param string $title A text with a maximum of 24 characters.        *        * @return void        */       public function setTitle($title)       {           // there should be no docblock here           $this->title = $title;       }   }
+  ```
 An example of use that falls beyond the scope of this Standard is to document the variable in a foreach explicitly; several IDEs use this information to assist their auto-completion functionality.
+
 This Standard does not cover this specific instance as a foreach statement is not considered to be a "Structural Element" but a Control Flow statement.
+```php
 /** @var \Sqlite3 $sqlite */ foreach($connections as $sqlite) {     // there should be no docblock here     $sqlite->open('/my/database/path');     <...> }
-•	"DocComment" is a special type of comment which MUST
-o	start with the character sequence /** followed by a whitespace character
-o	end with */ and
-o	have zero or more lines in between.
-In case a DocComment spans multiple lines then every line MUST start with an asterisk (*) that SHOULD be aligned with the first asterisk of the opening clause.
-Single line example:
+```
+* "DocComment" is a special type of comment which MUST
+  o	start with the character sequence /** followed by a whitespace character
+  o	end with */ and
+  o	have zero or more lines in between.
+ In case a DocComment spans multiple lines then every line MUST start with an asterisk (*) that SHOULD be aligned with the first asterisk of the opening clause.
+ Single line example:
+```php
 /** <...> */
+```
 Multiline example:
+```php
   /**    * <...>    */
-•	"DocBlock" is a "DocComment" containing a single "PHPDoc" structure and represents the basic in-source representation.
-•	"Tag" is a single piece of meta information regarding a "Structural Element" or a component thereof.
-•	"Inline PHPDoc" is a "PHPDoc" that is related to a "Tag" instead of a "Structural element". It replaces the description part of the "Tag".
-•	"Type" is the determination of what type of data is associated with an element. This is commonly used when determining the exact values of arguments, constants, properties and more.
+  ```
+* "DocBlock" is a "DocComment" containing a single "PHPDoc" structure and represents the basic in-source representation.
+* "Tag" is a single piece of meta information regarding a "Structural Element" or a component thereof.
+* "Inline PHPDoc" is a "PHPDoc" that is related to a "Tag" instead of a "Structural element". It replaces the description part of the "Tag".
+* "Type" is the determination of what type of data is associated with an element. This is commonly used when determining the exact values of arguments, constants, properties and more.
 See Appendix A for more detailed information about types.
-•	"Semantic Version" refers to the definition as set in the Semantic Versioning Specification 2.0.0.
-•	"FQSEN" is an abbreviation for Fully Qualified Structural Element Name. This notation expands on the Fully Qualified Class Name and adds a notation to identify class/interface/trait members and re-apply the principles of the FQCN to Interfaces, Traits, Functions and global Constants.
+* "Semantic Version" refers to the definition as set in the Semantic Versioning Specification 2.0.0.
+* "FQSEN" is an abbreviation for Fully Qualified Structural Element Name. This notation expands on the Fully Qualified Class Name and adds a notation to identify class/interface/trait members and re-apply the principles of the FQCN to Interfaces, Traits, Functions and global Constants.
+
 The following notations can be used per type of "Structural Element":
+```php
 Namespace: \My\Space Function: \My\Space\myFunction() Constant: \My\Space\MY_CONSTANT Class:\My\Space\MyClass Interface: \My\Space\MyInterface Trait: \My\Space\MyTrait Method:\My\Space\MyClass::myMethod() Property: \My\Space\MyClass::$my_property Class Constant:\My\Space\MyClass::MY_CONSTANT
+```
 A FQSEN has the following ABNF definition:
+```
     FQSEN    = fqnn / fqcn / constant / method / property  / function     fqnn     = "\" [name] *("\" [name])     fqcn     = fqnn "\" name     constant = (fqnn "\" / fqcn "::") name     method   = fqcn "::" name "()"     property = fqcn "::$" name     function = fqnn "\" name "()"     name     = (ALPHA / "_") *(ALPHA / DIGIT / "_") 
-4. Basic Principles
-•	A PHPDoc MUST always be contained in a "DocComment"; the combination of these two is called a "DocBlock".
-•	A DocBlock MUST directly precede a "Structural Element"
-An exception to this principle is the File-level DocBlock which MUST be placed at the top of a PHP source code file as the first DocBlock in a file.
-To prevent ambiguity when a Structural Element comes directly after a File-level DocBlock MUST that element have its own DocBlock in addition to the File-level DocBlock.
+    ```
+    
+#4. Basic Principles#
+* A PHPDoc MUST always be contained in a "DocComment"; the combination of these two is called a "DocBlock".
+* A DocBlock MUST directly precede a "Structural Element"
+ An exception to this principle is the File-level DocBlock which MUST be placed at the top of a PHP source code file as the first DocBlock in a file.
+ To prevent ambiguity when a Structural Element comes directly after a File-level DocBlock MUST that element have its own DocBlock in addition to the File-level DocBlock.
 Example of a valid File-level DocBlock:
+```php
 <?php /**  * This is a file-level DocBlock  */  /**  * This is a class DocBlock  */ class MyClass { } 
+```
 Example of an invalid File-level DocBlock
-<?php /**  * This is a class DocBlock  */ class MyClass { } 
-5. The PHPDoc Format
+```php
+<?php /**  * This is a class DocBlock  */ class MyClass { }
+```
+
+#5. The PHPDoc Format#
 The PHPDoc format has the following ABNF definition:
+```php
 PHPDoc             = [summary] [description] [tags] inline-phpdoc      = "{" *SP PHPDoc *SP "}" summary            = *CHAR ("." 1*CRLF / 2*CRLF) description        = 1*(CHAR / inline-tag) 1*CRLF ; any amount of characters                                                  ; with inline tags inside tags               = *(tag 1*CRLF) inline-tag         = "{" tag "}" tag                = "@" tag-name [":" tag-specialization] [tag-details] tag-name           = (ALPHA / "\") *(ALPHA / DIGIT / "\" / "-" / "_") tag-specialization = 1*(ALPHA / DIGIT / "-") tag-details        = *SP (SP tag-description / tag-signature / inline-phpdoc) tag-description    = 1*(CHAR / CRLF) tag-signature      = "(" *tag-argument ")" tag-argument       = *SP 1*CHAR [","] *SP 
+```
 Examples of use are included in chapter 5.4.
-5.1. Summary
+
+##5.1. Summary##
 A Summary MUST contain an abstract of the "Structural Element" defining the purpose. It is RECOMMENDED for Summaries to span a single line or at most two but not more than that.
+
 A Summary MUST end with either
-•	a full stop (.) followed by a line break
-•	or two sequential line breaks.
+* a full stop (.) followed by a line break
+* or two sequential line breaks.
+* 
 If a Description is provided, then it MUST be preceded by a Summary. Otherwise the Description will be considered the Summary, until the end of the Summary is reached.
+
 Because a Summary is comparable to a chapter title it is beneficial to use as little formatting as possible. As such, contrary to the Description (see next chapter), no recommendation is done to support a mark-up language. It is explicitly left up to the implementing application whether it wants to support this or not.
-5.2. Description
+
+##5.2. Description##
 The Description is OPTIONAL but SHOULD be included when the "Structural Element", which this DocBlock precedes, contains more operations, or more complex operations, than can be described in the Summary alone.
+
 Any application parsing the Description is RECOMMENDED to support the Markdown mark-up language for this field so that it is possible for the author to provide formatting and a clear way of representing code examples.
+
 Common uses for the Description are (amongst others):
-•	To provide more detail than the Summary on what this method does.
-•	To specify of what child elements an input or output array, or object, is composed.
-•	To provide a set of common use cases or scenarios in which the "Structural Element" may be applied.
+* To provide more detail than the Summary on what this method does.
+* To specify of what child elements an input or output array, or object, is composed.
+* To provide a set of common use cases or scenarios in which the "Structural Element" may be applied.
 5.3. Tags
 Tags provide a way for authors to supply concise meta-data regarding the succeeding "Structural Element". Each tag starts on a new line, followed by an at-sign (@) and a tag-name followed by white-space and meta-data (including a description) or Inline PHPDoc.
 If meta-data is provided, it MAY span multiple lines and COULD follow a strict format, and as such provide parameters, as dictated by the type of tag. The type of the tag can be derived from its name.
@@ -92,8 +126,8 @@ Annotations will not be described in further detail in this specification as thi
 Tag names indicate what type of information is represented by this tag, or in case of annotations which behaviour must be injected into the succeeding "Structural Element".
 In support of annotations, it is allowable to introduce a set of tags designed specifically for an individual application or subset of applications (and thus not covered by this specification).
 These tags, or annotations, MUST provide a namespace by either
-•	prefixing the tag name with a PHP-style namespace, or by
-•	prefixing the tag name with a single vendor-name followed by a hyphen.
+* prefixing the tag name with a PHP-style namespace, or by
+* prefixing the tag name with a single vendor-name followed by a hyphen.
 Example of a tag name prefixed with a php-style namespace (the prefixing slash is OPTIONAL):
 @\Doctrine\Orm\Mapping\Entity()
 Note: The PHPDoc Standard DOES NOT make assumptions on the meaning of a tag unless specified in this document or subsequent additions or extensions.
@@ -137,9 +171,9 @@ Some tags may even feature an "Inline PHPDoc" as shown in the following example.
 6. Inheritance
 PHPDoc's also have the ability to inherit information when the succeeding "Structural Element" has a super-element (such as a super-class or a method with the same name in a super-class or implemented in a super-interface).
 Every "Structural Element" MUST inherit the following PHPDoc parts by default:
-•	Summary
-•	Description
-•	A specific subset of tags
+* Summary
+* Description
+* A specific subset of tags
 o	@version
 o	@author
 o	@copyright
@@ -151,21 +185,21 @@ In this case the writer MUST use the {@inheritdoc} inline tag as Summary and ove
 Without the {@inheritdoc} inline tag the reader MUST interpret any text as if the Summary would be overridden and Description MAY appear overridden if the block of text contains a Summary ending as defined in the ABNF.
 6.1. Class Or Interface
 In addition to the inherited descriptions and tags as defined in this chapter's root, a class or interface MUST inherit the following tags:
-•	@package
+* @package
 A class or interface SHOULD inherit the following deprecated tags if supplied:
-•	@subpackage
+* @subpackage
 The @subpackage MUST NOT be inherited if the @package name of the super-class (or interface) is not the same as the @package of the child class (or interface).
 Example:
 /**  * @package    Framework  * @subpackage Controllers  */ class Framework_ActionController {     <...> }  /**  * @package My  * class My_ActionController extends Framework_ActionController {     <...> }
 In the example above the My_ActionController MUST NOT inherit the subpackage Controllers.
 6.2. Function Or Method
 In addition to the inherited descriptions and tags as defined in this chapter's root, a function or method in a class or interface MUST inherit the following tags:
-•	@param
-•	@return
-•	@throws
+* @param
+* @return
+* @throws
 6.3. Constant Or Property
 In addition to the inherited descriptions and tags as defined in this chapter's root, a constant or property in a class MUST inherit the following tags:
-•	@var
+* @var
 7. Describing hashes
 The structure of a hash may be described using an "Inline PHPDoc" as part of a @var, @param or @return declaration or using the @struct tag in the Class' DocBlock.
 In either case each element of the hash is denoted with a @var declaration in the "Inline PHPDoc". Using this tag it is possible to indicate type, name and purpose of the element.
@@ -473,9 +507,9 @@ Examples
 /**  * @uses MyView.php  */ function executeMyView() {     <...> }
 8.24. @var
 You may use the @var tag to document the "Type" of the following "Structural Elements":
-•	Constants, both class and global scope
-•	Properties
-•	Variables, both global and local scope
+* Constants, both class and global scope
+* Properties
+* Variables, both global and local scope
 Syntax
 @var ["Type"] [element_name] [<description>] 
 Description
