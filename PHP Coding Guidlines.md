@@ -1,4 +1,4 @@
-1. Introduction
+#1. Introduction#
 The main purpose of this PHP Standard Reference (PSR) is to provide a complete and formal definition of the PHPDoc standard. This PSR deviates from its predecessor, the de-facto PHPDoc Standard associated with phpDocumentor 1.x, to provide support for newer features in the PHP language and to address some of the shortcomings of its predecessor. This is an adaption of the PSR found in GITHUB at: https://github.com/phpDocumentor 
 This document SHALL NOT:
 •	Describe a standard for implementing annotations via PHPDoc. Although it does offer versatility which makes it possible to create a subsequent PSR based on current practices. See chapter 5.3 for more information on this topic.
