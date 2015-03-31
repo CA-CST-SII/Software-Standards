@@ -4,7 +4,7 @@ The main purpose of this PHP Standard Reference (PSR) is to provide a complete a
 This document SHALL NOT:
 * Describe a standard for implementing annotations via PHPDoc. Although it does offer versatility which makes it possible to create a subsequent PSR based on current practices. See chapter 5.3 for more information on this topic.
 * Describe best practices or recommendations for Coding Standards on the application of the PHPDoc standard. This document is limited to a formal specification of syntax and intention.
-2. Conventions Used In This Document
+#2. Conventions Used In This Document#
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119.
 3. Definitions
 •	"PHPDoc" is a section of documentation which provides information on several aspects of a "Structural Element".
