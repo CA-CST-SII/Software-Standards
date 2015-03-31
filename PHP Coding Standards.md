@@ -109,15 +109,22 @@ Common uses for the Description are (amongst others):
 * To provide more detail than the Summary on what this method does.
 * To specify of what child elements an input or output array, or object, is composed.
 * To provide a set of common use cases or scenarios in which the "Structural Element" may be applied.
-5.3. Tags
+
+##5.3. Tags##
 Tags provide a way for authors to supply concise meta-data regarding the succeeding "Structural Element". Each tag starts on a new line, followed by an at-sign (@) and a tag-name followed by white-space and meta-data (including a description) or Inline PHPDoc.
+
 If meta-data is provided, it MAY span multiple lines and COULD follow a strict format, and as such provide parameters, as dictated by the type of tag. The type of the tag can be derived from its name.
 For example:
+```php
 @param string $argument1 This is a parameter.
+```
 The above tag consists of a name ('param') and meta-data ('string $argument1 This is a parameter.') where the meta-data is split into a "Type" ('string'), variable name ('$argument') and description ('This is a parameter.').
+
 The description of a tag MUST support Markdown as a formatting language. Due to the nature of Markdown it is legal to start the description of the tag on the same or the subsequent line and interpret it in the same way.
+
 So the following tags are semantically identical:
-/**  * @var string This is a description.  * @var string This is a  *    description.  * @var string  *    This is a description.  */ 
+`/**  * @var string This is a description.  * @var string This is a  *    description.  * @var string  *    This is a description.  */'
+
 A variation of this is where, instead of a description, a tag signature is used; in most cases the tag will in fact be an "Annotation". The tag signature is able to provide the annotation with parameters regarding its operation.
 If a tag signature is present then there MUST NOT be a description present in the same tag.
 The meta-data supplied by tags could result in a change of actual runtime behavior of the succeeding "Structural Element", in which case the term "Annotation" is commonly used instead of "Tag".
