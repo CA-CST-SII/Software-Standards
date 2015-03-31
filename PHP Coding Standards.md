@@ -247,91 +247,153 @@ In addition to the inherited descriptions and tags as defined in this chapter's 
 
 A class or interface SHOULD inherit the following deprecated tags if supplied:
 * `@subpackage`
-The @subpackage MUST NOT be inherited if the @package name of the super-class (or interface) is not the same as the @package of the child class (or interface).
+
+The @subpackage MUST NOT be inherited if the `@package` name of the super-class (or interface) is not the same as the `@package` of the child class (or interface).
 Example:
+```php
 /**  * @package    Framework  * @subpackage Controllers  */ class Framework_ActionController {     <...> }  /**  * @package My  * class My_ActionController extends Framework_ActionController {     <...> }
+```
 In the example above the My_ActionController MUST NOT inherit the subpackage Controllers.
-6.2. Function Or Method
+
+##6.2. Function Or Method##
 In addition to the inherited descriptions and tags as defined in this chapter's root, a function or method in a class or interface MUST inherit the following tags:
-* @param
-* @return
-* @throws
-6.3. Constant Or Property
+* `@param`
+* `@return`
+* `@throws`
+
+##6.3. Constant Or Property##
 In addition to the inherited descriptions and tags as defined in this chapter's root, a constant or property in a class MUST inherit the following tags:
-* @var
-7. Describing hashes
+
+* `@var`
+
+#7. Describing hashes#
 The structure of a hash may be described using an "Inline PHPDoc" as part of a @var, @param or @return declaration or using the @struct tag in the Class' DocBlock.
+
 In either case each element of the hash is denoted with a @var declaration in the "Inline PHPDoc". Using this tag it is possible to indicate type, name and purpose of the element.
+
 Please note that the variable name part of the @var tag still needs to be preceded by a dollar sign for readability and parsability of the tag.
 Example:
+```php
 /**  * Initializes this class with the given options.  *  * @param array $options {  *     @var boolean $required Whether this element is required  *     @var string  $label    The display name for this element  * }  */ public function __construct(array $options = array()) {     <...> }
-As @struct declaration
+```
+
+##7.1. As `@struct` declaration##
 In some cases a hash should be documented multiple times in the same class. For these purposes you COULD declare it as a 'virtual' "Structural Element" using the @struct tag in the declaration of a Class or Interface.
+
 It is RECOMMENDED to use native language constructs in these situations, such as a class.
+
 Please see the @struct documentation on how to use this tag.
-8. Tags
+
+#8. Tags#
 Unless specifically mentioned in the description each tag MAY occur zero or more times in each "DocBlock".
-8.1. @api
-The @api tag is used to declare "Structural Elements" as being suitable for consumption by third parties.
-Syntax
-@api 
-Description
-The @api tag represents those "Structural Elements" with a public visibility which are intended to be the public API components for a library or framework. Other "Structural Elements" with a public visibility serve to support the internal structure and are not recommended to be used by the consumer.
-The exact meaning of "Structural Elements" tagged with @api MAY differ per project. It is however RECOMMENDED that all tagged "Structural Elements" SHOULD NOT change after publication unless the new version is tagged as breaking Backwards Compatibility.
+
+##8.1. `@api`##
+The `@api` tag is used to declare "Structural Elements" as being suitable for consumption by third parties.
+
+**Syntax**
+`@api` 
+
+**Description**
+The `@api` tag represents those "Structural Elements" with a public visibility which are intended to be the public API components for a library or framework. Other "Structural Elements" with a public visibility serve to support the internal structure and are not recommended to be used by the consumer.
+
+The exact meaning of "Structural Elements" tagged with `@api` MAY differ per project. It is however RECOMMENDED that all tagged "Structural Elements" SHOULD NOT change after publication unless the new version is tagged as breaking Backwards Compatibility.
+
 Examples
+```php
 /**  * This method will not change until a major release.  *  * @api  *  * @return void  */ function showVersion() {    <...> }
-8.2. @author
-The @author tag is used to document the author of any "Structural Element".
-Syntax
+```
+##8.2. `@author`##
+The `@author` tag is used to document the author of any "Structural Element".
+
+**Syntax**
+```php
 @author [name] [<email address>] 
-Description
-The @author tag can be used to indicate who has created a "Structural Element" or has made significant modifications to it. This tag MAY also contain an e-mail address. If an e-mail address is provided it MUST follow the author's name and be contained in chevrons, or angle brackets, and MUST adhere to the syntax defined in RFC 2822.
-Examples
+```
+**Description**
+The `@author` tag can be used to indicate who has created a "Structural Element" or has made significant modifications to it. This tag MAY also contain an e-mail address. If an e-mail address is provided it MUST follow the author's name and be contained in chevrons, or angle brackets, and MUST adhere to the syntax defined in RFC 2822.
+
+*Examples*
+```php
 /**  * @author My Name  * @author My Name <my.name@example.com>  */
-8.3. @category [deprecated]
-The @category tag is used to organize groups of packages together but is deprecated in favour of occupying the top-level with the @package tag. As such, usage of this tag is NOT RECOMMENDED.
-Syntax
-@category [description] 
-Description
-The @category tag was meant in the original de-facto Standard to group several @packages into one category. These categories could then be used to aid in the generation of API documentation.
+```
+
+##8.3. `@category` [deprecated]##
+The `@category` tag is used to organize groups of packages together but is deprecated in favour of occupying the top-level with the @package tag. As such, usage of this tag is NOT RECOMMENDED.
+
+**Syntax**
+`@category [description]` 
+
+**Description**
+The `@category` tag was meant in the original de-facto Standard to group several @packages into one category. These categories could then be used to aid in the generation of API documentation.
+
 This was necessary since the @package tag as defined in the original Standard did not contain more then one hierarchy level; since this has changed this tag SHOULD NOT be used.
+
 Please see the documentation for @package for details of its usage.
+
 This tag MUST NOT occur more than once in a "DocBlock".
-Examples
+
+**Examples**
+```php
 /**  * File-Level DocBlock  *  * @category MyCategory  * @package  MyPackage  */
-8.4. @copyright
-The @copyright tag is used to document the copyright information of any "Structural element".
-Syntax
-@copyright <description> 
-Description
-The @copyright tag defines who holds the copyright over the "Structural Element". The copyright indicated with this tag applies to the "Structural Element" to which it applies and all child elements unless otherwise noted.
+```
+
+##8.4. `@copyright`##
+The `@copyright` tag is used to document the copyright information of any "Structural element".
+
+**Syntax**
+`@copyright <description>`
+
+**Description**
+The `@copyright` tag defines who holds the copyright over the "Structural Element". The copyright indicated with this tag applies to the "Structural Element" to which it applies and all child elements unless otherwise noted.
+
 The format of the description is governed by the coding standard of each individual project. It is RECOMMENDED to mention the year or years which are covered by this copyright and the organization involved.
-Examples
+
+**Examples**
+```php
 /**  * @copyright 1997-2005 The PHP Group  */
-8.5. @deprecated
-The @deprecated tag is used to indicate which 'Structural elements' are deprecated and are to be removed in a future version.
-Syntax
-@deprecated [<"Semantic Version">][:<"Semantic Version">] [<description>] 
-Description
-The @deprecated tag declares that the associated 'Structural elements' will be removed in a future version as it has become obsolete or its usage is otherwise not recommended.
+```
+
+##8.5. `@deprecated`##
+The `@deprecated` tag is used to indicate which 'Structural elements' are deprecated and are to be removed in a future version.
+
+**Syntax**
+`@deprecated [<"Semantic Version">][:<"Semantic Version">] [<description>] `
+
+**Description**
+The `@deprecated` tag declares that the associated 'Structural elements' will be removed in a future version as it has become obsolete or its usage is otherwise not recommended.
+
 This tag MAY specify up to two version numbers in the sense of a version number range:
+
 The first version number, referred to as the 'starting version', denotes the version in which the associated element has been deprecated.
+
 The second version number, referred to as the 'ending version', denotes the version in which the associated element is scheduled for removal.
+
 If an 'ending version' has been specified, the associated 'Structural elements' MAY no longer exist in the 'ending version' and MAY be removed without further notice in that version or a later version, but MUST exist in all prior versions.
+
 It is RECOMMENDED to specify both a 'starting version' and an 'ending version'. In this case, the two version numbers MUST be separated by a colon (:) without white-space in between.
+
 The 'starting version' MAY be omitted. In this case, the 'ending version' MUST be preceded by a colon.
+
 This tag MAY provide an additional description stating why the associated element is deprecated.
-If the associated element is superseded by another it is RECOMMENDED to add a @see tag in the same 'PHPDoc' pointing to the new element.
-Examples
+
+If the associated element is superseded by another it is RECOMMENDED to add a `@see` tag in the same 'PHPDoc' pointing to the new element.
+
+**Examples**
+```php
 /**  * @deprecated  *  * @deprecated 1.0.0:2.0.0  * @see \New\Recommended::method()  *  * @deprecated 1.0.0  *  * @deprecated :2.0.0  *  * @deprecated No longer used by internal code and not recommended.  *  * @deprecated 1.0.0 No longer used by internal code and not recommended.  */
-8.6. @example
-The @example tag is used to link to an external source code file which contains an example of use for the current "Structural element". An inline variant exists with which code from an example file can be shown inline with the Description.
-Syntax
-@example [URI] [<description>] 
+```
+
+##8.6. `@example`##
+The `@example` tag is used to link to an external source code file which contains an example of use for the current "Structural element". An inline variant exists with which code from an example file can be shown inline with the Description.
+
+**Syntax**
+`@example [URI] [<description>]` 
 or inline:
-{@example [URI] [:<start>..<end>]} 
-Description
+`{@example [URI] [:<start>..<end>]}`
+
+**Description**
 The example tag refers to a file containing example code demonstrating the purpose and use of the current "Structural element". Multiple example tags may be used per "Structural element" in case several scenarios are described.
+
 The URI provided with the example tag is resolved according to the following rules:
 1.	If a URI is proceeded by a scheme or root folder specifier such as phar://, http://, / or C:\ then it is considered to be an absolute path.
 2.	If the URI is deemed relative and a location for the example files has been provided then the path relative to the given location is resolved.
@@ -339,33 +401,51 @@ The URI provided with the example tag is resolved according to the following rul
 4.	If the application was unable to resolve a path given the previous rules then it should check if a readable folder 'examples' is found in the root folder of the project containing the source file of the "Structural Element".
 The root folder of a project is the highest folder common to all files that are being processed by a consuming application.
 If a consumer intends to display the contents of the example file then it is RECOMMENDED to use a syntax highlighting solution to improve user experience.
+
 The rules as described above also apply to the inline tags. The inline tag has 2 additional parameters with which to limit which lines of code are shown in the Description. Due to this, consuming applications MUST show the example code in case an inline example tag is used.
+
 The start and end argument may be omitted but the ellipsis should remain in case either is used to give a clear visual indication. The same rules as specified with the substr function of PHP are in effect with regards to the start and end limit.
+
 A consuming application MAY choose to support the limit format as used in the previous standard but it is deprecated per this PSR. The previous syntax was: {@example [URI] [] []} and did not support the same rules as the substr function.
-Examples
+
+**Examples**
+```php
 /**  * Counts the number of items.  * {@example http://example.com/foo-inline.https:2..8}  *  * @example http://example.com/foo.phps  *  * @return integer Indicates the number of items.  */ function count() {     <...> }
-8.7. @global
-TODO: The definition of this item should be discussed and whether it may or may not be superceded in part or in whole by the @var tag.
-The @global tag is used to denote a global variable or its usage.
-Syntax
-@global ["Type"] [name] @global ["Type"] [description] 
-Description
-Since there is no standard way to declare global variables, a @global tag MAY be used in a DocBlock preceding a global variable's definition. To support previous usages of @global, there is an alternate syntax that applies to DocBlocks preceding a function, used to document usage of global variables. In other words, there are two usages of @global: definition and usage.
-Syntax for the Global's Definition
-Only one @global tag MAY be allowed per global variable DocBlock. A global variable DocBlock MUST be followed by the global variable's definition before any other element or DocBlock occurs.
+```
+
+##8.7. `@global`##
+TODO: The definition of this item should be discussed and whether it may or may not be superceded in part or in whole by the `@var` tag.
+
+The `@global` tag is used to denote a global variable or its usage.
+
+**Syntax**
+`@global ["Type"] [name] @global ["Type"] [description]`
+
+**Description**
+Since there is no standard way to declare global variables, a @global tag MAY be used in a DocBlock preceding a global variable's definition. To support previous usages of @global, there is an alternate syntax that applies to DocBlocks preceding a function, used to document usage of global variables. In other words, there are two usages of `@global`: definition and usage.
+
+*Syntax for the Global's Definition*
+Only one `@global` tag MAY be allowed per global variable DocBlock. A global variable DocBlock MUST be followed by the global variable's definition before any other element or DocBlock occurs.
+
 The name MUST be the exact name of the global variable as it is declared in the source.
-Syntax for the Global's Usage
+
+*Syntax for the Global's Usage*
 The function/method @global syntax MAY be used to document usage of global variables in a function, and MUST NOT have a $ starting the third word. The "Type" will be ignored if a match is made between the declared global variable and a variable documented in the project.
-Examples
-(TODO: Examples for this tag should be added)
-8.8. @internal
-The @internal tag is used to denote that the associated "Structural Element" is a structure internal to this application or library. It may also be used inside a description to insert a piece of text that is only applicable for the developers of this software.
-Syntax
-@internal 
+
+**Examples**
+`(TODO: Examples for this tag should be added)`
+
+##8.8. `@internal`##
+The `@internal` tag is used to denote that the associated "Structural Element" is a structure internal to this application or library. It may also be used inside a description to insert a piece of text that is only applicable for the developers of this software.
+
+**Syntax**
+`@internal `
 or inline:
-{@internal [description]}} 
+`{@internal [description]}} `
+
 The inline version of this tag may, contrary to other inline tags, contain text but also other inline tags. To increase readability and ease parsing the tag should be terminated with a double closing brace, instead of a single one.
-Description
+
+**Description**
 The @internal tag can be used as counterpart of the @api tag, indicating that the associated "Structural Element" is used purely for the internal workings of this piece of software.
 When generating documentation from PHPDoc comments it is RECOMMENDED to hide the associated element unless the user has explicitly indicated that internal elements should be included.
 An additional use of @internal is to add internal comments or additional description text inline to the Description. This may be done, for example, to withhold certain business-critical or confusing information when generating documentation from the source code of this piece of software.
