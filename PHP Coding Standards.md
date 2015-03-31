@@ -176,48 +176,77 @@ The above tag consists of a name ('see') and tag specialization ('unit-test'), a
 
 ###5.3.3. Tag Signature###
 Tag signatures are commonly used for annotations to supply additional meta-data specific to the current tag.
+
 The supplied meta-data can influence the behavior of the owning annotation and as such influence the behavior of the succeeding "Structural Element".
+
 The contents of a signature are to be determined by the tag type (as described in the tag-name) and fall beyond the scope of this specification. However, a tag-signature MUST NOT be followed by a description or other form of meta-data.
-5.4. Inline PHPDoc
+
+##5.4. Inline PHPDoc##
 Specific Tags MAY have an "Inline PHPDoc" section at the end of the "Tag" definition. An "Inline PHPDoc" is a "PHPDoc" element enclosed in braces and is only present at the end of a "Tag" sequence, unless specified otherwise in a "Tag" definition. The "Inline PHPDoc" element MUST replace any description that COULD have been provided.
-An example is the @method tag. This tag can be augmented using an "Inline PHPDoc" to provide additional information regarding the parameters, return value or any other tag supported by functions and methods.
+
+An example is the `@method` tag. This tag can be augmented using an "Inline PHPDoc" to provide additional information regarding the parameters, return value or any other tag supported by functions and methods.
+
 An example of this is:
+```php
 /**  * @method integer MyMagicMethod(string $argument1) {  *     This is the summary for MyMagicMethod.  *  *     @param string $argument1 Description for argument 1.  *  *     @return integer  * }  */ class MyMagicClass {     ... }
-In this example is described how the @method tag for the Magic Method MyMagicMethod has a complete PHPDoc definition associated with it. In this definition all constraints, constructs and tags that apply to a normal usage of PHPDoc also apply.
+```
+In this example is described how the `@method` tag for the Magic Method MyMagicMethod has a complete PHPDoc definition associated with it. In this definition all constraints, constructs and tags that apply to a normal usage of PHPDoc also apply.
+
 The meaning of an "Inline PHPDoc" element differs based on the context in which it is provided. In the example above the "Inline PHPDoc" provides a regular PHPDoc definition as would precede a method.
+
 To prevent confusion regarding the function of "Inline PHPDoc" elements MUST their usage be restricted to tags and locations that are documented.
-5.5. Examples
+
+##5.5. Examples##
 The following examples serve to illustrate the basic use of DocBlocks; it is advised to read through the list of tags in chapter 8.
 A complete example could look like the following example:
+```php
 /**  * This is a Summary.  *  * This is a Description. It may span multiple lines  * or contain 'code' examples using the _Markdown_ markup  * language.  *  * @see Markdown  *  * @param int        $parameter1 A parameter description.  * @param \Exception $e          Another parameter description.  *  * @\Doctrine\Orm\Mapper\Entity()  *  * @return string  */ function test($parameter1, $e) {     ... }
+```
 It is also allowed to omit the Description:
+```php
 /**  * This is a Summary.  *  * @see Markdown  *  * @param int        $parameter1 A parameter description.  * @param \Exception $parameter2 Another parameter description.  *  * @\Doctrine\Orm\Mapper\Entity()  *  * @return string  */ function test($parameter1, $parameter2) { }
+```
 Or even omit the tags section as well (though in the following example is not encouraged as you are missing information on the parameters and return value):
+```php
 /**  * This is a Summary.  */ function test($parameter1, $parameter2) { }
+```
 A DocBlock may also span a single line as shown in the following example.
+```php
 /** @var \ArrayObject $array */ public $array = null;
+```
 Some tags may even feature an "Inline PHPDoc" as shown in the following example.
+```php
 /**  * @method integer MyMagicMethod(string $argument1) {  *     This is the summary for MyMagicMethod.  *  *     @param string $argument1 Description for argument 1.  *  *     @return integer  * }  */ class MyMagicClass {     ... }
-6. Inheritance
+```
+
+#6. Inheritance#
 PHPDoc's also have the ability to inherit information when the succeeding "Structural Element" has a super-element (such as a super-class or a method with the same name in a super-class or implemented in a super-interface).
+
 Every "Structural Element" MUST inherit the following PHPDoc parts by default:
 * Summary
 * Description
 * A specific subset of tags
-o	@version
-o	@author
-o	@copyright
+  o	`@version`
+  o	`@author`
+  o	`@copyright`
+
 Each specific "Structural Element" MUST also inherit a specialized subset as defined in the sub-chapters.
+
 The PHPDoc parts MUST NOT be inherited when a replacement is available in the sub-element. The exception to this rule is when the {@inheritdoc} inline tag is present in the Description. When present the parser MUST insert the super-element's Description at the location of the {@inheritdoc} inline tag, while still including the current element's description.
+
 Inheritance takes place from the root of a class hierarchy graph to its leafs. This means that anything inherited in the bottom of the tree MUST 'bubble' up to the top unless overridden.
+
 Note: a special circumstance here would be when the Description must be overridden but the Summary should stay intact. It would be difficult for a reader to distinguish which is overridden.
+
 In this case the writer MUST use the {@inheritdoc} inline tag as Summary and override the Description with the intended text.
 Without the {@inheritdoc} inline tag the reader MUST interpret any text as if the Summary would be overridden and Description MAY appear overridden if the block of text contains a Summary ending as defined in the ABNF.
-6.1. Class Or Interface
+
+##6.1. Class Or Interface##
 In addition to the inherited descriptions and tags as defined in this chapter's root, a class or interface MUST inherit the following tags:
-* @package
+* `@package`
+
 A class or interface SHOULD inherit the following deprecated tags if supplied:
-* @subpackage
+* `@subpackage`
 The @subpackage MUST NOT be inherited if the @package name of the super-class (or interface) is not the same as the @package of the child class (or interface).
 Example:
 /**  * @package    Framework  * @subpackage Controllers  */ class Framework_ActionController {     <...> }  /**  * @package My  * class My_ActionController extends Framework_ActionController {     <...> }
