@@ -291,9 +291,11 @@ Unless specifically mentioned in the description each tag MAY occur zero or more
 The `@api` tag is used to declare "Structural Elements" as being suitable for consumption by third parties.
 
 **Syntax**
+
 `@api` 
 
 **Description**
+
 The `@api` tag represents those "Structural Elements" with a public visibility which are intended to be the public API components for a library or framework. Other "Structural Elements" with a public visibility serve to support the internal structure and are not recommended to be used by the consumer.
 
 The exact meaning of "Structural Elements" tagged with `@api` MAY differ per project. It is however RECOMMENDED that all tagged "Structural Elements" SHOULD NOT change after publication unless the new version is tagged as breaking Backwards Compatibility.
@@ -306,13 +308,16 @@ The exact meaning of "Structural Elements" tagged with `@api` MAY differ per pro
 The `@author` tag is used to document the author of any "Structural Element".
 
 **Syntax**
+
 ```php
 @author [name] [<email address>] 
 ```
 **Description**
+
 The `@author` tag can be used to indicate who has created a "Structural Element" or has made significant modifications to it. This tag MAY also contain an e-mail address. If an e-mail address is provided it MUST follow the author's name and be contained in chevrons, or angle brackets, and MUST adhere to the syntax defined in RFC 2822.
 
 **Examples**
+
 ```php
 /**  * @author My Name  * @author My Name <my.name@example.com>  */
 ```
@@ -321,9 +326,11 @@ The `@author` tag can be used to indicate who has created a "Structural Element"
 The `@category` tag is used to organize groups of packages together but is deprecated in favour of occupying the top-level with the @package tag. As such, usage of this tag is NOT RECOMMENDED.
 
 **Syntax**
+
 `@category [description]` 
 
 **Description**
+
 The `@category` tag was meant in the original de-facto Standard to group several @packages into one category. These categories could then be used to aid in the generation of API documentation.
 
 This was necessary since the @package tag as defined in the original Standard did not contain more then one hierarchy level; since this has changed this tag SHOULD NOT be used.
@@ -333,6 +340,7 @@ Please see the documentation for @package for details of its usage.
 This tag MUST NOT occur more than once in a "DocBlock".
 
 **Examples**
+
 ```php
 /**  * File-Level DocBlock  *  * @category MyCategory  * @package  MyPackage  */
 ```
@@ -341,9 +349,11 @@ This tag MUST NOT occur more than once in a "DocBlock".
 The `@copyright` tag is used to document the copyright information of any "Structural element".
 
 **Syntax**
+
 `@copyright <description>`
 
 **Description**
+
 The `@copyright` tag defines who holds the copyright over the "Structural Element". The copyright indicated with this tag applies to the "Structural Element" to which it applies and all child elements unless otherwise noted.
 
 The format of the description is governed by the coding standard of each individual project. It is RECOMMENDED to mention the year or years which are covered by this copyright and the organization involved.
@@ -357,9 +367,11 @@ The format of the description is governed by the coding standard of each individ
 The `@deprecated` tag is used to indicate which 'Structural elements' are deprecated and are to be removed in a future version.
 
 **Syntax**
+
 `@deprecated [<"Semantic Version">][:<"Semantic Version">] [<description>] `
 
 **Description**
+
 The `@deprecated` tag declares that the associated 'Structural elements' will be removed in a future version as it has become obsolete or its usage is otherwise not recommended.
 
 This tag MAY specify up to two version numbers in the sense of a version number range:
@@ -387,11 +399,13 @@ If the associated element is superseded by another it is RECOMMENDED to add a `@
 The `@example` tag is used to link to an external source code file which contains an example of use for the current "Structural element". An inline variant exists with which code from an example file can be shown inline with the Description.
 
 **Syntax**
+
 `@example [URI] [<description>]` 
 or inline:
 `{@example [URI] [:<start>..<end>]}`
 
 **Description**
+
 The example tag refers to a file containing example code demonstrating the purpose and use of the current "Structural element". Multiple example tags may be used per "Structural element" in case several scenarios are described.
 
 The URI provided with the example tag is resolved according to the following rules:
@@ -419,17 +433,21 @@ TODO: The definition of this item should be discussed and whether it may or may 
 The `@global` tag is used to denote a global variable or its usage.
 
 **Syntax**
+
 `@global ["Type"] [name] @global ["Type"] [description]`
 
 **Description**
-Since there is no standard way to declare global variables, a @global tag MAY be used in a DocBlock preceding a global variable's definition. To support previous usages of @global, there is an alternate syntax that applies to DocBlocks preceding a function, used to document usage of global variables. In other words, there are two usages of `@global`: definition and usage.
+
+Since there is no standard way to declare global variables, a `@global` tag MAY be used in a DocBlock preceding a global variable's definition. To support previous usages of @global, there is an alternate syntax that applies to DocBlocks preceding a function, used to document usage of global variables. In other words, there are two usages of `@global`: definition and usage.
 
 *Syntax for the Global's Definition*
+
 Only one `@global` tag MAY be allowed per global variable DocBlock. A global variable DocBlock MUST be followed by the global variable's definition before any other element or DocBlock occurs.
 
 The name MUST be the exact name of the global variable as it is declared in the source.
 
 *Syntax for the Global's Usage*
+
 The function/method @global syntax MAY be used to document usage of global variables in a function, and MUST NOT have a $ starting the third word. The "Type" will be ignored if a match is made between the declared global variable and a variable documented in the project.
 
 **Examples**
@@ -439,6 +457,7 @@ The function/method @global syntax MAY be used to document usage of global varia
 The `@internal` tag is used to denote that the associated "Structural Element" is a structure internal to this application or library. It may also be used inside a description to insert a piece of text that is only applicable for the developers of this software.
 
 **Syntax**
+
 `@internal `
 or inline:
 `{@internal [description]}} `
@@ -446,6 +465,7 @@ or inline:
 The inline version of this tag may, contrary to other inline tags, contain text but also other inline tags. To increase readability and ease parsing the tag should be terminated with a double closing brace, instead of a single one.
 
 **Description**
+
 The `@internal` tag can be used as counterpart of the @api tag, indicating that the associated "Structural Element" is used purely for the internal workings of this piece of software.
 
 When generating documentation from PHPDoc comments it is RECOMMENDED to hide the associated element unless the user has explicitly indicated that internal elements should be included.
@@ -453,6 +473,7 @@ When generating documentation from PHPDoc comments it is RECOMMENDED to hide the
 An additional use of `@internal` is to add internal comments or additional description text inline to the Description. This may be done, for example, to withhold certain business-critical or confusing information when generating documentation from the source code of this piece of software.
 
 **Examples**
+
 Mark the count function as being internal to this project:
 ```php
 /**  * @internal  *  * @return integer Indicates the number of items.  */ function count() {     <...> }  /**  * Counts the number of Foo.  *  * {@internal Silently adds one extra Foo to compensate for lack of Foo }}  *  * @return integer Indicates the number of items.  */ function count() {     <...> }
@@ -462,9 +483,11 @@ Mark the count function as being internal to this project:
 The `@license` tag is used to indicate which license is applicable for the associated 'Structural Elements'.
 
 **Syntax**
+
 `@license [<SPDX identifier>|URI] [name] `
 
-**Description** 
+**Description**
+
 The `@license` tag provides licensing information to the user, which is applicable to 'Structural Elements' and their child elements.
 
 The first parameter MUST be either a 'SPDX identifier', as defined by the SPDX Open Source License Registry, or a URL to a document containing the full license text.
@@ -475,63 +498,138 @@ It is RECOMMENDED to only specify an 'SPDX identifier' and to apply @license tag
 
 In case multiple licenses apply, there MUST be one @license tag per applicable license.
 
-**Examples** 
+**Examples**
+```php
 /**  * @license MIT  *  * @license GPL-2.0+  *  * @license http://www.spdx.org/licenses/MIT MIT License  */
-8.10. @link [deprecated]
+```
+##8.10. `@link` [deprecated]##
 This tag is deprecated in favor of the @see tag, which since this specification may relate to URIs.
-The @link tag indicates a custom relation between the associated "Structural Element" and a website, which is identified by an absolute URI.
+The `@link` tag indicates a custom relation between the associated "Structural Element" and a website, which is identified by an absolute URI.
+
 **Syntax** 
-@link [URI] [description] 
+
+`@link [URI] [description] `
 or inline
-@link [URI] [description] **Description** The @link tag can be used to define a relation, or link, between the "Structural Element", or part of the description when used inline, to an URI.
+`@link [URI] [description]`
+
+**Description** 
+
+The @link tag can be used to define a relation, or link, between the "Structural Element", or part of the description when used inline, to an URI.
+
 The URI MUST be complete and welformed as specified in RFC 2396.
-The @link tag MAY have a description appended to indicate the type of relation defined by this occurrence.**Examples** 
+
+The @link tag MAY have a description appended to indicate the type of relation defined by this occurrence.
+**Examples** 
+```php
 /**  * @link http://example.com/my/bar Documentation of Foo.  *  * @return integer Indicates the number of items.  */ function count() {     <...> }  /**  * This method counts the occurrences of Foo.  *  * When no more Foo ({@link http://example.com/my/bar}) are given this  * function will add one as there must always be one Foo.  *  * @return integer Indicates the number of items.  */ function count() {     <...> }
-8.11. @method
-The @method allows a class to know which 'magic' methods are callable.
+```
+
+##8.11. `@method`##
+The `@method` allows a class to know which 'magic' methods are callable.
+
 **Syntax** 
-@method [return type] [name]([type] [parameter], [...]) [description] **Description** The @method tag is used in situation where a class contains the __call() magic method and defines some definite uses.
-An example of this is a child class whose parent has a __call() to have dynamic getters or setters for predefined properties. The child knows which getters and setters need to be present but relies on the parent class to use the__call() method to provide it. In this situation, the child class would have a @method tag for each magic setter or getter method.
-The @method tag allows the author to communicate the type of the arguments and return value by including those types in the signature.
+
+`@method [return type] [name]([type] [parameter], [...]) [description]`
+
+**Description** 
+
+The `@method` tag is used in situation where a class contains the `__call()` magic method and defines some definite uses.
+An example of this is a child class whose parent has a `__call()` to have dynamic getters or setters for predefined properties. The child knows which getters and setters need to be present but relies on the parent class to use the`__call()` method to provide it. In this situation, the child class would have a `@method` tag for each magic setter or getter method.
+The `@method` tag allows the author to communicate the type of the arguments and return value by including those types in the signature.
+
 When the intended method does not have a return value then the return type MAY be omitted; in which case 'void' is implied.
-@method tags MUST NOT be used in a PHPDoc that is not associated with a class or interface.**Examples** 
+@method tags MUST NOT be used in a PHPDoc that is not associated with a class or interface.
+
+**Examples**
+```php
 class Parent {     public function __call()     {         <...>     } }  /**  * @method string getString()  * @method void setInteger(integer $integer)  * @method setString(integer $integer)  */ class Child extends Parent {     <...> }
-8.12. @package
-The @package tag is used to categorize "Structural Elements" into logical subdivisions.
-**Syntax** 
-@package [level 1]\[level 2]\[etc.] **Description** The @package tag can be used as a counterpart or supplement to Namespaces. Namespaces provide a functional subdivision of "Structural Elements" where the @package tag can provide a logical subdivision in which way the elements can be grouped with a different hierarchy.
+```
+
+##8.12. `@package`
+The `@package` tag is used to categorize "Structural Elements" into logical subdivisions.
+
+**Syntax**
+
+`@package [level 1]\[level 2]\[etc.]` 
+
+**Description** 
+
+The `@package` tag can be used as a counterpart or supplement to Namespaces. Namespaces provide a functional subdivision of "Structural Elements" where the @package tag can provide a logical subdivision in which way the elements can be grouped with a different hierarchy.
+
 If, across the board, both logical and functional subdivisions are equal is it NOT RECOMMENDED to use the @package tag, to prevent maintenance overhead.
-Each level in the logical hierarchy MUST separated with a backslash (\) to be familiar to Namespaces. A hierarchy MAY be of endless depth but it is RECOMMENDED to keep the depth at less or equal than six levels.
-Please note that the @package applies to different "Structural Elements" depending where it is defined.
+
+Each level in the logical hierarchy MUST separated with a backslash `(\)` to be familiar to Namespaces. A hierarchy MAY be of endless depth but it is RECOMMENDED to keep the depth at less or equal than six levels.
+
+Please note that the `@package` applies to different "Structural Elements" depending where it is defined.
 1.	If the @package is defined in the file-level DocBlock then it only applies to the following elements in the applicable file:
-o	global functions
-o	global constants
-o	global variables
-o	requires and includes
-2.	If the @package is defined in a namespace-level or class-level DocBlock then the package applies to that namespace, class or interface and their contained elements. This means that a function which is contained in a namespace with the @package tag assumes that package.
-This tag MUST NOT occur more than once in a "DocBlock".**Examples** 
+  o	global functions
+  o	global constants
+  o	global variables
+  o	requires and includes
+2.	If the `@package` is defined in a namespace-level or class-level DocBlock then the package applies to that namespace, class or interface and their contained elements. This means that a function which is contained in a namespace with the `@package` tag assumes that package.
+
+This tag MUST NOT occur more than once in a "DocBlock".
+
+**Examples**
+```php
 /**  * @package PSR\Documentation\API  */
-8.13. @param
-The @param tag is used to document a single parameter of a function or method.
-**Syntax** 
-@param ["Type"] [name] [<description>] **Description** With the @param tag it is possible to document the type and function of a single parameter of a function or method. When provided it MUST contain a "Type" to indicate what is expected; the description on the other hand is OPTIONAL yet RECOMMENDED. For complex structures such as option arrays it is RECOMMENDED to use an "Inline PHPDoc" to describe the option array.
-The @param tag MAY have a multi-line description and does not need explicit delimiting.
+```
+
+##8.13. `@param`##
+The `@param` tag is used to document a single parameter of a function or method.
+
+**Syntax**
+
+`@param ["Type"] [name] [<description>]`
+
+**Description** 
+
+With the `@param` tag it is possible to document the type and function of a single parameter of a function or method. When provided it MUST contain a "Type" to indicate what is expected; the description on the other hand is OPTIONAL yet RECOMMENDED. For complex structures such as option arrays it is RECOMMENDED to use an "Inline PHPDoc" to describe the option array.
+
+The `@param` tag MAY have a multi-line description and does not need explicit delimiting.
+
 It is RECOMMENDED when documenting to use this tag with every function and method. Exceptions to this recommendation are:
-This tag MUST NOT occur more than once per parameter in a "PHPDoc" and is limited to "Structural Elements" of type method or function.**Examples** 
+This tag MUST NOT occur more than once per parameter in a "PHPDoc" and is limited to "Structural Elements" of type method or function.
+
+**Examples** 
+```php
 /**  * Counts the number of items in the provided array.  *  * @param mixed[] $array Array structure to count the elements of.  *  * @return int Returns the number of elements.  */ function count(array $items) {     <...> }
+```
 The following example demonstrates the use of an "Inline PHPDoc" to document an option array with 2 elements: 'required' and 'label'.
+```php
 /**  * Initializes this class with the given options.  *  * @param array $options {  *     @var boolean $required Whether this element is required  *     @var string  $label    The display name for this element  * }  */ public function __construct(array $options = array()) {     <...> }
-8.14. @property
-The @property tag allows a class to know which 'magic' properties are present.
-**Syntax** 
-@property ["Type"] [name] [<description>] **Description** The @property tag is used in the situation where a class contains the __get() and __set() magic methods and allows for specific names.
-An example of this is a child class whose parent has a __get(). The child knows which properties need to be present but relies on the parent class to use the __get() method to provide it. In this situation, the child class would have a @property tag for each magic property.
-@property tags MUST NOT be used in a "PHPDoc" that is not associated with a class or interface.**Examples** 
+```
+
+##8.14. `@property`##
+The `@property` tag allows a class to know which 'magic' properties are present.
+
+**Syntax**
+
+`@property ["Type"] [name] [<description>]`
+
+**Description** 
+
+The `@property` tag is used in the situation where a class contains the `__get()` and `__set()` magic methods and allows for specific names.
+
+An example of this is a child class whose parent has a `__get()`. The child knows which properties need to be present but relies on the parent class to use the `__get()` method to provide it. In this situation, the child class would have a `@property` tag for each magic property.
+
+`@property` tags MUST NOT be used in a "PHPDoc" that is not associated with a class or interface.
+
+**Examples**
+```php
 class Parent {     public function __get()     {         <...>     } }  /**  * @property string $myProperty  */ class Child extends Parent {     <...> }
-8.15. @return
-The @return tag is used to document the return value of functions or methods.
-**Syntax** 
-@return <"Type"> [description] **Description** With the @return tag it is possible to document the return type of a function or method. When provided, it MUST contain a "Type" (See Appendix A) to indicate what is returned; the description on the other hand is OPTIONAL yet RECOMMENDED in case of complicated return structures, such as associative arrays.
+```
+
+##8.15. `@return`##
+The `@return` tag is used to document the return value of functions or methods.
+
+**Syntax**
+
+`@return <"Type"> [description]` 
+
+**Description** 
+
+With the @return tag it is possible to document the return type of a function or method. When provided, it MUST contain a "Type" (See Appendix A) to indicate what is returned; the description on the other hand is OPTIONAL yet RECOMMENDED in case of complicated return structures, such as associative arrays.
 The @return tag MAY have a multi-line description and does not need explicit delimiting.
 It is RECOMMENDED to use this tag with every function and method. An exception to this recommendation, as defined by the Coding Standard of any individual project, MAY be:
 functions and methods without a return value: the @return tag MAY be omitted here, in which case an interpreter MUST interpret this as if @return void is provided.
