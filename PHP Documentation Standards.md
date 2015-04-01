@@ -1,5 +1,5 @@
 CA/CST
-PHPDoc Coding Standards
+PHP Documentation Standards
 =============
 
 ## Table Of Contents
