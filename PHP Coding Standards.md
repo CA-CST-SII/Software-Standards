@@ -1,7 +1,8 @@
 Basic Coding Standard
 =====================
 
-This section of the standard comprises what should be considered the standard coding elements that are required to ensure a high level of technical interoperability between shared PHP code. It is an adaption of the PHP Framework Interoperability Group. The idea behind this group is for project representatives to talk about the commonalities between projects and find ways to work together and with the rest of the PHP community. 
+This section of the standard comprises what should be considered the standard coding elements that are required to ensure a high level of technical interoperability between shared PHP code. It is an adaption of the PHP Framework Interoperability Group. The idea behind this group is for project representatives to talk about the commonalities between projects and find ways to work together and with the rest of the PHP community.
+https://github.com/php-fig/fig-standards/
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
