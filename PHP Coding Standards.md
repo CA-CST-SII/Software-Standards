@@ -446,55 +446,60 @@ or inline:
 The inline version of this tag may, contrary to other inline tags, contain text but also other inline tags. To increase readability and ease parsing the tag should be terminated with a double closing brace, instead of a single one.
 
 **Description**
-The @internal tag can be used as counterpart of the @api tag, indicating that the associated "Structural Element" is used purely for the internal workings of this piece of software.
+The `@internal` tag can be used as counterpart of the @api tag, indicating that the associated "Structural Element" is used purely for the internal workings of this piece of software.
+
 When generating documentation from PHPDoc comments it is RECOMMENDED to hide the associated element unless the user has explicitly indicated that internal elements should be included.
-An additional use of @internal is to add internal comments or additional description text inline to the Description. This may be done, for example, to withhold certain business-critical or confusing information when generating documentation from the source code of this piece of software.
-Examples
+
+An additional use of `@internal` is to add internal comments or additional description text inline to the Description. This may be done, for example, to withhold certain business-critical or confusing information when generating documentation from the source code of this piece of software.
+
+**Examples**
 Mark the count function as being internal to this project:
+```php
 /**  * @internal  *  * @return integer Indicates the number of items.  */ function count() {     <...> }  /**  * Counts the number of Foo.  *  * {@internal Silently adds one extra Foo to compensate for lack of Foo }}  *  * @return integer Indicates the number of items.  */ function count() {     <...> }
-8.9. @license
-The @license tag is used to indicate which license is applicable for the associated 'Structural Elements'.
-Syntax
-@license [<SPDX identifier>|URI] [name] 
-Description
-The @license tag provides licensing information to the user, which is applicable to 'Structural Elements' and their child elements.
+```
+
+##8.9. `@license`##
+The `@license` tag is used to indicate which license is applicable for the associated 'Structural Elements'.
+
+**Syntax**
+`@license [<SPDX identifier>|URI] [name] `
+
+**Description** 
+The `@license` tag provides licensing information to the user, which is applicable to 'Structural Elements' and their child elements.
+
 The first parameter MUST be either a 'SPDX identifier', as defined by the SPDX Open Source License Registry, or a URL to a document containing the full license text.
+
 The second parameter MAY be the official name of the applicable license.
+
 It is RECOMMENDED to only specify an 'SPDX identifier' and to apply @license tags to file-level 'PHPDoc' only, since multiple varying licenses within a single file may cause confusion with regard to which license applies at which time.
+
 In case multiple licenses apply, there MUST be one @license tag per applicable license.
-Examples
+
+**Examples** 
 /**  * @license MIT  *  * @license GPL-2.0+  *  * @license http://www.spdx.org/licenses/MIT MIT License  */
 8.10. @link [deprecated]
 This tag is deprecated in favor of the @see tag, which since this specification may relate to URIs.
 The @link tag indicates a custom relation between the associated "Structural Element" and a website, which is identified by an absolute URI.
-Syntax
+**Syntax** 
 @link [URI] [description] 
 or inline
-@link [URI] [description] 
-Description
-The @link tag can be used to define a relation, or link, between the "Structural Element", or part of the description when used inline, to an URI.
+@link [URI] [description] **Description** The @link tag can be used to define a relation, or link, between the "Structural Element", or part of the description when used inline, to an URI.
 The URI MUST be complete and welformed as specified in RFC 2396.
-The @link tag MAY have a description appended to indicate the type of relation defined by this occurrence.
-Examples
+The @link tag MAY have a description appended to indicate the type of relation defined by this occurrence.**Examples** 
 /**  * @link http://example.com/my/bar Documentation of Foo.  *  * @return integer Indicates the number of items.  */ function count() {     <...> }  /**  * This method counts the occurrences of Foo.  *  * When no more Foo ({@link http://example.com/my/bar}) are given this  * function will add one as there must always be one Foo.  *  * @return integer Indicates the number of items.  */ function count() {     <...> }
 8.11. @method
 The @method allows a class to know which 'magic' methods are callable.
-Syntax
-@method [return type] [name]([type] [parameter], [...]) [description] 
-Description
-The @method tag is used in situation where a class contains the __call() magic method and defines some definite uses.
+**Syntax** 
+@method [return type] [name]([type] [parameter], [...]) [description] **Description** The @method tag is used in situation where a class contains the __call() magic method and defines some definite uses.
 An example of this is a child class whose parent has a __call() to have dynamic getters or setters for predefined properties. The child knows which getters and setters need to be present but relies on the parent class to use the__call() method to provide it. In this situation, the child class would have a @method tag for each magic setter or getter method.
 The @method tag allows the author to communicate the type of the arguments and return value by including those types in the signature.
 When the intended method does not have a return value then the return type MAY be omitted; in which case 'void' is implied.
-@method tags MUST NOT be used in a PHPDoc that is not associated with a class or interface.
-Examples
+@method tags MUST NOT be used in a PHPDoc that is not associated with a class or interface.**Examples** 
 class Parent {     public function __call()     {         <...>     } }  /**  * @method string getString()  * @method void setInteger(integer $integer)  * @method setString(integer $integer)  */ class Child extends Parent {     <...> }
 8.12. @package
 The @package tag is used to categorize "Structural Elements" into logical subdivisions.
-Syntax
-@package [level 1]\[level 2]\[etc.] 
-Description
-The @package tag can be used as a counterpart or supplement to Namespaces. Namespaces provide a functional subdivision of "Structural Elements" where the @package tag can provide a logical subdivision in which way the elements can be grouped with a different hierarchy.
+**Syntax** 
+@package [level 1]\[level 2]\[etc.] **Description** The @package tag can be used as a counterpart or supplement to Namespaces. Namespaces provide a functional subdivision of "Structural Elements" where the @package tag can provide a logical subdivision in which way the elements can be grouped with a different hierarchy.
 If, across the board, both logical and functional subdivisions are equal is it NOT RECOMMENDED to use the @package tag, to prevent maintenance overhead.
 Each level in the logical hierarchy MUST separated with a backslash (\) to be familiar to Namespaces. A hierarchy MAY be of endless depth but it is RECOMMENDED to keep the depth at less or equal than six levels.
 Please note that the @package applies to different "Structural Elements" depending where it is defined.
@@ -504,104 +509,87 @@ o	global constants
 o	global variables
 o	requires and includes
 2.	If the @package is defined in a namespace-level or class-level DocBlock then the package applies to that namespace, class or interface and their contained elements. This means that a function which is contained in a namespace with the @package tag assumes that package.
-This tag MUST NOT occur more than once in a "DocBlock".
-Examples
+This tag MUST NOT occur more than once in a "DocBlock".**Examples** 
 /**  * @package PSR\Documentation\API  */
 8.13. @param
 The @param tag is used to document a single parameter of a function or method.
-Syntax
-@param ["Type"] [name] [<description>] 
-Description
-With the @param tag it is possible to document the type and function of a single parameter of a function or method. When provided it MUST contain a "Type" to indicate what is expected; the description on the other hand is OPTIONAL yet RECOMMENDED. For complex structures such as option arrays it is RECOMMENDED to use an "Inline PHPDoc" to describe the option array.
+**Syntax** 
+@param ["Type"] [name] [<description>] **Description** With the @param tag it is possible to document the type and function of a single parameter of a function or method. When provided it MUST contain a "Type" to indicate what is expected; the description on the other hand is OPTIONAL yet RECOMMENDED. For complex structures such as option arrays it is RECOMMENDED to use an "Inline PHPDoc" to describe the option array.
 The @param tag MAY have a multi-line description and does not need explicit delimiting.
 It is RECOMMENDED when documenting to use this tag with every function and method. Exceptions to this recommendation are:
-This tag MUST NOT occur more than once per parameter in a "PHPDoc" and is limited to "Structural Elements" of type method or function.
-Examples
+This tag MUST NOT occur more than once per parameter in a "PHPDoc" and is limited to "Structural Elements" of type method or function.**Examples** 
 /**  * Counts the number of items in the provided array.  *  * @param mixed[] $array Array structure to count the elements of.  *  * @return int Returns the number of elements.  */ function count(array $items) {     <...> }
 The following example demonstrates the use of an "Inline PHPDoc" to document an option array with 2 elements: 'required' and 'label'.
 /**  * Initializes this class with the given options.  *  * @param array $options {  *     @var boolean $required Whether this element is required  *     @var string  $label    The display name for this element  * }  */ public function __construct(array $options = array()) {     <...> }
 8.14. @property
 The @property tag allows a class to know which 'magic' properties are present.
-Syntax
-@property ["Type"] [name] [<description>] 
-Description
-The @property tag is used in the situation where a class contains the __get() and __set() magic methods and allows for specific names.
+**Syntax** 
+@property ["Type"] [name] [<description>] **Description** The @property tag is used in the situation where a class contains the __get() and __set() magic methods and allows for specific names.
 An example of this is a child class whose parent has a __get(). The child knows which properties need to be present but relies on the parent class to use the __get() method to provide it. In this situation, the child class would have a @property tag for each magic property.
-@property tags MUST NOT be used in a "PHPDoc" that is not associated with a class or interface.
-Examples
+@property tags MUST NOT be used in a "PHPDoc" that is not associated with a class or interface.**Examples** 
 class Parent {     public function __get()     {         <...>     } }  /**  * @property string $myProperty  */ class Child extends Parent {     <...> }
 8.15. @return
 The @return tag is used to document the return value of functions or methods.
-Syntax
-@return <"Type"> [description] 
-Description
-With the @return tag it is possible to document the return type of a function or method. When provided, it MUST contain a "Type" (See Appendix A) to indicate what is returned; the description on the other hand is OPTIONAL yet RECOMMENDED in case of complicated return structures, such as associative arrays.
+**Syntax** 
+@return <"Type"> [description] **Description** With the @return tag it is possible to document the return type of a function or method. When provided, it MUST contain a "Type" (See Appendix A) to indicate what is returned; the description on the other hand is OPTIONAL yet RECOMMENDED in case of complicated return structures, such as associative arrays.
 The @return tag MAY have a multi-line description and does not need explicit delimiting.
 It is RECOMMENDED to use this tag with every function and method. An exception to this recommendation, as defined by the Coding Standard of any individual project, MAY be:
 functions and methods without a return value: the @return tag MAY be omitted here, in which case an interpreter MUST interpret this as if @return void is provided.
-This tag MUST NOT occur more than once in a "DocBlock" and is limited to the "DocBlock" of a "Structural Element" of a method or function.
-Examples
+This tag MUST NOT occur more than once in a "DocBlock" and is limited to the "DocBlock" of a "Structural Element" of a method or function.**Examples** 
 /**  * @return integer Indicates the number of items.  */ function count() {     <...> }  /**  * @return string|null The label's text or null if none provided.  */ function getLabel() {     <...> }
 8.16. @see
 The @see tag indicates a reference from the associated "Structural Elements" to a website or other "Structural Elements".
-Syntax
-@see [URI | "FQSEN"] [<description>] 
-Description
-The @see tag can be used to define a reference to other "Structural Elements" or to a URI.
+**Syntax** 
+@see [URI | "FQSEN"] [<description>] **Description** The @see tag can be used to define a reference to other "Structural Elements" or to a URI.
 When defining a reference to another "Structural Elements" you can refer to a specific element by appending a double colon and providing the name of that element (also called the "FQSEN").
 A URI MUST be complete and well-formed as specified in RFC 2396.
-The @see tag SHOULD have a description to provide additional information regarding the relationship between the element and its target. Additionally, the @see tag MAY have a tag specialization to add further definition to this relationship.
-Examples
+The @see tag SHOULD have a description to provide additional information regarding the relationship between the element and its target. Additionally, the @see tag MAY have a tag specialization to add further definition to this relationship.**Examples** 
 /**  * @see number_of() :alias:  * @see MyClass::$items           For the property whose items are counted.  * @see MyClass::setItems()       To set the items for this collection.  * @see http://example.com/my/bar Documentation of Foo.  *  * @return integer Indicates the number of items.  */ function count() {     <...> }
 8.17. @since
 The @since tag is used to denote when an element was introduced or modified, using some description of "versioning" to that element.
-Syntax
+**Syntax** 
 @since [<"Semantic Version">] [<description>] 
-Description
-Documents the "version" of the introduction or modification of any element.
+**Description
+** Documents the "version" of the introduction or modification of any element.
 It is RECOMMENDED that the version matches a semantic version number (x.x.x) and MAY have a description to provide additional information.
 This information can be used to generate a set of API Documentation where the consumer is informed which application version is necessary for a specific element.
-The @since tag SHOULD NOT be used to show the current version of an element, the @version tag MAY be used for that purpose.
-Examples
+The @since tag SHOULD NOT be used to show the current version of an element, the @version tag MAY be used for that purpose.**Examples** 
 /**  * This is Foo  * @version MyApp 2.1.7  * @since 2.0.0 introduced  */ class Foo {     /**      * Make a bar.      *      * @since 2.1.5 bar($arg1 = '', $arg2 = null)      *        introduced the optional $arg2      * @since 2.1.0 bar($arg1 = '')      *        introduced the optional $arg1      * @since 2.0.0 bar()      *        introduced new method bar()      */     public function bar($arg1 = '', $arg2 = null)     {         <...>     } }
 8.18. @struct
 TODO: specify details TODO: determine whether this is a correct approach
 8.19. @subpackage [deprecated]
 The @subpackage tag is used to categorize "Structural Elements" into logical subdivisions.
-Syntax
+**Syntax** 
 @subpackage [name] 
-Description
-The @subpackage tag MAY be used as a counterpart or supplement to Namespaces. Namespaces provide a functional subdivision of "Structural Elements" where the @subpackage tag can provide a logical subdivision in which way the elements can be grouped with a different hierarchy.
+**Description
+** The @subpackage tag MAY be used as a counterpart or supplement to Namespaces. Namespaces provide a functional subdivision of "Structural Elements" where the @subpackage tag can provide a logical subdivision in which way the elements can be grouped with a different hierarchy.
 If, across the board, both logical and functional subdivisions are equal is it NOT RECOMMENDED to use the @subpackage tag, to prevent maintenance overhead.
 The @subpackage tag MUST only be used in a specific series of DocBlocks, as is described in the documentation for the @package tag.
-This tag MUST accompany a @package tag and MUST NOT occur more than once per DocBlock.
-Examples
+This tag MUST accompany a @package tag and MUST NOT occur more than once per DocBlock.**Examples** 
 /**  * @package PSR  * @subpackage Documentation\API  */
 8.20. @throws
 The @throws tag is used to indicate whether "Structural Elements" throw a specific type of exception.
-Syntax
+**Syntax** 
 @throws ["Type"] [<description>] 
-Description
-The @throws tag MAY be used to indicate that "Structural Elements" throw a specific type of error.
+**Description
+** The @throws tag MAY be used to indicate that "Structural Elements" throw a specific type of error.
 The type provided with this tag MUST represent an object of the class Exception or any subclass thereof.
 This tag is used to present in your documentation which error COULD occur and under which circumstances. It is RECOMMENDED to provide a description that describes the reason an exception is thrown.
-It is also RECOMMENDED that this tag occurs for every occurrence of an exception, even if it has the same type. By documenting every occurrence a detailed view is created and the consumer knows for which errors to check.
-Examples
+It is also RECOMMENDED that this tag occurs for every occurrence of an exception, even if it has the same type. By documenting every occurrence a detailed view is created and the consumer knows for which errors to check.**Examples** 
 /**  * Counts the number of items in the provided array.  *  * @param mixed[] $array Array structure to count the elements of.  *  * @throws InvalidArgumentException if the provided argument is not of type  *     'array'.  *  * @return int Returns the number of elements.  */ function count($items) {     <...> }
 8.21. @todo
 The @todo tag is used to indicate whether any development activities should still be executed on associated "Structural Elements".
-Syntax
+**Syntax** 
 @todo [description] 
-Description
-The @todo tag is used to indicate that an activity surrounding the associated "Structural Elements" must still occur. Each tag MUST be accompanied by a description that communicates the intent of the original author; this could however be as short as providing an issue number.
-Examples
+**Description
+** The @todo tag is used to indicate that an activity surrounding the associated "Structural Elements" must still occur. Each tag MUST be accompanied by a description that communicates the intent of the original author; this could however be as short as providing an issue number.**Examples** 
 /**  * Counts the number of items in the provided array.  *  * @todo add an array parameter to count  *  * @return int Returns the number of elements.  */ function count() {     <...> }
 8.22. @typedef
 Allows the author to define a custom type composed of one or more types that may be augmented with key definitions, properties or methods.
-Syntax
+**Syntax** 
 @typedef ["Type"] [<"QCN">] [<"Inline PHPDoc">] 
-Description
-Using the @typedef tag it is possible to define a new pseudo-type or associative array definition for use in PHPDoc blocks.
+**Description
+** Using the @typedef tag it is possible to define a new pseudo-type or associative array definition for use in PHPDoc blocks.
 Let's explain this concept by presenting the following use-cases:
 1.	You want to document the properties of a class that is dynamically constructed, such as the \stdClass coming from json_decode.
 2.	You have a configuration array for which you want to document its keys and associated values.
@@ -616,8 +604,7 @@ A @typedef tag MUST always be placed on a DocBlock that belongs to a File or Cla
 When associated with a File the type definition is considered to be global and available throughout your project. It is NOT RECOMMENDED to use it in this fashion without due consideration as you are making your documentation harder to read without generator or IDE.
 Type definitions that are associated with a Class MUST only be used inside that class, or its descendants, and are considered to have a visibility similar to protected.
 Adding methods and properties on objects
-It is also possible to add new properties or methods using an "Inline PHPDoc", and the @property and @method tags on any object. In this context an object is any Qualified Class Name (QCN) that does not match one of PHP's primitive types. A notable exception is the 'object' keyword, which may have methods and properties added onto it.
-Examples
+It is also possible to add new properties or methods using an "Inline PHPDoc", and the @property and @method tags on any object. In this context an object is any Qualified Class Name (QCN) that does not match one of PHP's primitive types. A notable exception is the 'object' keyword, which may have methods and properties added onto it.**Examples** 
 Providing an alias for another class
 An example may be that the \Storage class is aliased using the class_alias() function as \Session, and the elements of the \Session class must be documented.
 The above can be accomplished with the following tag:
@@ -633,15 +620,14 @@ Defining an associative array as pseudo-type
 @typedef array \Configuration {   @var string $setting1   @var string $setting2 } 
 8.23. @uses
 Indicates whether the current "Structural Element" consumes the "Structural Element", or project file, that is provided as target.
-Syntax
+**Syntax** 
 @uses [file | "FQSEN"] [<description>] 
-Description
-The @uses tag describes whether any part of the associated "Structural Element" uses, or consumes, another "Structural Element" or a file that is situated in the current project.
+**Description
+** The @uses tag describes whether any part of the associated "Structural Element" uses, or consumes, another "Structural Element" or a file that is situated in the current project.
 When defining a reference to another "Structural Element" you can refer to a specific element by appending a double colon and providing the name of that element (also called the "FQSEN").
 Files that are contained in this project can be referred to by this tag. This can be used, for example, to indicate a relationship between a Controller and a template file (as View).
 This tag MUST NOT be used to indicate relations to elements outside of the system, so URLs are not usable. To indicate relations with outside elements the @see tag can be used.
-Applications consuming this tag, such as generators, are RECOMMENDED to provide a @used-by tag on the destination element. This can be used to provide a bi-directional experience and allow for static analysis.
-Examples
+Applications consuming this tag, such as generators, are RECOMMENDED to provide a @used-by tag on the destination element. This can be used to provide a bi-directional experience and allow for static analysis.**Examples** 
 /**  * @uses \SimpleXMLElement::__construct()  */ function initializeXml() {     <...> }
 /**  * @uses MyView.php  */ function executeMyView() {     <...> }
 8.24. @var
@@ -649,14 +635,13 @@ You may use the @var tag to document the "Type" of the following "Structural Ele
 * Constants, both class and global scope
 * Properties
 * Variables, both global and local scope
-Syntax
+**Syntax** 
 @var ["Type"] [element_name] [<description>] 
-Description
-The @var tag defines which type of data is represented by a value of a Constant, Property or Variable.
+**Description
+** The @var tag defines which type of data is represented by a value of a Constant, Property or Variable.
 Each Constant or Property definition or Variable where the type is ambiguous or unknown SHOULD be preceded by a DocBlock containing the @var tag. Any other variable MAY be preceded with a DocBlock containing the @var tag.
 The @var tag MUST contain the name of the element it documents. An exception to this is when property declarations only refer to a single property. In this case the name of the property MAY be omitted.
-This is used when compound statements are used to define a series of Constants or Properties. Such a compound statement can only have one DocBlock while several items are represented.
-Examples
+This is used when compound statements are used to define a series of Constants or Properties. Such a compound statement can only have one DocBlock while several items are represented.**Examples** 
 /** @var int $int This is a counter. */ $int = 0;  // there should be no docblock here $int++;
 Or:
 class Foo {   /** @var string|null Should contain a description */   protected $description = null;    public function setDescription($description)   {       // there should be no docblock here       $this->description = $description;   } }
@@ -668,17 +653,16 @@ Or constants:
 class Foo {   const        /**        * @var string Should contain a description        */       MY_CONST1 = "1",        /**        * @var string Should contain a description        */       MY_CONST2 = "2";  }
 8.25. @version
 The @version tag is used to denote some description of "versioning" to an element.
-Syntax
+**Syntax** 
 @version ["Semantic Version"] [<description>] 
-Description
-Documents the current "version" of any element.
+**Description
+** Documents the current "version" of any element.
 This information can be used to generate a set of API Documentation where the consumer is informed about elements at a particular version.
 It is RECOMMENDED that the version number matches a semantic version number as described in the Semantic Versioning Standard version 2.0.
 Version vectors from Version Control Systems are also supported, though they MUST follow the form:
 name-of-vcs: $vector$ 
 A description MAY be provided, for the purpose of communicating any additional version-specific information.
-The @version tag MAY NOT be used to show the last modified or introduction version of an element, the @since tag SHOULD be used for that purpose.
-Examples
+The @version tag MAY NOT be used to show the last modified or introduction version of an element, the @since tag SHOULD be used for that purpose.**Examples** 
 /**  * File for class Foo  * @version 2.1.7 MyApp  *          (this string denotes the application's overall version number)  * @version @package_version@  *          (this PEAR replacement keyword expands upon package installation)  * @version $Id$  *          (this CVS keyword expands to show the CVS file revision number)  */  /**  * This is Foo  */ class Foo {   <...> }
 Appendix A. Types
 ABNF
