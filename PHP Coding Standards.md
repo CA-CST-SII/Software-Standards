@@ -298,7 +298,7 @@ The `@api` tag represents those "Structural Elements" with a public visibility w
 
 The exact meaning of "Structural Elements" tagged with `@api` MAY differ per project. It is however RECOMMENDED that all tagged "Structural Elements" SHOULD NOT change after publication unless the new version is tagged as breaking Backwards Compatibility.
 
-Examples
+**Examples**
 ```php
 /**  * This method will not change until a major release.  *  * @api  *  * @return void  */ function showVersion() {    <...> }
 ```
@@ -312,7 +312,7 @@ The `@author` tag is used to document the author of any "Structural Element".
 **Description**
 The `@author` tag can be used to indicate who has created a "Structural Element" or has made significant modifications to it. This tag MAY also contain an e-mail address. If an e-mail address is provided it MUST follow the author's name and be contained in chevrons, or angle brackets, and MUST adhere to the syntax defined in RFC 2822.
 
-*Examples*
+**Examples**
 ```php
 /**  * @author My Name  * @author My Name <my.name@example.com>  */
 ```
