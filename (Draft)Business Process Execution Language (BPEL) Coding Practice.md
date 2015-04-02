@@ -170,7 +170,38 @@ __3.17. Don’t use Pick based Initiate pattern for interdependent operations__
 | 	SA00029 	 | 	WS-BPEL variables and WS-BPEL functions MUST NOT be used in query expressions of propertyAlias definitions. 	 | 	Section 8.2.6 	 | 
 | 	SA00030 	 | 	The arguments to bpel:getVariableProperty MUST be given as quoted strings. It is therefore illegal to pass into a WS-BPEL XPath function any XPath variables, the output of XPath functions, a XPath location path or any other value that is not a quoted string. 	 | 	Section 8.3	 | 
 | 	SA00031 	 | 	The second argument of the XPath 1.0 extension function bpel:getVariableProperty(string, string) MUST be a string literal conforming to the definition of QName in [XML Namespaces] section 3. 	 | 	Section 8.3 	 | 
-| 	SA00032 	 | 	<p>For <assign>, the <from> and <to> element MUST be one of the specified variants.  The <assign> activity copies a type-compatible value from the source (&quot;from-spec&quot;) to the destination (&quot;to-spec&quot;), using the <copy> element. Except in Abstract Processes, the from-spec MUST be one of the following variants:  <from variable=&quot;BPELVariableName&quot; part=&quot;NCName&quot;?>  <query queryLanguage=&quot;anyURI&quot;?>?  queryContent  </query>  </from>  <from partnerLink=&quot;NCName&quot;  endpointReference=&quot;myRole|partnerRole&quot; />  <from variable=&quot;BPELVariableName&quot;  property=&quot;QName&quot; />  <from expressionLanguage=&quot;anyURI&quot;?>  expression  </from>  <from>  <literal>literal value</literal>  </from>  <from/>  In Abstract Processes, the from-spec MUST be either one of the above or the opaque variant described in section 13.1.3. Hiding Syntactic Elements  The to-spec MUST be one of the following variants:  <to variable=&quot;BPELVariableName&quot; part=&quot;NCName&quot;?>  <query queryLanguage=&quot;anyURI&quot;?>?  queryContent  </query>  </to>  <to partnerLink=&quot;NCName&quot; />  <to variable=&quot;BPELVariableName&quot;  property=&quot;QName&quot; />  <to expressionLanguage=&quot;anyURI&quot;?>  expression  </to>  <to/>  </p> | 	Section 8.4	 | 
+| 	SA00032 	 | 	<p>For &lt;assign&gt;, the &lt;from&gt; and &lt;to&gt; element MUST be one of the specified variants.</p>
+<p>The &lt;assign&gt; activity copies a type-compatible value from the source ("from-spec") to the destination ("to-spec"), using the &lt;copy&gt; element. Except in Abstract Processes, the from-spec MUST be one of the following variants:</p>
+<p>&lt;from variable="BPELVariableName" part="NCName"?&gt;</p>
+<p>&lt;query queryLanguage="anyURI"?&gt;?</p>
+<p>queryContent</p>
+<p>&lt;/query&gt;</p>
+<p>&lt;/from&gt;</p>
+<p>&lt;from partnerLink="NCName"</p>
+<p>endpointReference="myRole|partnerRole" /&gt;</p>
+<p>&lt;from variable="BPELVariableName"</p>
+<p>property="QName" /&gt;</p>
+<p>&lt;from expressionLanguage="anyURI"?&gt;</p>
+<p>expression</p>
+<p>&lt;/from&gt;</p>
+<p>&lt;from&gt;</p>
+<p>&lt;literal&gt;literal value&lt;/literal&gt;</p>
+<p>&lt;/from&gt;</p>
+<p>&lt;from/&gt;</p>
+<p>In Abstract Processes, the from-spec MUST be either one of the above or the opaque variant described in section 13.1.3. Hiding Syntactic Elements</p>
+<p>The to-spec MUST be one of the following variants:</p>
+<p>&lt;to variable="BPELVariableName" part="NCName"?&gt;</p>
+<p>&lt;query queryLanguage="anyURI"?&gt;?</p>
+<p>queryContent</p>
+<p>&lt;/query&gt;</p>
+<p>&lt;/to&gt;</p>
+<p>&lt;to partnerLink="NCName" /&gt;</p>
+<p>&lt;to variable="BPELVariableName"</p>
+<p>property="QName" /&gt;</p>
+<p>&lt;to expressionLanguage="anyURI"?&gt;</p>
+<p>expression</p>
+<p>&lt;/to&gt;</p>
+<p>&lt;to/&gt;&nbsp;</p> | 	Section 8.4	 | 
 | 	SA00033 	 | 	The XPath expression in <to> MUST begin with an XPath VariableReference. 	 | 	Section 8.4 	 | 
 | 	SA00034 	 | 	When the variable used in <from> or <to> is defined using XML Schema types (simple or complex) or element, the part attribute MUST NOT be used. 	 | 	Section 8.4 	 | 
 | 	SA00035 	 | 	In the from-spec of the partnerLink variant of <assign> the value "myRole" for attribute endpointReference is only permitted when the partnerLink specifies the attribute myRole. 	 | 	Section 8.4 	 | 
