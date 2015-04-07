@@ -24,11 +24,11 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division Concept of Operations Guide](https://github.com/CA-CST-SII/Software-Standards/blob/master/Concept_of_Operations_Diagram.md)
 
-[PHP Coding Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md)
+[Consular Systems and Technology Division PHP Coding Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md)
 
-[PHP Documentation Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Documentation%20Standards.md)
+[Consular Systems and Technology Division PHP Documentation Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Documentation%20Standards.md)
 
-[Object](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object.md)
+[Consular Systems and Technology Division Object](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object.md)
 
 ## Draft standards
 
