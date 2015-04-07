@@ -20,9 +20,15 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division C# Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md)
 
-[Still in Wiki format:Consular Systems and Technology Division C++ Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md)
+[Consular Systems and Technology Division C++ Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md)
 
 [Consular Systems and Technology Division Concept of Operations Guide](https://github.com/CA-CST-SII/Software-Standards/blob/master/Concept_of_Operations_Diagram.md)
+
+[PHP Coding Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md)
+
+[PHP Documentation Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Documentation%20Standards.md)
+
+[Object](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object.md)
 
 ## Draft standards
 
