@@ -182,7 +182,6 @@ This standard provides the basis for defining and naming the following data obje
 | Stored Procedure | A named program or routine stored in a database |
 |
 ## 1.3 Naming Conventions
- | | | |
 
 Several conventions for defining and naming objects are followed in this manual. This section describes those conventions.
 
@@ -198,7 +197,7 @@ The term "(space)" represents a space character to be used between components.
 
 The following name components are used in the naming format statements:
 
-| **Ter**** m **|** Definition** |
+| **Term**|**Definition** |
 | --- | --- |
 | Class Word | Describe the type of data; they indicate the domain of potential values from which the data item's valid values are drawn.e.g.: name, number, amount, percent |
 | Data Element | A unit of data for which the definition, identification, representation, and permissible values are specified by means of a set of attributes. It is also known as an Attribute, Column or Field. |
