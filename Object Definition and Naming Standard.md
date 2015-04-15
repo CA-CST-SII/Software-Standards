@@ -918,13 +918,13 @@ Constraints MUST be named according to one of the following formats:
 | **Type of Constraints** | **Naming Rule** | **Example** |
 | --- | --- | --- |
 | Primary Key | Primary key type constraints MUST be named after the table name plus a suffix of "\_pk". |
-- proj\_et\_pk - prcl\_cnty\_pk - srfc\_wtr\_pmp\_pk|
+ proj\_et\_pk  prcl\_cnty\_pk  srfc\_wtr\_pmp\_pk|
 | A unique constraint | The unique constraint MUST be named after the table plus a suffix of "\_unq". If more than one unique constraint is required, add a numeric suffix of 1 through 9. |
-- proj\_et\_unq - prcl\_cnty\_unq1 - prcl\_cnty\_unq2|
+proj\_et\_unq  prcl\_cnty\_unq1  prcl\_cnty\_unq2|
 | Foreign key constraint | A foreign key constraint MUST be named after the table plus a suffix of "\_fk". If more than on foreign key constraint is required, add a numeric suffix of 1 through 9. |
-- proj\_et\_fk - bdgt\_acct\_fk1 - bdgt\_acct\_fk2|
+proj\_et\_fk  bdgt\_acct\_fk1 bdgt\_acct\_fk2|
 | Check Constraints | If the check condition references only one column, name the constraint after the column name plus a suffix of "\_chk". If more than one check condition is required per table or column, add a numeric suffix of 1 through 9 |
-- proj\_id\_chk - prcl\_cnty\_chk1 - prcl\_cnty\_chk2   |
+ proj\_id\_chk prcl\_cnty\_chk1 prcl\_cnty\_chk2   |
 
 
 ## 10.3 Constraint Metadata Properties
@@ -1033,8 +1033,9 @@ Candidate terms may be submitted via e-mail to Data Management at [ DataMgmtSupp
 
 Neither _Entity_ nor _Attribute Names_ MUST contain conjunctions, prepositions, certain adverbs, or phrases listed below unless it is necessary to meaningfully name the object.
 
-Invalid _Entity_ and _Attribute_ name components:
-
+Invalid _Entity_ and _Attribute Names_ name components:
+|  |   |
+|--- |--- |
 | A |    Non |
 | An |    Nor |
 | After |   Occasionally |
