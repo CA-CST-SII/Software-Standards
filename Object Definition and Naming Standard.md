@@ -656,7 +656,7 @@ _Relationships_ MUST use the following format:
 All of the information the analyst needs to precisely describe a _Relationship_ is often provided when the following items are determined:
 
 
-     &lt;u>**The nature of the relationship between the entities,**&lt;u> For example, the _Entities__EMPLOYEE _and_ WORKSITE _may have the following_ Relationship_:
+     <u>**The nature of the relationship between the entities,**<;u> For example, the _Entities__EMPLOYEE _and_ WORKSITE _may have the following_ Relationship_:
 
             - _EMPLOYEE_ works at WORKSITE 
 
@@ -668,12 +668,12 @@ The two _Entities_, together with the nature of the _Relationship_ between two _
 
 
 
-      &lt;u>**The optionality between the entities** &lt;u>,   Relationship _ &lt;u>**optionality**&lt;u> indicates whether a_Relationship_ is optional or required. Frequently, a _Relationship_ can be optional whenviewed from one _Entity_ and required when viewed from the other. The following illustrates the concept of optionality.
+      <u>**The optionality between the entities** <u>,   Relationship _ &lt;u>**optionality**&lt;u> indicates whether a_Relationship_ is optional or required. Frequently, a _Relationship_ can be optional whenviewed from one _Entity_ and required when viewed from the other. The following illustrates the concept of optionality.
 
             - A _CUSTOMER_ may place ORDER_ (optional)  
             - An _ORDER_ must be placed by a _CUSTOMER_ (required) 
 
-      &lt;u>**The cardinality between the entities**&lt;u> ,_Relationship_cardinality indicates how many of one_Entity _is related to how many of another_ Entity_.  _Relationships_ between two _Entities_ maybe one-to-one (1:1), one-to-many (1: M), or many-to-many (M: M). the modeler should be wary of including 1:1 _Relationships_ in a finished data model. A 1:1 _Relationship_ normally indicates that two _Entities_ can be combined into one _Entity_. An M: M _Relationship _MUSTbe represented by two 1: M _Relationships_ and an _Associative Entity_.  When recording the _Relationship Name_, optionality and cardinality, enough information is usually conveyed so that _Relationship_ descriptions are not required.
+      <u>**The cardinality between the entities**<u> ,_Relationship_cardinality indicates how many of one_Entity _is related to how many of another_ Entity_.  _Relationships_ between two _Entities_ maybe one-to-one (1:1), one-to-many (1: M), or many-to-many (M: M). the modeler should be wary of including 1:1 _Relationships_ in a finished data model. A 1:1 _Relationship_ normally indicates that two _Entities_ can be combined into one _Entity_. An M: M _Relationship _MUSTbe represented by two 1: M _Relationships_ and an _Associative Entity_.  When recording the _Relationship Name_, optionality and cardinality, enough information is usually conveyed so that _Relationship_ descriptions are not required.
 
 ## 4.3 Foreign Key Constraint on Relationship
 
@@ -681,9 +681,9 @@ In some Relational Database Management Systems (RDBMS), _Foreign Key Constraints
 
 ### 4.3.1       Foreign Key Constraints Name Format:
 
-_Foreign Key Constraint Names _ MUST use the following format:
+_Foreign Key Constraint Names_ MUST use the following format:
 
-FK\__&lt;sequence number>_\_&lt;table name>_\_&lt;referential table name>[\__&lt;purpose or role name>] 
+FK\_&lt;sequence number>_\_&lt;table name>_\_&lt;referential table name>[\_&lt;purpose or role name>] 
 
 
 The _Table Names_ used in _Foreign Key Constraint Names_ SHOULD be the _Table Abbreviated Names_ but MAY also be the _Table Business Names_ or _Table Synonym Names_.
@@ -763,21 +763,12 @@ The metadata properties used to fully document a _Column_ are the same as those 
 
 
 
-
-
-
-
-
-
-
-
-
-
 # 7. Views
 
 A _View_ is a specific physical data object that provides access to all or a portion of one or more _Tables_. In the case of multiple_ Tables _in a_ View_, the _Tables_ must be capable of being joined. Aprinciple reason for creating a _View_ is to give a user somewhat limited access to the columns in the _View's_ tables. See Section 2 of this document for a complete list of rules for describing and naming _Views_, as well as their appropriate metadata properties.
 
 ## 7.2 Naming Views
+
 
 The same general rules for naming an entity also apply to naming Views.
 
@@ -787,15 +778,15 @@ _Exception:_
 
 ### 7.2.1       View Name Format
 
-_View Names _SHOULD use the format:
 
-[&lt;Prime Term> (space)] &lt;modifier(s)>
+_View Names_ SHOULD use the format:
 
- [&lt;qualifier term> (space)] &lt;object class term>  e.g.: VW\__HR\_ PERSONAL DATA_
+[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;object class term>  e.g.: VW\__HR\_ PERSONAL DATA_
+
 
 ## 7.1 Describing Views
 
-_Views_ MUSTbe described in the same fashion as _Entities_.
+_Views_ MUST be described in the same fashion as _Entities_.
 
 ## 7.3 View Metadata Properties
 
@@ -804,18 +795,10 @@ The metadata properties listed in the following table are to be used to fully do
 | **Metadata Property** | **Documentation Requirement** |
 | --- | --- |
 | View Name | The identifier of the view, including the abbreviated Functional Name. |
-|   |   |
 | Functional Name | The name of the business function supported by the view. |
-|   |   |
 | Description | The textual description of the _View._ |
-|   |   |
 | Tables | The tables included in the _View._ |
-|   |   |
 | Columns | The columns included in the _View._ |
-
-
-
-
 
 
 
@@ -827,13 +810,10 @@ An _Index_ is a set of ordered pointers to data contained in a _Table_, and it c
 
 ## 8.1 Index Types
 
-&lt;u>**Primary Key Index**&lt;u> – An index placed on the column or columns that make up the Primary Key ofa Table. Primary Key Indexes MUST be defined as "UNIQUE" if RDBMS supports this feature
-
-&lt;u>**Alternate Key Index**&lt;u> – An index placed on a column or columns that could be used to uniquelyidentify a row in the table, but are not the Primary Key. Alternate Key Indexes MUST be defined as "UNIQUE" if your RDBMS supports this feature
-
-&lt;u>**Foreign Key Index**&lt;u> – An index placed on the column or columns that represent a foreign keyconstraint to another table
-
-&lt;u>**Non-key Index**&lt;u> – An index placed on a column that does not represent a key of any of the typesdescribed above
+<u>**Primary Key Index**&lt;u> – An index placed on the column or columns that make up the Primary Key ofa Table. Primary Key Indexes MUST be defined as "UNIQUE" if RDBMS supports this feature
+<u>**Alternate Key Index**&lt;u> – An index placed on a column or columns that could be used to uniquelyidentify a row in the table, but are not the Primary Key. Alternate Key Indexes MUST be defined as "UNIQUE" if your RDBMS supports this feature
+<u>**Foreign Key Index**&lt;u> – An index placed on the column or columns that represent a foreign keyconstraint to another table
+<u>**Non-key Index**&lt;u> – An index placed on a column that does not represent a key of any of the typesdescribed above
 
 ## 8.2 Naming Indexes
 
@@ -902,12 +882,8 @@ The above formatted name can optionally be followed by _&lt;\_1>_if more than on
 
 _Metadata Properties:_
 
-|   |   |
-| --- | --- |
 | Description | The textual description of the triggers and Purpose |
-|   |   |
 | Comment | Any remarks of significance to the understanding of the triggers history. |
-|   |   |
 
 
 
@@ -921,9 +897,9 @@ Database constraints are restrictions on the contents of the database or on data
 
 ## 10.1 Type of Constraints
 
-        1) Primary Key (PK) \- Serves as the unique identifier for rows in the table
-        2) A unique constraint (UNQ) \- is similar to a primary key constraint but doesn't have to be defined with Not Null.
-        3) Foreign key constraint (FK) \- The relationship between rows in two tables is expressed by a foreign key in the dependent table. A foreign key is one or more columns that contain a value identical to a primary key (or unique key) value in some row in the parent table (i.e., the referenced table).
+        1) Primary Key (PK) - Serves as the unique identifier for rows in the table
+        2) A unique constraint (UNQ) - is similar to a primary key constraint but doesn't have to be defined with Not Null.
+        3) Foreign key constraint (FK) - The relationship between rows in two tables is expressed by a foreign key in the dependent table. A foreign key is one or more columns that contain a value identical to a primary key (or unique key) value in some row in the parent table (i.e., the referenced table).
         4) Check Constraints (CHK) - Used to enforce the validity of column values
 
 ## 10.2 Naming Constraints
@@ -942,27 +918,14 @@ Constraints MUST be named according to one of the following formats:
 | **Type of Constraints** | **Naming Rule** | **Example** |
 | --- | --- | --- |
 | Primary Key | Primary key type constraints MUST be named after the table name plus a suffix of "\_pk". |
-- proj\_et\_pk 
-- prcl\_cnty\_pk 
-- srfc\_wtr\_pmp\_pk
- |
+- proj\_et\_pk - prcl\_cnty\_pk - srfc\_wtr\_pmp\_pk|
 | A unique constraint | The unique constraint MUST be named after the table plus a suffix of "\_unq". If more than one unique constraint is required, add a numeric suffix of 1 through 9. |
-- proj\_et\_unq 
-- prcl\_cnty\_unq1 
-- prcl\_cnty\_unq2
- |
+- proj\_et\_unq - prcl\_cnty\_unq1 - prcl\_cnty\_unq2|
 | Foreign key constraint | A foreign key constraint MUST be named after the table plus a suffix of "\_fk". If more than on foreign key constraint is required, add a numeric suffix of 1 through 9. |
-- proj\_et\_fk 
-- bdgt\_acct\_fk1 
-- bdgt\_acct\_fk2
-  |
-
+- proj\_et\_fk - bdgt\_acct\_fk1 - bdgt\_acct\_fk2|
 | Check Constraints | If the check condition references only one column, name the constraint after the column name plus a suffix of "\_chk". If more than one check condition is required per table or column, add a numeric suffix of 1 through 9 |
-- proj\_id\_chk 
-- prcl\_cnty\_chk1 
-- prcl\_cnty\_chk2
-   |
-| --- | --- | --- |
+- proj\_id\_chk - prcl\_cnty\_chk1 - prcl\_cnty\_chk2   |
+
 
 ## 10.3 Constraint Metadata Properties
 
@@ -1019,7 +982,7 @@ Create a candidate _Abbreviation_ by using the following rules:
      - A commonly accepted American dictionary 
      - Any commonly accepted _Abbreviation_ (de facto standard) 
 
-An _Abbreviation_ for the term in question **may** be found through these sources, or follow _Abbreviation_ rules 2 through 20. If a readily acceptable_ Abbreviation_ is found, use it, identify itssource, and go to rule 2; then skip rules 3 through 20. If the _Abbreviation_ is not readily acceptable due to possible conflicts or duplications, or it does not adequately represent the word it replaces, continue with the _Abbreviation_ rules. Apply common sense.
+   An _Abbreviation_ for the term in question **may** be found through these sources, or follow _Abbreviation_ rules 2 through 20. If a readily acceptable_ Abbreviation_ is found, use it, identify itssource, and go to rule 2; then skip rules 3 through 20. If the _Abbreviation_ is not readily acceptable due to possible conflicts or duplications, or it does not adequately represent the word it replaces, continue with the _Abbreviation_ rules. Apply common sense.
 
 2. Ensure that each _Abbreviation_ is unique, not only with regard to other _Abbreviations_, but also with respect to _Acronyms_. 
 3. Ensure that each term has only one _Abbreviation_. 
@@ -1036,7 +999,7 @@ An _Abbreviation_ for the term in question **may** be found through these source
 
 9. Always treat "y" as a consonant. 
 
-10. Delete unnecessary vowels; however, not all vowels need to be eliminated to have a valid _Abbreviation_. Keep those that are necessary to make the _ bbreviation_ understandable. 
+10. Delete unnecessary vowels; however, not all vowels need to be eliminated to have a valid _Abbreviation_. Keep those that are necessary to make the _abbreviation_ understandable. 
 
 11. Generally, delete one consonant of a double consonant.  Exceptions MAY be made for clarity. 
 
@@ -1046,13 +1009,13 @@ An _Abbreviation_ for the term in question **may** be found through these source
 
     _AUTHORIZATION_ would be abbreviated _AUTHZN_.
 
-14. If the abbreviation already exists for another word, for example, _FCLTY_ for _FACILITY_, then it is necessary to either keep one of the vowels for the new _Abbreviation_, or use a commonly accepted _Abbreviation_ that is sufficiently different. For example, using FAC for_FACULTY_ might be usedin lieu of _FCLTY_, which would otherwise be one result of following the rules. 
+14. If the abbreviation already exists for another word, for example, _FCLTY_ for _FACILITY_, then it is necessary to either keep one of the vowels for the new _Abbreviation_, or use a commonly accepted _Abbreviation_ that is sufficiently different. For example, using FAC for _FACULTY_ might be usedin lieu of _FCLTY_, which would otherwise be one result of following the rules. 
 
-    A root word and its derivatives SHOULD have the same 'root' _Abbreviation_. For example, the _Abbreviation _for_ EXEMPT _is_ EXMPT_, and for_ EXEMPTION _is_ EXMPTN_. The 'root_ Abbreviation_' in both cases is_ EXMPT_.
+    A root word and its derivatives SHOULD have the same 'root' _Abbreviation_. For example, the _Abbreviation _for_ EXEMPT_i s _EXMPT_, and for_EXEMPTION_ is _EXMPTN_. The 'root _Abbreviation_' in both cases is _EXMPT_.
 
     Always eliminate the vowels in a suffix. Use _G_ as the _Abbreviation_ for the _ING_ suffix, and _MT_ for the _MENT_ suffix. Using this rule, the _Abbreviation_ for _PRINTING_ is _PRINTG_, and an acceptable _Abbreviation_ for _EMPLOYMENT_ is _EMPMT_.
 
-15. If a root word is five or fewer characters and is not abbreviated, its derivatives may have the root portion spelled out or abbreviated, but, if abbreviated, all derivatives must have the same _Abbreviation _of the root portion of the word. For example,_ PRINT _is not abbreviated since it isfive characters. _PRINTING_ can be abbreviated _PRINTG_, and all other derivatives would also contain the root _PRINT_. On the other hand, _CLEAR_ is not abbreviated, but _CLEARANCE_MAY be abbreviated _CLRNC_. In this case _CLR_MUST be used as the root for all derivatives of _CLEAR_.
+15. If a root word is five or fewer characters and is not abbreviated, its derivatives may have the root portion spelled out or abbreviated, but, if abbreviated, all derivatives must have the same _Abbreviation _of the root portion of the word. For example,_PRINT_ is not abbreviated since it isfive characters. _PRINTING_ can be abbreviated _PRINTG_, and all other derivatives would also contain the root _PRINT_. On the other hand, _CLEAR_ is not abbreviated, but _CLEARANCE_ MAY be abbreviated _CLRNC_. In this case _CLR_MUST be used as the root for all derivatives of _CLEAR_.
 16. _Abbreviations_ must not spell an expletive.
 
 ## 12.2 Creating Acronyms
@@ -1072,23 +1035,22 @@ Neither _Entity_ nor _Attribute Names_ MUST contain conjunctions, prepositions, 
 
 Invalid _Entity_ and _Attribute_ name components:
 
-|   | A |   | Non |
-| --- | --- | --- | --- |
-|   | An |   | Nor |
-|   | After |   | Occasionally |
-|   | Always |   | Off |
-|   | And |   | Often |
-|   | Because |   | On |
-|   | But |   | Or |
-|   | Do |   | Sometimes |
-|   | Else |   | The |
-|   | For |   | Then |
-|   | Frequently |   | Through |
-|   | How |   | Thru |
-|   | However |   | To |
-|   | If |   | Too |
-|   | In |   | When |
-|   |   |   | While |
+| A |    Non |
+| An |    Nor |
+| After |   Occasionally |
+| Always |   Off |
+| And |   Often |
+| Because |    On |
+| But |   Or |
+| Do |    Sometimes |
+| Else |   The |
+| For |    Then |
+| Frequently |   Through |
+| How | Thru |
+| However |   To |
+| If |   Too |
+| In |  When | 
+| While | |
 
 The word **KEY** is reserved for use in naming key fields.
 
@@ -1130,7 +1092,7 @@ The word **KEY** is reserved for use in naming key fields.
 9. Added Data Modeling Syntax Legend in Section 2.0, Entity Types, to show graphical notations used in data models related to entities, super types/subtypes, and relationships. 
 10. Revised Section 4.3.1, Foreign Key Constraints Name Format to show: 
 
-    FK\__&lt;sequence number>\_&lt;table name>\_&lt;referential table name>_[&lt;purpose or role name>]
+    FK\_&lt;sequence number>\_&lt;table name>\_&lt;referential table name>_[&lt;purpose or role name>]
 
 11. Added Appendix B to this document to provide additional guidelines (template format) in naming database components related to ORACLE and MS SQL Server DBMS. 
 12. Added Appendix C to provide detailed account of the revisions made to this document. Transferred Section 1.3, "Changes from the Fourth Edition," to Appendix C of this document (6th Edition). 
