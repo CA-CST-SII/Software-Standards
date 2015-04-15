@@ -437,5 +437,720 @@ The metadata properties listed in the following table are to be used to fully do
 | Primary Key | The primary identifier that is used to uniquely identify a record instance, or other data grouping in the entity. It is composed of one or more attributes. |
 | Business Rule(s) | The manner in which one or more business processes uses the entity. There may be many business rules that pertain directly to the entity or to its relationship to other entities |
 | Non-Key Attributes | Identifies all attributes in the entity that are not part of the primary key. |
-| _Synonym _Name | Typically an acronym formed by the first letter or letters of the business terms in a Business Name. The Synonym Name is typically 8 characters or less and is used specifically in the Abbreviated Names of Attributes and Columns |
+| _Synonym_ Name | Typically an acronym formed by the first letter or letters of the business terms in a Business Name. The Synonym Name is typically 8 characters or less and is used specifically in the Abbreviated Names of Attributes and Columns |
 
+# 3. Attributes
+
+An _Attribute_ is an item of data, a fact or piece of information about an _Entity_. An _Attribute_ represents a characteristic or descriptive property of an _Entity_. In data modeling, it is a logical object whose physical counterpart is a _Column._
+
+## 3.2        Naming Attributes
+
+Legacy systems in use in the Department are _not_ required to change existing attribute names to adhere to this standard. Those attributes will be mapped to standard data element names where possible.
+
+The following general standards apply in creating an _Attribute Business Name_:
+
+- The name MUST be UPPERCASE 
+- The name MUST be composed of the characters A-Z, 0-9
+- The name MUST be fully spelled out
+- The name MUST be 120 characters or less in length
+- Nouns SHOULD be singular except where the plural form is commonly used
+- Verbs MUST NOT be used
+- Possessive nouns and proper nouns MUST NOT be used in the name
+- Underscore MUST NOT be used in names
+
+### 3.2.1 Attribute Name Format
+
+_Attribute Names _MUST use the format:
+
+|  &lt;prime  term>  (space)  [&lt;modifier(s)>  (space)]   &lt;class  word>       e.g..: Building  Identification Number |
+| --- |
+
+_In ISO/IEC 11179 terminology:_
+
+|  &lt;object class term> (space) [ &lt;qualifier term> (space)]  &lt;property term> (space)  &lt;representation term> |
+| --- |
+
+## 3.1 Describing Attributes
+
+The following rules apply when describing an _Attribute_:
+
+- The description MUST be a noun phrase, complete and detailed
+- The description MUST pertain to a  single occurrence of the Attribute in the present tense
+- The description MUST be precise and unambiguous.  It MUST identify the Attribute and distinguish it from any other Attribute
+- The description MUST be relevant to its business purpose and independent of technology and implementation
+- The description MUST be stable over time
+- The description MUST NOT simply repeat the name of the _Attribute_ as the description
+- Abbreviations and acronyms MUST NOT be used in descriptions
+- The _Attribute_'s description MUST NOT contain the description of the _Attribute's_ prime term/object class term or class word/representation term, since they have been defined separately. 
+- The description MUST be stable over time. The following words or phrases are examples of time dependency or process orientation, and MUST NOT be used to describe an _Attribute_: 
+
+     - At this (point in) time   
+     - Occasionally 
+     - Perhaps                   
+     - But not always 
+     - Unless this happens       
+     - In certain circumstances 
+     - In this situation         
+     - However, under these circumstances 
+     - When this happens         
+     - Frequently 
+     - If this happens           
+     - Depending on
+     - However                   
+     - Sometimes 
+
+- The description MUST BE of an _Attribute_, not of the data the Department records about the _Attribute_, nor the functions, applications or organizations that use or create the data. The description MUST not pertain to: 
+
+
+  - When, how, or where the data about the Entity are used 
+  - Who uses the data 
+  - How to edit or process the data 
+  - The format the data stored in or other physical considerations 
+  - What hardware or software systems use the data
+
+- _Abbreviations_ and _Acronyms_ MUST NOT be used in descriptions 
+- Two _Attributes_MUST NOT be circular in description (for example, two _Attributes_ descriptions cannot exist where one description points to a second description; and the second _Attribute_ description points back to the first description). 
+
+  - Grammatically correct 
+  - Spelled correctly 
+  - Complete and accurate, fully reflecting the meaning of the Entity. 
+  - Written in active voice, where possible.
+
+- The description MUST NOT include an example. Examples of an _Attribute's_ domain values MAY be written as a separate business rule. 
+
+### 3.2.2       Class Words/Representation Terms
+
+A _class word_, or _representation term_, is a reserved word to be used as part of an _Attribute Name_ so that the type of data it represents may group the _Attribute_. In most cases, the words reserved as class words MUST NOT be used as modifiers in the _Attribute Name_.
+
+The approved list of standard class words appears below. Each approved CLASS WORD is shown together with its standard _Abbreviation._
+
+| **Class Word** | **Abbr.** | **Data Type** | **Data Element Categories**|  **Definition** |
+| --- | --- | --- | --- | --- |
+| AMOUNT | AMT | Numeric | Amount, Average, Balance, Cost, Price | A monetary value. |
+| CODE | CD | Alphanumeric | Code, Category, Status, Type, Condition | A combination of one or more numbers, letters, or special characters substituted for a specific meaning. Represents finite, predetermined values. |
+| DATE | DT | Numeric | Date, Day, Month, Year | The designation of a specific 24-hour period of time. A date, specified by month, day, and year (for example, July 4, 1976), but in YYYYMMDD format (for example, 19760704). |
+| DATETIME | DTTM | Numeric | Date and Time | The designation of a specificchronological point in time inconjunction with a specific 24-hour period of time. |
+| DESCRIPTION | DESC | Alphanumeric | Description | A character string used to tell thefacts, details or particulars ofsomething. |
+| FILE | FIL | Alphanumeric | Binary Data that can't be described as Sound, Video, or  Picture but has a fileextension type associated | An attribute that holds data in a known file format that does not conform to another, more specific class word (i.e., SOUND, VIDEO, or PICTURE).  For example: an XML or PDF file stored in a Binary Large Object (BLOB). |
+| IDENTIFIER | ID | Alphanumeric | Identifier, Designator, Index, Key | A combination of one or morenumbers, letters, or special characters that designate a specific entity that have no readily definable meaning. |
+| INDICATOR | IND | Alphanumeric | Binary Data that can't be described as sound, Video, or Picture but has a file extension type Associated | An attribute that holds data in a known file format that does not conform to another, more specific class word (i.e., SOUND, VIDEO, or PICTURE).  For example: an XML or PDF file stored in a Binary Large Object (BLOB). |
+| NAME | NM | Alphanumeric | Name, Title | A designation of an entity expressed in a word or phrase. |
+| NUMBER | NUM | Numeric | Number, Count, Index | A non-monetary numeric value that is not a calculated unit or aggregated unit. |
+| PICTURE | PIC | Binary | Picture | A picture, including graphics that can be stored in a binary large object (BLOB) and viewed on the screen. |
+| QUANTITY | QTY | Numeric | Quantity, Average, Balance, Deviation, Mean, Median, Mode, Altitude, Depth, Diameter, Dimension, Elevation, Height, Length, Radius, Width, Magnitude, Percent | A non-monetary numeric value that does not have to be a whole number. It is a calculated or aggregated value. |
+| SOUND | SND | Binary | Sound | Audio that can be stored in a binary large object (BLOB) and heard on system speakers. |
+| TEXT | TXT | Alphanumeric | Text, Comments, Memo, Description, Definition | An unformatted character string (free-form narrative), frequently in the form of words with no length limitation. |
+| TIME | TM | Numeric | Time, Quarter | A designation of a specifiedchronological point designated as an occurrence (in the past, present, or future) within a period. |
+| VIDEO | VID | Binary | Video | Dynamic pictures that can be stored in a binary large object (BLOB) and viewed at a workstation. |
+
+For each class word, an _Attribute_'s description SHOULD begin as follows:
+
+| **Class Word** | **Description** |
+| --- | --- |
+| AMOUNT | The &lt;modifier> amount of… |
+| CODE | The code that represents… |
+| DATE | The date on which… |
+| DATETIME | The date and time at which… |
+| DESCRIPTION | The description of… |
+| FILE | The file that… |
+| IDENTIFIER | The identifier of… |
+| INDICATOR | Indicates whether |
+| NAME | The name of… |
+| NUMBER | The &lt;modifier> number that… |
+| PICTURE | The picture that… |
+| QUANTITY | The quantity of… |
+| SOUND | The sound that… |
+| TEXT | The text that describes… |
+| TIME | The time at which… |
+| VIDEO | The video that… |
+
+### 3.2.3 Migrated Foreign Key Attributes
+
+Attributes that exist because of a relationship to another Entity, relationship between the same Entity, multiple relationships with the same entity, or from a Categorization/Supertype Entity have additional rules that must also be followed. These rules impact which object class term/prime term is used in naming the Attribute:
+
+  - _Attributes_ migrated through non-recursive relationshipsMUSTmaintain the name of theobject class term/prime term (the _Entity Name_) from which it migrated. 
+
+  - _Attributes_ migrated through recursive relationshipsMUSTprefix the object classterm/prime term with a _Role Name_ for all but the primary _Attributes'_ prime term/object class term. The primary attribute MAY also prefix the object class term/prime term with a Role Name. 
+
+Migrated foreign key attribute names are illustrated in  Figure 2. Migrated Foreign Key Attribute  Names below. Note that the migrated attributes in the CUSTOMER ACCOUNT associative entity maintain the object class term/prime term of their originating entities: CUSTOMER and ACCOUNT rather than take on the prime term of their actual entity CUSTOMER ACCOUNT.
+
+ 
+
+![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object_FIG_2.png)
+
+Role Names by which migrated foreign keys are illustrated in Figure 3 (Role Names on Migrated Foreign Keys), where RELATED is the role given to the migrated foreign key PERSON IDENTIFIER. In the second example PARENT is the role given to attribute migrated through the recursive relationship of ORGANIZATION with itself
+
+![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object_FIG_3.png)
+
+## 3.3 Attribute Metadata Properties
+
+The metadata properties listed in the following _Table_ are necessary to fully document an _Attribute_. The name of the property is the name that appears in the current repository schema.
+
+| **Metadata Property** | **Documentation Requirement** |
+| --- | --- |
+| Allowed Values | Entries permitted for an instance of an attribute |
+| Business Name | The attribute name in its unabbreviated form |
+| Business Rule(s) | The manner in which one or more business processes uses the attribute.  There may be many business rules that pertain directly to the attribute or to its relationship to other attributes |
+| Case Sensitivity | Indicates whether or not the data is to be upper case, lower case or mixed |
+| Comment | Any remarks of significance to the understanding of the attribute's history. |
+| Data Length | The maximum allowable length for the attribute. |
+| Data Type | The allowed data format for the attribute (for example, alphabetic, binary, and so on). |
+| Default Value | The domain value that is automatically assigned when no other value is specifically identified. |
+| Derivation Rule | The algorithm used to determine how the attribute is derived. |
+| Description | The textual definition of the attribute. |
+| Domain Definition | The general description of the applicable domain for the attribute. |
+| Domain Detail | Additional detail pertaining to the Allowed Values. |
+| Mandatory Requirement | Identifies whether or not the attribute is required for an instance of the entity to have meaning. |
+| Originating Entity | The entity in which the attribute is initially defined. |
+| Originating Organization | The organization(s) that is the source of the attribute's definition and maintenance. |
+| Other Security | Handling restriction, such as Sensitive, under Freedom of Information Act (FOIA). |
+| Precision | The number of places after the decimal point. |
+| Range Maximum | The upper bound of the range of acceptable data values. |
+| Range Minimum | The lower bound of the range of acceptable data values. |
+| Reference Documentation | Information pertaining to the source material for the attribute's definition or a statement regarding the current source organization for the domain definition.  If the source is from Data Management, a complete a set of domain values will be identified.  If the source is other than Data Management, a sample of the domain will be defined in the Allowed Values property. |
+| Security Classification | Level of national security protection required for the attribute. |
+
+
+
+
+
+
+
+# 4. Relationships
+
+
+
+A _Relationship_ is an association between two or more _Entities_ (a non-recursive relationship) or between occurrences of the same _Entity_ (a recursive relationship) that represents a business rule. _Relationships _are used in Entity Relationship Diagrams (ERDs) to convey information as to how_ Entities _correspond to one another. In data modeling, it is a logical object whose physicalcounterpart is a _Foreign Key Constraint_.
+
+## 4.1 Naming Relationships
+
+The following rules apply when determining a _Relationship Business Name_:
+
+  - The _Entity Names_ MUST be UPPERCASE
+  - The _verb phrase_ MUST be lower case. 
+  - The _Relationship Name_ MUST be an active voice _verb phrase_
+  - The _Relationship_ names MUST be clear and precise. Ideally, the names SHOULD fully describe the _Relationship_ so that no further description is needed. Avoid weak verbs and imprecise clauses. For example, avoid the following: 
+
+     - Has 
+     - Does 
+     - Can
+     - Could
+     - Is related to  
+     - Might 
+     - Relates to  
+     - Has a relationship to 
+     - Is a kind of
+
+  - Characters used for a _verb phrase_MUST be lowercase a-z and the space character. Punctuation marks or special characters, including the slash (/) and the hyphen (-) and numbers MUST NOT be used. Avoid using special characters like "/?!@#$ %^&\*() +-='," or numbers.
+  - Verbs occurring in a _Relationship_ name MUST be singular unless the sense requires the plural. 
+  - _Abbreviations_ and _Acronyms_ MUST NOT be used in _Relationship_ names.
+
+### 4.1.1       Relationship Name Format
+
+_Relationships_ MUST use the following format:
+
+&lt;(parent)  entity  name>  (space)  &lt;active  voice  verb  phrase>  (space) &lt;(child)  entity  name>
+
+## 4.2 Describing Relationships
+
+All of the information the analyst needs to precisely describe a _Relationship_ is often provided when the following items are determined:
+
+
+     &lt;u>**The nature of the relationship between the entities,**&lt;u> For example, the _Entities__EMPLOYEE _and_ WORKSITE _may have the following_ Relationship_:
+
+            - _EMPLOYEE_ works at WORKSITE 
+
+            - _WORKSITE_ is work location of EMPLOYEE 
+
+The two _Entities_, together with the nature of the _Relationship_ between two _Entities_, are known collectively as the _Relationship Name_. The _Relationship_ is established by the business rules of the enterprise. Each business rule MAY be stated in either an active or passive voice, resulting in two _Relationship Names_ for the resulting _Relationship_. For purposes of clarity in the data model, only the _Relationship Names_ with the active voice MUST be described. The name with the passive voice is optional, and is only used where it adds significant value without detracting from the clarity of the model.
+
+
+
+
+
+      &lt;u>**The optionality between the entities** &lt;u>,   Relationship _ &lt;u>**optionality**&lt;u> indicates whether a_Relationship_ is optional or required. Frequently, a _Relationship_ can be optional whenviewed from one _Entity_ and required when viewed from the other. The following illustrates the concept of optionality.
+
+            - A _CUSTOMER_ may place ORDER_ (optional)  
+            - An _ORDER_ must be placed by a _CUSTOMER_ (required) 
+
+      &lt;u>**The cardinality between the entities**&lt;u> ,_Relationship_cardinality indicates how many of one_Entity _is related to how many of another_ Entity_.  _Relationships_ between two _Entities_ maybe one-to-one (1:1), one-to-many (1: M), or many-to-many (M: M). the modeler should be wary of including 1:1 _Relationships_ in a finished data model. A 1:1 _Relationship_ normally indicates that two _Entities_ can be combined into one _Entity_. An M: M _Relationship _MUSTbe represented by two 1: M _Relationships_ and an _Associative Entity_.  When recording the _Relationship Name_, optionality and cardinality, enough information is usually conveyed so that _Relationship_ descriptions are not required.
+
+## 4.3 Foreign Key Constraint on Relationship
+
+In some Relational Database Management Systems (RDBMS), _Foreign Key Constraints_ may be used to physically enforce a business rule defined by a _Relationship_. The _Foreign Key_ constraint name in the physical data model does not affect the verb phrase on the _Relationship_ in the logical data model.
+
+### 4.3.1       Foreign Key Constraints Name Format:
+
+_Foreign Key Constraint Names _ MUST use the following format:
+
+FK\__&lt;sequence number>_\_&lt;table name>_\_&lt;referential table name>[\__&lt;purpose or role name>] 
+
+
+The _Table Names_ used in _Foreign Key Constraint Names_ SHOULD be the _Table Abbreviated Names_ but MAY also be the _Table Business Names_ or _Table Synonym Names_.
+
+The _purpose, role name or sequence_ is typically only used when more than one constraint exists between two tables. The _purpose_ should describe the functional role of the constraint and MUST be composed of _Standard Business Terms_. The _role_ may represent the role name of the column that is being constrained. The _sequence_ simply differentiates between the two constraints but does not provide any additional information and is therefore the least desirable.
+
+
+
+
+
+# 5. Tables
+
+
+
+A _Table_ is the physical manifestation of an _Entity_, containing rows and columns wherein data may be stored and retrieved and represents a person, place, thing, resource, concept, or event about which a business retains information. These rules also apply for the representation of a _Table _in a physical data model._ Tables _follow the naming rules of their corresponding_ Entities_,but with spaces replaced by underscores. See Section 2 of this document for a complete list of rules for describing and naming Tables, as well as their appropriate metadata properties.
+
+## 5.1 Naming Tables
+
+The same naming rules for naming an entity apply to naming tables:
+
+        Exceptions:
+              - Acronyms and abbreviation from glossary of standard term MUST BE used if exist
+              - CamelCaseMAY be used 
+              - Table names (nouns) must be pluralized 
+              - The names of tables that implement a star schema  MUST have prefixes that specify the    table's role in the star
+                 - schema model:
+                "DIM" for dimension and "FACT" for fact.
+              - Underscore MUST be used in place of space 
+
+### 5.1.1 Name Format:
+
+[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;Object class term> e.g.: HR\_PERSONAL\_DATA
+
+## 5.2 Describing Tables
+
+Tables MUST be described in the same fashion as Entities.
+
+## 5.3 Table Metadata Properties
+
+The metadata properties used to fully document a _Table_ are the same as those for an _Entity_.
+
+
+
+
+
+
+
+
+
+
+
+# 6. Columns
+
+A _Column_ is a vertical segment in a _Table_ and the physical manifestation of an _Attribute_. These rules also apply for the representation of a _Column_ in a physical data model. See Section 2 of this document for a complete list of rules for describing and naming Columns, as well as their appropriate metadata properties.
+
+## 6.1 Naming Columns
+
+_Columns_ MUST be named in the same way as their corresponding _Attributes_. Whereas theattribute name uses all business names for its components, the column name should be constructed as follows:
+
+
+    - CamelCase MAY be used 
+    - Underscore MUST be used in place of space 
+    - Columns MUST be  named with a class word, or it's abbreviation
+    - Acronyms and abbreviation from glossary of standard term MUST BE used if exist
+
+### 6.1.1Name Format:
+
+[&lt;modifier(s)> (\_)] &lt;noun>[&lt;qualifier term> (\_)] &lt;object class term>  e.g..: long\_term\_plan\_dsc
+
+## 6.2 Describing Columns
+
+_Columns_ MUST be described in the same fashion as_ Attributes_.
+
+## 6.3 Column Metadata Properties
+
+The metadata properties used to fully document a _Column_ are the same as those for an _Attribute_.
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 7. Views
+
+A _View_ is a specific physical data object that provides access to all or a portion of one or more _Tables_. In the case of multiple_ Tables _in a_ View_, the _Tables_ must be capable of being joined. Aprinciple reason for creating a _View_ is to give a user somewhat limited access to the columns in the _View's_ tables. See Section 2 of this document for a complete list of rules for describing and naming _Views_, as well as their appropriate metadata properties.
+
+## 7.2 Naming Views
+
+The same general rules for naming an entity also apply to naming Views.
+
+_Exception:_
+
+     - View name MUST have a prefix "VW\_"
+
+### 7.2.1       View Name Format
+
+_View Names _SHOULD use the format:
+
+[&lt;Prime Term> (space)] &lt;modifier(s)>
+
+ [&lt;qualifier term> (space)] &lt;object class term>  e.g.: VW\__HR\_ PERSONAL DATA_
+
+## 7.1 Describing Views
+
+_Views_ MUSTbe described in the same fashion as _Entities_.
+
+## 7.3 View Metadata Properties
+
+The metadata properties listed in the following table are to be used to fully document a view.
+
+| **Metadata Property** | **Documentation Requirement** |
+| --- | --- |
+| View Name | The identifier of the view, including the abbreviated Functional Name. |
+|   |   |
+| Functional Name | The name of the business function supported by the view. |
+|   |   |
+| Description | The textual description of the _View._ |
+|   |   |
+| Tables | The tables included in the _View._ |
+|   |   |
+| Columns | The columns included in the _View._ |
+
+
+
+
+
+
+
+
+
+#8. Indexes
+
+An _Index_ is a set of ordered pointers to data contained in a _Table_, and it can be created with one or more columns contained in the _Table_. Three _Indexes_ will be defined in this section: _Primary__Key Index, Foreign Key Index, and Alternate Key Index_.
+
+## 8.1 Index Types
+
+&lt;u>**Primary Key Index**&lt;u> – An index placed on the column or columns that make up the Primary Key ofa Table. Primary Key Indexes MUST be defined as "UNIQUE" if RDBMS supports this feature
+
+&lt;u>**Alternate Key Index**&lt;u> – An index placed on a column or columns that could be used to uniquelyidentify a row in the table, but are not the Primary Key. Alternate Key Indexes MUST be defined as "UNIQUE" if your RDBMS supports this feature
+
+&lt;u>**Foreign Key Index**&lt;u> – An index placed on the column or columns that represent a foreign keyconstraint to another table
+
+&lt;u>**Non-key Index**&lt;u> – An index placed on a column that does not represent a key of any of the typesdescribed above
+
+## 8.2 Naming Indexes
+
+     - Index MUST be named according to their function and Table Name
+     - The Index MUST not exceed 30 characters in length
+
+### 8.2.1       Index Name Formats
+
+Indexes MUST be named according to one of the following formats:
+
+| Index Type | Format |
+| --- | --- |
+| Primary Key Index: | PK\_&lt;table name> |
+| Alternate Key Index:   | AK\_&lt;table name>\_&lt;purpose, role name or sequence> |
+| Foreign Key Index | XFK\_&lt;table name>\_&lt;referential table name>\_&lt;purpose, role name or sequence> |
+| _Non\_Key\_Index_ | &lt;Table name>\_&lt;purpose, role name or sequence> |
+
+## 8.3 Index Metadata Properties
+
+The metadata properties listed in the following _Table_ are necessary to fully document an _Index_.
+
+| **Metadata Property** | **Documentation Requirement** |
+| --- | --- |
+| Index Name | The name of the index |
+| Index Type | Whether the index defines a Primary Key, Foreign Key, Alternate Key, or Non-Key |
+| Index Expanded Name | In the same format as the Index Name, but with all business terms spelled out |
+| Table Name | The name of the table in which the index is defined. |
+| Column(s) | The name(s) of the column(s) contained in the index |
+
+
+
+# 9. Triggers
+
+Some RDBMS support _Triggers_ that are stored code objects that execute for specific events on _Tables_. These events are defined as before or after an insert, update or delete of a row orstatement on a specific table.
+
+## 9.1 Naming Triggers
+
+_Trigger Names_ are based on when they fire, whether they fire for every row in a table or once forthe event statement, and the event that must occur for them to fire as described below:
+
+
+
+- Trigger names MUST be prefixed with the letters "Trgr\_" 
+- The second portion of the trigger name is composed of three letters and followed by an underscore character. 
+  - The first letter MUST be either "b" or "a" indicating whether the trigger fires before or after the action, respectively.
+  - The second letter MUST be one of the following letters: "i", "u", or "d" indicating whether the trigger fires upon an insert, update, or delete, respectively.
+  - The third letter MUST be either an "r" or an "s" indicating whether the trigger fires for each row or statement, respectively.
+
+- On the very seldom occasion that more than one trigger of the same name combination is required (for example, when more than one trigger is needed to update different sets of columns on a table), a number can be appended after the table name.
+- The last portion of the trigger name MUST be the table name on which it fires an activity on 
+
+
+
+### 9.1.1       Formatting Triggers
+
+_Triggers_ MUST use the following format:
+
+_Trgr_\_&lt;B or A> &lt;I or U or D> &lt;R or S>\_Table Name _
+
+The above formatted name can optionally be followed by _&lt;\_1>_if more than one trigger with the exact same name is created.
+
+          B or A – Before or After
+          R or S – Row or Statement
+          I, U, D – Insert, Update, Delete
+
+## 9.2 Trigger Metadata
+
+_Metadata Properties:_
+
+|   |   |
+| --- | --- |
+| Description | The textual description of the triggers and Purpose |
+|   |   |
+| Comment | Any remarks of significance to the understanding of the triggers history. |
+|   |   |
+
+
+
+# 10. Constraints
+
+Database constraints are restrictions on the contents of the database or on database operations. Database constraints provide a way to guarantee that:
+
+       - rows in a table have valid primary or unique key values
+       - rows in a dependent table have valid foreign key values that reference rows in a parent table
+       - individual column values are valid 
+
+## 10.1 Type of Constraints
+
+        1) Primary Key (PK) \- Serves as the unique identifier for rows in the table
+        2) A unique constraint (UNQ) \- is similar to a primary key constraint but doesn't have to be defined with Not Null.
+        3) Foreign key constraint (FK) \- The relationship between rows in two tables is expressed by a foreign key in the dependent table. A foreign key is one or more columns that contain a value identical to a primary key (or unique key) value in some row in the parent table (i.e., the referenced table).
+        4) Check Constraints (CHK) - Used to enforce the validity of column values
+
+## 10.2 Naming Constraints
+
+        - MUST including Keyword stating the database object
+        - MUST include suffix with abbreviation for the type of Constraints
+        - Separate each word with an underscore
+        - If more than one constraint is required exist within a type of constraint, MUST add a numeric suffix of 1 through 9.
+
+### 10.2.1      Constraints Name Formats
+
+Constraints MUST be named according to one of the following formats:
+
+&lt;Noun (keyword)>, &lt;\_>, &lt;abbreviation for type of constraints
+
+| **Type of Constraints** | **Naming Rule** | **Example** |
+| --- | --- | --- |
+| Primary Key | Primary key type constraints MUST be named after the table name plus a suffix of "\_pk". |
+- proj\_et\_pk 
+- prcl\_cnty\_pk 
+- srfc\_wtr\_pmp\_pk
+ |
+| A unique constraint | The unique constraint MUST be named after the table plus a suffix of "\_unq". If more than one unique constraint is required, add a numeric suffix of 1 through 9. |
+- proj\_et\_unq 
+- prcl\_cnty\_unq1 
+- prcl\_cnty\_unq2
+ |
+| Foreign key constraint | A foreign key constraint MUST be named after the table plus a suffix of "\_fk". If more than on foreign key constraint is required, add a numeric suffix of 1 through 9. |
+- proj\_et\_fk 
+- bdgt\_acct\_fk1 
+- bdgt\_acct\_fk2
+  |
+
+| Check Constraints | If the check condition references only one column, name the constraint after the column name plus a suffix of "\_chk". If more than one check condition is required per table or column, add a numeric suffix of 1 through 9 |
+- proj\_id\_chk 
+- prcl\_cnty\_chk1 
+- prcl\_cnty\_chk2
+   |
+| --- | --- | --- |
+
+## 10.3 Constraint Metadata Properties
+
+The metadata properties listed in the following table are necessary to fully document Constraints
+
+| **Metadata Property** | **Documentation Requirement** |
+| --- | --- |
+| Constraint Name | The Name of the Constraints |
+| Constraint Type | Type of Constraint such as Primary key, Foreign Key, Unique constrain or Check Constrain |
+| Table Name | The name of the table in which the constrain is defined |
+| Column(s) | The name(s) of the column(s) contained in the constrain |
+
+# 11. Stored Procedure
+
+An action oriented named program or routine stored in a database. Stored procedures are precompiled database queries that improve the security, efficiency and usability of database client/server applications. Developers specify a stored procedure in terms of input and output variables
+
+## 11.2 Naming Stored Procedure
+
+- Stored procedures performs a function, they are action oriented. Name MUST describe the function;
+- MUST use a verb as prefix to describe the work
+- MUST use keyword of the object
+- SHOULD use underscore to separate words
+
+### 11.2.1      Stored Procedure Name Formats
+
+Stored Procedure MUST be named according to one of the following formats:
+
+Prefix (verb) &lt;\_>, &lt;Prime term>, &lt;qualifier > e.g..: Get\_Customer\_Details Insert\_Customer\_Info
+
+## 11.3 Stored Procedure Metadata Properties
+
+The metadata properties listed in the following table are necessary to fully document Constraints
+
+| **Metadata Property** | **Documentation Requirement** |
+| --- | --- |
+| Stored Procedure Name | The Name of the Stored Procedure |
+| Description | Describe the function of the stored procedure. Schedule of when the procedure is applied. |
+| Table Name | The name of the table in which the stored procedure is defined |
+| Column(s) | The name(s) of the column(s) contained in the procedure |
+
+
+# 12. Acronyms and Abbreviations
+
+_Acronyms_ and _Abbreviations_ are necessary due to some physical tool constraints. They eliminate objectname redundancy and inconsistency and improve the quality of model descriptions and application documentation by using clear and commonly used words. Acronym and _Abbreviation_ standards enable analysts to select _Acronyms_ and abbreviations that are as clear and commonly used as possible. The standards also require a consistent use of the _Acronyms_ and _Abbreviations_, regardless of the length of the name. The _Abbreviated Name_ MUST have each word in the name abbreviated in accordance with this section. A Business Name MUST use Standard abbreviations (from glossary of approved standard term) MUST be used where they exist.
+
+For the purposes of this document, the definition of _acronym_ is "a word formed from the first (or first few) letters of a series of words." An _Abbreviation_ is defined as "a shortened _Form_ of a word or phrase by contraction, or by omission of letters." A _candidate_ is defined as an acronym or _Abbreviation_ which an organization wants to use that does not yet exist in the repository."
+
+## 12.1 Creating Abbreviations
+
+Create a candidate _Abbreviation_ by using the following rules:
+
+1. Check the following sources for a common _Abbreviation_ for the term in question: 
+
+     - A commonly accepted American dictionary 
+     - Any commonly accepted _Abbreviation_ (de facto standard) 
+
+An _Abbreviation_ for the term in question **may** be found through these sources, or follow _Abbreviation_ rules 2 through 20. If a readily acceptable_ Abbreviation_ is found, use it, identify itssource, and go to rule 2; then skip rules 3 through 20. If the _Abbreviation_ is not readily acceptable due to possible conflicts or duplications, or it does not adequately represent the word it replaces, continue with the _Abbreviation_ rules. Apply common sense.
+
+2. Ensure that each _Abbreviation_ is unique, not only with regard to other _Abbreviations_, but also with respect to _Acronyms_. 
+3. Ensure that each term has only one _Abbreviation_. 
+
+4. _Abbreviations_ MAY consist of alphabetic characters only.
+
+5. Only the singular _Form_ of the business term should be used. 
+
+6. An _Abbreviation_ should be recognizable; that is, looking at the _Abbreviation_, one should be able to visualize the word. 
+
+7. Generally, do not abbreviate words that are five or fewer characters, except for class words. Exceptions MAY be made for size considerations. 
+
+8. Preserve the first letter of the term, whether it is a vowel or consonant. 
+
+9. Always treat "y" as a consonant. 
+
+10. Delete unnecessary vowels; however, not all vowels need to be eliminated to have a valid _Abbreviation_. Keep those that are necessary to make the _ bbreviation_ understandable. 
+
+11. Generally, delete one consonant of a double consonant.  Exceptions MAY be made for clarity. 
+
+12. If the removal of a vowel causes a double consonant then keep the vowel. 
+
+13. If the term has a leading double vowel  (e.g., "au" or "ou"),  keep  both  vowels.  For  example, 
+
+    _AUTHORIZATION_ would be abbreviated _AUTHZN_.
+
+14. If the abbreviation already exists for another word, for example, _FCLTY_ for _FACILITY_, then it is necessary to either keep one of the vowels for the new _Abbreviation_, or use a commonly accepted _Abbreviation_ that is sufficiently different. For example, using FAC for_FACULTY_ might be usedin lieu of _FCLTY_, which would otherwise be one result of following the rules. 
+
+    A root word and its derivatives SHOULD have the same 'root' _Abbreviation_. For example, the _Abbreviation _for_ EXEMPT _is_ EXMPT_, and for_ EXEMPTION _is_ EXMPTN_. The 'root_ Abbreviation_' in both cases is_ EXMPT_.
+
+    Always eliminate the vowels in a suffix. Use _G_ as the _Abbreviation_ for the _ING_ suffix, and _MT_ for the _MENT_ suffix. Using this rule, the _Abbreviation_ for _PRINTING_ is _PRINTG_, and an acceptable _Abbreviation_ for _EMPLOYMENT_ is _EMPMT_.
+
+15. If a root word is five or fewer characters and is not abbreviated, its derivatives may have the root portion spelled out or abbreviated, but, if abbreviated, all derivatives must have the same _Abbreviation _of the root portion of the word. For example,_ PRINT _is not abbreviated since it isfive characters. _PRINTING_ can be abbreviated _PRINTG_, and all other derivatives would also contain the root _PRINT_. On the other hand, _CLEAR_ is not abbreviated, but _CLEARANCE_MAY be abbreviated _CLRNC_. In this case _CLR_MUST be used as the root for all derivatives of _CLEAR_.
+16. _Abbreviations_ must not spell an expletive.
+
+## 12.2 Creating Acronyms
+
+The rule for creating a candidate acronym is a simple. An acronym is formed from the first or first few, letters of a series of words. Examples include "FICA" in place of "F ederal I nsurance Contributions Act," and "radar" in place of "RAdio Detecting and Ranging."_Acronyms_ are not to be used in Business Name s; nor are they to be used in descriptions unless they are first spelled out. However, some_ Acronyms_, such as radar and sonar, become so common that they are accepted as words, and are notcapitalized in normal use. _Acronyms_ must not spell an expletive.
+
+## 12.3 Candidate Term Submittals
+
+All candidate _Acronyms, Abbreviations_, and _Synonym Names_ submitted to Data Management will go through a review and approval cycle. Once DM accepts candidates, they will be reviewed in a timely manner. Candidate _Acronyms_ and _Abbreviations_ that an organization desires to use, but do not exist in the _Standard Acronyms_ and _Abbreviations List_ for Common Business Terms, will be measured against the rules in this section.
+
+Candidate terms may be submitted via e-mail to Data Management at [ DataMgmtSupport@state.gov,](mailto:DA@state.gov) citing the candidate term, the definition, and the proposed synonym.
+
+
+# Appendix A:  Invalid Entity and Attribute Name Components
+
+Neither _Entity_ nor _Attribute Names_ MUST contain conjunctions, prepositions, certain adverbs, or phrases listed below unless it is necessary to meaningfully name the object.
+
+Invalid _Entity_ and _Attribute_ name components:
+
+|   | A |   | Non |
+| --- | --- | --- | --- |
+|   | An |   | Nor |
+|   | After |   | Occasionally |
+|   | Always |   | Off |
+|   | And |   | Often |
+|   | Because |   | On |
+|   | But |   | Or |
+|   | Do |   | Sometimes |
+|   | Else |   | The |
+|   | For |   | Then |
+|   | Frequently |   | Through |
+|   | How |   | Thru |
+|   | However |   | To |
+|   | If |   | Too |
+|   | In |   | When |
+|   |   |   | While |
+
+The word **KEY** is reserved for use in naming key fields.
+
+
+
+# Appendix C:  Document Revision
+
+# History Detail
+
+
+**A. Changes from the Fourth (4th) Edition** 
+
+1. The standard was brought into conformance to ISO/IEC 11179-5 
+  - Information Technology
+  - Specification and Standardization of Data Elements
+  - Naming and Identification Principles for Data Elements from earlier conformance to Federal Information Processing Standards (FIPS) 156 Information Resources Dictionary System (IRDS). 
+2. Acceptable Business Name, Abbreviated Name and Synonym Name usage has been changed as follows: 
+3. Business Names must now be used in data models for all logical objects including Entities, Attributes and Relationships. 
+4. For Tables, the Business Name is now preferred. 
+5. Synonym Names are now preferred for the Prime Term/Object Class Term/Table Name component of Column, Foreign Key Index, and Trigger names. 
+6. Business Terms are preferred in View names. 
+7. Added DESCRIPTION, FILE, and INDICTOR to class word/representation terms. 
+8. Foreign Key Constraint name prefixes were changed from R\_ to FK\_. 
+9. Foreign Key Index prefixes were changed from FK\_ to XFK\_. 
+10. Trigger prefixes were modified to include more accurate indicators as to when the trigger fires. 
+11. The sequence number name component was dropped from View names to encourage more accurate functional names. 
+12. The standard for Form objects was dropped. 
+
+**B. Changes from the Fifth (5th) Edition** 
+
+1. Changed IRM/OPS/SIO/API/DM organization name from Data Administration to Data Management (DM), including references to DM e-mail address. 
+2. Updated term repository to specify Metadata Repository (MDR). 
+3. Updated intended audience section. 
+4. Added website reference for FIPS 184:   [ ](http://www.itl.nist.gov/fipspubs/idef1x.doc) [http://www.itl.nist.gov/fipspubs/idef1x.do](http://www.itl.nist.gov/fipspubs/idef1x.doc)c. 
+5. Deleted references to page numbers used to cross-reference applicable sections within the document. Table of contents will be sufficient for cross referencing and will lessen effort to synchronize re-pagination in future document updates. 
+6. Added items to Acronyms and Abbreviations List of document (DAWG, DM, EDM, and IDE1X). 
+7. Re-worded sentences for better clarity and completeness, without changing the context of the information being conveyed. 
+8. Added additional rule to Section 1.4.6, General Naming Rules, as follows: "For logical objects, the underscore character MAY be used in place of spaces." 
+9. Added Data Modeling Syntax Legend in Section 2.0, Entity Types, to show graphical notations used in data models related to entities, super types/subtypes, and relationships. 
+10. Revised Section 4.3.1, Foreign Key Constraints Name Format to show: 
+
+    FK\__&lt;sequence number>\_&lt;table name>\_&lt;referential table name>_[&lt;purpose or role name>]
+
+11. Added Appendix B to this document to provide additional guidelines (template format) in naming database components related to ORACLE and MS SQL Server DBMS. 
+12. Added Appendix C to provide detailed account of the revisions made to this document. Transferred Section 1.3, "Changes from the Fourth Edition," to Appendix C of this document (6th Edition). 
+ 
+
+**C. Changes from the Seventh (7th) Edition** 
+
+1. Changed all the named references from IRS/OPS/SIO/API/DM Branch toIRS/OPS/SIO/APD/DM
+2. Changed DM Email address
+3. Deleted all the reference to Old DM site
+4. Changed the requirement for general Naming rules
+5. Added General naming Principal section (section 1.3.6)
+6. Add two new data objects Constraints and Stored Procedure at section (1.2)
+7. Updated section 1.4 ** ** _Standard Data Elements and the Enterprise Conceptual Data Model _by replaced the Scope Model with ECDM
+8. Deleted_Acronyms and Abbreviations_ section of the (list under section 1.4). This section is not necessary since Acronyms and abbreviations are defined when mention at first.
+9. Updated Section _2.2 Describing Entity Section _Re-worded sentences for better clarity and completeness, without changing the context of the information being conveyed. Deleted redundant rules
+10. Updated section 2.1 _Entity Types _removed entity type picture illustration. It is tools specific illustration. Didn't add much value to the document
+11. Added Naming Guidelines for Logical and physical Structure
+12. Added additional rule to Section 2.2 _Naming Entities, _deleted redundant rules
+13. Deleted website reference for FIPS 184:   [ http://www.itl.nist.gov/fipspubs/idef1x.do](http://www.itl.nist.gov/fipspubs/idef1x.doc)c (Out-of -date document)
+14. Modified sections for naming, description and metadata properties for the following with new rules for the following object: Entity, Tables, Column, Triggers, views, relationship and index.  
+15. Added section 10. _Constraints _withType of Constraints, Constraints Name Formats, Constraints metadata properties.
+16. Added section 11. _Stored Procedure _withType of Stored Procedure, Stored Procedure Name Formats, and Stored Procedure metadata properties.
