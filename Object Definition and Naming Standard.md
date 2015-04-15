@@ -4,7 +4,7 @@
 
 
 
-Department of State_
+Department of State
 
 ## Object Definition and Naming Standard
 
@@ -112,19 +112,13 @@ The Data Management (DM) Branch is responsible for establishing, maintaining, an
 The definitions and naming standards detailed in this document were developed to:
 
 - Facilitate data object sharing, data object consistency and communication among the Department's organizations. 
-
 - Increase reliability of information stored, shared and managed by the repository tool set. 
 - Improves the accuracy of searches for a particular piece of data. 
 - Promote accessibility and understandability of information across systems. 
-
 - Improve the quality of data and application documentation. 
-
 - Assist the DM effort in eliminating data redundancy and inconsistency. 
-
 - Facilitate user access to object names and related documentation as used throughout the Department. 
-
 - Assist analysts in selecting names that are clear and represent rules of good grammar. Simplify recognition of synonyms. 
-
 - Standardize metadata collected for Standard Data Elements (SDEs) 
 
 The Department of State's (DOS) naming standard complies with the _ISO/IEC 11179-5 Naming__and Identification Principles for Data Elements _standard and uses terminology consistent with it.To clarify any aspect of this document, including examples, contact the Data Management Branch at [DataMgmtSupport@state.gov](mailto:DataMgmtSupport@state.gov).
@@ -134,7 +128,6 @@ The intended audience for this document includes:
 - IT Project Managers who manage projects that involve the development of new systems and/or enhancements of existing IT systems. 
 - Data Architects/Analysts involved in developing high-level, technology-independent logical models such as data models, process models, and data-process interaction models. 
 - System Architects/Analysts, Application Developers, Database Administrators (DBAs), and others who wish to standardize physical data objects. 
-
 - Data Stewards responsible for managing particular classes of information enterprise-wide, and making decisions for the name, definition, and relationships of business data. 
 
 Department legacy systems will not be required to change implemented names to make those systems adhere to this standard. Data Management will support and maintain an Enterprise Metadata Repository (EMR) which will store metadata about the Department's data resources. The EMR will provide a means to relate data resources from various structural platforms across the Department. The data structures contained in legacy databases will be populated in the EMR through the use of scanning tools that are part of the repository software. The names in legacy systems will be mapped to the Standard Data Elements (SDEs) that adhere to naming conventions outlined in this document. New systems will be developed in accordance with the naming standards outlined in this document which will facilitate re-use and integration.
@@ -189,9 +182,9 @@ Several conventions for defining and naming objects are followed in this manual.
 
 Each data object type has a naming standard defined in a format statement. The format statements concisely show how an object's _Business Name_ is formed. In addition to the format statement, names must follow several general rules outlined in each section. The format statements are composed of the following:
 
-The greater than and less than symbols "< >" enclose each name component. The square bracket symbols "[]" enclose optional name components.
-
-The term "(space)" represents a space character to be used between components.
+  The greater than and less than symbols "< >" enclose each name component. 
+  The square bracket symbols "[]" enclose optional name components.
+  The term "(space)" represents a space character to be used between components.
 
 ### 1.3.2       Naming Format Glossary
 
@@ -239,13 +232,12 @@ Candidate _Synonym Names_ may be submitted via e-mail to Data Management at [Dat
 
 Example of Business Name vs. Abbreviated Name vs. Synonym name :
 
-An entity that represented a bank account held by a customer for the purpose of borrowing money may be named a "loan account" a have the following names:
+    An entity that represented a bank account held by a customer for the purpose of borrowing money may be named a "loan account" a have the following names:
+    Business Name:  LOAN ACCOUNT
 
-Business Name:  LOAN ACCOUNT
+    Abbreviated Name: LOAN\_ACCT – The standard abbreviation for LOAN is LOAN and for ACCOUNT it is ACCT.
 
-Abbreviated Name: LOAN\_ACCT – The standard abbreviation for LOAN is LOAN and for ACCOUNT it is ACCT.
-
-Synonym Name: LNACCT – To further shorten the name LOAN is reduced to LN and combined with ACCT.
+    Synonym Name: LNACCT – To further shorten the name LOAN is reduced to LN and combined with ACCT.
 
 In data models and databases, the _Business Names, Abbreviated Names,_ and _Synonym Names_ are used as follows:
 
@@ -256,14 +248,14 @@ In data models and databases, the _Business Names, Abbreviated Names,_ and _Syno
 | Relationship | MUST be used | MUST NOT be used | MUST NOT be used |
 | Table | SHOULD be used | MAY be used | MUST NOT be used |
 | Column |   |   |   |
-| Object ClassTerm/Prime Term | MUST NOT be used | MAY be used | SHOULD be used |
-| Qualifier Term/Modifier/Property Term | MAY be used | SHOULD be used | MUST NOT be used |
-| RepresentationTerm/Class Word | MUST NOT be used | MUST be used | MUST NOT be used |
-| Foreign Key |   |   |   |
-| Table Name | MAY be used | MAY be used | SHOULD be used |
-| Purpose/Role Name | MAY be used | May be used | MUST NOT be used |
+|   Object ClassTerm/Prime Term | MUST NOT be used | MAY be used | SHOULD be used |
+|   Qualifier Term/Modifier/Property Term | MAY be used | SHOULD be used | MUST NOT be used |
+|   RepresentationTerm/Class Word | MUST NOT be used | MUST be used | MUST NOT be used |
+|   Foreign Key |   |   |   |
+|   Table Name | MAY be used | MAY be used | SHOULD be used |
+|   Purpose/Role Name | MAY be used | May be used | MUST NOT be used |
 | Index |   |   |   |
-| Table Name | MAY be used | MAY be used | **S** SHOULD be used |
+|   Table Name | MAY be used | MAY be used | **S** SHOULD be used |
 | Purpose/Role Name | MAY be used | May be used | MUST NOT be used |
 | Trigger |   |   |   |
 | Table Name | MAY be used | MAY be used | SHOULD be used |
@@ -274,30 +266,27 @@ In data models and databases, the _Business Names, Abbreviated Names,_ and _Syno
 
 General Principles:
 
--
   - Each database object must be uniquely identified. 
   - Data Object names should be meaningful 
   - Data Object names should describe what the object represents 
   - Names should be independent of the application and independent of hardware and software used 
   - Reserved words should not be used. _Reserved words are keywords that the DBMS employs for their exclusive use_ 
   - Data Object names should not include meaning that can change over the life of the object 
-
-- Acronyms MUST be Capitalized 
+  - Acronyms MUST be Capitalized 
 
 Naming Guidelines for Logical Structure:
 
-- The characters used in names MUST be upper case A-Z, 0-9 and space character 
-- Punctuation marks and special characters, including the slash (/) and the hyphen or dash (-) MUST NOT be used. 
-- Underscore MUST NOT be used in names 
-- The first character in a name MUST be an alphabetic. 
-- Entity names MUST be singular nouns 
-- Relationships MUST be verbs or verb phrases 
-- Possessive nouns MUST not be used in names 
-- Standard abbreviations ( from glossary of approved standard term) MUST be used where they exist 
+  - The characters used in names MUST be upper case A-Z, 0-9 and space character 
+  - Punctuation marks and special characters, including the slash (/) and the hyphen or dash (-) MUST NOT be used. 
+  - Underscore MUST NOT be used in names 
+  - The first character in a name MUST be an alphabetic. 
+  - Entity names MUST be singular nouns 
+  - Relationships MUST be verbs or verb phrases 
+  - Possessive nouns MUST not be used in names 
+  - Standard abbreviations ( from glossary of approved standard term) MUST be used where they exist 
 
 Naming Guidelines Physical Data Model:
 
--
   - Characters used in names MUST be upper case A-Z, 0-9 
   - CamelCase MAY BE used in names 
   - Standard abbreviations ( from glossary of approved standard term) MUST be used where they exist 
@@ -377,10 +366,10 @@ All Entities MUST be named according to one of the formats described below:
 
 | **Entity Type** | **Format** |
 | --- | --- |
-| All entities MAY be named using the format | [<Prime Term> (space)] < modifier(s)> [<qualifier term> (space)] <object class term>  e.g: HUMAN RESOURCES PERSONAL DATA |
-| Associative entities SHOULD use the format | <parent entity name> (space) <Modifier >e.g. HUMAN RESOURCES PERSONAL  ACCOUNT DATA |
-| Attributive entities MAY use the format | <parent entity name> (space) <modifier(s)>e.g. HUMAN RESOURCES PERSONAL TRANSACTION DATA |
-| Subtype entities MAY use the formats | <parent entity name> (space) <modifier(s)><modifier(s)> (space) <parent entity name>e.g. HUMAN RESOURCES PERSONAL  ACCOUNT TYPE DATA |
+| All entities MAY be named using the format | &lt;Prime Term> (space)] &lt; modifier(s)> [&lt;qualifier term> (space)] &lt;object class term>   e.g: HUMAN RESOURCES PERSONAL DATA |
+| Associative entities SHOULD use the format | &lt;parent entity name> (space) &lt;Modifier >e.g. HUMAN RESOURCES PERSONAL  ACCOUNT DATA |
+| Attributive entities MAY use the format | &lt;parent entity name> (space) &lt;modifier(s)>e.g. HUMAN RESOURCES PERSONAL TRANSACTION DATA |
+| Subtype entities MAY use the formats | &lt;parent entity name> (space) &lt;modifier(s)>&lt;modifier(s)> (space) &lt;parent entity name>e.g. HUMAN RESOURCES PERSONAL  ACCOUNT TYPE DATA |
 
 ## 2.2 Describing Entities
 
@@ -388,48 +377,46 @@ The following rules apply when describing an _Entity_ of any type (_Fundamental,
 
 - An _Entity_ description MUST be a noun phrase 
 - The description MUST be broad enough that no instances of the Entity are omitted 
-
 - The description MUST be clear, concise, and unambiguous 
-
 - The description MUST be relevant to its business purpose and independent of technology and implementation 
-
 - The description MUST be stable over time. The following words or phrases are examples of time dependency or process orientation, and MUST NOT be used to describe an _Entity_: 
 
-| At this (point in) time |   | Occasionally |
-| --- | --- | --- |
-|   | Perhaps |   | But not always |
-|   | Unless this happens |   | In certain circumstances |
-|   | In this situation |   | However, under these circumstances |
-|   | When this happens |   | Frequently |
-|   | If this happens |   | Depending on |
-|   | However |   | Sometimes |
+     - At this (point in) time   
+     - Occasionally 
+     - Perhaps                   
+     - But not always 
+     - Unless this happens       
+     - In certain circumstances 
+     - In this situation         
+     - However, under these circumstances 
+     - When this happens         
+     - Frequently 
+     - If this happens           
+     - Depending on
+     - However                   
+     - Sometimes 
 
 
 
 - The description MUST NOT simply repeat the name of the _Entity_ as a description. 
-
 - The description MUST be of an _Entity_, not of the data the Department records about the _Entity_, nor the functions, applications, or organizations that use or create the data. Thedescription MUST NOT pertain to: 
 
-- --When, how, or where the data about the Entity are used 
-- --Who uses the data 
-- --How to edit or process the data 
-- --The format the data stored in or other physical considerations 
-- --What hardware or software systems use the data 
+  - When, how, or where the data about the Entity are used 
+  - Who uses the data 
+  - How to edit or process the data 
+  - The format the data stored in or other physical considerations 
+  - What hardware or software systems use the data 
 
 
 
-- _Abbreviations _and_ Acronyms _MUST NOTbe used in descriptions 
-
+- _Abbreviations_ and _Acronyms_ MUST NOT be used in descriptions 
 - Two _Entities_ MUST NOT be circular in description. (For example, a description of one  _Entity _should not point to descriptions of another) 
-
 - The description MUST be: 
 
-- --Grammatically correct 
-
-- --Spelled correctly 
-- --Complete and accurate, fully reflecting the meaning of the Entity. 
-
-- --Written in active voice, where possible. 
+  - Grammatically correct 
+  - Spelled correctly 
+  - Complete and accurate, fully reflecting the meaning of the Entity. 
+  - Written in active voice, where possible. 
 
 ### 2.3.2       Prime Terms/Object Class Terms
 
@@ -441,7 +428,7 @@ to the successful implementation of establishing standard data elements. _Prime 
 
 The metadata properties listed in the following table are to be used to fully document an _Entity_.
 
-| **Metadata Property** | **                                            Documentation Requirement** |
+| **Metadata Property** | **Documentation Requirement** |
 | --- | --- |
 | Abbreviated Name | The short form of the Business Name. (Follow the abbreviation guidelines found in Section 12 of this document.) |
 | Business Name | The unabbreviated form of the entity name. |
@@ -451,3 +438,4 @@ The metadata properties listed in the following table are to be used to fully do
 | Business Rule(s) | The manner in which one or more business processes uses the entity. There may be many business rules that pertain directly to the entity or to its relationship to other entities |
 | Non-Key Attributes | Identifies all attributes in the entity that are not part of the primary key. |
 | _Synonym _Name | Typically an acronym formed by the first letter or letters of the business terms in a Business Name. The Synonym Name is typically 8 characters or less and is used specifically in the Abbreviated Names of Attributes and Columns |
+
