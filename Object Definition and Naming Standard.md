@@ -880,18 +880,10 @@ I, U, D – Insert, Update, Delete <br>
 
 _Metadata Properties:_
 
-<table style="width:100%">
-   <tr>
-    <td>Description</td>
-     <td>The textual description of the triggers and Purpose</td> 
-   </tr>
-  <tr>
-    <td>Comment</td>
-     <td>Any remarks of significance to the understanding of the triggers history.</td> 
-   </tr>
-<table>
+| **Description** | **Comment** |
+| --- | --- |
+| The textual description of the triggers and Purpose | Any remarks of significance to the understanding of the triggers history. |
 
-<br>
 
 # 10. Constraints
 
