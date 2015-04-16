@@ -232,12 +232,12 @@ Candidate _Synonym Names_ may be submitted via e-mail to Data Management at [Dat
 
 Example of Business Name vs. Abbreviated Name vs. Synonym name :
 
-    An entity that represented a bank account held by a customer for the purpose of borrowing money may be named a "loan account" a have the following names:
-    Business Name:  LOAN ACCOUNT
+An entity that represented a bank account held by a customer for the purpose of borrowing money may be named a "loan account" a have the following names:
+Business Name:  LOAN ACCOUNT
 
-    Abbreviated Name: LOAN\_ACCT – The standard abbreviation for LOAN is LOAN and for ACCOUNT it is ACCT.
+Abbreviated Name: LOAN\_ACCT – The standard abbreviation for LOAN is LOAN and for ACCOUNT it is ACCT.
 
-    Synonym Name: LNACCT – To further shorten the name LOAN is reduced to LN and combined with ACCT.
+Synonym Name: LNACCT – To further shorten the name LOAN is reduced to LN and combined with ACCT.
 
 In data models and databases, the _Business Names, Abbreviated Names,_ and _Synonym Names_ are used as follows:
 
@@ -248,14 +248,14 @@ In data models and databases, the _Business Names, Abbreviated Names,_ and _Syno
 | Relationship | MUST be used | MUST NOT be used | MUST NOT be used |
 | Table | SHOULD be used | MAY be used | MUST NOT be used |
 | Column |   |   |   |
-| &nbsp;&nbsp;Object ClassTerm/Prime Term | MUST NOT be used | MAY be used | SHOULD be used |
-| &nbsp;&nbsp; Qualifier Term/Modifier/Property Term | MAY be used | SHOULD be used | MUST NOT be used |
-| &nbsp;&nbsp;RepresentationTerm/Class Word | MUST NOT be used | MUST be used | MUST NOT be used |
-| &nbsp;&nbsp;Foreign Key |   |   |   |
-| &nbsp;&nbsp;Table Name | MAY be used | MAY be used | SHOULD be used |
-| &nbsp;&nbsp;Purpose/Role Name | MAY be used | May be used | MUST NOT be used |
+| &nbsp;&nbsp;&nbsp;&nbsp;Object ClassTerm/Prime Term | MUST NOT be used | MAY be used | SHOULD be used |
+| &nbsp;&nbsp;&nbsp;&nbsp; Qualifier Term/Modifier/Property Term | MAY be used | SHOULD be used | MUST NOT be used |
+| &nbsp;&nbsp;&nbsp;&nbsp;RepresentationTerm/Class Word | MUST NOT be used | MUST be used | MUST NOT be used |
+| &nbsp;&nbsp;&nbsp;&nbsp;Foreign Key |   |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;Table Name | MAY be used | MAY be used | SHOULD be used |
+| &nbsp;&nbsp;&nbsp;&nbsp;Purpose/Role Name | MAY be used | May be used | MUST NOT be used |
 | Index |   |   |   |
-|   &nbsp;&nbspTable Name | MAY be used | MAY be used | **S** SHOULD be used |
+|   &nbsp;&nbsp;&nbsp;&nbsp;Table Name | MAY be used | MAY be used | **S** SHOULD be used |
 | Purpose/Role Name | MAY be used | May be used | MUST NOT be used |
 | Trigger |   |   |   |
 | Table Name | MAY be used | MAY be used | SHOULD be used |
@@ -319,21 +319,20 @@ An _Entity_ is a set of real or abstract things (a person, place, thing, resourc
 
 There are five types of entities.
 
-&nbsp;&nbsp;&nbsp;&nbsp;**Fundamental** – An entity that is independent of any other Entity for its existence. Alsoknown as an Identifier-Independent Entity. This may also be known as a Parent entity if it exists in a relationship with an Attributive Entity
+**Fundamental** – An entity that is independent of any other Entity for its existence. Alsoknown as an Identifier-Independent Entity. This may also be known as a Parent entity if it exists in a relationship with an Attributive Entity
 
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;**Associative** – An Entity that represents a Relationship between two or more Entities. An _Associative Entity_ does not exist independently from the related _Entities_. An _Associative Entity_ resolves many-to-many relationships.
+**Associative** – An Entity that represents a Relationship between two or more Entities. An _Associative Entity_ does not exist independently from the related _Entities_. An _Associative Entity_ resolves many-to-many relationships.
 
-&nbsp;&nbsp;&nbsp;&nbsp;**Attributive** – An entity that describes another entity. It is dependent on the existence ofthe other entity. Also known as an Identifier-Dependent Entity. Attributes repeated within an entity are candidates for attributive entities.
+**Attributive** – An entity that describes another entity. It is dependent on the existence ofthe other entity. Also known as an Identifier-Dependent Entity. Attributes repeated within an entity are candidates for attributive entities.
 
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;**Supertype** – An Entity that represents a general class of business objects that may be broken down into a hierarchy of more specific classes. A _Supertype Entity_'s attributes apply to all of its _Subtype Entities_, and the _Subtypes_ inherit its identifier. It is also known as a Generic entity.
+**Supertype** – An Entity that represents a general class of business objects that may be broken down into a hierarchy of more specific classes. A _Supertype Entity_'s attributes apply to all of its _Subtype Entities_, and the _Subtypes_ inherit its identifier. It is also known as a Generic entity.
 
-&nbsp;&nbsp;&nbsp;&nbsp;**Subtype** – An Entity that identifies or represents an occurrence of another Entity with the same Primary Key but has a narrower definition, a subset of different Attributes, and/or different relationships. It inherits all the attributes of the _Supertype Entity_. It is also known as a _Category Entity._
-
-&nbsp;&nbsp;&nbsp;&nbsp;**Subtype** – An Entity that identifies or represents an occurrence of another Entity with the same Primary Key but has a narrower definition, a subset of different Attributes, and/or different relationships. It inherits all the attributes of the _Supertype Entity_. It is also known as a _Category Entity._
+**Subtype** – An Entity that identifies or represents an occurrence of another Entity with the same Primary Key but has a narrower definition, a subset of different Attributes, and/or different relationships. It inherits all the attributes of the _Supertype Entity_. It is also known as a _Category Entity._
+**Subtype** – An Entity that identifies or represents an occurrence of another Entity with the same Primary Key but has a narrower definition, a subset of different Attributes, and/or different relationships. It inherits all the attributes of the _Supertype Entity_. It is also known as a _Category Entity._
 
 ## 2.2 Describing Entities
 
@@ -659,22 +658,21 @@ _Relationships_ MUST use the following format:
 All of the information the analyst needs to precisely describe a _Relationship_ is often provided when the following items are determined:
 
 
-&nbsp;&nbsp; **The nature of the relationship between the entities,**  For example, the _Entities__EMPLOYEE _and_ WORKSITE _may have the following_ Relationship_:
+**The nature of the relationship between the entities,**  For example, the _Entities__EMPLOYEE _and_ WORKSITE _may have the following_ Relationship_:
+- _EMPLOYEE_ works at WORKSITE 
 
-            - _EMPLOYEE_ works at WORKSITE 
-
-            - _WORKSITE_ is work location of EMPLOYEE 
+- _WORKSITE_ is work location of EMPLOYEE 
 
 The two _Entities_, together with the nature of the _Relationship_ between two _Entities_, are known collectively as the _Relationship Name_. The _Relationship_ is established by the business rules of the enterprise. Each business rule MAY be stated in either an active or passive voice, resulting in two _Relationship Names_ for the resulting _Relationship_. For purposes of clarity in the data model, only the _Relationship Names_ with the active voice MUST be described. The name with the passive voice is optional, and is only used where it adds significant value without detracting from the clarity of the model.
 
 
 
-&nbsp;&nbsp; **The optionality between the entities**  ,   Relationship _ &lt;u>**optionality**&lt;u> indicates whether a_Relationship_ is optional or required. Frequently, a _Relationship_ can be optional whenviewed from one _Entity_ and required when viewed from the other. The following illustrates the concept of optionality.
+**The optionality between the entities**  ,  _Relationship_ **optionality** indicates whether a_Relationship_ is optional or required. Frequently, a _Relationship_ can be optional whenviewed from one _Entity_ and required when viewed from the other. The following illustrates the concept of optionality.
 
-            - A _CUSTOMER_ may place ORDER_ (optional)  
-            - An _ORDER_ must be placed by a _CUSTOMER_ (required) 
+- A _CUSTOMER_ may place ORDER_ (optional)  
+- An _ORDER_ must be placed by a _CUSTOMER_ (required) 
 
-&nbsp;&nbsp; **The cardinality between the entities**  ,_Relationship_cardinality indicates how many of one_Entity _is related to how many of another_ Entity_.  _Relationships_ between two _Entities_ maybe one-to-one (1:1), one-to-many (1: M), or many-to-many (M: M). the modeler should be wary of including 1:1 _Relationships_ in a finished data model. A 1:1 _Relationship_ normally indicates that two _Entities_ can be combined into one _Entity_. An M: M _Relationship _MUSTbe represented by two 1: M _Relationships_ and an _Associative Entity_.  When recording the _Relationship Name_, optionality and cardinality, enough information is usually conveyed so that _Relationship_ descriptions are not required.
+**The cardinality between the entities**  , _Relationship_ cardinality indicates how many of one_Entity_ is related to how many of another_ Entity_.  _Relationships_ between two _Entities_ maybe one-to-one (1:1), one-to-many (1: M), or many-to-many (M: M). the modeler should be wary of including 1:1 _Relationships_ in a finished data model. A 1:1 _Relationship_ normally indicates that two _Entities_ can be combined into one _Entity_. An M: M _Relationship_ MUST be represented by two 1: M _Relationships_ and an _Associative Entity_.  When recording the _Relationship Name_, optionality and cardinality, enough information is usually conveyed so that _Relationship_ descriptions are not required.
 
 ## 4.3 Foreign Key Constraint on Relationship
 
@@ -682,7 +680,7 @@ In some Relational Database Management Systems (RDBMS), _Foreign Key Constraints
 
 ### 4.3.1       Foreign Key Constraints Name Format:
 
-_Foreign Key Constraint Names_ MUST use the following format:
+**_Foreign Key Constraint Names_ MUST use the following format:**
 
 FK\_&lt;sequence number>_\_&lt;table name>_\_&lt;referential table name>[\_&lt;purpose or role name>] 
 
@@ -705,14 +703,15 @@ A _Table_ is the physical manifestation of an _Entity_, containing rows and colu
 
 The same naming rules for naming an entity apply to naming tables:
 
-        Exceptions:
-              - Acronyms and abbreviation from glossary of standard term MUST BE used if exist
-              - CamelCaseMAY be used 
-              - Table names (nouns) must be pluralized 
-              - The names of tables that implement a star schema  MUST have prefixes that specify the table's role in the star
-                - schema model:
-                "DIM" for dimension and "FACT" for fact.
-              - Underscore MUST be used in place of space 
+Exceptions:
+
+- Acronyms and abbreviation from glossary of standard term MUST BE used if exist
+- CamelCaseMAY be used 
+- Table names (nouns) must be pluralized 
+- The names of tables that implement a star schema  MUST have prefixes that specify the table's role in the star
+  - schema model:
+  "DIM" for dimension and "FACT" for fact.
+- Underscore MUST be used in place of space 
 
 ### 5.1.1 Name Format:
 
@@ -745,10 +744,10 @@ A _Column_ is a vertical segment in a _Table_ and the physical manifestation of 
 _Columns_ MUST be named in the same way as their corresponding _Attributes_. Whereas theattribute name uses all business names for its components, the column name should be constructed as follows:
 
 
-    - CamelCase MAY be used 
-    - Underscore MUST be used in place of space 
-    - Columns MUST be  named with a class word, or it's abbreviation
-    - Acronyms and abbreviation from glossary of standard term MUST BE used if exist
+- CamelCase MAY be used 
+- Underscore MUST be used in place of space 
+- Columns MUST be  named with a class word, or it's abbreviation
+- Acronyms and abbreviation from glossary of standard term MUST BE used if exist
 
 ### 6.1.1Name Format:
 
@@ -768,8 +767,11 @@ The metadata properties used to fully document a _Column_ are the same as those 
 
 A _View_ is a specific physical data object that provides access to all or a portion of one or more _Tables_. In the case of multiple _Tables in a _View_, the _Tables_ must be capable of being joined. Aprinciple reason for creating a _View_ is to give a user somewhat limited access to the columns in the _View's_ tables. See Section 2 of this document for a complete list of rules for describing and naming _Views_, as well as their appropriate metadata properties.
 
-## 7.2 Naming Views
+## 7.1 Describing Views
 
+_Views_ MUST be described in the same fashion as _Entities_.
+
+## 7.2 Naming Views
 
 The same general rules for naming an entity also apply to naming Views.
 
@@ -784,10 +786,6 @@ _View Names_ SHOULD use the format:
 
 [&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;object class term>   e.g.: VW\__HR\_ PERSONAL DATA_
 
-
-## 7.1 Describing Views
-
-_Views_ MUST be described in the same fashion as _Entities_.
 
 ## 7.3 View Metadata Properties
 
@@ -804,17 +802,16 @@ The metadata properties listed in the following table are to be used to fully do
 
 
 
-
 #8. Indexes
 
 An _Index_ is a set of ordered pointers to data contained in a _Table_, and it can be created with one or more columns contained in the _Table_. Three _Indexes_ will be defined in this section: _Primary Key Index, Foreign Key Index, and Alternate Key Index_.
 
 ## 8.1 Index Types
 
-**Primary Key Index** – An index placed on the column or columns that make up the Primary Key ofa Table. Primary Key Indexes MUST be defined as "UNIQUE" if RDBMS supports this feature
-**Alternate Key Index** – An index placed on a column or columns that could be used to uniquelyidentify a row in the table, but are not the Primary Key. Alternate Key Indexes MUST be defined as "UNIQUE" if your RDBMS supports this feature
-**Foreign Key Index** – An index placed on the column or columns that represent a foreign keyconstraint to another table
-**Non-key Index** – An index placed on a column that does not represent a key of any of the typesdescribed above
+**Primary Key Index** – An index placed on the column or columns that make up the Primary Key of a Table. Primary Key Indexes MUST be defined as "UNIQUE" if RDBMS supports this feature.<br>
+**Alternate Key Index** – An index placed on a column or columns that could be used to uniquely identify a row in the table, but are not the Primary Key. Alternate Key Indexes MUST be defined as "UNIQUE" if your RDBMS supports this feature.<br>
+**Foreign Key Index** – An index placed on the column or columns that represent a foreign key constraint to another table.<br>
+**Non-key Index** – An index placed on a column that does not represent a key of any of the types described above.
 
 ## 8.2 Naming Indexes
 
@@ -875,9 +872,9 @@ _Trgr_\_&lt;B or A> &lt;I or U or D> &lt;R or S>\_Table Name _
 
 The above formatted name can optionally be followed by _&lt;\_1>_if more than one trigger with the exact same name is created.
 
-          B or A – Before or After
-          R or S – Row or Statement
-          I, U, D – Insert, Update, Delete
+B or A – Before or After
+R or S – Row or Statement
+I, U, D – Insert, Update, Delete
 
 ## 9.2 Trigger Metadata
 
@@ -905,10 +902,10 @@ Database constraints are restrictions on the contents of the database or on data
 
 ## 10.1 Type of Constraints
 
-1) Primary Key (PK) - Serves as the unique identifier for rows in the table
-2) A unique constraint (UNQ) - is similar to a primary key constraint but doesn't have to be defined with Not Null.
-3) Foreign key constraint (FK) - The relationship between rows in two tables is expressed by a foreign key in the dependent table. A foreign key is one or more columns that contain a value identical to a primary key (or unique key) value in some row in the parent table (i.e., the referenced table).
-4) Check Constraints (CHK) - Used to enforce the validity of column values
+1) Primary Key (PK) - Serves as the unique identifier for rows in the table <br>
+2) A unique constraint (UNQ) - is similar to a primary key constraint but doesn't have to be defined with Not Null.<br>
+3) Foreign key constraint (FK) - The relationship between rows in two tables is expressed by a foreign key in the dependent table. A foreign key is one or more columns that contain a value identical to a primary key (or unique key) value in some row in the parent table (i.e., the referenced table).<br>
+4) Check Constraints (CHK) - Used to enforce the validity of column values <br>
 
 ## 10.2 Naming Constraints
 
