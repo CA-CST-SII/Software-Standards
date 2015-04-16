@@ -872,9 +872,9 @@ _Trgr_\_&lt;B or A> &lt;I or U or D> &lt;R or S>\_Table Name _
 
 The above formatted name can optionally be followed by _&lt;\_1>_if more than one trigger with the exact same name is created.
 
-B or A – Before or After
-R or S – Row or Statement
-I, U, D – Insert, Update, Delete
+B or A – Before or After <br>
+R or S – Row or Statement <br>
+I, U, D – Insert, Update, Delete <br>
 
 ## 9.2 Trigger Metadata
 
@@ -891,6 +891,7 @@ _Metadata Properties:_
    </tr>
 <table>
 
+<br>
 
 # 10. Constraints
 
