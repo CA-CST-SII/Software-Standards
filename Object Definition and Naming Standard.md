@@ -1,4 +1,4 @@
-#
+
 
 
 
@@ -218,13 +218,13 @@ The standards in this document use key words to reflect varying levels of adhere
 
 ### 1.3.4       Standard Business Terms and Abbreviations
 
-For the development of new systems and databases, all _prime terms, object class terms, property__terms, modifiers, qualifier terms _and_ representation terms _MUSTbe derived from theDepartment's repository of standard business terms wherever possible. If a desired term is not present, it MUST be registered in the Enterprise Metadata Repository (EMR) and made available for re-use. Legacy systems that are in use in the Department will go through a procedure of registration of data elements. The legacy systems metadata will be scanned into the EMR and mapped to existing Standard Data Element (SDE) names, as applicable. Candidate standard data element names will be proposed where SDEs have not already been identified. The candidate elements will be created in accordance with DM's standard naming convention, and be prepared to be approved by the Enterprise Data Administrative Group (E-DAWG) to become SDEs.
+For the development of new systems and databases, all _prime terms, object class terms, property terms, modifiers, qualifier terms_ and _representation terms_ MUST be derived from theDepartment's repository of standard business terms wherever possible. If a desired term is not present, it MUST be registered in the Enterprise Metadata Repository (EMR) and made available for re-use. Legacy systems that are in use in the Department will go through a procedure of registration of data elements. The legacy systems metadata will be scanned into the EMR and mapped to existing Standard Data Element (SDE) names, as applicable. Candidate standard data element names will be proposed where SDEs have not already been identified. The candidate elements will be created in accordance with DM's standard naming convention, and be prepared to be approved by the Enterprise Data Administrative Group (E-DAWG) to become SDEs.
 
 Candidate standard business terms may be submitted via e-mail to Data Management at [DataMgmtSupport@state.gov](mailto:DataMgmtSupport@state.gov) by sending a request citing the business term, a definition, and proposed abbreviation.
 
 ### 1.3.5       Business Name vs. Abbreviated Name vs. Synonym Name
 
-The _Business Name_ is the name of an object in a business context. Business name contains information pertinent to the organization. By combining _Standard Business __Terms _according to the formats described in this document_ Business Name _can be formed. _Abbreviated Name _is formed by replacing terms from the Business Name with standard abbreviations and using underscore in place of space. _Synonym Name _can be created by using the acronym formed by the first letter or letters of the business terms in a _Business Name_ and omitting any underscores. _Synonym Names SHOULD_ be incorporated into _Abbreviated Names_ to represent _object class terms_ or _prime terms_ in physical data objects that require them (for example, _Columns, Indexes, Foreign Keys_). When _Synonym__ Names _are used, theyMUSTbe registered with Data Management.
+The _Business Name_ is the name of an object in a business context. Business name contains information pertinent to the organization. By combining _Standard Business Terms_ according to the formats described in this document _Business Name_ can be formed. _Abbreviated Name_ is formed by replacing terms from the Business Name with standard abbreviations and using underscore in place of space. _Synonym Name_ can be created by using the acronym formed by the first letter or letters of the business terms in a _Business Name_ and omitting any underscores. _Synonym Names_ SHOULD be incorporated into _Abbreviated Names_ to represent _object class terms_ or _prime terms_ in physical data objects that require them (for example, _Columns, Indexes, Foreign Keys_). When _Synonym Names_ are used, they MUSTbe registered with Data Management.
 
 Candidate _Synonym Names_ may be submitted via e-mail to Data Management at [DataMgmtSupport@state.gov](mailto:DataMgmtSupport@state.gov) by sending a request citing the prime term/object class term and the proposed synonym.
 
@@ -248,14 +248,14 @@ In data models and databases, the _Business Names, Abbreviated Names,_ and _Syno
 | Relationship | MUST be used | MUST NOT be used | MUST NOT be used |
 | Table | SHOULD be used | MAY be used | MUST NOT be used |
 | Column |   |   |   |
-|   Object ClassTerm/Prime Term | MUST NOT be used | MAY be used | SHOULD be used |
-|   Qualifier Term/Modifier/Property Term | MAY be used | SHOULD be used | MUST NOT be used |
-|   RepresentationTerm/Class Word | MUST NOT be used | MUST be used | MUST NOT be used |
-|   Foreign Key |   |   |   |
-|   Table Name | MAY be used | MAY be used | SHOULD be used |
-|   Purpose/Role Name | MAY be used | May be used | MUST NOT be used |
+| &nbsp;&nbsp;Object ClassTerm/Prime Term | MUST NOT be used | MAY be used | SHOULD be used |
+| &nbsp;&nbsp; Qualifier Term/Modifier/Property Term | MAY be used | SHOULD be used | MUST NOT be used |
+| &nbsp;&nbsp;RepresentationTerm/Class Word | MUST NOT be used | MUST be used | MUST NOT be used |
+| &nbsp;&nbsp;Foreign Key |   |   |   |
+| &nbsp;&nbsp;Table Name | MAY be used | MAY be used | SHOULD be used |
+| &nbsp;&nbsp;Purpose/Role Name | MAY be used | May be used | MUST NOT be used |
 | Index |   |   |   |
-|   Table Name | MAY be used | MAY be used | **S** SHOULD be used |
+|   &nbsp;&nbspTable Name | MAY be used | MAY be used | **S** SHOULD be used |
 | Purpose/Role Name | MAY be used | May be used | MUST NOT be used |
 | Trigger |   |   |   |
 | Table Name | MAY be used | MAY be used | SHOULD be used |
@@ -309,7 +309,7 @@ Synonyms are not to be used in place of a business term already in use to descri
 
 Standard Data Elements (SDEs) are data attributes that have been standardized for usage across the Department. As such, the naming conventions for SDEs are the same as those outlined in this document.
 
-The Enterprise Conceptual Data Model (ECDM) provides a specification of the key data entities that support Department of State's (DOS) business process. The purpose of the Enterprise Conceptual Data Model (ECDM) is to provide a conceptual view the key data entities and their relationships that support DOS's mission. DOS requires such a model in order to provide an organizing framework for further enterprise data architecture efforts. The ECDM acts as a high-level taxonomy organizing all of DOS's data assets into groups and rules. This high-level presentation will allow DOS management and stakeholders to effectively understand the current state of the data architecture and to plan for a future state data architecture that will enhance DOS.  It is composed of entities, relationships, general definitions and attributes. The ECDM defines the major data domains of information maintained to conduct Department business and consists of business objects (Entities) in the Department. These entities represent the highest-level view, the most essential data categories that define the boundaries and the nature of the Department's business and distinguish it fromany other government enterprise. ECDM is currently a work in progress model detail is being added by analysis and discussion that identify additional data requirements. Entities are added, and as facts are identified for each Entity, they become attributes of that Entity. These attributes can become _Candidate Standard Data Elements_ and ultimately be approved as _Standard Data Elements. _For more information on SDEs and the Enterprise conceptual data Model contact Data Management at [DataMgmtSupport@state.gov](mailto:DataMgmtSupport@state.gov).
+The Enterprise Conceptual Data Model (ECDM) provides a specification of the key data entities that support Department of State's (DOS) business process. The purpose of the Enterprise Conceptual Data Model (ECDM) is to provide a conceptual view the key data entities and their relationships that support DOS's mission. DOS requires such a model in order to provide an organizing framework for further enterprise data architecture efforts. The ECDM acts as a high-level taxonomy organizing all of DOS's data assets into groups and rules. This high-level presentation will allow DOS management and stakeholders to effectively understand the current state of the data architecture and to plan for a future state data architecture that will enhance DOS.  It is composed of entities, relationships, general definitions and attributes. The ECDM defines the major data domains of information maintained to conduct Department business and consists of business objects (Entities) in the Department. These entities represent the highest-level view, the most essential data categories that define the boundaries and the nature of the Department's business and distinguish it fromany other government enterprise. ECDM is currently a work in progress model detail is being added by analysis and discussion that identify additional data requirements. Entities are added, and as facts are identified for each Entity, they become attributes of that Entity. These attributes can become _Candidate Standard Data Elements_ and ultimately be approved as _Standard Data Elements_.  For more information on SDEs and the Enterprise conceptual data Model contact Data Management at [DataMgmtSupport@state.gov](mailto:DataMgmtSupport@state.gov).
 
 # 2. Entities
 
@@ -319,67 +319,31 @@ An _Entity_ is a set of real or abstract things (a person, place, thing, resourc
 
 There are five types of entities.
 
-**Fundamental** – An entity that is independent of any other Entity for its existence. Alsoknown as an Identifier-Independent Entity. This may also be known as a Parent entity if it exists in a relationship with an Attributive Entity
+&nbsp;&nbsp;&nbsp;&nbsp;**Fundamental** – An entity that is independent of any other Entity for its existence. Alsoknown as an Identifier-Independent Entity. This may also be known as a Parent entity if it exists in a relationship with an Attributive Entity
 
 
 
-**Associative** – An Entity that represents a Relationship between two or more Entities. An_Associative Entity _does not exist independently from the related_ Entities_. An_ Associative Entity _resolves many-to-many relationships.
+&nbsp;&nbsp;&nbsp;&nbsp;**Associative** – An Entity that represents a Relationship between two or more Entities. An _Associative Entity_ does not exist independently from the related _Entities_. An _Associative Entity_ resolves many-to-many relationships.
 
-**Attributive** – An entity that describes another entity. It is dependent on the existence ofthe other entity. Also known as an Identifier-Dependent Entity. Attributes repeated within an entity are candidates for attributive entities.
-
-
-
-**Supertype** – An Entity that represents a general class of business objects that may be broken down into a hierarchy of more specific classes. A _Supertype Entity_'s attributes apply to all of its _Subtype Entities_, and the _Subtypes_ inherit its identifier. It is also known as a Generic entity.
-
-**Subtype** – An Entity that identifies or represents an occurrence of another Entity with the same Primary Key but has a narrower definition, a subset of different Attributes, and/or different relationships. It inherits all the attributes of the _Supertype Entity_. It is also known as a _Category Entity._
-
-**Subtype** – An Entity that identifies or represents an occurrence of another Entity with the same Primary Key but has a narrower definition, a subset of different Attributes, and/or different relationships. It inherits all the attributes of the _Supertype Entity_. It is also known as a _Category Entity._
-
-## 2.3 Naming Entities
-
-Legacy systems in use in the Department are not required to change existing entity names to adhere to this standard. Those entities will be mapped to standard names where possible.
-
-- In data models the _Business Name_ MUST be used for the entity. An exception to this is made if the modeling tool cannot accommodate a long name. Standard abbreviations (from glossary of approved standard term) MUST be used where they exist as part of _Business Name_. 
-
-The following general standards apply in creating an _Entity Business Name_:
-
-- The characters used in names MUST be upper case A-Z, 0-9 and space character 
-- Punctuation marks and special characters, including the slash (/) and the hyphen or dash (-) MUST NOT be used. 
-- Underscore MUST NOT be used in names 
-- The first character in a name MUST be an alphabetic. 
-- The name MUST be composed of singular Nouns or noun phrases SHOULD be singular 
-- Possessive nouns and proper nouns MUST NOT be used in the name 
-- The name MUST be fully spelled out. 
-- The name MUST be 120 characters or less in length 
-- Verbs SHOULD NOT be used 
-- The name of a child _Entity_ MAY include the name of its parent _Entity_. 
+&nbsp;&nbsp;&nbsp;&nbsp;**Attributive** – An entity that describes another entity. It is dependent on the existence ofthe other entity. Also known as an Identifier-Dependent Entity. Attributes repeated within an entity are candidates for attributive entities.
 
 
 
-A _Synonym Name_ MUST be defined for use as the _prime term/object class term_ in _Column__Names_. Using an acronym or shorter abbreviation for the terms in the_ Table Business Name _forms _Synonym Names_. They do not have to be formed from standard abbreviations. They should, however, be recorded in the set of full metadata for an Entity. _Synonym Names_ MUST be registered with the Data Management Branch and made available for reuse.
+&nbsp;&nbsp;&nbsp;&nbsp;**Supertype** – An Entity that represents a general class of business objects that may be broken down into a hierarchy of more specific classes. A _Supertype Entity_'s attributes apply to all of its _Subtype Entities_, and the _Subtypes_ inherit its identifier. It is also known as a Generic entity.
 
-Candidate _Synonym Names_ may be submitted via e-mail to Data Management at [DataMgmtSupport@state.gov](mailto:DataMgmtSupport@state.gov)  by sending a request citing the prime term/object class term and the proposed synonym.
+&nbsp;&nbsp;&nbsp;&nbsp;**Subtype** – An Entity that identifies or represents an occurrence of another Entity with the same Primary Key but has a narrower definition, a subset of different Attributes, and/or different relationships. It inherits all the attributes of the _Supertype Entity_. It is also known as a _Category Entity._
 
-### 2.3.1        Entity Name Formats
-
-All Entities MUST be named according to one of the formats described below:
-
-| **Entity Type** | **Format** |
-| --- | --- |
-| All entities MAY be named using the format | &lt;Prime Term> (space)] &lt; modifier(s)> [&lt;qualifier term> (space)] &lt;object class term>   e.g: HUMAN RESOURCES PERSONAL DATA |
-| Associative entities SHOULD use the format | &lt;parent entity name> (space) &lt;Modifier >e.g. HUMAN RESOURCES PERSONAL  ACCOUNT DATA |
-| Attributive entities MAY use the format | &lt;parent entity name> (space) &lt;modifier(s)>e.g. HUMAN RESOURCES PERSONAL TRANSACTION DATA |
-| Subtype entities MAY use the formats | &lt;parent entity name> (space) &lt;modifier(s)>&lt;modifier(s)> (space) &lt;parent entity name>e.g. HUMAN RESOURCES PERSONAL  ACCOUNT TYPE DATA |
+&nbsp;&nbsp;&nbsp;&nbsp;**Subtype** – An Entity that identifies or represents an occurrence of another Entity with the same Primary Key but has a narrower definition, a subset of different Attributes, and/or different relationships. It inherits all the attributes of the _Supertype Entity_. It is also known as a _Category Entity._
 
 ## 2.2 Describing Entities
 
-The following rules apply when describing an _Entity_ of any type (_Fundamental, Associative,__Attributive, Supertype _or_ Subtype_).
+The following rules apply when describing an _Entity_ of any type (_Fundamental, Associative, Attributive, Supertype _or_ Subtype_).
 
-- An _Entity_ description MUST be a noun phrase 
-- The description MUST be broad enough that no instances of the Entity are omitted 
-- The description MUST be clear, concise, and unambiguous 
-- The description MUST be relevant to its business purpose and independent of technology and implementation 
-- The description MUST be stable over time. The following words or phrases are examples of time dependency or process orientation, and MUST NOT be used to describe an _Entity_: 
+  - An _Entity_ description MUST be a noun phrase 
+  - The description MUST be broad enough that no instances of the Entity are omitted 
+  - The description MUST be clear, concise, and unambiguous 
+  - The description MUST be relevant to its business purpose and independent of technology and implementation 
+  - The description MUST be stable over time. The following words or phrases are examples of time dependency or process orientation, and MUST NOT be used to describe an _Entity_: 
 
      - At this (point in) time   
      - Occasionally 
@@ -398,14 +362,14 @@ The following rules apply when describing an _Entity_ of any type (_Fundamental,
 
 
 
-- The description MUST NOT simply repeat the name of the _Entity_ as a description. 
-- The description MUST be of an _Entity_, not of the data the Department records about the _Entity_, nor the functions, applications, or organizations that use or create the data. Thedescription MUST NOT pertain to: 
+  - The description MUST NOT simply repeat the name of the _Entity_ as a description. 
+  - The description MUST be of an _Entity_, not of the data the Department records about the _Entity_, nor the functions, applications, or organizations that use or create the data. The description MUST NOT pertain to: 
 
-  - When, how, or where the data about the Entity are used 
-  - Who uses the data 
-  - How to edit or process the data 
-  - The format the data stored in or other physical considerations 
-  - What hardware or software systems use the data 
+    - When, how, or where the data about the Entity are used 
+    - Who uses the data 
+    - How to edit or process the data 
+    - The format the data stored in or other physical considerations 
+    - What hardware or software systems use the data 
 
 
 
@@ -417,6 +381,43 @@ The following rules apply when describing an _Entity_ of any type (_Fundamental,
   - Spelled correctly 
   - Complete and accurate, fully reflecting the meaning of the Entity. 
   - Written in active voice, where possible. 
+  
+## 2.3 Naming Entities
+
+Legacy systems in use in the Department are not required to change existing entity names to adhere to this standard. Those entities will be mapped to standard names where possible.
+
+- In data models the _Business Name_ MUST be used for the entity. An exception to this is made if the modeling tool cannot accommodate a long name. Standard abbreviations (from glossary of approved standard term) MUST be used where they exist as part of _Business Name_. 
+
+The following general standards apply in creating an _Entity Business Name_:
+
+  - The characters used in names MUST be upper case A-Z, 0-9 and space character 
+  - Punctuation marks and special characters, including the slash (/) and the hyphen or dash (-) MUST NOT be used. 
+  - Underscore MUST NOT be used in names 
+  - The first character in a name MUST be an alphabetic. 
+  - The name MUST be composed of singular Nouns or noun phrases SHOULD be singular 
+  - Possessive nouns and proper nouns MUST NOT be used in the name 
+  - The name MUST be fully spelled out. 
+  - The name MUST be 120 characters or less in length 
+  - Verbs SHOULD NOT be used 
+  - The name of a child _Entity_ MAY include the name of its parent _Entity_. 
+
+
+
+A _Synonym Name_ MUST be defined for use as the _prime term/object class term_ in _Column__Names_. Using an acronym or shorter abbreviation for the terms in the _Table Business Name_ forms _Synonym Names_. They do not have to be formed from standard abbreviations. They should, however, be recorded in the set of full metadata for an Entity. _Synonym Names_ MUST be registered with the Data Management Branch and made available for reuse.
+
+Candidate _Synonym Names_ may be submitted via e-mail to Data Management at [DataMgmtSupport@state.gov](mailto:DataMgmtSupport@state.gov)  by sending a request citing the prime term/object class term and the proposed synonym.
+
+### 2.3.1        Entity Name Formats
+
+All Entities MUST be named according to one of the formats described below:
+
+| **Entity Type** | **Format** |
+| --- | --- |
+| All entities MAY be named using the format | &lt;Prime Term> (space)] &lt; modifier(s)> [&lt;qualifier term> (space)] &lt;object class term>   e.g: HUMAN RESOURCES PERSONAL DATA |
+| Associative entities SHOULD use the format | &lt;parent entity name> (space) &lt;Modifier > e.g. HUMAN RESOURCES PERSONAL  ACCOUNT DATA |
+| Attributive entities MAY use the format | &lt;parent entity name> (space) &lt;modifier(s)> e.g. HUMAN RESOURCES PERSONAL TRANSACTION DATA |
+| Subtype entities MAY use the formats | &lt;parent entity name> (space) &lt;modifier(s)>&lt;modifier(s)> (space) &lt;parent entity name> e.g. HUMAN RESOURCES PERSONAL  ACCOUNT TYPE DATA |
+
 
 ### 2.3.2       Prime Terms/Object Class Terms
 
@@ -439,36 +440,11 @@ The metadata properties listed in the following table are to be used to fully do
 | Non-Key Attributes | Identifies all attributes in the entity that are not part of the primary key. |
 | _Synonym_ Name | Typically an acronym formed by the first letter or letters of the business terms in a Business Name. The Synonym Name is typically 8 characters or less and is used specifically in the Abbreviated Names of Attributes and Columns |
 
+
 # 3. Attributes
 
 An _Attribute_ is an item of data, a fact or piece of information about an _Entity_. An _Attribute_ represents a characteristic or descriptive property of an _Entity_. In data modeling, it is a logical object whose physical counterpart is a _Column._
 
-## 3.2        Naming Attributes
-
-Legacy systems in use in the Department are _not_ required to change existing attribute names to adhere to this standard. Those attributes will be mapped to standard data element names where possible.
-
-The following general standards apply in creating an _Attribute Business Name_:
-
-- The name MUST be UPPERCASE 
-- The name MUST be composed of the characters A-Z, 0-9
-- The name MUST be fully spelled out
-- The name MUST be 120 characters or less in length
-- Nouns SHOULD be singular except where the plural form is commonly used
-- Verbs MUST NOT be used
-- Possessive nouns and proper nouns MUST NOT be used in the name
-- Underscore MUST NOT be used in names
-
-### 3.2.1 Attribute Name Format
-
-_Attribute Names _MUST use the format:
-
-|  &lt;prime  term>  (space)  [&lt;modifier(s)>  (space)]   &lt;class  word>       e.g..: Building  Identification Number |
-| --- |
-
-_In ISO/IEC 11179 terminology:_
-
-|  &lt;object class term> (space) [ &lt;qualifier term> (space)]  &lt;property term> (space)  &lt;representation term> |
-| --- |
 
 ## 3.1 Describing Attributes
 
@@ -509,7 +485,7 @@ The following rules apply when describing an _Attribute_:
   - What hardware or software systems use the data
 
 - _Abbreviations_ and _Acronyms_ MUST NOT be used in descriptions 
-- Two _Attributes_MUST NOT be circular in description (for example, two _Attributes_ descriptions cannot exist where one description points to a second description; and the second _Attribute_ description points back to the first description). 
+- Two _Attributes_ MUST NOT be circular in description (for example, two _Attributes_ descriptions cannot exist where one description points to a second description; and the second _Attribute_ description points back to the first description). 
 
   - Grammatically correct 
   - Spelled correctly 
@@ -517,6 +493,33 @@ The following rules apply when describing an _Attribute_:
   - Written in active voice, where possible.
 
 - The description MUST NOT include an example. Examples of an _Attribute's_ domain values MAY be written as a separate business rule. 
+
+## 3.2        Naming Attributes
+
+Legacy systems in use in the Department are _not_ required to change existing attribute names to adhere to this standard. Those attributes will be mapped to standard data element names where possible.
+
+The following general standards apply in creating an _Attribute Business Name_:
+
+- The name MUST be UPPERCASE 
+- The name MUST be composed of the characters A-Z, 0-9
+- The name MUST be fully spelled out
+- The name MUST be 120 characters or less in length
+- Nouns SHOULD be singular except where the plural form is commonly used
+- Verbs MUST NOT be used
+- Possessive nouns and proper nouns MUST NOT be used in the name
+- Underscore MUST NOT be used in names
+
+### 3.2.1 Attribute Name Format
+
+_Attribute Names_ MUST use the format:
+
+   &lt;prime  term>  (space)  [&lt;modifier(s)>  (space)]   &lt;class  word>      
+   e.g..: Building  Identification Number 
+
+
+_In ISO/IEC 11179 terminology:_
+
+   &lt;object class term> (space) [ &lt;qualifier term> (space)]  &lt;property term> (space)  &lt;representation term> 
 
 ### 3.2.2       Class Words/Representation Terms
 
@@ -620,7 +623,7 @@ The metadata properties listed in the following _Table_ are necessary to fully d
 
 
 
-A _Relationship_ is an association between two or more _Entities_ (a non-recursive relationship) or between occurrences of the same _Entity_ (a recursive relationship) that represents a business rule. _Relationships _are used in Entity Relationship Diagrams (ERDs) to convey information as to how_ Entities _correspond to one another. In data modeling, it is a logical object whose physicalcounterpart is a _Foreign Key Constraint_.
+A _Relationship_ is an association between two or more _Entities_ (a non-recursive relationship) or between occurrences of the same _Entity_ (a recursive relationship) that represents a business rule. _Relationships_ are used in Entity Relationship Diagrams (ERDs) to convey information as to how _Entities_ correspond to one another. In data modeling, it is a logical object whose physicalcounterpart is a _Foreign Key Constraint_.
 
 ## 4.1 Naming Relationships
 
@@ -656,7 +659,7 @@ _Relationships_ MUST use the following format:
 All of the information the analyst needs to precisely describe a _Relationship_ is often provided when the following items are determined:
 
 
-     <u>**The nature of the relationship between the entities,**<;u> For example, the _Entities__EMPLOYEE _and_ WORKSITE _may have the following_ Relationship_:
+&nbsp;&nbsp; **The nature of the relationship between the entities,**  For example, the _Entities__EMPLOYEE _and_ WORKSITE _may have the following_ Relationship_:
 
             - _EMPLOYEE_ works at WORKSITE 
 
@@ -666,14 +669,12 @@ The two _Entities_, together with the nature of the _Relationship_ between two _
 
 
 
-
-
-      <u>**The optionality between the entities** <u>,   Relationship _ &lt;u>**optionality**&lt;u> indicates whether a_Relationship_ is optional or required. Frequently, a _Relationship_ can be optional whenviewed from one _Entity_ and required when viewed from the other. The following illustrates the concept of optionality.
+&nbsp;&nbsp; **The optionality between the entities**  ,   Relationship _ &lt;u>**optionality**&lt;u> indicates whether a_Relationship_ is optional or required. Frequently, a _Relationship_ can be optional whenviewed from one _Entity_ and required when viewed from the other. The following illustrates the concept of optionality.
 
             - A _CUSTOMER_ may place ORDER_ (optional)  
             - An _ORDER_ must be placed by a _CUSTOMER_ (required) 
 
-      <u>**The cardinality between the entities**<u> ,_Relationship_cardinality indicates how many of one_Entity _is related to how many of another_ Entity_.  _Relationships_ between two _Entities_ maybe one-to-one (1:1), one-to-many (1: M), or many-to-many (M: M). the modeler should be wary of including 1:1 _Relationships_ in a finished data model. A 1:1 _Relationship_ normally indicates that two _Entities_ can be combined into one _Entity_. An M: M _Relationship _MUSTbe represented by two 1: M _Relationships_ and an _Associative Entity_.  When recording the _Relationship Name_, optionality and cardinality, enough information is usually conveyed so that _Relationship_ descriptions are not required.
+&nbsp;&nbsp; **The cardinality between the entities**  ,_Relationship_cardinality indicates how many of one_Entity _is related to how many of another_ Entity_.  _Relationships_ between two _Entities_ maybe one-to-one (1:1), one-to-many (1: M), or many-to-many (M: M). the modeler should be wary of including 1:1 _Relationships_ in a finished data model. A 1:1 _Relationship_ normally indicates that two _Entities_ can be combined into one _Entity_. An M: M _Relationship _MUSTbe represented by two 1: M _Relationships_ and an _Associative Entity_.  When recording the _Relationship Name_, optionality and cardinality, enough information is usually conveyed so that _Relationship_ descriptions are not required.
 
 ## 4.3 Foreign Key Constraint on Relationship
 
@@ -698,7 +699,7 @@ The _purpose, role name or sequence_ is typically only used when more than one c
 
 
 
-A _Table_ is the physical manifestation of an _Entity_, containing rows and columns wherein data may be stored and retrieved and represents a person, place, thing, resource, concept, or event about which a business retains information. These rules also apply for the representation of a _Table _in a physical data model._ Tables _follow the naming rules of their corresponding_ Entities_,but with spaces replaced by underscores. See Section 2 of this document for a complete list of rules for describing and naming Tables, as well as their appropriate metadata properties.
+A _Table_ is the physical manifestation of an _Entity_, containing rows and columns wherein data may be stored and retrieved and represents a person, place, thing, resource, concept, or event about which a business retains information. These rules also apply for the representation of a _Table_ in a physical data model. _Tables _follow the naming rules of their corresponding _Entities_, but with spaces replaced by underscores. See Section 2 of this document for a complete list of rules for describing and naming Tables, as well as their appropriate metadata properties.
 
 ## 5.1 Naming Tables
 
@@ -708,14 +709,14 @@ The same naming rules for naming an entity apply to naming tables:
               - Acronyms and abbreviation from glossary of standard term MUST BE used if exist
               - CamelCaseMAY be used 
               - Table names (nouns) must be pluralized 
-              - The names of tables that implement a star schema  MUST have prefixes that specify the    table's role in the star
-                 - schema model:
+              - The names of tables that implement a star schema  MUST have prefixes that specify the table's role in the star
+                - schema model:
                 "DIM" for dimension and "FACT" for fact.
               - Underscore MUST be used in place of space 
 
 ### 5.1.1 Name Format:
 
-[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;Object class term> e.g.: HR\_PERSONAL\_DATA
+[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;Object class term>   e.g.: HR\_PERSONAL\_DATA
 
 ## 5.2 Describing Tables
 
@@ -765,7 +766,7 @@ The metadata properties used to fully document a _Column_ are the same as those 
 
 # 7. Views
 
-A _View_ is a specific physical data object that provides access to all or a portion of one or more _Tables_. In the case of multiple_ Tables _in a_ View_, the _Tables_ must be capable of being joined. Aprinciple reason for creating a _View_ is to give a user somewhat limited access to the columns in the _View's_ tables. See Section 2 of this document for a complete list of rules for describing and naming _Views_, as well as their appropriate metadata properties.
+A _View_ is a specific physical data object that provides access to all or a portion of one or more _Tables_. In the case of multiple _Tables in a _View_, the _Tables_ must be capable of being joined. Aprinciple reason for creating a _View_ is to give a user somewhat limited access to the columns in the _View's_ tables. See Section 2 of this document for a complete list of rules for describing and naming _Views_, as well as their appropriate metadata properties.
 
 ## 7.2 Naming Views
 
@@ -774,14 +775,14 @@ The same general rules for naming an entity also apply to naming Views.
 
 _Exception:_
 
-     - View name MUST have a prefix "VW\_"
+     - View name MUST have a prefix "VW_"
 
 ### 7.2.1       View Name Format
 
 
 _View Names_ SHOULD use the format:
 
-[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;object class term>  e.g.: VW\__HR\_ PERSONAL DATA_
+[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;object class term>   e.g.: VW\__HR\_ PERSONAL DATA_
 
 
 ## 7.1 Describing Views
@@ -806,19 +807,19 @@ The metadata properties listed in the following table are to be used to fully do
 
 #8. Indexes
 
-An _Index_ is a set of ordered pointers to data contained in a _Table_, and it can be created with one or more columns contained in the _Table_. Three _Indexes_ will be defined in this section: _Primary__Key Index, Foreign Key Index, and Alternate Key Index_.
+An _Index_ is a set of ordered pointers to data contained in a _Table_, and it can be created with one or more columns contained in the _Table_. Three _Indexes_ will be defined in this section: _Primary Key Index, Foreign Key Index, and Alternate Key Index_.
 
 ## 8.1 Index Types
 
-<u>**Primary Key Index**&lt;u> – An index placed on the column or columns that make up the Primary Key ofa Table. Primary Key Indexes MUST be defined as "UNIQUE" if RDBMS supports this feature
-<u>**Alternate Key Index**&lt;u> – An index placed on a column or columns that could be used to uniquelyidentify a row in the table, but are not the Primary Key. Alternate Key Indexes MUST be defined as "UNIQUE" if your RDBMS supports this feature
-<u>**Foreign Key Index**&lt;u> – An index placed on the column or columns that represent a foreign keyconstraint to another table
-<u>**Non-key Index**&lt;u> – An index placed on a column that does not represent a key of any of the typesdescribed above
+**Primary Key Index** – An index placed on the column or columns that make up the Primary Key ofa Table. Primary Key Indexes MUST be defined as "UNIQUE" if RDBMS supports this feature
+**Alternate Key Index** – An index placed on a column or columns that could be used to uniquelyidentify a row in the table, but are not the Primary Key. Alternate Key Indexes MUST be defined as "UNIQUE" if your RDBMS supports this feature
+**Foreign Key Index** – An index placed on the column or columns that represent a foreign keyconstraint to another table
+**Non-key Index** – An index placed on a column that does not represent a key of any of the typesdescribed above
 
 ## 8.2 Naming Indexes
 
-     - Index MUST be named according to their function and Table Name
-     - The Index MUST not exceed 30 characters in length
+- Index MUST be named according to their function and Table Name
+- The Index MUST not exceed 30 characters in length
 
 ### 8.2.1       Index Name Formats
 
@@ -882,32 +883,39 @@ The above formatted name can optionally be followed by _&lt;\_1>_if more than on
 
 _Metadata Properties:_
 
-| Description | The textual description of the triggers and Purpose |
-| Comment | Any remarks of significance to the understanding of the triggers history. |
-
+<table style="width:100%">
+   <tr>
+    <td>Description</td>
+     <td>The textual description of the triggers and Purpose</td> 
+   </tr>
+  <tr>
+    <td>Comment</td>
+     <td>Any remarks of significance to the understanding of the triggers history.</td> 
+   </tr>
+<table>
 
 
 # 10. Constraints
 
 Database constraints are restrictions on the contents of the database or on database operations. Database constraints provide a way to guarantee that:
 
-       - rows in a table have valid primary or unique key values
-       - rows in a dependent table have valid foreign key values that reference rows in a parent table
-       - individual column values are valid 
+- rows in a table have valid primary or unique key values
+- rows in a dependent table have valid foreign key values that reference rows in a parent table
+- individual column values are valid 
 
 ## 10.1 Type of Constraints
 
-        1) Primary Key (PK) - Serves as the unique identifier for rows in the table
-        2) A unique constraint (UNQ) - is similar to a primary key constraint but doesn't have to be defined with Not Null.
-        3) Foreign key constraint (FK) - The relationship between rows in two tables is expressed by a foreign key in the dependent table. A foreign key is one or more columns that contain a value identical to a primary key (or unique key) value in some row in the parent table (i.e., the referenced table).
-        4) Check Constraints (CHK) - Used to enforce the validity of column values
+1) Primary Key (PK) - Serves as the unique identifier for rows in the table
+2) A unique constraint (UNQ) - is similar to a primary key constraint but doesn't have to be defined with Not Null.
+3) Foreign key constraint (FK) - The relationship between rows in two tables is expressed by a foreign key in the dependent table. A foreign key is one or more columns that contain a value identical to a primary key (or unique key) value in some row in the parent table (i.e., the referenced table).
+4) Check Constraints (CHK) - Used to enforce the validity of column values
 
 ## 10.2 Naming Constraints
 
-        - MUST including Keyword stating the database object
-        - MUST include suffix with abbreviation for the type of Constraints
-        - Separate each word with an underscore
-        - If more than one constraint is required exist within a type of constraint, MUST add a numeric suffix of 1 through 9.
+- MUST including Keyword stating the database object
+- MUST include suffix with abbreviation for the type of Constraints
+- Separate each word with an underscore
+- If more than one constraint is required exist within a type of constraint, MUST add a numeric suffix of 1 through 9.
 
 ### 10.2.1      Constraints Name Formats
 
@@ -915,16 +923,35 @@ Constraints MUST be named according to one of the following formats:
 
 &lt;Noun (keyword)>, &lt;\_>, &lt;abbreviation for type of constraints
 
-| **Type of Constraints** | **Naming Rule** | **Example** |
-| --- | --- | --- |
-| Primary Key | Primary key type constraints MUST be named after the table name plus a suffix of "\_pk". |
- proj\_et\_pk  prcl\_cnty\_pk  srfc\_wtr\_pmp\_pk|
-| A unique constraint | The unique constraint MUST be named after the table plus a suffix of "\_unq". If more than one unique constraint is required, add a numeric suffix of 1 through 9. |
-proj\_et\_unq  prcl\_cnty\_unq1  prcl\_cnty\_unq2|
-| Foreign key constraint | A foreign key constraint MUST be named after the table plus a suffix of "\_fk". If more than on foreign key constraint is required, add a numeric suffix of 1 through 9. |
-proj\_et\_fk  bdgt\_acct\_fk1 bdgt\_acct\_fk2|
-| Check Constraints | If the check condition references only one column, name the constraint after the column name plus a suffix of "\_chk". If more than one check condition is required per table or column, add a numeric suffix of 1 through 9 |
- proj\_id\_chk prcl\_cnty\_chk1 prcl\_cnty\_chk2   |
+<table style="width:100%">
+  <tr>
+    <th>Type of Constraints</th>
+    <th>Naming Rule</th>
+    <th colspan="3">Example</th>
+  </tr>
+  <tr>
+    <td>Primary Key</td>
+    <td width="50%"> Primary key type constraints MUST be named after the table name plus a suffix of "_pk".</td>
+    <td>proj_et_pk </td>
+    <td>prcl_cnty_pk</td>
+    <td>srfc_wtr_pmp_pk</td>
+  </tr>
+  <tr>
+    <td>A unique constraint</td>
+    <td>The unique constraint MUST be named after the table plus a suffix of "_unq". If more than one unique constraint is required, add a numeric suffix of 1 through 9.</td>
+    <td>proj_et_unq </td>
+    <td>prcl_cnty_unq1</td>
+    <td>prcl_cnty_unq2</td>
+  </tr>
+  <tr>
+    <td>Foreign key constraint</td>
+    <td>A foreign key constraint MUST be named after the table plus a suffix of "_fk". If more than on foreign key constraint is required, add a numeric suffix of 1 through 9.".</td>
+    <td>proj_et_fk </td>
+    <td>bdgk_acct_fk1</td>
+    <td>bdgk_acct_fk2</td>
+  </tr>
+</table>
+
 
 
 ## 10.3 Constraint Metadata Properties
@@ -982,7 +1009,7 @@ Create a candidate _Abbreviation_ by using the following rules:
      - A commonly accepted American dictionary 
      - Any commonly accepted _Abbreviation_ (de facto standard) 
 
-   An _Abbreviation_ for the term in question **may** be found through these sources, or follow _Abbreviation_ rules 2 through 20. If a readily acceptable_ Abbreviation_ is found, use it, identify itssource, and go to rule 2; then skip rules 3 through 20. If the _Abbreviation_ is not readily acceptable due to possible conflicts or duplications, or it does not adequately represent the word it replaces, continue with the _Abbreviation_ rules. Apply common sense.
+   An _Abbreviation_ for the term in question **may** be found through these sources, or follow _Abbreviation_ rules 2 through 20. If a readily acceptable _Abbreviation_ is found, use it, identify itssource, and go to rule 2; then skip rules 3 through 20. If the _Abbreviation_ is not readily acceptable due to possible conflicts or duplications, or it does not adequately represent the word it replaces, continue with the _Abbreviation_ rules. Apply common sense.
 
 2. Ensure that each _Abbreviation_ is unique, not only with regard to other _Abbreviations_, but also with respect to _Acronyms_. 
 3. Ensure that each term has only one _Abbreviation_. 
@@ -1011,16 +1038,16 @@ Create a candidate _Abbreviation_ by using the following rules:
 
 14. If the abbreviation already exists for another word, for example, _FCLTY_ for _FACILITY_, then it is necessary to either keep one of the vowels for the new _Abbreviation_, or use a commonly accepted _Abbreviation_ that is sufficiently different. For example, using FAC for _FACULTY_ might be usedin lieu of _FCLTY_, which would otherwise be one result of following the rules. 
 
-    A root word and its derivatives SHOULD have the same 'root' _Abbreviation_. For example, the _Abbreviation _for_ EXEMPT_i s _EXMPT_, and for_EXEMPTION_ is _EXMPTN_. The 'root _Abbreviation_' in both cases is _EXMPT_.
+    A root word and its derivatives SHOULD have the same 'root' _Abbreviation_. For example, the _Abbreviation_ for_EXEMPT_ is _EXMPT_, and for _EXEMPTION_ is _EXMPTN_. The 'root _Abbreviation_' in both cases is _EXMPT_.
 
     Always eliminate the vowels in a suffix. Use _G_ as the _Abbreviation_ for the _ING_ suffix, and _MT_ for the _MENT_ suffix. Using this rule, the _Abbreviation_ for _PRINTING_ is _PRINTG_, and an acceptable _Abbreviation_ for _EMPLOYMENT_ is _EMPMT_.
 
-15. If a root word is five or fewer characters and is not abbreviated, its derivatives may have the root portion spelled out or abbreviated, but, if abbreviated, all derivatives must have the same _Abbreviation _of the root portion of the word. For example,_PRINT_ is not abbreviated since it isfive characters. _PRINTING_ can be abbreviated _PRINTG_, and all other derivatives would also contain the root _PRINT_. On the other hand, _CLEAR_ is not abbreviated, but _CLEARANCE_ MAY be abbreviated _CLRNC_. In this case _CLR_MUST be used as the root for all derivatives of _CLEAR_.
+15. If a root word is five or fewer characters and is not abbreviated, its derivatives may have the root portion spelled out or abbreviated, but, if abbreviated, all derivatives must have the same _Abbreviation_ of the root portion of the word. For example, _PRINT_ is not abbreviated since it is five characters. _PRINTING_ can be abbreviated _PRINTG_, and all other derivatives would also contain the root _PRINT_. On the other hand, _CLEAR_ is not abbreviated, but _CLEARANCE_ MAY be abbreviated _CLRNC_. In this case _CLR_ MUST be used as the root for all derivatives of _CLEAR_.
 16. _Abbreviations_ must not spell an expletive.
 
 ## 12.2 Creating Acronyms
 
-The rule for creating a candidate acronym is a simple. An acronym is formed from the first or first few, letters of a series of words. Examples include "FICA" in place of "F ederal I nsurance Contributions Act," and "radar" in place of "RAdio Detecting and Ranging."_Acronyms_ are not to be used in Business Name s; nor are they to be used in descriptions unless they are first spelled out. However, some_ Acronyms_, such as radar and sonar, become so common that they are accepted as words, and are notcapitalized in normal use. _Acronyms_ must not spell an expletive.
+The rule for creating a candidate acronym is a simple. An acronym is formed from the first or first few, letters of a series of words. Examples include "FICA" in place of "F ederal I nsurance Contributions Act," and "radar" in place of "RAdio Detecting and Ranging."_Acronyms_ are not to be used in Business Name s; nor are they to be used in descriptions unless they are first spelled out. However, some _Acronyms_, such as radar and sonar, become so common that they are accepted as words, and are notcapitalized in normal use. _Acronyms_ must not spell an expletive.
 
 ## 12.3 Candidate Term Submittals
 
@@ -1034,24 +1061,70 @@ Candidate terms may be submitted via e-mail to Data Management at [ DataMgmtSupp
 Neither _Entity_ nor _Attribute Names_ MUST contain conjunctions, prepositions, certain adverbs, or phrases listed below unless it is necessary to meaningfully name the object.
 
 Invalid _Entity_ and _Attribute Names_ name components:
-|  |   |
-|--- |--- |
-| A |    Non |
-| An |    Nor |
-| After |   Occasionally |
-| Always |   Off |
-| And |   Often |
-| Because |    On |
-| But |   Or |
-| Do |    Sometimes |
-| Else |   The |
-| For |    Then |
-| Frequently |   Through |
-| How | Thru |
-| However |   To |
-| If |   Too |
-| In |  When | 
-| While | |
+
+
+
+
+<table style="width:80%">
+   <tr>
+    <td>A</td>
+     <td>Non</td> 
+   </tr>
+  <tr>
+    <td>An</td>
+     <td>Nor</td> 
+   </tr>
+    <td>After</td>
+     <td>Occasionally</td> 
+   </tr>
+  <tr>
+    <td>Always</td>
+     <td>Off</td> 
+   </tr>
+    <td>And</td>
+     <td>Often</td> 
+   </tr>
+  <tr>
+    <td>Because</td>
+     <td>on</td> 
+   </tr>
+    <td>But</td>
+     <td>or</td> 
+   </tr>
+  <tr>
+    <td>Do</td>
+     <td>Sometimes</td> 
+   </tr>
+   <tr>
+    <td>Else</td>
+     <td>The</td> 
+   </tr>
+  <tr>
+    <td>For</td>
+     <td>Then</td> 
+   </tr>
+    <td>Frequently</td>
+     <td>Through</td> 
+   </tr>
+  <tr>
+    <td>How</td>
+     <td>Thru</td> 
+   </tr>
+    <td>However</td>
+     <td>To</td> 
+   </tr>
+  <tr>
+    <td>If</td>
+     <td>Too</td> 
+   </tr>
+    <td>In</td>
+     <td>When</td> 
+   </tr>
+  </tr>
+    <td>While</td>
+     <td></td> 
+   </tr>
+</table> 
 
 The word **KEY** is reserved for use in naming key fields.
 
@@ -1107,13 +1180,13 @@ The word **KEY** is reserved for use in naming key fields.
 4. Changed the requirement for general Naming rules
 5. Added General naming Principal section (section 1.3.6)
 6. Add two new data objects Constraints and Stored Procedure at section (1.2)
-7. Updated section 1.4 ** ** _Standard Data Elements and the Enterprise Conceptual Data Model _by replaced the Scope Model with ECDM
-8. Deleted_Acronyms and Abbreviations_ section of the (list under section 1.4). This section is not necessary since Acronyms and abbreviations are defined when mention at first.
-9. Updated Section _2.2 Describing Entity Section _Re-worded sentences for better clarity and completeness, without changing the context of the information being conveyed. Deleted redundant rules
-10. Updated section 2.1 _Entity Types _removed entity type picture illustration. It is tools specific illustration. Didn't add much value to the document
+7. Updated section 1.4 _Standard Data Elements and the Enterprise Conceptual Data Model_ by replaced the Scope Model with ECDM
+8. Deleted _Acronyms and Abbreviations_ section of the (list under section 1.4). This section is not necessary since Acronyms and abbreviations are defined when mention at first.
+9. Updated Section _2.2 Describing Entity Section_ Re-worded sentences for better clarity and completeness, without changing the context of the information being conveyed. Deleted redundant rules
+10. Updated section 2.1 _Entity Types_ removed entity type picture illustration. It is tools specific illustration. Didn't add much value to the document
 11. Added Naming Guidelines for Logical and physical Structure
-12. Added additional rule to Section 2.2 _Naming Entities, _deleted redundant rules
+12. Added additional rule to Section 2.2 _Naming Entities,_ deleted redundant rules
 13. Deleted website reference for FIPS 184:   [ http://www.itl.nist.gov/fipspubs/idef1x.do](http://www.itl.nist.gov/fipspubs/idef1x.doc)c (Out-of -date document)
 14. Modified sections for naming, description and metadata properties for the following with new rules for the following object: Entity, Tables, Column, Triggers, views, relationship and index.  
-15. Added section 10. _Constraints _withType of Constraints, Constraints Name Formats, Constraints metadata properties.
-16. Added section 11. _Stored Procedure _withType of Stored Procedure, Stored Procedure Name Formats, and Stored Procedure metadata properties.
+15. Added section 10. _Constraints_ withType of Constraints, Constraints Name Formats, Constraints metadata properties.
+16. Added section 11. _Stored Procedure_ with Type of Stored Procedure, Stored Procedure Name Formats, and Stored Procedure metadata properties.
