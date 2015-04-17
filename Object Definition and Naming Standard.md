@@ -507,13 +507,13 @@ The following general standards apply in creating an _Attribute Business Name_:
 
 _Attribute Names_ MUST use the format:
 
-   **&lt;prime  term>  (space)  [&lt;modifier(s)>  (space)]   &lt;class  word>**      
+   &lt;prime  term>  (space)  [&lt;modifier(s)>  (space)]   &lt;class  word>     
    e.g..: Building  Identification Number 
 
 
 _In ISO/IEC 11179 terminology:_
 
-   **&lt;object class term> (space) [ &lt;qualifier term> (space)]  &lt;property term> (space)  &lt;representation term> **
+   &lt;object class term> (space) [ &lt;qualifier term> (space)]  &lt;property term> (space)  &lt;representation term>
 
 ### 3.2.2       Class Words/Representation Terms
 
@@ -573,11 +573,11 @@ Migrated foreign key attribute names are illustrated in  Figure 2. Migrated Fore
 
  
 
-![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object_Definition_and_Naming_Standard Fig_2)
+![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object-Definition-and-Naming-Standard-Fig_2)
 
 Role Names by which migrated foreign keys are illustrated in Figure 3 (Role Names on Migrated Foreign Keys), where RELATED is the role given to the migrated foreign key PERSON IDENTIFIER. In the second example PARENT is the role given to attribute migrated through the recursive relationship of ORGANIZATION with itself
 
-![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object_Definition_and_Naming_Standard Fig_3)
+![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object-Definition-and-Naming-Standard-Fig_3)
 
 ## 3.3 Attribute Metadata Properties
 
@@ -646,7 +646,7 @@ The following rules apply when determining a _Relationship Business Name_:
 
 _Relationships_ MUST use the following format:
 
-**&lt;(parent)  entity  name>  (space)  &lt;active  voice  verb  phrase>  (space) &lt;(child)  entity  name>
+&lt;(parent)  entity  name>  (space)  &lt;active  voice  verb  phrase>  (space) &lt;(child)  entity  name>
 
 ## 4.2 Describing Relationships
 
@@ -677,7 +677,7 @@ In some Relational Database Management Systems (RDBMS), _Foreign Key Constraints
 
 **_Foreign Key Constraint Names_ MUST use the following format:**
 
-**FK\_&lt;sequence number>_\_&lt;table name>_\_&lt;referential table name>[\_&lt;purpose or role name>] **
+FK\_&lt;sequence number>_\_&lt;table name>_\_&lt;referential table name>[\_&lt;purpose or role name>]
 
 
 The _Table Names_ used in _Foreign Key Constraint Names_ SHOULD be the _Table Abbreviated Names_ but MAY also be the _Table Business Names_ or _Table Synonym Names_.
@@ -709,7 +709,7 @@ Exceptions:
 
 ### 5.1.1 Name Format:
 
-**[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;Object class term> ** <br>  e.g.: HR\_PERSONAL\_DATA
+[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;Object class term> <br>  e.g.: HR\_PERSONAL\_DATA
 
 ## 5.2 Describing Tables
 
@@ -745,7 +745,7 @@ _Columns_ MUST be named in the same way as their corresponding _Attributes_. Whe
 
 ### 6.1.1Name Format:
 
-**[&lt;modifier(s)> (\_)] &lt;noun>[&lt;qualifier term> (\_)] &lt;object class term> **<br> e.g..: long\_term\_plan\_dsc
+[&lt;modifier(s)> (\_)] &lt;noun>[&lt;qualifier term> (\_)] &lt;object class term> <br> e.g..: long\_term\_plan\_dsc
 
 ## 6.2 Describing Columns
 
@@ -778,7 +778,7 @@ _Exception:_
 
 _View Names_ SHOULD use the format:
 
-**[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;object class term> ** <br>  e.g.: VW\__HR\_ PERSONAL DATA_
+[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;object class term> <br>  e.g.: VW\__HR\_ PERSONAL DATA_
 
 
 ## 7.3 View Metadata Properties
@@ -971,7 +971,7 @@ An action oriented named program or routine stored in a database. Stored procedu
 
 Stored Procedure MUST be named according to one of the following formats:
 
-**Prefix (verb) &lt;\_>, &lt;Prime term>, &lt;qualifier > ** <br>e.g..: Get\_Customer\_Details Insert\_Customer\_Info
+Prefix (verb) &lt;\_>, &lt;Prime term>, &lt;qualifier >  <br>e.g..: Get\_Customer\_Details Insert\_Customer\_Info
 
 ## 11.3 Stored Procedure Metadata Properties
 
