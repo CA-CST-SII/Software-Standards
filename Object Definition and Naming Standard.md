@@ -182,9 +182,9 @@ Several conventions for defining and naming objects are followed in this manual.
 
 Each data object type has a naming standard defined in a format statement. The format statements concisely show how an object's _Business Name_ is formed. In addition to the format statement, names must follow several general rules outlined in each section. The format statements are composed of the following:
 
-  The greater than and less than symbols "< >" enclose each name component. 
-  The square bracket symbols "[]" enclose optional name components.
-  The term "(space)" represents a space character to be used between components.
+ &nbsp;&nbsp;&nbsp;&nbsp;The greater than and less than symbols "< >" enclose each name component. <br>
+ &nbsp;&nbsp;&nbsp;&nbsp;The square bracket symbols "[]" enclose optional name components. <br>
+ &nbsp;&nbsp;&nbsp;&nbsp;The term "(space)" represents a space character to be used between components. <br>
 
 ### 1.3.2       Naming Format Glossary
 
@@ -232,12 +232,10 @@ Candidate _Synonym Names_ may be submitted via e-mail to Data Management at [Dat
 
 Example of Business Name vs. Abbreviated Name vs. Synonym name :
 
-An entity that represented a bank account held by a customer for the purpose of borrowing money may be named a "loan account" a have the following names:
-Business Name:  LOAN ACCOUNT
-
-Abbreviated Name: LOAN\_ACCT – The standard abbreviation for LOAN is LOAN and for ACCOUNT it is ACCT.
-
-Synonym Name: LNACCT – To further shorten the name LOAN is reduced to LN and combined with ACCT.
+- An entity that represented a bank account held by a customer for the purpose of borrowing money may be named a "loan account" a have the following names:
+Business Name:  LOAN ACCOUNT <br>
+- Abbreviated Name: LOAN\_ACCT – The standard abbreviation for LOAN is LOAN and for ACCOUNT it is ACCT.<br>
+- Synonym Name: LNACCT – To further shorten the name LOAN is reduced to LN and combined with ACCT.<br>
 
 In data models and databases, the _Business Names, Abbreviated Names,_ and _Synonym Names_ are used as follows:
 
@@ -332,7 +330,6 @@ There are five types of entities.
 **Supertype** – An Entity that represents a general class of business objects that may be broken down into a hierarchy of more specific classes. A _Supertype Entity_'s attributes apply to all of its _Subtype Entities_, and the _Subtypes_ inherit its identifier. It is also known as a Generic entity.
 
 **Subtype** – An Entity that identifies or represents an occurrence of another Entity with the same Primary Key but has a narrower definition, a subset of different Attributes, and/or different relationships. It inherits all the attributes of the _Supertype Entity_. It is also known as a _Category Entity._
-**Subtype** – An Entity that identifies or represents an occurrence of another Entity with the same Primary Key but has a narrower definition, a subset of different Attributes, and/or different relationships. It inherits all the attributes of the _Supertype Entity_. It is also known as a _Category Entity._
 
 ## 2.2 Describing Entities
 
@@ -420,9 +417,7 @@ All Entities MUST be named according to one of the formats described below:
 
 ### 2.3.2       Prime Terms/Object Class Terms
 
-An _Entity's Business Name_ is also known as _a prime term_ or _object class term_, which may be composed of more than one word. The designation of a prime term/object class term is critical
-
-to the successful implementation of establishing standard data elements. _Prime terms_ reflect the subject area information used by various business areas in the Department. They are also a key component of _Attribute_ names. For _Attribute Abbreviated Names_, the prime term/object class term may be expressed as the _Synonym Name_ instead of the _Entity Abbreviated Name_ to satisfy the 30 characters or less length requirement.
+An _Entity's Business Name_ is also known as _a prime term_ or _object class term_, which may be composed of more than one word. The designation of a prime term/object class term is critical to the successful implementation of establishing standard data elements. _Prime terms_ reflect the subject area information used by various business areas in the Department. They are also a key component of _Attribute_ names. For _Attribute Abbreviated Names_, the prime term/object class term may be expressed as the _Synonym Name_ instead of the _Entity Abbreviated Name_ to satisfy the 30 characters or less length requirement.
 
 ## 2.4 Entity Metadata Properties
 
@@ -512,13 +507,13 @@ The following general standards apply in creating an _Attribute Business Name_:
 
 _Attribute Names_ MUST use the format:
 
-   &lt;prime  term>  (space)  [&lt;modifier(s)>  (space)]   &lt;class  word>      
+   **&lt;prime  term>  (space)  [&lt;modifier(s)>  (space)]   &lt;class  word>**      
    e.g..: Building  Identification Number 
 
 
 _In ISO/IEC 11179 terminology:_
 
-   &lt;object class term> (space) [ &lt;qualifier term> (space)]  &lt;property term> (space)  &lt;representation term> 
+   **&lt;object class term> (space) [ &lt;qualifier term> (space)]  &lt;property term> (space)  &lt;representation term> **
 
 ### 3.2.2       Class Words/Representation Terms
 
@@ -578,11 +573,11 @@ Migrated foreign key attribute names are illustrated in  Figure 2. Migrated Fore
 
  
 
-![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object_FIG_2.png)
+![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object_Definition_and_Naming_Standard Fig_2)
 
 Role Names by which migrated foreign keys are illustrated in Figure 3 (Role Names on Migrated Foreign Keys), where RELATED is the role given to the migrated foreign key PERSON IDENTIFIER. In the second example PARENT is the role given to attribute migrated through the recursive relationship of ORGANIZATION with itself
 
-![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object_FIG_3.png)
+![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object_Definition_and_Naming_Standard Fig_3)
 
 ## 3.3 Attribute Metadata Properties
 
@@ -651,7 +646,7 @@ The following rules apply when determining a _Relationship Business Name_:
 
 _Relationships_ MUST use the following format:
 
-&lt;(parent)  entity  name>  (space)  &lt;active  voice  verb  phrase>  (space) &lt;(child)  entity  name>
+**&lt;(parent)  entity  name>  (space)  &lt;active  voice  verb  phrase>  (space) &lt;(child)  entity  name>
 
 ## 4.2 Describing Relationships
 
@@ -682,11 +677,10 @@ In some Relational Database Management Systems (RDBMS), _Foreign Key Constraints
 
 **_Foreign Key Constraint Names_ MUST use the following format:**
 
-FK\_&lt;sequence number>_\_&lt;table name>_\_&lt;referential table name>[\_&lt;purpose or role name>] 
+**FK\_&lt;sequence number>_\_&lt;table name>_\_&lt;referential table name>[\_&lt;purpose or role name>] **
 
 
 The _Table Names_ used in _Foreign Key Constraint Names_ SHOULD be the _Table Abbreviated Names_ but MAY also be the _Table Business Names_ or _Table Synonym Names_.
-
 The _purpose, role name or sequence_ is typically only used when more than one constraint exists between two tables. The _purpose_ should describe the functional role of the constraint and MUST be composed of _Standard Business Terms_. The _role_ may represent the role name of the column that is being constrained. The _sequence_ simply differentiates between the two constraints but does not provide any additional information and is therefore the least desirable.
 
 
@@ -715,7 +709,7 @@ Exceptions:
 
 ### 5.1.1 Name Format:
 
-[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;Object class term>   e.g.: HR\_PERSONAL\_DATA
+**[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;Object class term> ** <br>  e.g.: HR\_PERSONAL\_DATA
 
 ## 5.2 Describing Tables
 
@@ -751,7 +745,7 @@ _Columns_ MUST be named in the same way as their corresponding _Attributes_. Whe
 
 ### 6.1.1Name Format:
 
-[&lt;modifier(s)> (\_)] &lt;noun>[&lt;qualifier term> (\_)] &lt;object class term>  e.g..: long\_term\_plan\_dsc
+**[&lt;modifier(s)> (\_)] &lt;noun>[&lt;qualifier term> (\_)] &lt;object class term> **<br> e.g..: long\_term\_plan\_dsc
 
 ## 6.2 Describing Columns
 
@@ -777,14 +771,14 @@ The same general rules for naming an entity also apply to naming Views.
 
 _Exception:_
 
-     - View name MUST have a prefix "VW_"
+- View name MUST have a prefix "VW_"
 
 ### 7.2.1       View Name Format
 
 
 _View Names_ SHOULD use the format:
 
-[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;object class term>   e.g.: VW\__HR\_ PERSONAL DATA_
+**[&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;object class term> ** <br>  e.g.: VW\__HR\_ PERSONAL DATA_
 
 
 ## 7.3 View Metadata Properties
@@ -928,7 +922,7 @@ Constraints MUST be named according to one of the following formats:
   </tr>
   <tr>
     <td>A unique constraint</td>
-    <td>The unique constraint MUST be named after the table plus a suffix of "_unq". If more than one unique constraint is required, add a numeric suffix of 1 through 9.</td>
+    <td>The unique constraint MUST be named after the table plus a suffix of "_unq". <br>If more than one unique constraint is required, add a numeric suffix of 1 through 9.</td>
     <td>proj_et_unq </td>
     <td>prcl_cnty_unq1</td>
     <td>prcl_cnty_unq2</td>
@@ -939,6 +933,13 @@ Constraints MUST be named according to one of the following formats:
     <td>proj_et_fk </td>
     <td>bdgk_acct_fk1</td>
     <td>bdgk_acct_fk2</td>
+  </tr>
+    <tr>
+    <td>Check Constraints</td>
+    <td>If the check condition references only one column, name the constraint after the column name plus a suffix of "_chk".<br> If more than one check condition is required per table or column, add a numeric suffix of 1 through 9</td>
+    <td>proj_id_ch</td>
+    <td>bdgk_cnty_chk1</td>
+    <td>bdgk_cnty_chk2</td>
   </tr>
 </table>
 
@@ -970,7 +971,7 @@ An action oriented named program or routine stored in a database. Stored procedu
 
 Stored Procedure MUST be named according to one of the following formats:
 
-Prefix (verb) &lt;\_>, &lt;Prime term>, &lt;qualifier > e.g..: Get\_Customer\_Details Insert\_Customer\_Info
+**Prefix (verb) &lt;\_>, &lt;Prime term>, &lt;qualifier > ** <br>e.g..: Get\_Customer\_Details Insert\_Customer\_Info
 
 ## 11.3 Stored Procedure Metadata Properties
 
