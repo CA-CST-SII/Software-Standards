@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>DataReader must be called using CommandBehavior.CloseConnection enumeration</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>DataReader must be called using CommandBehavior.CloseConnection enumeration</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>It is highly recommended to tie the lifetime of the connection to the SqlDataReader object, by passing the CommandBehavior.CloseConnection enumerated value to the ExecuteReader method. What the CommandBehavior.CloseConnection does is close the underlying connection whenever the reader is closed.
+It is quite easy to forget to close database connections, and thereby waste resources that may be quite scarce, leading to serious application availability and stability issues.</p>
+<h5>Description</h5>
+<p>The purpose of this quality rule is to detect calls to the DataReader&#39;s ExecuteReader method made without the use the CommandBehavior.CloseConnection style. This quality rule is valid for any class that the inherit directly or indirectly from IDataReader including SqlDataReader,
+OleDbDataReader, OracleDataReader, OdbcDataReader.</p>
+<h5>Remediation</h5>
+<p>Use theCommandBehavior.CloseConnection call style when calling the ExecuteReader method.</p>
+<h5>Reference</h5>
+<p>.NET Data Access Architecture Guide http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnbda/html/daag.asp Know Dot Net - IDataReader and the CommandBehavior Enumeration http://www.knowdotnet.com/articles/schemas2.html</p>
+<h5>Sample</h5>
+<pre>
+String strConn =
+ConfigurationSettings.AppSettings[&quot;myConnection&quot;].ToString();
+SqlConnection sqlConn = new SqlConnection(strConn);
+
+SqlCommand sqlComm = new SqlCommand(&quot;p_my_procedure&quot;, sqlConn);
+sqlComm.CommandType = CommandType.StoredProcedure;
+
+sqlComm.Parameters.Add(new SqlParameter(&quot;@bitSomeResult&quot;, SqlDbType.Bit));
+sqlComm.Parameters[&quot;@bitSomeResult&quot;].Direction = ParameterDirection.Output;
+
+sqlConn.Open();
+SqlDataReader dr = sqlComm.ExecuteReader();
+
+String strSomeResult =
+sqlComm.Parameters[&quot;@bitSomeResult&quot;].Value.ToString(); 
+
+if (strSomeResult.ToLower() == &quot;True&quot;.ToLower())
+{
+//Do something
+}
+else
+{
+//Do something else
+}
+
+sqlConn.Close();
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+SqlDataReader reader;
+SqlCommand cmd = new SqlCommand(&quot;SELECT Facility FROM Tbl_Facilities&quot;, cn);
+try
+{
+   if(cn.State != ConnectionState.Open){cn.Open();}
+}
+catch(SqlException ex)
+{
+    Debug.Assert(false, ex.ToString);
+}
+try
+{ 
+    reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+}
+catch(System.Exception ex)
+{
+    Debug.Assert(false, ex.ToString());
+}
+while(reader.Read())
+{
+       Console.WriteLine(reader.GetString(0));
+}
+reader.Close;
+Console.WriteLine(cn.State);//Closed
+}
+</pre>
+<h5>Output</h5>
+<p>List all methods where a call to ExecuteReader without the CommandBehavior.CloseConnection parameter.</p>
+<h5>Total</h5>
+<p>Number of methods with a call to ExecuteReader</p>
+<h5>Metric ID</h5>
+<p>7258</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

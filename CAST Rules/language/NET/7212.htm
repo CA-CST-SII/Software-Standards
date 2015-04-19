@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid instantiations inside loops</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid instantiations inside loops</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>One of the fundamental OO performance management principles is this: Avoid excessive object creation. This doesn&#39;t mean that you should give up the benefits of object-oriented programming by not creating any objects, but you should be wary of object creation inside of tight loops when
+executing performance-critical code. Object creation is expensive enough that you should avoid unnecessarily creating temporary or intermediate objects in situations where performance is an issue.</p>
+<h5>Description</h5>
+<p>Reports all artifacts with loops (for, while, do while) that contain object instantiations (object creation).. .NET artifacts include all methods and constructors.</p>
+<h5>Sample</h5>
+<pre>
+public class MyLoop {
+     public void printCount() {
+         for (int i = 0; i &lt; 100; i++) {
+             StringBuilder sb = new StringBuilder(); // VIOLATION
+             sb.Append(&quot;count = &quot;);
+             sb.Append(i);
+            Console.WriteLine(sb);
+         }
+     }
+ }
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+public class MyLoop {
+     public void printCount() {
+         StringBuilder sb = new StringBuilder(); // FIXED
+         for (int i = 0; i &lt; 100; i++) {
+             sb.Length = 0;
+             sb.Append(&quot;count = &quot;);
+             sb.Append(i);
+              Console.WriteLine(sb);
+         }
+     }
+ }
+</pre>
+<h5>Total</h5>
+<p>Total number of methods and constructors</p>
+<h5>Metric ID</h5>
+<p>7212</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

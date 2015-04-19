@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Collection must be the same between getter and setter</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Collection must be the same between getter and setter</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Hibernate or JPA implementation compares the objects by value not by object identity to determine if the property&#39;s persistent state needs to be updated. However, there is one very important exception. Collections are compared by identity. For a property mapped as a persistent collection,
+you should return exactly the same collection instance from the getter method as Hibernate passed to the setter method. If you don&#39;t, Hibernate will update the database, even if no update is necessary, every time the session synchronizes state held in memory with the database. This doesn&#39;t
+mean you shouldn&#39;t return a different collection if you really are replacing the current collection with a new collection with completely different elements. In certain cases, this behavior can even be an opportunity to increase performance.</p>
+<h5>Description</h5>
+<p>Reports all getters that don&#39;t return the same collection instance as it was assigned by Hibernate or JPA to the setter method: any modification of the setter parameter or the attribute returned by the getter will be detected and reported. In setter method, a modification occur when the
+class attribute is not initialized with the parameter directly. And in the getter when the return value is not the class attribute itself. To perform this check, any call to a method or a constructor in the getter or setter will be considered as a violation. This metric take into account the case
+where getter and setter are implemented on an inherited class of the persistent class (can happen when inherited fields are persistent)</p>
+<h5>Remediation</h5>
+<p>Don&#39;t modify the collection.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 74 The Java Persistence API page 122 - ISBN 1-932394-88-5</p>
+<h5>Sample</h5>
+<pre>
+public class Category {
+  ...
+  private List theList;
+
+  public void setTheList(List myList) {
+    theList =new ArrayList(myList) ; // VIOLATION
+  }
+
+  public List getTheList() {
+    return new ArrayList(theList); // VIOLATION
+  }
+...
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+public class Category {
+  ...
+  private List theList;
+
+  public void setTheList(List myList) {
+    theList =myList ; // FIXED
+  }
+
+  public List getTheList() {
+    return theList; // FIXED
+  }
+...
+}
+</pre>
+<h5>Output</h5>
+<p>List all setter or getter methods of a persistent fields that modify its collection parameter or return value. It provides the following information: Method full name</p>
+<h5>Total</h5>
+<p>The total is the total number of hibernate or JPA persistent fields setters and getters that have a Collection as parameter or return value.</p>
+<h5>Metric ID</h5>
+<p>7498</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Triggers should not directly modify tables, a procedure or function should be used instead</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Triggers should not directly modify tables, a procedure or function should be used instead</h4>
+<hr>
+<h5>Technology</h5>
+<p>Forms, PL/SQL</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>1</p>
+<h5>Rationale</h5>
+<p>To optimize the maintenance of the code, modifying data in a table should always be done through a procedure or a function. This enables the centralization of update, insert or delete operations inside appropriate procedure or function making future changes easier to implement.</p>
+<h5>Description</h5>
+<p>This metric retrieves all database triggers which directly access tables for update, insert or delete operations.</p>
+<h5>Remediation</h5>
+<p>Modify the design of the Trigger so that data modification is done by calling the appropriate procedure or function.</p>
+<h5>Output</h5>
+<p>This report lists all Triggers directly modifying data (insert, update or delate) in Tables. It provides the following information: - Trigger full name, - accessed Table</p>
+<h5>Total</h5>
+<p>total is the number of schema triggers</p>
+<h5>Metric ID</h5>
+<p>1606</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

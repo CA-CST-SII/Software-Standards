@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using ALTER</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using ALTER</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>The ALTER statement is error-prone. If it is used in Cobol programs, then GO TO statements as they appear in the listing may not be those that will be encountered by the program at run time. The ALTER statement makes the maintenance programmer&#39;s job more difficult.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs using ALTER statements to manage their control flow.</p>
+<h5>Remediation</h5>
+<p>If you need to change the processing sequence due to a certain condition, then use an alternative set of PERFORM or GO TO statements.</p>
+<h5>Reference</h5>
+<p>IBM Enterprise Cobol for z/OS - Programming Guide</p>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in the source code: - ALTER statement</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>5062</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

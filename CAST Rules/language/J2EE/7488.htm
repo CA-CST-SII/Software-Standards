@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Use lazy fetching for collection</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Use lazy fetching for collection</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>In a lazy association, the associated object or collection is fetched when it&#39;s first accessed. This results in a new request to the database (unless the associated object is cached). This option is almost always used for collection mappings (it should be the default, and we recommend that
+you consider it as a default for all your collection mappings). Generally, the performance benefits are such that you will want to use lazy instantiation wherever possible (compared with the massive task of reading in all of the entities concerned) When eager fetching is used, the associated object
+or collection is fetched together with the owning object, using an SQL outer join, and no further database request is required. But the issue is that it will always be done like this and if the number of row is high, the performance will be affected. It is more common to specify the use of this
+strategy (eager fetching) at runtime for a particular HQL or criteria query to avoid that a lazy fetching requires several queries.</p>
+<h5>Description</h5>
+<p>Reports all collection association (set, list, bag, idbag, map) that don&#39;t use lazy fetching strategy. This strategy is set through the lazy property set to &quot;true&quot;.</p>
+<h5>Remediation</h5>
+<p>When the table contains lot of rows, it is better to use a lazy fetching strategy and use a eager strategy at runtime for a particular HQL query, criteria query or JPQL query to avoid that the lazy fetching requires several queries.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 148</p>
+<h5>Sample</h5>
+<pre>
+&lt;hibernate-mapping &gt;
+  
+  &lt;class name=&quot;A&quot; table =&quot;A&quot;&gt; 
+    &lt;id name=&quot;id&quot;&gt;
+      &lt;generator class=&quot;increment&quot;/&gt;
+    &lt;/id&gt;
+
+    // VIOLATION (it could have been lazy = &quot;false&quot;)
+    &lt;set name=&quot;b_items&quot; table =&quot;B&quot;&gt; 
+      &lt;key column=&quot;B_ID&quot;/&gt;
+      &lt;one-to-many class=&quot;B&quot;/&gt;
+    &lt;/array&gt;
+  &lt;/class&gt;
+
+&lt;/hibernate-mapping&gt;
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+&lt;hibernate-mapping &gt;
+  
+  &lt;class name=&quot;A&quot; table =&quot;A&quot;&gt; 
+    &lt;id name=&quot;id&quot;&gt;
+      &lt;generator class=&quot;increment&quot;/&gt;
+    &lt;/id&gt;
+
+    // FIXED
+    &lt;set name=&quot;b_items&quot; lazy=&quot;true&quot; table =&quot;B&quot;&gt; 
+      &lt;key column=&quot;B_ID&quot;/&gt;
+      &lt;one-to-many class=&quot;B&quot;/&gt;
+    &lt;/array&gt;
+  &lt;/class&gt;
+
+&lt;/hibernate-mapping&gt;
+</pre>
+<h5>Output</h5>
+<p>List all Hibernate Entity Property and JPA Entity Property of type collection that does not use lazy fetching. It provides the following information: Hibernate Entity Property Full Name or JPA Entity Property Full Name</p>
+<h5>Total</h5>
+<p>number of Hibernate Entity Property or JPA Entity Property of type collection</p>
+<h5>Metric ID</h5>
+<p>7488</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid data members that are not private</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid data members that are not private</h4>
+<hr>
+<h5>Technology</h5>
+<p>C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>All data members of types declared as &#39;class&#39; should be defined as &#39;private&#39;. They should not be &#39;public&#39; or &#39;protected&#39;. By implementing class interfaces with member functions, the implementer achieves precise control over how the object state can be modified and
+allows a class to be maintained without affecting clients. This is one of the main benefits and principles of Object-Oriented design and coding: Encapsulation. If direct access to the object state is allowed through public members, there is no way for the class to ensure its invariants are
+respected. This is a significant increase in the cost and risk of changes as well as an increase in security risks. In some cases, a class is only an aggregate of values, with no specific behavior and no invariants to preserve. In this situation, it is better to make all data public, by declaring
+it as a &#39;struct&#39; (this is equivalent to a &#39;class&#39; immediately followed by &#39;public&#39;, but it clearly documents the intent).</p>
+<h5>Description</h5>
+<p>This rule searches for C++ class data members that are not defined with the &quot;private&quot; visibility.</p>
+<h5>Remediation</h5>
+<p>Change the the visibility to &quot;private&quot; and implement member functions to access data members.</p>
+<h5>Reference</h5>
+<p>High Integrity CPP Rule 3.4.1</p>
+<h5>Sample</h5>
+<pre>
+class Fraction
+{
+public:
+    // Invariants: 
+    // The fraction is stored in irreducible form: 2/4 is stored as 1/2
+    // The denominator cannot be null
+    // The denominator cannot be negative
+    Fraction(int num, int denominator);
+    int numerator;   // violation
+    int denominator; // violation
+    // ...
+};
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class Fraction
+{
+public:
+    // Invariants: 
+    // The fraction is stored in irreducible form: 2/4 is stored as 1/2
+    // The denominator cannot be null
+    // The denominator cannot be negative
+    Fraction(int num, int denominator);
+    void setDenominator(int denominator)
+    {
+        assert(denominator != 0);
+        myDenominator = denominator;
+        normalize();
+    }
+private:
+    void normalize(); // reduce to lowest terms and make the denominator positive
+    int myNumerator;
+    int myDenominator;
+    // ...
+};
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ class member with violations, the Quality Rule provides: - visibility - Bookmarks for violation patterns found in the source code: - class member declaration</p>
+<h5>Total</h5>
+<p>Number of C++ class members</p>
+<h5>Metric ID</h5>
+<p>630</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

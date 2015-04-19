@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Variables defined in Working-Storage section must be initialized before to be read</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Variables defined in Working-Storage section must be initialized before to be read</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Data defined in the WORKING-STORAGE section is used to perform specific operations in programs. It must be initialized before being read (in assignment and comparison statements). If data is moved or compared to other data without having been initialized, then the logic of the code could be
+unpredictable and problems can occur in production.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol Programs containing variables that are used without having been initialized. Only variables defined in the WORKING-STORAGE section are taken into account. A variable is considered as initialized in the following conditions: - Its definition has a VALUE clause - It is
+valued by a statement (for instance, MOVE, ADD, COMPUTE, INITIALIZE, ...)</p>
+<h5>Remediation</h5>
+<p>Data defined in the WORKING-STORAGE section can be initialized by using the VALUE clause in the DATA division. They can also be initialized in the PROCEDURE division at the beginning of the section or paragraph using them.</p>
+<h5>Sample</h5>
+<pre>
+01 VARIN PIC X(10).
+...
+MOVE VARIN TO VARSTATE.
+IF VARSTATE EQUALS SPACES
+    PERFORM P100-BEG
+ELSE
+    PERFORM P200-GO
+END-IF
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+01 VARIN PIC X(10) VALUE SPACES.
+...
+MOVE VARIN TO VARSTATE.
+IF VARSTATE EQUALS SPACES
+    PERFORM P100-BEG
+ELSE
+    PERFORM P200-GO
+END-IF
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - Statement using the variable</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>8034</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

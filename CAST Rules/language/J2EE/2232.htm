@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Pages should use error handling page</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Pages should use error handling page</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>While a thrown exception&#39;s stack trace proves extremely useful for developers when debugging their code, it is rarely desirable to share an entire exception stack trace with the software&#39;s users. Lengthy stack traces are not aesthetically pleasing and can increase security risks by
+exposing information that does not need to be released. JSPs allow developers to catch and handle exceptions in the code, resulting in more secure and aesthetically pleasing exception handling.</p>
+<h5>Description</h5>
+<p>When the web.xml file doesn&#39;t reference an error page through the &lt;error-page&gt; directive, this Quality Rule reports each page that does not reference an error page directive (&lt;%@ page errorPage=&quot;error.jsp&quot; %&gt;) except for the error page itself (page with the directive
+&lt;%@ page isErrorPage=&quot;true&quot;%&gt;)</p>
+<h5>Remediation</h5>
+<p>In small applications, you can specify the JSP page directive&#39;s errorPage attribute. For an enterprise application using a combination of servlets, filters and JSP pages a shared error handler for all these component types allows you to better control error handling and fine-tune it in one
+place when needed. To do this, you can specify an error handler in the web.xml file through the error-page directive where you need to reference a JSP error page or a servlet (that has the advantage of easily capturing information about the error and then forwarding it to a page).</p>
+<h5>Reference</h5>
+<p>Java Enterprise Best Practices ISBN 13: 9780596003845 page 252 http://www.objectsource.com/j2eechapters/Ch18-Exception_Handling.htm http://www.owasp.org/index.php/Reviewing_Code_for_Error_Handling#Vulnerable_Patterns_for_Error_Handling http://java.sun.com/products/jsp/html/exceptions.fm.html
+http://www.stardeveloper.com/articles/display.html?article=2001072401&amp;page=1</p>
+<h5>Output</h5>
+<p>This report lists all JSP pages not using error page (except the error pages themselves) and the web.xml file when no error-page is specified in the web.xml file. It provides the following information: JSP page full file name</p>
+<h5>Total</h5>
+<p>The list of JSP files except the error pages + the web.xml</p>
+<h5>Metric ID</h5>
+<p>2232</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

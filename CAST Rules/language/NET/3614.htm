@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using String.Empty for empty string tests</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using String.Empty for empty string tests</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>If you want to test for empty strings, test the length (compare with 0) of the string instead. This is over twice as quick. Also as String objects can be null, you can use String.IsNullOrEmpty instead - however, do not compare it to true (ie not if (StringIsNullOrEmpty (myString) == true), just
+use: if (StringIsNullOrEmpty (myString) ).</p>
+<h5>Description</h5>
+<p>String.Empty should not be used for empty string tests.</p>
+<h5>Remediation</h5>
+<p>Test the length of the string to 0. Alternatively, you can use the String.IsNullOrEmpty method for better robustness.</p>
+<h5>Reference</h5>
+<p>http://dotnetperls.com/Content/IsNullOrEmpty-Samples.aspx, http://www.csharper.net/blog/string_empty_vs_empty_quotes___quot__quot___vs_string_length.aspx, http://codebetter.com/blogs/brendan.tompkins/archive/2003/10/14/2585.aspx, http://dotnetperls.com/fxcop-performance-warnings</p>
+<h5>Sample</h5>
+<pre>
+If ( MyString == String.Empty ) ,,,
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+If ( MyString.Length == 0) ..
+
+or Better for reliability
+if ( String.IsNullOrEmpty( MyString) )
+</pre>
+<h5>Output</h5>
+<p>This report lists all uses of String.Empty (or string.Empty) in a test (ie not in an affectation or as a parameter).</p>
+<h5>Total</h5>
+<p>Total number of methods and constructors (in the application).</p>
+<h5>Metric ID</h5>
+<p>3614</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

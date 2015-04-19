@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Stateful Beans not removed</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Stateful Beans not removed</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>Since stateful session beans cannot be pooled and reused like stateless beans, there is a real danger of accumulating too many of them if the remove method is not implemented or if this method is not called.</p>
+<h5>Description</h5>
+<p>Reports all classes that define an instance variable or local variable whose type is a local or remote business interface of a Stateful Session and that don&#39;t invoke the remove method in any of its methods. It will also report these classes when the Stateful Session Bean doesn&#39;t
+implement the remove method. The remove method is defined by means of the @Remove annotation or remove-method deployment descriptor element on the Sateful Session Bean. Note that in the case of several EJB instance there is not grantee that all EJB instance will be removed. We only check there is
+at least one call to remove method for the concerned class</p>
+<h5>Remediation</h5>
+<p>Call this method from the client side</p>
+<h5>Reference</h5>
+<p>EJB 3 in Action (ISBN 1-933988-34-7) page 94 http://what-when-how.com/enterprise-javabeans-3/stateful-session-beans-ejb-3/</p>
+<h5>Sample</h5>
+<pre>
+@Remote
+public interface MyRemoteBean {
+    public int aMethod();
+    public void removeMethod();
+}
+
+@Stateful
+public class MyBean implements MyRemoteBean {
+    ...
+    public int aMethod() {
+        ...
+    }
+
+    @Remove
+    public void removeMethod() {
+        ...
+    }
+}
+
+public class Client { // VIOLATION
+
+    private static @EJB MyRemoteBean myClientBean;
+
+    public static void main(String[] args) {
+        Client client = new Client(args);
+        client.callServer();
+    }
+
+    public Client(String[] args) {}
+
+    public void callServer() {
+        try {
+            int res=myClientBean.aMethod();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+@Remote
+public interface MyRemoteBean {
+    public int aMethod();
+    public void removeMethod();
+}
+
+@Stateful
+public class MyBean implements MyRemoteBean {
+    ...
+    public int aMethod() {
+        ...
+    }
+
+    @Remove
+    public void removeMethod() {
+        ...
+    }
+}
+
+public class Client {
+
+    private static @EJB MyRemoteBean myClientBean;
+
+    public static void main(String[] args) {
+        Client client = new Client(args);
+        client.callServer();
+    }
+
+    public Client(String[] args) {}
+
+    public void callServer() {
+
+        try {
+            int res=myClientBean.aMethod();
+            myClientBean.removeMethod(); // FIXED
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all classes that define a variable whose type is a remote or local business interface of a stateful bean and that don&#39;t call the remove method. It provides the following information: Class Full Name</p>
+<h5>Total</h5>
+<p>classes that define a variable whose type is a remote or local business interface of a stateful bean</p>
+<h5>Metric ID</h5>
+<p>7940</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

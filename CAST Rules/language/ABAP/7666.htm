@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using SELECT ... ENDSELECT statement on XXL Tables</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using SELECT ... ENDSELECT statement on XXL Tables</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>XXL</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>The SELECT ... ENDSELECT works as a loop fetching single record for every loop pause. Basically, it works like a client cursor which will generate too much traffic on the network and communications between the application server and the database server. When used on extremely large tables, this
+statement becomes a performance killer.</p>
+<h5>Description</h5>
+<p>This rule retrieves all ABAP artifacts using SELECT ... ENDSELECT statement on tables and views. This rule applies only XXL database tables. Loops using the addition UP TO 1 ROWS (or UP TO ONE ROWS) are not considered as violations. XXL tables are extremely large tables which contain a huge
+amount of data. The threshold that determines when a table is considered to contain a huge amount of data can be configured by the user.</p>
+<h5>Remediation</h5>
+<p>Use preferably the &quot;SELECT... INTO TABLE...+ LOOP AT Table&quot; tatement.</p>
+<h5>Sample</h5>
+<pre>
+* violation
+SELECT name
+    FROM dtab
+    WHERE typeno = 2.
+...
+ENDSELECT.
+
+* no violation
+SELECT prodid INTO lv_prodid
+    FROM prodlist
+    UP TO 1 ROWS
+    WHERE typeid = ps_alty-type_id.
+ENDSELECT.
+
+IF NOT lv_prodid IS INITIAL
+...
+ENDIF.
+
+* no violation
+SELECT prodid INTO lv_prodid
+    FROM prodlist
+    UP TO ONE ROWS
+    WHERE typeid = ps_alty-type_id.
+ENDSELECT.
+
+IF NOT lv_prodid IS INITIAL
+...
+ENDIF.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+* remediation
+SELECT name INTO TABLE itab 
+    FROM dtab
+    WHERE typeno = 2.
+IF sy-subrc = 0.
+    LOOP AT itab.
+...
+    ENDLOOP.
+ELSE.
+    MESSAGE e000 WITH text-117.
+ENDIF.
+</pre>
+<h5>Output</h5>
+<p>Associated to each ABAP Artifact with violations, the Quality Rule provides: - The XXL SAP Table/View name</p>
+<h5>Total</h5>
+<p>Number of ABAP Artifacts using XXL SAP Tables and XXL SAP Views.</p>
+<h5>Metric ID</h5>
+<p>7666</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

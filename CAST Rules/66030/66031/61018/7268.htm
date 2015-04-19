@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Dispose() methods should call GC.SuppressFinalize</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Dispose() methods should call GC.SuppressFinalize</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>Because the cleanup code executed at dispose-time is a superset of the code executed at the finalize-time, there is no need to call the finalize-time code during object finalization after the object has been disposed. Moreover, keeping objects that don&#39;t need to be finalized in the
+finalization queue has a cost associated with it. This is why the Dispose() method should call GC.SuppressFinalize, which removes the object from the finalization queue and thus prevents unnecessary finalization.</p>
+<h5>Description</h5>
+<p>List all Dispose() methods that do not call GC.SuppressFinalize(). This applies only for Dispose() method defined in classes which implement the IDisposable interface.</p>
+<h5>Reference</h5>
+<p>Resource Management in .NET by Krzysztof Cwalina Program Manager - Microsoft .NET Framework http://www.gotdotnet.com/team/libraries/whitepapers/resourcemanagement/resourcemanagement.aspx</p>
+<h5>Sample</h5>
+<pre>
+public void Dispose() {
+
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+public void Dispose(){
+
+ Dispose(true);
+
+ GC.SupressFinalize(this);
+
+}
+</pre>
+<h5>Total</h5>
+<p>The Total procedure counts only the Dispose() methods without parameters and defined in classes which implement the IDisposable interface.</p>
+<h5>Metric ID</h5>
+<p>7268</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

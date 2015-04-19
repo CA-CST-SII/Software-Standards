@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid unchecked return code (SQLCODE) after EXEC SQL query</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid unchecked return code (SQLCODE) after EXEC SQL query</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>SQL statements can throw warnings and errors. It is therefore important to check their return code before executing other statements in order to avoid data corruption and program malfunction. Furthermore, the SQL query and its associated return code check must be located in the same paragraph in
+order to allow developers to be certain that a check is implemented and to quickly identify which actions are performed in terms of error management.</p>
+<h5>Description</h5>
+<p>This rule searches for COBOL programs that access relational databases without checking the SQLCODE return code after SQL queries. SQL queries containing following verbs are checked: SELECT, INSERT, UPDATE, DELETE, OPEN, and FETCH. The rule checks the following cases: Case 1: direct check EXEC
+SQL ... END-EXEC IF SQLCODE = xxx END-IF Case 2: indirect check with variable EXEC SQL ... END-EXEC MOVE SQLCODE TO VAR. IF VAR = xxx END-IF Case 3: indirect check with 88-level items 01 VAR PIC 999. 88 VAL100 VALUE 100. ....... EXEC SQL ... END-EXEC MOVE SQLCODE TO VAR. IF VAL100 END-IF Note:
+&quot;MOVE SQLxxx TO &lt;variable&gt;&quot; and DISPLAY statements can be inserted between the SQL query and the return code check.</p>
+<h5>Remediation</h5>
+<p>Check the value of the SQLCODE variable after each database access action in the PROCEDURE DIVISION. Then take any necessary action.</p>
+<h5>Reference</h5>
+<p>IBM Enterprise Cobol for z/OS - Programming Guide</p>
+<h5>Sample</h5>
+<pre>
+EXEC SQL
+  SELECT ACT_NO, EENDDATE
+  INTO :ACT-NO, :EENDDATE
+  FROM MP_PROJ_ACT
+  WHERE PROJ_NO = :WS-PROJ-NO
+END-EXEC
+
+MOVE ACT-NO TO OTHER-VAR
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+EXEC SQL
+  SELECT ACT_NO, EENDDATE
+  INTO :ACT-NO, :EENDDATE
+  FROM MP_PROJ_ACT
+  WHERE PROJ_NO = :WS-PROJ-NO
+END-EXEC
+
+EVALUATE SQLCODE
+    WHEN 0
+         CONTINUE
+    WHEN OTHER
+         PERFORM 950-DBERROR
+END-EVALUATE
+
+MOVE ACT-NO TO OTHER-VAR
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of unchecked return codes - Bookmarks for violation patterns found in source code: - EXEC SQL query that is not followed by a test of SQLCODE</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs accessing relational databases</p>
+<h5>Metric ID</h5>
+<p>7690</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

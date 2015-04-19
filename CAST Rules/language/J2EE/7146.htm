@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>JSP pages should only reference Java Objects associated to J2EE Scoped Bean</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>JSP pages should only reference Java Objects associated to J2EE Scoped Bean</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Rationale</h5>
+<p>In a Struts implementation, JSP pages are responsible for the presentation and must not call specific Java objects other than those associated to scoped attributes. The consequences of combining HTML and Java code in the same JSP file are: - no separation of technology: Java skilled people and
+Web designers/HTML coders must work on the same file. - less reusable: the Java component can&#39;t be reused elsewhere in the application - maintenance difficulties because of the lack of modularization</p>
+<h5>Description</h5>
+<p>All JSP pages that refers to Java methods, field of a class or the class itself that is not associated to a scoped attribute will be reported.</p>
+<h5>Remediation</h5>
+<p>Use taglib or change the architecture of the application so that the JSP page only rely on classes associated to scoped attributes.</p>
+<h5>Reference</h5>
+<p>http://www.javaworld.com/javaworld/jw-11-2001/jw-1130-jsp.html</p>
+<h5>Output</h5>
+<p>This report lists all JSP pages referencing JAVA objects that are not associated to J2EE Scoped Bean. It provides the following information: - Page name - JAVA object name</p>
+<h5>Total</h5>
+<p>The total is the number of JSP pages. The metric must display 0 when no object of type &quot;Struts Configuration File&quot; is present</p>
+<h5>Metric ID</h5>
+<p>7146</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

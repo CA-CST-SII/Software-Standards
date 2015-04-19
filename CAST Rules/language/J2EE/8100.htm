@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Blocking synchronous calls should have associated timeouts</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Blocking synchronous calls should have associated timeouts</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Blocking calls can result in system failure if the called process fails. If the timeout is infinite that may cause the application to hang forever. Operations on the standard input/output streams depend directly on other processes outside of the Java VM. If they decide to block forever, so will
+reads/writes to these streams in the application.</p>
+<h5>Description</h5>
+<p>This quality rule reports synchronous call that don&#39;t use timeout to prevent an infinite waiting time. Here is the list of control that are performed: * Socket - java.net.Socket.connect(SocketAddress endpoint) or connect(SocketAddress endpoint, int 0)/ remediation connect(SocketAddress
+endpoint, int timeout) - true for child classes too * Future: a Future represents the result of an asynchronous computation. - java.util.concurrent.Future&lt;V&gt;.get() / remediation use java.util.concurrent.Future&lt;V&gt;.get(long timeout, TimeUnit unit) instead for all classes that implement
+this interface such as java.util.concurrent.FutureTask&lt;V&gt;, java.util.concurrent.ForkJoinTask&lt;V&gt; ... and all classes that implement a sub-interface of Future&lt;V&gt;. * JMS: - all call to methods that implement javax.jms.MessageConsumer.receive() or javax.jms.MessageConsumer.receive(0)
+/ remediation call javax.jms.MessageConsumer.receive(long timeout)</p>
+<h5>Reference</h5>
+<p>http://it-cisq.org/wp-content/uploads/2012/09/CISQ-Specification-for-Automated-Quality-Characteristic-Measures.pdf Rule 28 https://www.owasp.org/index.php/Hibernate http://satishgopal.wordpress.com/2011/04/24/ejb-3-1-asynchronous-methods/
+http://docs.oracle.com/javaee/1.3/jms/tutorial/1_3_1-fcs/doc/client.html http://stackoverflow.com/questions/1164301/how-do-i-call-some-blocking-method-with-a-timeout-in-java</p>
+<h5>Output</h5>
+<p>List all artifacts that call a blocking method without timeout It provides the following information: - Artifact full name</p>
+<h5>Total</h5>
+<p>All Artifacts</p>
+<h5>Metric ID</h5>
+<p>8100</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

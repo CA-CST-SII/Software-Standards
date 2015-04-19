@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid executing multiple OPEN statements</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid executing multiple OPEN statements</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>Use a single OPEN statement rather than separate OPEN statements for files opened by a program. Use of a single OPEN statement reduces routine loading time. System routines required for OPEN are referenced once for each OPEN statement regardless of the number of files specified in the
+statement.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs using multiple OPEN statements instead of using only one.</p>
+<h5>Remediation</h5>
+<p>For each Cobol programs using several files, try to use only one OPEN statement instead of one OPEN statement per file. In addition, the same file should be opened only one time.</p>
+<h5>Reference</h5>
+<p>IBM Enterprise Cobol - Performance Tuning</p>
+<h5>Sample</h5>
+<pre>
+0000-MAIN.
+           OPEN INPUT FI01.
+           PERFORM 1000-PROC1.
+           PERFORM 2000-PROC1.
+           CLOSE FI02.
+           CLOSE FI01.
+           STOP RUN.
+       1000-PROC1.
+           OPEN INPUT FI02.
+           MOVE DTA-FIELD1 TO CONT-F1.
+           ..
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+0000-MAIN.
+           OPEN INPUT FI01 FI02.
+           PERFORM 1000-PROC1.
+           PERFORM 2000-PROC1.
+           CLOSE FI01 FI02.
+           STOP RUN.
+       1000-PROC1.
+           MOVE DTA-FIELD1 TO CONT-F1.
+           ..
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of OPEN statements - Bookmarks for violation patterns found in source code: - OPEN statement</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs using Cobol File Links</p>
+<h5>Metric ID</h5>
+<p>7644</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

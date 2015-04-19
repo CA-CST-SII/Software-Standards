@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Action Classes should only call Business Classes</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Action Classes should only call Business Classes</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Rationale</h5>
+<p>Struts is a Framework for building Model-View-Controller 2 Web applications. This model is the Blueprints recommended architectural design pattern for interactive applications. It separates design concerns (data persistence and behavior, presentation, and control), decreasing code duplication,
+centralizing control, and making the application more easily modifiable. MVC 2 also helps developers with different skill sets to focus on their core skills and collaborate through clearly defined interfaces.</p>
+<h5>Description</h5>
+<p>Find all Action Classes (inherit from org.apache.struts.action.Action class) that call other classes than Business Classes specified by a parameter.</p>
+<h5>Remediation</h5>
+<p>Review the design to follow this principle.</p>
+<h5>Sample</h5>
+<pre>
+// If the package is BusinessPackage.*
+
+import org.apache.struts.action.Action;
+
+Public class BaseApplicationAction extends Action
+{
+   public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+   NotBusinessPackage.SomeClass notTheBusiness; // VIOLATION
+   }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+call the business package that will call this package
+</pre>
+<h5>Output</h5>
+<p>This report lists all call from Action Classes to non Business packages (X) It provides the following information: Action method full name</p>
+<h5>Metric ID</h5>
+<p>7240</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

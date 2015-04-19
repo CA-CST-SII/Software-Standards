@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>File descriptor block must be defined with 0 record</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>File descriptor block must be defined with 0 record</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Use BLOCK CONTAINS 0 allows the operating system to optimize the block size and ensure that the maximum number of records will be processed for a single file input/output operation. Small block sizes increase runtime and larger block sizes reduce runtime.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs in which FD clauses defined in the FILE SECTION of the DATA DIVISION are defined without a BLOCK CONTAINS clause or with a value not equal to 0. Note: VSAM files (identified by the INDEXED clause), sort files (SD), and input files are not considered as
+violating the rule.</p>
+<h5>Remediation</h5>
+<p>Add a BLOCK CONTAINS 0 clause or set the value to 0 in the file descriptor (FD) to let the system using the most suitable value.</p>
+<h5>Reference</h5>
+<p>IBM Enterprise Cobol for z/OS - Programming Guide</p>
+<h5>Sample</h5>
+<pre>
+* Example 1 - Block size will not be optimized by system 
+       DATA DIVISION.
+       FILE SECTION.
+       FD FICIN LABEL RECORDS ARE STANDARD.
+       01 FICIN-REC PIC X(80).
+      * Example 2 - Block size will not be optimized by system
+       DATA DIVISION.
+       FILE SECTION.
+       FD FICIN LABEL RECORDS ARE STANDARD
+                      BLOCK CONTAINS 10 RECORDS.
+       01 FICIN-REC PIC X(80).
+      * Example 3 - Block sizes will be optimized by system
+       DATA DIVISION.
+       FILE SECTION.
+       FD FICIN-1 LABEL RECORDS ARE STANDARD
+                  BLOCK CONTAINS 0 RECORDS.
+       01 FICIN-1-REC PIC X(80).
+       FD FICIN-2 LABEL RECORDS ARE STANDARD
+                  BLOCK CONTAINS 0 CHARACTERS.
+       01 FICIN-2-REC PIC X(80).
+       FD FICIN-3 LABEL RECORDS ARE STANDARD
+                  BLOCK CONTAINS 0.
+       01 FICIN-3-REC PIC X(80).
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+* Example 1
+       DATA DIVISION.
+       FILE SECTION.
+       FD FICIN LABEL RECORDS ARE STANDARD
+                BLOCK CONTAINS 0.
+       01 FICIN-REC PIC X(80).
+      * Example 2
+       DATA DIVISION.
+       FILE SECTION.
+       FD FICIN LABEL RECORDS ARE STANDARD
+                BLOCK CONTAINS 0 RECORDS.
+       01 FICIN-REC PIC X(80).
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - FD clause</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs using Cobol File Links</p>
+<h5>Metric ID</h5>
+<p>7366</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

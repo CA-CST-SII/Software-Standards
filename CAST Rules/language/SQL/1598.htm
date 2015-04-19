@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Rule HINT /*+ rule */ or --+ rule in PL/SQL code</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Rule HINT /*+ rule */ or --+ rule in PL/SQL code</h4>
+<hr>
+<h5>Technology</h5>
+<p>Forms, PL/SQL</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>CBO / RBO optimization mode decide on an execution plan based on cost OR set of rules The rule based Optimizer (RBO) mode is deprecated since Oracle 9iR2. By the way the functionality is still present but no new functionality has been included in it and it is no longer supported by Oracle. It is
+only present to provide backwards compatibility during the migration to the query optimizer (Cost Based Optimizer). It should not be present in production code In Oracle 9i, RBO was replaced by Cost Based Optimizer or CBO. CBO uses statistics in the dictionary or dynamically samples You should have
+migrated to CBO at that time, as CBO, even without statistics usually generates better execution plans. The solution is you remove the RULE hint everywhere and start testing code with optimizer defualt mode (CBO mode)</p>
+<h5>Description</h5>
+<p>Oracle hints are optimizer directives that are used in SQL debugging to change the default execution plan for SQL. One of them is the RULE hint. it force the optimizer to use rule based optimizer mode (RBO mode) instead of the default mode (CBO mode). RBO is a simple set of heuristics, and has
+many limitations. The RULE hint explicitly chooses rule-based optimization for a statement block. It also makes the optimizer ignore other hints specified for the statement block</p>
+<h5>Remediation</h5>
+<p>You should always carefully research any hints and try to delete them before applying in production code. Ensure that the queries perform well without RULE hint. One solution could be: Once the SQL has been optimized by adding the hint, the Oracle professional will adjust schema statistics
+(using dbms_stats) to replicate the execution plan without the hint.</p>
+<h5>Sample</h5>
+<pre>
+Oracle SQL rule hint:
+
+Select /*+ RULE */ a,b,c from table1;
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+Select  a,b,c from table1;
+</pre>
+<h5>Output</h5>
+<p>This report lists all functions, procedures, triggers, views, cursors and package procedures and functions with queries using the &quot;RULE&quot; hint. It provides the following information: - object name, - object full name</p>
+<h5>Total</h5>
+<p>Number of artifacts (only those that might have a select clause)</p>
+<h5>Metric ID</h5>
+<p>1598</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

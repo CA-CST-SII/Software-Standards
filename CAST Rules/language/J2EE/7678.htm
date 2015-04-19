@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using specific logging implementation</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using specific logging implementation</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Rationale</h5>
+<p>Instead of being stick to a specific logging implementation, it is recommended to use a logging wrapper such as slf4j. It provides a Log interface that is intended to be both light-weight and an independent abstraction of other logging toolkits. It provides the middleware/tooling developer with
+a simple logging abstraction that allows the user (application developer) to plug in a specific logging implementation.</p>
+<h5>Description</h5>
+<p>Finds and reports all references to log4j API usage. The threshold parameter allows specifying other specific implementations package to avoid. All artifacts that reference a class, an interface, a method or a field that belongs to a class from the package org.apache.log4j will be reported.</p>
+<h5>Remediation</h5>
+<p>Use SLF4J http://www.slf4j.org/index.html instead and configure it to use your specific logging implementation.</p>
+<h5>Reference</h5>
+<p>http://www.infoq.com/news/2007/02/javaee-best-practices</p>
+<h5>Sample</h5>
+<pre>
+import org.apache.log4j.*
+Logger  logger = Logger.getLogger(&quot;com.cast&quot;); // VIOLATION
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+Logger log = LoggerFactory.getLogger(&quot;com.cast&quot;); // FIXED
+</pre>
+<h5>Output</h5>
+<p>This report lists all artifacts and fields that violate this rule. It provides the following information: Artifact Full Name and Field Full Name</p>
+<h5>Total</h5>
+<p>total of artifacts and fields that use org.apache.log4j, org.apache.commons.logging or other logging package specified in the threshold</p>
+<h5>Metric ID</h5>
+<p>7678</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

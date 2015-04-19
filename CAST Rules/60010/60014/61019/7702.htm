@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Use a third party connection pool</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Use a third party connection pool</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>It is very important to define a connection pool to increase database access performances. Hibernate&#39;s own connection pooling algorithm is quite rudimentary. It is intended to help you get started and is not intended for use in a production system or even for performance testing. Use a third
+party pool for best performance and stability.</p>
+<h5>Description</h5>
+<p>This metric will report hibernate.properties or hibernate.cfg.xml files in which the connection pool has been misconfigured or has not been defined at all. The connection profile is misconfigured when all of the following requirements are met: - hibernate.connection.pool_size is defined (means
+that Hibernate&#39;s own connection pool is used) OR ( . hibernate.c3p0.max_size is not defined or its value is lower or equal to 1 (means that the c3p0 pool size is not correct) AND . hibernate.dbcp.maxActive is not defined or its value is lower or equal to 1 (means that the dbcp pool size is not
+correct) AND . a property beginning with hibernate.proxool is not defined (means that proxol is not used) AND . a property hibernate.connection.datasource is not defined (means that no datasource connection pool is used) AND . a property connection.datasource is not defined (means that no
+datasource connection pool is used) ) This list can be completed by a list of other specific third party connection pool properties to check if they are defined.</p>
+<h5>Remediation</h5>
+<p>Use a third party connection pool like: * c3p0 - http://sourceforge.net/projects/c3p0 - Distributed with Hibernate * Apache DBCP - http://jakarta.apache.org/commons/dbcp/ - Apache Pool * Proxool - http://proxool.sourceforge.net/ - JDBC Pooling Wrapper * a connection pool from an external
+vendor</p>
+<h5>Reference</h5>
+<p>http://www.hibernate.org/hib_docs/reference/en/html/session-configuration.html http://www.informit.com/articles/article.asp?p=353736&amp;seqNum=4&amp;rl=1 Hibernate in Action (ISBN 1932394-15-X) p 45</p>
+<h5>Sample</h5>
+<pre>
+---&gt; hibernate.cfg.xml
+...
+&lt;hibernate-configuration&gt;
+    &lt;session-factory name=&quot;java:comp/env/hibernate/SessionFactory&quot;&gt;
+       ...
+        &lt;property name=&quot;connection.pool_size&quot;&gt;10&lt;/property&gt; // VIOLATION
+...
+
+---&gt; or in hibernate.properties
+hibernate.connection.pool_size = 10 // VIOLATION
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+---&gt; hibernate.cfg.xml
+...
+&lt;hibernate-configuration&gt;
+    &lt;!-- a SessionFactory instance listed as /jndi/name --&gt;
+    &lt;session-factory
+        name=&quot;java:comp/env/hibernate/SessionFactory&quot;&gt;
+        &lt;!-- properties --&gt;
+        &lt;property name=&quot;connection.datasource&quot;&gt;my/first/datasource&lt;/property&gt; // FIXED
+     ...
+    &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+
+---&gt; or in hibernate.properties
+...
+hibernate.connection.datasource = my/first/datasource
+...
+</pre>
+<h5>Output</h5>
+<p>This report list the XML or .properties file that doesn&#39;t define a third party pool. It provides the following information: File Full Name</p>
+<h5>Total</h5>
+<p>Total of Hibernate Configuration File (including hibernate.properties). If it doesn&#39;t exist, the diagnostic should not return violation</p>
+<h5>Metric ID</h5>
+<p>7702</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

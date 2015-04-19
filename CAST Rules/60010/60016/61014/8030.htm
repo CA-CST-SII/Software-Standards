@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Check alphanumeric data before moving it into numeric data</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Check alphanumeric data before moving it into numeric data</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>In a MOVE statement using a numeric target data (ex: PIC S9(5) COMP-3) and an alphanumeric source data (ex: PIC X(5)), if the source data contains a value that is not numeric (alphabetic, LOW-VALUE, HIGH-VALUE...) and is used in arithmetic operations, then an abend S0C7 will occur. It is
+important to control the value that will be moved in the numeric variable.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs containing assignments from an alphanumeric variable to a numeric variable where the content of the source data is not previously tested.</p>
+<h5>Remediation</h5>
+<p>For MOVE statement where the target is numeric and the source is alphanumeric, check the type of the value in the source data with an IF NUMERIC condition.</p>
+<h5>Sample</h5>
+<pre>
+01 FILE-REC.
+    05 SRC-DATA PIC X(5).
+...
+01 TGT-DATA PIC S9(5) COMP-3.
+...
+READ MY-FILE INTO FILE-REC.
+MOVE SRC-DATA TO TGT-DATA.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+01 FILE-REC.
+    05 SRC-DATA PIC X(5).
+...
+01 TGT-DATA PIC S9(5) COMP-3.
+...
+READ MY-FILE INTO FILE-REC.
+IF SRC-DATA IS NUMERIC
+    MOVE SRC-DATA TO TGT-DATA
+ELSE
+    DISPLAY &quot;INVALID VALUE: &quot; SRC-DATA
+END-IF
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - MOVE statement from an alphanumeric variable to a numeric variable not enclosed in a test IS NUMERIC - Declaration of the
+alphanumeric variable - Declaration of the numeric variable</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>8030</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

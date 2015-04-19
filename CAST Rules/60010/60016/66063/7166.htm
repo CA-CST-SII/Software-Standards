@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using snprintf() function (C Lang.)</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using snprintf() function (C Lang.)</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language</p>
+<h5>Unified Status</h5>
+<p>Not Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Description</h5>
+<p>The use of snprintf() can make an application vulnerable to format string vulnerability attacks. Format string vulnerability attacks fall into three categories: denial of service, reading and writing: Format string vulnerability denial of service attacks are characterized by utilizing multiple
+instances of the %s format specifier to read data off of the stack until the program attempts to read data from an illegal address, which will cause the program to crash. Format string vulnerability reading attacks typically utilize the %x format specifier to print sections of memory that we do not
+normally have access to. Format string vulnerability writing attacks utilize the %d, %u or %x format specifiers to overwrite the Instruction Pointer and force execution of user-supplied shell code. The snprintf function is called _snprintf on some platforms.</p>
+<h5>Metric ID</h5>
+<p>7166</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid use of &quot;truncate table&quot;</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid use of &quot;truncate table&quot;</h4>
+<hr>
+<h5>Technology</h5>
+<p>Microsoft T-SQL, SQL Server, Sybase T-SQL</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Although &quot;truncate table&quot; statement can be desirable under some circumstances from a performance point of view it is problematic because deletion are not logged. Thus the log backups become useless.</p>
+<h5>Description</h5>
+<p>Avoid using &quot;truncate table&quot;,</p>
+<h5>Remediation</h5>
+<p>Ensure that the truncate table is necessary. Otherwise use delete.</p>
+<h5>Output</h5>
+<p>This report lists all uses of &quot;truncate table&quot; in database objects containing code: SP, Functions, and Triggers.</p>
+<h5>Total</h5>
+<p>Total number of database objects containing code: SP, Functions, and Triggers.</p>
+<h5>Metric ID</h5>
+<p>4070</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

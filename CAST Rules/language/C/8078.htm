@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Casting from pointer to base Class to pointer to derived Class should be done through &#39;dynamic_cast&#39; or &#39;static_cast&#39;</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Casting from pointer to base Class to pointer to derived Class should be done through &#39;dynamic_cast&#39; or &#39;static_cast&#39;</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Casting from pointer to base class to pointer to derived class should usually be done through &#39;dynamic_cast&#39;. See rule #8060 for more information. In performances-constrained situations, and if you know through another mean that the &#39;dynamic_cast&#39; will succeed, you can instead
+call &#39;static_cast&#39;, which will be slightly more efficient. In this case, it is advised to write code that will check in debug builds that the assumption is true. In any case, a C-style cast is unsafe to use, because it will be considered as a &#39;reinterpret_cast&#39; if the classes are
+not related, and will do the wrong thing.</p>
+<h5>Description</h5>
+<p>This rule searches for C++ functions that do not cast a pointer to a base class to a pointer to a derived class by using a &#39;static_cast&#39; or a &#39;dynamic_cast&#39;.</p>
+<h5>Remediation</h5>
+<p>Use &#39;dynamic_cast&#39; or &#39;static_cast&#39; to cast pointers to base class to pointer to derived class. See remediation example for more details.</p>
+<h5>Reference</h5>
+<p>MISRA C++ C++ Coding Standard (Sutter/Alexandrescu) Item 93, http://www.gotw.ca/publications/c++cs.htm</p>
+<h5>Sample</h5>
+<pre>
+class A
+{
+};
+
+class B : public A
+{
+};
+
+void f(A *p)
+{
+    B* pb = (B*)p; // Violation
+    // Use pb
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+void f(A *p)
+{
+    B* pb = dynamic_cast&lt;B*&gt;(p);
+    if (!pb)
+    {
+        // Not the expected type, handle the error 
+    }
+    else
+    {
+        // Use pb
+    }
+}
+
+In circumstances where the @dynamic_cast@ has been measured to cause unacceptable delay, a @static_cast@ could be used instead, but would benefit from being written this way:
+
+template&lt;class To, class From&gt; To checked_cast(From* p)
+{
+    assert(dynamic_cast&lt;To&gt;(p) == static_cast&lt;To&gt;(p) &amp;&amp; &quot;Error: Check cast failed&quot;);
+    return static_cast&lt;To&gt;(p);
+}
+
+void f(A *p)
+{
+    B* pb = checked_cast&lt;B*&gt;(p);
+    // Use pb
+}
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ method, constructor, and destructor with violations, the Quality Rule provides: - pointer incorrectly casted - Bookmarks for violation patterns found in source code: - pointer cast - source class - target class</p>
+<h5>Total</h5>
+<p>Number of C++ methods, constructors, and destructors</p>
+<h5>Metric ID</h5>
+<p>8078</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

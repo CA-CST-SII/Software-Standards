@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Struts 2 Validator field not referencing a java class field</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Struts 2 Validator field not referencing a java class field</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>When a validation form field is not associated to java class field, this indicate that the validation logic is not properly maintained and can result in a weakness. Input validation is required to secure an application. Moreover, the web interface is exposed to anyone. Non validating input may
+allow injecting arbitrary web script, HTML, SQL... Consequences can be severe, like erasing the content of a database.</p>
+<h5>Description</h5>
+<p>This metric reports validator form with all their validator form field that do not reference a java class field.</p>
+<h5>Remediation</h5>
+<p>Update the &quot;ActionClass&quot;-validation.xml&#39;s entries according to java classes used in your application and review the validation logic of the validation form.</p>
+<h5>Reference</h5>
+<p>http://cwe.mitre.org/data/definitions/110.html</p>
+<h5>Sample</h5>
+<pre>
+public class Register extends ActionSupport {
+  private String username;
+  private String password; 
+  private String firstName;
+  private String lastName;
+  private String email;
+  private boolean receiveJunkMail;
+
+  public String execute(){
+    User user = new User();
+    user.setPassword( getPassword() );
+    user.setUsername( getUsername() );
+    user.setFirstName( getFirstName());
+    user.setLastName( getLastName() );
+    user.setEmail(getEmail());
+
+    System.out.println(&quot;junkmail = &quot; + isReceiveJunkMail());
+
+    return SUCCESS;
+  }
+}
+
+Register-validation.xml
+&lt;validators&gt;
+  &lt;field name=&quot;username&quot;&gt;
+      &lt;field-validator type=&quot;requiredstring&quot;&gt;
+           &lt;message &gt;Username is required.&lt;/message&gt;
+      &lt;/field-validator&gt;
+      &lt;field-validator type=&quot;stringlength&quot;&gt;
+         &lt;param name=&quot;maxLength&quot;&gt;8&lt;/param&gt;
+         &lt;param name=&quot;minLength&quot;&gt;5&lt;/param&gt;
+         &lt;message&gt;While ${username} is a nice name, a valid username must be between ${minLength} and ${maxLength} characters long. &lt;/message&gt;
+     &lt;/field-validator&gt;
+  &lt;/field&gt; /* VIOLATION: the portfolioName is not associated to any Register class field */
+  &lt;field name=&quot;portfolioName&quot;&gt;
+      &lt;field-validator type=&quot;requiredstring&quot;&gt;
+         &lt;message key=&quot;portfolioName.required&quot;/&gt;
+     &lt;/field-validator&gt;
+  &lt;/field&gt;
+   &lt;field name=&quot;email&quot;&gt;
+      &lt;field-validator type=&quot;requiredstring&quot;&gt;
+          &lt;message&gt;You must enter a value for email.&lt;/message&gt;
+      &lt;/field-validator&gt;
+       &lt;field-validator type=&quot;email&quot;&gt;
+         &lt;message key=&quot;email.invalid&quot;/&gt;
+      &lt;/field-validator&gt;
+   &lt;/field&gt;
+  &lt;validator type=&quot;expression&quot;&gt;
+      &lt;param name=&quot;expression&quot;&gt;username != password&lt;/param&gt;
+      &lt;message&gt;Username and password can&#39;t be the same.&lt;/message&gt;
+  &lt;/validator&gt;
+&lt;/validators&gt;
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+Register-validation.xml
+&lt;validators&gt;
+  &lt;field name=&quot;username&quot;&gt;
+      &lt;field-validator type=&quot;requiredstring&quot;&gt;
+           &lt;message &gt;Username is required.&lt;/message&gt;
+      &lt;/field-validator&gt;
+      &lt;field-validator type=&quot;stringlength&quot;&gt;
+         &lt;param name=&quot;maxLength&quot;&gt;8&lt;/param&gt;
+         &lt;param name=&quot;minLength&quot;&gt;5&lt;/param&gt;
+         &lt;message&gt;While ${username} is a nice name, a valid username must be between ${minLength} and ${maxLength} characters long. &lt;/message&gt;
+     &lt;/field-validator&gt;
+  &lt;/field&gt; /* FIXED: remove the validator field portfolioName */
+   &lt;field name=&quot;email&quot;&gt;
+      &lt;field-validator type=&quot;requiredstring&quot;&gt;
+          &lt;message&gt;You must enter a value for email.&lt;/message&gt;
+      &lt;/field-validator&gt;
+       &lt;field-validator type=&quot;email&quot;&gt;
+         &lt;message key=&quot;email.invalid&quot;/&gt;
+      &lt;/field-validator&gt;
+   &lt;/field&gt;
+  &lt;validator type=&quot;expression&quot;&gt;
+      &lt;param name=&quot;expression&quot;&gt;username != password&lt;/param&gt;
+      &lt;message&gt;Username and password can&#39;t be the same.&lt;/message&gt;
+  &lt;/validator&gt;
+&lt;/validators&gt;
+</pre>
+<h5>Output</h5>
+<p>This report lists all validator form fields that do not reference a java class field. It provides the following information: Validation Form Field</p>
+<h5>Total</h5>
+<p>total of Validator Form Field</p>
+<h5>Metric ID</h5>
+<p>8038</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

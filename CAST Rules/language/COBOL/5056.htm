@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using SEARCH without the ALL addition</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using SEARCH without the ALL addition</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>A binary search is a very efficient search when you are dealing with a large table. Note that a binary search will only work if the table is in order by the element you are searching. A binary search looks at the first item in the table. If a match is found, the search is done. If a match is not
+found, it checks to see if the item you are trying to match is larger or smaller than the middle element. If it is larger, than we know that we only have to look at the half of the table past the middle. If it is smaller, than we know that we only have to look at the half of the table before the
+middle. Based on this decision, we have eliminate half the table from the search. We next look at the middle item in the half that is left and compare it to the element. This will either find a match or eliminate another quarter of the table. Note that in establishing what the middle is if the
+number of elements is even, the programmer of a binary search can choose to round or truncate. This process continue until either a match is found or it is clear that the element is not in the table.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs using the SEARCH statement without the ALL addition, with only one WHEN clause, on internal table defined with more than X lines. X is a parameter and can be changed at will.</p>
+<h5>Remediation</h5>
+<p>If the data stored in the table come from an external file then be sure that this file is sorted before processing by the program.</p>
+<h5>Reference</h5>
+<p>Sort the table data either in Ascending or Descending order and use a SEARCH ALL if the search condition is simple.</p>
+<h5>Sample</h5>
+<pre>
+B-200-LOOP.
+    ...
+    ... processing not related to search ...
+    ...
+    SET ITEM-INDX TO 1.
+    SEARCH ENTRIES
+        AT END
+            MOVE ERROR-MSG-TBL TO ITEM-NAME-PR
+        WHEN ITEM-NUMBER-TBL (ITEM-INDX) = ITEM-NUMBER-IN
+            MOVE ITEM-NAME-TBL (ITEM-INDX) TO ITEM-NAME-PR
+    ...
+    ... processing not related to search...
+    ...
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+B-200-LOOP.
+    ...
+    ... processing not related to search ...
+    ...
+    SEARCH ALL ENTRIES
+        AT END
+            MOVE ERROR-MSG-TBL TO ITEM-NAME-PR
+        WHEN ITEM-NUMBER-TBL (ITEM-INDX) = ITEM-NUMBER-IN
+            MOVE ITEM-NAME-TBL (ITEM-INDX) TO ITEM-NAME-PR
+    ...
+    ... processing not related to search...
+    ...
+</pre>
+<h5>Output</h5>
+<p>This report lists all Cobol Programs that use SEARCH statements without the ALL addition although they contain only one WHEN clause and that the internal table is about more than X lines. It provides the following information: - Cobol Program full name - Number of violations It also provides
+bookmarks for violation patterns found in source code: - SEARCH statement - Internal table definition</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>5056</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

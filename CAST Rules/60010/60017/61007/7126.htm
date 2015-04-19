@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio</h4>
+<hr>
+<h5>Technology</h5>
+<p>All Languages/Technologies</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Commented-out code makes source code much more difficult to read and understand. Indeed, when too much source code is commented out, the valid executable code is easily lost in the sea of comments and it becomes very difficult to locate and read the real source code. This is the reason why it
+should be avoided as much as possible. This measure also helps evaluate the comments that are, in fact, used for documentation purposes.</p>
+<h5>Description</h5>
+<p>Commented-out Code Lines/Code Lines ratio measures the amount of code left in comments versus the size of the source code (excluding comments and blank lines) this is done for a given artifact. Please note that unless the following criteria are met by the source code, then the metric will be
+disabled: - the source code must contain more than 20 &quot;clean&quot; comments - the source code must contain at least 80 artifacts that have more than 10 lines of code What is a &quot;clean&quot; comment? - if the comment contains more than 4 words, then there must be less than 40% OOVs - if the
+comment contains less than 5 words, then there must be a maximum of 1 OOV - A single word on its own must not represent 50% of the comment What is an &quot;OOV&quot;? - an &quot;OOV&quot; is an &quot;Out of Vocabulary Word&quot;. With regard to CAST, an OOV is a word that has never appeared in the
+code.</p>
+<h5>Output</h5>
+<p>Associated to each artifact with violations, the Quality Rule provides: - The Ratio of Commented-out Code Lines / Code Lines</p>
+<h5>Total</h5>
+<p>The total procedure counts the number of Artifacts.</p>
+<h5>Metric ID</h5>
+<p>7126</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Declare as Final all classes that will not be sub-classed</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Declare as Final all classes that will not be sub-classed</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>There can be situations in which it is necessary to protect a whole class from uncontrolled specialization. This could be suitable, for example, if changes must be made to a class without any subclasses becoming syntactically or semantically incorrect. For a final definition, use the FINAL
+addition in the CLASS statement.</p>
+<h5>Description</h5>
+<p>This rule shows ABAP classes that do not have subclass and that are not defined with the FINAL addition.</p>
+<h5>Remediation</h5>
+<p>Check if the class could be inherited. If not, then add the FINAL addition in its definition.</p>
+<h5>Reference</h5>
+<p>An insider&#39;s guide to writing robust, understandable, maintainable, state-of-the-art ABAP programs - Part 2 Andreas Blumenthal - Horst Keller</p>
+<h5>Sample</h5>
+<pre>
+* This class must not be subclassed
+CLASS counter DEFINITION.
+PUBLIC SECTION.
+    METHODS: 
+        set 
+            IMPORTING VALUE
+                (set_value) TYPE i, increment,
+        get 
+            EXPORTING VALUE
+                (get_value) TYPE i.
+PRIVATE SECTION.
+    DATA count TYPE i.
+ENDCLASS.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+* This class must not be subclassed
+CLASS counter DEFINITION FINAL.
+PUBLIC SECTION.
+    METHODS: 
+        set 
+            IMPORTING VALUE
+                (set_value) TYPE i, increment,
+        get 
+            EXPORTING VALUE
+                (get_value) TYPE i.
+PRIVATE SECTION.
+    DATA count TYPE i.
+ENDCLASS.
+</pre>
+<h5>Output</h5>
+<p>This report lists all ABAP Classes that do not have sub-class and that are not defined as Final. It provides the following information: - ABAP Class fullname</p>
+<h5>Total</h5>
+<p>Number of ABAP Classes</p>
+<h5>Metric ID</h5>
+<p>7680</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

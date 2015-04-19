@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid invocation of virtual Methods of the declared Class in a Constructor or Destructor</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid invocation of virtual Methods of the declared Class in a Constructor or Destructor</h4>
+<hr>
+<h5>Technology</h5>
+<p>C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Invoking virtual functions in a constructor/destructor always invokes the function for the class under construction/destruction, even when the constructor is invoked as part of the construction of a derived Class. This behavior is not often what was expected.</p>
+<h5>Description</h5>
+<p>This rule searches for virtual functions of a class called from within the constructor or destructor of this class.</p>
+<h5>Remediation</h5>
+<p>If you want virtual function call behavior at construction time, it must be done post construction. Several idioms exist to help you do that, however none of them are perfect (&quot;C++ coding standards&quot;:http://www.gotw.ca/publications/c++cs.htm details some options).</p>
+<h5>Reference</h5>
+<p>Effective C++ (Scott Meyers): &quot;Item 9: Never call virtual functions during construction or destruction&quot;:http://www.artima.com/cppsource/nevercall.html C++ coding standard (Sutter/Alexandrescu): &quot;Item 49&quot;:http://www.gotw.ca/publications/c++cs.htm</p>
+<h5>Sample</h5>
+<pre>
+class Mother 
+{
+public:
+    Mother() { display(); }
+private:
+    virtual void display() { cout &lt;&lt; &quot;Mother function call\n&quot;; }
+};
+
+class Child : public Mother 
+{
+private:
+    virtual void display() { cout &lt;&lt; &quot;Child function call\n&quot;;}
+};
+
+
+int main()
+{
+    Child child; // will display &quot;Mother function call&quot;
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class Mother 
+{
+public:
+    template &lt;class T&gt;
+    shared_ptr&lt;T&gt; create()
+    {
+        shared_ptr&lt;T&gt; result = make_shared&lt;T&gt;();
+        result-&gt;display();
+        return result;
+    }
+protected:
+    Mother() { } // It is now protected, to prevent direct creation
+private:
+    virtual void display() { cout &lt;&lt; &quot;Mother function call\n&quot;; }
+};
+
+class Child : public Mother 
+{
+protected:
+    Child() { } // It is now protected, to prevent direct creation
+private:
+    virtual void display() { cout &lt;&lt; &quot;Child function call\n&quot;;}
+};
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ Constructor/Destructor with violations, the Quality Rule provides: - Virtual member function name - Bookmarks for violation patterns found in the source code: - Virtual member function call</p>
+<h5>Total</h5>
+<p>Number of Constructors and Destructors.</p>
+<h5>Metric ID</h5>
+<p>628</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

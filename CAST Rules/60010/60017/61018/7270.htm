@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Declare as static all Methods not using Instance Fields</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Declare as static all Methods not using Instance Fields</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>When an object is created: * Memory is allocated to all the fields * All super class fields are also allocated memory * All sub class fields, super class fields are initialized . * The constructor is invoked. Using a static avoid to create an object that takes resources when it is
+unnecessary.</p>
+<h5>Description</h5>
+<p>All methods that don&#39;t use instance fields and/or method will be reported except if they have been extended in a subclass or inherit from their parents. For all .Net Classes, including .Net Forms : If a method doesn&#39;t use an instance field or const, it should be declared static except if
+the method is overriden or override another method.</p>
+<h5>Remediation</h5>
+<p>Make this method static.</p>
+<h5>Sample</h5>
+<pre>
+class Example {
+    protected double pi = 3.14;
+
+    int min (int x, int y) { // VIOLATION
+      return (x&gt;y?y:x);
+    }
+
+    double getPi() {  // OK
+       return pi;
+    }
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class Example {
+    protected double pi = 3.14;
+
+    static int min (int x, int y) { // FIXED
+      return (x&gt;y?y:x);
+    }
+
+    double getPi() {  // OK
+       return pi;
+    }
+</pre>
+<h5>Output</h5>
+<p>All methods that don&#39;t use instance fields (either const or not) and/or method will be reported except if they have been extended in a subclass or inherit from their parents.</p>
+<h5>Total</h5>
+<p>Total number of methods</p>
+<h5>Metric ID</h5>
+<p>7270</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

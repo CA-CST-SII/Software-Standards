@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid empty IF-ENDIF blocks</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid empty IF-ENDIF blocks</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>An empty IF-ENDIF block defeats the purpose of error management or, more generally, pollutes the code with a piece of code that does nothing. Regarding error handling, when a function or an Open SQL query reports a problem via the SY-SUBRC, nothing happens and the program may dysfunction.
+Moreover, these empty IF-ENDIF blocks may not be detected easily.</p>
+<h5>Description</h5>
+<p>This rule searches in ABAP code for empty IF-ENDIF statements. An empty IF block is a combination of: IF &lt;cond&gt;. ENDIF. ELSIF &lt;cond&gt;. ENDIF. ELSE ENDIF.</p>
+<h5>Remediation</h5>
+<p>Insert statements in all IF blocks to manage the situation properly.</p>
+<h5>Sample</h5>
+<pre>
+READ TABLE P_EVENTS WITH KEY NAME = SLIS_EV
+                           INTO LS_EVENT.
+IF SY-SUBRC = 0
+ENDIF.
+...
+MOVE TOP_OF_PAGE TO LS_EVENT-FORM.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+READ TABLE P_EVENTS WITH KEY NAME = SLIS_EV
+                           INTO LS_EVENT.
+IF SY-SUBRC = 0.
+    MOVE TOP_OF_PAGE TO LS_EVENT-FORM.
+ENDIF.
+</pre>
+<h5>Output</h5>
+<p>This report lists all ABAP artifacts containing an empty IF-ENDIF block. It provides the following information : - Artifact fullname - Number of violations</p>
+<h5>Total</h5>
+<p>Number of ABAP artifacts</p>
+<h5>Metric ID</h5>
+<p>8106</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

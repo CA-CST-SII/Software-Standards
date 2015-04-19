@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Invoke &#39;delete&#39; with the same form as the matching &#39;new&#39;</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Invoke &#39;delete&#39; with the same form as the matching &#39;new&#39;</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Not deallocating an object by using the same form for the &#39;delete&#39; operator than for the &#39;new&#39; operator used to allocate it leads to memory leaks. This can also make the program terminate abnormally.</p>
+<h5>Description</h5>
+<p>This rule searches for C++ classes that allocate and deallocate objects with incoherent new/delete forms.</p>
+<h5>Remediation</h5>
+<p>Use &#39;delete&#39; with same form of &#39;new&#39; to deallocate memory.</p>
+<h5>Reference</h5>
+<p>High Integrity C++ Coding Standard Manual</p>
+<h5>Sample</h5>
+<pre>
+void f()
+{
+ int *i = new int[10];
+ delete i;
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+void f()
+{
+ int *i = new int[10];
+ delete[] i;
+}
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ function, method, constructor, and destructor with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - object deallocation (delete) - object allocation (new)</p>
+<h5>Total</h5>
+<p>Number of C++ functions, methods, constructors, and destructors</p>
+<h5>Metric ID</h5>
+<p>8048</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

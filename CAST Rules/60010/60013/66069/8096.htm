@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid testing floating point numbers for equality</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid testing floating point numbers for equality</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Due to rounding errors, most floating-point numbers end up being slightly imprecise. As long as this imprecision stays small, it can usually be ignored. However, it also means that numbers expected to be equal (e.g. when calculating the same result through different correct methods) often differ
+slightly, and a simple equality test fails.</p>
+<h5>Description</h5>
+<p>Reports all equality or non equal operation on floats: - float x == float y - float x != float y</p>
+<h5>Remediation</h5>
+<p>Except specific cases where we can expect that the value is the same (see http://randomascii.wordpress.com/2012/06/26/doubles-are-not-floats-so-dont-compare-them), the best is to compare the difference with Epsilon a small float number that you can configure according to the accuracy you
+want.</p>
+<h5>Reference</h5>
+<p>Java Language Specification &gt; 4.2.4. Floating-Point Operations: http://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.2.4 Doubles are not floats, so don&#39;t compare them: http://randomascii.wordpress.com/2012/06/26/doubles-are-not-floats-so-dont-compare-them/ What&#39;s wrong
+with using == to compare floats in Java? http://stackoverflow.com/questions/1088216/whats-wrong-with-using-to-compare-floats-in-java http://floating-point-gui.de/errors/comparison/</p>
+<h5>Sample</h5>
+<pre>
+float a = 0.15f + 0.15f;
+float b = 0.1f + 0.2f;
+if(a == b) {...} // VIOLATION
+if(a != b) {...} // VIOLATION
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+static final float EPSILON = 0.0000001f;
+
+float a = 0.15f + 0.15f;
+float b = 0.1f + 0.2f;
+if(Math.abs(a - b) &lt; EPSILON) {...} // FIX
+if(Math.abs(a - b) &gt; EPSILON) {...} // FIX
+</pre>
+<h5>Output</h5>
+<p>Report all artifact that perform float equality comparison. It reports: - artifact fullname</p>
+<h5>Total</h5>
+<p>All artifacts that reference a float</p>
+<h5>Metric ID</h5>
+<p>8096</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

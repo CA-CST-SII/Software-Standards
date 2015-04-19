@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Form Field without Validator</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Form Field without Validator</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Input validation is required to secure an application. Moreover, the web interface is exposed to anyone. Non validating input may allow injecting arbitrary web script, HTML, SQL... Consequences can be severe, like erasing the content of a database. Only one invalidated input can be exploited by
+an attacker. Note that unused fields should be constrained so that they can only be empty or undefined. If unused fields are not validated, shared business logic in an action may allow attackers to bypass the validation checks that are performed for other uses of the form.</p>
+<h5>Description</h5>
+<p>This metric reports all forms with fields that are not validated. Forms taken into account are forms defined as form-bean in the struts-config.xml (it can be a regular form bean or a dynamic form bean). Note that in the case where the form is shared among multiple actions, the validation
+declaration of the form will be associated to the action. Note that in a case of a dynamic form-bean, the fields are declared in the struts-config.xml while the fields of regular form-bean are defined in the implementation class itself and deduced from the setters of the class. Note that a form
+bean can be associated to several form validator. In this case, a field will be considered as validated when all form validator validate this field. This case may happen when the validator form is associated to action mapping or when internationalization is used. Note that in the case a form bean
+is not associated to any validator form all its fields or setter methods will be reported.</p>
+<h5>Remediation</h5>
+<p>Validate each field of a form. When a form is shared among different action, you have to use the type org.apache.struts.validator.DynaValidatorActionForm for your Form Bean definition in the struts-config.xml file to be able to define a specific validation for each action.</p>
+<h5>Reference</h5>
+<p>http://cwe.mitre.org/data/definitions/105.html http://www.owasp.org/index.php/2004_Updates_OWASP_Top_Ten_Project</p>
+<h5>Sample</h5>
+<pre>
+====&gt;  For concrete Form Bean
+
+--&gt; logonForm.java (for concrete Form Bean) :
+public class LogonForm extends ValidatorForm {
+  private String username;
+  private String password;
+  
+  public String getUsername() {
+    return username;
+  }
+  
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+public void setPassword(String password) {
+    this.password = password;
+  }
+}
+
+--&gt; struts-config.xml (for concrete Form Bean)
+&lt;form-beans&gt;
+  &lt;form-bean name=&quot;logonForm&quot;
+            type=&quot;com.cast.struts.sample.LogonForm&quot;/&gt;
+&lt;/form-beans&gt;
+
+====&gt;  for dynamic Form Bean
+--&gt; struts-config.xml (for dynamic Form Bean)
+&lt;form-beans&gt;
+  &lt;form-bean name=&quot;logonForm&quot;
+            type=&quot;org.apache
+.struts.validator.DynaValidatorForm&quot;&gt;
+    &lt;form-property name=&quot;username&quot;
+            type=&quot;java.lang.String&quot;/&gt;
+    &lt;form-property name=&quot;password&quot;
+            type=&quot;java.lang.String&quot;/&gt;
+  &lt;/form-bean&gt;
+&lt;/form-beans&gt;
+
+====&gt;  for both dynamic and concrete Form Bean
+
+--&gt; validation.xml:
+
+&lt;form-validation&gt;
+  &lt;formset&gt;
+    &lt;form name=&quot;logonForm&quot;&gt; // VIOLATION: password field is not validated
+      &lt;field property=&quot;username&quot; 
+            depends=&quot;required&quot;&gt;
+        &lt;arg0 key=&quot;prompt.username&quot;/&gt;
+      &lt;/field&gt;
+    &lt;/form&gt;
+  &lt;/formset&gt;
+&lt;/form-validation&gt;
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+----&gt; validation.xml:
+
+&lt;form-validation&gt;
+  &lt;formset&gt;
+    &lt;form name=&quot;logonForm&quot;&gt;
+      &lt;field property=&quot;username&quot; 
+            depends=&quot;required&quot;&gt;
+        &lt;arg0 key=&quot;prompt.username&quot;/&gt;
+      &lt;/field&gt;
+      &lt;field property=&quot;password&quot; // FIXED
+            depends=&quot;required&quot;&gt;
+        &lt;arg0 key=&quot;prompt.password&quot;/&gt;
+      &lt;/field&gt;
+    &lt;/form&gt;
+  &lt;/formset&gt;
+&lt;/form-validation&gt;
+</pre>
+<h5>Output</h5>
+<p>This report lists all form bean fields that are not validated: setter method in case of regular form bean and form field declared in the struts-config.xml file for dynamic form-bean. It provides the following information: - Form Name - Field Name or - Java Method Full Name NOTE: in the case of
+Java method reported, the field to add in validator.xml is deduced from the method name using Java Bean convention.</p>
+<h5>Total</h5>
+<p>The number of all form fields or Java setter methods, when defined with struts or 0 if no object of type &quot;Struts Configuration File&quot; is present</p>
+<h5>Metric ID</h5>
+<p>7416</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

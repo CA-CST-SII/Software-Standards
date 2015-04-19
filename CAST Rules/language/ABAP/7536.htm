@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using AT Events in combination of LOOP AT .... WHERE constructs</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using AT Events in combination of LOOP AT .... WHERE constructs</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>Processing level breaks in LOOP AT constructs depends on the content of internal tables. If these tables are sorted differently, then the expected logic of events can be modified. In addition, the AT events can be impacted by the WHERE condition.</p>
+<h5>Description</h5>
+<p>This metric retrieves all ABAP Artifacts which contain a the combination of a LOOP AT .... WHERE construct and an AT event such as : AT FIRST AT NEW AT END AT LAST</p>
+<h5>Remediation</h5>
+<p>Ensure that the internal table sorting order is fixed and that the event logic is compatible with the WHERE condition.</p>
+<h5>Reference</h5>
+<p>Enhancing the Quality of ABAP Development, Meijs-Krouwels-Heulmans-Sommen, SAP Press ISBN 1-59229-030-2 Page 102</p>
+<h5>Output</h5>
+<p>Associated to each ABAP Artifact with violations, the Quality Rule provides: - The number of violation patterns</p>
+<h5>Total</h5>
+<p>Number of ABAP Artifacts using LOOP AT .... WHERE constructs</p>
+<h5>Metric ID</h5>
+<p>7536</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

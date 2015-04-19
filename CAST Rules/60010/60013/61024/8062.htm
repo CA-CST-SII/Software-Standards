@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>An unconditional &#39;throw&#39;, &#39;return&#39; or &#39;break&#39; shall terminate every non-empty switch-clause</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>An unconditional &#39;throw&#39;, &#39;return&#39; or &#39;break&#39; shall terminate every non-empty switch-clause</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>By default, when the program reaches the end of a &#39;switch&#39;-clause, it continues to the next clause. While this may prove useful in some cases, it is very uncommon and not at all obvious.</p>
+<h5>Description</h5>
+<p>This rule checks for a &#39;switch&#39;-clause that does not end with a &#39;break&#39;, a &#39;return&#39; or a &#39;throw&#39;. This construct should be at the top level in the &#39;switch&#39;-clause. The rule is not triggered if the last &#39;switch&#39;-clause of a &#39;switch&#39;
+statement is &#39;default&#39;, and does not explicitly end with &#39;break&#39;, &#39;return&#39; or &#39;throw&#39;.</p>
+<h5>Remediation</h5>
+<p>Add a &#39;break&#39;, &#39;return&#39; or &#39;throw&#39; statement to end &#39;case&#39; clauses.</p>
+<h5>Reference</h5>
+<p>MISRA C++</p>
+<h5>Sample</h5>
+<pre>
+int main()
+{
+    int i = 2;
+    switch(i)
+    {
+    case 0:
+        cout &lt;&lt; &quot;0&quot; &lt;&lt; endl;
+        // Violation
+    case 1:
+        // No violation: Empty clause
+    case 2:
+        cout &lt;&lt; &quot;1 or 2&quot; &lt;&lt; endl;
+        break; // No violation: A break
+    default:
+        cout &lt;&lt; &quot;Other&quot; &lt;&lt; endl;
+        // No violation: Last clause is default
+    }
+}
+</pre>
+<h5>Output</h5>
+<p>Associated to each C function, C++ method, constructor, and destructor with violations, the Quality Rule provides: - The number of violations patterns - Bookmarks for violation patterns found in source code: - case clause</p>
+<h5>Total</h5>
+<p>Number of C functions, C++ methods, constructors, and destructors</p>
+<h5>Metric ID</h5>
+<p>8062</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

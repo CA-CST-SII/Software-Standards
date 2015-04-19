@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Classes with at least one virtual Function and without a virtual Destructor</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Classes with at least one virtual Function and without a virtual Destructor</h4>
+<hr>
+<h5>Technology</h5>
+<p>C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>Whenever a virtual method is defined in a class, it means that the class is intended to be used in an inheritance hierarchy. In this context, a derived object will often be handled through a pointer to its base class, to achieve polymorphism. If a class has a non-virtual destructor, and an
+attempt is made to destroy an object of a derived type through a pointer to the base type, the behavior is undefined. On some platforms, it may call the base-class version of the destructor instead of the derived-class version, provoking memory leaks, resource losses and stability issues. On
+others, it may simply crash. Furthermore, once your class contains one virtual function, adding a virtual destructor does not add any additional per-object cost, so adding it is both free and safer.</p>
+<h5>Description</h5>
+<p>This rule searches for C++ classes that have a virtual method but no virtual destructor.</p>
+<h5>Remediation</h5>
+<p>Add a virtual destructor to the class that has a virtual function.</p>
+<h5>Reference</h5>
+<p>&quot;C++ FAQ Lite [20.7] When should my destructor be virtual?&quot;:http://www.parashift.com/c++-faq-lite/virtual-functions.html##faq-20.7</p>
+<h5>Sample</h5>
+<pre>
+class CParent
+{
+    ~CParent();
+    virtual int foo();
+};
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class CParent
+{
+    virtual ~CParent();
+    int virtual foo();
+};
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ class with violations, the Quality Rule provides: - Bookmarks for violation patterns found in source code: - Virtual method</p>
+<h5>Total</h5>
+<p>Number of C++ classes</p>
+<h5>Metric ID</h5>
+<p>584</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

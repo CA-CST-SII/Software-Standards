@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Functions/Procedures with queries on too many Tables (DB2 Server)</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Functions/Procedures with queries on too many Tables (DB2 Server)</h4>
+<hr>
+<h5>Technology</h5>
+<p>DB2 Server</p>
+<h5>Unified Status</h5>
+<p>Not Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Having complex queries in Functions can cause performance problems.</p>
+<h5>Description</h5>
+<p>Avoid Functions / Procedures with queries on more than 4 Tables. Queries with more than 4 Tables is considered complex. Changing the threshold value requires Metric Assistant configuration update. Note: &quot;Functions &amp; Procedures&quot; is a generic name that include different types of
+objects: - function - stored procedure - trigger (special stored procedure fired by event) - package function - package procedure</p>
+<h5>Remediation</h5>
+<p>Review the query to reduce the number of involved Tables.</p>
+<h5>Output</h5>
+<p>This report lists all Functions / Procedures with queries on too many Tables. It provides the following information: Function / Procedure full name, number of Tables</p>
+<h5>Metric ID</h5>
+<p>6608</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

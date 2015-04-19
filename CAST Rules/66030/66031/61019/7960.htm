@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid looping chain of synonyms in PL/SQL context</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid looping chain of synonyms in PL/SQL context</h4>
+<hr>
+<h5>Technology</h5>
+<p>Forms, PL/SQL</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>1</p>
+<h5>Rationale</h5>
+<p>Presence of a looping chain of synonyms will generate error at execution time when accessed. Even if a looping chain of synonyms is authorized at creation time, the execution time will generate &quot;ORA-01775 looping chain of synonyms&quot; error</p>
+<h5>Description</h5>
+<p>This metric retrieves synonyms that are part of a looping chain of synonym. Indeed through a series of CREATE synonym statements, a synonym could be defined and in fact refer to itself</p>
+<h5>Remediation</h5>
+<p>Change at least one synonym definition to cut the circular list</p>
+<h5>Reference</h5>
+<p>Oracle documentation, for example</p>
+<h5>Sample</h5>
+<pre>
+For example, the following definitions are circular:
+
+SQL&gt; create synonym s1 for s2;
+Synonym created.
+SQL&gt; create synonym s2 for s3;
+Synonym created.
+SQL&gt; create synonym s3 for s4;
+Synonym created.
+SQL&gt; create synonym s4 for s1;
+Synonym created.
+</pre>
+<h5>Output</h5>
+<p>This report lists all the ordered looping chain of synonyms : It provides the following information: the ordered list of each synonym that is part of the looping chain. The name of each synonym that is part of the full name,</p>
+<h5>Total</h5>
+<p>The total procedure counts the number of synonyms that is part of the analyzed source code</p>
+<h5>Metric ID</h5>
+<p>7960</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

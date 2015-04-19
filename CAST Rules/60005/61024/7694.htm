@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid calling the same paragraph with PERFORM and GO TO statements</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid calling the same paragraph with PERFORM and GO TO statements</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>For code structuration and mantainability reasons, a paragraph should not be called by PERFORM and GO TO statements. In the first case, the paragraph receives the control and return it just after its last statement. Its position in the program does not impact the execution of the program. In the
+second case, the paragraph receives the control by a fall-through logic and so the position of the paragraph impacts the execution of the code. Furthermore, the logic of the program is going to become difficult to understand, to maintain and so to test. As a result, the program could have
+unanticipated behavior.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs containing paragraphs called by GO TO statements and by PERFORM statements.</p>
+<h5>Remediation</h5>
+<p>Try to adapt the logic in order to remove the GO TO statement. If necessary, then copy the code of paragraph that is called by PERFORM and GO TO into a new paragraph and change the target of the PERFORM statements.</p>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - The PERFORM statements - The GO TO statements</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>7694</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

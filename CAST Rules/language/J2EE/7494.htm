@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Persistent class method&#39;s equals() and hashCode() must access its fields through getter methods</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Persistent class method&#39;s equals() and hashCode() must access its fields through getter methods</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>This is important, since the object instance passed as other might be a proxy object, not the actual instance that holds the persistent state. This is the case when there are lazy associations between classes. This is one point where Hibernate is not completely transparent, but it&#39;s good
+practice to use accessor methods instead of direct instance variable access: when tuning the performance of the application, a lazy association might be required and the issue can occur. This potential issue raises a ClassCastException and can cause the application to become unstable.</p>
+<h5>Description</h5>
+<p>This Quality Rule reports all persistent class method&#39;s equals() and hashCode() that directly access its own fields without using getter methods. This rule takes into account the case where equals and hashCode are implemented on an inherited class of the persistent class (this can happen
+when inherited fields are persistent).</p>
+<h5>Remediation</h5>
+<p>Use the getter instead.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 125, Java Persistence with Hibernate (ISBN 1-932394-88-5) p 400, The Java Persistence API page 400 - ISBN 1-932394-88-5</p>
+<h5>Sample</h5>
+<pre>
+public class PersitentSample implements Serializable {
+   
+     private Long id;
+     private String field;
+
+   
+    public Long getId() {
+        return id;
+    }
+
+    private void setId(Long id) {
+        this.id = id;
+    }
+    
+    public String getField() {
+        return field;
+    }
+    
+    public void setField(String field) {
+        this.field = field;
+    }
+               
+    public boolean equals(Object obj) {
+         if (this==obj)
+            return true;
+        if (id==null)
+            return false;
+        if (obj.getClass() != this.getClass()) return false;
+        final PersitentSample o = (PersitentSample) obj;
+        return this.field.equals(o.getField());  // VIOLATION
+    }
+   
+    public int hashCode() {
+        return field.hashCode();                     // VIOLATION
+    }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+public class PersitentSample implements Serializable {
+   
+     private Long id;
+     private String field;
+
+   
+    public Long getId() {
+        return id;
+    }
+
+    private void setId(Long id) {
+        this.id = id;
+    }
+    
+    public String getField() {
+        return field;
+    }
+    
+    public void setField(String field) {
+        this.field = field;
+    }
+               
+    public boolean equals(Object obj) {
+         if (this==obj)
+            return true;
+        if (obj==null)
+            return false;
+        if (obj.getClass() != this.getClass())
+            return false;
+        final PersitentSample o = (PersitentSample) obj;
+        return this.getField().equals(o.getField());  // FIXED
+    }
+   
+    public int hashCode() {
+        return getField().hashCode();                    // FIXED
+    }
+}
+</pre>
+<h5>Output</h5>
+<p>List all equals or hashCode methods of persistent classes that rely on the fields (persistent or not). It provides the following information: Method Full Name</p>
+<h5>Total</h5>
+<p>Number of equals() and hashCode() methods implemented by Hibernate or JPA persistent classes or by classes that reference persistent fields.</p>
+<h5>Metric ID</h5>
+<p>7494</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

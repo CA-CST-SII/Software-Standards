@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid too many Indexes on one Table</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid too many Indexes on one Table</h4>
+<hr>
+<h5>Technology</h5>
+<p>All Languages/Technologies</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Every index increases the time it takes to perform INSERTS, UPDATES and DELETES, so the number of indexes should not be too high. Try to not use more than a maximum of 4-5 indexes for one table. If you have a read-only table, then the number of indexes is not as important and thus may be
+larger.</p>
+<h5>Description</h5>
+<p>Avoid having more than (&gt;) X indexes (where X is a parameter)</p>
+<h5>Remediation</h5>
+<p>Drop unecessary indexes.</p>
+<h5>Sample</h5>
+<pre>
+-- SQL Server Sample
+create table MyManyIndexTable( C1 int, C2 int, C3 int, C4 int, C5 int)
+
+
+create index MyManyIndexTable_I1 on MyManyIndexTable( C1)
+create index MyManyIndexTable_I2 on MyManyIndexTable( C2)
+create index MyManyIndexTable_I3 on MyManyIndexTable( C3)
+create index MyManyIndexTable_I4 on MyManyIndexTable( C4)
+create index MyManyIndexTable_I5 on MyManyIndexTable( C5)
+
+
+declare @t datetime
+declare @i int
+Set @i = 1
+set @t = getdate()
+while (@i &lt; 5000)
+begin
+   insert MyManyIndexTable select @i,@i,@i,@i,@i
+   set @i = @i+1
+end
+SELECT DATEDIFF(ms, @t, getdate()) as &#39;Elapsed Time&#39;
+
+=&gt; 3806 ms
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+Drop the index &amp; empty the table
+=&gt; 2563 ms
+</pre>
+<h5>Output</h5>
+<p>Associated to each Table with violations, the Quality Rule provides: - The Number of indexes of the table.</p>
+<h5>Total</h5>
+<p>Total number of tables</p>
+<h5>Metric ID</h5>
+<p>7348</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

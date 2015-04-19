@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid nested loops</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid nested loops</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>If the amount of data is large, nested loops are fully avoided due to performance issues. If the program is extracting small amount of data, then focus on SELECT statements than nested loops. The indexed loop and READ statement using binary search are the best methods to avoid performance
+issues.</p>
+<h5>Description</h5>
+<p>This rule checks all ABAP artifacts containing nested loops. These can be implemented with statements: - LOOP ... ENDLOOP - DO ... ENDDO - WHILE ... ENDWHILE - PROVIDE ... ENDPROVIDE Only constructs based on at least 3 levels of nested loops are considered as violating the rule.</p>
+<h5>Remediation</h5>
+<p>Evaluate the amount of data processed in the loop and, if necessary, replace nested loop by indexed loop or READ statement with binary search.</p>
+<h5>Output</h5>
+<p>Associated to each ABAP Artifact with violations, the Quality Rule provides: - The number of violation patterns</p>
+<h5>Total</h5>
+<p>Number of Abap artifacts containing code</p>
+<h5>Metric ID</h5>
+<p>7880</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

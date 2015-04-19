@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Use aggregate awareness for indicators</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Use aggregate awareness for indicators</h4>
+<hr>
+<h5>Technology</h5>
+<p>Business Object</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>Use aggregate awareness, which speeds up query time by using special tables containing pre-calculated data. Do all aggregation on the server side instead of in the document (this can result in huge time savings).</p>
+<h5>Description</h5>
+<p>This metric list all indicators not using aggregate awareness.</p>
+<h5>Remediation</h5>
+<p>See Justification</p>
+<h5>Reference</h5>
+<p>BO Best Practices for v5</p>
+<h5>Sample</h5>
+<pre>
+See other sample.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+Imagine you have 3 tables : 
+T1, the full table with sales by item, customer, store (a store is linked to a city, a city to a region, a region to a country, a country to a continent). 
+T2, a first aggregate tab with sales by items 
+T3, a second aggregate tab with sales by country. 
+If you define an indicator &quot;sales&quot; as &quot;select @Aggregate_Aware(Sum(T3.nbSales), Sum(T2.nbSales), Sum(T1.nbSales))&quot;, when the user will create a query with sales and country (or sales and continent), the query will use T3, when the user will create a query with sales &amp; items, the query will use T2, and if the user create a query with country, item &amp; sales, the query will use T1.
+</pre>
+<h5>Output</h5>
+<p>List of indicators (grouped by classes) not using @aggregate_aware function</p>
+<h5>Total</h5>
+<p>Count of indicators</p>
+<h5>Metric ID</h5>
+<p>7480</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

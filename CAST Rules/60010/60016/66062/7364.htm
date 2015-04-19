@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid multiple validation form with the same name</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid multiple validation form with the same name</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>When several validation form have the same name, the Struts Validator framework will choose one of the form validation to check input values. This means that the behavior is not controlled and that wrong input pass the validation check. This may lead to SQL injection, cross-site scripting...</p>
+<h5>Description</h5>
+<p>This metric reports all duplicated form validators with the same name. Note that it can be the form name or the action name (in the case of a form shared among different actions)</p>
+<h5>Remediation</h5>
+<p>Find the right validator and remove the others.</p>
+<h5>Reference</h5>
+<p>http://cwe.mitre.org/data/definitions/102.html http://www.owasp.org/index.php/Struts:_Duplicate_Validation_Forms</p>
+<h5>Sample</h5>
+<pre>
+----&gt; validation.xml:
+&lt;form-validation&gt;
+  &lt;formset&gt;
+    &lt;form name=&quot;logonBean&quot;&gt;
+    ...
+    &lt;/form&gt;
+    &lt;form name=&quot;logonBean&quot;&gt; // VIOLATION
+    ...
+    &lt;/form&gt;
+  &lt;/formset&gt;
+&lt;/form-validation&gt;
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+----&gt; validation.xml:
+&lt;form-validation&gt;
+  &lt;formset&gt;
+    &lt;form name=&quot;logonBean&quot;&gt; // FIXED
+    ...
+    &lt;/form&gt;
+  &lt;/formset&gt;
+&lt;/form-validation&gt;
+</pre>
+<h5>Output</h5>
+<p>This report lists all validation forms that are duplicated. It provides the following information: Form Validation Full Name</p>
+<h5>Total</h5>
+<p>The total number of distinct validation forms names or 0 if no object of type &quot;Validation Configuration File&quot; is present</p>
+<h5>Metric ID</h5>
+<p>7364</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

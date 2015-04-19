@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using nested programs</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using nested programs</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Rationale</h5>
+<p>Nested programs are not visible among the source files. In addition, if there are several occurrences of the same nested subprograms, then the maintenance tasks may be difficult and it is easy to forget one of these occurrences. Then, incoherences can occur during the application execution.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs containing nested subprograms. A nested subprogram is a Cobol program defined at the end of the main program and is visible by this one only.</p>
+<h5>Remediation</h5>
+<p>If there are several occurrences of the same nested program, then replace them by an external subprogram. Try to use external subprograms as much as possible.</p>
+<h5>Sample</h5>
+<pre>
+000700 Identification Division.
+000800 Program-Id. MAINPGM.
+000900 Procedure Division.
+001000     Display &quot;I am in MAINPGM&quot;.
+001100     Call &quot;NEST1&quot;.
+001300     Goback.
+001400**************************************************
+001500*** NEST1 is directly contained in MAINPGM     ***
+001700**************************************************
+001800 Identification Division.
+001900 Program-Id. NEST1.
+002000 Procedure Division.
+002100     Display &quot;I am in NEST1&quot;.
+002400     GoBack.
+004500 End Program NEST1.
+005500 End Program MAINPGM.
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - IDENTIFICATION division of the nested subprogram</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>7550</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

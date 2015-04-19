@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Classes with a High Depth of Inheritance Tree</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Classes with a High Depth of Inheritance Tree</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, ABAP, C#, C++, JEE, PowerBuilder, Visual Basic</p>
+<h5>Unified Status</h5>
+<p>Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>Changing a class requires prior understanding, which, in turn, is more complicated for classes with many methods. Classes that are deep down in the classes hierarchy potentially inherit many methods from super-classes. Moreover, the definitions of inherited methods are not local to the class
+making it even harder to understand it. Complete testing requires coverage of all execution paths. The number of possible execution paths of a class increases with the number of methods and their control flow complexity. Classes that are deep down in the classes hierarchy potentially inherit many
+methods from super-classes. Due to late binding, super-class methods need to be tested again in the sub-class context. This makes it potentially harder to test classes deep down in the classes (interfaces) hierarchy. Technical or framework classes which are evolving and will not be changed often
+should not be concerned by this rule.</p>
+<h5>Description</h5>
+<p>This rule searches for Classes with a High Depth of Inheritance Tree (DIT greater than X+1). This means that the inheritance tree should have at most X levels. Depth of Inheritance Tree (DIT) is the maximum length of a path from a class to a root class (excluding interfaces) in the inheritance
+structure of a system. DIT measures how many super-classes can affect a class.</p>
+<h5>Remediation</h5>
+<p>Review the design of the Class hierarchy.</p>
+<h5>Reference</h5>
+<p>A Metrics Suite for Object Oriented Design Chidamber, S.R. and C.F. Kemerer IEEE Transactions on Software Engineering, 1994</p>
+<h5>Output</h5>
+<p>Associated to each artifact with violations, the Quality Rule provides: - The Depth of Inheritance Tree</p>
+<h5>Total</h5>
+<p>Number of Classes</p>
+<h5>Metric ID</h5>
+<p>7802</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

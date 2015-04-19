@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Call &#39;super.finalize ()&#39; in the &quot;finally&quot; block of &#39;finalize ()&#39; methods</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Call &#39;super.finalize ()&#39; in the &quot;finally&quot; block of &#39;finalize ()&#39; methods</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>The finalize method is careful to call super.finalize from a finally block. All finalize methods should call super.finalize to ensure that any superclass finalize methods are invoked. Unlike superclass constructors that are invoked automatically, finalize methods must be chained manually. The
+super.finalize call is made from a finally block to ensure that it is called regardless of whether the call to the cleanup method generates an exception.</p>
+<h5>Description</h5>
+<p>List all finalize method with no try finally block or with no call to super.finalize() within the finally block.</p>
+<h5>Remediation</h5>
+<p>Add a try finally block.</p>
+<h5>Reference</h5>
+<p>Helping objects to a tidy end Steve Ball and John Miller Crawford http://www.adtmag.com/java/articleold.aspx?id=43</p>
+<h5>Sample</h5>
+<pre>
+class Test
+{
+ // ...
+  protected void finalize() throws Throwable {
+    cleanup();
+    super.finalize(); // VIOLATION
+  }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class Test
+{
+ // ...
+  protected void finalize() throws Throwable  {
+    try {
+      cleanup();
+    } finally { 
+      super.finalize();  // FIXED: the finalize method will
+                               // execute the superclass finalizer 
+                               // before re-throwing the IOException
+                               // object.
+    }
+  }
+</pre>
+<h5>Output</h5>
+<p>This report lists all Methods &#39;finalize()&#39; with no try finally block or with no call to super.finalize() within the finally block. It provides the following information: Method full name</p>
+<h5>Metric ID</h5>
+<p>7252</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

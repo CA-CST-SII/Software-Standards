@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>The exception Exception should never been thrown. Always Subclass Exception and throw the subclassed Classes.</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>The exception Exception should never been thrown. Always Subclass Exception and throw the subclassed Classes.</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#, JEE</p>
+<h5>Unified Status</h5>
+<p>Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Whenever a method throws an exception of type Exception, it prevents its callers from carrying out the specific recovery process that is needed and as a consequence this will threaten both application robustness and security. For example, each exception related to resource allocation whose catch
+does not explicitly release the resource might create a &quot;resource leak&quot;. When a leak occurs on a limited set of available resources, such as a database connection, the application can then become unusable because resources cannot be allocated any more. The application also becomes
+difficult to support and run in production as root-cause analysis is made more difficult. The support teams might not even be aware that something went wrong (by catching Exception, RuntimeException might not be visible any more).</p>
+<h5>Description</h5>
+<p>This Quality Rule reports all methods throwing an exception of type Exception. The exception Exception should never been thrown.</p>
+<h5>Remediation</h5>
+<p>The method must throw a Subclass of the generic Exception that provides valuable information about the exception that occurred in order to help programmers calling this method to write the appropriate recovery or error management code.</p>
+<h5>Sample</h5>
+<pre>
+void f()
+{
+,,,
+   throw new Exception(&quot;My Message&quot;); // &lt;= VIOLATION
+,,,
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+void f()
+{
+,,,
+   throw new MyException(&quot;My Message&quot;); 
+,,,
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all Artifacts throwing an exception of type Exception. It provides the following information: - Artifact full name</p>
+<h5>Total</h5>
+<p>This counts all Artifacts.</p>
+<h5>Metric ID</h5>
+<p>7824</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

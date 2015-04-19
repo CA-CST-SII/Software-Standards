@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid catching an exception of type Exception, RuntimeException, or Throwable</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid catching an exception of type Exception, RuntimeException, or Throwable</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#, JEE</p>
+<h5>Unified Status</h5>
+<p>Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Catching the Exception class directly means that the try/catch will process all the exceptions in the same way: RuntimeException will be processed in the same way as application specific exceptions such BankingException or CredentialException. This will prevent the application from carrying out
+the specific recovery process that is needed and as a consequence will threaten both application robustness and security. For example, each exception related to resource allocation whose catch does not explicitly release the resource might create a resource leak. When such a leak occurs on a
+limited set of available resources, such as the database connection, the application can then become unusable because resources cannot be allocated any more. The application also becomes difficult to support and run in production as root-cause analysis is made more difficult. The support teams
+might not even be aware that something went wrong (by catching Exceptions, RuntimeException might not be visible any more).</p>
+<h5>Description</h5>
+<p>The exception Exception should never be caught in a catch statement. Always Subclass Exception and use the Subclassed Classes.</p>
+<h5>Remediation</h5>
+<p>Always Subclass Exception and use the Subclassed Classes with appropriate and specific recovery code.</p>
+<h5>Reference</h5>
+<p>Exception-Handling Antipatterns by Tim McCune http://today.java.net/pub/a/today/2006/04/06/exception-handling-antipatterns.html Best Practices for Exception Handling http://www.onjava.com/pub/a/onjava/2003/11/19/exceptions.html Catching and Throwing Standard Exception Types
+http://msdn2.microsoft.com/en-us/library/ms229007(VS.80).aspx Warren, Nigel, and Bishop, Philip. Java in Practice. Addison-Wesley, 1999, p. 68.</p>
+<h5>Sample</h5>
+<pre>
+try
+{ ,,, }
+catch (Exception /*e*/) // &lt;= VIOLATION
+{ ,,, }
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+&quot; Hide
+try
+{ ,,, }
+catch (SpecificException /*e*/)
+{ ,,, }
+</pre>
+<h5>Output</h5>
+<p>This rule lists all Methods catching an exception of type Exception. It provides the following information: - Method full name</p>
+<h5>Total</h5>
+<p>This rule counts all Methods.</p>
+<h5>Metric ID</h5>
+<p>7862</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

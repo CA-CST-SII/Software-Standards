@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Tables having Indexes with a too large Index definition</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Tables having Indexes with a too large Index definition</h4>
+<hr>
+<h5>Technology</h5>
+<p>All Languages/Technologies</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>The wider an index definition, the bigger the index becomes physically, and the more work the database has to perform when accessing or modifying the data. Because of this, you should avoid adding indexes to very wide columns. The narrower the index, the faster it will perform. You can&#39;t
+always avoid indexing wide columns or using composite indexes, but if you think you have to use one, be sure you have carefully evaluated your choice and are confident you don&#39;t have other options that may offer better performance.</p>
+<h5>Description</h5>
+<p>This metrics retrieves all tables having indexes with a too large index definition (larger than the threshold parameter). The index definition size is measured as the sum of index column&#39;s size in bytes.</p>
+<h5>Remediation</h5>
+<p>See rationale</p>
+<h5>Sample</h5>
+<pre>
+create table publishers
+(
+pub_id   char(45),
+city        varchar(20),
+state      char(2),
+Constraint PK_publishers unique nonclustered
+( pub_id asc  ) 
+)
+</pre>
+<h5>Output</h5>
+<p>This Quality Rule does not report any additional value on the Violation.</p>
+<h5>Total</h5>
+<p>The total procedure counts the number of tables.</p>
+<h5>Metric ID</h5>
+<p>7350</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

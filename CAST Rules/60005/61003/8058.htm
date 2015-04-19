@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>A pointer to a derived Class shall only be cast implicitly to a pointer to base Class</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>A pointer to a derived Class shall only be cast implicitly to a pointer to base Class</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Casting from a derived class to a base class is implicit. If you explicitly write a cast, it will work too, but it will also work in a situation where it should not, for instance if the class hierarchy has changed. Relying on implicit casting is therefore both simpler to use and safer.</p>
+<h5>Description</h5>
+<p>This rule searches for C++ functions that contain C-style casts or static_casts from a pointer to a derived class to a pointer to one of its base classes.</p>
+<h5>Remediation</h5>
+<p>Following the example, if A and B were not related in any way, line 1 would still compile (and be equivalent to reinterpret_cast), but would be wrong, see rule &quot;Never perform C-style cast between incompatible Class pointers&quot; (id 8002). If A and B were related, but B not be derived from
+A, line 1 and 2 would still compile, but would be wrong. See rule &quot;A pointer to a base Class shall only be cast to a pointer to a derived Class by means of &#39;dynamic_cast&#39;&quot; (id 8060).</p>
+<h5>Sample</h5>
+<pre>
+class A
+{
+};
+
+class B : public A
+{
+};
+
+A* p1 = (A*)(new B()); // 1: Violation
+A* p1 = static_cast&lt;A*&gt;(new B()); // 2: Violation
+A* p1 = new B(); // 3: OK
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ constructor, destructor, or method with violations, the Quality Rule provides: - Number of violation patterns - Bookmarks for violation patterns found in the source code: - cast between derived and base classes - derived class declaration - base class declaration</p>
+<h5>Total</h5>
+<p>Number of C++ constructors, destructors, and methods</p>
+<h5>Metric ID</h5>
+<p>8058</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

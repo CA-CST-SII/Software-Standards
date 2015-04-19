@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid String concatenation in loops</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid String concatenation in loops</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>String concatenation is not efficient because it creates a StringBuffer for each concatenation. When placed in a loop, String concatenation results in the creation and garbage collection of large numbers of temporary objects. This both consumes memory and can dramatically slow the program
+execution. It is recommended to create a StringBuffer before entering the loop, and append to it within the loop, thus reducing the overhead.</p>
+<h5>Description</h5>
+<p>All String objects that use concatenation in loops (for, while, do while) will be reported. Note that the JVM is optimizing code such as System.out.println(&quot;x:&quot;+x+&quot; y:&quot;+y); by System.out.println((new StringBuilder()).append(&quot;x:&quot;).append(x).append(&quot;
+y:&quot;).append(y).toString()); see: http://kaioa.com/node/59 So only the cases where the variable used to save the result of the concatenation is used in the concatenation itself. So, only these cases when executed in loop are taken into account: * result += string (literal or not) * result =
+result + string (literal or not) * result = result.concat(string: literal or not)</p>
+<h5>Remediation</h5>
+<p>It is recommended to create a StringBuilder (if JDK &gt;= 1.5 and not in thread environment) or StringBuffer before entering the loop, and append to it within the loop, thus reducing the overhead.</p>
+<h5>Reference</h5>
+<p>http://www.precisejava.com/javaperf/j2se/StringAndStringBuffer.htm#Strings104</p>
+<h5>Sample</h5>
+<pre>
+String result = &quot;hello&quot;;
+for (int i = 0; i &lt; 1500; i++) {
+   result += &quot;hello&quot;;  // VIOLATION
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+StringBuffer result = new StringBuffer(&quot;hello&quot;);
+for (int i = 0; i &lt; 1500; i++) {
+   result.append(&quot;hello&quot;);  // FIXED
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all methods that call String concatenation in loops. It provides the following information: Method full name</p>
+<h5>Metric ID</h5>
+<p>7200</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

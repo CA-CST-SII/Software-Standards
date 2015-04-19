@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using Native SQL</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using Native SQL</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Most ABAP programs containing database-specific SQL statements do not run with different databases. If different databases are involved, then use Open SQL. Open SQL (Subset of standard SQL statements), allows you to access all database tables available in the R/3 System, regardless of the
+manufacturer. Moreover, Open SQL queries are optimized for SAP dictionary. Use of Native SQL is highly discouraged by SAP.</p>
+<h5>Description</h5>
+<p>This rule checks all Abap code containing Native SQL queries. These queries start with EXEC SQL macro.</p>
+<h5>Remediation</h5>
+<p>Replace Native SQL queries by corresponding Open SQL queries as much as possible.</p>
+<h5>Output</h5>
+<p>Associated to each ABAP Artifact with violations, the Quality Rule provides: - The number of violation patterns</p>
+<h5>Total</h5>
+<p>Number of Abap artifacts</p>
+<h5>Metric ID</h5>
+<p>7882</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

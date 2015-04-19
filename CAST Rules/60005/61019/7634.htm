@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid select-before-update when the Table is not associated to an UPDATE Trigger</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid select-before-update when the Table is not associated to an UPDATE Trigger</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Triggers and object-relational mapping often create issues due to the difficulties of synchronizing the effect of a trigger with the representation of data in memory. To enhance performances, it is a best practice to use the attribute select-before-update for the persistent class associated to a
+table that have the UPDATE trigger. But if the table is not associated to an UPDATE trigger, then it will affect your performance since the application will perform unnecessary SELECT.</p>
+<h5>Description</h5>
+<p>Reports Hibernate Entities that set select-before-update property to true and that are not associated to a table that fires an UPDATE trigger.</p>
+<h5>Remediation</h5>
+<p>Remove the attribute select-before-update for the persistent class that is not associated to a table that have the UPDATE trigger.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 339</p>
+<h5>Sample</h5>
+<pre>
+SAMPLE is a table not managed by an UPDATE trigger
+---&gt; sample.hbm.xml
+// VIOLATION
+&lt;class name=&quot;Sample&quot; table=&quot;SAMPLE&quot; select-before-update=&quot;true&quot;&gt;
+...
+&lt;/class&gt;
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+---&gt; sample.hbm.xml
+// FIXED
+&lt;class name=&quot;Sample&quot; table=&quot;SAMPLE&quot;&gt;
+...
+&lt;/class&gt;
+</pre>
+<h5>Output</h5>
+<p>List all Hibernate Entity that use select-before-update and that are not associated to a table that fires an UPDATE trigger. It provides the following information: - XML File - Hibernate Entity</p>
+<h5>Total</h5>
+<p>The number of Hibernate XML Entities that have the select-before-update property</p>
+<h5>Metric ID</h5>
+<p>7634</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

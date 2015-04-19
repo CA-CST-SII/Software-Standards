@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Persistent classes should Implement hashCode() and equals()</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Persistent classes should Implement hashCode() and equals()</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Hibernate guarantees that there is a unique instance for each row of the database inside a Session. But whenever you work with objects in detached state, and especially if you test them for equality (usually in hash-based collections), you need to supply your own implementation of the equals()
+and hashCode() methods for your persistent classes. This is true for Hibernate standard usage but also when used through the JPA API. Nevertheless, it&#39;s possible to build a complex application with identity (default) equals as long as you exercise discipline when dealing with detached objects
+from different sessions. If this concept of equality isn&#39;t what you want, you must override equals() in your persistent classes.</p>
+<h5>Description</h5>
+<p>Reports all persistent classes that don&#39;t implement equals() or hashCode() directly (class that is referenced in the mapping file) or in an inherited class that holds persistent fields (this is the case when a persistent class makes persistent inherited fields).</p>
+<h5>Remediation</h5>
+<p>Check if you have instances from multiple sessions and implement equals() and hashCode() if it is the case. If it is not the case, we recommend implementing it anyway to avoid issues during future evolutions.</p>
+<h5>Reference</h5>
+<p>http://docs.jboss.org/hibernate/core/3.3/reference/en/html/persistent-classes.html#persistent-classes-equalshashcode Hibernate in Action (ISBN 1932394-15-X) p 219 The Java Persistence API page 395 - ISBN 1-932394-88-5 http://www.ideyatech.com/2011/04/effective-java-equals-and-hashcode/</p>
+<h5>Sample</h5>
+<pre>
+----&gt; a.hbm.xml
+&lt;hibernate-mapping &gt;
+  
+  &lt;class name=&quot;A&quot; table =&quot;A&quot;&gt; 
+    &lt;id name=&quot;id&quot;&gt;
+      &lt;generator class=&quot;increment&quot;/&gt;
+    &lt;/id&gt;
+
+    &lt;set name=&quot;b_items&quot; lazy=&quot;true&quot; table =&quot;B&quot;&gt; 
+      &lt;key column=&quot;B_ID&quot;/&gt;
+      &lt;one-to-many class=&quot;B&quot;/&gt;
+    &lt;/array&gt;
+  &lt;/class&gt;
+
+  &lt;class name=&quot;B&quot; table=&quot;B&quot; lazy=&quot;true&quot;&gt;
+    &lt;id name=&quot;id&quot; column=&quot;B_ID&quot;&gt;
+      &lt;generator class=&quot;increment&quot;/&gt;
+    &lt;/id&gt;
+  &lt;/class&gt;
+
+&lt;/hibernate-mapping&gt;
+
+----&gt; B.java
+public class B {
+ private long id;
+ ...
+
+ private void setId(long id) { 
+    this.id = id;
+ }
+
+   public long getId() {
+      return id;
+   }
+  ...
+  // VIOLATION: equals and hashCode are not defined
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+----&gt; B.java
+public class B {
+  private long id;
+  ...
+
+  private void setId(long id) { 
+    this.id = id;
+  }
+
+   public long getId() {
+      return id;
+   }
+  ...
+
+  // FIXED
+   public boolean equals(Object obj) {
+    ...
+   }
+
+   // FIXED
+   public int hashCode() {
+     ...
+    }
+}
+</pre>
+<h5>Output</h5>
+<p>List all Hibernate and JPA persistent classes that don&#39;t implement equals() or hashCode() directly or in an inherited class that holds persistent fields. It provides the following information: - Class Full Name</p>
+<h5>Total</h5>
+<p>The number of persistent classes (through Hibernate or JPA)</p>
+<h5>Metric ID</h5>
+<p>7504</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

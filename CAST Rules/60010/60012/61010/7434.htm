@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid classes overriding only equals() or only hashCode()</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid classes overriding only equals() or only hashCode()</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Often classes are used in HashMap to provide an efficient storage and retrieval. The Java platform architects anticipated the importance of hash-based collection classes -- such as Hashtable, HashMap, and HashSet -- in typical Java applications, and comparing against many objects with equals()
+can be computationally expensive. If your java class is used or can be used in a hash-based collection, override both of these methods to avoid any issues that can be painful to find when the issue appear in production because the error is not in the code that is present, but in the code that is
+absent.</p>
+<h5>Description</h5>
+<p>Report all classes that override only boolean equals(Object) or only int hashCode()</p>
+<h5>Remediation</h5>
+<p>Override both methods.</p>
+<h5>Reference</h5>
+<p>http://www-128.ibm.com/developerworks/java/library/j-jtp05273.html</p>
+<h5>Sample</h5>
+<pre>
+class Example {
+   int id;
+
+   public int getId() {
+      return id;
+   }
+    public boolean equals(Object obj) { 
+         return (obj instanceof Example 
+            &amp;&amp; id == ((Example) obj).getId()); 
+   }
+       // VIOLATION: missing hashCode()
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class Example {
+   int id;
+
+   public int getId() {
+      return id;
+   }
+    public boolean equals(Object obj) { 
+         return (obj instanceof Example 
+            &amp;&amp; id == ((Example) obj).getId()); 
+   }
+   public int hashCode() {  // FIXED
+       return id/10;
+   }
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all classes that implement only equals() or only hashCode() It provides the following information: Class full name</p>
+<h5>Total</h5>
+<p>all classes that override equals() or (not exclusive) hashCode()</p>
+<h5>Metric ID</h5>
+<p>7434</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Namespaces with High Efferent Coupling (CE)</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Namespaces with High Efferent Coupling (CE)</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>Excessive coupling is detrimental to modular design since classes are not independent. A large efferent coupling indicates that a class is unfocussed and may also indicate that it is unstable, since it depends on the stability of all the types to which it is coupled. This prevents reuse since a
+high coupling possibly indicates a namespace is poorly designed and difficult to understand/maintain. Extracting classes from the original class so the class is decomposed into smaller classes can reduce efferent coupling, this improves modularity and promotes encapsulation.</p>
+<h5>Description</h5>
+<p>CE (also known as Outgoing Dependencies or the Number of Types outside a namespace that Types of the namespace Depend on) indicates the number of other namespaces that classes and interfaces in the analyzed namespace depend upon. This is an indicator of the namespace&#39;s independence.</p>
+<h5>Metric ID</h5>
+<p>7262</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

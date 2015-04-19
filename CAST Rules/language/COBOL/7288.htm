@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid cyclic calls with PERFORM statements</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid cyclic calls with PERFORM statements</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>A PERFORM statement must not cause itself to be executed into a cycle. A cyclic PERFORM statement can cause unpredictable results.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs containing cycles without at least one PERFORM statement in the paragraph call graph.</p>
+<h5>Remediation</h5>
+<p>Try to remove cyclic algorithms in the program and replace them by iterative algorithms.</p>
+<h5>Reference</h5>
+<p>IBM Enterprise Cobol for z/OS - Language Reference</p>
+<h5>Sample</h5>
+<pre>
+PROCEDURE DIVISION.
+       PROCESS.
+           MOVE 0 TO A.
+           PERFORM PROC-01.
+           GOBACK.
+
+       PROC-01.
+           ADD 1 TO A.
+           PERFORM PROC-02.
+
+       PROC-02.
+      * If condition is true then there is a recursive call
+           IF A &lt; 13 THEN
+               PERFORM PROC-01
+           END-IF
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+PROCEDURE DIVISION.
+       PROCESS.
+           MOVE 0 TO A.
+           PERFORM PROC-01 UNTIL A = 13.
+           GOBACK.
+
+       PROC-01.
+           ADD 1 TO A.
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - PERFORM statements that belong to the cycle - GO TO statements that could belong to the cycle Note: Last bookmark refers to
+the same statement than the first one.</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>7288</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

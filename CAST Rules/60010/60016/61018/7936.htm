@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using finalize()</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using finalize()</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>When using finalizers, there is no fixed time for finalizers to get executed, which again is JVM dependent: The only thing that is guaranteed is that if at all a finalizer gets executed, it will be before the garbage collector&#39;s second cycle. An object may become unreachable and yet its
+finalizer may not execute for an arbitrarily long time. Nothing of time-critical nature should be run in the finalize method, for instance, closing file handles is not recommended. It is possible for the JVM to terminate without invoking the finalizer on an unreachable object. Finalization on
+process exit is also not guaranteed. According to the Java Language Specification: Section 12.6.2: The Java programming language imposes no ordering on finalize method calls. Finalizers [of different objects] may be called in any order, or even concurrently. This can be a problem as slow running
+finalizers tend to block others in the queue. Unintentional mistakes like memory leaks can also cause finalizers to never execute to completion. A possibility exists such that the programmer unintentionally resurrects the references in the finalize method. While the garbage collector must determine
+yet again whether the object is free to be deallocated, the finalize method is not invoked again. A common myth is that finalizers aid garbage collection. On the contrary, they increase garbage collection time and introduce space overheads. They also fail to respect the modern generational garbage
+collectors. Another trap unfolds while trying to finalize reachable objects, an exercise that is always counterproductive. Sometimes it is necessary to use finalizers especially while working with native objects/code. This is because the garbage collector cannot re-claim memory from code written in
+another language. Also, the lifetime of the objects is often unknown. Again, the native process must not perform any critical jobs that require immediate resource deallocation.</p>
+<h5>Description</h5>
+<p>Report all explicit definition of the method finalize() except when the class has native methods.</p>
+<h5>Remediation</h5>
+<p>When you use an object that you know has native resources associated with it -- for example, a GUI component, file, or socket -- by all means call its dispose() or equivalent method (a method in charge of cleaning resources) when you are finished using it. This will ensure the immediate
+reclamation of the native resources and decrease the probability of resource depletion.</p>
+<h5>Reference</h5>
+<p>Effective Java, 2nd edition, by Joshua Bloch, Addison Wesley. (2008) https://www.securecoding.cert.org/confluence/display/java/MET12-J.+Do+not+use+finalizers http://java.sun.com/developer/technicalArticles/javase/finalization</p>
+<h5>Sample</h5>
+<pre>
+public class MyClass  {
+     ...
+      protected void finalize() throws Throwable { // VIOLATION
+          // some code here
+         ......
+          super.finalize();
+     }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+public class MyClass  {
+     ...
+      protected void dispose() throws Throwable { // FIXED
+          // some code here
+         ......
+          super.dispose();
+     }
+}
+</pre>
+<h5>Output</h5>
+<p>The metric will list all methods named finalize that belong to a class that has no native methods It provides the following information: Method full name</p>
+<h5>Total</h5>
+<p>number of classes</p>
+<h5>Metric ID</h5>
+<p>7936</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

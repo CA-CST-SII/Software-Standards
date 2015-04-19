@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid uncontrolled format string (CWE-134)</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid uncontrolled format string (CWE-134)</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>The programmer rarely intends for a format string to be user-controlled at all. This weakness is frequently introduced in code that constructs log messages, where a constant format string is omitted. In cases such as localization and internationalization, the language-specific message
+repositories could be an avenue for exploitation, but the format string issue would be resultant, since attacker control of those repositories would also allow modification of message length, format, and content. As a consequence, format string problems allow for information disclosure which can
+severely simplify exploitation of the program.</p>
+<h5>Description</h5>
+<p>Using CAST dataflow engine, this metric detects execution paths from user input methods down to format string manipulation methods which open vulnerabilities to uncontrolled format string flaw. The list of user input methods can be customized as well as the target methods and the sanitization
+methods (methods encoding the user input to avoid hacks).</p>
+<h5>Reference</h5>
+<p>CISQ Rule 13: http://it-cisq.org/wp-content/uploads/2012/09/CISQ-Specification-for-Automated-Quality-Characteristic-Measures.pdf CWE-134: http://cwe.mitre.org/data/definitions/134.html</p>
+<h5>Sample</h5>
+<pre>
+public class FormatterCase {
+    FormatterCase() {}
+ 
+    public void printStreamFormat(String val) throws SQLException {
+        PrintStream ps = new PrintStream(new FileOutputStream(FileDescriptor.out));
+        // format a string
+        ps.printf(val, &quot;Hello&quot;);// VIOLATION
+        // flush the stream
+        ps.flush();
+    }
+}
+
+public class PrintWithReqFormat {
+        FormatterCase formatter = FormatterCase();
+ 
+        PrintReq() {}
+ 
+        public void execute(ServletRequest req) throws Exception {
+               String format = req.getParameter(&quot;format&quot;);
+               formatter.printStreamFormat(format);
+       }
+}
+</pre>
+<h5>Output</h5>
+<p>List all methods that miss calling the required input validation calls It provides the following information: - Method full name - Call stack from user input source down to the string format method.</p>
+<h5>Total</h5>
+<p>The number of methods calling user input methods</p>
+<h5>Metric ID</h5>
+<p>8098</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

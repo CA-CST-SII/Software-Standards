@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Do not return a dereferenced pointer allocated inside the function</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Do not return a dereferenced pointer allocated inside the function</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>If you allocate memory dynamically, at one time, you will have to deallocate it to avoid memory leaks. If you return the pointed-to data, it means you have not deallocated it within the function. And since you don&#39;t return the pointer itself, there will be no way for the function caller to
+deallocate the memory.</p>
+<h5>Description</h5>
+<p>This rule searches for functions where memory is allocated and the pointed-to data is returned from the function.</p>
+<h5>Remediation</h5>
+<p>You can correct this problem by using a smart pointer that will automatically reclaim the memory at the function end (replace &#39;unique_ptr&#39; with another smart pointer, depending on what smart pointer is available to you)</p>
+<h5>Reference</h5>
+<p>High Integrity C++ Coding Standard Manual</p>
+<h5>Sample</h5>
+<pre>
+int f()
+{
+ int *i = new int(42);
+ return *i;
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+int f()
+{
+ unique_ptr&lt;int&gt; i (new int(42));
+ return *i;
+}
+</pre>
+<h5>Output</h5>
+<p>Associated to each C function and C++ method with violations, the Quality Rule provides: - pointer allocated in the function or method - Bookmarks for violation patterns found in source code: - pointer dynamic allocation</p>
+<h5>Total</h5>
+<p>Number of C/C++ functins and methods</p>
+<h5>Metric ID</h5>
+<p>8068</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

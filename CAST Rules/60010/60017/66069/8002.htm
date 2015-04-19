@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Never perform C-style cast between incompatible Class pointers</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Never perform C-style cast between incompatible Class pointers</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Using an incompatible C-style cast between pointers to classes is equivalent to using &#39;reinterpret_cast&#39;. It totally silences the type translation system, and will result in unpredictable behavior with high risk of crash and/or memory corruption.</p>
+<h5>Description</h5>
+<p>This rule searches for C++ methods, constructors, and destructors performing C-style casts between pointers to classes that are not compatible. Note: Compatible classes belong to the same class hierarchy. However, even to cast between those classes, C-style casts are not the preferred solution:
+see rules #8058 and #8060.</p>
+<h5>Remediation</h5>
+<p>If classes do not have any relationship: - Use &#39;void*&#39; as an intermediate type, and a &#39;static_cast&#39; from &#39;void*&#39; to the destination type. - Or use a &#39;reinterpret_cast&#39; instead. Be aware that most of the time, &#39;reinterpret_cast&#39; will lead to unpredictable
+behavior. Its effects are _implementation-defined_ and not portable. Its use should be limited to low-level (close to the hardware) programming. If classes belong to the same inheritance tree, then for derived-to-base, see rule #8058, use implicit type conversion, and for base-to-derived, see rule
+#8060, use a &#39;dynamic_cast&#39;.</p>
+<h5>Sample</h5>
+<pre>
+class A 
+{ 
+    int i;
+};
+
+class B 
+{
+public:
+    B() : p(&quot;Hello&quot;) { }
+    std::string p;
+};
+
+int main()
+{
+    B * b = (B*) new A(); // VIOLATION. A is not a child/mother class of B
+    std::cout &lt;&lt; b-&gt;p &lt;&lt; std::endl; // Probably a program crash
+    return 0;
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+In this example, there is no sensible way to use a pointer to &#39;A&#39; as if it was a pointer to &#39;B&#39;. We could silence this rule by using &#39;reinterpret_cast&#39;, but we could not make anything useful with &#39;b&#39;.
+
+If classes have a relationship, but the compiler does not know it, the same kind of problems can occur:
+
+class A;
+class B;
+
+void f()
+{
+    A* a = (A*)new B();
+}
+
+class A 
+{ 
+public:
+    virtual ~A();
+};
+
+class B : public A
+{
+};
+
+Here, even if the classes are related, the compiler does not know it at the point of definition of the f function. This C-style cast will still be equivalent to a &#39;reinterpret_cast&#39; and can be wrong (if you used a &#39;static_cast&#39; the code would not compile, which is a good thing).
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ method, constructor, and destructor with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - dangerous cast</p>
+<h5>Total</h5>
+<p>Number of C++ Methods, Constructors, and Destructors</p>
+<h5>Metric ID</h5>
+<p>8002</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

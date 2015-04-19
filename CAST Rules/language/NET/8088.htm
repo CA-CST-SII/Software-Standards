@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid override artifacts not having link demands identical to base</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid override artifacts not having link demands identical to base</h4>
+<hr>
+<h5>Technology</h5>
+<p>C#</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>An application with a public or a protected method in a public type, which overrides a method or implements an interface and does not have the same Link Demands as the interface or virtual method, can lead to security issues.</p>
+<h5>Description</h5>
+<p>This rule searches all the public or protected methods that in a public type overrides a method or implements an interface, and does not have the same Link Demands as the interface or virtual method.</p>
+<h5>Remediation</h5>
+<p>Always try and apply the same link demand to the overide method or implementation. If this is not possible, mark the method with a full demand or remove the attribute altogether</p>
+<h5>Reference</h5>
+<p>http://msdn.microsoft.com/en-us/library/ms182305.aspx</p>
+<h5>Sample</h5>
+<pre>
+using System.Security;
+using System.Security.Permissions;
+using System;
+
+namespace SecurityRulesLibrary
+{
+   public interface ITestOverrides
+   {  
+      [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+      Object GetFormat(Type formatType);
+   }
+
+   public class OverridesAndSecurity : ITestOverrides
+   {
+      // Rule violation: The interface has security, and this implementation does not. 
+      object ITestOverrides.GetFormat(Type formatType)
+      {
+         return (formatType == typeof(OverridesAndSecurity) ? this : null);
+      }
+
+      // These two methods are overridden by DerivedClass and DoublyDerivedClass.
+      [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+      public virtual void DoSomething()
+      {
+         Console.WriteLine(&quot;Doing something.&quot;);
+      }
+
+      public virtual void DoSomethingElse()
+      {
+         Console.WriteLine(&quot;Doing some other thing.&quot;);
+      }
+   }
+
+   public class DerivedClass : OverridesAndSecurity, ITestOverrides
+   {
+      //  Rule violation: The interface has security, and this implementation does not. 
+      public object GetFormat(Type formatType)
+      {
+         return (formatType == typeof(OverridesAndSecurity) ? this : null);
+      }
+
+      // Rule violation: This does not have security, but the base class version does. 
+      public override void DoSomething()
+      {
+         Console.WriteLine(&quot;Doing some derived thing.&quot;);
+      }
+
+      // Rule violation: This has security, but the base class version does not.
+      [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+      public override void DoSomethingElse()
+      {
+         Console.WriteLine(&quot;Doing some other derived thing.&quot;);
+      }
+   }
+
+   public class DoublyDerivedClass : DerivedClass
+   {
+      // The OverridesAndSecurity version of this method does not have security.  
+      // Base class DerivedClass&#39;s version does.  
+        public override void DoSomethingElse()
+      {
+         Console.WriteLine(&quot;Doing some other derived thing.&quot;);
+      }
+   }
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all the public or protected methods that in a public type overrides a method or implements an interface, and does not have the same Link Demands as the interface or virtual methods. This rule is relevant for any overridable methods : class/interface methods, property accessors,
+indexer accessors, event accessors. The .NET analyzer does not manage neither the arguments values of external security attributes (i.e. the security attributes comming with objects from external assemblies), nor the arguments values of any external attributes coming from assemblies compiled for
+framework 1.x., that is these values are not available to the analyzer. This implies some possible false negative when overriden objects involved in a violation pattern are external (i.e. come from external assemblies), because these argument values can not be compared. Nevertheless even in that
+case some violations may still be raised when the attribute type of the link demand is different between the two objects (overriding and overriden), or when there is no security attrbute at all on the overriden object (external). Another limitation is that link demands present at a type or an
+assembly level are not taken into account.</p>
+<h5>Total</h5>
+<p>Number of Methods</p>
+<h5>Metric ID</h5>
+<p>8088</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

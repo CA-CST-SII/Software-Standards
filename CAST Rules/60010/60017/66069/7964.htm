@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid directly instantiating a Class used as a Spring bean</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid directly instantiating a Class used as a Spring bean</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>When a class is used to instantiate a Spring bean, this bean benefits from different Spring key features: * Each bean is a Spring component and can take advantage of all Spring services, such as declarative transaction management * Each public bean&#39;s method is added to the Spring container,
+so it&#39;s eligible for injection into other objects, JMX export and other benefits. So, if a class is instantiated as a Spring bean and as a direct Java instance at the same time, for these two instances, you may see different and unpredictable behavior.</p>
+<h5>Description</h5>
+<p>Reports Spring bean and Java methods that call a constructor of the class used to define this Spring bean.</p>
+<h5>Remediation</h5>
+<p>Use only Spring beans and when you need different instances of the same class, use the prototype mode attribute.</p>
+<h5>Sample</h5>
+<pre>
+&lt;bean id=&quot;myBean&quot; class=&quot;sample.MyBean&quot;&gt;
+  &lt;property name=&quot;url&quot;&gt;
+     &lt;value&gt;http://localhost/myBeanService&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/bean&gt;
+
+public class MyBean implements MyBeanInterface {
+  private String url;
+
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+}
+
+public class AnotherClass {
+    MyBean bean;
+
+    AnotherClass() {
+      bean = new MyBean();   // VIOLATION
+    }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+&lt;bean id=&quot;myBean&quot; class=&quot;sample.MyBean&quot;&gt;
+    &lt;property name=&quot;url&quot;&gt;
+        &lt;value&gt;http://localhost/myBeanService&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&quot;anotherClass&quot; class=&quot;sample.AnotherClass&quot;&gt; // FIXED
+    &lt;property name=&quot;bean&quot;&gt;
+        &lt;value&gt;myBean&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+public class MyBean implements MyBeanInterface {
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+}
+
+public class AnotherClass {
+    MyBeanInterface bean;
+    
+    public MyBeanInterface getBean() {
+        return bean;
+    }
+    
+    public void setBean(MyBeanInterface bean) {
+        this.bean = bean;
+    }
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists Java methods that call a constructor of the class used to implement a Spring bean and the Spring bean name It provides the following information: - The full name of the methods that invoke the constructor of a Spring implementation class - the Spring bean name</p>
+<h5>Total</h5>
+<p>The number of methods that reference a Spring bean java interface</p>
+<h5>Metric ID</h5>
+<p>7964</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

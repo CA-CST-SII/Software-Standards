@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid declaring Final Instance Variables that are not dynamically initialized</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid declaring Final Instance Variables that are not dynamically initialized</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>2</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>2</p>
+<h5>Rationale</h5>
+<p>If a Final Instance Variable is not dynamically initialized, its value will be the same for all Instances and need not be an Instance Variable. This final instance variable requires memory for each new instantiation while it could be declared as static and require memory only once for all
+instances of the class.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>If a Final Instance Variable is not dynamically initialized, its value will be the same for all Instances and need not be an Instance Variable. This final instance variable requires memory for each new instantiation while it could be declared as static and require memory only once for all
+instances of the class.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>2</p>
+<h5>Description</h5>
+<p>Final Fields should be declared as Static (Class Variable and not Instance Variable) if they are not dynamically initialized. Here is an example of dynamic initialization of a Final Instance Variable: &#39;public final int nFact = (int) BasicObjectFactory.makeObject();&#39;</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Description</h5>
+<p>Final Fields should be declared as Static (Class Variable and not Instance Variable) if they are not dynamically initialized. Here is an example of dynamic initialization of a Final Instance Variable: &#39;public final int nFact = (int) BasicObjectFactory.makeObject();&#39;</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>2</p>
+<h5>Remediation</h5>
+<p>Review the Field declaration to add the Static modifier.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Remediation</h5>
+<p>Review the Field declaration to add the Static modifier.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>2</p>
+<h5>Output</h5>
+<p>This report lists all Final Instance Variables, except those that are dynamically initialized. It provides the following information: Field full name</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Output</h5>
+<p>This report lists all Final Instance Variables, except those that are dynamically initialized. It provides the following information: Field full name</p>
+<h5>Metric ID</h5>
+<p>4572</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Close database resources ASAP</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Close database resources ASAP</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>A frequent issue when dealing with database resource is resource leak. This mainly comes from an incorrect code that miss to close the connection in any cases. Incorrect resource management is a common source of failures in production applications, with the usual pitfalls being database
+connections and file descriptors remaining opened after an exception has occurred somewhere else in the code. This leads to application servers being frequently restarted when resource exhaustion occurs, because operating systems and server applications generally have an upper-bound limit for
+resources.</p>
+<h5>Description</h5>
+<p>The following methods are taken into account: - JDBC: . open: java.sql.DriverManager.getConnection(String) . close: java.sql.Connection.close() - JDBC: . open: java.sql.Connection.createStatement() . close: java.sql.Statement.close() - JDBC: . open: java.sql.Connection.prepareStatement(...) .
+close: java.sql.PreparedStatement.close() - JDBC: . open: java.sql.Connection.prepareCall(...) . close: java.sql.CallableStatement.close() - JDBC: . open: java.sql.PreparedStatement.executeQuery() . close: java.sql.ResultSet.close() - JPA: . open:
+javax.persistence.Persistence.createEntityManagerFactory(String) . close: javax.persistence.EntityManagerFactory.close() - JPA: . open: javax.persistence.EntityManagerFactory.createEntityManager() . close: javax.persistence.EntityManager.close() - Hibernate: . open:
+org.hibernate.SessionFactory.openSession() . close: org.hibernate.Session.close() - Hibernate: . open: org.hibernate.cfg.Configuration.buildSessionFactory() . close: org.hibernate.SessionFactory.close() - Spring: . open: org.springframework.orm.hibernate3.SessionFactoryUtils.getSession(...) .
+close: org.springframework.orm.hibernate3.SessionFactoryUtils.closeSession(...)</p>
+<h5>Remediation</h5>
+<p>You can: - close the resource in a finally block. - or annotate this resource with @Cleanup annotation (lombok.Cleanup) - or use the try with resource to declare the resource that must be closed (available in java 7) - or use Spring JDBC Template that open and close the connection for you
+(http://static.springsource.org/spring/docs/3.2.x/spring-framework-reference/html/jdbc.html) - or use CDI with @Dispose annotation</p>
+<h5>Reference</h5>
+<p>http://www.java7developer.com/blog/?p=24 http://static.springsource.org/spring/docs/3.2.x/spring-framework-reference/html/jdbc.html http://projectlombok.org/features/Cleanup.html</p>
+<h5>Sample</h5>
+<pre>
+String connectionURL = &#39;jdbc:mysql://localhost:3306/myDB&#39;;
+Connection connection = null;
+Statement st = null;
+ResultSet rs = null;
+try {
+    Class.forName(&#39;com.mysql.jdbc.Driver&#39;).newInstance();
+    connection = DriverManager.getConnection(connectionURL, &#39;root&#39;, &#39;admin&#39;);
+    st = connection.createStatement();
+    rs = st.executeQuery(&#39;Select * from EMPLOYEE_SALARIES&#39;);
+    while (rs.next()) {
+        System.out.println(&#39;EMPLOYEE_NAME/EMPLOYEE_SALARY&#39;);
+        System.out.println(rs.getString(1) + &#39;/&#39; + rs.getString(2));
+    } 
+    rs.close(); 
+    st.close();
+    connection.close();
+} catch (Exception ex) {
+    ex.printStackTrace();
+}  // VIOLATION, rs, st and connection must be closed in a finally
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+with finally
+~~~~~~~~~~~~
+String connectionURL = &#39;jdbc:mysql://localhost:3306/myDB&#39;;
+Connection connection = null;
+Statement st = null;
+ResultSet rs = null;
+try {
+    Class.forName(&#39;com.mysql.jdbc.Driver&#39;).newInstance();
+    connection = DriverManager.getConnection(connectionURL, &#39;root&#39;, &#39;admin&#39;);
+    st = connection.createStatement();
+    rs = st.executeQuery(&#39;Select * from EMPLOYEE_SALARIES&#39;);
+    while (rs.next()) {
+        System.out.println(&#39;EMPLOYEE_NAME/EMPLOYEE_SALARY&#39;);
+        System.out.println(rs.getString(1) + &#39;/&#39; + rs.getString(2));
+    }
+} catch (Exception ex) {
+    ex.printStackTrace();
+} finally { // FIX
+    try {
+        if (rs != null &amp;&amp; !rs.isClosed()) {
+            rs.close();
+        }
+        if (st != null &amp;&amp; !st.isClosed()) {
+            st.close();
+        }
+        if (connection != null &amp;&amp; !connection.isClosed()) {
+            connection.close();
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+with Java 7
+~~~~~~~~~~~~~~
+String connectionURL = &#39;jdbc:mysql://localhost:3306/myDB&#39;;
+try ( // FIX
+    Connection connection =
+        DriverManager.getConnection(connectionURL, &#39;root&#39;, &#39;admin&#39;);
+    Statement st = connection.createStatement();
+    ResultSet rs = st.executeQuery(&#39;Select * from EMPLOYEE_SALARIES&#39;);
+) {
+    Class.forName(&#39;com.mysql.jdbc.Driver&#39;).newInstance();
+    while (rs.next())
+    {
+        System.out.println(&#39;EMPLOYEE_NAME/EMPLOYEE_SALARY&#39;);
+        System.out.println(rs.getString(1) + &#39;/&#39; + rs.getString(2));
+    }
+}
+
+with annotation @Cleanup
+~~~~~~~~~~~~~~~~~~~~~~~~
+String connectionURL = &#39;jdbc:mysql://localhost:3306/myDB&#39;;
+@Cleanup Connection connection = null; // FIX
+@Cleanup Statement st = null; // FIX
+@Cleanup ResultSet rs = null; // FIX
+
+Class.forName(&#39;com.mysql.jdbc.Driver&#39;).newInstance();
+connection = DriverManager.getConnection(connectionURL, &#39;root&#39;, &#39;admin&#39;);
+st = connection.createStatement();
+rs = st.executeQuery(&#39;Select * from EMPLOYEE_SALARIES&#39;);
+while (rs.next()) {
+    System.out.println(&#39;EMPLOYEE_NAME/EMPLOYEE_SALARY&#39;);
+    System.out.println(rs.getString(1) + &#39;/&#39; + rs.getString(2));
+}
+
+with CDI annotation
+~~~~~~~~~~~~~~~~~~~~
+@Produces @RequestScoped
+Connection connect(User) {
+   return createConnection(user.getId(), user.getPassword())
+}
+
+void close (@Disposes Connection connection) {
+   connection.close();
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all methods that do not close the SQL connections they opened It provides the following information: - method full name</p>
+<h5>Total</h5>
+<p>All the methods that open a database resource in the body</p>
+<h5>Metric ID</h5>
+<p>8104</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid public/protected setter for the generated identifier field</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid public/protected setter for the generated identifier field</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>A primary key value must never change after it&#39;s first assigned. Since it is a generated key, it is automatically set by Hibernate, another JPA implementation or by other provider. The actual behavior when an application tries to modify the value of a primary key is not defined.</p>
+<h5>Description</h5>
+<p>Report all the setter methods of a persistent class that set the primary key and is not declared as private except in the case where the identifier must be set by the application. This field is determined by the &lt;id&gt; element in the mapping document (in the hibernate mapping XML files or
+the orm.xml file of JPA) or the @Id annotation in JPA. This field must be set by the application when: - the property: generator class is set to &quot;assigned&quot; - or when the annotation @GeneratedValue (javax.persitence.GeneratedValue) has not been set for the identifier field - or when the
+attribute generated-value has not been set for the identifier field in the orm.xml file Example: - hibernate standard &lt;id name=&quot;username&quot; column=&quot;USERNAME&quot;&gt; &lt;generator class=&quot;assigned&quot;/&gt; &lt;/id&gt; - JPA annotation @Id // No @GeneratedValue declaration
+String username; - JPA with orm.xml file &lt;id name=&quot;username&quot;&gt; &lt;column name=&quot;USERNAME&quot;/&gt; &lt;!-- no generated-value declaration --&gt; &lt;/id&gt;</p>
+<h5>Remediation</h5>
+<p>Set the setter method as private.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 89 Java Persistence with Hibernate (ISBN 1-932394-88-5) p 163 The Java Persistence API ( ISBN 1-932394-88-5) p 163, 416 http://docs.jboss.org/hibernate/core/3.3/reference/en/html/tutorial.html#tutorial-firstapp-firstclass
+http://burtbeckwith.com/blog/?p=53</p>
+<h5>Sample</h5>
+<pre>
+------&gt; sample.hbm.xml:
+...
+&lt;class name=&quot;Sample&quot; table=&quot;SAMPLE&quot;&gt;
+           &lt;id name=&quot;id&quot; column=&quot;id&quot; type=&quot;long&quot;&gt;
+                  &lt;generator class=&quot;sequence&quot;/&gt;
+           &lt;/id&gt;
+           ...
+&lt;/class&gt;
+
+------&gt; Sample.java:
+public class Sample {
+   private long id;
+...
+
+  public void setId(long id) { // VIOLATION
+     this.id = id;
+  }
+
+   public Long getId() {
+      return id;
+   }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+------&gt; Sample.java:
+public class Sample {
+   private long id;
+...
+
+  private void setId(long id) { // FIXED
+     this.id = id;
+  }
+
+   public Long getId() {
+      return id;
+   }
+}
+</pre>
+<h5>Output</h5>
+<p>List all setter methods of a persistent class that set the primary key and is not declared as private. It provides the following information: Method full name</p>
+<h5>Total</h5>
+<p>Number of setter methods of a persistent class that set the primary key</p>
+<h5>Metric ID</h5>
+<p>7712</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

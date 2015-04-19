@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Use only Hibernate API to access to the database</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Use only Hibernate API to access to the database</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Using Hibernate API only brings several benefits: - Performances: Hibernate provides potential for caching that is expected to outperforms queries that use direct JDBC access. - Implementation: object mapping takes care of mapping the JDBC result sets to graph of persistent objects. Using direct
+JDBC API means writing the tedious code by hand to transform a JDBC ResultSet to an object graph. - Database independence: the code can be used with all supported databases - Transparent support of JDBC and JTA in both managed and non-managed environments</p>
+<h5>Description</h5>
+<p>Reports all objects that reference the following java.sql interface and their methods - java.sql.Connection - java.sql.Statement - java.sql.PreparedStatement - java.sql.CallableStatement except when they are used as parameters of hibernate methods (methods whose FQDN begin with net.sf.hibernate
+or org.hibernate) The threshold permits to add other interfaces or classes from other framework to the previous list.</p>
+<h5>Remediation</h5>
+<p>If you really need to use SQL for feature that are not supported by Hibernate (like specifying SQL query hints or hierarchical queries such as Oracle CONNECT BY clause), you can use either SQL queries defined in the hibernate XML file or by using native SQL with
+org.hibernate.Session.createSQLQuery(java.lang.String queryString).</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X)</p>
+<h5>Sample</h5>
+<pre>
+List&lt;EmployeeBean&gt; employeeList = new ArrayList&lt;EmployeeBean&gt;(); 
+
+Connection con = DriverManager.getConnection(url); 
+Statement stmt = con.createStatement();
+// VIOLATION
+ResultSet rs = stmt.executeQuery(&quot;SELECT * FROM COMPANY&quot;); 
+while ( rs.next() ) { 
+   EmployeeBean eb = new Employeebean(); 
+   eb.setName(rs.getString(&quot;name&quot;)); 
+   eb.setSalary(rs.getFloat(&quot;salary&quot;)); 
+   employeeList.add(eb); 
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+Session session = sessionFactory.openSession(); 
+
+Query query = session.createQuery(&quot;from EmployeeBean&quot;); 
+// FIXED
+List&lt;EmployeeBean&gt; finalList = query.list();
+</pre>
+<h5>Output</h5>
+<p>List objects that use other API than hibernate API It provides the following information: - Artifact Full Name - Number of reference</p>
+<h5>Total</h5>
+<p>The total number of artifacts that violate this rule plus the artifacts that reference net.sf.hibernate.Query, org.hiberate.Query, net.sf.hibernate.Session, org.hibernate.Session</p>
+<h5>Metric ID</h5>
+<p>7510</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

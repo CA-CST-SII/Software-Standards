@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid incoherent file accesses in Cobol programs and DISP clauses in JCL</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid incoherent file accesses in Cobol programs and DISP clauses in JCL</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>In a JCL, the DISP parameter of a DD card tells the system what to do with the associated data set in case of normal termination and abnormal termination. The file can be added to or removed from the catalog, passed to the next step, remove after the step execution or after the job execution...
+If a logical file defined in a COBOL program is linked to this data set via a DD card, then it should be used by respecting the DISP status defined in this DD card. If not, then it is possible that the program write into the file which will be removed just after the step execution. In this specific
+case the data will be lost and the application will have an abnormal behaviour in production.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs that access files in mode that is not coherent with the DISP clause of DD cards defined in JCL job.</p>
+<h5>Remediation</h5>
+<p>Check that, in the JCL, the DISP parameter of the DD card associated to the logical file is correctly set compared to the accesses made to the logical file in the program.</p>
+<h5>Output</h5>
+<p>Associated to each COBOL File Link with violations, the Quality Rule provides: - The JCL step name - Bookmarks for violation patterns found in source code: - The OPEN statement (in the Cobol program) corresponding to the file - The DD card (in the JCL) corresponding to the dataset accessed by
+the program</p>
+<h5>Total</h5>
+<p>Number of Cobol File Links</p>
+<h5>Metric ID</h5>
+<p>7552</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

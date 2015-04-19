@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Artifacts with High Cyclomatic Complexity (C# .Net)</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Artifacts with High Cyclomatic Complexity (C# .Net)</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#</p>
+<h5>Unified Status</h5>
+<p>Not Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>The effort and time for diagnosis of deficiencies or causes of failures, or for identification of parts to be modified is directly related to the number of execution paths, i.e. the complexity of the control flow. Analyzability declines with increasing Cyclomatic Complexity. Each modification
+must be correct for all execution paths. Cyclomatic Complexity computes the number of the linearly independent paths, a lower bound of all execution paths ignoring multiple iterations. Changeability declines with increasing Cyclomatic Complexity. Complete testing requires coverage of all execution
+paths. Cyclomatic Complexity computes the number of the linearly independent paths, a lower bound of all execution paths ignoring multiple iterations. Testability declines with increasing Cyclomatic Complexity.</p>
+<h5>Description</h5>
+<p>Avoid Artifacts with High Cyclomatic Complexity (CC greater than X) Cyclomatic Complexity is a measure of the complexity of the control structure of an Artifact. It is the number of linearly independent paths and therefore, the minimum number of independent paths when executing the software. The
+threshold is a parameter and can be changed at will.</p>
+<h5>Remediation</h5>
+<p>Review the design of the Artifact to reduce number of independent paths. E.g.: Reduce the number of conditional statements.</p>
+<h5>Reference</h5>
+<p>Carnegie Mellon&#39;s Software Engineering Institute on Cyclomatic Complexity http://www.sei.cmu.edu/str/descriptions/cyclomatic_body.html NIST (National Institute of Standards and Technology) Structured Testing: A Testing Methodology Using the Cyclomatic Complexity Metric
+http://hissa.nist.gov/HHRFdata/Artifacts/ITLdoc/235/sttoc.htm</p>
+<h5>Output</h5>
+<p>This report lists all Artifacts with a Cyclomatic Complexity greater than X.It provides the following information: Artifact full name, CC</p>
+<h5>Metric ID</h5>
+<p>3654</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

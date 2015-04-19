@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid static Fields that are not final</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid static Fields that are not final</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>An enterprise bean must not use read/write static fields. Using read-only static fields is allowed. Therefore, it is recommended that all static fields in the enterprise bean class be declared as final. This rule is required to ensure consistent runtime semantics because while some EJB
+containers may use a single JVM to execute all enterprise bean&#39;s instances, others may distribute the instances across multiple JVMs.</p>
+<h5>Description</h5>
+<p>Reports all enterprise beans (session, message and entity) that have not final static fields even if these static fields are hold by a class in its inheritance tree.</p>
+<h5>Remediation</h5>
+<p>Declare these static fields as final or review your design.</p>
+<h5>Reference</h5>
+<p>JSR-220 Enterprise Java Beans 3.0 Final Release (ejbcore) page 545</p>
+<h5>Sample</h5>
+<pre>
+@Stateful
+public class MyBean implements MyRemoteBean {
+   private static String myName = &quot;MyBean&quot;; // VIOLATION
+    ...
+    public int aMethod() {
+        ...
+    }
+   ...
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+@Stateful
+public class MyBean implements MyRemoteBean {
+   private static final String myName = &quot;MyBean&quot;; // FIXED
+    ...
+    public int aMethod() {
+        ...
+    }
+   ...
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all java enterprise classes that have non final static fields. It provides the following information: - Class full name - list of non final static fields</p>
+<h5>Total</h5>
+<p>number of enterprise bean (session, message and entity)</p>
+<h5>Metric ID</h5>
+<p>7704</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

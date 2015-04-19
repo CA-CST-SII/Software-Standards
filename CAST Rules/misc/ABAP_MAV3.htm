@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>ABAP Quality Rules and expanded/non-expanded code</title>
+<link rel="StyleSheet" type="text/css" href="../style.css">
+</head>
+<body>
+<h4>ABAP Quality Rules and expanded/non-expanded code</h4>
+<hr>
+<p>Due to the internal configuration of CAST, <a href="../language/ABAP/index.htm">ABAP Quality Rules</a> differ in the way they handle expanded (code not in a macro) and non-expanded code (i.e. code inside macros).</p>
+<p>In the majority of cases, ABAP Quality Rules ignore code that is inside a macro (non-expanded code). As such, no violations will be found in code inside a macro. However, some ABAP Quality Rules do scan non-expanded code and therefore can detect violations.</p>
+<p>The following ABAP Quality Rules scan non-expanded code (i.e. code inside macros):</p>
+<table border="1" cellpadding="5" cellspacing="0" bordercolor="#111111" width="100%" bordercolorlight="#006699" bordercolordark="#FFFFFF">
+<tr>
+<td width="5%" align="center">7520</td>
+<td width="95%">Avoid READ TABLE without BINARY SEARCH</td>
+</tr>
+<tr>
+<td width="5%" align="center">7534</td>
+<td width="95%">Avoid unchecked return code (SY-SUBRC) after OPEN SQL or READ statement</td>
+</tr>
+<tr>
+<td width="5%" align="center">7670</td>
+<td width="95%">Avoid accessing SAP standard tables in modification from custom code</td>
+</tr>
+<tr>
+<td width="5%" align="center">7850</td>
+<td width="95%">Avoid raising an exception in a Web Dynpro Supply Function or in a Method called by a Supply Function</td>
+</tr>
+<tr>
+<td width="5%" align="center">7864</td>
+<td width="95%">BAPIs must not cause the program to abort or terminate</td>
+</tr>
+<tr>
+<td width="5%" align="center">7866</td>
+<td width="95%">Avoid SELECT ... BYPASSING BUFFER</td>
+</tr>
+<tr>
+<td width="5%" align="center">7868</td>
+<td width="95%">Avoid Open SQL queries in loops</td>
+</tr>
+<tr>
+<td width="5%" align="center">7870</td>
+<td width="95%">Avoid using the NOT LIKE operator in WHERE clauses</td>
+</tr>
+<tr>
+<td width="5%" align="center">7872</td>
+<td width="95%">Avoid using IS [NOT] NULL in WHERE condition</td>
+</tr>
+<tr>
+<td width="5%" align="center">7874</td>
+<td width="95%">Avoid using dynamic queries</td>
+</tr>
+<tr>
+<td width="5%" align="center">7876</td>
+<td width="95%">Avoid using SELECT ... FOR UPDATE</td>
+</tr>
+<tr>
+<td width="5%" align="center">7878</td>
+<td width="95%">Avoid Open SQL SELECT queries without WHERE condition</td>
+</tr>
+<tr>
+<td width="5%" align="center">7880</td>
+<td width="95%">Avoid nested loops</td>
+</tr>
+<tr>
+<td width="5%" align="center">7884</td>
+<td width="95%">Avoid disabling source code inspection</td>
+</tr>
+<tr>
+<td width="5%" align="center">7886</td>
+<td width="95%">Avoid using SYSTEM-CALL</td>
+</tr>
+<tr>
+<td width="5%" align="center">7888</td>
+<td width="95%">Web Dynpro - Never use direct calls to routine via &quot;me-&gt;&quot;, use &quot;wd_This-&gt;&quot; instead</td>
+</tr>
+<tr>
+<td width="5%" align="center">7890</td>
+<td width="95%">Web Dynpro - Never use INCLUDE statement</td>
+</tr>
+<tr>
+<td width="5%" align="center">7892</td>
+<td width="95%">Web Dynpro - Avoid changing the program flow</td>
+</tr>
+<tr>
+<td width="5%" align="center">7894</td>
+<td width="95%">Avoid using LOOP INTO, use LOOP ASSIGNING instead</td>
+</tr>
+<tr>
+<td width="5%" align="center">7906</td>
+<td width="95%">Avoid testing specific values for SY-UNAME</td>
+</tr>
+<tr>
+<td width="5%" align="center">8012</td>
+<td width="95%">Avoid unchecked return code (SY-SUBRC) after opening and reading dataset</td>
+</tr>
+<tr>
+<td width="5%" align="center">8014</td>
+<td width="95%">Avoid unchecked return code (SY-SUBRC) after AUTHORITY-CHECK</td>
+</tr>
+</table>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

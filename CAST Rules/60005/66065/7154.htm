@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Fields in Action Classes that are not final static</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Fields in Action Classes that are not final static</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Avoid instance/non final static field in Action Class - Instance and static field should not be used in an Action class to store information related to the state of a particular request. The same instance of an Action class can be shared among multiple simultaneous requests through
+multi-threading - Instance/static field may however be used to share global resources across requests for the same action. The use of fields within a an Action class creates a security breach as this object is shared among multiple sessions and thus can lead to confidential data leaks</p>
+<h5>Description</h5>
+<p>Reports fields that are not static final in classes that inherit from the class org.apache.struts.action.Action</p>
+<h5>Remediation</h5>
+<p>Change the design of your Action class implementation if the field is not used to share global resources across requests for the same action. You should use local variables inside your methods, and pass whatever data you need to other methods in the class via parameters. Because local variables
+and method parameters exist once per *thread* instead of once per *instance*, so there is no problem in using them to store the state for a particular request.</p>
+<h5>Reference</h5>
+<p>http://struts.apache.org/struts-doc-1.2.7/api/org/apache/struts/action/Action.html</p>
+<h5>Sample</h5>
+<pre>
+Public class BaseApplicationAction extends Action
+{
+static int StaticField; // VIOLATION
+long Id;                     // VIOLATION
+
+public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
+[...]
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+Public class BaseApplicationAction extends Action
+{
+// FIXED
+public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
+[...]
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all non final static fields in Action classes: It provides the following information: - Action Class - Field name</p>
+<h5>Metric ID</h5>
+<p>7154</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

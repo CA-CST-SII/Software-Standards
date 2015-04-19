@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid throwing an exception in a catch block without chaining it</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid throwing an exception in a catch block without chaining it</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>There are many cases where it is very useful to change an exception&#39;s class. But if you create a new exception using the original exception message (i.e. MyException(originalException.getMessage())) valuable information about the original exception will not be propagated. As such, you may
+loss the original exception&#39;s class and stack trace. This lack of information will slow the investigation process when an issue occurs in validation or in production.</p>
+<h5>Description</h5>
+<p>Reports all methods that reference a constructor of an exception (a class that inherits from Throwable) in a catch block except where: - java.lang.Throwable is the type of one parameter in the signature of the constructor - a call to the method or a method that overrides
+java.lang.Throwable.initCause(Throwable cause) Note that this rule does not check that the caught exception is the exception that is passed as the argument of the new Exception constructor or the initCause method.</p>
+<h5>Remediation</h5>
+<p>Use Exception(String message, Throwable cause) or Exception(Throwable cause) signature to chain the exceptions. Exception chains contain information about the full call stack, thus allowing a change of type on the exception&#39;s way up the call stack without loss of stack information.</p>
+<h5>Reference</h5>
+<p>http://www.developer.com/java/other/article.php/1431531/Chained-Exceptions-in-Java.htm</p>
+<h5>Sample</h5>
+<pre>
+private void init() throws InitException {
+  ...
+  } catch( FileNotFoundException ex) {
+       throw new InitException(ex.getMessage()); // VIOLATION
+   }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+private void init() throws InitException {
+  ...
+  } catch( FileNotFoundException ex) {
+      throw new InitException(&quot;File Not Found&quot;, ex); // FIXED
+   }
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all methods that contain try/catch blocks where an exception (a class that inherits from Throwable) constructor has java.lang.Throwable as the type of one parameter in the signature of the constructor or a call to the method (or a method that overrides)
+java.lang.Throwable.initCause(Throwable cause). It provides the following information: Method full name</p>
+<h5>Total</h5>
+<p>The number of methods that throw an exception (a class that inherits from Throwable) using a constructor in a catch block</p>
+<h5>Metric ID</h5>
+<p>7652</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

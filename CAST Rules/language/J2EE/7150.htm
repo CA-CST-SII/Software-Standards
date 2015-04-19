@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Favor PreparedStatement or CallableStatement over Statement</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Favor PreparedStatement or CallableStatement over Statement</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>There are two benefits to use PreparedStatement or CallableStatement over Statement: - Performance: PreparedStatement gives better performance when compared to Statement because it is pre-parsed. CallableStatement is even more efficient but as it uses a stored procedure in the database, it is
+less portable, - Security: to prevent SQL Injection Attacks.</p>
+<h5>Description</h5>
+<p>All references to the method java.sql.Connection.createStatement() must be avoided.</p>
+<h5>Remediation</h5>
+<p>use java.sql.Connection.prepareStatement() or java.sql.Connection.prepareCall() instead.</p>
+<h5>Reference</h5>
+<p>http://www.theserverside.com/tt/articles/article.tss?l=JavaOne2006Day4 http://www.precisejava.com/javaperf/j2ee/JDBC.htm</p>
+<h5>Sample</h5>
+<pre>
+Statement stmt = connection.createStatement(); // VIOLATION
+
+ResultSet rs = stmt.executeQuery(&quot;select address from employee where name=Bob&quot;);
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+PreparedStatement ps = connection.prepareStatement(&quot;select address from employee where name=Bob&quot;); // FIXED
+
+ResultSet rs = ps.executeQuery();
+</pre>
+<h5>Output</h5>
+<p>This report lists all methods that reference java.sql.Connection.Statement interface instances (or its sub-interface or sub-class). It provides the following information: - Method Full Name - The Full Name of createStatement method that has been called</p>
+<h5>Total</h5>
+<p>Number of methods that call java.sql.Connection.createStatement() or java.sql.Connection.prepareStatement() or java.sql.Connection.prepareCall()</p>
+<h5>Metric ID</h5>
+<p>7150</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using references to the id in the persistent class&#39;s method equals()</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using references to the id in the persistent class&#39;s method equals()</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Since the programmer can define the meaning of Java Equality, it is important not to use the id field in this definition if the id field is a surrogate key. This is because Hibernate only sets the field when saving the object. Hence, for example, if you add the object to some set collection,
+then saving the object will result in its identity changing, and part of the rules about using Set/Map collection class is that the contained object&#39;s identity must not change while it is in the collection (the behavior of a set is not specified if the value of an object is changed in a manner
+that affects equals comparisons while the object is an element in the set. A special case of this prohibition is that it is not permissible for a set to contain itself as an element). For example: Person p = new Person(); Set set = new HashSet(); set.add(p); System.out.println(set.contains(p));
+p.setId(new Long(5)); System.out.println(set.contains(p)); ==&gt; Prints: false As the behavior of a Set/Map is not specified if the value of an object is changed in a manner that affects equals comparisons while the object is an element in the Set or is the key of a Map., you may corrupt you
+database.</p>
+<h5>Description</h5>
+<p>Reports all the equals() methods of a persistent class that refer to the persistence class&#39;s identifier (through the identifier attribute or the identifier getter). Note that the case where the equals method is implemented on a parent class and reference the id is taken into account too.</p>
+<h5>Remediation</h5>
+<p>Implement your equals() and hashCode() methods based on business keys. In cases where the business key is composite, you can use the Jakarta Commons libraries - in particular the EqualsBuilder and HashCodeBuilder classes. It may be that your class is not an @Entity, but a value object
+(@Embeddable) instead and perhaps the entity needs to be modelled in a different way.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 123, Java Persistence with Hibernate (ISBN 1-932394-88-5) 397, http://www.cs.bham.ac.uk/~aps/syllabi/2004_2005/issws/h03/hibernate.html#object-lifecycle, http://techpolesen.blogspot.com/2007/11/10-tips-on-jpa-domain-modelling.html,
+http://java.sun.com/j2se/1.4.2/docs/api/java/util/Set.html, http://www.ideyatech.com/2011/04/effective-java-equals-and-hashcode/</p>
+<h5>Sample</h5>
+<pre>
+------&gt; sample.hbm.xml:
+...
+&lt;class name=&quot;Sample&quot; table=&quot;SAMPLE&quot;&gt;
+           &lt;id name=&quot;id&quot; column=&quot;id&quot; type=&quot;long&quot;&gt;
+                  &lt;generator class=&quot;sequence&quot;/&gt;
+           &lt;/id&gt;
+           &lt;property name=&quot;name&quot; column=&quot;NAME&quot; type=&quot;string&quot;/&gt;
+...
+&lt;/class&gt;
+
+------&gt; Sample.java:
+public class Sample {
+   private long id;
+   private String name;
+...
+   public String getName() {
+      return name;
+   }
+
+   public Long getId() {
+      return id;
+   }
+
+    public boolean equals(Object other) {
+        if (this==other) return true;
+        if ( !(other instanceof Sample) ) return false;
+        final Sample that = (Sample) other;
+        return this.getId().equals( that.getId()); // VIOLATION
+    }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+------&gt; Sample.java:
+public class Sample {
+   private long id;
+   private String name;
+   ...
+   public String getName() {
+      return name;
+   }
+
+   public Long getId() {
+      return id;
+   }
+
+    public boolean equals(Object other) {
+        if (this==other) return true;
+        if ( !(other instanceof Sample) ) return false;
+        final Sample that = (Sample) other;
+        return this.getName().equals( that.getName()); // FIXED
+    }
+}
+</pre>
+<h5>Output</h5>
+<p>Lists all methods equals() methods of a persistent class that refer to the id. It provides the following information: Method full name</p>
+<h5>Total</h5>
+<p>Total number of persistent class&#39;s method&#39;s equals()</p>
+<h5>Metric ID</h5>
+<p>7722</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

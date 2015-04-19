@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid declaring public Fields</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid declaring public Fields</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>Public Fields can be accessed by any other Class, therefore its value can be modified at any time, without control by the Class itself. In addition, direct use of Public Fields does not let Field definition evolve without requiring updates to all Objects referencing it. This goes against OO
+Encapsulation concepts.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>Public Fields can be accessed by any other Class, therefore its value can be modified at any time, without control by the Class itself. In addition, direct use of Public Fields does not let Field definition evolve without requiring updates to all Objects referencing it. This goes against OO
+Encapsulation concepts.</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>Public Fields can be accessed by any other Class, therefore its value can be modified at any time, without control by the Class itself. In addition, direct use of Public Fields does not let Field definition evolve without requiring updates to all Objects referencing it. This goes against OO
+Encapsulation concepts.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>Public Fields can be accessed by any other Class, therefore its value can be modified at any time, without control by the Class itself. In addition, direct use of Public Fields does not let Field definition evolve without requiring updates to all Objects referencing it. This goes against OO
+Encapsulation concepts.</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Description</h5>
+<p>Public Fields (defined in a class) should not be used. Const or readonly fields are excluded from the violations.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Description</h5>
+<p>Public Fields (defined in a class) should not be used. Const or readonly fields are excluded from the violations.</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Description</h5>
+<p>Public Fields (defined in a class) should not be used. Const or readonly fields are excluded from the violations.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Description</h5>
+<p>Public Fields (defined in a class) should not be used. Const or readonly fields are excluded from the violations.</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Remediation</h5>
+<p>Use Properties instead of Public Fields. Note that in VS.Net you can use the refactor command to do that. Use of const or readonly is tolerated.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Remediation</h5>
+<p>Use Properties instead of Public Fields. Note that in VS.Net you can use the refactor command to do that. Use of const or readonly is tolerated.</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Remediation</h5>
+<p>Use Properties instead of Public Fields. Note that in VS.Net you can use the refactor command to do that. Use of const or readonly is tolerated.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Remediation</h5>
+<p>Use Properties instead of Public Fields. Note that in VS.Net you can use the refactor command to do that. Use of const or readonly is tolerated.</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Sample</h5>
+<pre>
+// C# Sample
+class MyClass 
+{
+    public int m_iMyField;
+}
+</pre>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Sample</h5>
+<pre>
+// C# Sample
+class MyClass 
+{
+    public int m_iMyField;
+}
+</pre>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Sample</h5>
+<pre>
+// C# Sample
+class MyClass 
+{
+    public int m_iMyField;
+}
+</pre>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Sample</h5>
+<pre>
+// C# Sample
+class MyClass 
+{
+    public int m_iMyField;
+}
+</pre>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Remediation sample</h5>
+<pre>
+// C# Sample
+class MyClass 
+{
+     private int iMyField;
+
+     public int IMyField
+     {
+          get { return iMyField; }
+          set { iMyField = value; }
+     }
+}
+</pre>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Remediation sample</h5>
+<pre>
+// C# Sample
+class MyClass 
+{
+     private int iMyField;
+
+     public int IMyField
+     {
+          get { return iMyField; }
+          set { iMyField = value; }
+     }
+}
+</pre>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Remediation sample</h5>
+<pre>
+// C# Sample
+class MyClass 
+{
+     private int iMyField;
+
+     public int IMyField
+     {
+          get { return iMyField; }
+          set { iMyField = value; }
+     }
+}
+</pre>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Remediation sample</h5>
+<pre>
+// C# Sample
+class MyClass 
+{
+     private int iMyField;
+
+     public int IMyField
+     {
+          get { return iMyField; }
+          set { iMyField = value; }
+     }
+}
+</pre>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Output</h5>
+<p>This report lists all Public Fields (that are not const or readonly). It provides the following information: Field full name</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Output</h5>
+<p>This report lists all Public Fields (that are not const or readonly). It provides the following information: Field full name</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Output</h5>
+<p>This report lists all Public Fields (that are not const or readonly). It provides the following information: Field full name</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Output</h5>
+<p>This report lists all Public Fields (that are not const or readonly). It provides the following information: Field full name</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Total</h5>
+<p>Total number of fields</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Total</h5>
+<p>Total number of fields</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Total</h5>
+<p>Total number of fields</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Total</h5>
+<p>Total number of fields</p>
+<h5>Metric ID</h5>
+<p>3576</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

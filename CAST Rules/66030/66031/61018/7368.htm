@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>When using binary data items (COMP), then use the SYNCHRONIZED clause</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>When using binary data items (COMP), then use the SYNCHRONIZED clause</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>2</p>
+<h5>Rationale</h5>
+<p>When using binary (COMP) data items, the use of the SYNCHRONIZED clause specifies that the binary data items will be properly aligned on halfword, fullword, or doubleword boundaries. This may enhance the performance of certain operations on some machines.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs in which binary numeric data are not defined with the SYNCHRONIZED clause. The SYNCHRONIZED clause can be used on the data declaration itself or on the declaration of its parent structure.</p>
+<h5>Remediation</h5>
+<p>Add the SYNCHRONIZED (SYNC) clause to data items declared with the COMP usage.</p>
+<h5>Reference</h5>
+<p>IBM Enterprise Cobol - Performance Tuning</p>
+<h5>Sample</h5>
+<pre>
+01 DATA PIC 9(5) COMP.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+01 DATA PIC 9(5) COMP SYNC.
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - Binary numeric data definition that is not used with the SYNC clause</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>7368</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid raising an exception in a Web Dynpro Supply Function or in a Method called by a Supply Function</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid raising an exception in a Web Dynpro Supply Function or in a Method called by a Supply Function</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>If possible, avoid raising an exception in a supply function or in a method called by a supply function. Since supply functions are often called during rendering, these exceptions cannot be processed efficiently. This can impact the error handling and the performance of the component.</p>
+<h5>Description</h5>
+<p>This rule checks all supply functions of Web Dynpro for ABAP and methods called by these supply functions to verify if they do not raise exceptions.</p>
+<h5>Remediation</h5>
+<p>Since runtime controls when the supply function is called (and not the code created by the application developer), it is especially important that no errors occur when the data is retrieved. For this reason, use the supply function only if you know that the data is available and correct in the
+back end.</p>
+<h5>Reference</h5>
+<p>NetWeaver Web Dynpro for Abap http://help.sap.com/saphelp_nw2004s/helpdata/en/f1/177741adb7167de10000000a155106/frameset.htm</p>
+<h5>Sample</h5>
+<pre>
+method BOOKINGS_READ .
+
+  data:
+    Stru_flight             type IF_COMPONENTCONTROLLER=&gt;Element_Flightinfo,
+    Itab_Booking            type IF_COMPONENTCONTROLLER=&gt;Elements_Bookingtab.
+
+* Get Parent Element
+CALL METHOD parent_element-&gt;get_static_attributes
+  IMPORTING
+    STATIC_ATTRIBUTES = Stru_flight.
+
+* read bookings
+select * from sbook
+  into corresponding fields of table Itab_Booking
+  where carrid = Stru_flight-carrid
+    and connid = Stru_flight-connid
+    and fldate = Stru_flight-fldate.
+
+if sy-subrc NE 0.
+  RAISE NO_DATA_FOUND.
+else.
+* bind all the elements
+  Node-&gt;Bind_Table(
+    New_Items =  Itab_Booking
+    Set_Initial_Elements = Abap_True ).
+endif.
+endmethod.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+method BOOKINGS_READ .
+
+  data:
+    Stru_flight             type IF_COMPONENTCONTROLLER=&gt;Element_Flightinfo,
+    Itab_Booking            type IF_COMPONENTCONTROLLER=&gt;Elements_Bookingtab.
+
+* Get Parent Element
+CALL METHOD parent_element-&gt;get_static_attributes
+  IMPORTING
+    STATIC_ATTRIBUTES = Stru_flight.
+
+* read bookings
+select * from sbook
+  into corresponding fields of table Itab_Booking
+  where carrid = Stru_flight-carrid
+    and connid = Stru_flight-connid
+    and fldate = Stru_flight-fldate.
+
+if sy-subrc = 0.
+* bind all the elements
+  Node-&gt;Bind_Table(
+    New_Items =  Itab_Booking
+    Set_Initial_Elements = Abap_True ).
+endif.
+endmethod.
+</pre>
+<h5>Output</h5>
+<p>This report lists all Web Dynpro supply functions that raise exceptions or that call methods raising exceptions. It provides the following information: - Supply Function full name</p>
+<h5>Total</h5>
+<p>Number of Web Dynpro Supply Functions</p>
+<h5>Metric ID</h5>
+<p>7850</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

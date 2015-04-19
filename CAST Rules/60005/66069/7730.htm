@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Use declarative transaction</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Use declarative transaction</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>One of the primary advantages of an Application Server is the support of declarative transactions. Without this feature, transactions must be controlled using explicit transaction demarcation. Explicit demarcation is difficult for developers to use at best, particularly if you are new to
+transactional systems. In addition, explicit transaction demarcation requires that the transactional code be written within the business logic, which reduces the clarity of the code and more importantly creates inflexible distributed objects. Once transaction demarcation is &quot;hardcoded&quot;
+into the business object, changes in transaction behaviour require changes to the business logic itself. Declarative transactions make it easier for you to create robust transactional applications. The risk to not use them is data corruption.</p>
+<h5>Description</h5>
+<p>When EJB Session and/or Message Driven Beans exist, this Quality Rule reports all methods that directly (or indirectly through inheritance) reference an object of the following type: * java.sql.Connection * javax.transaction.UserTransaction * javax.persistence.EntityTransaction *
+org.hibernate.Transaction * org.springframework.transaction.PlatformTransactionManager * org.springframework.transaction.support.TransactionTemplate</p>
+<h5>Remediation</h5>
+<p>Using transaction attributes simplifies the construction of transactional applications by reducing the risks associated with improper use of transactional protocols like JTA. It is more efficient and easier to use transaction attributes than to control transactions explicitly. This can be done
+through EJB or Spring.</p>
+<h5>Reference</h5>
+<p>http://docstore.mik.ua/orelly/java-ent/ebeans/ch08_02.htm</p>
+<h5>Output</h5>
+<p>This Quality Rule reports all methods that reference programmatic transactions. It provides the following information: Method or Constructor Full Name</p>
+<h5>Total</h5>
+<p>The number of Java Methods and Constructors when EJB Session and/or EJB Message Driven Beans are present</p>
+<h5>Metric ID</h5>
+<p>7730</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using untyped DataSet</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using untyped DataSet</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>A typed DataSet is a class that derives from a DataSet. As such, it inherits all the methods, events, and properties of a DataSet. Additionally, a typed DataSet provides strongly typed methods, events, and properties. This means you can access tables and columns by name, instead of using
+collection-based methods. Aside from the improved readability of the code, a typed DataSet also allows the Visual Studio .NET code editor to automatically complete lines as you type. Additionally, the strongly typed DataSet provides access to values as the correct type at compile time. With a
+strongly typed DataSet, type mismatch errors are caught when the code is compiled rather than at run time.</p>
+<h5>Description</h5>
+<p>Avoid using Untyped DataSet. This also apply to DataTables and DataRows.</p>
+<h5>Remediation</h5>
+<p>Use Typed DataSet instead of Untyped DataSet.</p>
+<h5>Reference</h5>
+<p>MSDN</p>
+<h5>Sample</h5>
+<pre>
+// C# Sample: Using untyped DataSet:
+
+//Create DataAdapter
+SqlDataAdapter daEmp = new sqlDataAdapter( &quot;SELECT empno,empname,empaddress FROM EMPLOYEE&quot;,conn);
+//Create a DataSet Object
+DataSet dsEmp = new DataSet(); // VIOLATION HERE
+//Fill the DataSet
+daEmp.Fill(dsEmp,&quot;EMPLOYEE&quot;);
+//Let us print first row and first column of the table
+Console.Write(dsEmp.Tables[&quot;EMPLOYEE&quot;].Rows[0][0].ToString());
+//Assign a value to the first column
+dsEmp.Tables[&quot;EMPLOYEE&quot;].Rows[0][0] = &quot;12345&quot;;//This will generate runtime error as empno column is integer
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+// C# Sample: Using Typed DataSet:
+
+//Create DataAdapter
+SqlDataAdapter daEmp = new SqlDataAdapter( &quot;SELECT empno,empname,empaddress FROM EMPLOYEE&quot;,conn);
+//Create a DataSet Object
+EmployeeDS dsEmp = new EmployeeDS ();
+//Fill the DataSet
+daEmp.Fill(dsEmp,&quot;EMPLOYEE&quot;);
+//Let us print first row and first column of the table
+Console.Write(dsEmp.EMPLOYEE[0].empno.ToString());
+//Assign a value to the first column
+dsEmp.EMPLOYEE[0].empno = &quot;12345&quot;;//This will generate compile time error.
+</pre>
+<h5>Output</h5>
+<p>List all objects using an untyped DataSet/DataTable/DataRow (i.e. directly the class DataSet/DataTable/DataRow). Using an untyped dataset can be used within the code of a method, as a parameter of a method, or a data member of the class.</p>
+<h5>Total</h5>
+<p>Total number of objects using typed or untyped DataSet/DataTable/DataRow.</p>
+<h5>Metric ID</h5>
+<p>7460</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

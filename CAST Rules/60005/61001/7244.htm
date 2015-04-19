@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid direct usage of EJB Entity from the client</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid direct usage of EJB Entity from the client</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Rationale</h5>
+<p>An Entity Bean should always be used by the Bean Class of a Session Bean to reduce network call, to reduce coupling between the client and the implementation of business objects and also to avoid revealing your database structure to unknown application.</p>
+<h5>Description</h5>
+<p>Avoid direct usage of EJB Entity from the client. All calls to Entity Bean (implements javax.ejb.EntityBean) from the client (specified by the package name list) without passing through a Session Bean (implements javax.ejb.SessionBean) will be reported.</p>
+<h5>Remediation</h5>
+<p>Use an EJB Session as facade to encapsulate the complexity of interactions.</p>
+<h5>Reference</h5>
+<p>http://java.sun.com/blueprints/corej2eepatterns/Patterns/SessionFacade.html http://www-128.ibm.com/developerworks/java/library/j-ejb1008.html</p>
+<h5>Output</h5>
+<p>This report lists all Methods of the client that access directly to entity bean. It provides the following information: Method full name The client threshold can be changed at will.</p>
+<h5>Total</h5>
+<p>The ratio is the sum of client methods that call directly an Entity Bean divided by the total of direct and indirect call from the client to Entity Beans.</p>
+<h5>Metric ID</h5>
+<p>7244</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>How to enable the XXL tables Quality Rules using the Table Size Folder option</title>
+<link rel="StyleSheet" type="text/css" href="../style.css">
+</head>
+<body>
+<h4>How to enable the XXL tables Quality Rules using the Table Size Folder option</h4>
+<hr>
+<p>XXL tables Quality Rules are performance related Quality Rules that help detect incorrect SQL queries running on XXL tables.</p>
+<p>XXL tables are extremely large tables, which contain a huge amount of data. The threshold that determines when a table is considered to contain a huge amount of data can be configured by the user (in the CAST Management Studio using the Assessment Model editor - the default is 100000).</p>
+<p>In order to enable these XXL tables Quality Rules it is necessary to provide the <b>Snapshot Preparation Assistant</b> in <b>CAST Analysis Manager</b> with the table row size information. This can be done using the <b>Table Size Folder</b> option in the <b>Job Definition page</b>. This folder
+will then contain XML files defining your table row size information. These XML files must use the extension .SQLTABLESIZE - a syntactically correct example file is displayed <a href="sqltablesize.htm">here</a> (for Microsoft SQL Server, Oracle Server, Sybase ASE, IBM-DB2, and IBM-zOS) and <a href=
+"sqltablesize1.htm">here</a> (for SAP)</p>
+<p><img border="0" src="Images/tablesizefolder.gif" width="519" height="162"></p>
+<p>See the <b>Job Definition page</b> in the on-line Help for <b>CAST Analysis Manager</b> for more precise information about this option.</p>
+<h5>Determining server and database/schema names to use in the .SQLTABLESIZE files</h5>
+<p>The <b>server</b>, <b>database</b> and <b>schema</b> nodes in the .SQLTABLESIZE file must match the information stored in the CAST Analysis Service following an initial analysis. You can determine this information in several ways:</p>
+<ul>
+<li><b>Using CAST Enlighten</b> &gt; use the <b>Property window</b> (right click a table in the Graphical View or in the Technical Browser and select Properties or select the object and press F12) to view the information required, for example for Oracle Server with the legacy PL/SQL Server:<br>
+<br>
+<img border="0" src="images/enlighten.jpg" width="322" height="61"><br>
+&nbsp;</li>
+<li><b>View table full names in CAST Enlighten</b>&gt; The full names of tables contain the required information. For example for Microsoft SQL Server:<br>
+<br>
+<b>WESLEY.CASTPUBS..roysched</b> = <b>SERVER.DATABASE..table</b></li>
+<li><b>Using CAST System Views</b> &gt; You can query the CAST System View (CSV) <b>CDT_OBJECTS</b> to extract the information you need, for example:</li>
+</ul>
+<pre>
+Select OBJECT_NAME
+From CDT_OBJECTS 
+Where OBJECT_TYPE_STR = &#39;SQL Server Database&#39;
+</pre>
+<p><b>Notes</b></p>
+<ul>
+<li>Note that when working in an Oracle Server environment please ensure you know whether the schema objects were analyzed with the legacy PL/SQL Analyzer or the SQL Analyzer. The .SQLTABLESIZE file has specific configuration for each, and note that the method of determining the required
+server/schema names will differ on each.</li>
+</ul>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+<p><!--
+
+--></p>
+</body>
+</html>

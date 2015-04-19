@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid GOTO jumps out of PERFORM range</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid GOTO jumps out of PERFORM range</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>When GOTO are used to jump out of a PERFORM range, program control flow is altered (an executable GO TO pointing on the statement located just after the calling PERFORM is inserted at runtime at the end of the called paragraph only if this code location is empty) and does not return to the
+calling statement. Moreover, program logic becomes difficult to understand and evolution can be risky.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol Programs containing sections or paragraphs that are called by PERFORM statements and that contain a GO TO statement to another section or paragraph that is not in the scope of the initial PERFORM. The following situations are considered: - The calling section (the GO
+TO is not in a paragraph but directly in the section) does not contain the called paragraph - If the GO TO is in a paragraph belonging to a section called by PERFORM, then the called paragraph does not belong to this section - If the calling paragraph belongs to a PERFORM THRU range, then the
+called paragraph does not belong to this range</p>
+<h5>Remediation</h5>
+<p>Only use GOTO jumps in a section scope. GOTO jumps out of PERFORM range can be used to exit the program. It is better to use conditional expression to manage control flow.</p>
+<h5>Reference</h5>
+<p>IBM Enterprise Cobol for z/OS - Programming Guide</p>
+<h5>Sample</h5>
+<pre>
+PROCEDURE DIVISION
+       0000-MAIN.
+           PERFORM 1000-PROC.
+           PERFORM 2000-PROC THRU 2100-PROC.
+           PERFORM 3000-PROC THRU 3100-PROC.
+       0100-MAIN.
+           GOBACK.
+      *
+       1000-PROC.
+           MOVE A TO B.
+      *** This GO TO jumps out the PERFORM range
+           GO TO 4000-PROC.
+      *
+       2000-PROC.
+           ADD 1 TO B.
+           IF B = 5
+      *** This GO TO does not jump out of the PERFORM range
+               GO TO 2100-PROC
+           END-IF
+       2100-PROC.
+           EXIT.
+      *
+       3000-PROC.
+           ADD 1 TO B.
+           IF B = 5
+      *** This GO TO jumps out of the PERFORM range
+               GO TO 4000-PROC
+           END-IF
+       3100-PROC.
+           MOVE B TO C.
+      *
+       4000-PROC.
+           ADD 1 TO A.
+           ...
+           GO TO 0100-MAIN.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+PROCEDURE DIVISION
+       0000-MAIN.
+           MOVE 0 TO END-THE-PROG.
+           PERFORM 1000-PROC.
+           IF END-THE-PROG = 0
+               PERFORM 2000-PROC THRU 2100-PROC
+           END-IF
+           IF END-THE-PROG = 0
+               PERFORM 3000-PROC THRU 3100-PROC
+           END-IF
+       0100-MAIN.
+           GOBACK.
+      *
+       1000-PROC.
+           MOVE A TO B.
+           PERFORM 4000-PROC.
+      *
+      ...
+      *
+       3000-PROC.
+           ADD 1 TO B.
+           IF B = 5
+               PERFORM 4000-PROC
+               IF END-THE-PROG = 1
+      *** This GO TO does not jump out of the PERFORM range
+                   GO TO 3100-PROC
+               END-IF
+           END-IF
+           MOVE B TO C.
+       3100-PROC.
+           EXIT.
+      *
+       4000-PROC.
+           ADD 1 TO A.
+           ...
+           MOVE 1 TO END-THE-PROG.
+      *    GO TO 0100-MAIN.
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - Calling PERFORM statement - GO TO statement referencing a paragraph that is not in the scope of the initial PERFORM
+statement</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>7274</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

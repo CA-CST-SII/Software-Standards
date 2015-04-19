@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Log forging vulnerabilities ( CWE-117 )</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Log forging vulnerabilities ( CWE-117 )</h4>
+<hr>
+<h5>Technology</h5>
+<p>C#, JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Writing unvalidated, unsanitized user input to log files can allow an attacker to forge log entries or inject malicious content into the logs. Applications typically use log files to store a history of events or transactions for later review, statistics gathering, or debugging. Depending on the
+nature of the application, the task of reviewing log files may be performed manually or sometimes automated with a tool that automatically gathers log data for important events or trending information. Interpretation of the log files may be hindered or misdirected if an attacker can supply data to
+the application that is subsequently logged verbatim.</p>
+<h5>Description</h5>
+<p>This metric uses CAST dataflow engine to detect a call path where input data from the user is written into the application logs without prior validation &amp; sanitization. The list of user input methods, Log writing and as well as the validation method can be customized. In Java, the Set
+methods of the Form Beans are automatically taken into account as input methods.</p>
+<h5>Remediation</h5>
+<p>Code the appropriate input validation as close as possible to the user input call.</p>
+<h5>Reference</h5>
+<p>http://cwe.mitre.org/data/definitions/117.html</p>
+<h5>Output</h5>
+<p>- Method full name - Call stack from user input source down to the target log method</p>
+<h5>Total</h5>
+<p>The number of methods calling user input methods</p>
+<h5>Metric ID</h5>
+<p>8044</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

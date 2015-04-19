@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Entry points for Data and Transactional Functions used during IFPUG calculation</title>
+<link rel="StyleSheet" type="text/css" href="../style.css">
+</head>
+<body>
+<h4>Entry points for Data and Transactional Functions used during IFPUG calculation</h4>
+<hr>
+<p>This section lists the objects that are considered as Data Functions and Transactional Functions during an IFPUG calculation.</p>
+<h5>Default configuration for Data Functions</h5>
+<table bordercolorlight="#006699" cellspacing="0" cellpadding="5" bordercolordark="#FFFFFF" width="100%" bordercolor="#111111" border="1">
+<tr>
+<td><b>Object Type Description</b></td>
+<td><b>Object Type ID</b></td>
+<td><b>Object Type Name</b></td>
+<td><b>Additional Sub-objects</b></td>
+</tr>
+<tr>
+<td>SQL Table</td>
+<td>1</td>
+<td>SQL_TABLE</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Cobol File Link</td>
+<td>619</td>
+<td>CAST_COBOL_SavedFileDescription</td>
+<td>-</td>
+</tr>
+<tr>
+<td>IMS DB Definition</td>
+<td>805</td>
+<td>CAST_IMS_SavedDatabase</td>
+<td>IMS Segment (ID = 802) &amp; IMS DB Segment (ID = 806)</td>
+</tr>
+</table>
+<h5>Default configuration for Transactional Functions</h5>
+<table bordercolorlight="#006699" cellspacing="0" cellpadding="5" bordercolordark="#FFFFFF" width="100%" border="1" bordercolor="#111111">
+<tr>
+<td><b>Object Type Description</b></td>
+<td><b>Object Type ID</b></td>
+<td><b>Object Type Name</b></td>
+</tr>
+<tr>
+<td>CAST Web File</td>
+<td>274</td>
+<td>CAST_Web_File</td>
+</tr>
+<tr>
+<td>PB Window</td>
+<td>33</td>
+<td>PB_WINDOW</td>
+</tr>
+<tr>
+<td>VB Form</td>
+<td>52</td>
+<td>VB_FORM</td>
+</tr>
+<tr>
+<td>VB MIDI Form</td>
+<td>53</td>
+<td>VB_MDI_FORM</td>
+</tr>
+<tr>
+<td>VB Property Page</td>
+<td>57</td>
+<td>VB_PROPERTY_PAGE</td>
+</tr>
+<tr>
+<td>VB User Document</td>
+<td>58</td>
+<td>VB_USER_DOC</td>
+</tr>
+<tr>
+<td>Oracle Forms Module</td>
+<td>107</td>
+<td>FORMS_MODULE</td>
+</tr>
+<tr>
+<td>Delphi Form</td>
+<td>351</td>
+<td>DELPHI_FORM</td>
+</tr>
+<tr>
+<td>.NET Form</td>
+<td>395</td>
+<td>NET_FORM</td>
+</tr>
+<tr>
+<td>.NET Inherited Form</td>
+<td>398</td>
+<td>NET_INHERITED_FORM</td>
+</tr>
+<tr>
+<td>.NET User Control</td>
+<td>399</td>
+<td>NET_USER_CONTROL</td>
+</tr>
+<tr>
+<td>.NET Web Custom Control</td>
+<td>401</td>
+<td>NET_WEB_CUSTOM_CONTROL</td>
+</tr>
+<tr>
+<td>.NET Inherited User Control</td>
+<td>402</td>
+<td>NET_INHERITED_USER_CONTROL</td>
+</tr>
+<tr>
+<td>C# User Control</td>
+<td>138817</td>
+<td>CAST_DotNet_ClassCSharpUserControl</td>
+</tr>
+<tr>
+<td>C# Form</td>
+<td>138818</td>
+<td>CAST_DotNet_ClassCSharpForm</td>
+</tr>
+<tr>
+<td>C# Custom Control</td>
+<td>138819</td>
+<td>CAST_DotNet_ClassCSharpCustomControl</td>
+</tr>
+<tr>
+<td>NET Form</td>
+<td>139134</td>
+<td>CAST_DotNet_ClassExternalForm</td>
+</tr>
+</table>
+<p><b>Notes:</b></p>
+<p>The CAST Web File is filtered so that only files that contain code are taken into account. The CAST Web File objects are filtered using this query:</p>
+<pre>
+Select distinct
+C.OBJECT_ID
+From
+Keys K, CTT_OBJECT_APPLICATIONS C
+Where
+C.PROPERTIES = 0
+And C.OBJECT_TYPE = 274
+And K.IdKey = C.OBJECT_ID
+And bitand(K.KeyProp,33012)!= 0
+</pre>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+<p><!--
+
+--></p>
+</body>
+</html>

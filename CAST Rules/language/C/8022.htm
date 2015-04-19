@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid hiding attributes</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid hiding attributes</h4>
+<hr>
+<h5>Technology</h5>
+<p>C++, JEE</p>
+<h5>Unified Status</h5>
+<p>Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>Hiding data members is not good Object-Oriented practice. It is a redefinition of an instance or class variable and it makes the relationship between the base class and the derived class unclear. It is also likely to be an unintended mistake.</p>
+<h5>Description</h5>
+<p>This rule searches for classes that override data members in the inheritance tree. A data member &lt;member&gt; of class &lt;BaseClass&gt; is overridden in a derived class &lt;DerivedClass&gt; if &lt;DerivedClass&gt; contains an identical declaration of &lt;member&gt; (i.e. same name (type can
+be different)). A list of data member name exceptions can be provided to manage specific cases where the field is generated or required to be used by a specific framework.</p>
+<h5>Remediation</h5>
+<p>The solution depends on the design: - use the inherited member and remove the member declaration in the child class - rename the member of the child class</p>
+<h5>Sample</h5>
+<pre>
+Java Sample:
+public class SampleBase {
+     protected long a = 4;
+ }
+ 
+ public class Sample extends SampleBase {
+    protected int a = 5;  // VIOLATION
+ }
+
+C++ Sample:
+class BaseClass 
+{
+protected: 
+    long a;
+};
+ 
+class DerivedClass : BaseClass 
+{
+protected: 
+    int a;  // VIOLATION
+ };
+</pre>
+<h5>Output</h5>
+<p>Associated to each overridden data member with violations, the Quality Rule provides: - Hidden attribute full name</p>
+<h5>Total</h5>
+<p>Number of class data members</p>
+<h5>Metric ID</h5>
+<p>8022</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

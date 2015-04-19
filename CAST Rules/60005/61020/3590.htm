@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Interface implementation on Structures</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Interface implementation on Structures</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>C# and VB.NET allow structs to implement interfaces. However this language feature can produce unexpected results, as structs are value types while interfaces require reference types to interact with. This means that calls to interface methods via implicit boxing operations will modify a copy
+rather than the original object. When implicit boxing occurs, a copy of the struct is placed on the heap and calls to the interface methods are executed on this copy via a reference. All changes to the state of the struct object are discarded after that call.</p>
+<h5>Description</h5>
+<p>Interfaces should not be implemented on Structures.</p>
+<h5>Remediation</h5>
+<p>Declare the type as a class rather than a struct. This is better OO practice as classes can hide their implementation details using efficient class property encapsulation. The drawback of this approach is a potential performance cost as the object will no longer be creatable as an efficient
+stack object. However, keep in mind that the .NET Just-In-Time compiler automatically inlines small simple methods. Create a wrapper class that contains the struct as a member - for example a property (for efficient encapsulation), and use the wrapper class to implement the interface.</p>
+<h5>Output</h5>
+<p>This report lists all Interfaces implemented on Structures. It provides the following information: Interface full name, Structure name</p>
+<h5>Total</h5>
+<p>Total number of structures</p>
+<h5>Metric ID</h5>
+<p>3590</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

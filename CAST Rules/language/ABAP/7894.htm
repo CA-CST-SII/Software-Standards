@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using LOOP INTO, use LOOP ASSIGNING instead</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using LOOP INTO, use LOOP ASSIGNING instead</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>LOOP ... ASSIGNING is faster than LOOP ... INTO if field-symbols are modified. In this specific case, the system automatically update data in internal table.</p>
+<h5>Description</h5>
+<p>This rule checks all Abap artifacts accessing tables with a LOOP INTO construct.</p>
+<h5>Remediation</h5>
+<p>Replace LOOP INTO constructs by LOOP ASSIGNING constructs and use field-symbols.</p>
+<h5>Sample</h5>
+<pre>
+LOOP AT itab INTO wa_tab.
+  ...
+  wa_tab-fld1 = &#39;X&#39;.
+  MODIFY itab FROM wa_tab.
+
+ENDLOOP.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+LOOP AT itab ASSIGNING &lt;fs&gt;.
+  ...
+&lt;fs&gt;-fld1 = &#39;X&#39;.
+
+ENDLOOP.
+</pre>
+<h5>Output</h5>
+<p>Associated to each ABAP Artifact with violations, the Quality Rule provides: - The number of violation patterns</p>
+<h5>Total</h5>
+<p>Number of Abap artifacts</p>
+<h5>Metric ID</h5>
+<p>7894</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using snprintf() function family</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using snprintf() function family</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>The &#39;snprintf()&#39; function is not a standard function C library (ISO1990, ANSI 1989 standard) and then is difficult to port on different platforms. Different behavior can be encountered: - some implementations do not protect against buffer overflows - the return value can vary from a
+system to another - the resulting string is not always null-terminated Then, it is important to make sure the technical description of the function matches the development expectations and to protect the code properly.</p>
+<h5>Description</h5>
+<p>This rule searches for C/C++ functions, methods, constructors, and destructors that call the &#39;snprintf&#39; group of functions.</p>
+<h5>Remediation</h5>
+<p>The main issue with the &#39;snprintf()&#39; function is about the portability. Even if some implementations of the &#39;snprintf()&#39; function are safer than the &#39;sprintf()&#39; function, the best solution would be to check buffer bounds (see rule related to
+&#39;sprintf()&#39;function).</p>
+<h5>Reference</h5>
+<p>Build Security In (https://buildsecurityin.us-cert.gov/bsi/articles/knowledge/coding)</p>
+<h5>Sample</h5>
+<pre>
+void foo(char *source)
+{
+  char target[20];
+  snprintf(target, sizeof(target) - 1, &quot;%s&quot;, source);
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+int foo(char *source)
+{
+  int retcode = 1;
+  char target[20];
+  if ( snprintf(target, sizeof(target) - 1, &quot;%s&quot;, source) &gt; sizeof(target) - 1)
+  {
+    /* Manage buffer overflow situation */
+    retcode = 0;
+  }
+  return retcode;
+}
+</pre>
+<h5>Output</h5>
+<p>Associated to each C/C++ function/method/constructor/destructor with violations, the Quality Rule provides: - Number of violation patterns - Bookmarks for violation patterns found in the source code: - &#39;snprintf()&#39; functio call</p>
+<h5>Total</h5>
+<p>Number of C/C++ functions, constructors, destructors, and methods</p>
+<h5>Metric ID</h5>
+<p>7988</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

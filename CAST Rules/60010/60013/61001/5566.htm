@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Use of call_form built-in Function from a centralized location</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Use of call_form built-in Function from a centralized location</h4>
+<hr>
+<h5>Technology</h5>
+<p>Forms</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>1</p>
+<h5>Rationale</h5>
+<p>In Oracle Application/eBusiness it is recommended not to use directly the call_form buit_in but &quot;FND_FUNCTION.Execute&quot; instead. The reason for that is to have a correct behaviour of the application. This rule also apply to other built-in like Open_form, clear_form etc. Outside of
+Oracle Applications/eBusiness context, encapsulating built-ins allow having a centralized control and ease upgrade of the application (for example when such a built-in is not supported anymore).</p>
+<h5>Description</h5>
+<p>&quot;call_form&quot; built-in Function should be used from a centralized location i.e. calls must be encapsulated. Thus the report list all usages of the call_form function. Legitimate calls should be marked as exceptions.</p>
+<h5>Remediation</h5>
+<p>Encapsulate the built-in and use the new function instead.</p>
+<h5>Reference</h5>
+<p>Oracle Applications recommendation on customization.</p>
+<h5>Sample</h5>
+<pre>
+WHEN-BUTTON-PRESSED
+     CALL_FORM(&#39;MODULE_B.FMX&#39;);
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+WHEN-BUTTON-PRESSED
+       MY_CALL_FORM(&#39;MODULE_B.FMX&#39;);
+
+...
+
+PROCEDURE MY_CALL_FORM( FORM_NAME VARCHAR2) IS
+BEGIN
+  -- Do Something
+  CALL_FORM( FORM_NAME);
+END;
+</pre>
+<h5>Output</h5>
+<p>This report lists all call_form built-in Functions that are not used from a centralized location</p>
+<h5>Total</h5>
+<p>Number of forms objects with code: Triggers, Procedure, and Functions</p>
+<h5>Metric ID</h5>
+<p>5566</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Never use SQL queries with a cartesian product (AllTechno)</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Never use SQL queries with a cartesian product (AllTechno)</h4>
+<hr>
+<h5>Technology</h5>
+<p>All Languages/Technologies</p>
+<h5>Unified Status</h5>
+<p>Not Unified</p>
+<h5>XXL Status</h5>
+<p>Non-XXL</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>Cartesian joins which lead to cartesian products is an absolute performance killer, especially when large data sets are involved. A cartesian join is a multiple-table query that does not explicitly state a join condition among the tables, it creates a Cartesian product. A Cartesian product
+consists of every possible combination of rows from the tables. This result set is usually extremely large and unwieldy, killing application performance. In addition, most of the time, this is also a functional bug.</p>
+<h5>Description</h5>
+<p>List all SQL Artifacts except tables having a query that has a cartesian join, i.e; that does not explicitly state a join condition among the tables A cartesian join is found if, for any of the table in the from clause, no column of the table is found in a join (either in the from or where
+clause).</p>
+<h5>Remediation</h5>
+<p>Check the statement and if so, add a join&#39;s clause between the tables.</p>
+<h5>Sample</h5>
+<pre>
+Select * from table1, table2
+
+other exemple:
+
+hypothsis
+Select count(*) from publishers
+-&gt;3 rows
+Select count(*) from roysched
+-&gt;87 rows
+Select count(*) from Titles
+-&gt; 18 rows
+example of cartesian  product 
+ 
+Select p.pub_name, p.city, t.title, r.royalty
+From
+ publishers p,
+ titles t,
+ roysched r
+--&gt; 4698 rows( 87 x 18 x 3)
+ 
+Select p.pub_name, p.city, t.title, r.royalty
+From
+ publishers p,
+ titles t,
+ roysched r 
+Where
+ p.pub_id = t.pub_id
+--&gt; 1566 rows ( 87 x 18)
+ 
+Select p.pub_name, p.city, t.title, r.royalty
+From
+ publishers p,
+ titles t,
+ roysched r 
+Where
+ p.pub_id = t.pub_id AND
+ r.royalty = 14 
+--&gt; 252 rows
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+Select * from table1 T1 inner join table2 T2 on (T1.C = T2.C)
+
+example of non cartesian product:
+Select p.pub_name, p.city, t.title, r.royalty
+From
+ publishers p,
+ titles t,
+ roysched r 
+Where
+ p.pub_id = t.pub_id AND
+ t.title_id = r.title_id
+--&gt; 87 rows
+</pre>
+<h5>Output</h5>
+<p>List all Client-Server Artifacts having a cartesian join. Display the name of the faulty tables.</p>
+<h5>Total</h5>
+<p>The total procedure counts the number of Client-Server Artifacts using Tables.</p>
+<h5>Metric ID</h5>
+<p>7426</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Method override fails due to mismatch of const/volatile qualifiers</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Method override fails due to mismatch of const/volatile qualifiers</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>For a function to be picked as an override of a function in a base class, both functions must match exactly - same name, same parameters and same const/volatile qualification. If the functions only differ by the qualification, they will be seen as totally non correlated functions, and the base
+function will not be considered as overridden. C++11: If you use the &#39;override&#39; keyword, you will not risk a function in a derived class not matching the version in the base class.</p>
+<h5>Description</h5>
+<p>This rule searches for C++ methods that override another method without respecting the &#39;const&#39; or &#39;volatile&#39; qualifiers.</p>
+<h5>Remediation</h5>
+<p>If the base class function must be overridden, then respect all its properties in the derived class. Otherwise, use a name that is different for the function of the derived class.</p>
+<h5>Sample</h5>
+<pre>
+class A
+{
+public:
+    virtual ~A();
+    virtual void f() const;
+};
+
+class B : public A
+{
+public:
+    virtual void f(); // Violation
+};
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ method with violations, the Quality Rule provides: - number of const or volatile qualifiers that are not respected - Bookmarks for violation patterns found in source code: - overridden method - overriding method</p>
+<h5>Total</h5>
+<p>Number of C++ methods</p>
+<h5>Metric ID</h5>
+<p>8056</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

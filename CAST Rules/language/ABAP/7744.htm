@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid SQL queries on XXL tables that no index can support (ABAP)</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid SQL queries on XXL tables that no index can support (ABAP)</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>Not Unified</p>
+<h5>XXL Status</h5>
+<p>XXL</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>SQL Queries that do not use table indexes are extremely dangerous for the application&#39;s performance. Indeed, each execution of the query will result in a full table scan which is extremely time consuming especially if the table contains an extremely large amount of data (XXL table).</p>
+<h5>Description</h5>
+<p>This metric retrieves the ABAP Artifacts containing at least one Open SQL query on an XXL table not using the XXL table&#39;s indexes. An Open SQL Query is using table&#39;s indexes if all the following conditions are true: - At least one index is defined for each table participating in the from
+list - Queries must reference left-most columns of the index key XXL tables are extremely large tables which contain a huge amount of data. The threshold that determines when a table is considered to contain a huge amount of data can be configured by the user.</p>
+<h5>Remediation</h5>
+<p>Try to use indexed columns in WHERE clauses. If it is not possible, then create a secondary index for these columns.</p>
+<h5>Reference</h5>
+<p>Enhancing the Quality of ABAP Development Meijs - Krouwels - Heuvelmans - Sommen SAP Press ISBN 1-59229-030-2</p>
+<h5>Output</h5>
+<p>Associated to each ABAP Artifact with violations, the Quality Rule provides: - The XXL table name</p>
+<h5>Total</h5>
+<p>Number of ABAP artifacts using SAP XXL Tables in Open SQL queries</p>
+<h5>Metric ID</h5>
+<p>7744</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

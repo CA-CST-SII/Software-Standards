@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Good use of Interfaces with collections as Method return types</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Good use of Interfaces with collections as Method return types</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>Using the implementation class of a collection as the return type of your method ties your code to this specific implementation and makes it difficult to change the implementation class in the future. For example, if you use the java.util.Collection interface, you can change your implementation
+class from a Set to a List or to a Queue according to your needs and performance requirements.</p>
+<h5>Description</h5>
+<p>When a collection is returned as a returned value from a Function, it should be of the Interface type, and not as the Class. Collections are considered to be any classes implementing java.util.Collection, java.util.Collection&lt;E&gt;, java.util.Map or java.util.Map&lt;U,V&gt; or one of their
+sub-interfaces.</p>
+<h5>Remediation</h5>
+<p>Declare the type as an interface of a more appropriate collection.</p>
+<h5>Output</h5>
+<p>This report lists all the Methods not using the Interfaces for Collection types. It provides the following information: - Method full name - Returned Type Full Name</p>
+<h5>Total</h5>
+<p>The total number of methods which return type implements or extend java.lang.Collection, java.lang.Collection&lt;T&gt;, java.lang.Map or java.lang.Map&lt;U,V&gt;.</p>
+<h5>Metric ID</h5>
+<p>4578</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

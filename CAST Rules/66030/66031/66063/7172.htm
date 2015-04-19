@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using realpath() function (C Lang.)</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using realpath() function (C Lang.)</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language</p>
+<h5>Unified Status</h5>
+<p>Not Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Description</h5>
+<p>The realpath function is used to determine the canonical, absolute pathname from a given pathname. In several realpath implementations an off-by-one error exists in a portion of realpath that computes the length of the resolved pathname. As a result, if the resolved path name is exactly 1024
+characters long and contains at least two directory separators, the buffer passed to realpath will be overwritten by a single NULL byte. As a result applications using realpath may be vulnerable to denial of service attacks, remote code execution, and/or privilege escalation. Also insufficient
+buffer space supplied to the realpath function can lead to buffer overflow vulnerabilities and allows remote attackers to execute code thru it.</p>
+<h5>Metric ID</h5>
+<p>7172</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

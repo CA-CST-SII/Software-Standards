@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Abstract Classes should be non copy-assignable</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Abstract Classes should be non copy-assignable</h4>
+<hr>
+<h5>Technology</h5>
+<p>C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>1</p>
+<h5>Rationale</h5>
+<p>The copy assignment operator lets you create a new object from an existing object through initialization. A copy assignment operator of a class A is a non-static, non-template member function that has one of the following forms: - &#39;A::operator=(A)&#39; - &#39;A::operator=(A&amp;) // This is
+the most common form&#39; - &#39;A::operator=(const A&amp;)&#39; - &#39;A::operator=(volatile A&amp;)&#39; - &#39;A::operator=(const volatile A&amp;)&#39; If you do not declare a copy assignment operator for a class A, the compiler will implicitly declare one for you which will be public.
+Assignment operators using pointers are also taken into account: - &#39;A::operator=(A*)&#39; - &#39;A::operator=(const A*)&#39; - &#39;A::operator=(volatile A*)&#39; - &#39;A::operator=(const volatile A*)&#39; The problem with these assignments is that abstract classes are used to manipulate
+instances of concrete derived classes through a common interface. Which means that if you provide a user accessible assignment operator, you will end up: - Either doing partial assignment and only copying members from the base class - Or doing mixed-type assignment if you declared the
+&#39;operator=&#39; as &#39;virtual&#39;, which is not recommended. By ensuring that the copy assignment operator is protected, it can only be called by a derived class, for instance when the class wants to implement its own assignment operator. Note that most of the time, the concrete derived
+classes will not provide an assignment operator either, since they will be manipulated through pointers to their base classes, and an additional operation might not prove particularly useful.</p>
+<h5>Description</h5>
+<p>This rule searches for abstract C++ classes/structs that define at least one public copy assignment operator.</p>
+<h5>Remediation</h5>
+<p>Make the operator protected and non-virtual. Create it if it is not present. Optionally define a non virtual version in the concrete classes.</p>
+<h5>Reference</h5>
+<p>More Effective C++, Item 33 High Integrity C++, Rule 3.3.14</p>
+<h5>Sample</h5>
+<pre>
+class Vegetable 
+{ 
+public: 
+    virtual void f() = 0;
+    /*virtual*/ Vegetable&amp; operator=(const vegetable &amp; v); // should have protected access 
+}; 
+
+class Carrot : public Vegetable 
+{ 
+private:
+    double length;
+}; 
+
+class Broccoli : public Vegetable 
+{ 
+private:
+    int flowerHeadCount;
+}; 
+
+void foo() 
+{ 
+   Carrot obj1; 
+   Broccoli obj2; 
+   Vegetable* ptr1 = &amp;obj1; 
+   Vegetable* ptr2 = &amp;obj2; 
+   *ptr1 = *ptr2; // problem: partial assignment or mixed type assignment 
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class Vegetable 
+{ 
+public: 
+    virtual void f() = 0;
+protected:
+    Vegetable&amp; operator=(const Vegetable &amp;); 
+}; 
+
+class Carrot : public Vegetable 
+{ 
+public: 
+    Carrot&amp; operator=( const Carrot&amp; c); 
+private:
+    double length;
+}; 
+
+void foo() 
+{ 
+   Carrot carrot1, carrot2; 
+   Broccoli broccoli1; 
+   Vegetable* ptr1 = &amp;carrot1; 
+   Vegetable* ptr2 = &amp;broccoli1; 
+   *ptr1 = *ptr2; // Compilation error, which is a good thing 
+   carrot2 = carrot1; // Ok
+}
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ class and struct with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in the source code: - Explicit public assignment operator or class if missing</p>
+<h5>Total</h5>
+<p>Number of C++ Classes and Structs</p>
+<h5>Metric ID</h5>
+<p>7926</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

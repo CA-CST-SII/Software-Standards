@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid &quot;SELECT *&quot; or &quot;SELECT SINGLE *&quot; queries</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid &quot;SELECT *&quot; or &quot;SELECT SINGLE *&quot; queries</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>A query that retrieves all columns of a table with a SELECT * or SELECT SINGLE * can potentially be the source of important performance problems: Such performance problems may arise when the execution of the query returns a large result sets (many row with all the columns may then become a huge
+amount of data to transport over the network). However, there are some exceptions with standard tables such as parameter tables. Also, when using such queries, one cannot control how the columns will be ordered and returned to the client. This can lead to important data inconsistencies and thus
+stability issues.</p>
+<h5>Description</h5>
+<p>This metric retrieves the ABAP artifacts containing queries using the &quot;SELECT *&quot; or &quot;SELECT SINGLE *&quot; statement. It is possible to specify some tables as exceptions by setting them in the parameters of the rule (you can specify complete names, ex: USR02 or generic names by
+using &#39;%&#39; character, ex: T% or BUT%).</p>
+<h5>Remediation</h5>
+<p>Limit the number of field selected by naming those which are expecting only.</p>
+<h5>Output</h5>
+<p>Associated to each ABAP Artifact with violations, the Quality Rule provides: - The number of queries containing &quot;SELECT *&quot; or &quot;SELECT SINGLE *&quot;</p>
+<h5>Total</h5>
+<p>Number of ABAP Artifacts containing OpenSQL queries.</p>
+<h5>Metric ID</h5>
+<p>7530</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

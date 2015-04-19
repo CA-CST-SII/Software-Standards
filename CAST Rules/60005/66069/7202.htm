@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Check usage of &#39;==&#39; and &#39;!=&#39; on objects</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Check usage of &#39;==&#39; and &#39;!=&#39; on objects</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>It is a source of great confusion to novice programmers that Java has two ways of thinking about the equality of objects. When used with object references, the == operator returns true only if both references are to the same object. The == operator is used to compare values of primitive types or
+object references, but it does not test for value or semantic equality. This is the same for the &#39;!=&#39; operator.</p>
+<h5>Description</h5>
+<p>Report use of == and != operators between two objects (not primitive types).</p>
+<h5>Remediation</h5>
+<p>In the case of a semantic equality replace it with a call to equals method.</p>
+<h5>Reference</h5>
+<p>Practical Java Programming Language Guide - ISBN 0-201-61646-7, http://javatechniques.com/blog/string-equality-and-interning</p>
+<h5>Sample</h5>
+<pre>
+int i = 1;
+int j = 2;
+Integer ia;
+Integer ib;
+
+if (i == j) {}     // OK: i and j are primitive types
+if (ia == ib) {} // VIOLATION
+if (ia != ib) {}  // VIOLATION
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+Integer ia;
+Integer ib;
+
+if (ia.equals(ib)) {}  // FIXED
+if (!ia.equals(ib)) {} // FIXED
+</pre>
+<h5>Output</h5>
+<p>This report lists all methods that use the == or != operators. It provides the following information: Method full name</p>
+<h5>Metric ID</h5>
+<p>7202</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Never use strcpy() function (C Lang.)</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Never use strcpy() function (C Lang.)</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language</p>
+<h5>Unified Status</h5>
+<p>Not Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>The &#39;strcpy()&#39; function is a major source of buffer overflows. More secure variants of the function are available and should be used. Another solution is to dynamically allocate the required memory by using the &#39;malloc()&#39; function. In this case, the source string must be
+validated.</p>
+<h5>Description</h5>
+<p>This rule searches for C functions that call the &#39;strcpy()&#39; function.</p>
+<h5>Remediation</h5>
+<p>Prefer using the &#39;strncpy()&#39; function instead.</p>
+<h5>Reference</h5>
+<p>ISO/IEC. ISO/IEC 9899 Second edition 1999-12-01 Programming languages - C. International Organization for Standardization, 1999.</p>
+<h5>Output</h5>
+<p>Associated to each C function/method with violations, the Quality Rule provides: - Number of violation patterns - Bookmarks for violation patterns found in the source code: - function call</p>
+<h5>Total</h5>
+<p>Number of C functions and methods</p>
+<h5>Metric ID</h5>
+<p>7162</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

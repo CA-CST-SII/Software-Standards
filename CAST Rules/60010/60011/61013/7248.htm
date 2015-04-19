@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Packages with High Afferent Coupling (CA)</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Packages with High Afferent Coupling (CA)</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>If a package is highly abstract then it should be very stable. If the package is highly concrete (un-abstract), then it would be acceptably unstable as it already has reached its maximum specialization. If a category is to be stable, it should also consist of abstract classes so that it can be
+extended. Stable categories that are extensible are flexible and do not constrain the design.</p>
+<h5>Description</h5>
+<p>Afferent Coupling (also known as Incoming Dependencies and Number of Types outside a Package that Depend on Types of the Package) indicates the number of other packages that depend upon classes within the analyzed package. Afferent Coupling is a time consuming determination of couplings between
+packages, hence showing which packages that depend upon each other. The number of packages that depend upon the analyzed package is an indication of the analyzed package&#39;s level of responsibility. In order to improve modularity and promote encapsulation, inter-object class couples should be
+kept to a minimum. If the package is relatively abstract then a large number of incoming dependencies is acceptable but the larger the number of couples, the higher the sensitivity to changes in other parts of the design, and therefore maintenance is difficult. Excessive coupling between concrete
+object classes is detrimental to modular design and prevents reuse. The threshold contains the maximum afferent coupling.</p>
+<h5>Output</h5>
+<p>This report all classes ( and interfaces ) of a package with a high afferent Coupling. It provides the following information : - Class ( Or Interface) - CA</p>
+<h5>Metric ID</h5>
+<p>7248</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid OPEN/CLOSE inside loops</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid OPEN/CLOSE inside loops</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>File access is generally expensive in terms of run time and especially the OPEN and CLOSE statements. It is highly recommended to avoid accessing to the same file multiple times into a program but rather to save the file into a buffer. Moreover, it is even more important to avoid opening and
+closing the same file several times. If a file is opened or closed multiple times, for instance into a loop, then this can decrease the application performance dramatically.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs using OPEN or CLOSE in loops. Following loops are taken into account: - PERFORM - TIMES - PERFORM - UNTIL - PERFORM - VARYING</p>
+<h5>Remediation</h5>
+<p>Open and close files only one time. Put the OPEN and CLOSE statements outside loops.</p>
+<h5>Sample</h5>
+<pre>
+Loops with PERFORM - TIMES
+
+      * In-line (OPEN and CLOSE must not be inside loop)
+       PERFORM 10 TIMES
+           OPEN INPUT FILE-02
+           READ FILE-02
+           CLOSE FILE-02
+       END-PERFORM
+
+      * Out-of-line (OPEN and CLOSE must not be in the
+      * paragraph called inside loop)
+       PROC-TIMES-01.
+           PERFORM PROC-TIMES-01-A 10 TIMES.
+...
+       PROC-TIMES-01-A.
+           OPEN INPUT FILE-03
+           READ FILE-03
+           CLOSE FILE-03
+
+Loops with PERFORM - UNTIL
+
+      * In-line (OPEN and CLOSE must not be inside loop)
+       PERFORM UNTIL A = 10
+           OPEN INPUT FILE-05
+           READ FILE-05
+           CLOSE FILE-05
+       END-PERFORM
+
+      * Out-of-line (OPEN and CLOSE must not be in the
+      * paragraph called inside loop)
+       PROC-UNTIL-01.
+           MOVE 0 TO A.
+           PERFORM PROC-UNTIL-01-A UNTIL A = 10.
+...
+       PROC-UNTIL-01-A.
+           ADD 1 TO A.
+           OPEN INPUT FILE-06
+           READ FILE-06
+           CLOSE FILE-06
+
+Loops with PERFORM - VARYING
+
+      * In-line (OPEN and CLOSE must not be inside loop)
+       PERFORM VARYING A FROM 1 BY 1 UNTIL A = 10
+           OPEN INPUT FILE-08
+           READ FILE-08
+           CLOSE FILE-08
+       END-PERFORM
+
+      * Out-of-line (OPEN and CLOSE must not be in the
+      * paragraph called inside loop)
+       PROC-VARYING-01.
+           PERFORM PROC-VARYING-01-A 
+               VARYING A FROM 1 BY 1 UNTIL A = 10.
+...
+       PROC-VARYING-01-A.
+           OPEN INPUT FILE-09
+           READ FILE-09
+           CLOSE FILE-09
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+Loops with PERFORM - TIMES
+
+      * In-line
+       OPEN INPUT FILE-02
+       PERFORM 10 TIMES
+           READ FILE-02
+       END-PERFORM
+       CLOSE FILE-02
+
+      * Out-of-line
+       PROC-TIMES-01.
+           OPEN INPUT FILE-03
+           PERFORM PROC-TIMES-01-A 10 TIMES.
+           CLOSE FILE-03
+...
+       PROC-TIMES-01-A.
+           READ FILE-03
+
+Loops with PERFORM - UNTIL
+
+      * In-line
+       OPEN INPUT FILE-05
+       PERFORM UNTIL A = 10
+           READ FILE-05
+       END-PERFORM
+       CLOSE FILE-05
+
+      * Out-of-line
+       PROC-UNTIL-01.
+           MOVE 0 TO A.
+           OPEN INPUT FILE-06
+           PERFORM PROC-UNTIL-01-A UNTIL A = 10.
+           CLOSE FILE-06
+...
+       PROC-UNTIL-01-A.
+           ADD 1 TO A.
+           READ FILE-06
+
+Loops with PERFORM - VARYING
+
+      * In-line
+       OPEN INPUT FILE-08
+       PERFORM VARYING A FROM 1 BY 1 UNTIL A = 10
+           READ FILE-08
+       END-PERFORM
+       CLOSE FILE-08
+
+      * Out-of-line
+       PROC-VARYING-01.
+           OPEN INPUT FILE-09
+           PERFORM PROC-VARYING-01-A 
+               VARYING A FROM 1 BY 1 UNTIL A = 10.
+           CLOSE FILE-09
+...
+       PROC-VARYING-01-A.
+           READ FILE-09
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - Statement creating the loop in which OPEN or CLOSE statements are used - OPEN statement used the loop - CLOSE statement used
+in the loop</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs using Cobol File Links</p>
+<h5>Metric ID</h5>
+<p>7218</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

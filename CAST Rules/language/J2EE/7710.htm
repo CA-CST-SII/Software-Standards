@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid non serializable Entities</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid non serializable Entities</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>When Entity bean instance is to be passed by value as a detached object (e.g., through a remote interface), the entity class must implement the Serializable interface. Also, In some cases an OptimisticLockException will be thrown and wrapped by another exception, such as a RemoteException, when
+VM boundaries are crossed. Entities that may be referenced in wrapped exceptions should be Serializable so that marshalling will not fail. A consequence of not following this rule when a non serializable entity is passed by value is to get an exception.</p>
+<h5>Description</h5>
+<p>Reports all Entity beans that don&#39;t implement Serializable unless they inherit from a serializable class.</p>
+<h5>Remediation</h5>
+<p>Implement Serializable and verify that each its instance variables implement serializable unless they inherit from a class that is serializable, is a transient field or a Java primitives..</p>
+<h5>Reference</h5>
+<p>JSR-000220 Enterprise JavaBeans v.3.0 specification version 3.0 p 17 and p 57 http://techpolesen.blogspot.com/2007/11/10-tips-on-jpa-domain-modelling.html</p>
+<h5>Sample</h5>
+<pre>
+@Entity
+public class ABean  { // VIOLATION
+    private String str;
+    private aClass field;
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+@Entity
+public class ABean implements Serializable { // FIXED
+    private String str;
+    private aClass field;
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all entity bean implementation classes that are not serializable. It provides the following information: Class Full Name</p>
+<h5>Total</h5>
+<p>the number of entities</p>
+<h5>Metric ID</h5>
+<p>7710</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

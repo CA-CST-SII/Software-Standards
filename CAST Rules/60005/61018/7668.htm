@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using incorrect XML parsing model</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using incorrect XML parsing model</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>Efficient parsing of XML documents is more and more critical as XML gets adopted more widely. It is very important to have an efficient way to parse XML data, especially in applications that are intended to handle large volumes. Improper parsing can result in excessive memory usage and
+processing times that can hurt scalability. When you use DOM parsing techniques to read an XML, it means that entire XML document will be parsed at one time and load into memory. So it will time and memory expensive and must be used only when you have to modify XML documents.</p>
+<h5>Description</h5>
+<p>Reports all methods that reference: * javax.xml.parsers.DocumentBuilder class</p>
+<h5>Remediation</h5>
+<p>Use SAX when no modification are made on the document and when used in different threads (session, EJB...), in a loop.</p>
+<h5>Reference</h5>
+<p>http://ptgmedia.pearsoncmg.com/images/0131453491/samplechapter/megginson_ch08.pdf http://www.extreme.indiana.edu/~aslom/exxp/</p>
+<h5>Sample</h5>
+<pre>
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+public class DomParserExample {
+    Document dom;
+
+    private void parseXmlFile(){
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder db = dbf.newDocumentBuilder();  // VIOLATION
+            dom = db.parse(&quot;sample.xml&quot;);
+        }catch(ParserConfigurationException pce) {
+            pce.printStackTrace();
+        }catch(SAXException se) {
+            se.printStackTrace();
+        }catch(IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+
+import org.xml.sax.helpers.DefaultHandler;
+
+public class SAXParserExample extends DefaultHandler{
+    [...]
+    
+    public SAXParserExample(){
+        [...]
+    }
+
+    private void parseDocument() {
+        SAXParserFactory spf = SAXParserFactory.newInstance();
+        try {
+            SAXParser sp = spf.newSAXParser();
+            sp.parse(&quot;sample.xml&quot;, this);
+        }catch(SAXException se) {
+            se.printStackTrace();
+        }catch(ParserConfigurationException pce) {
+            pce.printStackTrace();
+        }catch (IOException ie) {
+            ie.printStackTrace();
+        }
+    }
+
+    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+        [...]
+    }
+
+    public void characters(char[] ch, int start, int length) throws SAXException {
+        [...]
+    }
+
+    public void endElement(String uri, String localName, String qName) throws SAXException {
+        [...]
+    }
+
+    [...]
+}
+</pre>
+<h5>Output</h5>
+<p>List all methods, that reference javax.xml.parsers.DocumentBuilder class. It provides the following information: Java Method Fullname</p>
+<h5>Total</h5>
+<p>The number of methods that reference javax.xml.parsers.SAXParser and javax.xml.parsers.DocumentBuilder</p>
+<h5>Metric ID</h5>
+<p>7668</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

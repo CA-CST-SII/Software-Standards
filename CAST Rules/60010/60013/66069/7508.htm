@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Collection-typed attributes getter must be defined with the correct interface</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Collection-typed attributes getter must be defined with the correct interface</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Hibernate or JPA requires interfaces for collection-typed attributes. You must use java.util.Set rather than HashSet, for example. At runtime, Hibernate or JPA wraps the HashSet instance with an instance of one of Hibernate&#39;s own classes in order to support lazy collections. Hibernate uses
+its own implementations of the List, Map or Set interfaces. If the getters are not used with the correct interface, you may encounter ClassCastException issues.</p>
+<h5>Description</h5>
+<p>Reports all getter of collection-typed persistent attributes that don&#39;t return the correct interface type (getter can be defined on the persistent class itself or an inherited class that references a persistent attribute). The type returned by a getter must be: For Hibernate: Interface
+Association Attribute java.util.Set set java.util.SortedSet set sort java.util.List list java.util.Collection bag or idbag java.util.Map map java.util.SortedMap map sort For JPA: Interface Association java.util.Set or java.util.List when @OrderBy is used java.util.Map when @MapKey is used
+(javax.persistence.MapKey) java.util.Collection, java.util.Set or java.util.List when no @OrderBY and no @MapKey is used</p>
+<h5>Remediation</h5>
+<p>Instead of using a concrete class or the wrong interface, define the getter return type with the correct interface.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 69 The Java Persistence API (ISBN 1-932394-88-5) page 116 http://www.avaje.org/manydatatypes.html</p>
+<h5>Sample</h5>
+<pre>
+----&gt; a.hbm.xml
+
+&lt;hibernate-mapping &gt;
+  
+  &lt;class name=&quot;A&quot; table =&quot;A&quot;&gt; 
+    &lt;id name=&quot;id&quot;&gt;
+      &lt;generator class=&quot;increment&quot;/&gt;
+    &lt;/id&gt;
+
+    &lt;set name=&quot;b_items&quot; lazy=&quot;true&quot; table =&quot;B&quot; sort=&quot;natural&quot;&gt; 
+      &lt;key column=&quot;B_ID&quot;/&gt;
+      &lt;one-to-many class=&quot;B&quot;/&gt;
+    &lt;/array&gt;
+  &lt;/class&gt;
+
+  &lt;class name=&quot;B&quot; table=&quot;B&quot; lazy=&quot;true&quot;&gt;
+    &lt;id name=&quot;id&quot; column=&quot;B_ID&quot;&gt;
+      &lt;generator class=&quot;increment&quot;/&gt;
+    &lt;/id&gt;
+  &lt;/class&gt;
+
+&lt;/hibernate-mapping&gt;
+
+----&gt; A.java
+public class A {
+  private Integer id;
+  private SortedSet&lt;B&gt; b_items;
+
+  ...
+
+  // VIOLATION
+  public TreeSet&lt;B&gt; getB_items() {
+    return b_items;
+  }
+  ...
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+----&gt; A.java
+
+public class A {
+  private Integer id;
+  private SortedSet&lt;B&gt; b_items;
+
+  ...
+
+  // FIXED
+  public SortedSet&lt;B&gt; getB_items() {
+    return b_items;
+  }
+  ...
+}
+</pre>
+<h5>Output</h5>
+<p>List all methods that don&#39;t return the correct interface for collection-typed persistent attributes. It provides the following information: - Method Full Name</p>
+<h5>Total</h5>
+<p>Total getters associated to persistent collection-typed attributes</p>
+<h5>Metric ID</h5>
+<p>7508</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

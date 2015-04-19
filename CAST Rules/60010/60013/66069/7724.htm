@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Overriden equals() Methods in persistent Subclasses should only reference properties from the persistent base Class</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Overriden equals() Methods in persistent Subclasses should only reference properties from the persistent base Class</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>It&#39;s almost never correct to override equals() on a persistant subclass and include properties that do not belong to the persistent base class in the comparison. It&#39;s tricky to satisfy the requirements that equality be both symmetric and transitive in this case; and, more important, the
+business key wouldn&#39;t correspond to any well-defined candidate natural key in the database (subclass properties may be mapped to a different table).</p>
+<h5>Description</h5>
+<p>Reports all equals() methods of persistent subclasses that involves an attribute or a getter of the subclasses of the persistent base class (subclass or joined-subclass).</p>
+<h5>Remediation</h5>
+<p>Reconsider your business key attributes and use only attributes from the base class.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 125</p>
+<h5>Sample</h5>
+<pre>
+----&gt; Java files:
+
+public class Animal {
+  private Long id;
+  private String name;
+  ...
+  public Long getId() {
+    return this.id;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+...
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Animal)) return false;
+    final Animal animal = (Animal) o;
+    if (! (this.getName() == animal.getName()) ) return false;
+    return true;
+  }
+}
+
+public class Dog extends Animal {
+   private String race;
+   ...
+   
+   public String getRace() {
+      return this.race;
+   }
+
+  public String setRace(String race) {
+     this.race = race;
+  }
+
+  public boolean equals(Object o) {  // VIOLATION
+    if (this == o) return true;
+    if (!(o instanceof Dog)) return false;
+    final Dog dog = (Dog) o;
+    if (! (this.getName() == dog.getName())) return false;
+    if (! (this.getRace() == dog.getRace())) return false;
+
+    return true;
+  }
+}
+
+public class Cat extends Animal {
+   private String color;
+   ...
+   
+   public String getColor() {
+      return this.color;
+   }
+
+  public String setColor(String color) {
+     this.color = color;
+  }
+
+  public boolean equals(Object o) {  // VIOLATION
+    if (this == o) return true;
+    if (!(o instanceof Cat)) return false;
+    final Cat cat = (Cat) o;
+    if (! (this.getName() == cat.getName())) return false;
+    if (! (this.getColor() == cat.getColor())) return false;
+
+    return true;
+  }
+}
+
+----&gt; animal.hbm.xml
+&lt;class name=&quot;Animal&quot; table=&quot;animal&quot;&gt;
+    &lt;id name=&quot;id&quot; type=&quot;long&quot; column=&quot;animal_id&quot;&gt;
+        &lt;generator class=&quot;native&quot;/&gt;
+    &lt;/id&gt;
+    &lt;discriminator column=&quot;type&quot; type=&quot;string&quot;/&gt;
+    &lt;property name=&quot;name&quot; column=&quot;name&quot;/&gt;
+    ...
+    &lt;subclass name=&quot;Dog&quot; discriminator-value=&quot;DOG&quot;&gt;
+        &lt;property name=&quot;race&quot; column=&quot;race&quot;/&gt;
+        ...
+    &lt;/subclass&gt;
+    &lt;subclass name=&quot;Cat&quot; discriminator-value=&quot;CAT&quot;&gt;
+        &lt;property name=&quot;color&quot; column=&quot;color&quot;/&gt;
+        ...
+    &lt;/subclass&gt;
+&lt;/class&gt;
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+Remove the equals() method from Cat and Dog. If necessary, race and color attributes must be moved to the Animal class and be used into the equals() method. They will become a part of the business key.
+</pre>
+<h5>Output</h5>
+<p>Lists all overriden equals() methods of persistent subclasses (subclass or joined-subclass) that involves an attribute or the getter of the subclasses of the persitent class. It provides the following information: Method full name</p>
+<h5>Total</h5>
+<p>The total is the number of persistent subclasses (subclass or joined-subclass) that override the equals method.</p>
+<h5>Metric ID</h5>
+<p>7724</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

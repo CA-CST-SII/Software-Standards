@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid unchecked return code (SY-SUBRC) after opening and reading dataset</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid unchecked return code (SY-SUBRC) after opening and reading dataset</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Missing return code checks after opening or reading a dataset can result in unpredictable behavior and untraceable execution errors. This is why it is extremely important to report and handle errors as soon as they occur.</p>
+<h5>Description</h5>
+<p>This rule searches for all ABAP artifacts that open and read datasets but do not check the value of the return code SY-SUBRC.</p>
+<h5>Remediation</h5>
+<p>Check the system field SY-SUBRC after file-handling commands.</p>
+<h5>Sample</h5>
+<pre>
+DATA:
+  dsn(20) TYPE C VALUE &#39;/usr/test.dat&#39;,
+  rec(80) TYPE C.
+
+OPEN DATASET dsn FOR INPUT IN TEXT MODE ENCODING DEFAULT.
+
+WRITE  / &#39;Beginning of output&#39;.
+
+READ DATASET dsn INTO rec.
+WRITE / rec.   
+
+READ DATASET dsn INTO rec.
+WRITE / rec.   
+
+WRITE  / &#39;End of output&#39;.
+
+CLOSE DATASET dsn.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+DATA:
+  dsn(20) TYPE C VALUE &#39;/usr/test.dat&#39;,
+  rec(80) TYPE C.
+
+OPEN DATASET dsn FOR INPUT IN TEXT MODE ENCODING DEFAULT.
+IF sy-subrc &lt;&gt; 0.
+  EXIT.
+ENDIF.
+
+WRITE  / &#39;Beginning of output&#39;.
+
+READ DATASET dsn INTO rec.
+WHILE sy-subrc &lt;&gt; 0.
+  WRITE / rec.   
+  READ DATASET dsn INTO rec.
+ENDWHILE.
+
+WRITE  / &#39;End of output&#39;.
+
+CLOSE DATASET dsn.
+</pre>
+<h5>Output</h5>
+<p>Associated to each ABAP Artifact with violations, the Quality Rule provides: - The number of violation patterns</p>
+<h5>Total</h5>
+<p>Number of ABAP Artifacts</p>
+<h5>Metric ID</h5>
+<p>8012</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

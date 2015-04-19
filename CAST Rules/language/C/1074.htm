@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using signals management Functions</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using signals management Functions</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>Failing to properly handle various signals would likely cause your application to terminate, when it receives such signals. In addition, the use of signal management functions slows down the application.</p>
+<h5>Description</h5>
+<p>This rule searches for C/C++ functions that call signal management functions like &quot;signal&quot; or &quot;raise&quot;.</p>
+<h5>Remediation</h5>
+<p>Avoid signal management when possible. Secure signal management with proper signal masking (use of &quot;sigaction()&quot;)</p>
+<h5>Output</h5>
+<p>Associated to each C/C++ function with violations, the Quality Rule provides: - Number of violation patterns - Bookmarks for violation patterns found in the source code: - signal management function call</p>
+<h5>Total</h5>
+<p>Number of C/C++ functions</p>
+<h5>Metric ID</h5>
+<p>1074</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

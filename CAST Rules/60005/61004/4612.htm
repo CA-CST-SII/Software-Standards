@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using native Methods (JNI)</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using native Methods (JNI)</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Rationale</h5>
+<p>JNI is one of the most serious cause of application server crash that can be due for example to buffer overflow. Even if your code works on a plateform, it doesn&#39;t mean that it will work on other plateform because the internals of JVMs differ. In case of crash, your JVM suplier&#39;s support
+will probably ask you to remove these calls before investigating your issue. Also, for portability purposes, native Methods should not be used. Native Methods could be compared to Interfaces to encapsulate calls to C Methods and Functions. Doing so relies on having the appropriate environment setup
+at the operating system level.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>JNI is one of the most serious cause of application server crash that can be due for example to buffer overflow. Even if your code works on a plateform, it doesn&#39;t mean that it will work on other plateform because the internals of JVMs differ. In case of crash, your JVM suplier&#39;s support
+will probably ask you to remove these calls before investigating your issue. Also, for portability purposes, native Methods should not be used. Native Methods could be compared to Interfaces to encapsulate calls to C Methods and Functions. Doing so relies on having the appropriate environment setup
+at the operating system level.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Description</h5>
+<p>List all artifacts that call a native method except native methods contained in the libraries defined by the threshold parameter. The threshold is a parameter and can be changed at will with libraries that you consider to be safe.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Description</h5>
+<p>List all artifacts that call a native method except native methods contained in the libraries defined by the threshold parameter. The threshold is a parameter and can be changed at will with libraries that you consider to be safe.</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Reference</h5>
+<p>http://publib.boulder.ibm.com/infocenter/iseries/v5r4/index.jsp?topic=%2Frzaha%2Fothlang.htm http://en.wikipedia.org/wiki/Java_Native_Interface#Pitfalls</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Reference</h5>
+<p>http://publib.boulder.ibm.com/infocenter/iseries/v5r4/index.jsp?topic=%2Frzaha%2Fothlang.htm http://en.wikipedia.org/wiki/Java_Native_Interface#Pitfalls</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Output</h5>
+<p>This report lists all artifacts using native methods except those contained in libraries defined by the parameter. It provides the following information: - Artifact full name - Native Method name</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Output</h5>
+<p>This report lists all artifacts using native methods except those contained in libraries defined by the parameter. It provides the following information: - Artifact full name - Native Method name</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Total</h5>
+<p>number of artifacts</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Total</h5>
+<p>number of artifacts</p>
+<h5>Metric ID</h5>
+<p>4612</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Do not mix Ansi joins syntax with Oracle proprietary joins syntax in the same query</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Do not mix Ansi joins syntax with Oracle proprietary joins syntax in the same query</h4>
+<hr>
+<h5>Technology</h5>
+<p>Forms, PL/SQL</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>ANSI syntax allow a clear separation between joins clause and the where clause restrictions. The ANSI notation makes the relations between the tables explicit, and saves you from coding equality tests for join conditions in the WHERE clause. Thus the mix of both join notations makes the
+readability &amp; maintainability of the code more complex. Moreover ANSI joins allows having optimization hints. And last, this historic syntax notation will probably be deprecated in a future release</p>
+<h5>Description</h5>
+<p>List all statements that include join clause(s) defined with both Oracle proprietary notation &amp; ANSI join notation</p>
+<h5>Remediation</h5>
+<p>Transform the queries including the two different notations with only the use of the ANSI syntax As a consequence Reconsider tthe statement. For that check the business rule(s) to fully understand the objective of the statement in term of result set. Use ANSI Join syntax notation to rewrite the
+part of the code.</p>
+<h5>Reference</h5>
+<p>Oracle SQL Student Guide Volume 1</p>
+<h5>Sample</h5>
+<pre>
+Select *
+From T1, T2
+Where
+T1.c1=T2.c1 AND
+ T1.c2 in 
+ (select T3.c1 from T4 left outer JOIN T3 on T3.c4=T4.c4)
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+Select * 
+From T1 JOIN  T2 
+ON T1.c1=T2.c1
+Where  T1.c2 in 
+ (select T3.c1 from T4 left outer JOIN T3 on T3.c4=T4.c4)
+</pre>
+<h5>Output</h5>
+<p>This report lists all queries using mix of both ANSI &amp; proprietary syntax notation.</p>
+<h5>Total</h5>
+<p>LINBERGH_PLUS</p>
+<h5>Metric ID</h5>
+<p>7948</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

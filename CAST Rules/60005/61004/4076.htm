@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using temporary Objects</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using temporary Objects</h4>
+<hr>
+<h5>Technology</h5>
+<p>Microsoft T-SQL, SQL Server, Sybase T-SQL</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>1</p>
+<h5>Rationale</h5>
+<p>Rationale - Temporary objects can have adverse impact on performance and scalability. We have to make sure the tempdb is not full anytime due to excess temporary objects. The worst case scenario will be the Server will stop working if the tempdb is full. Therefore this rule allows user to know
+what are the temporary objects used by his application and he can take the appropriate actions to clean/remove them if they are not needed.</p>
+<h5>Description</h5>
+<p>Triggers, Views, Functions and Procedures should not use temporary Objects</p>
+<h5>Remediation</h5>
+<p>Remediation - Use temporary objects only to optimize your application&#39;s performance.</p>
+<h5>Remediation sample</h5>
+<pre>
+Example: If you have to perform a multi-table join and each of these tables contains millions of rows, it will probably be better to break the original query into multiple steps. For instance, the first step could query just a couple of tables and generate an intermediate result set. The subsequent steps could then query the intermediate temporary table.
+</pre>
+<h5>Output</h5>
+<p>This report lists all Triggers, Views, Functions and Procedures using temporary Objects It provides the following information: Trigger / View / Function / Procedure name, Trigger / View / Function / Procedure full name, number of used temporary Objects</p>
+<h5>Metric ID</h5>
+<p>4076</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

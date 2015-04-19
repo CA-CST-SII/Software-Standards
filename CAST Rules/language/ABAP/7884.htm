@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid disabling source code inspection</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid disabling source code inspection</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>Source code inspection checks for bad practices and potential performance issues. For maintenance, performance and robustness reasons, it is better to avoid deactivating SAP source code inspection rules.</p>
+<h5>Description</h5>
+<p>This rule checks ABAP source code for searching directives that allow the deactivation of specific checks performed by the Code Inspector tool. These directives are: &quot;SET EXTENDED CHECK OFF&quot; and &quot;&quot;#EC...&quot;.</p>
+<h5>Remediation</h5>
+<p>Check if these directives are absolutely necessary and, if not, remove them from the source code.</p>
+<h5>Sample</h5>
+<pre>
+Example 1:
+SET EXTENDED CHECK OFF
+&lt;Coding&gt;
+SET EXTENDED CHECKS ON
+
+Example 2:
+DATA: I TYPE I. &quot;#EC NEEDED
+I = 4.
+BREAK-POINT.    &quot;#EC NOBREAK
+WRITE &#39;Hugo&#39;.   &quot;#EC NOTEXT
+FORM AB.        &quot;#EC CALLED
+ENDFORM.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+* SET EXTENDED CHECK OFF
+&lt;Coding&gt;
+* SET EXTENDED CHECKS ON
+
+Example 2:
+DATA: I TYPE I. 
+I = 4.
+BREAK-POINT.    
+WRITE &#39;Hugo&#39;.   
+FORM AB.        &quot;#EC CALLED
+ENDFORM.
+</pre>
+<h5>Output</h5>
+<p>Associated to each ABAP Artifact with violations, the Quality Rule provides: - The number of violation patterns</p>
+<h5>Total</h5>
+<p>Number of ABAP artifacts containing ABAP code.</p>
+<h5>Metric ID</h5>
+<p>7884</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

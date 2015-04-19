@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid empty finally blocks</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid empty finally blocks</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, ASP, C#, JEE</p>
+<h5>Unified Status</h5>
+<p>Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>Finally blocks must be used to execute the code that is needed after either the try and/or the catch block have been executed. It is usually the place to code the release of resources used in the try block. As such, an empty finally block is most probably the sign of potential &quot;resource
+leaks&quot; that will jeopardize the application&#39;s stability.</p>
+<h5>Description</h5>
+<p>This metric reports all methods with at least one empty finally block (empty or only containing comments). In a try and catch/finally statement, finally blocks should contain code to handle the thrown exception.</p>
+<h5>Sample</h5>
+<pre>
+try { ... }
+catch ( MyException e)
+{ ,,, }
+finally
+{
+  // DO NOTHING &lt;= VIOLATION
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+try { ,,, }
+catch ( MyException e)
+{ ,,, }
+finally
+{
+  DoSomething();
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all Artifacts with an empty finally block. It provides the following information: Artifact full name</p>
+<h5>Total</h5>
+<p>This counts all Artifacts.</p>
+<h5>Metric ID</h5>
+<p>7782</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

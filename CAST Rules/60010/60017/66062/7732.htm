@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid non validated inputs</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid non validated inputs</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Input validation is required to secure an application. Moreover, the web interface is exposed to anyone. Non validating input may allow injecting arbitrary web script, HTML, SQL... Consequences can be severe, like erasing the content of a database. Only one invalidated input can be exploited by
+an attacker. JSF supports validators, which are responsible for making sure that the user enters an acceptable value. Each input control must be associated with one or more validators.</p>
+<h5>Description</h5>
+<p>Reports all input field that is not validated in JSP files that use JSF (i.e. reference the JSF core taglib). Faces handles validation in three ways - via standard validation, custom validation, validation in the backing bean. Note that the other way that consist in making the validation in the
+application (in the method called when a button is selected like createEmail method in the Example section) is not considered. In this case, a manual check will be needed to validate if the validation is made or not through this way.</p>
+<h5>Remediation</h5>
+<p>Validate each input field through one of the three ways - at the UI component level, via validator methods in backing beans, or in validator classes. UI components generally handle simple validation, such as whether a value is required, or validation logic that&#39;s specific to the component
+itself (and therefore not usable with other components). Validator methods are useful when you need to validate one or more fields on a form (and you don&#39;t need to share that logic with other components). External validators are useful for generic cases like the length of a field or a number
+range; they are pluggable, which means you can attach one or more of them to any component.</p>
+<h5>Reference</h5>
+<p>Java Server Faces in Action ISBN 1-932394-11-7 p 44</p>
+<h5>Sample</h5>
+<pre>
+----&gt; JSP file (1st sample: standard validation)
+&lt;%@taglib prefix=&quot;f&quot; uri=&quot;http://java.sun.com/jsf/core&quot;%&gt;
+&lt;%@taglib prefix=&quot;h&quot; uri=&quot;http://java.sun.com/jsf/html&quot;%&gt;
+
+&lt;h:inputText id=&quot;age&quot; value=&quot;#{UserRegistration.user.age}&quot;&gt; // VIOLATION
+&lt;/h:inputText&gt;
+
+----&gt; JSP file (for 2nd, 3rd and 4th sample)
+&lt;%@taglib prefix=&quot;f&quot; uri=&quot;http://java.sun.com/jsf/core&quot;%&gt;
+&lt;%@taglib prefix=&quot;h&quot; uri=&quot;http://java.sun.com/jsf/html&quot;%&gt;
+
+&lt;h:form id=&quot;create&quot;&gt; 
+     ....
+
+     &lt;h:inputText id=&quot;emailInput&quot;
+            value=&quot;#{registrationBean.email}/&gt; // VIOLATION
+
+     &lt;h:commandButton id=&quot;submit&quot; 
+                                  value=&quot;CreateEmail&quot;
+                                  action=&quot;#{registrationBean.createEmail}&quot;/&gt;
+     ....
+&lt;/h:form&gt;
+
+---&gt; faces-config.xml
+&lt;faces-config&gt;
+...
+    &lt;managed-bean&gt;
+        &lt;managed-bean-name&gt;registrationBean&lt;/managed-bean-name&gt;
+        &lt;managed-bean-class&gt;
+            com.sample.registrationBean
+        &lt;/managed-bean-class&gt;
+        &lt;managed-bean-scope&gt;session&lt;/managed-bean-scope&gt;
+    &lt;/managed-bean&gt; 
+...
+&lt;/faces-config&gt;
+
+---&gt; RegistrationBean.java
+package com.sample;
+
+public class RegistrationBean {
+    ...
+
+    }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+-------------- 1st sample (standard validation) --------------
+
+----&gt; JSP file
+&lt;%@taglib prefix=&quot;f&quot; uri=&quot;http://java.sun.com/jsf/core&quot;%&gt;
+&lt;%@taglib prefix=&quot;h&quot; uri=&quot;http://java.sun.com/jsf/html&quot;%&gt;
+
+&lt;h:inputText id=&quot;age&quot; value=&quot;#{UserRegistration.user.age}&quot;&gt;
+          &lt;f:validateLongRange maximum=&quot;150&quot; minimum=&quot;0&quot;/&gt;
+&lt;/h:inputText&gt;
+
+----&gt; jsf_core.tld
+&lt;tag&gt;
+    &lt;name&gt;validateLongRange&lt;/name&gt;
+    &lt;tag-class&gt;
+     com.sun.faces.taglib.jsf_core.ValidateLongRangeTag
+    &lt;/tag-class&gt;
+...
+
+----&gt; ValidateLongRangeTag.java:
+public class ValidateLongRangeTag extends com.sun.faces.taglib.jsf_core.MaxMinValidatorTag {
+....
+}
+
+---&gt; MaxMinValidatorTag.java:
+public class MaxMinValidatorTag extends javax.faces.webapp.ValidatorTag {
+  ...
+}
+
+
+-------------- 2nd sample ( custom validation) --------------
+----&gt; JSP file:
+&lt;%@taglib prefix=&quot;f&quot; uri=&quot;http://java.sun.com/jsf/core&quot;%&gt;
+&lt;%@taglib prefix=&quot;h&quot; uri=&quot;http://java.sun.com/jsf/html&quot;%&gt;
+
+&lt;h:inputText id=&quot;emailInput&quot;
+               value=&quot;#{registrationBean.email}/&gt;
+      &lt;f:validator validatorId=&quot;emailValidator&quot;/&gt; // FIXED
+&lt;/h:inputText&gt;
+
+----&gt; faces-config.xml
+&lt;faces-config&gt;
+  ...
+       &lt;validator&gt;
+            &lt;validator-id&gt;emailValidator&lt;/validator-id&gt;
+            &lt;validator-class&gt;com.sample.EmailValidator&lt;/validator-class&gt;
+        &lt;/validator&gt;
+  ... 
+
+&lt;/faces-config&gt;
+
+----&gt; EmailValidator.java
+package com.sample;
+
+public class EmailValidator implements javax.faces.validator.Validator {
+    ....
+}
+
+
+-------------- 3rd sample ( validation in the backing bean) --------------
+----&gt; JSP file:
+&lt;h:inputText id=&quot;emailInput&quot;
+            validator=&quot;#{registrationBean.validateEmail}&quot; // FIXED
+            value=&quot;#{registrationBean.email}/&gt;
+
+----&gt; faces-config.xml
+&lt;faces-config&gt;
+...
+    &lt;managed-bean&gt;
+        &lt;managed-bean-name&gt;registrationBean&lt;/managed-bean-name&gt;
+        &lt;managed-bean-class&gt;
+            com.sample.registrationBean
+        &lt;/managed-bean-class&gt;
+        &lt;managed-bean-scope&gt;session&lt;/managed-bean-scope&gt;
+    &lt;/managed-bean&gt; 
+...
+&lt;/faces-config&gt;
+
+----&gt; RegistrationBean.java
+package com.sample;
+
+
+public class RegistrationBean {
+    ...
+    public void validateEmail(FacesContext context, UIComponent validate, Object value){
+       ...
+    }
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all input that are not validated. It provides the following information: JSP Input Field Full Name</p>
+<h5>Total</h5>
+<p>The total number of input field, 0 if JSF is not used</p>
+<h5>Metric ID</h5>
+<p>7732</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

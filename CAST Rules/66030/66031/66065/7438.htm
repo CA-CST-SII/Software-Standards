@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid non thread safe singleton</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid non thread safe singleton</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>If singleton is invoked in a multi-threaded program, you could end up creating multiple instances of the class which will make the application instable.</p>
+<h5>Description</h5>
+<p>All singleton that initialize the static field that refer to the single instance in a non synchronized method will be reported. A singleton is defined as: - a class with a static member with the same type or parent type (extended or implemented) as the class - a static method that refers the
+instance and return an object of same type or a parent type (extended or implemented) - a class that has only private constructors</p>
+<h5>Remediation</h5>
+<p>To remediate to this issue (in case of multi-threaded environment), there is two solutions: 1/ declare the field that hold the unique instance as static final and initialize it in the declaration 2/ synchronize the method that initialize the field</p>
+<h5>Reference</h5>
+<p>http://tekpool.wordpress.com/2006/10/27/singleton-pattern-part-2-thread-safe-implemenation/ http://www-128.ibm.com/developerworks/java/library/j-dcl.html</p>
+<h5>Sample</h5>
+<pre>
+class Singleton
+{
+  private static Singleton instance;
+  private Singleton() {}
+  public static Singleton getInstance() { 
+    if (instance == null)                    // VIOLATION
+      instance = new Singleton();
+    return instance;
+  }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+1/ declare a static final field
+class Singleton
+{
+  private static final Singleton instance = new Singleton(); // FIXED
+  private Singleton() {}
+  public static Singleton getInstance() { 
+    return instance;
+  }
+}
+
+2/ synchronize the method
+class Singleton
+{
+  private static Singleton instance;
+  private Singleton() {}
+  public static synchronized Singleton getInstance() { 
+    if (instance == null)              
+      instance = new Singleton();
+    return instance;
+  }
+</pre>
+<h5>Output</h5>
+<p>The metric will list all singleton classes that are not thread safe.</p>
+<h5>Total</h5>
+<p>the total procedure counts all singleton classes (as defined in the definition)</p>
+<h5>Metric ID</h5>
+<p>7438</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

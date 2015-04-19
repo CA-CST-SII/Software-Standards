@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Avoid &quot;SELECT *&quot; queries and use of dbms_output.put_line</title>
+<link rel="StyleSheet" type="text/css" href="../style.css">
+</head>
+<body>
+<h4>Avoid &quot;SELECT *&quot; queries and use of dbms_output.put_line</h4>
+<hr>
+<p>Please note that the Quality Rule <b>Avoid &quot;SELECT *&quot; queries</b> will be violated even if the select * clause in the PL/SQL source code is located in a <b>dbms_output.put_line</b> procedure. For example:</p>
+<pre>
+CREATE OR REPLACE PROCEDURE TEST_PROC
+IS
+BEGIN
+SELECT a FROM tab WHERE b = &#39;c&#39;;
+dbms_output.put_line(&#39;select * from tab&#39;) ;
+END;
+</pre>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

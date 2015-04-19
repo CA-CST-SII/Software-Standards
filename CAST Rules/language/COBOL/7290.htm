@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid unreferenced Sections and Paragraphs</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid unreferenced Sections and Paragraphs</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>Unreferenced Sections and Paragraph may be the symptom of Dead Code. Dead Code must be avoided as it makes source code less readable and increases the cost of the software maintenance. Warning: Unreferenced code can also be the symptoms of missing code (code not included in the source code
+analysis).</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs containing sections or paragraphs that are not called. A section or a paragraph is not called when: - there is no GO TO statement that refers to it - there is no PERFORM statement that refers to it - there is no fall through logic in which it is involved
+However, sections for which all statements are attached to a paragraph are excluded from the list of objects violating this rule.</p>
+<h5>Remediation</h5>
+<p>Check if the Artifact is truly unnecessary. Then remove Artifacts that are not used.</p>
+<h5>Sample</h5>
+<pre>
+PROCEDURE DIVISION.
+      * Called by PROCEDURE DIVISION
+       MAIN SECTION.
+       PROCESS.
+           PERFORM PROC-01.
+           PERFORM PROC-02 THRU PROC-04.
+           IF A &gt; 2 THEN 
+               GO TO PROC-7.
+           END-IF
+
+      * Called by fall thru and PROC-8 (GOTO)
+       END-PROCESS.
+           GOBACK.
+
+      * Called by PROCESS (PERFORM)
+       PROC-01.
+           IF A = 10 THEN
+               PERFORM PROC-06
+           END-IF
+
+      * Called by PROCESS (PERFORM THRU)
+       PROC-02.
+           MOVE 1 TO A.
+
+      * Called by PROCESS (FALL THRU)
+       PROC-03.
+           ADD 5 TO A.
+
+      * Called by PROCESS (FALL THRU)
+       PROC-04.
+           EXIT.
+
+      **** This paragraph is never called
+       PROC-05.
+           MOVE &quot;PGM02&quot; TO PGM-NAME.
+
+      * Called by PROC-01 (PERFORM)
+       PROC-06.
+           MOVE &quot;PGM&quot; TO PGM-NAME.
+
+      * Called by PROCESS (GOTO)
+       PROC-7.
+           IF A &gt; 2 THEN
+               MOVE 0 TO A.
+           END-IF
+
+      * Called by fall thru
+       PROC-8.
+           GO TO END-PROCESS.
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - Section or paragraph that is not executed</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>7290</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

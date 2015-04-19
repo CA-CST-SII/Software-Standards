@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Artifacts with Group By (ABAP)</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Artifacts with Group By (ABAP)</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>Not Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Having complex queries in Artifacts can cause performance problems. Queries using group by is considered complex and not efficient.</p>
+<h5>Description</h5>
+<p>This diagnostic searches for ABAP artifacts using OpenSQL queries with GROUP BY clause.</p>
+<h5>Remediation</h5>
+<p>Review the design of the query to avoid if possible GROUP BY clause.</p>
+<h5>Reference</h5>
+<p>CAST Consulting</p>
+<h5>Output</h5>
+<p>This rules lists all ABAP Artifacts using OpenSQL queries with the GROUP BY clause. It provides the following information: - ABAP Artifact full name</p>
+<h5>Total</h5>
+<p>Number of ABAP Artifacts</p>
+<h5>Metric ID</h5>
+<p>7106</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid many-to-many association</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid many-to-many association</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>One-to-many associations are easily the most important kind of association. In fact, its usage is discouraged when a simple bidirectional many-to-one/one-to-many will do the job. In particular, a many-to-many association may always be represented as two many-to-one associations to an intervening
+class. This model is usually more easily extensible. In a real system, you may not have a many-to-many association. Usually there is almost always other information that must be attached to each link between associated instances (such as the date and time when an item was added to a category) and
+that the best way to represent this information is via an intermediate association class. Moreover, changing the definition of a primary key and all foreign keys that refer to it is a frustrating task.</p>
+<h5>Description</h5>
+<p>Reports all Hibernate or JPA Entities that use many-to-many association.</p>
+<h5>Remediation</h5>
+<p>In Hibernate, you can map the association class as an entity and map two one-to-many associations for either side.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 220</p>
+<h5>Sample</h5>
+<pre>
+&lt;class name=&quot;A&quot; table=&quot;A&quot;&gt; 
+    ...  
+    &lt;set name=&quot;B&quot; table=&quot;B&quot;&gt;  
+        &lt;key column=&quot;A_ID&quot;/&gt; 
+        &lt;many-to-many column=&quot;B_ID&quot; class=&quot;B&quot;/&gt; // VIOLATION
+    &lt;/set&gt; 
+&lt;/class&gt;
+</pre>
+<h5>Output</h5>
+<p>List all Hibernate or JPA Entities that use many-to-many association. It provides the following information: - Hibernate or JPA Entity Full Name - Number of many-to-many association</p>
+<h5>Total</h5>
+<p>Number of hibernate or JPA entity that are associated to other entity through one-to-many, many-to-one, one-to-one and many-to-many</p>
+<h5>Metric ID</h5>
+<p>7492</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

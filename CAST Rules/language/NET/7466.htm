@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid changing DataSource member before ValueMember/DisplayMember</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid changing DataSource member before ValueMember/DisplayMember</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>3</p>
+<h5>Rationale</h5>
+<p>When populating data bound controls such as ComboBox or ListBox, it is more efficient to set the DataSource property last, after ValueMember and DisplayMember are set. Otherwise your control will be repopulated as a result of the ValueMember change. BindingSource.SuspendBinding and
+BindingSource.ResumeBinding are two methods that allow the temporary suspension and resumption of data binding. SuspendBinding prevents changes from being pushed into the data source until ResumeBinding is called. These methods are designed to be used with simple bound scenarios such as TextBox or
+ComboBox data binding. However, Controls that implement complex data binding, such as the DataGridView control, update their values based on change events such as ListChanged, so calling SuspendBinding will not prevent them from receiving changes to the data source. You can use these methods in
+complex binding scenarios if you suppress ListChanged events by setting the RaiseListChangedEvents property to false.</p>
+<h5>Description</h5>
+<p>This metric list all locations where the DataSource member is set before the ValueMember/DisplayMember.</p>
+<h5>Remediation</h5>
+<p>Set the DataSource member after the ValueMember and DisplayMember.</p>
+<h5>Reference</h5>
+<p>MSDN</p>
+<h5>Sample</h5>
+<pre>
+comboBox1.DataSource = test;
+comboBox1.ValueMember = &quot;Name&quot;;
+comboBox1.DisplayMember = &quot;Name&quot;;
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+comboBox1.ValueMember = &quot;Name&quot;;
+comboBox1.DisplayMember = &quot;Name&quot;;
+comboBox1.DataSource = test;
+</pre>
+<h5>Output</h5>
+<p>This metric list all objects where the DataSource member is set before the ValueMember/DisplayMember.</p>
+<h5>Total</h5>
+<p>Total number of artifacts with code</p>
+<h5>Metric ID</h5>
+<p>7466</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

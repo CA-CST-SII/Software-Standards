@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid cyclic calls between Event and its handled Method</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid cyclic calls between Event and its handled Method</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>A method handled by an event must not reactivate this event directly or indirectly via other called methods. Such a cycle based on event and methods can cause unpredictable behaviors.</p>
+<h5>Description</h5>
+<p>This report shows ABAP Event Methods that are handled by an Abap Event and that activate this Abap Event, directly or indirectly by calling other Abap Methods. A cycle can be created by : - a sequence based on an Abap Event calling an Abap Event Method calling this Abap Event - a sequence based
+on an Abap Event calling an Abap Event Method calling an Abap Method calling the same Abap Event (the maximum number of Abap Methods is set to 2) - several sequences of Abap Event E1 calling . . . Abap Event E2</p>
+<h5>Remediation</h5>
+<p>Try to remove cyclic calls between events and handled methods.</p>
+<h5>Sample</h5>
+<pre>
+CLASS myClass DEFINITION.
+  PUBLIC SECTION.
+    METHODS increment_counter.
+    METHODS handle_excess 
+            FOR EVENT critical_value OF myClass
+            IMPORTING excess.
+    METHODS increment.
+    EVENTS  critical_value EXPORTING value(excess) TYPE i.
+  PRIVATE SECTION.
+    DATA: count1     TYPE i,
+          threshold TYPE i VALUE 10.
+ENDCLASS.
+
+CLASS myClass IMPLEMENTATION.
+  METHOD increment_counter.
+    DATA diff TYPE i.
+    ADD 1 TO count1.
+    IF count1 &gt; threshold.
+      diff = count1 - threshold.
+      RAISE EVENT critical_value EXPORTING excess = diff.
+    ENDIF.
+  ENDMETHOD.
+  METHOD handle_excess.
+* In the following lines, a cycle occurs
+    IF threshold &gt; 5
+      CALL METHOD me-&gt;increment.
+    ENDIF.
+  ENDMETHOD.
+  METHOD increment.
+    ADD 1 TO count1.
+  ENDMETHOD.
+ENDCLASS.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+CLASS myClass DEFINITION.
+  PUBLIC SECTION.
+    METHODS increment_counter.
+    METHODS handle_excess 
+            FOR EVENT critical_value OF myClass
+            IMPORTING excess.
+    METHODS increment.
+    EVENTS  critical_value EXPORTING value(excess) TYPE i.
+  PRIVATE SECTION.
+    DATA: count1     TYPE i,
+          threshold TYPE i VALUE 10.
+ENDCLASS.
+
+CLASS myClass IMPLEMENTATION.
+  METHOD increment_counter.
+    DATA diff TYPE i.
+    ADD 1 TO count1.
+    IF count1 &gt; threshold.
+      diff = count1 - threshold.
+      RAISE EVENT critical_value EXPORTING excess = diff.
+    ENDIF.
+  ENDMETHOD.
+  METHOD handle_excess.
+    IF threshold &gt; 5
+*      CALL METHOD me-&gt;increment.
+      write / count1.
+    ENDIF.
+  ENDMETHOD.
+  METHOD increment.
+    ADD 1 TO count1.
+  ENDMETHOD.
+ENDCLASS.
+</pre>
+<h5>Output</h5>
+<p>Associated to each ABAP Event Method with violations, the Quality Rule provides: - The ABAP Event name</p>
+<h5>Total</h5>
+<p>Number of Abap Event Methods called by an Abap Event</p>
+<h5>Metric ID</h5>
+<p>7586</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

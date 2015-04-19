@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid redundant indexes</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid redundant indexes</h4>
+<hr>
+<h5>Technology</h5>
+<p>All Languages/Technologies</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>It is useless to have several indexes on the same column(s) or to have an index on columns already covered by a composite index. This will not improve read performance and will decrease update/insert/delete performance because of index maintenance.</p>
+<h5>Description</h5>
+<p>List all indexes that are redundant i.e. indexes on the same column(s) or included into another composite index.</p>
+<h5>Remediation</h5>
+<p>Drop the index that are not necessary.</p>
+<h5>Sample</h5>
+<pre>
+-- SQL Sample
+create table MyTable ( C1 int identity, C2 int)
+
+create index MyTable_I1 on MyTable( C1)
+create index MyTable_I2 on MyTable( C1)
+create index MyTable_I3 on MyTable( C1, C2)
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+-- SQL Sample
+create table MyTable ( C1 int identity, C2 int)
+
+-- create index MyTable_I1 on MyTable( C1)
+-- This index is useless as it is the same as MyTable_I2
+
+-- create index MyTable_I2 on MyTable( C1)
+-- This index is nearly useless as queries using C1 will be covered by the index MyTable_I3. It can then be dropped.
+
+
+create index MyTable_I3 on MyTable( C1, C2)
+</pre>
+<h5>Output</h5>
+<p>List all tables with indexes which: - Columns list (ordered) are the same as another index - Columns list (ordered) is contained (in the same order, starting from the start) in another index</p>
+<h5>Total</h5>
+<p>Total number of tables</p>
+<h5>Metric ID</h5>
+<p>7346</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

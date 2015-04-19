@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Never use incompatible statements with the CICS environment</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Never use incompatible statements with the CICS environment</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>The CICS environment forbids some Cobol statements concerning I/O operations and program termination. The use of these statements can cause problems in production and can crash applications.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs running under the CICS environment containing statements that are not permitted. These statements are the following: - ACCEPT - ENTRY - DISPLAY - FD and SD - SELECT &lt;file&gt; ASSIGN TO - OPEN, CLOSE, READ, WRITE, REWRITE, DELETE - MERGE, SORT - START -
+STOP The following exception is taken into account: some batch programs can contain EXEC CICS commands in order to run CICS utilities (DFH*). If these types of programs do not execute other commands, then they will not be considered as violating the rule.</p>
+<h5>Remediation</h5>
+<p>These statements must be removed from programs running under the CICS environment. Files can be accessed by using specific macros provided with CICS.</p>
+<h5>Reference</h5>
+<p>IBM Enterprise Cobol for z/OS - Programming Guide</p>
+<h5>Output</h5>
+<p>This report lists all CICS programs containing incompatible statements. It provides the following information: - Cobol Program Full Name - Number of violations It also provides bookmarks for violation patterns found in source code: - Incompatible Cobol statement</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs running under the CICS</p>
+<h5>Metric ID</h5>
+<p>7548</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

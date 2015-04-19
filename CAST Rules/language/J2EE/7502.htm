@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Never use array to map a collection</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Never use array to map a collection</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Hibernate supports this usage; indeed, the details of an array mapping are virtually identical to those of a list. However, we very strongly recommend against the use of arrays, since arrays can&#39;t be lazily initialized (there is no way to proxy an array at the virtual machine level). Lists,
+maps and sets are the most efficient collection types. So, using array can affect your application performance when it can contain many items, it looses lazy loading, optimized dirty checking and performance features for persistent collections.</p>
+<h5>Description</h5>
+<p>Reports any association made using array</p>
+<h5>Remediation</h5>
+<p>Use lists, maps, bags, idbags and sets depending on your case.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 214 http://srcrr.com/java/hibernate/3.6.2/reference/org/hibernate/collection/PersistentArrayHolder.html</p>
+<h5>Sample</h5>
+<pre>
+&lt;hibernate-mapping &gt;
+  
+  &lt;class name=&quot;A&quot; table =&quot;A&quot;&gt;
+    &lt;id name=&quot;id&quot; column=&quot;A_ID&quot;&gt;
+      &lt;generator class=&quot;increment&quot;/&gt;
+    &lt;/id&gt;
+     &lt;array name=&quot;Bitems&quot; cascade=&quot;all&quot; fetch=&quot;join&quot;&gt; // VIOLATION
+      &lt;key column=&quot;A_ID&quot;/&gt;
+      &lt;one-to-many class=&quot;B&quot;/&gt;
+    &lt;/array&gt;
+  &lt;/class&gt;
+
+  &lt;class name=&quot;B&quot; table=&quot;B&quot; lazy=&quot;true&quot;&gt;
+    &lt;id name=&quot;id&quot; column=&quot;B_ID&quot;&gt;
+      &lt;generator class=&quot;increment&quot;/&gt;
+    &lt;/id&gt;
+  &lt;/class&gt;
+
+&lt;/hibernate-mapping
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+&lt;hibernate-mapping &gt;
+  
+  &lt;class name=&quot;A&quot; table =&quot;A&quot;&gt; 
+    &lt;id name=&quot;id&quot;&gt;
+      &lt;generator class=&quot;increment&quot;/&gt;
+    &lt;/id&gt;
+
+    // FIXED with a list (it could have been set, map, idbag or bag)
+    &lt;list name=&quot;Bitems&quot; cascade=&quot;all&quot; fetch=&quot;join&quot;&gt; 
+      &lt;key column=&quot;B_ID&quot;/&gt;
+      &lt;list-index column=&quot;ID&quot;/&gt;
+      &lt;one-to-many class=&quot;B&quot;/&gt;
+    &lt;/array&gt;
+  &lt;/class&gt;
+
+  &lt;class name=&quot;B&quot; table=&quot;B&quot; lazy=&quot;true&quot;&gt;
+    &lt;id name=&quot;id&quot; column=&quot;B_ID&quot;&gt;
+      &lt;generator class=&quot;increment&quot;/&gt;
+    &lt;/id&gt;
+  &lt;/class&gt;
+
+&lt;/hibernate-mapping&gt;
+</pre>
+<h5>Output</h5>
+<p>List all Hibernate Entities that use array to map a collection. It provides the following information: Hibernate Entity Full Name</p>
+<h5>Total</h5>
+<p>The total will be the number of Hibernate Entities that map a collection that could be: array, map, list, set, bag or idbag</p>
+<h5>Metric ID</h5>
+<p>7502</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

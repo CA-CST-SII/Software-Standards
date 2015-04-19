@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid instanceof in Methods that override or implement Object.equals(), Comparable.compareTo()</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid instanceof in Methods that override or implement Object.equals(), Comparable.compareTo()</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>When checking the equality between two objects or comparing them, before comparing the attribute&#39;s value the type equality must be validated. Often the instanceof operator is used to perform this equality, however, the condition fails to return false if the argument is a subclass of the
+class that is compared. Thus, it might violate the symmetry requirement of the contract (x.equals(y) should return true if and only if y.equals(x) returns true). It is the same for compareTo since the recommended behavior is to use a natural ordering that is consistent with equals. As a consequence
+you might have unexpected behavior where two objects are considered equals, greater or less than while they are not and moreover, the result depends on which object the method has invoked.</p>
+<h5>Description</h5>
+<p>Reports all overridden java.lang.Object.equals(java.lang.Object) and implementations of java.lang.Comparable.compareTo(java.lang.Object) that reference instanceof.</p>
+<h5>Remediation</h5>
+<p>Replace instanceof usage by the comparison of each object class name or using org.hibernate.Hibernate.getClass to get the true, underlying class of a proxied persistent class.</p>
+<h5>Reference</h5>
+<p>http://www.angelikalanger.com/Articles/JavaSolutions/SecretsOfEquals/Equals.html</p>
+<h5>Sample</h5>
+<pre>
+class MyClass {
+   ...
+   public boolean equals(Object other) {
+       if (this==other) return true;
+       if (other==null) return false;
+       // VIOLATION
+       if ( !(other instanceof MyClass)) return false;
+       ...
+    }
+   ...
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class MyClass {
+   ...
+   public boolean equals(Object other) {
+       if (this==other) return true;
+       if (other==null) return false;
+       // FIXED
+       if (other.getClass() != this.getClass()) return false;
+       // OR in case of Hibernate
+       if (!Hibernate.getClass(other).equals(Hibernate.getClass(this)) return false;
+       ...
+    }
+   ...
+}
+</pre>
+<h5>Output</h5>
+<p>List all equals and compareTo methods that reference instanceof. The rule provides the following information: Method Full Name</p>
+<h5>Total</h5>
+<p>Number of equals methods that override java.lang.Object.equals(java.lang.Object) and the number of methods that implement java.lang.Comparable.compareTo(java.lang.Object)</p>
+<h5>Metric ID</h5>
+<p>7556</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Web Dynpro - Never use direct calls to routine via &quot;me-&gt;&quot;, use &quot;wd_This-&gt;&quot; instead</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Web Dynpro - Never use direct calls to routine via &quot;me-&gt;&quot;, use &quot;wd_This-&gt;&quot; instead</h4>
+<hr>
+<h5>Technology</h5>
+<p>ABAP</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Special rules apply for the implementation of Web Dynpro routines, such as &quot;wd_Do_Init&quot; methods. Some ABAP language statements cannot be used. Other routines cannot be called directly - instead they must be called with the &quot;wd_This&quot; instance. The reason for this is that a
+direct call makes any extensions made from restructured layers impossible.</p>
+<h5>Description</h5>
+<p>This rule checks Web Dynpro source code for direct calls to routine using the &quot;me--&gt;&quot; instance.</p>
+<h5>Remediation</h5>
+<p>Replace the &quot;me-&gt;&quot; calls with a delegation using &quot;wd_This-&gt;&quot;.</p>
+<h5>Reference</h5>
+<p>SAP</p>
+<h5>Output</h5>
+<p>Associated to each ABAP Web Dynpro Method/Event Handler/Supply Function with violations, the Quality Rule provides: - The number of violation patterns</p>
+<h5>Total</h5>
+<p>Number of Web Dynpro Methods, Web Dynpro Event Handlers and Web Dynpro Supply Functions</p>
+<h5>Metric ID</h5>
+<p>7888</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

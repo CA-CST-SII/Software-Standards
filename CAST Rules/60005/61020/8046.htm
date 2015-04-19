@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Do not return non-const handles to Class data from const member Functions</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Do not return non-const handles to Class data from const member Functions</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>From a language point of view, the pointer &#39;p&#39; is part of the class and then cannot be modified in a &#39;const&#39; function. But the pointed-to value is not part of the class, and may be modified. However, from a design point of view, in this case the pointed to value is still
+logically part of the class, it should not be modified in a &#39;const&#39; function, nor should a &#39;const&#39; function allow its caller to modify it through a reference.</p>
+<h5>Description</h5>
+<p>This rule searches for const C++ methods that return non-const handles to class data.</p>
+<h5>Remediation</h5>
+<p>To correct the violation, return a &#39;const&#39; reference, or return by value.</p>
+<h5>Reference</h5>
+<p>High Integrity C++ Coding Standard Manual</p>
+<h5>Sample</h5>
+<pre>
+class A
+{
+public:
+    A() : p(new int(0)) {}
+    ~A() {delete p;}
+    int &amp;violation() const {return *p;} // Violation
+    int *p;
+};
+
+void f(A const &amp;a)
+{
+    a.violation() = 42;
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class A
+{
+    //...
+    int const &amp;correct1() const {return *p;}
+    int correct2() const {return *p;}
+}
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ method with violations, the Quality Rule provides: - non-const class data - Bookmarks for violation patterns found in the source code: - non-const class data return</p>
+<h5>Total</h5>
+<p>Number of C++ methods</p>
+<h5>Metric ID</h5>
+<p>8046</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

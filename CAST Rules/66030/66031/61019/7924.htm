@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid defining Functions with &#39;struct&#39; or &#39;class&#39; parameters passed by value</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid defining Functions with &#39;struct&#39; or &#39;class&#39; parameters passed by value</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>In C++, passing a &#39;class&#39; or &#39;struct&#39; object by value creates a copy of the object, by calling the copy constructor of the class. This copy can be slow, especially on big objects. The same applies for C &#39;struct&#39; even if the copy constructor is not called.</p>
+<h5>Description</h5>
+<p>This rule searches for C/C++ functions that are defined with parameters of &#39;struct&#39; or &#39;class&#39; type passed by value. If the classes are small with trivial copy operation, the rule is not triggered.</p>
+<h5>Remediation</h5>
+<p>Pass the argument by reference (with &#39;const&#39;). This may require that you add missing &#39;const&#39; qualifiers to class functions.</p>
+<h5>Sample</h5>
+<pre>
+class Matrix
+{
+public:
+    Matrix(Matrix const &amp;m); // Copy constructor
+private:
+    double *data; // Can be really big
+    // ...
+};
+
+void display(Matrix m); // VIOLATION
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class Fraction
+{
+private:
+    int numerator;
+    int denominator;
+    // ...
+};
+
+void display(Matrix const &amp;m);
+</pre>
+<h5>Output</h5>
+<p>Associated to each C/C++ function and method with violations, the Quality Rule provides: - the number of parameters that are defined by value - Bookmarks for violation patterns found in the source code: - function or method</p>
+<h5>Total</h5>
+<p>Number of C/C++ functions, methods and constructors</p>
+<h5>Metric ID</h5>
+<p>7924</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

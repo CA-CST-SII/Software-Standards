@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Tables without a clustered Index</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Tables without a clustered Index</h4>
+<hr>
+<h5>Technology</h5>
+<p>Microsoft T-SQL, SQL Server, Sybase T-SQL</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>As a rule of thumb, every table in every database should have a clustered index. Most of the time the clustered index should be on a column that monotonically increases--such as an identity column, or some other column where the value is increasing--and is unique. In many cases, the primary key
+is the ideal column for a clustered index. This recommandation of using the PK for the clustered index is NOT true for MS SQL-Server 6,5 because of &quot;hotspots&quot; but is true for other versions.</p>
+<h5>Description</h5>
+<p>List all tables that do not have a clustered index</p>
+<h5>Remediation</h5>
+<p>Change an existing index to a clustered one (probably the index associated to the PK). Note that you can only have one clustered index per table.</p>
+<h5>Sample</h5>
+<pre>
+create table MyTable ( C1 int identity, C2 varchar(250))
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+create table MyTable ( C1 int identity, C2 varchar(250))
+
+create clustered index MyTable_PK on MyTable( C1)
+</pre>
+<h5>Output</h5>
+<p>List all tables that do not have a clustered index.</p>
+<h5>Total</h5>
+<p>Total number of tables</p>
+<h5>Metric ID</h5>
+<p>7386</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

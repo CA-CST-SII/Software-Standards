@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid cross-site scripting DOM vulnerabilities ( CWE-79 )</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid cross-site scripting DOM vulnerabilities ( CWE-79 )</h4>
+<hr>
+<h5>Technology</h5>
+<p>C#, JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>The most dangerous web application vulnerabilty is known as cross-site scripting (XSS). It is caused by malicious script echoed back into HTML returned from a trusted site, and runs under trusted context. To avoid the creation of XSS flaws, the Open Web Application Security Project (OWASP)
+recommends both input validation and &quot;strong output encoding&quot; or sanitization : &quot;Strong output encoding. Ensure that all user-supplied data is appropriately entity encoded (either HTML or XML depending on the output mechanism) before rendering, taking the approach to encode all
+characters other than a very limited subset. This is the approach of the Microsoft Anti-XSS library, and the forthcoming OWASP PHP Anti-XSS library. Also, set the character encodings for each page you output, which will reduce exposure to some variants.&quot; This metric ensures that the
+appropriate output encoding (sanitization) is coded, as close as possible to user input method call, making security checking easier for all team members</p>
+<h5>Description</h5>
+<p>Using CAST dataflow engine, this metric detects paths from user input methods to HTML user output methods which are open vulnerabilities to cross-site scripting injection flaws (XSS). The list of user input methods can be customized as well as the output method and the sanitization methods
+(methods encoding the output to avoid hacks). For Struts application, Set methods of the Form Beans are automatically taken into account as input methods.</p>
+<h5>Remediation</h5>
+<p>Code the appropriate sanitization methods as close as possible to the user input method call.</p>
+<h5>Reference</h5>
+<p>CWE-79: Improper Neutralization of Input During Web Page Generation (&#39;Cross-site Scripting&#39;) http://cwe.mitre.org/data/definitions/79.html Open Web Application Security Project (OWASP) http://www.owasp.org/index.php/Top_10_2007</p>
+<h5>Output</h5>
+<p>List all methods that miss calling the required sanitization method and provides access to the path demonstrating the vulnerability : It provides the following information: - The full name of the method that calls the user input method. That is the source of the XSS flaw. - Call stack from user
+input source down to the target HTML user output method.</p>
+<h5>Total</h5>
+<p>The number of methods calling user input methods</p>
+<h5>Metric ID</h5>
+<p>7740</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

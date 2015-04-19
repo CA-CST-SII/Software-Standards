@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Validator field without Form Field</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Validator field without Form Field</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>When a validation form field is not associated to a form field, this indicate that the validation logic is not properly maintained and can result in a weakness. Input validation is required to secure an application. Moreover, the web interface is exposed to anyone. Non validating input may allow
+injecting arbitrary web script, HTML, SQL... Consequences can be severe, like erasing the content of a database.</p>
+<h5>Description</h5>
+<p>This metric reports form validator with all their unused form field validator. Note that it can be related to a form name or an action name (in the case of a form shared among different actions)</p>
+<h5>Remediation</h5>
+<p>Update the validation.xml&#39;s entries according to the form used in your application and review the validation logic of the form.</p>
+<h5>Reference</h5>
+<p>http://cwe.mitre.org/data/definitions/110.html</p>
+<h5>Sample</h5>
+<pre>
+====&gt;  For concrete Form Bean
+
+--&gt; logonForm.java (for concrete Form Bean) :
+public class LogonForm extends ValidatorForm {
+  private String username;
+  private String password;
+  
+  public String getUsername() {
+    return username;
+  }
+  
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+public void setPassword(String password) {
+    this.password = password;
+  }
+}
+
+--&gt; struts-config.xml (for concrete Form Bean)
+&lt;form-beans&gt;
+  &lt;form-bean name=&quot;logonForm&quot;
+            type=&quot;com.cast.struts.sample.LogonForm&quot;/&gt;
+&lt;/form-beans&gt;
+
+====&gt;  for dynamic Form Bean
+
+--&gt; struts-config.xml (for dynamic Form Bean)
+&lt;form-beans&gt;
+  &lt;form-bean name=&quot;logonForm&quot;
+            type=&quot;org.apache
+.struts.validator.DynaValidatorForm&quot;&gt;
+    &lt;form-property name=&quot;username&quot;
+            type=&quot;java.lang.String&quot;/&gt;
+    &lt;form-property name=&quot;password&quot;
+            type=&quot;java.lang.String&quot;/&gt;
+  &lt;/form-bean&gt;
+&lt;/form-beans&gt;
+
+====&gt;  for both dynamic and concrete Form Bean
+
+----&gt; validation.xml:
+
+&lt;form-validation&gt;
+  &lt;formset&gt;
+    &lt;form name=&quot;logonForm&quot;&gt; 
+      &lt;field property=&quot;username&quot; 
+            depends=&quot;required&quot;&gt;
+        &lt;arg0 key=&quot;prompt.username&quot;/&gt;
+      &lt;/field&gt;
+      &lt;field property=&quot;password&quot;
+            depends=&quot;required&quot;&gt;
+        &lt;arg0 key=&quot;prompt.password&quot;/&gt;
+      &lt;/field&gt;
+      &lt;field property=&quot;passphrase&quot; // VIOLATION
+            depends=&quot;required&quot;&gt;
+        &lt;arg0 key=&quot;prompt.passphrase&quot;/&gt;
+      &lt;/field&gt;
+    &lt;/form&gt;
+  &lt;/formset&gt;
+&lt;/form-validation&gt;
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+----&gt; validation.xml:
+
+&lt;form-validation&gt;
+  &lt;formset&gt;
+    &lt;form name=&quot;logonForm&quot;&gt;
+      &lt;field property=&quot;username&quot; 
+            depends=&quot;required&quot;&gt;
+        &lt;arg0 key=&quot;prompt.username&quot;/&gt;
+      &lt;/field&gt;
+      &lt;field property=&quot;password&quot; 
+            depends=&quot;required&quot;&gt;
+        &lt;arg0 key=&quot;prompt.password&quot;/&gt;
+      &lt;/field&gt;
+     // FIXED: passphrase has been removed
+    &lt;/form&gt;
+  &lt;/formset&gt;
+&lt;/form-validation&gt;
+</pre>
+<h5>Output</h5>
+<p>This report lists all validator form with fields that are not related to a form bean field. It provides the following information: - Validation Form - Form Field</p>
+<h5>Total</h5>
+<p>total of form validated or 0 if no object of type &quot;Validation Configuration File&quot; is present</p>
+<h5>Metric ID</h5>
+<p>7382</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

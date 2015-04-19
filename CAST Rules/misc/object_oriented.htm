@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Object-oriented metrics</title>
+<link rel="StyleSheet" type="text/css" href="../style.css">
+</head>
+<body>
+<h4>Object-oriented metrics</h4>
+<hr>
+<p>This section provides additional information about how CAST implements object-oriented metrics.</p>
+<h5>Introduction</h5>
+<p>Object-Oriented (OO) programming design and development methods have been widely adopted in the software industry. This has created a strong need for assessing the quality of OO software systems. Indeed, just as Object-Oriented programming requires a different approach compared to traditional
+imperative programming, software metrics must differ from traditional software metrics.</p>
+<p>The most widely known and used set of Object Oriented metrics is the <b>Chidamber and Kemerer Metrics Suite</b> (also called CK Metrics Suite).</p>
+<p>The Chidamber and Kemerer Object-Oriented metrics aim to measure design and code quality by investigating the coupling among classes, the cohesion within classes, complexity of classes and the complexity of the inheritance hierarchy.</p>
+<p>The CK Metrics Suite is composed of six metrics, which are described in detail in this document (click to jump to the appropriate section):</p>
+<ul>
+<li><a href="#WMC">Weighted Methods per Class (WMC)</a></li>
+<li><a href="#DIT">Depth of Inheritance Tree (DIT)</a></li>
+<li><a href="#NOC">Number Of Children (NOC)</a></li>
+<li><a href="#CBO">Coupling Between Object classes (CBO)</a></li>
+<li><a href="#RFC">Response For a Class (RFC)</a></li>
+<li><a href="#LCOM">Lack of Cohesion in Methods (LCOM)</a></li>
+</ul>
+<p>Note that:</p>
+<ul>
+<li><b>WMC</b> is a complexity metric</li>
+<li><b>DIT</b> and <b>NOC</b> are inheritance metrics</li>
+<li><b>CBO</b> and <b>RFC</b> are communication / coupling metrics</li>
+<li><b>LCOM</b> is a cohesion metric</li>
+</ul>
+<p>High values of the CK metrics have been shown to be correlated with:</p>
+<ul>
+<li>Low productivity</li>
+<li>High effort to reuse classes</li>
+<li>High effort to design and implement classes</li>
+<li>Number of maintenance changes</li>
+<li>Number of faults</li>
+<li>User reported problems.</li>
+</ul>
+<p>These metrics are typically being used to:</p>
+<ul>
+<li>Detect Design Anomalies</li>
+<li>Support Iterative Development and Refactoring (Agile Development Methods)</li>
+<li>Measure Quality as part of a Quality Program</li>
+</ul>
+<p>To support these uses, this document provides the definition of each metric along with viewpoints to help interpret results and potential refactorings (metrics are then used as code smells to detect potential refactoring candidate classes).</p>
+<h5><a name="WMC" id="WMC"></a>Weighted Methods per Class (WMC)</h5>
+<p><b>Definition</b></p>
+<p>This metric investigates the complexity of the class. The Weighted Methods per Class metric is defined as the sum of all the class method&#39;s cyclomatic complexity.</p>
+<p><b>Viewpoints</b></p>
+<p>The number of methods and complexity of methods is an indicator of how much time and effort is required to develop and maintain the object. Objects with large number of methods are likely to be more application specific, limiting the possible reuse. It is also important to note that the larger
+the number of methods in a class, the greater the potential impact on the children (classes that inherit from it). High Weighted Methods per Class can denote that the class concentrates complex or important business logic.</p>
+<p><b>Refactoring</b></p>
+<p>Classes with very high number of methods can be good candidates for the following refactorings:</p>
+<p>&quot;Move method&quot; to a component class (with a delegation from the existing class to the component class)</p>
+<p>&quot;Extract Class&quot; (the original class is split into two or more classes)</p>
+<p>In this case, it can be interesting to check the LCOM metric to detect if there is low cohesion for this class. A correlation between LCOM and WMC (low cohesion and high number of methods) would favor a split to improve design.</p>
+<p>A good practice is also to use the CAST AD Dashboard to check if High Weighted Methods per Class is due to a single very complex method. To improve maintainability and reusability, one can decide to refactor that method (Delegate, new methods).</p>
+<p>Another good practice is called Trend Analysis. Trend Analysis consists of monitoring WMC to check if the numbers are growing or not. Growing complexity numbers then help decide for a refactoring.</p>
+<h5><a name="DIT" id="DIT"></a>Depth of Inheritance Tree (DIT)</h5>
+<p><b>Definition</b></p>
+<p>This metric investigates complexity of the inheritance hierarchy. The depth of inheritance of a class is defined as the number of ancestor levels in the inheritance tree.</p>
+<p><b>Viewpoints</b></p>
+<p>The deeper a class is in the hierarchy, the more methods it is likely to inherit, making it more complex. Deeper inheritance trees indicate greater design complexity.<br>
+On the other hand, very low numbers of DIT across an entire application indicates a lack of use of inheritance. The consequence of this a low level of code reuse and low maintainability of the application.</p>
+<p><b>Refactoring</b></p>
+<p>Deep inheritance trees (usually DIT higher than 5) should be redesigned for the sake of simplicity using one of these refactoring (when applicable):</p>
+<ul>
+<li>Collapse Hierarchy</li>
+<li>Replace Inheritance with Delegation</li>
+</ul>
+<p>However, studies as well as CAST experience have shown that usually there is generally a lack of use of inheritance (mainly first generation OO applications?). If low DIT numbers for an entire application correlates with several classes having high complexity or coupling number, this is an
+indicator that the application can benefit from the use of inheritance to improve code comprehension, reuse and ease of change.</p>
+<h5><a name="NOC" id="NOC"></a>Number Of Children (NOC)</h5>
+<p><b>Definition</b></p>
+<p>This metric investigates complexity of the inheritance hierarchy. The Number Of Children (NOC) is the number of immediate sub-classes of the class.</p>
+<p><b>Viewpoints</b></p>
+<p>Depth is generally better than breadth in class hierarchy, since it promotes reuse of methods through inheritance. Not all classes should have the same number of sub classes. Classes higher up in the hierarchy should have more sub-classes then those lower down. NOC gives an idea of the potential
+influence a class has on the design. Classes with large number of children may require more testing.</p>
+<h5><a name="CBO" id="CBO"></a>Coupling Between Object classes (CBO)</h5>
+<p><b>Definition</b></p>
+<p>This metric investigates the coupling among classes. The Fan-out of a class, C, is the number of other classes that are referenced in C. A reference to another class, A, is a reference to a method or a data member of class A. In the fan-out of a class multiple accesses are counted as one
+access.</p>
+<p>The Coupling Between Object classes (CBO) is equal to the fan-out of a class.</p>
+<p><b>Viewpoints</b></p>
+<p>Excessive coupling between objects is detrimental to modular design and prevents reuse. The more independent an object is, the easier it is to reuse it in another application. In order to improve modularity and promote encapsulation, inter-object couples should be kept to a minimum. The larger
+the number of couples, the higher the sensitivity to changes in other parts of the design and therefore maintenance is more difficult.</p>
+<p><b>Refactoring</b></p>
+<p>High CBO numbers might indicate that a class has to many responsibilities. Such a class is potential candidate for a refactoring where the class would delegate some the responsibilities to other classes or new classes (&quot;Extract Class&quot;, &quot;Extract Method&quot;). This will increase
+modularity and reusability.</p>
+<p>When refactoring with architecture in mind, the CBO metric can be used to check classes running on the application client that have high coupling. These classes are then good candidate for a refactoring towards the Session Facade pattern: <a href=
+"http://java.sun.com/blueprints/patterns/SessionFacade.html">http://java.sun.com/blueprints/patterns/SessionFacade.html</a></p>
+<h5><a name="RFC" id="RFC"></a>Response for a Class (RFC)</h5>
+<p><b>Definition</b></p>
+<p>This metric investigates the coupling among classes. Response For a Class is complementary to Coupling Between Objects metrics. It counts all methods that can be invoked in response to a message to an object of the class. The definition of the metrics is the following:</p>
+<p><b>RFC = NLM + NRM where</b></p>
+<p><b>NLM = number of local methods in the class</b></p>
+<p><b>NRM = number of remote methods called by methods in the class.</b></p>
+<p>A given remote method is counted only once.</p>
+<p><b>Viewpoints</b></p>
+<p>The larger RFC implies longer and more complicated testing and debugging.</p>
+<p><b>Refactoring</b></p>
+<p>Refactorings proposed for High CBO can also be proposed for high RFC classes.</p>
+<h5><a name="LCOM" id="LCOM"></a>Lack of Cohesion in Methods (LCOM)</h5>
+<p><b>Definition</b></p>
+<p>This metric investigates cohesion within a class. Intuitively, Cohesion refers to the internal consistency within parts of the design (i.e. class). LCOM is measure of the interrelatedness of a class’s interface. Low cohesion indicates that the class does many different things. High cohesion
+suggests a class is a good conceptual &quot;chunk&quot;, a good abstraction. LCOM is implemented using Henderson-Sellers (1995) definition as original CK definition was ill formed and Henderson-Sellers one is easier to compute.</p>
+<p><b>Henderson-Sellers LCOM definition</b></p>
+<ul>
+<li>Consider a set of m methods, M1 , M2 ,... , Mm</li>
+<li>The methods access a data attributes, A1 , A2 ,... , Aa</li>
+<li>Let m(Ak) = number of methods that access data Ak</li>
+</ul>
+<p>Then:</p>
+<p><img border="0" src="images/oo1.jpg" width="220" height="81"></p>
+<p><b>High Cohesion Example (LCOM=0)</b></p>
+<ul>
+<li>At maximum cohesion LCOM* = 0</li>
+<li>As an example, if each method accesses all attributes then m(Ak) = m</li>
+</ul>
+<p>Thus:</p>
+<p><img border="0" src="images/oo2.jpg" width="181" height="153"></p>
+<p><b>Low Cohesion Example (LCOM = 1)</b></p>
+<ul>
+<li>At minimum cohesion LCOM* = 1</li>
+<li>As an example, if each method accesses only one attribute and a different attribute then we have:</li>
+</ul>
+<p><img border="0" src="images/oo3.jpg" width="181" height="174"></p>
+<p><b>Viewpoints</b></p>
+<p>Cohesiveness of methods within a class is desirable, since it promotes encapsulation. Lack of cohesion implies classes should probably be split into two or more sub/classes. This measure of disparateness of methods helps identify flaws in the design of classes. Low cohesion increases complexity,
+thereby increasing the likelihood of errors during the development process.</p>
+<p>Refactoring</p>
+<p>LCOM is the most interesting metric from the point of view of refactoring. Classes that have LCOM close to 1 (very low cohesion) are usually either:</p>
+<ul>
+<li>Proxy classes that have no or few class attributes and only redirect methods calls to other classes in order for example to control access (also called Delegate)</li>
+<li>Function Libraries (old functional programming practices</li>
+<li>Classes having unused attributes</li>
+<li>Classes implementing too many concepts.</li>
+</ul>
+<p>Refactoring will mainly target classes implementing too many concepts. This can be due either to an original design flaw or to a deteriorated design (methods and attributes addition during maintenance, base class doing to much for its sub-classes).</p>
+<p>When a class is implementing too many concepts, it should be redesigned using one of the following refactorings:</p>
+<ul>
+<li>Extract Class</li>
+<li>Extract Method</li>
+<li>Add Super Class</li>
+<li>Add Sub Class.</li>
+</ul>
+<h5>References</h5>
+<p>A Metrics Suite for Object Oriented Design<br>
+Chidamber, S.R. and C.F. Kemerer<br>
+IEEE Transactions on Software Engineering, 1994. 20(6): p. 476-493.</p>
+<p>Object-Oriented Metrics: Measures of Complexity<br>
+Brian Henderson-Sellers<br>
+Prentice Hall; ISBN: 0132398729</p>
+<p>Refactoring: Improving the Design of Existing Code<br>
+Martin Fowler<br>
+Addison-Wesley Pub Co; ISBN: 0201485672</p>
+<p>The Refactoring Home Page<br>
+<a href="http://www.refactoring.com/">http://www.refactoring.com/</a></p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+<p><!--
+
+--></p>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid &#39;catch-all&#39; statement</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid &#39;catch-all&#39; statement</h4>
+<hr>
+<h5>Technology</h5>
+<p>C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>Directly catching all exceptions (except for &#39;main()&#39; functions to catch unknown errors) means that the try/catch will process all the exceptions in the same way: &#39;RuntimeException&#39; will be processed in the same way as application specific exceptions such as
+&#39;BankingException&#39; or &#39;CredentialException&#39;. This will prevent the application from carrying out the specific recovery process that is needed and as a consequence will threaten both application robustness and security. In addition, an exception carries some additional information on
+the error conditions. For example, an exception derived from &#39;std::exception&#39; contains an error message that is returned by the &#39;what()&#39; function. In a &#39;catch(...)&#39;, all type information about the exception is lost, as well as all additional data provided with the exception.
+There are only two actions that can be taken after a &#39;catch(...)&#39;: - Unconditionally accept the exception, pretending it has never been thrown. This is very bad practice and will most probably produce errors that are very hard to understand and with lots of consequences (for instance,
+silencing an I/O error may lead to user data loss). - Break the normal execution of the program, saying that an unknown error has happened (stop the program, automatically restart the program, put the hardware in safe-mode...). This is usually only useful close to the top level of the program, for
+instance in the &#39;main()&#39; function. One usage pattern for which &#39;catch(...)&#39; might seem useful is for doing resource cleanup when an exception is thrown, and then re-throw the exception, trying to emulate the use of &#39;finally&#39; in C++. However, the usage of
+&quot;RAII&quot;:http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization is a preferred solution to resource cleanup, it is safer to use and requires less work from the developer.</p>
+<h5>Description</h5>
+<p>This rule searches for methods catching all exceptions (i.e. using the &#39;catch (...)&#39; statement).</p>
+<h5>Remediation</h5>
+<p>Except for &#39;main()&#39; or other top-level functions, always use the appropriate type of catch and specific recovery code.</p>
+<h5>Sample</h5>
+<pre>
+try
+{ /*...*/ }
+catch (...) // &lt;= VIOLATION
+{ /*...*/ }
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+try
+{ /*...*/ }
+catch (SpecificException &amp;e) 
+{ /*...*/ }
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ method with violations, the Quality Rule provides: - the number of violation patterns - Bookmarks for violation patterns found in the source code: - catch (...)</p>
+<h5>Total</h5>
+<p>Number of C++ methods and functions</p>
+<h5>Metric ID</h5>
+<p>8000</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

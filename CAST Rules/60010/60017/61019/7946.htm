@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid queries using old style join convention instead of ANSI-Standard joins</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid queries using old style join convention instead of ANSI-Standard joins</h4>
+<hr>
+<h5>Technology</h5>
+<p>Forms, Microsoft T-SQL, PL/SQL, Sybase T-SQL</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>- ANSI syntax allow a clear separation between joins clause and the where clause restrictions. The ANSI notation makes the relations between the tables explicit, and saves you from coding equality tests for join conditions in the WHERE clause. Support for full outer joins also eliminates the
+need for complex workarounds to do those queries (With old syntax some construction can lead to an unexpected behavior). Moreover ANSI joins allows having optimization hints. And last, this historic syntax notation will probably be deprecated in a future release</p>
+<h5>Description</h5>
+<p>List all statements that include JOIN clause(s) defined with the Oracle proprietary syntax</p>
+<h5>Remediation</h5>
+<p>Transform the queries including Join predicats with the use of the ANSI syntax. As a consequence Reconsider tthe statement. For that check the business rule(s) to fully understand the objective of the statement in term of result set. Use ANSI Join syntax notation to rewrite the part of the
+code.</p>
+<h5>Reference</h5>
+<p>Oracle SQL Student Guide Volume 1</p>
+<h5>Sample</h5>
+<pre>
+cross join:
+SELECT last_name, department_name
+FROM employees, departments;
+
+natural join:
+SELECT department_id, department_name,
+departments.location_id, city
+FROM departments, locations
+WHERE departments.location_id = locations.location_id;
+
+USING clause usage:
+SELECT employee_id, last_name,
+employees.department_id, location_id
+FROM employees, departments
+WHERE employees.department_id = departments.department_id;
+
+ON clause usage:
+SELECT e.last_name emp, m.last_name mgr
+FROM employees e JOIN employees m
+ON (e.manager_id = m.employee_id);
+
+other sample:
+SELECT employee_id, city, department_name
+FROM employees, departments, locations
+WHERE employees.department_id = departments.department_id
+AND departments.location_id = locations.location_id;
+
+LEFT Outer Join sample:
+FROM employees e, departments d
+WHERE d.department_id (+) = e.department_id;
+
+right outer JOIN:
+SELECT e.last_name, e.department_id, d.department_name
+FROM employees e, departments d
+WHERE d.department_id = e.department_id (+);
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+cross join
+SELECT last_name, department_name
+FROM employees
+CROSS JOIN departments;
+
+natural join:
+SELECT department_id, department_name,
+location_id, city
+FROM departments
+NATURAL JOIN locations;
+
+USING clause usage:
+SELECT e.employee_id, e.last_name, d.location_id
+FROM employees e JOIN departments d
+USING (department_id);
+
+
+ON clause usage:
+SELECT e.employee_id, e.last_name, e.department_id,
+d.department_id, d.location_id
+FROM employees e JOIN departments d
+ON (e.department_id = d.department_id);
+
+other sample
+SELECT employee_id, city, department_name
+FROM employees e
+JOIN departments d
+ON d.department_id = e.department_id
+JOIN locations l
+ON d.location_id = l.location_id;
+
+LEFT Outer Join sample:
+SELECT e.last_name, e.department_id, d.department_name
+FROM employees e
+LEFT OUTER JOIN departments d
+ON (e.department_id = d.department_id);
+
+right outer JOIN:
+SELECT e.last_name, e.department_id, d.department_name
+FROM employees e
+RIGHT OUTER JOIN departments d
+ON (e.department_id = d.department_id);
+
+sample Outer JOIN:
+SELECT e.last_name, e.department_id, d.department_name
+FROM employees e
+FULL OUTER JOIN departments d
+ON (e.department_id = d.department_id);
+</pre>
+<h5>Output</h5>
+<p>This report lists all queries using old style joins instead of ANSI-Standard joins, This includes &quot;classic&quot; joins as well as outer joins (*= and =*)</p>
+<h5>Total</h5>
+<p>LINBERGH_PLUS</p>
+<h5>Metric ID</h5>
+<p>7946</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

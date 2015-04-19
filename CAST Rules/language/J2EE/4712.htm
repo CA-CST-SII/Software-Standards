@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid inheritance down the Package path</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid inheritance down the Package path</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Each package is seen as completely independent by the JVM, sub-packages are seen just like any other package. It is, however, good practice to respect this hierarchy so that any package acts as a container of sub-packages. The advantages of this for other modules are that it is only necessary to
+import the parent package to benefit from the service offered by this parent package, and, as such, there is no obligation to import other sub-packages. The package is then seen as a unit of abstraction of the implementation of a service implemented by the classes in this package and sub-packages.
+This will ease the maintainability and transferability of the packages.</p>
+<h5>Description</h5>
+<p>Classes should not inherit from another Class which is located in a subpackage. For example: given the Package path com.castsoftware.product.p1.p2.p3.p4 a Class c1 in p1 is not allowed to inherit from a Class c2 in p2, p3 or p4.</p>
+<h5>Remediation</h5>
+<p>Review the design of the Class.</p>
+<h5>Output</h5>
+<p>This report lists all Classes inheriting from a Class lower down in the Package path. It provides the following information: Class full name, Inherited Class Full Name</p>
+<h5>Total</h5>
+<p>The number of classes</p>
+<h5>Metric ID</h5>
+<p>4712</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

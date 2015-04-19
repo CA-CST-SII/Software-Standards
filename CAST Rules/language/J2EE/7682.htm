@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid domain model depending on other Java API</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid domain model depending on other Java API</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>The domain model implementation is usually a central, organizing component; it&#39;s reused heavily whenever you implement new application functionality. For this reason, you should be prepared to go to some lengths to ensure that concerns other than business aspects don&#39;t leak into the
+domain model implementation. The domain model should be concerned only with modeling the business domain. When these concerns start to appear in the domain model classes, we call this an example of leakage of concerns. For example, code in the domain model shouldn&#39;t perform JNDI lookups or call
+the database via the JDBC API. This allows you to reuse the domain model implementation virtually anywhere. Most importantly, it makes it easy to unit test the domain model (in JUnit, for example) outside of any application server or other managed environment.</p>
+<h5>Description</h5>
+<p>Reports any direct or indirect (via successive calls) calls from persistent classes&#39; artifact to the methods of the following packages: - java.sql.* - javax.sql.* - javax.naming.* (include javax.naming.directory, javax.naming.event, javax.naming.ldap, javax.naming.spi) - javax.jms.* Note
+that we don&#39;t take into account method parameters and exception that belongs to these packages. This list can be completed with the threshold.</p>
+<h5>Remediation</h5>
+<p>Make these calls in another layers.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 64</p>
+<h5>Sample</h5>
+<pre>
+----&gt; a.hbm.xml
+&lt;hibernate-mapping &gt;
+  
+  &lt;class name=&quot;A&quot; table=&quot;A&quot; lazy=&quot;true&quot;&gt;
+    &lt;id name=&quot;id&quot; column=&quot;A_ID&quot;&gt;
+      &lt;generator class=&quot;increment&quot;/&gt;
+    &lt;/id&gt;
+  &lt;/class&gt;
+
+&lt;/hibernate-mapping&gt;
+
+----&gt; Java Files
+public class A {
+  private Integer id;
+   javax.naming.Context ctx;  // VIOLATION
+  ...
+  public void aMethod() {
+    // VIOLATION
+    AnObject a = (AnObject) ctx.lookup(&quot;AnObject&quot;);
+  }
+  ...
+}
+</pre>
+<h5>Output</h5>
+<p>List all persistent classes&#39; artifact that call other JAVA API. It provides the following information: Artifact Full Name</p>
+<h5>Total</h5>
+<p>The number of persistent classes&#39;s artifacts</p>
+<h5>Metric ID</h5>
+<p>7682</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

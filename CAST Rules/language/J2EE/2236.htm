@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid use of standard SQL API</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid use of standard SQL API</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Standard SQL APIs java.sql.* and javax.sql.* are symptoms of direct access to tables.</p>
+<h5>Description</h5>
+<p>Reports all pages that reference a class, interface or method whose full qualified name begin with &#39;java.sql.&#39; or &#39;javax.sql&#39;</p>
+<h5>Remediation</h5>
+<p>Review the architecture design to invoke the layer in charge of database access.</p>
+<h5>Sample</h5>
+<pre>
+&lt;%@ page import = &quot;java.sql.*&quot; %&gt;
+&lt;% Connection myConnection =null; //VIOLATION
+      Statement myStatement =null; //VIOLATION
+
+      ResultSet myResultSet =null; //VIOLATION
+
+      javax.sql.DataSource myDataSource = null; //VIOLATION
+%&gt;
+
+// 4 violations will be reported
+</pre>
+<h5>Output</h5>
+<p>This report lists all JSP pages using standard SQL APIs It provides the following information: - Page name - the number of violation</p>
+<h5>Total</h5>
+<p>the number of JSP pages</p>
+<h5>Metric ID</h5>
+<p>2236</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

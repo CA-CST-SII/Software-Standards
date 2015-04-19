@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid SQL queries on XXL Tables using Functions on indexed Columns in the WHERE clause</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid SQL queries on XXL Tables using Functions on indexed Columns in the WHERE clause</h4>
+<hr>
+<h5>Technology</h5>
+<p>All Languages/Technologies</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>XXL</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Whenever a function is used in a WHERE clause and takes a indexed column as a function parameter, the database engine might be unable to take advantage of the index, leading to very poor performance.</p>
+<h5>Description</h5>
+<p>This metric retrieves all SQL artifacts that query XXL tables and that use functions on indexed columns in WHERE clause. It retrieves all SQL artifacts with a WHERE clause using a function that takes a table column used as a database index as a function parameter (except specific indexes such as
+function-based indexes). XXL tables are extremely large tables which contain a huge amount of data. The threshold that determines when a table is considered to contain a huge amount of data can be configured by the user.</p>
+<h5>Output</h5>
+<p>Associated to each artifact with violations, the Quality Rule provides: - Name of the column (first column used as function parameter).</p>
+<h5>Total</h5>
+<p>The total procedure counts the number of Client-Server Artifacts using XXL Tables or views based on XXL tables.</p>
+<h5>Metric ID</h5>
+<p>7658</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

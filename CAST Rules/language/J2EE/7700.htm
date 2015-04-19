@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Use only Struts HTTP Servlet</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Use only Struts HTTP Servlet</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>When Struts framework is used, it must be used for every page in the application to avoid mixing different technologies and creating an application difficult to maintain and be the source of a lack of robustness.</p>
+<h5>Description</h5>
+<p>When Struts is used, reports all Servlet that inherit from javax.servlet.http.HttpServlet but not from org.apache.struts.action.ActionServlet class.</p>
+<h5>Remediation</h5>
+<p>Adapt the application to use Struts for all HTTP Servlets.</p>
+<h5>Sample</h5>
+<pre>
+---&gt; web.xml
+
+&lt;!-- Struts Action Servlet --&gt;
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;
+      org.apache.struts.action.ActionServlet
+    &lt;/servlet-class&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;config&lt;/param-name&gt;
+      &lt;param-value&gt;/WEB-INF/conf/struts-config.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+  &lt;servlet&gt;
+
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;AnotherServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;
+      // doesn&#39;t inherit from org.apache.struts.action.ActionServlet
+      // but inherits from javax.servlet.http.HttpServlet
+      com.cast.AnotherServlet // VIOLATION:    
+   &lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+</pre>
+<h5>Output</h5>
+<p>This report lists all HTTP Servlets that don&#39;t inherit from Struts action Servlet. It provides the following information: Servlet Full Name, Servlet Class Name</p>
+<h5>Total</h5>
+<p>The total is the total number of Servlet that inherit from javax.servlet.http.HttpServlet and it must be 0 when org.apache.struts.action.ActionServlet is not used.</p>
+<h5>Metric ID</h5>
+<p>7700</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid data members that are never read</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid data members that are never read</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>Data members that are never read are useless. For maintenance and performance purpose they should be removed (with the code that write into those data members if any).</p>
+<h5>Description</h5>
+<p>This metric list all data members that are never read.</p>
+<h5>Remediation</h5>
+<p>Remove the data member and delete any code that write data in it.</p>
+<h5>Sample</h5>
+<pre>
+class C
+{
+   protected int m_data = 0; // HERE m_data is only written and is never
+   void getPI() { m_data = 1; return 3.14159; }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class C
+{
+   void getPI() { return 3.14159; }
+}
+</pre>
+<h5>Output</h5>
+<p>List all data members of classes and structs that are never read.</p>
+<h5>Total</h5>
+<p>All data members of classes or structs</p>
+<h5>Metric ID</h5>
+<p>8008</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

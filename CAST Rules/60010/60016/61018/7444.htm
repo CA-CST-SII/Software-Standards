@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Serialize session objects</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Serialize session objects</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>Although not required, it is helpful if objects placed in session scope implement Serializable. The application server may serialize session objects after crossing certain memory limit. Also, when a server restart some we containers provide &quot;session failover&quot;, in which session data is
+not lost during a restart. In these cases, the web container will attempt to serialize all data stored in session scope, in order to recover the data after. This will work only if such data implements Serializable.</p>
+<h5>Description</h5>
+<p>This metric will report all classes that are not serialized (i.e. don&#39;t implement or inherit from the java.io.Serializable interface) and that are instantiated by beans stored in the session. This includes JSP beans and also JSF backing beans.</p>
+<h5>Remediation</h5>
+<p>Implement serialization if your web container implements such mechanisms or ignore it in others cases.</p>
+<h5>Reference</h5>
+<p>http://www.javapractices.com/Topic110.cjp http://www.precisejava.com/javaperf/j2se/Serialization.htm</p>
+<h5>Sample</h5>
+<pre>
+Sample for JSF:
+----&gt; faces-config.xml:
+&lt;managed-bean&gt;
+    &lt;managed-bean-name&gt;myBean&lt;/managed-bean-name&gt;
+    &lt;managed-bean-class&gt;com.cast.MyBean&lt;/managed-bean-class&gt;
+    &lt;managed-bean-scope&gt;session&lt;/managed-bean-scope&gt;
+&lt;/managed-bean&gt;
+
+----&gt; myBean.java:
+// VIOLATION: the class associate to a backing bean 
+// does not implement the interface Serializable
+public class MyBean {
+    // Properties
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+----&gt; myBean.java:
+// FIXED: the interface Serializable is implemented
+public class MyBean implements Serializable {
+    // Properties
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+</pre>
+<h5>Output</h5>
+<p>Report all classes that don&#39;t implement (or inherit from) Serializable interface and that instantiated as session scope objects. It provides the following information: - Full Class Name - Session Bean Name</p>
+<h5>Total</h5>
+<p>The number of objects in the session scope</p>
+<h5>Metric ID</h5>
+<p>7444</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

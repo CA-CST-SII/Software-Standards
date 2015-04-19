@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using HANDLE ABEND</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using HANDLE ABEND</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>The exception handling mechanism (HANDLE ABEND, HANDLE AID, and HANDLE CONDITION) contains implicit jump statements. In the generated code of the exception handlers, GO TO DEPENDING ON logic is generated. As a consequence, the control flow scope of HANDLE statements is global. This implies that
+once a HANDLE command has been given, all the subsequent CICS statements can influence the control flow and suddenly jump to specified paragraphs, depending on their exit status. When the programmer forgets about an active HANDLE command given somewhere else in the code (or in a copybook), the
+exception handling may lead to unwanted looping behavior.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs containing the CICS &quot;HANDLE ABEND&quot; command.</p>
+<h5>Remediation</h5>
+<p>A solution to avoid the use of HANDLE commands, is to make use of the return codes that are used by CICS to deal with the exception handling. The return code tells the user program what event has been invoked and allows it to make a decision about what to do next. This is much more in time with
+structured programming because it allows the user program to invoke subroutines rather than jumping into specified labels with no automatic return.</p>
+<h5>Reference</h5>
+<p>Control Flow Normalization for COBOL/CICS Legacy Systems, University of Amsterdam, Programming Research Group</p>
+<h5>Sample</h5>
+<pre>
+EXEC CICS HANDLE ABEND
+   LABEL       (PAR-2)
+END-EXEC.
+  EXEC CICS ... END-EXEC.                 
+  GO PAR-3.                 
+PAR-2.                      
+  MOVE X TO Y.              
+PAR-3.                      
+  MOVE Z TO T.
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+EXEC CICS ...  END-EXEC.
+  EVALUATE EIBRESP
+    WHEN DFHRESP(...)
+      MOVE X TO Y
+    WHEN NOT DFHRESP(NORMAL)
+      CALL ABEND-PROG
+  END-EVALUATE.
+PAR-3.
+  MOVE Z TO T.
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of HANDLE ABEND - Bookmarks for violation patterns found in the source code: - EXEC CICS HANDLE ABEND statement</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>5054</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

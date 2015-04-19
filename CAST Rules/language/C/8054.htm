@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid calling blocking functions with an infinite timeout</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid calling blocking functions with an infinite timeout</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>8</p>
+<h5>Rationale</h5>
+<p>Calling this type of function with parameters corresponding to infinite timeout can lead to program blocking and/or deadlock. Even if the logical behavior would be to wait infinitely until some event occurs, it can be good practice to add a timeout to detect a bad situation (such as a probable
+deadlock).</p>
+<h5>Description</h5>
+<p>This rule searches for C++ methods that call blocking functions with the infinite timeout parameter. Functions that are detected by the rule are: - WaitForSingleObject() - WaitForMultipleObjects() - Sleep()</p>
+<h5>Remediation</h5>
+<p>Correct this violation by adding logic that deals with a situation when the mutex is never released.</p>
+<h5>Sample</h5>
+<pre>
+void f(HANDLE mutex)
+{
+    WaitForSingleObject(mutex, INFINITE);
+    mySharedData = 10;
+    ReleaseMutex(mutex);
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+void f(HANDLE mutex)
+{
+    int const TIMEOUT = 10000; // Value depends on your application
+    DWORD result = WaitForSingleObject(mutex, TIMEOUT);
+    if (result == WAIT_TIMEOUT)
+    {
+        throw std::runtime_error(&quot;Cannot access mySharedData. Deadlock?&quot;);
+    }
+    mySharedData = 10;
+    ReleaseMutex(mutex);
+}
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ method with violations, the Quality Rule provides: - the number of violation patterns - Bookmarks for violation patterns found in source code: - blocking function call</p>
+<h5>Total</h5>
+<p>Number of C++ methods</p>
+<h5>Metric ID</h5>
+<p>8054</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

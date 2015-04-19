@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Use version instead of timestamp</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Use version instead of timestamp</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>In theory, a timestamp is slightly less safe, since two concurrent transactions might both load and update the same item all in the same millisecond; in practice, this is unlikely to occur. However, we recommend that new projects use a numeric version and not a timestamp. For example, you might
+encounter this issue: after daylight savings took effect, every call to update an entry into my database created before daylight savings took effect would result in a StaleObject-StateException. If your timestamp data type doesn&#39;t include a daylight saving time attribute, you&#39;ll run into
+problems with Hibernate&#39;s automatic versioning. A version property is less problematic for automatic versioning; hence we recommend it.</p>
+<h5>Description</h5>
+<p>Reports all hibernate entities that use timestamp property instead of version.</p>
+<h5>Remediation</h5>
+<p>Use version property.</p>
+<h5>Reference</h5>
+<p>Hibernate in Action (ISBN 1932394-15-X) p 169 &amp; 391</p>
+<h5>Sample</h5>
+<pre>
+&lt;class name=&quot;Sample&quot; table=&quot;SAMPLE&quot;&gt;
+   &lt;id ...../&gt;
+   &lt;timestamp name=&quot;lastUpdated&quot; column=&quot;LAST_UPDATED&quot;/&gt; // VIOLATION
+...
+&lt;/class&gt;
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+&lt;class name=&quot;Sample&quot; table=&quot;SAMPLE&quot;&gt;
+   &lt;id ...../&gt;
+   &lt;version name=&quot;version&quot; column=&quot;VERSION&quot;/&gt; // FIXED
+...
+&lt;/class&gt;
+</pre>
+<h5>Output</h5>
+<p>The metric will list all hibernate entities that use timestamp property instead of version. It provides the following information: Hibernate Entity</p>
+<h5>Total</h5>
+<p>The total is the number of hibernate entity that use version or timestamp property.</p>
+<h5>Metric ID</h5>
+<p>7636</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

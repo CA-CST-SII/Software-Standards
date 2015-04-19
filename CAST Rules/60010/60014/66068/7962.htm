@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid direct or indirect remote calls inside a loop</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid direct or indirect remote calls inside a loop</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>All remote calls made inside a loop will badly impact the performances of your application.</p>
+<h5>Description</h5>
+<p>Reports the following remote call inside a loop at a depth level less than &lt;depth level&gt;: * SQL Statement through loop (example: SQL cursor on SQL Server, nested cursors on Oracle) * Stored procedure called many times from the client in a loop. * EJB3 Session remote method * ABAP RFC
+&lt;depth level&gt; is a parameter that can be changed at will.</p>
+<h5>Remediation</h5>
+<p>This loop execution can be delegated to the server side of the application so that not network latency will occur.</p>
+<h5>Output</h5>
+<p>This report all remote call inside a loop. It provides the following information: - Caller Artifact Full Name that contains the loop - path until the remote called artifact Note that: 1/ The call path may contains different path while only one is an error. For example: g(){myException()} f() {
+while { g ()} g() } will report both path to g() while only one is a violation. 2/ 2/ Several paths for the same method violating the rule are identified in the Metric Detail page by a sequence ID (in the Value column), this ID is dynamically set during each snapshot and the same path can have a
+different sequence ID in different snapshots.</p>
+<h5>Total</h5>
+<p>All methods calling at least one method inside a loop</p>
+<h5>Metric ID</h5>
+<p>7962</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

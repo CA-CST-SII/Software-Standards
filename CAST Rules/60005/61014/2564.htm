@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Use a single Error Handling Method</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Use a single Error Handling Method</h4>
+<hr>
+<h5>Technology</h5>
+<p>Visual Basic</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>There are three ways of registering an error handler: # On Error GoTo &lt;label&gt; # On Error Resume Next # On Error GoTo 0 Using the &#39;On Error GoTo &lt;label&gt;&#39; statement directs execution to re-start at the specified &lt;label&gt; in the event of an error. Error handling code is
+normally placed at the end of a procedure to aid source code readability. If so, you must ensure that execution does not accidentally &#39;fall through&#39; into your error handler code. Using the &#39;On Error Resume Next&#39; statement directs execution to re-start at the statement after the
+statement which &#39;generated&#39; the error. If the error occurred in a nested procedure with no active error handler then the &#39;next&#39; statement will actually be that of the active error handler and not the statement following the statement which generated the error. The &#39;On Error GoTo
+0&#39; statement removes any active error handler for the current procedure thereby directing errors back up the call stack to the last registered error handler (now the active error handler). Adopting the rule of a single error trap per procedure generally keeps both error handling and application
+logic simple and readable. Always end the error handler with a &#39;Resume&#39;, &#39;Resume Next&#39;, &#39;Resume &lt;label&gt;&#39;, &#39;Exit Sub/Function/Property&#39;, &#39;End Sub/Function/Property&#39; or &#39;Err.Raise&#39; statement.</p>
+<h5>Description</h5>
+<p>Functions should use an Error Handling Method.</p>
+<h5>Remediation</h5>
+<p>Choose one method and stick to it.</p>
+<h5>Reference</h5>
+<p>http://www.dotnetjohn.com/articles.aspx?articleid=42</p>
+<h5>Output</h5>
+<p>This report lists all Functions that do not use an Error Handling Method (to be defined).</p>
+<h5>Total</h5>
+<p>Total number of functions</p>
+<h5>Metric ID</h5>
+<p>2564</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

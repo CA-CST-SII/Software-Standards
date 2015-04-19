@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid unreferenced JavaScript Functions (JEE)</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid unreferenced JavaScript Functions (JEE)</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>Not Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>Unreferenced code may be the symptom of Dead Code. Dead Code must be avoided as it makes source code less readable and increases the cost of the software maintenance. Warning: Unreferenced code can also be the symptoms of missing code (code not included in the source code analysis) and / or can
+be the symptom of use of polymorphism. The intensive use of polymorphism can make the application easier to change but much more difficult to test, debug and stabilize.</p>
+<h5>Description</h5>
+<p>All JavaScript Functions should be referenced. An unreferenced Artifact is an Artifact that is not explicitly called from within the analyzed code except for eventHandler that are implicitly called on user event: onAbort - The user aborts the loading of an image onBlur - form element loses focus
+or when a window or frame loses focus. onChange - select, text, or textarea field loses focus and its value has been modified. onClick - object on a form is clicked. onDblClick - user double-clicks a form element or a link. onDragDrop - user drops an object (e.g. file) onto the browser window.
+onError - loading of a document or image causes an error. onFocus - window, frame, frameset or form element receives focus. onKeyDown - user depresses a key. onKeyPress - user presses or holds down a key. onKeyUp - user releases a key. onLoad - browser finishes loading a window or all of the frames
+within a frameset. onMouseDown - user depresses a mouse button. onMouseMove - user moves the cursor. onMouseOut - cursor leaves an area or link. onMouseOver - cursor moves over an object or area. onMouseUp - user releases a mouse button. onMove - user or script moves a window or frame. onReset -
+user resets a form. onResize - user or script resizes a window or frame. onSelect - user selects some of the text within a text or textarea field. onSubmit - user submits a form. onUnload - user exits a document.</p>
+<h5>Remediation</h5>
+<p>Check if the Artifact is truly unnecessary. Remove Artifacts that are not used.</p>
+<h5>Output</h5>
+<p>This report lists all unreferenced JavaScript Functions. It provides the following information: Function name</p>
+<h5>Total</h5>
+<p>all JavaScript functions except eventHandler</p>
+<h5>Metric ID</h5>
+<p>2240</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

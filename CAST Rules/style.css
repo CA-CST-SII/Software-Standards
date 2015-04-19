@@ -1,0 +1,156 @@
+A
+{
+	TEXT-DECORATION : none;	
+	COLOR : #0000FF;
+	FONT-FAMILY : Verdana, Arial, 'Times New Roman'
+}
+A:link
+{
+	TEXT-DECORATION : none;	
+	COLOR : #0000FF;
+	FONT-FAMILY : Verdana, Arial, 'Times New Roman'
+}
+A:active
+{
+    TEXT-DECORATION : none;
+    COLOR : #0000FF;
+    FONT-FAMILY : Verdana, Arial, 'Times New Roman';
+    BACKGROUND : #C0C0C0   
+}
+A:visited
+{
+    TEXT-DECORATION : none;
+    COLOR : #660099;
+    FONT-FAMILY : Verdana, Arial, 'Times New Roman'
+}
+A:hover
+{
+    TEXT-DECORATION : underline;
+    COLOR : #0000FF;
+    FONT-FAMILY : Verdana, Arial, 'Times New Roman'
+}
+BODY
+{
+    FONT-SIZE: 8pt;
+    FONT-FAMILY: Verdana, Arial, 'Times New Roman';
+    BACKGROUND: #FFFFFF;
+    COLOR: #OOOOOO
+}
+P
+{
+    MARGIN-TOP: 5pt;
+    MARGIN-BOTTOM: 5pt
+}
+P.Welcome
+{
+    MARGIN-TOP: 0pt;
+    FONT-SIZE: 16pt;
+    TEXT-INDENT: 0pt;
+    FONT-FAMILY: Verdana, Arial, 'Times New Roman'
+}
+H1
+{
+    MARGIN-TOP: 5pt;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 16pt;
+    MARGIN-BOTTOM: 5pt;
+    COLOR: #006699;
+    FONT-FAMILY: Verdana, Arial, 'Times New Roman';
+    FONT-VARIANT: small-caps
+}
+H2
+{
+    MARGIN-TOP: 5pt;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 14pt;
+    MARGIN-BOTTOM: 5pt;
+    COLOR: #006699;
+    FONT-FAMILY: Verdana, Arial, 'Times New Roman'
+}
+H3
+{
+    MARGIN-TOP: 5pt;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 12pt;
+    MARGIN-BOTTOM: 5pt;
+    COLOR: #006699;
+    FONT-FAMILY: Verdana, Arial, 'Times New Roman'
+}
+H4
+{
+    MARGIN-TOP: 5pt;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 10pt;
+    MARGIN-BOTTOM: 2pt;
+    COLOR: #006699;
+    FONT-FAMILY: Verdana, Arial, 'Times New Roman'
+}
+H5
+{
+    MARGIN-TOP: 5pt;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 8pt;
+    MARGIN-BOTTOM: 5pt;
+    COLOR: #006699;
+    FONT-FAMILY: Verdana, Arial, 'Times New Roman'
+}
+H6
+{
+    MARGIN-TOP: 5pt;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 10pt;
+    MARGIN-BOTTOM: 5pt;
+    COLOR: #999999;
+    FONT-FAMILY: Verdana, Arial, 'Times New Roman'
+}
+LI
+{
+    MARGIN-TOP: 5pt
+}
+DT
+{
+    MARGIN-TOP: 5pt;
+    FONT-WEIGHT: bold
+}
+UL
+{
+    MARGIN-TOP: 0pt
+}
+MENU
+{
+    MARGIN-TOP: 0pt
+}
+DIR
+{
+    MARGIN-TOP: 0pt
+}
+OL
+{
+    MARGIN-TOP: 0pt
+}
+PRE
+{
+    BORDER-RIGHT: black 1pt solid;
+    PADDING-RIGHT: 5pt;
+    BORDER-TOP: black 1pt solid;
+    PADDING-LEFT: 5pt;
+    PADDING-BOTTOM: 5pt;
+    BORDER-LEFT: black 1pt solid;
+    PADDING-TOP: 5pt;
+    BORDER-BOTTOM: black 1pt solid
+}
+TABLE
+{
+    MARGIN-TOP: 10pt;
+    FONT-SIZE: 8pt
+}
+TABLE.Blue
+{
+    BACKGROUND-COLOR: #F4F4F4;
+}
+HR
+{
+    MARGIN-TOP: 2pt;
+    MARGIN-BOTTOM: 2pt;
+    HEIGHT: 1pt
+}

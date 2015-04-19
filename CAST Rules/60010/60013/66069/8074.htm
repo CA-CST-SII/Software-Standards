@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid using &#39;class&#39; or &#39;struct&#39; parameters with variadic Functions</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid using &#39;class&#39; or &#39;struct&#39; parameters with variadic Functions</h4>
+<hr>
+<h5>Technology</h5>
+<p>C Language, C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>6</p>
+<h5>Rationale</h5>
+<p>Variadic functions are functions that accept a variable number of arguments, such as &#39;printf()&#39; and &#39;format()&#39;. They are declared with an ellipsis (&#39;...&#39;): Ex: int printf ( const char * format, ... ); These functions can be only used with scalar data types C-style
+structs. Using them with other data types will lead to unexpected behavior.</p>
+<h5>Description</h5>
+<p>This rule searches for C/C++ functions that pass class instances to variadic functions.</p>
+<h5>Remediation</h5>
+<p>Review the parameters used to call these functions and try to replace them with native types. One alternative is to use non variadic functions that can allow for more data types.</p>
+<h5>Sample</h5>
+<pre>
+void showError(std::string const &amp;errorMsg)
+{
+    printf(&quot;Error: %s&quot;, errorMsg);
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+You can correct this code by accessing a 0-terminated &#39;char*&#39; from the string:
+
+void showError(std::string const &amp;errorMsg)
+{
+    printf(&quot;Error: %s&quot;, errorMsg.c_str());
+} 
+
+Or by using another display function:
+
+void showError(std::string const &amp;errorMsg)
+{
+    cout &lt;&lt; &quot;Error: &quot; &lt;&lt; errorMsg;
+}
+</pre>
+<h5>Output</h5>
+<p>Associated to each C/C++ function, method, constructor, and destructor with violations, the Quality Rule provides: - number of violation patterns - Bookmarks for violation patterns found in source code: - printf() or format() function call</p>
+<h5>Total</h5>
+<p>Number of C/C++ functions, constructors, destructors, and methods</p>
+<h5>Metric ID</h5>
+<p>8074</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

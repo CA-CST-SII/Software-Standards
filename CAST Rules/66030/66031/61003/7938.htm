@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Override all overloads of a base Class virtual Method</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Override all overloads of a base Class virtual Method</h4>
+<hr>
+<h5>Technology</h5>
+<p>C++</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>2</p>
+<h5>Rationale</h5>
+<p>When a virtual method is overridden then the overloads of that method in the base class are not visible from the derived class. If all overloaded functions are not brought into the derived class by overriding them or using a declaration, then you can get surprising results when calling member
+methods with the same name.</p>
+<h5>Description</h5>
+<p>This rule searches for derived C++ classes containing at least one virtual method which should be redeclared for the following reasons: - They overload one or several overload(s)/signature(s) of a given virtual method of the parent classes (ex: &#39;mymethod()&#39; and &#39;mymethod(int)&#39;) -
+Only some of these overloads/signatures (of the given virtual method) are redefined in the child class (i.e. for a given method at least one signature/overload is missing).</p>
+<h5>Remediation</h5>
+<p>Redefine the method in the child class.</p>
+<h5>Reference</h5>
+<p>Industrial Strength C++ 7.16 Effective C++, Item 37</p>
+<h5>Sample</h5>
+<pre>
+class Base 
+{ 
+   public: 
+       virtual void foo( short ); 
+       virtual void foo( double ); 
+}; 
+class Derived : public Base 
+{ 
+   public: 
+       virtual void foo( short );  // =&gt; VIOLATION foo(double) not redefined!
+       void bar() 
+       { 
+         foo( 0.1 ); // calls Derived::foo( short )! 
+       } 
+};
+</pre>
+<h5>Output</h5>
+<p>Associated to each C++ class with violations, the Quality Rule provides: - The number of missing overridden methods - Bookmarks for violation patterns found in the source code: - Parent class method which must be overridden</p>
+<h5>Total</h5>
+<p>Number of C++ classes having at least one virtual method</p>
+<h5>Metric ID</h5>
+<p>7938</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

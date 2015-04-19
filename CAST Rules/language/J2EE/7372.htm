@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Enable Struts Validator plugin</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Enable Struts Validator plugin</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>Yes</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Input validation is required to secure an application. Moreover, the web interface is exposed to anyone. Non validating input may allow injecting arbitrary web script, HTML, SQL... Consequences can be severe, like erasing the content of a database.</p>
+<h5>Description</h5>
+<p>This metric reports whether or not the struts Validator plugin has been defined in the struts-config.xml. Not that in the case where a several struts configuration files belong to the same module, only one plugin declaration is needed. When one declaration exist, none of these struts
+configuration files will be reported.</p>
+<h5>Remediation</h5>
+<p>Update your application&#39;s struts-config.xml file with the Validator plugin declaration.</p>
+<h5>Reference</h5>
+<p>http://cwe.mitre.org/data/definitions/106.html</p>
+<h5>Remediation sample</h5>
+<pre>
+Add the following lines in your application&#39;s struts-config.xml file:
+
+&lt;!-- Validator Configuration --&gt;
+&lt;plug-in className=&quot;org.apache.struts.validator.ValidatorPlugIn&quot;&gt;
+  &lt;set-property property=&quot;pathnames&quot;               value=&quot;/technology/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml&quot;/&gt;
+&lt;/plug-in&gt;
+
+Upon initialization, the plug-in loads the comma-delimited list of Validator config files specified by the pathnames property. Each config file&#39;s path should be specified by use of a Web application-relative path.
+</pre>
+<h5>Output</h5>
+<p>Report the list of struts configuration file that does not define the struts validator plugin.</p>
+<h5>Total</h5>
+<p>the total is equal to the number of struts configuration file if object of type &quot;Struts Configuration File&quot; is present, 0 if not</p>
+<h5>Metric ID</h5>
+<p>7372</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid locking of Objects with weak identities</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid locking of Objects with weak identities</h4>
+<hr>
+<h5>Technology</h5>
+<p>C#</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>7</p>
+<h5>Rationale</h5>
+<p>Applications, having threads that try to acquire a lock, on an object that has a weak identity, can have reliability issues. This is because the thread can be blocked by a second thread in a different application domain that has a lock on the same object. An object is said to have a weak
+identity when it can be directly accessed across application domain boundaries. The following types have a weak identity and are flagged by the rule: * MarshalByRefObject * ExecutionEngineException * OutOfMemoryException * StackOverflowException * String * MemberInfo * ParameterInfo * Thread</p>
+<h5>Description</h5>
+<p>The quality rule searches all the methods or functions having threads that try to lock objects with weak identity.</p>
+<h5>Remediation</h5>
+<p>Try and avoid using weak identities.</p>
+<h5>Reference</h5>
+<p>http://msdn.microsoft.com/en-us/library/ms182290.aspx</p>
+<h5>Sample</h5>
+<pre>
+using System;
+using System.IO;
+using System.Reflection;
+using System.Threading;
+
+namespace ReliabilityLibrary
+{
+   class WeakIdentities
+   {
+      void LockOnWeakId1()
+      { 
+         lock(typeof(WeakIdentities)) {}
+      }
+
+      void LockOnWeakId2() 
+      {
+         MemoryStream stream = new MemoryStream();
+         lock(stream) {} 
+      }
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all the methods having threads that try to lock objects with weak identity. It provides following information: - Method name or Function name</p>
+<h5>Total</h5>
+<p>Number of Methods and Functions</p>
+<h5>Metric ID</h5>
+<p>8094</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

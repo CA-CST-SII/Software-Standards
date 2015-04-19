@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid the use of InstanceOf inside loops</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid the use of InstanceOf inside loops</h4>
+<hr>
+<h5>Technology</h5>
+<p>JEE</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>4</p>
+<h5>Rationale</h5>
+<p>The run-time type checking is a time expensive operation and as such should be avoided within loops. In a more general matter, the use of InstanceOf operator, run-time type checking might indicate a misuse of Object Oriented programming. In deed, it is always recommended to design classes and
+interfaces so client code do not need to use InstanceOf operator and downcasting. The recommended way is to prefer polymorphism over InstanceOf operator and downcasting.</p>
+<h5>Description</h5>
+<p>All methods that use InstanceOf inside a loop will be reported.</p>
+<h5>Remediation</h5>
+<p>Prefer polymorphism over &#39;is&#39; operator and downcasting. It is always recommended to design classes and interfaces so client code do not need to use InstanceOf operator and downcasting. The recommended way is to prefer polymorphism over InstanceOf operator and downcasting.</p>
+<h5>Reference</h5>
+<p>Peter Sestoft (sestoft@dina.kvl.dk) http://www.dina.dk/~sestoft/papers/performance.pdf</p>
+<h5>Sample</h5>
+<pre>
+class BaseExample { ... }
+class Example1 extends BaseExample { ... }
+class Example2 extends BaseExample { ... }
+
+class Test {
+  BaseExample[] exList;
+  void method () {
+     for (int i = exList.length-1; i &gt;= 0; i--) {
+        if (exList[i] instanceof Example1) { // VIOLATION
+          ((Example1) exList[i]).aMethod1();
+       } elseif (exList[i] instanceof Example2) { // VIOLATION
+         ((Example2) exList[i]).aMethod2();
+     }
+  }
+}
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+class BaseExample { ... }
+class Example1 extends BaseExample { ... }
+class Examplet2 extends BaseExample { ... }
+
+class Test {
+  BaseExample[] exList;
+  void method () {
+     for (int i = exList.length-1; i &gt;= 0; i--) {
+       // common method to refactor aMethod1 and aMethod2
+        exList[i]).commonMethod(); // FIXED
+       } 
+     }
+  }
+}
+</pre>
+<h5>Output</h5>
+<p>This report lists all methods with a call to instanceof inside a loop. It provides the following information: Method full name</p>
+<h5>Total</h5>
+<p>The total is the total number of methods</p>
+<h5>Metric ID</h5>
+<p>7206</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

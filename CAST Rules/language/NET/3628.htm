@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid Superclass knowing Subclass (C# .Net)</title>
+<link rel="StyleSheet" href="../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid Superclass knowing Subclass (C# .Net)</h4>
+<hr>
+<h5>Technology</h5>
+<p>.Net, C#</p>
+<h5>Unified Status</h5>
+<p>Not Unified</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>9</p>
+<h5>Rationale</h5>
+<p>Referencing down the inheritance tree is against Object-Oriented practices. It one way to have two-way inheritance between class and subclass. This is an indication of a poor class design and class inheritance. These practices increase the complexity of the code and decrease maintainability.</p>
+<h5>Description</h5>
+<p>A Superclass is not allowed to have knowledge of one of its Subclasses. The Superclass has knowledge of the Subclass if the Superclass directly calls a Subclass-method, uses a Subclass-attribute or refers to the name of the Subclass.</p>
+<h5>Remediation</h5>
+<p>Review the design of the Class hierarchy.</p>
+<h5>Output</h5>
+<p>This report lists all Classes referencing a Subclass. It provides the following information: Class full name, referenced Class full name.</p>
+<h5>Total</h5>
+<p>Total number of classes</p>
+<h5>Metric ID</h5>
+<p>3628</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>

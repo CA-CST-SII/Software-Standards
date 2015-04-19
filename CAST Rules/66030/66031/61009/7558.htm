@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en">
+<title>Avoid accessing data by using the position and length</title>
+<link rel="StyleSheet" href="../../../style.css" type="text/css">
+</head>
+<body>
+<h4>Avoid accessing data by using the position and length</h4>
+<hr>
+<h5>Technology</h5>
+<p>Cobol</p>
+<h5>Unified Status</h5>
+<p>N/A</p>
+<h5>XXL Status</h5>
+<p>N/A</p>
+<h5>Critical Quality Rule</h5>
+<p>No</p>
+<h5>Weight in Parent Tech. Criterion</h5>
+<p>5</p>
+<h5>Rationale</h5>
+<p>Parts of data can be accessed by using their position and their length in a data group. This mechanism is error prone for two points: the developer can introduce errors in defining the position of the part of data to access. In addition, this position is dependent of any changes in the data
+before placed before it. Thus, problems can easily occur in production and data may be corrupted.</p>
+<h5>Description</h5>
+<p>This rule searches for Cobol programs accessing part of data by using a position and a length.</p>
+<h5>Remediation</h5>
+<p>Data which need to be accessed partially must have detailed fields. Then, look for accesses using position and length and replace them by fields accesses.</p>
+<h5>Sample</h5>
+<pre>
+01 WSS-RUB     PIC X(10).
+01 WSS-VAL     PIC X(20).
+01 WSS-ENTITY PIC X(8).
+...
+IF WSS-RUB(1:3) = &#39;BAK&#39; 
+    MOVE WSS-VAL (1:8) TO WSS-ENTITE
+END-IF
+</pre>
+<h5>Remediation sample</h5>
+<pre>
+01 WSS-RUB.
+    05 WSS-RUB-ID PIC X(3).
+    05 FILLER           PIC X(7).
+01 WSS-VAL.
+    05 WSS-VAL-ENTITY    PIC X(8).
+    05 WSS-OTHER-DATA PIC X(12).
+01 WSS-ENTITY PIC X(8).
+...
+IF WSS-RUB-ID = &#39;BAK&#39; 
+    MOVE WSS-VAL-ENTITY TO WSS-ENTITE
+END-IF
+</pre>
+<h5>Output</h5>
+<p>Associated to each COBOL Program with violations, the Quality Rule provides: - The number of violation patterns - Bookmarks for violation patterns found in source code: - Data accessed via a position and a length in the PROCEDURE division</p>
+<h5>Total</h5>
+<p>Number of Cobol Programs</p>
+<h5>Metric ID</h5>
+<p>7558</p>
+<hr>
+<p align="right"><a href="http://www.castsoftware.com" target="_blank"><img border="0" src="../../../cast.gif" alt="CAST Website" width="174" height="21"></a></p>
+</body>
+</html>
