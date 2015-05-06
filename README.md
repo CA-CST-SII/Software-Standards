@@ -28,7 +28,7 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division PHP Documentation Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Documentation%20Standards.md)
 
-[Consular Systems and Technology Division Object](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object.md)
+[Consular Systems and Technology Division Object Definition and Naming Standard](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object Definition and Naming Standard.md)
 
 ## Draft standards
 
