@@ -762,7 +762,78 @@ Code level metrics serve to keep the characteristics of the code within certain 
 </table>
 
 ### Security Standards
-Suggest removal of this section, referencing content from NIST security coding standards or reduce them to direct C++ guidance.  There are very few direct references to C++.
+This section, references content from DISA STIG security coding standards for direct C++ guidance.  Table B-1.  C and C++ Unsafe Functions			
+			
+C and C++ Functions to Avoid			
+| Function     | Reason                                  | Potential Replacements   |
+|--------------|-----------------------------------------|--------------------------|
+| strcpy       | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| wcscpy       | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| _tcscpy      | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| _mbscpy      | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| StrCpy       | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| StrCpyA      | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| StrCpyW      | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| lstrcpy      | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| lstrcpyA     | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| lstrcpyW     | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| strcpyA      | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| strcpyW      | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| _tccpy       | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| _mbccpy      | Potential for buffer overflows          | strcpy_s, StringCchCopy, |
+|              |                                         | StringCbCopy,strlcpy     |
+| strcat       | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| wcscat       | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| _tcscat      | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| _mbscat      | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| strCat       | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| strCatA      | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| strCatW      | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| lstrcat      | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| lstrcatA     | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| lstrcatW     | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| strCatBuffW  | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| strCatBuff   | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| strCatBuffA  | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| strCatChainW | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| strcatA      | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| strcatW      | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| _tccat       | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| _mbccat      | Potential for buffer overflows          | strcat_s, StringCchCat,  |
+|              |                                         | StringCbCat, strlcat     |
+| sprintf      | Potential format string vulnerabilities |                          |
+| wsprintf     | Potential format string vulnerabilities |                          |
+| fprintf      | Potential format string vulnerabilities |                          |
 
 ### Section 508 Compliance
 In order to comply with section 508 guidelines, please visit the following websites and ensure adherence to the guidelines presented therein. 
