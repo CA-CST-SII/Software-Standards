@@ -868,11 +868,7 @@ The following coding guidelines assist with understandability, reliability, main
 ### Code Example (Style)
 Below is a one-page C++ coding styling standard quick reference using a sample class.
 <p align="center">
-[[https://cloud.githubusercontent.com/assets/6976295/2877797/468d0204-d453-11e3-87a0-
-
-553df7c53257.png]]
-</p><p align="center">
 Figure 12-1. C++ Coding Style Example
 </p> 
-![Fig15.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure 15.1.jpg "Java Code Example")
-Figure 15-1. Java Code Example
+![Fig12.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%2012-1.png "C++ Coding Style Example")
+Figure 12-1. C++ Coding Style Example
