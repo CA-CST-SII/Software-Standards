@@ -763,9 +763,9 @@ Code level metrics serve to keep the characteristics of the code within certain 
 </table>
 
 ### Security Standards
-This section, references content from DISA STIG security coding standards for direct C++ guidance.  Table B-1.  C and C++ Unsafe Functions			
+This section, references content from Defense Information Systems Agency (DISA) SECURITY TECHNICAL IMPLEMENTATION GUIDE (STIG) Version 3, Release 10 APPENDIX B. UNSAFE FUNCTIONS. Table B-1.  C and C++ Unsafe Functions.			
 			
-C and C++ Functions to Avoid
+*Table 9.1. C and C++ Functions to Avoid*
 
 | Function     | Reason                                  | Potential Replacements                         |
 |--------------|-----------------------------------------|------------------------------------------------|
