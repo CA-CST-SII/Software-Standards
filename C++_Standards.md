@@ -869,6 +869,7 @@ The following coding guidelines assist with understandability, reliability, main
 Below is a one-page C++ coding styling standard quick reference using a sample class.
 <p align="center">
 Figure 12-1. C++ Coding Style Example
-</p> 
+ 
 ![Fig12.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%2012-1.png "C++ Coding Style Example")
-Figure 12-1. C++ Coding Style Example
+
+</p>
