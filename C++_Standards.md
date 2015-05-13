@@ -33,6 +33,7 @@ The following sources were used in creation of the original version of this stan
 * A Java coding standard on a page, http://www.xp123.com/xplor/xp0002f/index.shtml
 * IDENT Java Coding Standard, February 24, 2006, IDENT-TO007-CSD-JavaCodeStndCSD-001-D
 * Javadoc Information, http://java.sun.com/j2se/javadoc/writingdoccomments/
+* APPLICATION SECURITY AND DEVELOPMENT SECURITY TECHNICAL IMPLEMENTATION GUIDE Version 3, Release 10, Developed by DISA for the DoD. http://iase.disa.mil/stigs/app-security/app-security/Pages/index.aspx
 
 The following books provide good advice above and beyond language syntax:
 * The C++ Programming Language (2nd Edition), Bjarne Stroustrup, Addison-Wesley, 1991
