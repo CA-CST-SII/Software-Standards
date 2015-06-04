@@ -1,15 +1,15 @@
 ##[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)
-1. [Introduction](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#introduction)
+1. [Introduction](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#1-introduction)
 
-  1.1 [Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#purpose)
+  1.1 [Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#1-1-purpose)
 
-  1.2 [Scope](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#scope)
+  1.2 [Scope](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#1-2-scope)
 
-  1.3 [Code Change Scope](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#code-change-scope)
+  1.3 [Code Change Scope](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#1-3-code-change-scope)
 
-2. [References](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#references)
+2. [References](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#2-references)
 
-3. [C++ Best Practices](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#c-best-practices)
+3. [C++ Best Practices](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-c-best-practices)
 
   3.1 [Standard Libraries](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#standard-libraries)
 
@@ -126,7 +126,7 @@ This document contains the C++ coding standards that the CA-CST development team
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### Purpose
+### 1.1 Purpose
 Coding standards help make sure that project code has a consistent structure and style. They are intended to make the code easier to read, understand, review and maintain.  They further reduce the complexity of the code.
 Additional coding guidelines in the form of code metrics (measurements) and coding rules are provided in this document for developers. The code metrics guidelines consist of “hand-calculable” measurements within each method and each class. The coding rules are based on information gathered from multiple sources to enhance the security, reliability, maintainability, testability and performance.  
 This document is intended for the following uses:
@@ -137,7 +137,7 @@ This document is intended for the following uses:
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### Scope
+### 1.2 Scope
 This document describes the following for C++:
 * Naming conventions for projects, files, objects, variables, and other code constructs.
 * Formatting conventions for code modules and their comments.
@@ -149,7 +149,7 @@ This document describes the following for C++:
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### Code Change Scope
+### 1.3 Code Change Scope
 The C++ coding standards described in this document apply to new applications (new code) and existing code in the following ways:
 * New code in the middle of an existing file should follow new coding standards with explanations regarding the change being made to be consistent with new guidelines, ensuring no disruption to the existing code structure. Exceptions can be made to this rule if following new guidelines creates significant and unnecessary and potentially dangerous re-work. 
 * New files within existing applications must follow the C++ coding standards documented in this document.
@@ -159,7 +159,7 @@ The C++ coding standards described in this document apply to new applications (n
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### References
+## 2. References
 The following sources were used in creation of the original version of this standard.
 * US-VISIT C++ Coding Standards, Version 1.1, November 19, 2010
 * A Java coding standard on a page, http://www.xp123.com/xplor/xp0002f/index.shtml
@@ -182,12 +182,12 @@ The following books provide good advice above and beyond language syntax:
  
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### C++ Best Practices
+## 3. C++ Best Practices
 This section describes C++ coding best practices and the resources used to support the best practices.
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Standard Libraries
+### 3.1 Standard Libraries
 * Try to use the standard C++ libraries whenever they are adequate: for example, STL and iostreams.
 * The old standard C Language library is also part of the C++ standard library.  Try to avoid the old C Language library as much as feasible when the C++ standard library can be used.  For example, use `cout` instead of `printf`.
 
