@@ -3,105 +3,105 @@
 
 [Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-1.2 Scope
+[Scope](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#scope)
 
-1.3 Code Change Scope
+[Code Change Scope](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-change-scope)
 
-2 References
+[References](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#references)
 
-3 C++ Best Practices
+[C++ Best Practices](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#c-best-practices)
 
-3.1 Standard Libraries
+[Standard Libraries](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#standard-libraries)
 
-3.2 Mixing C++ with C Language
+[Mixing C++ with C Language](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#mixing-c-with-c-language)
 
-3.3 Header File
+[Header File](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-3.4 Global Variables
+[Global Variables](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-3.5 Logging
+[Logging](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-3.6 Comments
+[Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-3.7 Exception Handling
+[Exception Handling](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-3.7.1 Error Handling
+[Error Handling](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-4 Naming Conventions
+[Naming Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-4.1 Packages and Files
+[Packages and Files](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-4.2 Constants
+[Constants](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-5 Formatting Conventions
+[Formatting Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-5.1 Class File Structure
+[Class File Structure](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-5.2 Comments
+[Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-5.2.1 Comments: Class Header
+[Comments: Class Header](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-5.2.2 Comments: Method Header
+[Comments: Method Header](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-5.2.3 Non-Javadoc Comments
+[Non-Javadoc Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-5.3 Indentation
+[Indentation](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-5.4 White Space
+[White Space](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-5.4.1 Blank Lines
+[Blank Lines](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-5.4.2 Blank Spaces
+[Blank Spaces](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6 Statements
+[Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.1 Simple Statements
+[Simple Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.2 Compound Statements
+[Compound Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.3 Return Statement
+[Return Statement](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.4 if, if-else, if else-if else and ternary operator Statements
+[if, if-else, if else-if else and ternary operator Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.5 for Statements
+[for Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.6 while Statements
+[while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.7 do-while Statements
+[do-while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.8 switch Statements
+[switch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.9 try-catch Statements
+[try-catch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.10 Exception Statements
+[Exception Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.10.1  Throwing an Exception
+[Throwing an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-6.10.2 Catching an Exception
+[Catching an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-7 Declarations
+[Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-7.1 Number Per Line
+[Number Per Line](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-7.2 Initialization
+[Initialization](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-7.3 Placement
+[Placement](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-7.4 Class Declarations
+[Class Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-7.5 Class Implementations
+[Class Implementations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-7.6 Access Level
+[Access Level](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-8 Code Level Metrics
+[Code Level Metrics](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-9 Security Standards (This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions)
+[Security Standards](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions
 
-10 Section 508 Compliance
+[Section 508 Compliance](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-11 Simple Coding Guidelines
+[Simple Coding Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-12 Code Example (Style)
+[Code Example (Style)](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
 
 
