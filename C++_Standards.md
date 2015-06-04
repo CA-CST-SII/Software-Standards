@@ -110,7 +110,9 @@
 
 
 ## Introduction    
-This document contains the C++ coding standards that the CA-CST development teams follow during the development of C++ code. **[back]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+This document contains the C++ coding standards that the CA-CST development teams follow during the development of C++ code.
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ### Purpose
 Coding standards help make sure that project code has a consistent structure and style. They are intended to make the code easier to read, understand, review and maintain.  They further reduce the complexity of the code.
@@ -120,7 +122,8 @@ This document is intended for the following uses:
 * Source for code review checklists.
 * Reference for developers who extend and maintain the C++ code.
 * As a governance tool for CA-CST.
-[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ### Scope
 This document describes the following for C++:
@@ -131,7 +134,8 @@ This document describes the following for C++:
 * Section 508 compliance.
 * Security standards.
 * Coding practices and recommendations.
-[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ### Code Change Scope
 The C++ coding standards described in this document apply to new applications (new code) and existing code in the following ways:
@@ -139,7 +143,9 @@ The C++ coding standards described in this document apply to new applications (n
 * New files within existing applications must follow the C++ coding standards documented in this document.
 * New applications must follow the C++ coding standards documented in this document.
 * Modifications to existing code will follow the CST C++ coding standards. Exceptions can be made to this rule if following new guidelines creates significant and unnecessary and potentially dangerous re-work when modifying a subset of code within a larger context.
-* Code that is referenced or imported from existing libraries, open source or commercial, will be left unchanged to preserve its integrity and to align with its intended API design.  If existing library code is copied and then modified to be part of the code base, then it is subject to CST coding standards 
+* Code that is referenced or imported from existing libraries, open source or commercial, will be left unchanged to preserve its integrity and to align with its intended API design.  If existing library code is copied and then modified to be part of the code base, then it is subject to CST coding standards.
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ### References
 The following sources were used in creation of the original version of this standard.
@@ -161,9 +167,13 @@ The following books provide good advice above and beyond language syntax:
 * Shyam R. Chidamber, Chris F. Kemerer. A Metrics suite for Object Oriented design. M.I.T. Sloan School of Management E53-315. 1993. http://uweb.txstate.edu/~mg43/CS5391/Papers/Metrics/OOMetrics.pdf
 * Victor Basili, Lionel Briand and Walcelio Melo. A Validation of Object-Oriented Design Metrics as Quality Indicators. IEEE Transactions on Software Engineering. Vol. 22, No. 10, October 1996. http://www.cs.umd.edu/users/basili/publications/journals/J60.pdf
 * Laing, Victor & Coleman, Charles: Principal Components of Orthogonal Object-Oriented Metrics. White Paper Analyzing Results of NASA Object-Oriented Data. SATC, NASA, 2001. http://satc.gsfc.nasa.gov/support/OSMASAS_SEP01/Principal_Components_of_Orthogonal_Object_Oriented_Metrics.pdf
+ 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ### C++ Best Practices
 This section describes C++ coding best practices and the resources used to support the best practices.
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 #### Standard Libraries
 * Try to use the standard C++ libraries whenever they are adequate: for example, STL and iostreams.
