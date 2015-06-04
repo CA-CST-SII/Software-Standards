@@ -121,7 +121,7 @@
 
 
 
-## Introduction    
+## 1. Introduction    
 This document contains the C++ coding standards that the CA-CST development teams follow during the development of C++ code.
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
