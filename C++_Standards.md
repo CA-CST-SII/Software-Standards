@@ -110,7 +110,7 @@
 
 
 ## Introduction    
-This document contains the C++ coding standards that the CA-CST development teams follow during the development of C++ code. [#back]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents) 
+This document contains the C++ coding standards that the CA-CST development teams follow during the development of C++ code. **[back]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ### Purpose
 Coding standards help make sure that project code has a consistent structure and style. They are intended to make the code easier to read, understand, review and maintain.  They further reduce the complexity of the code.
