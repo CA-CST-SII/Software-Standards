@@ -53,55 +53,55 @@
 
    [Blank Spaces](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#blank-spaces)
 
-[Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#statments)
+[Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#statements)
 
-  [Simple Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [Simple Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#simple-statements)
 
-  [Compound Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [Compound Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#compound-statements)
 
-  [Return Statement](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [Return Statement](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#return-statement)
 
-  [if, if-else, if else-if else and ternary operator Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [if, if-else, if else-if else and ternary operator Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#if-if-else-if-else-if-else-and-ternary-operator-statements)
 
-  [for Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [for Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#for-statements)
 
-  [while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#while-statements)
 
-  [do-while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [do-while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#do-while-statements)
 
-  [switch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [switch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#switch-statements)
 
-  [try-catch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [try-catch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#try-catch-statements)
 
-  [Exception Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [Exception Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#exception-statements)
 
-   [Throwing an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+   [Throwing an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#throwing-an-exception)
 
-   [Catching an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+   [Catching an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#catching-an-exception)
 
-[Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+[Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#declarations)
 
-  [Number Per Line](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [Number Per Line](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#number-per-line)
 
-  [Initialization](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [Initialization](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#initialization)
 
-  [Placement](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [Placement](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#placement)
 
-  [Class Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [Class Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#class-declarations)
 
-  [Class Implementations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [Class Implementations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#class-implementations)
 
-  [Access Level](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  [Access Level](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#access-level)
 
-[Code Level Metrics](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+[Code Level Metrics](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-level-metrics)
 
-[Security Standards](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions
+[Security Standards](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#security-standards)This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions
 
-[Section 508 Compliance](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+[Section 508 Compliance](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#section-508-compliance)
 
-[Simple Coding Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+[Simple Coding Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#simple-coding-guidelines)
 
-[Code Example (Style)](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+[Code Example (Style)](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-example-style)
 
 
 
