@@ -1,7 +1,7 @@
 ##Contents
-1 Introduction
+[Introduction](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#introduction)
 
-1.1 Purpose
+[Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
 1.2 Scope
 
