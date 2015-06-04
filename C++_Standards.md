@@ -1,57 +1,56 @@
 ##Contents
-1 Introduction	1
-1.1 Purpose	1
-1.2 Scope	1
-1.3 Code Change Scope	1
-2 References	3
-3 C++ Best Practices	5
-3.1 Standard Libraries	5
-3.2 Mixing C++ with C Language	5
-3.3 Header File	6
-3.4 Global Variables	6
-3.5 Logging	6
-3.6 Comments	7
-3.7 Exception Handling	7
-3.7.1 Error Handling	7
-4 Naming Conventions	8
-4.1 Packages and Files	9
-4.2 Constants	9
-5 Formatting Conventions	11
-5.1 Class File Structure	11
-5.2 Comments	11
-5.2.1 Comments: Class Header	12
-5.2.2 Comments: Method Header	12
-5.2.3 Non-Javadoc Comments	14
-5.3 Indentation	14
-5.4 White Space	14
-5.4.1 Blank Lines	14
-5.4.2 Blank Spaces	15
-6 Statements	17
-6.1 Simple Statements	17
-6.2 Compound Statements	17
-6.3 Return Statement	17
-6.4 if, if-else, if else-if else and ternary operator Statements	18
-6.5 for Statements	19
-6.6 while Statements	19
-6.7 do-while Statements	20
-6.8 switch Statements	20
-6.9 try-catch Statements	21
-6.10 Exception Statements	21
-6.10.1  Throwing an Exception	21
-6.10.2 Catching an Exception	22
-7 Declarations	23
-7.1 Number Per Line	23
-7.2 Initialization	23
-7.3 Placement	23
-7.4 Class Declarations	24
-7.5 Class Implementations	24
-7.6 Access Level	26
-8 Code Level Metrics	27
-9 Security Standards	29
-This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions	29
-10 Section 508 Compliance	31
-11 Simple Coding Guidelines	32
-12 Code Example (Style)	34
+1 Introduction
+1.1 Purpose
+1.2 Scope
+1.3 Code Change Scope
+2 References
+3 C++ Best Practices
+3.1 Standard Libraries
+3.2 Mixing C++ with C Language
+3.3 Header File
+3.4 Global Variables
+3.5 Logging
+3.6 Comments
+3.7 Exception Handling
+3.7.1 Error Handling
+4 Naming Conventions
+4.1 Packages and Files
+4.2 Constants
+5 Formatting Conventions
+5.1 Class File Structure
+5.2 Comments
+5.2.1 Comments: Class Header
+5.2.2 Comments: Method Header
+5.2.3 Non-Javadoc Comments
+5.3 Indentation
+5.4 White Space
+5.4.1 Blank Lines
+5.4.2 Blank Spaces
+6 Statements
+6.1 Simple Statements
+6.2 Compound Statements
+6.3 Return Statement
+6.4 if, if-else, if else-if else and ternary operator Statements
+6.5 for Statements
+6.6 while Statements
+6.7 do-while Statements
+6.8 switch Statements
+6.9 try-catch Statements
+6.10 Exception Statements
+6.10.1  Throwing an Exception
+6.10.2 Catching an Exception
+7 Declarations
+7.1 Number Per Line
+7.2 Initialization
+7.3 Placement
+7.4 Class Declarations
+7.5 Class Implementations
+7.6 Access Level
+8 Code Level Metrics
+9 Security Standards (This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions)
+10 Section 508 Compliance
+11 Simple Coding Guidelines
+12 Code Example (Style)
 
 
 
