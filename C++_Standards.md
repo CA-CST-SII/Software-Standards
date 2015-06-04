@@ -11,25 +11,25 @@
 
 3. [C++ Best Practices](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-c-best-practices)
 
-  3.1 [Standard Libraries](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#standard-libraries)
+  3.1 [Standard Libraries](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-1-standard-libraries)
 
-  3.2 [Mixing C++ with C Language](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#mixing-c-with-c-language)
+  3.2 [Mixing C++ with C Language](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-2-mixing-c-with-c-language)
 
-  3.3 [Header File](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#header-file)
+  3.3 [Header File](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-3-header-file)
 
-  3.4 [Global Variables](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#global-variables)
+  3.4 [Global Variables](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-4-global-variables)
 
-  3.5 [Logging](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#logging)
+  3.5 [Logging](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-5-logging)
 
-  3.6 [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#comments)
+  3.6 [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-6-comments)
 
-  3.7 [Exception Handling](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#exception-handling)
+  3.7 [Exception Handling](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-7-exception-handling)
 
-    3.7.1 [Error Handling](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#error-handling)
+    3.7.1 [Error Handling](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-7-1-error-handling)
 
-4. [Naming Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#naming-conventions)
+4. [Naming Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#4-naming-conventions)
 
-  4.1 [Packages and Files](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#packages-and-files)
+  4.1 [Packages and Files](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#4-1-packages-and-files)
 
   4.2 [Constants](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#constants)
 
@@ -193,7 +193,7 @@ This section describes C++ coding best practices and the resources used to suppo
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Mixing C++ with C Language
+### 3.2 Mixing C++ with C Language
 One of the primary design goals of C++ was compatibility with millions of lines of existing C code already in existence.  With some precaution, you can safely call C functions from C++.  On the other hand, it may not be safe to call C++ functions from C code even when only C language data types are involved.
 
 If there is old but reliable C code that can be reused for a project, then it is permissible to reuse the old code.  That is often better than to rewrite a lot of reliable C code strictly in C++.  C++ wrappers or layers can be created.  In a C++ module where C functions are called, just use “extern C” to make sure that parameter passing is compatible.  And obviously, when implementing C function calls from C++ code, in general, only C language data types should be involved—especially when passing a function pointer to a C++ method to some “extern C” code.  (There are some exceptions to this however.)
@@ -215,7 +215,7 @@ extern "C" {
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Header File
+### 3.3 Header File
 To prevent complications involving multiple inclusions of header files, directly and/or indirectly, every element of a header file should have the following enclosure:
 ```cpp
 <File header documentation.>
@@ -235,12 +235,12 @@ To prevent complications involving multiple inclusions of header files, directly
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Global Variables
+### 3.4 Global Variables
 For each global variable, document how the global variable is initialized, used, and cleaned up.
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Logging
+### 3.5 Logging
 * Use the Log class (from the CA-CST C++ Util library) for API for application logging. Proper error logging quickly helps to find application errors and business logic issues in test or production environment.  Logging should have several levels of detail and each level should be configurable at run-time.
 * The following illustrates a log message that indicates an error condition:
 ```cpp
@@ -249,7 +249,7 @@ xLog.print(LOG_NORMAL, "Sql Error: " + xErr.context());
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Comments
+### 3.6 Comments
 * Use Javadoc tool or Javdoc commenting style for documenting comments within C++ programs.  This allows for a standard comment format across the Java and C++ languages and allows for generation of documentation via tools like Doxygen.  In addition to file, class, method and member level comments, note the following:
 * Comment any complex and hard-to-understand code constructions, workarounds or assumptions made by the code.
 * Remove dead code rather than comment it out.
@@ -262,20 +262,20 @@ An example of proper comment is shown in Section 7.0, Code Example, of this docu
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Exception Handling
+### 3.7 Exception Handling
 * Use the Err class for application level exceptions.   Subclassing Err is recommended to allow the receiver of the exception to distinguish between error types.  
 * All exception handling should be logged to the application log and such that all logs contain identifiable exceptions for operational debugging purposes.  Errors should never be silently ignored.  At a minimum, the condition should be logged.  
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-##### Error Handling
+#### 3.7.1 Error Handling
 The framework will allow a configurable number of exceptions to be thrown prior to killing the daemon. The  transaction  will  instead  be  thrown  into  data_error  when  the  maximum limit  has  been reached. 
 
 The programmer is expected to detect any errors which are likely to be caused by bad input data or existing data (e.g. in the database) and use the 'data_error' state. 
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### Naming Conventions
+## 4. Naming Conventions
 This section contains naming conventions that apply.  Do not change existing applications since there will be large impact to the existing software. This means new code in the middle of an existing file must follow new guidelines as much as possible without disrupting the existing code.  However, new files within existing application must follow these new naming conventions.
 
 Meaningful names are important for maintaining understandable, high-quality code. Developers should take the time to choose names that are descriptive and unambiguous. 
