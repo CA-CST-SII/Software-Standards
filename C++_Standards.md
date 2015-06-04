@@ -1,49 +1,49 @@
 ##Contents
 [Introduction](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#introduction)
 
-  [Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  * [Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-  [Scope](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#scope)
+  * [Scope](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#scope)
 
-  [Code Change Scope](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-change-scope)
+  * [Code Change Scope](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-change-scope)
 
 [References](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#references)
 
 [C++ Best Practices](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#c-best-practices)
 
-  [Standard Libraries](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#standard-libraries)
+  * [Standard Libraries](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#standard-libraries)
 
-  [Mixing C++ with C Language](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#mixing-c-with-c-language)
+  * [Mixing C++ with C Language](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#mixing-c-with-c-language)
 
-  [Header File](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#header-file)
+  * [Header File](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#header-file)
 
-  [Global Variables](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#global-variables)
+  * [Global Variables](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#global-variables)
 
-  [Logging](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#logging)
+  * [Logging](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#logging)
 
-  [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments)
+  * [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments)
 
-  [Exception Handling](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#exception-handling)
+  * [Exception Handling](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#exception-handling)
 
-   [Error Handling](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#error-handling)
+    * [Error Handling](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#error-handling)
 
 [Naming Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#naming-conventions)
 
-  [Packages and Files](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#packages-and-files)
+  * [Packages and Files](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#packages-and-files)
 
-  [Constants](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#constants)
+  * [Constants](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#constants)
 
 [Formatting Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#formatting-conventions)
 
-  [Class File Structure](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#class-file-structure)
+  * [Class File Structure](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#class-file-structure)
 
-  [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments)
+  * [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments)
 
-   [Comments: Class Header](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments-class-header)
+    * [Comments: Class Header](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments-class-header)
 
-   [Comments: Method Header](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments-method-header)
+    * [Comments: Method Header](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments-method-header)
 
-   [Non-Javadoc Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#non-javadoc-comments)
+    * [Non-Javadoc Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#non-javadoc-comments)
 
   [Indentation](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#indentation)
 
