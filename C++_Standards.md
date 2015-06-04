@@ -1,55 +1,106 @@
 ##Contents
 1 Introduction
+
 1.1 Purpose
+
 1.2 Scope
+
 1.3 Code Change Scope
+
 2 References
+
 3 C++ Best Practices
+
 3.1 Standard Libraries
+
 3.2 Mixing C++ with C Language
+
 3.3 Header File
+
 3.4 Global Variables
+
 3.5 Logging
+
 3.6 Comments
+
 3.7 Exception Handling
+
 3.7.1 Error Handling
+
 4 Naming Conventions
+
 4.1 Packages and Files
+
 4.2 Constants
+
 5 Formatting Conventions
+
 5.1 Class File Structure
+
 5.2 Comments
+
 5.2.1 Comments: Class Header
+
 5.2.2 Comments: Method Header
+
 5.2.3 Non-Javadoc Comments
+
 5.3 Indentation
+
 5.4 White Space
+
 5.4.1 Blank Lines
+
 5.4.2 Blank Spaces
+
 6 Statements
+
 6.1 Simple Statements
+
 6.2 Compound Statements
+
 6.3 Return Statement
+
 6.4 if, if-else, if else-if else and ternary operator Statements
+
 6.5 for Statements
+
 6.6 while Statements
+
 6.7 do-while Statements
+
 6.8 switch Statements
+
 6.9 try-catch Statements
+
 6.10 Exception Statements
+
 6.10.1  Throwing an Exception
+
 6.10.2 Catching an Exception
+
 7 Declarations
+
 7.1 Number Per Line
+
 7.2 Initialization
+
 7.3 Placement
+
 7.4 Class Declarations
+
 7.5 Class Implementations
+
 7.6 Access Level
+
 8 Code Level Metrics
+
 9 Security Standards (This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions)
+
 10 Section 508 Compliance
+
 11 Simple Coding Guidelines
+
 12 Code Example (Style)
 
 
