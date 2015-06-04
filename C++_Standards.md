@@ -105,7 +105,7 @@
 
 ##[Tables](https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#tables)
 
-[Table 4 1. Formatting Identifier Names](https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md/Table 4 1. Formatting Identifier Names)
+[Table 4 1. Formatting Identifier Names](#Table 4_1)
 [Table 4 2. CA-CST file extensions]
 [Table 8 1. Code level metrics]
 [Table 9 1. C and C++ Functions to Avoid]
@@ -279,9 +279,9 @@ This section contains naming conventions that apply.  Do not change existing app
 Meaningful names are important for maintaining understandable, high-quality code. Developers should take the time to choose names that are descriptive and unambiguous. 
 
 Except for user-defined constants, all identifier names should be written as a mix of upper and lower case letters. This coding standard uses the following rules for formatting identifier names:
-
+<a name="Table 4_1"></a>
 <table>
-<caption><em>Table 4 1. Formatting Identifier Names</em></caption>
+<caption><em>Table 4.1. Formatting Identifier Names</em></caption>
 <thead>
 <tr class="header">
 <th align="left"><p>Identifier Type</p></th>
