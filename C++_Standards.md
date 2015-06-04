@@ -1,11 +1,11 @@
 ##Contents
-[Introduction](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#introduction)
+1. [Introduction](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#introduction)
 
-  * [Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
+  1. [Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#purpose)
 
-  * [Scope](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#scope)
+  2. [Scope](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#scope)
 
-  * [Code Change Scope](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-change-scope)
+  3. [Code Change Scope](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-change-scope)
 
 [References](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#references)
 
