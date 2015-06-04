@@ -7,101 +7,101 @@
 
   1.3 [Code Change Scope](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-change-scope)
 
-[References](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#references)
+2. [References](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#references)
 
-[C++ Best Practices](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#c-best-practices)
+3. [C++ Best Practices](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#c-best-practices)
 
-  * [Standard Libraries](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#standard-libraries)
+  3.1 [Standard Libraries](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#standard-libraries)
 
-  * [Mixing C++ with C Language](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#mixing-c-with-c-language)
+  3.2 [Mixing C++ with C Language](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#mixing-c-with-c-language)
 
-  * [Header File](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#header-file)
+  3.3 [Header File](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#header-file)
 
-  * [Global Variables](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#global-variables)
+  3.4 [Global Variables](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#global-variables)
 
-  * [Logging](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#logging)
+  3.5 [Logging](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#logging)
 
-  * [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments)
+  3.6 [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments)
 
-  * [Exception Handling](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#exception-handling)
+  3.7 [Exception Handling](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#exception-handling)
 
-    * [Error Handling](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#error-handling)
+    3.7.1 [Error Handling](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#error-handling)
 
-[Naming Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#naming-conventions)
+4. [Naming Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#naming-conventions)
 
-  * [Packages and Files](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#packages-and-files)
+  4.1 [Packages and Files](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#packages-and-files)
 
-  * [Constants](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#constants)
+  4.2 [Constants](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#constants)
 
-[Formatting Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#formatting-conventions)
+5. [Formatting Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#formatting-conventions)
 
-  * [Class File Structure](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#class-file-structure)
+  5.1 [Class File Structure](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#class-file-structure)
 
-  * [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments)
+  5.2 [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments)
 
-    * [Comments: Class Header](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments-class-header)
+    5.2.1 [Comments: Class Header](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments-class-header)
 
-    * [Comments: Method Header](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments-method-header)
+    5.2.2 [Comments: Method Header](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#comments-method-header)
 
-    * [Non-Javadoc Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#non-javadoc-comments)
+    5.2.3 [Non-Javadoc Comments](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#non-javadoc-comments)
 
-  [Indentation](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#indentation)
+  5.3 [Indentation](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#indentation)
 
-  [White Space](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#white-space)
+  5.4 [White Space](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#white-space)
 
-   [Blank Lines](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#blank-lines)
+    5.4.1 [Blank Lines](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#blank-lines)
 
-   [Blank Spaces](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#blank-spaces)
+    5.4.2 [Blank Spaces](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#blank-spaces)
 
-[Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#statements)
+6. [Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#statements)
 
-  [Simple Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#simple-statements)
+  6.1 [Simple Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#simple-statements)
 
-  [Compound Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#compound-statements)
+  6.2 [Compound Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#compound-statements)
 
-  [Return Statement](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#return-statement)
+  6.3 [Return Statement](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#return-statement)
 
-  [if, if-else, if else-if else and ternary operator Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#if-if-else-if-else-if-else-and-ternary-operator-statements)
+  6.4 [if, if-else, if else-if else and ternary operator Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#if-if-else-if-else-if-else-and-ternary-operator-statements)
 
-  [for Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#for-statements)
+  6.5 [for Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#for-statements)
 
-  [while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#while-statements)
+  6.6 [while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#while-statements)
 
-  [do-while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#do-while-statements)
+  6.7 [do-while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#do-while-statements)
 
-  [switch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#switch-statements)
+  6.8 [switch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#switch-statements)
 
-  [try-catch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#try-catch-statements)
+  6.9 [try-catch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#try-catch-statements)
 
-  [Exception Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#exception-statements)
+  6.10 [Exception Statements](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#exception-statements)
 
-   [Throwing an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#throwing-an-exception)
+    6.10.1 [Throwing an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#throwing-an-exception)
 
-   [Catching an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#catching-an-exception)
+    6.10.2 [Catching an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#catching-an-exception)
 
-[Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#declarations)
+7. [Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#declarations)
 
-  [Number Per Line](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#number-per-line)
+  7.1 [Number Per Line](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#number-per-line)
 
-  [Initialization](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#initialization)
+  7.2 [Initialization](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#initialization)
 
-  [Placement](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#placement)
+  7.3 [Placement](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#placement)
 
-  [Class Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#class-declarations)
+  7.4 [Class Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#class-declarations)
 
-  [Class Implementations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#class-implementations)
+  7.5 [Class Implementations](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#class-implementations)
 
-  [Access Level](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#access-level)
+  7.6 [Access Level](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#access-level)
 
-[Code Level Metrics](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-level-metrics)
+8. [Code Level Metrics](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-level-metrics)
 
-[Security Standards](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#security-standards)This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions
+9. [Security Standards](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#security-standards)This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions
 
-[Section 508 Compliance](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#section-508-compliance)
+10. [Section 508 Compliance](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#section-508-compliance)
 
-[Simple Coding Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#simple-coding-guidelines)
+11. [Simple Coding Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#simple-coding-guidelines)
 
-[Code Example (Style)](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-example-style)
+12. [Code Example (Style)](https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#code-example-style)
 
 
 
@@ -179,6 +179,8 @@ This section describes C++ coding best practices and the resources used to suppo
 * Try to use the standard C++ libraries whenever they are adequate: for example, STL and iostreams.
 * The old standard C Language library is also part of the C++ standard library.  Try to avoid the old C Language library as much as feasible when the C++ standard library can be used.  For example, use `cout` instead of `printf`.
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Mixing C++ with C Language
 One of the primary design goals of C++ was compatibility with millions of lines of existing C code already in existence.  With some precaution, you can safely call C functions from C++.  On the other hand, it may not be safe to call C++ functions from C code even when only C language data types are involved.
 
@@ -198,6 +200,9 @@ extern "C" {
 }
 #endif
 ```
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Header File
 To prevent complications involving multiple inclusions of header files, directly and/or indirectly, every element of a header file should have the following enclosure:
 ```cpp
@@ -215,14 +220,23 @@ To prevent complications involving multiple inclusions of header files, directly
 
 <FILENAME>_H must be a unique definition among all the source files compiled. 
 ```
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Global Variables
 For each global variable, document how the global variable is initialized, used, and cleaned up.
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Logging
 * Use the Log class (from the CA-CST C++ Util library) for API for application logging. Proper error logging quickly helps to find application errors and business logic issues in test or production environment.  Logging should have several levels of detail and each level should be configurable at run-time.
 * The following illustrates a log message that indicates an error condition:
 ```cpp
 xLog.print(LOG_NORMAL, "Sql Error: " + xErr.context());
 ```
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Comments
 * Use Javadoc tool or Javdoc commenting style for documenting comments within C++ programs.  This allows for a standard comment format across the Java and C++ languages and allows for generation of documentation via tools like Doxygen.  In addition to file, class, method and member level comments, note the following:
 * Comment any complex and hard-to-understand code constructions, workarounds or assumptions made by the code.
@@ -234,14 +248,20 @@ An example of proper comment is shown in Section 7.0, Code Example, of this docu
 * For more information on Javadoc, refer to: http://java.sun.com/j2se/javadoc/writingdoccomments/
 * For more information on the Doxygen Tool, refer to: http://www.stack.nl/~dimitri/doxygen/ 
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Exception Handling
 * Use the Err class for application level exceptions.   Subclassing Err is recommended to allow the receiver of the exception to distinguish between error types.  
 * All exception handling should be logged to the application log and such that all logs contain identifiable exceptions for operational debugging purposes.  Errors should never be silently ignored.  At a minimum, the condition should be logged.  
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ##### Error Handling
 The framework will allow a configurable number of exceptions to be thrown prior to killing the daemon. The  transaction  will  instead  be  thrown  into  data_error  when  the  maximum limit  has  been reached. 
 
 The programmer is expected to detect any errors which are likely to be caused by bad input data or existing data (e.g. in the database) and use the 'data_error' state. 
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ### Naming Conventions
 This section contains naming conventions that apply.  Do not change existing applications since there will be large impact to the existing software. This means new code in the middle of an existing file must follow new guidelines as much as possible without disrupting the existing code.  However, new files within existing application must follow these new naming conventions.
@@ -320,6 +340,8 @@ setCustomerData();</code></pre></td>
 </tbody>
 </table>
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Packages and Files
 This section describes the naming conventions for development files created in the C++ project.  The following file extensions will be used for all CA-CST files.
 
@@ -350,6 +372,8 @@ This section describes the naming conventions for development files created in t
 </tr>
 </tbody>
 </table>
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 #### Constants
 * Always use “const” to indicate input only reference parameters, for example:
@@ -383,6 +407,8 @@ The following is an example of using enumeration to specify a group of related i
 	} Direction;
 ```
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 ### Formatting Conventions
 * Use spaces, not tabs.
 * The length of C++ source lines, including comments, should not exceed 79 characters.  This 
@@ -395,6 +421,8 @@ standard is intended to accommodate any printer and text editor.
   * Prefer higher-level breaks to lower-level breaks.  
   * Align the new line with the beginning of the expression at the same level on the previous line.  
   * If the above rules lead to confusing code or to code that's all up against the right margin, back up the indentation a few levels as needed for readability. 
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
  
 #### Class File Structure
 The elements of a class file should appear in the following order: 
@@ -402,6 +430,8 @@ The elements of a class file should appear in the following order:
 2. Member variables  
 3. Constructors  
 4. Methods grouped by functionality
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 #### Comments
 The formatting for comments will follow the Javadoc standard. A documentation comment is made up of two parts `--` a description followed by zero or more tags, with a blank line (containing a single asterisk `"*"`) between these two sections:  
@@ -423,6 +453,8 @@ The last line begins with the end-comment symbol `(*/)` indented so the asterisk
 
 A blank line should precede and follow the comment block. 
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 ##### Comments: Class Header
 The following comments will appear before the declaration of every class. 
 ```cpp
@@ -431,6 +463,9 @@ The following comments will appear before the declaration of every class.
  *  
  */
 ```
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 ##### Comments: Method Header
 The following comments will appear before every method declaration in the header file 
 (including main).  
@@ -497,14 +532,23 @@ String the year the person was born
 ```
 A complete reference is available at: http://java.sun.com/j2se/1.4/docs/tooldocs/windows/javadoc.html#tag/ 
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 ##### Non-Javadoc Comments
 Use // for non-Javadoc comments, including multi-line comments.
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 #### Indentation
 Four spaces should be used as the unit of indentation—tab characters will NOT be used in C++ source files.  However, it entirely reasonable to configure editors such as “vim” and “emacs” to translate tabs to spaces to make indention easier to implement.
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### White Space
 ##### Blank Lines
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 Blank lines improve readability by setting off sections of code that are logically related. Two blank lines should always be used in the following circumstances: 
 * Between sections of a source file 
 * Between class and method definitions 
@@ -514,6 +558,8 @@ One blank line should always be used in the following circumstances:
 * Between the local variables in a method and its first statement 
 * Before a block or single-line comment 
 * Between logical sections inside a method to improve readability 
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ##### Blank Spaces
 Blank spaces should be used in the following circumstances: 
@@ -545,6 +591,8 @@ myMethod((float) aNum, (Log) log);
     myMethod((int) (cp + 5), ((int) (i + 3)) + 1);
 ```
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 ### Statements
 #### Simple Statements
 Each line should contain at most one statement. Example: 
@@ -553,6 +601,9 @@ argv++;       	// Correct
 argc--;       	// Correct  
 argv++; argc--;   // INCORRECT!
 ```
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Compound Statements
 Compound statements are statements that contain lists of statements enclosed in braces `"{ statements }"`.  See the following example. 
 ```cpp
@@ -565,6 +616,8 @@ while (!done) {
 * The opening brace should be at the end of the same line or on the next line just below the text that begins the compound statement; the closing brace should begin a line and be indented to the beginning of the compound statement. 
 * Braces are used around all statements, even single statements, when they are part of a control structure, such as an if-else or for statement. This makes it easier to add statements without accidentally introducing bugs due to forgetting to add braces. 
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Return Statement
 A return statement with a value should not use parentheses unless it is an expression that requires parentheses or the parentheses provide clarity. Example: 
 ```cpp
@@ -572,6 +625,9 @@ return;
 return myDisk.size();
 return (size ? size : defaultSize);
 ```
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### if, if-else, if else-if else and ternary operator Statements
 The “if-else” class of statements should have the following form: 
 ```cpp
@@ -619,6 +675,9 @@ Note: “if” statements always use braces {}. Avoid the following error-prone 
 if (condition) 	//INCORRECT !!
     statement;
 ```
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### for Statements
 A “for” statement should have the following form: 
 ```cpp
@@ -632,6 +691,8 @@ for (initialization; condition; update);
 ```
 When using the comma operator in the initialization or update clause of a “for” statement, avoid the complexity of using more than three variables. If needed, use separate statements before the “for” loop (for the initialization clause) or at the end of the loop (for the update clause). 
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### while Statements
 A “while” statement should have the following form: 
 ```cpp
@@ -644,6 +705,8 @@ An empty “while” statement should have the following form:
 while (condition);
 ```
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### do-while Statements
 A “do-while” statement should have the following form: 
 ```cpp
@@ -651,6 +714,9 @@ do {
     statements;
 } while (condition);
 ```
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### switch Statements
 A “switch” statement should have the following form: 
 ```cpp
@@ -679,6 +745,8 @@ default:
 Every time a case falls through (i.e. does not include a break statement), add a comment where the break statement would normally be. This is shown in the preceding code example with the `/*`  falls through `*/` comment. 
 Every switch statement should include a default case. The break in the default case is redundant, but it prevents a fall-through error if later another case is added. 
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### try-catch Statements
 A “try-catch” statement should have the following format: 
 ```cpp
@@ -688,6 +756,9 @@ try {
     statements;
 }
 ```
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Exception Statements
 ##### Throwing an Exception
 Exceptions should contain sufficient context information to indicate where the throw occurred. 
@@ -713,6 +784,8 @@ Examples of incorrect exception text:
 
 The first example politely beats around the bush instead of concisely stating the problem such that technical support staff can efficiently correct a problem.  The second example treats an ordinary user situation as a program exception.  The last exception lacks sufficient detail.
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 ##### Catching an Exception
 When catching an exception, the statement should have the following sample format:
 ```cpp
@@ -726,6 +799,8 @@ void Config::load(string strFullpath) {
 }
 ```
 The catch statement should always print the message contained in the exception object or re-throw the exception to the higher level method.
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ### Declarations
 #### Number Per Line
@@ -741,8 +816,14 @@ The following is not allowed:
 ```cpp
 int level, size;
 ```
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Initialization
 Local variables should be initialized where they are declared. The only reason not to initialize a variable where it is declared is if the initial value depends on some computation occurring first. 
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Placement
 Declarations should be placed only at the beginning of local blocks. Do not wait to declare variables until their first use; it can confuse the unwary programmer and hamper code portability within the scope.  
 ```cpp
@@ -776,10 +857,15 @@ myMethod() {
     ...
 }
 ```
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Class Declarations
 When coding C++ classes the following formatting rules should be followed: 
 * No space between a method name and the parenthesis "(" starting its parameter list, followed by the parenthesis “)”
 * Open brace "{" appears at the end of the same line as the declaration statement or on the next line directly under the first character of the class name.
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 #### Class Implementations
 When coding C++ classes the following formatting rules should be followed: 
@@ -806,6 +892,8 @@ class Sample : public BaseSample {
 ```
 * Methods are separated by a blank line.
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 #### Access Level
 C++ instance variables and methods have three access levels: public, protected, private.  As access level can have a big impact on maintainability of the software system, it is important to consider the following guidelines:
 * Variables should be declared as locally as possible.
@@ -814,6 +902,8 @@ C++ instance variables and methods have three access levels: public, protected, 
 * Public instance variables should be avoided at all costs.
 * Protected instance variable should be avoided unless the instance variable is declared as const
 * The only public methods that a class exposes will be the methods of the interface it implements.
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ### Code Level Metrics
 Code level metrics serve to keep the characteristics of the code within certain limits in order to enhance the readability/understandability, maintainability, testability, and in certain cases, security and performance of the code. The most commonly known metric is the Cyclomatic complexity or very roughly, the number of decision-making and/or branches in the code. High levels of complexity lead to difficulty understanding and testing code and therefore reduce the maintainability and testability of the code.  The less complexity in the code, the less room for error, the easier it is to test and to understand and therefore maintain the code.  Ensure your C++ code meets the following metrics:
@@ -886,6 +976,8 @@ Code level metrics serve to keep the characteristics of the code within certain 
 </tbody>
 </table>
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 ### Security Standards
 This section, references content from Defense Information Systems Agency (DISA) SECURITY TECHNICAL IMPLEMENTATION GUIDE (STIG) Version 3, Release 10 APPENDIX B. UNSAFE FUNCTIONS. Table B-1.  C and C++ Unsafe Functions.			
 			
@@ -929,6 +1021,8 @@ This section, references content from Defense Information Systems Agency (DISA) 
 | wsprintf     | Potential format string vulnerabilities |                                                |
 | fprintf      | Potential format string vulnerabilities |                                                |
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 ### Section 508 Compliance
 In order to comply with section 508 guidelines, please visit the following websites and ensure adherence to the guidelines presented therein. 
 http://www.section508.gov/
@@ -938,6 +1032,8 @@ http://www-03.ibm.com/able/guidelines/software/accesssoftware.html
 
 General checklist from IBM: 
 http://www-03.ibm.com/able/access_ibm/disability.html
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
 
 ### Simple Coding Guidelines
 The following coding guidelines assist with understandability, reliability, maintainability and testability of the code. General research has shown (please see the references section) that units of code following these guidelines are much easier to understand, maintain and test. 
@@ -988,6 +1084,8 @@ The following coding guidelines assist with understandability, reliability, main
 44. Method naming convention - case control
 45. Never throw an exception from a destructor
 
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
+
 
 ### Code Example (Style)
 Below is a one-page C++ coding styling standard quick reference using a sample class.
@@ -995,3 +1093,5 @@ Below is a one-page C++ coding styling standard quick reference using a sample c
 *Figure 12-1. C++ Coding Style Example*
  
 ![Fig12.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%2012-1.png "C++ Coding Style Example")
+
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)** 
