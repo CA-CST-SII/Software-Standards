@@ -33,75 +33,75 @@
 
   4.2 [Constants](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#constants)
 
-5. [Formatting Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#formatting-conventions)
+5. [Formatting Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-formatting-conventions)
 
-  5.1 [Class File Structure](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#class-file-structure)
+  5.1 [Class File Structure](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-1-class-file-structure)
 
-  5.2 [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#comments)
+  5.2 [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-2-comments)
 
-    5.2.1 [Comments: Class Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#comments-class-header)
+    5.2.1 [Comments: Class Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-2-1-comments-class-header)
 
-    5.2.2 [Comments: Method Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#comments-method-header)
+    5.2.2 [Comments: Method Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-2-2-comments-method-header)
 
-    5.2.3 [Non-Javadoc Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#non-javadoc-comments)
+    5.2.3 [Non-Javadoc Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-2-3-non-javadoc-comments)
 
-  5.3 [Indentation](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#indentation)
+  5.3 [Indentation](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-3-indentation)
 
-  5.4 [White Space](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#white-space)
+  5.4 [White Space](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-4-white-space)
 
-    5.4.1 [Blank Lines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#blank-lines)
+    5.4.1 [Blank Lines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-4-1-blank-lines)
 
-    5.4.2 [Blank Spaces](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#blank-spaces)
+    5.4.2 [Blank Spaces](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-4-2-blank-spaces)
 
-6. [Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#statements)
+6. [Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-statements)
 
-  6.1 [Simple Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#simple-statements)
+  6.1 [Simple Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-1-simple-statements)
 
-  6.2 [Compound Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#compound-statements)
+  6.2 [Compound Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-2-compound-statements)
 
-  6.3 [Return Statement](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#return-statement)
+  6.3 [Return Statement](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-3-return-statement)
 
-  6.4 [if, if-else, if else-if else and ternary operator Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#if-if-else-if-else-if-else-and-ternary-operator-statements)
+  6.4 [if, if-else, if else-if else and ternary operator Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-4-if-if-else-if-else-if-else-and-ternary-operator-statements)
 
-  6.5 [for Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#for-statements)
+  6.5 [for Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-5-for-statements)
 
-  6.6 [while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#while-statements)
+  6.6 [while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-6-while-statements)
 
-  6.7 [do-while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#do-while-statements)
+  6.7 [do-while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-7-do-while-statements)
 
-  6.8 [switch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#switch-statements)
+  6.8 [switch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-8-switch-statements)
 
-  6.9 [try-catch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#try-catch-statements)
+  6.9 [try-catch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-9-try-catch-statements)
 
-  6.10 [Exception Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#exception-statements)
+  6.10 [Exception Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-10-exception-statements)
 
-    6.10.1 [Throwing an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#throwing-an-exception)
+    6.10.1 [Throwing an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-10-1-throwing-an-exception)
 
-    6.10.2 [Catching an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#catching-an-exception)
+    6.10.2 [Catching an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-10-2-catching-an-exception)
 
-7. [Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#declarations)
+7. [Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-declarations)
 
-  7.1 [Number Per Line](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#number-per-line)
+  7.1 [Number Per Line](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-1-number-per-line)
 
-  7.2 [Initialization](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#initialization)
+  7.2 [Initialization](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-2-initialization)
 
-  7.3 [Placement](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#placement)
+  7.3 [Placement](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-3-placement)
 
-  7.4 [Class Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#class-declarations)
+  7.4 [Class Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-4-class-declarations)
 
-  7.5 [Class Implementations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#class-implementations)
+  7.5 [Class Implementations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-5-class-implementations)
 
-  7.6 [Access Level](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#access-level)
+  7.6 [Access Level](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-6-access-level)
 
-8. [Code Level Metrics](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#code-level-metrics)
+8. [Code Level Metrics](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#8-code-level-metrics)
 
-9. [Security Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#security-standards)This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions
+9. [Security Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#9-security-standards)This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions
 
-10. [Section 508 Compliance](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#section-508-compliance)
+10. [Section 508 Compliance](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#10-section-508-compliance)
 
-11. [Simple Coding Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#simple-coding-guidelines)
+11. [Simple Coding Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#11-simple-coding-guidelines)
 
-12. [Code Example (Style)](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#code-example-style)
+12. [Code Example (Style)](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#12-code-example-style)
 
 ##[Tables](https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#tables)
 [Table 4 1. Formatting Identifier Names](#Table 4_1)
@@ -354,11 +354,11 @@ setCustomerData();</code></pre></td>
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Packages and Files
+### 4.1 Packages and Files
 This section describes the naming conventions for development files created in the C++ project.  The following file extensions will be used for all CA-CST files.
 <a name="Table 4_2"></a>
 <table>
-<caption><em>Table 4 2. CA-CST file extensions</em></caption>
+<caption><em>Table 4.2. CA-CST file extensions</em></caption>
 <thead>
 <tr class="header">
 <th align="left"><p>File type</p></th>
@@ -387,7 +387,7 @@ This section describes the naming conventions for development files created in t
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Constants
+### 4.2 Constants
 * Always use “const” to indicate input only reference parameters, for example:
 ```cpp
 bool getTxStatus(const string& strID, string& strStatus);
@@ -421,7 +421,7 @@ The following is an example of using enumeration to specify a group of related i
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### Formatting Conventions
+## 5. Formatting Conventions
 * Use spaces, not tabs.
 * The length of C++ source lines, including comments, should not exceed 79 characters.  This 
 
@@ -436,7 +436,7 @@ standard is intended to accommodate any printer and text editor.
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
  
-#### Class File Structure
+### 5.1 Class File Structure
 The elements of a class file should appear in the following order: 
 1. Class (static) variables 
 2. Member variables  
@@ -445,7 +445,7 @@ The elements of a class file should appear in the following order:
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Comments
+### 5.2 Comments
 The formatting for comments will follow the Javadoc standard. A documentation comment is made up of two parts `--` a description followed by zero or more tags, with a blank line (containing a single asterisk `"*"`) between these two sections:  
 ```cpp
 /**  
@@ -467,7 +467,7 @@ A blank line should precede and follow the comment block.
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-##### Comments: Class Header
+#### 5.2.1 Comments: Class Header
 The following comments will appear before the declaration of every class. 
 ```cpp
 /**  
@@ -478,7 +478,7 @@ The following comments will appear before the declaration of every class.
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-##### Comments: Method Header
+#### 5.2.2 Comments: Method Header
 The following comments will appear before every method declaration in the header file 
 (including main).  
 ```cpp
@@ -546,18 +546,18 @@ A complete reference is available at: http://java.sun.com/j2se/1.4/docs/tooldocs
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-##### Non-Javadoc Comments
+#### 5.2.3 Non-Javadoc Comments
 Use // for non-Javadoc comments, including multi-line comments.
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Indentation
+### 5.3 Indentation
 Four spaces should be used as the unit of indentation—tab characters will NOT be used in C++ source files.  However, it entirely reasonable to configure editors such as “vim” and “emacs” to translate tabs to spaces to make indention easier to implement.
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### White Space
-##### Blank Lines
+### 5.4 White Space
+#### 5.4.1 Blank Lines
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
@@ -573,7 +573,7 @@ One blank line should always be used in the following circumstances:
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-##### Blank Spaces
+#### 5.4.2 Blank Spaces
 Blank spaces should be used in the following circumstances: 
 * A keyword followed by a parenthesis should be separated by a space. Example: 
 ```cpp
@@ -605,8 +605,8 @@ myMethod((float) aNum, (Log) log);
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### Statements
-#### Simple Statements
+## 6. Statements
+### 6.1 Simple Statements
 Each line should contain at most one statement. Example: 
 ```cpp
 argv++;       	// Correct
@@ -616,7 +616,7 @@ argv++; argc--;   // INCORRECT!
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Compound Statements
+### 6.2 Compound Statements
 Compound statements are statements that contain lists of statements enclosed in braces `"{ statements }"`.  See the following example. 
 ```cpp
 while (!done) {
@@ -630,7 +630,7 @@ while (!done) {
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Return Statement
+### 6.3 Return Statement
 A return statement with a value should not use parentheses unless it is an expression that requires parentheses or the parentheses provide clarity. Example: 
 ```cpp
 return;
@@ -640,7 +640,7 @@ return (size ? size : defaultSize);
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### if, if-else, if else-if else and ternary operator Statements
+### 6.4 if, if-else, if else-if else and ternary operator Statements
 The “if-else” class of statements should have the following form: 
 ```cpp
 if (condition) {
@@ -690,7 +690,7 @@ if (condition) 	//INCORRECT !!
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### for Statements
+### 6.5for Statements
 A “for” statement should have the following form: 
 ```cpp
 for (initialization; condition; update) {
@@ -705,7 +705,7 @@ When using the comma operator in the initialization or update clause of a “for
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### while Statements
+### 6.6 while Statements
 A “while” statement should have the following form: 
 ```cpp
 while (condition) {
@@ -719,7 +719,7 @@ while (condition);
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### do-while Statements
+### 6.7 do-while Statements
 A “do-while” statement should have the following form: 
 ```cpp
 do {
@@ -729,7 +729,7 @@ do {
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### switch Statements
+### 6.8 switch Statements
 A “switch” statement should have the following form: 
 ```cpp
 switch (condition) {
@@ -759,7 +759,7 @@ Every switch statement should include a default case. The break in the default c
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### try-catch Statements
+### 6.9 try-catch Statements
 A “try-catch” statement should have the following format: 
 ```cpp
 try {
@@ -771,8 +771,8 @@ try {
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Exception Statements
-##### Throwing an Exception
+### 6.10 Exception Statements
+#### 6.10.1 Throwing an Exception
 Exceptions should contain sufficient context information to indicate where the throw occurred. 
 
 A completed, precise description of the exception should be included while throwing an exception. The text should be as simple and direct as possible, and end with a period. Uppercase is mandatory in the first word of the sentence, and should be used inside the sentence only when required.
@@ -798,7 +798,7 @@ The first example politely beats around the bush instead of concisely stating th
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-##### Catching an Exception
+#### 6.10.2 Catching an Exception
 When catching an exception, the statement should have the following sample format:
 ```cpp
 void Config::load(string strFullpath) {
@@ -814,8 +814,8 @@ The catch statement should always print the message contained in the exception o
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### Declarations
-#### Number Per Line
+## 7. Declarations
+### 7.1 Number Per Line
 Maximum one declaration per line is mandatory. The comment describing each variable should be placed above the declaration.
 ```cpp
 // Indentation level      
@@ -831,12 +831,12 @@ int level, size;
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Initialization
+### 7.2 Initialization
 Local variables should be initialized where they are declared. The only reason not to initialize a variable where it is declared is if the initial value depends on some computation occurring first. 
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Placement
+### 7.3 Placement
 Declarations should be placed only at the beginning of local blocks. Do not wait to declare variables until their first use; it can confuse the unwary programmer and hamper code portability within the scope.  
 ```cpp
 // beginning of method block
@@ -872,14 +872,14 @@ myMethod() {
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Class Declarations
+### 7.4 Class Declarations
 When coding C++ classes the following formatting rules should be followed: 
 * No space between a method name and the parenthesis "(" starting its parameter list, followed by the parenthesis “)”
 * Open brace "{" appears at the end of the same line as the declaration statement or on the next line directly under the first character of the class name.
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Class Implementations
+### 7.5 Class Implementations
 When coding C++ classes the following formatting rules should be followed: 
 * Each method implementation shall be preceded by a single line comment that distinguishes the encoded method from surrounding source statements.
 * No space between a method name and the parenthesis "(" starting its parameter list, followed by the parenthesis “)”.
@@ -906,7 +906,7 @@ class Sample : public BaseSample {
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-#### Access Level
+### 7.6 Access Level
 C++ instance variables and methods have three access levels: public, protected, private.  As access level can have a big impact on maintainability of the software system, it is important to consider the following guidelines:
 * Variables should be declared as locally as possible.
 * Avoid global variables as much as possible.
@@ -917,7 +917,7 @@ C++ instance variables and methods have three access levels: public, protected, 
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### Code Level Metrics
+## 8. Code Level Metrics
 Code level metrics serve to keep the characteristics of the code within certain limits in order to enhance the readability/understandability, maintainability, testability, and in certain cases, security and performance of the code. The most commonly known metric is the Cyclomatic complexity or very roughly, the number of decision-making and/or branches in the code. High levels of complexity lead to difficulty understanding and testing code and therefore reduce the maintainability and testability of the code.  The less complexity in the code, the less room for error, the easier it is to test and to understand and therefore maintain the code.  Ensure your C++ code meets the following metrics:
 <a name="Table 8_1"></a>
 <table>
@@ -990,7 +990,7 @@ Code level metrics serve to keep the characteristics of the code within certain 
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### Security Standards
+## 9. Security Standards
 This section, references content from Defense Information Systems Agency (DISA) SECURITY TECHNICAL IMPLEMENTATION GUIDE (STIG) Version 3, Release 10 APPENDIX B. UNSAFE FUNCTIONS. Table B-1.  C and C++ Unsafe Functions.			
 <a name="Table 9_1"></a>			
 *Table 9.1. C and C++ Functions to Avoid*
@@ -1035,7 +1035,7 @@ This section, references content from Defense Information Systems Agency (DISA) 
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### Section 508 Compliance
+## 10. Section 508 Compliance
 In order to comply with section 508 guidelines, please visit the following websites and ensure adherence to the guidelines presented therein. 
 http://www.section508.gov/
 
@@ -1047,7 +1047,7 @@ http://www-03.ibm.com/able/access_ibm/disability.html
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
-### Simple Coding Guidelines
+## 11. Simple Coding Guidelines
 The following coding guidelines assist with understandability, reliability, maintainability and testability of the code. General research has shown (please see the references section) that units of code following these guidelines are much easier to understand, maintain and test. 
 
 1. Avoid artifacts with too many parameters
@@ -1099,11 +1099,11 @@ The following coding guidelines assist with understandability, reliability, main
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
 
-### Code Example (Style)
+## 12. Code Example (Style)
 Below is a one-page C++ coding styling standard quick reference using a sample class.
 <a name="Figure 12_1"></a>
 *Figure 12-1. C++ Coding Style Example*
  
 ![Fig12.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%2012-1.png "C++ Coding Style Example")
 
-**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** )
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
