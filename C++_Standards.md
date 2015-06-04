@@ -110,7 +110,7 @@
 
 
 ## Introduction    
-This document contains the C++ coding standards that the CA-CST development teams follow during the development of C++ code. [TOP]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents) 
+This document contains the C++ coding standards that the CA-CST development teams follow during the development of C++ code. [<Contents>]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents) 
 ### Purpose
 Coding standards help make sure that project code has a consistent structure and style. They are intended to make the code easier to read, understand, review and maintain.  They further reduce the complexity of the code.
 Additional coding guidelines in the form of code metrics (measurements) and coding rules are provided in this document for developers. The code metrics guidelines consist of “hand-calculable” measurements within each method and each class. The coding rules are based on information gathered from multiple sources to enhance the security, reliability, maintainability, testability and performance.  
@@ -119,7 +119,8 @@ This document is intended for the following uses:
 * Source for code review checklists.
 * Reference for developers who extend and maintain the C++ code.
 * As a governance tool for CA-CST.
-* [TOP]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)
+[<Contents>]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)
+
 ### Scope
 This document describes the following for C++:
 * Naming conventions for projects, files, objects, variables, and other code constructs.
@@ -129,7 +130,8 @@ This document describes the following for C++:
 * Section 508 compliance.
 * Security standards.
 * Coding practices and recommendations.
-[TOP]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)
+[<Contents>]( https://github.com/CA-CST-SII/Software-Standards/blob/Johnny2136-patch-1/C++_Standards.md#contents)
+
 ### Code Change Scope
 The C++ coding standards described in this document apply to new applications (new code) and existing code in the following ways:
 * New code in the middle of an existing file should follow new coding standards with explanations regarding the change being made to be consistent with new guidelines, ensuring no disruption to the existing code structure. Exceptions can be made to this rule if following new guidelines creates significant and unnecessary and potentially dangerous re-work. 
