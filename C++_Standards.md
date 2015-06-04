@@ -104,14 +104,16 @@
 12. [Code Example (Style)](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#code-example-style)
 
 ##[Tables](https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#tables)
-
 [Table 4 1. Formatting Identifier Names](#Table 4_1)
-[Table 4 2. CA-CST file extensions]
-[Table 8 1. Code level metrics]
-[Table 9 1. C and C++ Functions to Avoid]
+
+[Table 4 2. CA-CST file extensions](#Table 4_2)
+
+[Table 8 1. Code level metrics](#Table 8_1)
+
+[Table 9 1. C and C++ Functions to Avoid](#Table 9_1)
 
 ##[Figures](https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#figures)
-[Figure 12-1. C++ coding style example]
+[Figure 12-1. C++ coding style example](#Figure 12_1)
  
 
 
@@ -354,7 +356,7 @@ setCustomerData();</code></pre></td>
 
 #### Packages and Files
 This section describes the naming conventions for development files created in the C++ project.  The following file extensions will be used for all CA-CST files.
-
+<a name="Table 4_2"></a>
 <table>
 <caption><em>Table 4 2. CA-CST file extensions</em></caption>
 <thead>
@@ -917,7 +919,7 @@ C++ instance variables and methods have three access levels: public, protected, 
 
 ### Code Level Metrics
 Code level metrics serve to keep the characteristics of the code within certain limits in order to enhance the readability/understandability, maintainability, testability, and in certain cases, security and performance of the code. The most commonly known metric is the Cyclomatic complexity or very roughly, the number of decision-making and/or branches in the code. High levels of complexity lead to difficulty understanding and testing code and therefore reduce the maintainability and testability of the code.  The less complexity in the code, the less room for error, the easier it is to test and to understand and therefore maintain the code.  Ensure your C++ code meets the following metrics:
-
+<a name="Table 8_1"></a>
 <table>
 <caption><em>Table 8 1. Code level metrics</em></caption>
 <thead>
@@ -990,7 +992,7 @@ Code level metrics serve to keep the characteristics of the code within certain 
 
 ### Security Standards
 This section, references content from Defense Information Systems Agency (DISA) SECURITY TECHNICAL IMPLEMENTATION GUIDE (STIG) Version 3, Release 10 APPENDIX B. UNSAFE FUNCTIONS. Table B-1.  C and C++ Unsafe Functions.			
-			
+<a name="Table 9_1"></a>			
 *Table 9.1. C and C++ Functions to Avoid*
 
 | Function     | Reason                                  | Potential Replacements                         |
@@ -1099,7 +1101,7 @@ The following coding guidelines assist with understandability, reliability, main
 
 ### Code Example (Style)
 Below is a one-page C++ coding styling standard quick reference using a sample class.
-
+<a name="Figure 12_1"></a>
 *Figure 12-1. C++ Coding Style Example*
  
 ![Fig12.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%2012-1.png "C++ Coding Style Example")
