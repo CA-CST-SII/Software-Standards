@@ -1,101 +1,101 @@
 ##[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)
 1. [Introduction](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#1-introduction)
 
-  1.1 [Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#1-1-purpose)
+  1.1 [Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#11-purpose)
 
-  1.2 [Scope](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#1-2-scope)
+  1.2 [Scope](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#12-scope)
 
-  1.3 [Code Change Scope](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#1-3-code-change-scope)
+  1.3 [Code Change Scope](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#13-code-change-scope)
 
 2. [References](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#2-references)
 
 3. [C++ Best Practices](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-c-best-practices)
 
-  3.1 [Standard Libraries](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-1-standard-libraries)
+  3.1 [Standard Libraries](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#31-standard-libraries)
 
-  3.2 [Mixing C++ with C Language](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-2-mixing-c-with-c-language)
+  3.2 [Mixing C++ with C Language](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#32-mixing-c-with-c-language)
 
-  3.3 [Header File](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-3-header-file)
+  3.3 [Header File](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#33-header-file)
 
-  3.4 [Global Variables](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-4-global-variables)
+  3.4 [Global Variables](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#34-global-variables)
 
-  3.5 [Logging](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-5-logging)
+  3.5 [Logging](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#35-logging)
 
-  3.6 [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-6-comments)
+  3.6 [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#36-comments)
 
-  3.7 [Exception Handling](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-7-exception-handling)
+  3.7 [Exception Handling](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#37-exception-handling)
 
-    3.7.1 [Error Handling](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#3-7-1-error-handling)
+    3.7.1 [Error Handling](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#371-error-handling)
 
 4. [Naming Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#4-naming-conventions)
 
-  4.1 [Packages and Files](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#4-1-packages-and-files)
+  4.1 [Packages and Files](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#41-packages-and-files)
 
   4.2 [Constants](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#constants)
 
 5. [Formatting Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-formatting-conventions)
 
-  5.1 [Class File Structure](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-1-class-file-structure)
+  5.1 [Class File Structure](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#51-class-file-structure)
 
-  5.2 [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-2-comments)
+  5.2 [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#52-comments)
 
-    5.2.1 [Comments: Class Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-2-1-comments-class-header)
+    5.2.1 [Comments: Class Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#521-comments-class-header)
 
-    5.2.2 [Comments: Method Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-2-2-comments-method-header)
+    5.2.2 [Comments: Method Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#522-comments-method-header)
 
-    5.2.3 [Non-Javadoc Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-2-3-non-javadoc-comments)
+    5.2.3 [Non-Javadoc Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#523-non-javadoc-comments)
 
-  5.3 [Indentation](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-3-indentation)
+  5.3 [Indentation](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#53-indentation)
 
-  5.4 [White Space](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-4-white-space)
+  5.4 [White Space](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#54-white-space)
 
-    5.4.1 [Blank Lines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-4-1-blank-lines)
+    5.4.1 [Blank Lines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#541-blank-lines)
 
-    5.4.2 [Blank Spaces](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#5-4-2-blank-spaces)
+    5.4.2 [Blank Spaces](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#542-blank-spaces)
 
 6. [Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-statements)
 
-  6.1 [Simple Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-1-simple-statements)
+  6.1 [Simple Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#61-simple-statements)
 
-  6.2 [Compound Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-2-compound-statements)
+  6.2 [Compound Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#62-compound-statements)
 
-  6.3 [Return Statement](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-3-return-statement)
+  6.3 [Return Statement](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#63-return-statement)
 
   6.4 [if, if-else, if else-if else and ternary operator Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-4-if-if-else-if-else-if-else-and-ternary-operator-statements)
 
-  6.5 [for Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-5-for-statements)
+  6.5 [for Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#65-for-statements)
 
-  6.6 [while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-6-while-statements)
+  6.6 [while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#66-while-statements)
 
-  6.7 [do-while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-7-do-while-statements)
+  6.7 [do-while Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#67-do-while-statements)
 
-  6.8 [switch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-8-switch-statements)
+  6.8 [switch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#68-switch-statements)
 
-  6.9 [try-catch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-9-try-catch-statements)
+  6.9 [try-catch Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#69-try-catch-statements)
 
-  6.10 [Exception Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-10-exception-statements)
+  6.10 [Exception Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#610-exception-statements)
 
-    6.10.1 [Throwing an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-10-1-throwing-an-exception)
+    6.10.1 [Throwing an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6101-throwing-an-exception)
 
-    6.10.2 [Catching an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-10-2-catching-an-exception)
+    6.10.2 [Catching an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6102-catching-an-exception)
 
 7. [Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-declarations)
 
-  7.1 [Number Per Line](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-1-number-per-line)
+  7.1 [Number Per Line](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#71-number-per-line)
 
-  7.2 [Initialization](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-2-initialization)
+  7.2 [Initialization](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#72-initialization)
 
-  7.3 [Placement](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-3-placement)
+  7.3 [Placement](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#73-placement)
 
-  7.4 [Class Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-4-class-declarations)
+  7.4 [Class Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#74-class-declarations)
 
-  7.5 [Class Implementations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-5-class-implementations)
+  7.5 [Class Implementations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#75-class-implementations)
 
-  7.6 [Access Level](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-6-access-level)
+  7.6 [Access Level](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#76-access-level)
 
 8. [Code Level Metrics](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#8-code-level-metrics)
 
-9. [Security Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#9-security-standards)This section, references content from DISA STIG security coding standards for direct C++ guidance. Table B-1.  C and C++ Unsafe Functions
+9. [Security Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#9-security-standards)
 
 10. [Section 508 Compliance](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#10-section-508-compliance)
 
