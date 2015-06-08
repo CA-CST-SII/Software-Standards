@@ -61,7 +61,7 @@
 
   6.3 [Return Statement](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#63-return-statement)
 
-  6.4 [if, if-else, if else-if else and ternary operator Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-4-if-if-else-if-else-if-else-and-ternary-operator-statements)
+  6.4 [if, if-else, if else-if else and ternary operator Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#64-if-if-else-if-else-if-else-and-ternary-operator-statements)
 
   6.5 [for Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#65-for-statements)
 
