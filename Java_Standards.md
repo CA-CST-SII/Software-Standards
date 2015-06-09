@@ -129,17 +129,17 @@
 
 
 ##[Tables](https://github.com/CA-CST-SII/Software-Standards/blob/master/Java_Standards.md#tables)
-[Table 4.1. Identifier Naming Rules](#Table 4.1)
+[Table 4.1. Identifier Naming Rules](#Table 4_1)
 
-[Table 4.2. Package and File Naming Rules](#Table 4.2)
+[Table 4.2. Package and File Naming Rules](#Table 4_2)
 
-[Table 4.3. File Extensions](#Table 43)
+[Table 4.3. File Extensions](#Table 4_3)
 
-[Table 6.1. Exceptions](#Table 6-1)
+[Table 6.1. Exceptions](#Table 6_1)
 
-[Table 8.1. Code level metrics](#Table 8.1)
+[Table 8.1. Code level metrics](#Table 8_1)
 
-[Table 13.1. Log Levels](#Table 13 1)
+[Table 13.1. Log Levels](#Table 13_1)
 
 ##[Figures](https://github.com/CA-CST-SII/Software-Standards/blob/master/Java_Standards.md#figures)
 [Figure 6-1. NullPointerException hierarchy](#Figures 6_1)
@@ -256,7 +256,7 @@ This section describes Java coding best practices and the resources used to supp
 
 4. Naming Conventions
 ---------------------
-<a name="Table 4.1"></a>
+<a name="Table 4_1"></a>
 <table>
 <caption><em>Table 4.1. Identifier Naming Rules</em></caption>
 <thead>
@@ -328,7 +328,7 @@ This section describes Java coding best practices and the resources used to supp
 ###4.1 Packages and Files
 
 This section describes the naming conventions for development files created in the Java project. These files will be named according to the following rules:
-
+<a name="Table 4_2"></a>
 <table>
 <caption><em>Table 4.2. Package and File Naming Rules</em></caption>
 <thead>
@@ -352,6 +352,7 @@ This section describes the naming conventions for development files created in t
 </tbody>
 </table>
 <p>The following file extensions will be used for all CA/CST files:</p>
+<a name="Table 4_3"></a>
 <table>
 <caption><em>Table 4.3. File Extensions</em></caption>
 <thead>
@@ -892,7 +893,8 @@ Java defines two kinds of exceptions:
 * Unchecked exceptions: RuntimeException also extends from Exception. However, all of the exceptions that inherit from RuntimeException get special treatment. There is no requirement for the client code to deal with them, and hence they are called unchecked exceptions. 
 By way of example, the following shows the hierarchy for NullPointerException:
 
-![Fig6.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%206.1.jpg "hierarchy for NullPointerException")
+![Fig6.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%206.1.jpg "hierarchy for 
+<a name="Figure 6_1"></a>
 Figure 6-1. NullPointerException hierarchy
 
 
@@ -915,7 +917,7 @@ The method getAllAccounts() throws two checked exceptions. The client of this me
 When deciding on checked exceptions vs. unchecked exceptions, ask yourself, "What action can the client code take when the exception occurs?"
 
 If the client can take some alternate action to recover from the exception, make it a checked exception.  If the client cannot do anything useful, then make the exception unchecked. Take steps to recover from the exception and not just logging the exception. To summarize:
-
+<a name="Table 6_1"></a>
 <table>
 <caption><em>Table 6.1. Exceptions</em></caption>
 <thead>
@@ -1085,7 +1087,7 @@ Any resource obtained in the try block should be released in the finally block. 
 
 ##8. Code Level Metrics
 Code level metrics (both at method and class levels) serve to keep the characteristics of the code within certain limits in order to enhance the readability/understandability, maintainability, testability, and in certain cases, security and performance of the code.  The most commonly known metric is the Cyclomatic complexity or very roughly, the number of decision-making and/or branches in the code. High levels of complexity lead to difficulty understanding and testing code and therefore reduce the maintainability and testability of the code. The less complexity in the Java code, the less room for error, the easier it is to test and to understand and therefore maintain the code. Ensure your Java code meets the following metrics:
-
+<a name="Table 8_1"></a>
 <table>
 <caption><em>Table 8.1. Code level metrics</em></caption>
 <thead>
@@ -1368,7 +1370,7 @@ protected String[] getUserInfo(String firstname, String lastname)
 **[Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Java_Standards.md#contents)**
 
 ###13.1 Logging Levels
-
+<a name="Table 13_1"></a>
 <table>
 <caption><em>Table 13.1. Log Levels</em></caption>
 <thead>
