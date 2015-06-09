@@ -142,7 +142,7 @@
 [Table 13.1. Log Levels](#Table 13_1)
 
 ##[Figures](https://github.com/CA-CST-SII/Software-Standards/blob/master/Java_Standards.md#figures)
-[Figure 6-1. NullPointerException hierarchy](#Figures 6_1)
+[Figure 6-1. NullPointerException hierarchy](#Figure 6_1)
 
 
 
@@ -890,10 +890,10 @@ There are three different situations that cause exceptions to be thrown:
 ####6.10.6 Types of Exceptions in Java
 Java defines two kinds of exceptions:
 * Checked exceptions: Exceptions that inherit from the Exception class are checked exceptions. Client code has to handle the checked exceptions thrown by the API, either in a catch clause or by forwarding it outward with the throws clause.
-* Unchecked exceptions: RuntimeException also extends from Exception. However, all of the exceptions that inherit from RuntimeException get special treatment. There is no requirement for the client code to deal with them, and hence they are called unchecked exceptions. 
-By way of example, the following shows the hierarchy for NullPointerException:
+* Unchecked exceptions: RuntimeException also extends from Exception. However, all of the exceptions that inherit from RuntimeException get special treatment. There is no requirement for the client code to deal with them, and hence they are called unchecked exceptions. By way of example, the following shows the hierarchy for NullPointerException:
 
-![Fig6.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%206.1.jpg "hierarchy for 
+![Fig6.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure 6.1.jpg)
+
 <a name="Figure 6_1"></a>
 Figure 6-1. NullPointerException hierarchy
 
