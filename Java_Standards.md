@@ -129,7 +129,7 @@
 
 
 ##[Tables](https://github.com/CA-CST-SII/Software-Standards/blob/master/Java_Standards.md#tables)
-[Table 4.1. Identifier Naming Rules](#Table-4 1-Identifier-Naming-Rules)
+[Table 4.1. Identifier Naming Rules](#Table-4 1)
 
 [Table 4.2. Package and File Naming Rules](#Table 4.2)
 
@@ -256,7 +256,7 @@ This section describes Java coding best practices and the resources used to supp
 
 4. Naming Conventions
 ---------------------
-
+<a name="Table 4_1"></a>
 <table>
 <caption><em>Table 4.1. Identifier Naming Rules</em></caption>
 <thead>
