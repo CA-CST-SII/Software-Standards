@@ -1,15 +1,42 @@
 # Development Standards and Guidelines (C#)
 
-## About the Guide
+1	[About the Guide]
+
+2	[Purpose]
+
+3	[Library Organization]
+
+&nbsp;&nbsp;3.1	[Library Taxonomy]
+
+&nbsp;&nbsp;3.2	[Library Structure]
+&nbsp;&nbsp;3.3	[Library Usage]
+4	[Programming Standards]
+&nbsp;&nbsp;4.1	[About Code Uniformity]
+&nbsp;&nbsp;4.2	[Naming Conventions]
+&nbsp;&nbsp;4.3	[Code Structure]
+&nbsp;&nbsp;4.4	[Code Level Metrics]
+5	[Best Practices]
+6	[Code Examples]
+&nbsp;&nbsp;6.1	[Brace Placement Example]
+&nbsp;&nbsp;6.2	[Variable Naming Example]
+7	[Embedded Comments and Documentation]
+&nbsp;&nbsp;7.1	[Avoid Methods with a Very Low Comments/Code Ratio]
+&nbsp;&nbsp;7.2	[Avoid Classes with a Very Low Comment/Code Ratio]
+&nbsp;&nbsp;7.3	[Avoid Interfaces with a Very Low Comment/Code Ratio]
+&nbsp;&nbsp;7.4	[Block Comments]
+&nbsp;&nbsp;7.5	[Single-Line Comments]
+&nbsp;&nbsp;7.6	[XML Documentation Overview]
+
+## 1.  About the Guide
 This guide covers structuring and naming of the Apptis/Project libraries in such a manner that other developers/teams can easily determine whether or not an object that provides desired functionality already exists, easily locate objects slated for modification, and decide where to include new development.  The guide also covers software coding standards; and although the primary focus will be on programs written in C #, many of the rules and principles are useful and apply to programs written in other languages.  Finally, the guide will briefly cover embedded XML documentation and includes a more extensive elaboration on usage in [Appendix A] (https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md#appendix-a---xml-documentation-tags) - taken from a white paper article written by Anson Horton from the .NET Framework community website. 
 
-## Purpose
+##2.  Purpose
 Project specific C# coding standards are maintained by the lead developer for each project.
 
 It is expected that all new C# code will adhere to these standards; existing code can be retrofitted to meet the standards to whatever degree possible, as modifications to that code are required. 
 
-## Library Organization
-### Library Taxonomy
+##3. Library Organization
+###3.1 Library Taxonomy
 The taxonomy presented in this section is a partial library layout with some explanation.  
 
 Structure and usage will be discussed in the subsequent sections.  
@@ -63,27 +90,27 @@ Structure and usage will be discussed in the subsequent sections.
       * SignatureService
       * QualityControl
 
-###Library Structure###
+###3.2 Library Structure###
 The library directory should be structured and named in a manner that makes it intuitive for a developer to easily check for existing functionality.  In general namespaces should match with the corresponding code directory structure (e.g., Apptis.TDIS.Common.Passport would align with the Apptis/TDIS/Common/Passport path).  This makes it easier to map namespaces to the directory layout, and makes it a relatively trivial matter for a developer to look for the appropriate “using” directive in a code file and locate the underlying functionality.  
 
 However, this is not to say that every folder MUST map to a namespace.  If you’re creating a sub-folder within a project for organizational purposes, it is recommended that the objects within these folders share the same root namespace as the project (e.g., items within the Apptis/TDIS/Common/Passport/Applicant folder would lie within the Apptis.TDIS.Common.Passport namespace).  Again, this greatly simplifies library inclusion with the “using” directive and may vastly reduce the impact of a library consolidation and re-organization.
 
-###Library Usage###
+###3.3 Library Usage###
 The first place a Team/Developer should look for developing a NEW system or Project is in the Apptis.Common section of the library.  If there is no existing functionality for the GENERAL type of development they are performing and it is conceivable that other systems may need the functionality at some future point, it should be implemented within the Apptis.Common section for other Projects to use.  Likewise, this may also be a good time to investigate whether other Developers/Teams have implemented functionality similar to what is needed, and if so, considering abstracting it out into the Apptis.Common section of the library.  
 
 When adding/extending functionality to an existing Project, a developer should be able to look in the module folder (i.e., look in Apptis.TDIS.ModuleName if modifying an existing module) to see how current functionality has been implemented, and look to the Project and Apptis Common folders for existing business or non-domain specific objects.  If the folder structure is laid out in a sensible fashion and the underlying objects carry with them meaningful names, it should be relatively easy to determine whether or not there are existing pieces to the puzzle they are working on.  Again this is also a good time to look for existing functionality that is not in the Common area and re-factor and move it out if possible.  
 
-##Programming Standards##
-###About Code Uniformity###
+##4. Programming Standards##
+###4.1 About Code Uniformity###
 Whereas most developers are familiar with writing code that a compiler can interpret, this section may be read as a guide that focuses on helping developers adopt code Naming Conventions, Structure, and Documentation/Comments that will help other developers understand the purpose of existing code.  Typically it is much simpler for a developer to familiarize their self with new code that has naming conventions and formatting similar to their own.  
 
-###Naming Conventions###
-####Naming Overview####
+###4.2 Naming Conventions###
+####4.2.1 Naming Overview####
 In general, put every class in a separate file and name the file like the class name.  An exception to this would be private inner classes.  Class names typically describe the business entity that the class represents or the function or set of functionality the class provides.  This convention makes things much easier to follow and significantly lends to self-documenting code.  Class and file names should NOT include the company and/or project name (e.g. GDSSecurity, TDISPassport, etc.).  Although this may have made some small amount of sense for COM objects, the combination of appropriate module name selection and the namespace paradigm used throughout the .NET framework make this unnecessary.   An obvious exception to this would be Bridge or Adapter classes where the name denotes the systems being bridged (e.g., TDISFEPAdapter).
 
 For classes/files/methods keep your source code short, divide your code up into methods that are named such that their purpose is clear.  Unusually long classes/methods are sometimes cumbersome to name (not to mention read through) as they often perform multiple semi-atomic tasks.  This usually a good sign that some method and/or class refactoring is in order.
 
-####Hungarian Notation####
+####4.2.2 Hungarian Notation####
 Generally, the use of Hungarian notation in the naming objects/variables is considered poor practices in terms of modern programming standards.  
 
 Hungarian notation is a defined set of prefixes and suffixes, which are applied to names to reflect the type of the variable.  This style of naming was widely used in early Windows programming, but now is obsolete or at least should be considered deprecated.  Using Hungarian notation is not allowed if you follow this guide.
@@ -97,18 +124,23 @@ System.Windows.Forms.Button cancelButton;
 System.Windows.Forms.TextBox firstNameTextBox;
 ```
 
-#### Capitalization Styles
-##### *Pascal Casing*
-This convention capitalizes the first character of each word (e.g., 
+####4.2.3 Capitalization Styles
 
-<code>StandardsAndGuidelines</code>).
+#####4.2.3.1 *Camel Casing*
+This convention capitalizes the first character of each word except the first one (e.g.<code>standardsAndGuidelines</code>).  Other conditions are as follow:
 
-##### *Camel Casing*
-This convention capitalizes the first character of each word except the first one (e.g. 
+*	The first letter is capitalized. 
+*	One or more letters in that word are also capitalised. 
+*	The word does not end on a capitalized letter: CamelCasE 
+*	No two capitalised letters shall follow directly each other: CamelCAse 
+*	No number in that word at any place: CamelCase1more 
+*	No dot(.), under_score or dash (-) within the word, only letters: Camel_Case
 
-<code>standardsAndGuidelines</code>).
 
-##### *Upper case*
+#####4.2.3.2 *Pascal Casing*
+This convention capitalizes the first character of each word (e.g., <code>StandardsAndGuidelines</code>).
+
+#####4.2.3.3 *Upper case*
 Only use all upper case for identifiers if it consists of an abbreviation or acronym that is only a few characters long.  Longer identifiers should use Pascal Casing instead.
 
 For Example:
@@ -121,53 +153,69 @@ public class Math
 }
 ```
 
-####Naming Guidelines####
-##### *Class Naming Guidelines*
+####4.2.4 Naming Guidelines####
+#####4.2.4.1 *Class Naming Guidelines*
 * Class names must be nouns or noun phrases.
 * Use Pascal Casing.
 * Do not use any class prefix.
 
-##### *Interface Naming Guidelines* 
+#####4.2.4.2 *Interface Naming Guidelines* 
 * Name interfaces with nouns or noun phrases or adjectives describing behavior. (Example IComponent or IEnumberable)
 * Use Pascal Casing.
 * Use I as prefix for the name, it is followed by a capital letter (first char of the interface name)
 
-##### *Enum Naming Guidelines* 
+#####4.2.4.3 *Enum Naming Guidelines* 
 * Use Pascal Casing for enum value names and enum type names.
 * Don’t prefix (or suffix) an enum type or enum values.
 * Use singular names for enums.
 
-##### *Static and Const Field Names* 
+#####4.2.4.4 *Static and Const Field Names* 
 * Name static fields with nouns, noun phrases or abbreviations for nouns
 * Use Pascal Casing.
 
-##### *Non- const Field /Member Variable Names* 
+#####4.2.4.5 *Non- const Field /Member Variable Names* 
 * Use descriptive names that, if done properly should be enough to indicate the variable meaning/usage and provide insight into the underlying type.
 * Use an underscore “_” as a prefix for private and protected class member variables (declared at the top of the class above any constructors) so they can be easily identified and located.
 *Use Camel Casing after the underscore.
 
-##### *Method Names*#####
+#####4.2.4.6 *Method Names*
 *Name methods with verbs or verb phrases.
 *Use Pascal Casing.
 
-##### *Method Parameters and Local Variables*#####
-*Use descriptive names that, if done properly should be enough to indicate the variable meaning/usage and provide insight into the underlying type.
-*Use Camel Casing.
+#####4.2.4.7 *Method Parameters and Local Variables*
+* Use descriptive names that, if done properly should be enough to indicate the variable meaning/usage and provide insight into the underlying type.
+* Use Camel Casing.
 
-##### *Property Names*#####
-*Name properties using nouns or noun phrases.
-*Use Pascal Casing.
-*Consider naming a property with the same name as the underlying class variable (without the underscore prefix).
+#####4.2.4.8 *Property Names*
+* Name properties using nouns or noun phrases.
+* Use Pascal Casing.
+* Consider naming a property with the same name as the underlying class variable (without the underscore prefix).
 
-##### *Event Names*#####
-*Name event handlers with the EventHandler suffix.
-*Use two parameters named sender and e.
-*Use Pascal Casing.
-*Name event argument classes with the EventArgs suffix.
-*Name event names that have a concept of pre and post using the present and past tense.
-*Consider naming events using a verb.  Consider using the “On” prefix, e.g., OnStart.
+#####4.2.4.9 *Event Names*
+* Name event handlers with the EventHandler suffix.
+* Use two parameters named sender and e.
+* Use Pascal Casing.
+* Name event argument classes with the EventArgs suffix.
+* Name event names that have a concept of pre and post using the present and past tense.
+* Consider naming events using a verb.  
+* Consider using the “On” prefix, e.g., OnStart.
 
-#####*Capitalization summary*#####
+#####4.2.4.10	*Namespace Names*
+*	Use Pascal Casing.
+
+#####4.2.4.11	*Private/Public Fields Names*
+*	Use Pascal Casing.
+*	Do not include any underscore.
+	
+#####4.2.4.12	*Controls Names*
+*	Use naming conventions (Exmaple btn* for buttons, chk* for check boxes, cmb* for combo boxes)
+*	Do not include any underscore.
+
+#####4.2.4.13	*Exception Names*#####
+*	Use Pascal Casing.
+*	End with X.
+
+#####4.2.4.10 *Capitalization summary*#####
 
 <table>
 <caption>style#“caption-side:bottom;”|<em>Table 4.2.4.10 Capitalization Summary</em></caption>
@@ -242,16 +290,16 @@ public class Math
 </tbody>
 </table>
 
-###Code Structure###
-####Code Separation####
-#####*Separation Overview*#####
+###4.3 Code Structure###
+####4.3.1 Code Separation####
+#####4.3.1 *Separation Overview*#####
 Imagine trying to read a book or a magazine article with no spaces between the words or any 
 indentation and/or blank lines to set-off or separate paragraphs.  It becomes readily 
 apparent just how powerful these simple formatting tools are in contributing to the flow and 
 readability of the text.  Similarly, the proper usage of indentation, blank lines, and white 
 spaces will vastly improve the flow and readability of source code. 
 
-#####*Indentation*#####
+#####4.3.2 *Indentation*#####
 An indentation standard using spaces never was achieved.  Some people like 2 spaces; some 
 prefer 4 and others 8, or even more spaces.  For this reason it is better use tabs and we 
 define the Tab as the standard indentation character.  Tab characters have some advantages:
@@ -277,7 +325,7 @@ declaration.
 * If a declaration or statement continues onto subsequent lines the “wrapped” portion should 
 be indented (see Wrapping Lines).
 
-#####*Blank Lines*#####
+#####4.3.3 *Blank Lines*#####
 Blank lines used within and between Methods, Properties, etc. improve readability.  They set 
 off blocks of code that are logically related.
 
@@ -293,7 +341,7 @@ One blank line should always be used between:
 * Local variables in a method and its first statement
 * Logical sections inside a method to improve readability
 
-#####*Spacing*#####
+#####4.3.4 *Spacing*#####
 The following spacing rules should be followed:
 * No space between a method name and the opening parenthesis "(".
 * No space between the parentheses for methods with no params in the signature.
@@ -404,7 +452,7 @@ Don't use:
 prevVariable#curVariable;
 ```
 
-####Wrapping Lines####
+####4.3.2 Wrapping Lines####
 When an expression will not fit on a single line, break it up according to these general 
 principles:
 
@@ -462,8 +510,8 @@ Where `'>'` are tab chars and `'.'` are spaces (the spaces after the tab char mu
 the first char of the previous line).  For this reason it may be easier to simply indent with 
 an additional tab rather than align continuations of variable lists and expressions.
 
-####Declarations####
-#####*Number of Declarations per Line*#####
+####4.3.3 Declarations####
+#####4.3.3.1  *Number of Declarations per Line*#####
 One declaration per line is recommended since it allows for commenting should the variable 
 name not suffice.  In other words,
 
@@ -480,7 +528,10 @@ int a, b; // What is 'a'? What does 'b' stand for?
 ```
 The above example also demonstrates the drawbacks of non-obvious variable names.  
 
-#####*Initialization*#####
+#####4.3.3.2	*Avoid declaring public Fields*
+Public Fields (defined in a class) should not be used.  Public Fields can be accessed by any other Class, Therefore its value can be modified at any time, without control by the Class itself. In addition, direct use of Public Fields does not let Field definition evolve without requiring updates to all Objects referencing it.  This goes against OO Encapsulation concepts.
+
+#####4.3.3.3 *Initialization*#####
 Wherever possible try to initialize local variables as soon as they are declared. 
 
 For example:
@@ -504,7 +555,7 @@ using( OpenFileDialog openFileDialog # new OpenFileDialog() )
 }
 ```
 
-#####*Class, Interface, and Method Declarations*#####
+#####4.3.3.4 *Class, Interface, and Method Declarations*#####
 * The opening brace "{" appears in the next line after the declaration statement.
 * The closing brace "}" starts a line by itself indented to match its corresponding opening 
 brace.
@@ -549,8 +600,8 @@ class BoundedCounter : CounterBase, ICounter
 ```
 For a brace placement example see the Brace Example.
 
-####Formatting Conditional/Flow Statements####
-#####*Formatting if, if-else, if else-if else Statements*#####
+####4.3.4 Formatting Conditional/Flow Statements####
+#####4.3.4.1 *Formatting if, if-else, if else-if else Statements*#####
 The if, if-else and else-if else statements should be formatted as follows:
 ```C#
 if( condition )
@@ -588,7 +639,7 @@ else
 ```
 Note: Generally use brackets even if there is only one statement in condition.
 
-#####*Formatting for / foreach Statements*#####
+#####4.3.4.2 *Formatting for / foreach Statements*#####
 A for statement should have following format:
 ```C#
 for( int loopIndex # 0; loopIndex < 5; ++ loopIndex )
@@ -610,7 +661,7 @@ foreach( int i in IntList )
 ```
 Note: Generally use brackets even if there is only one statement in the loop.
 
-#####*Formatting  while/do-while Statements*#####
+#####4.3.4.3 *Formatting  while/do-while Statements*#####
 A while statement should be written as follows:
 ```C#
 while( condition )
@@ -633,7 +684,7 @@ do
 while( condition );
 ```
 
-#####*Formatting switch Statements*#####
+#####4.3.4.4 *Formatting switch Statements*#####
 A switch statement should be of following form:
 ```C#
 switch( condition )
@@ -650,7 +701,7 @@ switch( condition )
 }
 ```
 
-#####*try-catch Statements*#####
+#####4.3.4.5 *try-catch Statements*#####
 A try-catch statement should follow this form:
 ```C#
 try
@@ -691,8 +742,8 @@ finally
 ...
 }
 ```
-####Implementing Structure Standards####
-#####*Within Visual Studio*#####
+####4.3.5 Implementing Structure Standards####
+#####4.3.5.1 *Within Visual Studio*#####
 For the most part In Visual Studio 2003 these code formatting practices must be adopted and 
 adhered to via the developer’s own diligence.
 
@@ -704,19 +755,19 @@ shots below.
 TODO:  Screen Shots to be added.
 
 
-##Best Practices##
-###Visibility###
+##5. Best Practices##
+###5.1 Visibility###
 Do not make any instance or class variable public make them private or protected.   Instead, 
 use properties if you need to expose a class variable.  You may use public static fields (or 
 const) as an exception to this rule, but it should not be the rule.
 
-###No embedded, user-facing strings.###
+###5.2 No embedded, user-facing strings.###
 No UI elements (Labels, Drop Downs, Text Boxes, Error Messages, etc.) should use text that is 
 embedded in the application.  In .Net much of this can be overcome by enabling localization, 
 and the remainder should rely on some construct that can display the appropriate text from a 
 persistent store such as the Notification layer.
 
-###No 'magic' Numbers###
+###5.3 No 'magic' Numbers###
 Don’t use magic numbers, i.e. place constant numerical values directly into the source code. 
 Replacing these later on in case of changes (say, your application can now handle 32767 users 
 instead of the 255 hard-coded into your code in 50 lines scattered throughout your 25000 LOC) 
@@ -728,8 +779,128 @@ public class MyMath
   public const double PI # 3.14159...
 }
 ```
-##Code Examples##
-###Brace Placement Example###
+
+##6. Code Level Metrics
+Code level metrics (both at method and class levels) serve to keep the characteristics of the code within certain limits in order to enhance the readability/understandability, maintainability, testability, and in certain cases, security and performance of the code.  The most commonly known metric is the Cyclomatic complexity or very roughly, the number of decision-making and/or branches in the code. High levels of complexity lead to difficulty understanding and testing code and therefore reduce the maintainability and testability of the code. The less complexity in the Java code, the less room for error, the easier it is to test and to understand and therefore maintain the code. Ensure your Java code meets the following metrics:
+<a name="Table 6"></a>
+<table>
+<caption><em>Table 8.1. Code level metrics</em></caption>
+<thead>
+<tr class="header">
+<th align="left"><p>Class Level</p></th>
+<th align="left"><p>Description and How to Calculate</p></th>
+<th align="left"><p>Recommended Threshold</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>Class</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Classes with High number of Methods</p></td>
+<td align="left"><p>Such classes are difficult to understand, maintain and test.  Count the number of methods per class and keep them below the recommended threshold. </p></td>
+<td align="left"><p>Less than 30</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Classes with High # of Constructors.</p></td>
+<td align="left"><p>Count the number of constructors per class and keep them below the recommended threshold.</p></td>
+<td align="left"><p>Less than 5</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Classes with High # of Fields</p></td>
+<td align="left"><p>Count the number of fields per class and keep them below the recommended threshold.</p></td>
+<td align="left"><p>Less than 20/p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Class Implementing Too Many Interfaces</p></td>
+<td align="left"><p>Avoid classes implementing more than the recommended threshold </p></td>
+<td align="left"><p>Less than 5</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Classes with High Coupling Between Objects</p></td>
+<td align="left"><p>The Coupling Between Object (CBO) is equal to the fan-out of a class, that is, the number of other classes that are referenced through one of its methods or one of its fields. Excessive coupling between objects is detrimental to modular design and prevents reuse. The larger the number of couples, the higher the sensitivity to changes in other parts of the design and therefore the more difficult the maintenance. High CBO numbers might indicate that a class has too many responsibilities. Such a class is potential candidate for a refactoring where the class would delegate some the responsibilities to other classes or new classes (extract class, extract method refactoring). This will increase modularity and reusability. When refactoring with architecture in mind, the CBO metric can be used to check classes running on the application client that have high coupling. These classes are then good candidate for a refactoring towards the session facade pattern.</p></td>
+<td align="left"><p>Less than 3/p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Classes with High Response</p></td>
+<td align="left"><p>High Response for a Class (RFC) is the total number of local methods and remote methods called by methods in the class. If a large number of methods can be invoked in response to a message, the testing and debugging of the class becomes more complicated since it requires a greater level of understanding required on the part of the tester. Reduce the number of local methods and remote methods called by methods in the class..
+ </p></td>
+<td align="left"><p>Less than 50</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Classes with High Weighted Methods per Class</p></td>
+<td align="left"><p>The weighted methods per class metric is defined as the sum of all the class method's cyclomatic complexity. The number of methods and complexity of methods is an indicator of how much time and effort is required to develop and maintain the object. For maintainability reasons, high weighted methods per class should not be too high. Reduce the number - by splitting the class in two or moving method to a component class - or the cyclomatic complexity of the method of the non-compliant class.</p></td>
+<td align="left"><p>Less than 100</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Classes with a High Depth of Inheritance Tree</p></td>
+<td align="left"><p>The inheritance tree should have at most X levels. Depth of Inheritance Tree (DIT) is the maximum length of a path from a class to a root class in the inheritance structure of a system. DIT measures how many super-classes can affect a class. Changing a class requires prior understanding, which, in turn, is more complicated for classes with many methods. Classes that are deep down in the class hierarchy potentially inherit many methods from super-classes. Moreover, the definitions of inherited methods are not local to the class making it even harder to understand it. Complete testing requires coverage of all execution paths. The number of possible execution paths of a class increases with the number of methods and their control flow complexity. Due to late binding, super-class methods need to be tested again in the subclass context. This makes it potentially harder to test classes deep down in the class hierarchy.</p></td>
+<td align="left"><p>Less than 10</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Classes with a High Public Data Ratio</p></td>
+<td align="left"><p>Public data ratio is the percentage of public fields among all fields. Properties are not considered as fields. Public fields are accessible by any other class, therefore their values can be modified at any time, without control by the class itself. This goes against OO encapsulation concepts. It is necessary to change the field visibility to private.</p></td>
+<td align="left"><p>Less than 85%</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Classes Dependent on their Children </p></td>
+<td align="left"><p>Do not create class structures that have circular dependencies or parents that make calls to child methods. This is a violation of OO programming guidelines as no parent class shall be dependent on its children.</p></td>
+<td align="left"><p>ZERO</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>.</p></td>
+<td align="left"><p>Less than or equal to 22</p></td>
+</tr>
+</tbody>
+</table>
+
+
+##7. Simple Coding Guidelines
+
+*	Avoid Artifacts with Too Many Parameters
+*	Avoid Artifacts with Lines Longer than 80 characters
+*	Avoid Artifacts with High Essential Complexity
+*	Avoid String Concatenation in Loops
+*	Avoid Instantiations Inside Loops
+*	User Interface Elements Must Not Use Directly the Database
+*	Avoid Namespaces with High Efferent Coupling (Ce)
+*	Avoid Namespaces with High Afferent Coupling(Ca)
+*	Call base.Dispose()or MyBase.Finalize()in the "finally" Block of Dispose(bool) Methods
+*	Dispose() Methods Should Call GC.SuppressFinalize
+*	Declare as “static” All Methods Not Using Instance Fields
+*	Provide a Private Default Constructor for Utility Classes
+*	Avoid Cyclical Calls and Inheritances Between Namespaces Content
+*	Avoid Calling Properties That Clone Values In Loops
+*	Avoid Catching an Exception of Type Exception
+*	Avoid Throwing an Exception of Type Exception
+*	Avoid Calls to AcceptChanges In a Loop
+*	Avoid Empty “finally” Blocks
+*	Avoid Empty “catch” Blocks
+*	Avoid Large Interfaces - Too Many Methods
+*	Avoid Using Untyped DataSets
+*	Avoid Unreferenced Data Members and Methods
+*	Avoid changing DataSource Member Before ValueMember/DisplayMember
+*	Disable Constraints Before Merging DataSet
+*	Avoid Doing Select on Datatable In Loops
+*	Use BeginUpdate/EndUpdate When Adding Items.Add Method In Loops
+*	Avoid Cross-site Scripting DOM Vulnerabilities(CWE-79)
+*	Avoid SQL Injection Vulnerabilities
+*	Avoid XPath, OS Commands, File Path Manipulation, and LDAP Injection Vulnerabilities
+*	The “exception” Exception Should Never Be Thrown
+*	Avoid Artifacts with High Integration Complexity
+*	Avoid Interface Implementation on Structures
+*	Avoid Unreferenced Interfaces/Classes
+*	Avoid Using Keywords as Names
+*	Avoid Using String.Empty for Empty String Tests
+*	Data Access Must be based on Stored Procedure Calls
+*	Avoid Direct Access to Database Tables
+*	No Embedded, User-facing Strings
+*	Avoid Superclass Knowing Subclass
+*	No 'magic' Numbers
+*	Use an accessor method known a getter and a setter
+
+##8. Code Examples##
+###8.1 Brace Placement Example###
 ```C#
 namespace ShowMeTheBracket
 {
@@ -777,7 +948,7 @@ Brackets should begin on a new line after:
 * Looping statements with multiple subordinate statements.
 * Conditional statements with multiple subordinate statements.
 
-###Variable Naming Example###
+###6.2 Variable Naming Example###
 
 Instead of:
 ```C#
@@ -837,8 +1008,17 @@ Note: Indexer variables are generally named i,j,k, etc.  But in cases like this,
 sense to reconsider this rule.  In general, when the same counters or indexers are reused or 
 can provide insight into the functionality, give them meaningful names.
 
-##Embedded Comments and Documentation##
-###Block Comments###
+##9. Embedded Comments and Documentation##
+
+###9.1	Avoid Methods with a Very Low Comments/Code Ratio
+Add comments into method implementation to explain their goal and how they work.  Methods should have at least a ratio comment/code > 5%.
+###9.2	Avoid Classes with a Very Low Comment/Code Ratio
+Add comments into class definition to explain their goal and how they work. Classes should have at least a ratio comment/code > 5%.
+
+###9.3	Avoid Interfaces with a Very Low Comment/Code Ratio
+Interfaces must be documented. Documenting interfaces is extremely important as the interfaces define a contract that will be implemented and used by others. Interfaces should have at least a ratio comment/code > 5%.
+
+###9.4 Block Comments###
 Block comments should not be used above Constructors, Methods, and Properties.  Instead use 
 the `///` XML comments discussed in a later section to give C # standard descriptions.  For the 
 most part, appropriately named classes, methods, properties, and variables should make the 
@@ -859,7 +1039,7 @@ the comment block off from code for the (human) reader.   Comment blocks are als
 being deprecated should not be “commented out” and left in the source files.  Instead, rely 
 on the source repository to retain historical functionality.
 
-###Single-Line Comments###
+###7.5 Single-Line Comments###
 Single-line `//` comments should be used where subtle clarification is needed.  A rule of thumb 
 is that the length of a comment should not exceed the length of the code being explained; 
 and, with the exception of complex algorithms/business rules, the need for long comments is 
@@ -872,7 +1052,7 @@ the same level as the code they are clarifying.  When using single-line comments
 out" code, place the `//` comment marks at the beginning of the line to enhance the visibility 
 of commented out code.  
 
-###XML Documentation Overview###
+###9.6 XML Documentation Overview###
 In the .NET framework, Microsoft has introduced a documentation generation system based on 
 XML comments. These comments are formally single line C# comments containing XML tags. They 
 follow this pattern for single line comments:
@@ -906,7 +1086,7 @@ The latter category governs the layout of the documentation, using tags such as 
 For a more complete explanation of XML comments see the Microsoft .NET framework SDK 
 documentation.
 
-####XML Documentation Tag Usage####
+####9.6.1 XML Documentation Tag Usage####
 For all classes, types, enums, and class members, a `<summary>` tag must be used, regardless of whether they are public, protected, or private.  This can be simply done by positioning the cursor on an empty line above the statement you wish to comment and typing ‘`///`’.  The VS .NET editor will automatically turn this into a correctly structured `<summary>` block, and will add `<param>` tags also if the statement is a method and has parameters.
 
 The `<remarks>` tag should be used in addition to the `<summary>` tag for any code that does not allow for brief description.  This can be combined with the `<example>` tag to demonstrate usage if helpful.
@@ -921,8 +1101,8 @@ Once XML documentation has been created, it is only truly useful if transforms a
 
 More information on XML Documentation Tags can be found in [Appendix A] (https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md#appendix-a---xml-documentation-tags).
 
-####Implementing XML Documentation####
-#####*Within Visual Studio*#####
+####9.6.2 Implementing XML Documentation####
+#####9.6.2.1 *Within Visual Studio*#####
 In Visual Studio 2003 consider using the latest 2003 compatible GhostDoc Add-In (1.3.0 as of this writing).
 
 In Visual Studio 2005 consider using the latest 2005 compatible GhostDoc Add-In (1.9.2 as of this writing).
