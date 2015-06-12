@@ -883,23 +883,20 @@ Code level metrics (both at method and class levels) serve to keep the character
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="Center"><p>Class</p></td>
-</tr>
 <tr class="even">
 <td align="left"><p>Classes with High number of Methods</p></td>
 <td align="left"><p>Such classes are difficult to understand, maintain and test.  Count the number of methods per class and keep them below the recommended threshold. </p></td>
 <td align="left"><p>Less than 30</p></td>
 </tr>
 <tr class="odd">
-<td align="left"><p>Classes with High # of Constructors.</p></td>
+<td align="left"><p>Classes with High # of Constructors</p></td>
 <td align="left"><p>Count the number of constructors per class and keep them below the recommended threshold.</p></td>
 <td align="left"><p>Less than 5</p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>Classes with High # of Fields</p></td>
 <td align="left"><p>Count the number of fields per class and keep them below the recommended threshold.</p></td>
-<td align="left"><p>Less than 20/p></td>
+<td align="left"><p>Less than 20</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>Class Implementing Too Many Interfaces</p></td>
@@ -909,7 +906,7 @@ Code level metrics (both at method and class levels) serve to keep the character
 <tr class="even">
 <td align="left"><p>Classes with High Coupling Between Objects</p></td>
 <td align="left"><p>The Coupling Between Object (CBO) is equal to the fan-out of a class, that is, the number of other classes that are referenced through one of its methods or one of its fields. Excessive coupling between objects is detrimental to modular design and prevents reuse. The larger the number of couples, the higher the sensitivity to changes in other parts of the design and therefore the more difficult the maintenance. High CBO numbers might indicate that a class has too many responsibilities. Such a class is potential candidate for a refactoring where the class would delegate some the responsibilities to other classes or new classes (extract class, extract method refactoring). This will increase modularity and reusability. When refactoring with architecture in mind, the CBO metric can be used to check classes running on the application client that have high coupling. These classes are then good candidate for a refactoring towards the session facade pattern.</p></td>
-<td align="left"><p>Less than 3/p></td>
+<td align="left"><p>Less than 3</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>Classes with High Response</p></td>
@@ -952,18 +949,30 @@ Code level metrics (both at method and class levels) serve to keep the character
 <td align="left"><p>Lack of cohesion implies classes should probably be split into two or more sub/classes. Cohesiveness of methods within a class is desirable, since it promotes encapsulation. Low cohesion increases complexity, thereby increasing the likelihood of errors during the development process. Avoid classes with a high lack of cohesion in methods.</p></td>
 <td align="left"><p>Less than 95%</p></td>
 </tr>
-<tr class="even">
+<thead>
+<tr class="header">
+<th align="left"><p>Method Level</p></th>
+<th align="left"><p>Description and How to Calculate</p></th>
+<th align="left"><p>Recommended Threshold</p></th>
+</tr>
+</thead>
+<tr class="odd">
 <td align="left"><p>Cyclomatic Complexity </p></td>
 <td align="left"><p>Cyclomatic complexity is a measure of the complexity of the control structure of an artifact. It is the number of linearly independent paths and therefore, the minimum number of independent paths when executing the software. It can make a piece of code harder to understand, maintain and test. In addition high levels of cyclomatic complexity can introduce security risks as hard-to-understand code may perform undesirable actions. The effort and time for diagnosis of deficiencies or causes of failures, or for identification of parts to be modified is directly related to the number of execution paths, i.e., the complexity of the control flow. Analyzability declines with increasing cyclomatic complexity.  Cyclomatic complexity computes the number of the linearly independent paths, a lower bound of all execution paths ignoring multiple iterations. Changeability declines with increasing cyclomatic complexity. Complete testing requires coverage of all execution paths. Review the design of the artifact to reduce number of independent paths, i.e., reduce the number of conditional statements.</p></td>
 <td align="left"><p>Less than or equal to 20</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><p>Methods with Too Many Lines of Code</p></td>
 <td align="left"><p></p>Large methods are more difficult to understand, and are a sign of a bad modularity of the code.</td>
-<td align="left"><p>ZERO</p>Less than 50</td>
+<td align="left"><p>Less than 50</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>Design Complexity </p></td>
+<td align="left"><p></p>The number of all decisions and loops that contain calls to subordinate modules. This complexity measure evaluates the dependence of a method on other methods and as such is a measure of how encapsulation and modularity (independence) guidelines have been followed.</td>
+<td align="left"><p>Less than or equal to 7</p></td>
 </tr>
 <tr class="even">
-<td align="left"><p>Design Complexity  </p></td>
+<td align="left"><p>Avoid Large Number of String Concatenation </p></td>
 <td align="left"><p>String concatenation resolved at runtime is much slower than using the StringBuilder class. Use the StringBuilder class and StringBuilder.Append() method instead.</p></td>
 <td align="left"><p>Less than 10</p></td>
 </tr>
@@ -1036,9 +1045,7 @@ Code level metrics (both at method and class levels) serve to keep the character
 *	Avoid Using String.Empty for Empty String Tests
 *	Data Access Must be based on Stored Procedure Calls
 *	Avoid Direct Access to Database Tables
-*	No Embedded, User-facing Strings
 *	Avoid Superclass Knowing Subclass
-*	No 'magic' Numbers
 *	Use an accessor method known a getter and a setter
 
 ##[Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md#contents)
