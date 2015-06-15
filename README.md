@@ -30,6 +30,10 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division Object Definition and Naming Standard](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object Definition and Naming Standard.md)
 
+
+## CAST rules and metrics
+[JEE rules](https://github.com/CA-CST-SII/Software-Standards/blob/master/CAST%20Rules/JEE%20Health%20Factors%20and%20Metrics/index.htm)
+
 ## Draft standards
 
 [Draft Word Version Standards Docoments](https://github.com/CA-CST-SII/Software-Standards/tree/master/Draft%20Standard)
