@@ -32,7 +32,7 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 
 ## CAST rules and metrics
-[JEE rules](http://htmlpreview.github.com/?https://github.com/CA-CST-SII/Software-Standards/blob/master/CAST%20Rules/JEE%20Health%20Factors%20and%20Metrics/index.htm)
+[JEE rules](http://htmlpreview.github.com/?https://github.com/CA-CST-SII/Software-Standards/blob/master/CAST%20Rules/navTree.generated.html)
 
 ## Draft standards
 
