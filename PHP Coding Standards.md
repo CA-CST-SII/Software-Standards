@@ -1,3 +1,29 @@
+
+## Table Of Contents
+
+[1. Overview](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#1-overview)
+
+[2. Files](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#2-files)
+
+&nbsp;&nbsp;[2.1. PHP Tags](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#21-php-tags)
+
+&nbsp;&nbsp;[2.2. Character Encoding](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#22-character-encoding)
+
+&nbsp;&nbsp;[2.3. Side Effects](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#23-side-effects)
+
+[3. Namespace and Class Names](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#3-namespace-and-class-names)
+
+[4. Class Constants, Properties, and Methods](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#4-class-constants-properties-and-methods)
+
+&nbsp;&nbsp;[4.1. Constants](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#41-constants)
+
+&nbsp;&nbsp;[4.2. Properties](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#42-properties)
+
+&nbsp;&nbsp;[4.3. Methods](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#43-methods)
+
+[5. Further reading](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#5-further-reading)
+
+ 
 Basic Coding Standard
 =====================
 
@@ -12,6 +38,8 @@ interpreted as described in [RFC 2119].
 [PSR-0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
 [PSR-4]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md
 
+
+#### [Table Of Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#table-of-contents)
 
 1. Overview
 -----------
@@ -33,6 +61,8 @@ interpreted as described in [RFC 2119].
 - Method names MUST be declared in `camelCase`.
 
 
+#### [Table Of Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#table-of-contents)
+
 2. Files
 --------
 
@@ -41,9 +71,13 @@ interpreted as described in [RFC 2119].
 PHP code MUST use the long `<?php ?>` tags or the short-echo `<?= ?>` tags; it
 MUST NOT use the other tag variations.
 
+#### [Table Of Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#table-of-contents)
+
 ### 2.2. Character Encoding
 
 PHP code MUST use only UTF-8 without BOM.
+
+#### [Table Of Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#table-of-contents)
 
 ### 2.3. Side Effects
 
@@ -101,6 +135,8 @@ if (! function_exists('bar')) {
 }
 ```
 
+#### [Table Of Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#table-of-contents)
+
 
 3. Namespace and Class Names
 ----------------------------
@@ -137,6 +173,8 @@ class Vendor_Model_Foo
 }
 ```
 
+#### [Table Of Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#table-of-contents)
+
 4. Class Constants, Properties, and Methods
 -------------------------------------------
 
@@ -158,6 +196,8 @@ class Foo
 }
 ```
 
+#### [Table Of Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#table-of-contents)
+
 ### 4.2. Properties
 
 This guide intentionally avoids any recommendation regarding the use of
@@ -167,9 +207,13 @@ Whatever naming convention is used SHOULD be applied consistently within a
 reasonable scope. That scope may be vendor-level, package-level, class-level,
 or method-level.
 
+#### [Table Of Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#table-of-contents)
+
 ### 4.3. Methods
 
 Method names MUST be declared in `camelCase()`.
+
+#### [Table Of Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#table-of-contents)
 
 5. Further reading
 ------------------
@@ -181,3 +225,5 @@ The Fig can be found at:
 
 https://github.com/php-fig/fig-standards
 
+
+#### [Table Of Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/PHP%20Coding%20Standards.md#table-of-contents)
