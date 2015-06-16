@@ -171,7 +171,7 @@ The following sources were used in creation of the original version of this stan
 
 #### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/CSS_Standards.md#table-of-contents)
 
-##3. Structure```#```
+##3. Structure
 There are plenty of different methods for structuring a stylesheet. With the CSS in core, it is important to retain a high degree of legibility. This enables subsequent contributors to have a clear understanding of the flow of the document.
 * Use tabs, not spaces, to indent each property.
 * Add two blank lines between sections and one blank line between blocks in a section.
@@ -1034,5 +1034,6 @@ An example of various conventions.
 }
 ``` 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/CSS_Standards.md#table-of-contents)
 
 
