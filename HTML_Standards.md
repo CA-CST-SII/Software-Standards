@@ -431,5 +431,3 @@ Use double ```("")``` rather than single quotation marks ```('')``` around attri
 <!-- Recommended --> <a class="maia-button maia-button-secondary">Sign in</a>
 `
 
-#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/HTML_Standards.md#table-of-contents)
-
