@@ -101,6 +101,154 @@ Data Management (IRM/OPS/SIO/APD/DM) SA-9, Room: NE 7046
 Washington, DC 20006
 
 
+## Table of Contents
+[1. Introduction](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#1-introduction)
+
+&nbsp;&nbsp;[1.1 Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#11-purpose)
+
+&nbsp;&nbsp;[1.2 Scope](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#12-scope)
+
+&nbsp;&nbsp;[1.3 Naming Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#13-naming-conventions)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[1.3.1       Naming Format Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#131-------naming-format-statements)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[1.3.2       Naming Format Glossary](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#132-------naming-format-glossary)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[1.3.3       Requirement Level Key Words](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#133-------requirement-level-key-words)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[1.3.4       Standard Business Terms and Abbreviations](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#134-------standard-business-terms-and-abbreviations)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[1.3.5       Business Name vs. Abbreviated Name vs. Synonym Name](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#135-------business-name-vs-abbreviated-name-vs-synonym-name)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[1.3.6 General principles and Naming Rules](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#136-general-principles-and-naming-rules)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[1.3.7       Language Specific Exceptions](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#137-------language-specific-exceptions)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[1.3.8       Invalid Name Components](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#138-------invalid-name-components)
+
+&nbsp;&nbsp;[1.4   Standard Data Elements and the Enterprise Conceptual Data Model](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#14---standard-data-elements-and-the-enterprise-conceptual-data-model)
+
+[2. Entities](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#2-entities)
+
+&nbsp;&nbsp;[2.1    Entity Types](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#21----entity-types)
+
+&nbsp;&nbsp;[2.2 Describing Entities](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#22-describing-entities)
+
+&nbsp;&nbsp;[2.3 Naming Entities](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#23-naming-entities)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3.1	Entity Name Formats](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#231--------entity-name-formats)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3.2       Prime Terms/Object Class Terms](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#232-------prime-termsobject-class-terms)
+
+&nbsp;&nbsp;[2.4 Entity Metadata Properties](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#24-entity-metadata-properties)
+
+[3. Attributes](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#3-attributes)
+
+&nbsp;&nbsp;[3.1 Describing Attributes](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#31-describing-attributes)
+
+&nbsp;&nbsp;[3.2	Naming Attributes](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#32--------naming-attributes)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[3.2.1 Attribute Name Format](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#321-attribute-name-format)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[3.2.2       Class Words/Representation Terms](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#322-------class-wordsrepresentation-terms)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[3.2.3 Migrated Foreign Key Attributes](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#323-migrated-foreign-key-attributes)
+
+&nbsp;&nbsp;[3.3 Attribute Metadata Properties](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#33-attribute-metadata-properties)
+
+[4. Relationships](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#4-relationships)
+
+&nbsp;&nbsp;[4.1 Naming Relationships](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#41-naming-relationships)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[4.1.1       Relationship Name Format](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#411-------relationship-name-format)
+
+&nbsp;&nbsp;[4.2 Describing Relationships](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#42-describing-relationships)
+
+&nbsp;&nbsp;[4.3 Foreign Key Constraint on Relationship](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#43-foreign-key-constraint-on-relationship)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[4.3.1       Foreign Key Constraints Name Format:](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#431-------foreign-key-constraints-name-format)
+
+[5. Tables](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#5-tables)
+
+&nbsp;&nbsp;[5.1 Naming Tables](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#51-naming-tables)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[5.1.1 Name Format](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#51-naming-tables)
+
+&nbsp;&nbsp;[5.2 Describing Tables](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#52-describing-tables)
+
+&nbsp;&nbsp;[5.3 Table Metadata Properties](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#53-table-metadata-properties)
+
+[6. Columns](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#6-columns)\\
+
+&nbsp;&nbsp;[6.1 Naming Columns](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#61-naming-columns)
+
+&nbsp;&nbsp;[6.1.1Name Format](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#611name-format)
+
+&nbsp;&nbsp;[6.2 Describing Columns](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#62-describing-columns)
+
+&nbsp;&nbsp;[6.3 Column Metadata Properties](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#63-column-metadata-properties)
+
+[7. Views](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#7-views)
+
+&nbsp;&nbsp;[7.1 Describing Views](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#71-describing-views)
+
+&nbsp;&nbsp;[7.2 Naming Views](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#72-naming-views)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[7.2.1       View Name Format](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#721-------view-name-format)
+
+&nbsp;&nbsp;[7.3 View Metadata Properties](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#73-view-metadata-properties)
+
+[8. Indexes](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#8-indexes)
+
+&nbsp;&nbsp;[8.1 Index Types](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#81-index-types)
+
+&nbsp;&nbsp;[8.2 Naming Indexes](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#82-naming-indexes)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[8.2.1       Index Name Formats](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#821-------index-name-formats)
+
+&nbsp;&nbsp;[8.3 Index Metadata Properties](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#83-index-metadata-properties)
+
+[9. Triggers](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#9-triggers)
+
+&nbsp;&nbsp;[9.1 Naming Triggers](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#91-naming-triggers)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[9.1.1       Formatting Triggers](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#911-------formatting-triggers)
+
+&nbsp;&nbsp;[9.2 Trigger Metadata](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#92-trigger-metadata)
+
+[10. Constraints](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#10-constraints)
+
+&nbsp;&nbsp;[10.1 Type of Constraints](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#101-type-of-constraints)
+
+&nbsp;&nbsp;[10.2 Naming Constraints](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#102-naming-constraints)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[10.2.1      Constraints Name Formats](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#1021------constraints-name-formats)
+
+&nbsp;&nbsp;[10.3 Constraint Metadata Properties](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#103-constraint-metadata-properties)
+
+[11. Stored Procedure](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#11-stored-procedure)
+
+&nbsp;&nbsp;[11.2 Naming Stored Procedure](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#112-naming-stored-procedure)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[11.2.1      Stored Procedure Name Formats](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#1121------stored-procedure-name-formats)
+
+&nbsp;&nbsp;[11.3 Stored Procedure Metadata Properties] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#113-stored-procedure-metadata-properties)
+
+[12. Acronyms and Abbreviations](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#12-acronyms-and-abbreviations)
+
+&nbsp;&nbsp;[12.1 Creating Abbreviations](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#121-creating-abbreviations)
+
+&nbsp;&nbsp;[12.2 Creating Acronyms](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#122-creating-acronyms)
+
+&nbsp;&nbsp;[12.3 Candidate Term Submittals](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#123-candidate-term-submittals)
+
+[Appendix A:  Invalid Entity and Attribute Name Components](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#appendix-a--invalid-entity-and-attribute-name-components)
+
+[Appendix C:  Document Revision](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#appendix-c--document-revision)
+
+
+
+
 
 
 # 1. Introduction
@@ -133,12 +281,16 @@ The intended audience for this document includes:
 Department legacy systems will not be required to change implemented names to make those systems adhere to this standard. Data Management will support and maintain an Enterprise Metadata Repository (EMR) which will store metadata about the Department's data resources. The EMR will provide a means to relate data resources from various structural platforms across the Department. The data structures contained in legacy databases will be populated in the EMR through the use of scanning tools that are part of the repository software. The names in legacy systems will be mapped to the Standard Data Elements (SDEs) that adhere to naming conventions outlined in this document. New systems will be developed in accordance with the naming standards outlined in this document which will facilitate re-use and integration.
 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 
 
 
 ## 1.1 Purpose
 
 The purpose of this document is to provide users with a benchmark for defining objects and for creating standard object names and relate it to its business purpose.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 1.2 Scope
 
@@ -174,6 +326,10 @@ This standard provides the basis for defining and naming the following data obje
 | Constraints | Restrictions on the contents of the database or on database operations |
 | Stored Procedure | A named program or routine stored in a database |
 |
+
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ## 1.3 Naming Conventions
 
 Several conventions for defining and naming objects are followed in this manual. This section describes those conventions.
@@ -185,6 +341,8 @@ Each data object type has a naming standard defined in a format statement. The f
  &nbsp;&nbsp;&nbsp;&nbsp;The greater than and less than symbols "< >" enclose each name component. <br>
  &nbsp;&nbsp;&nbsp;&nbsp;The square bracket symbols "[]" enclose optional name components. <br>
  &nbsp;&nbsp;&nbsp;&nbsp;The term "(space)" represents a space character to be used between components. <br>
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ### 1.3.2       Naming Format Glossary
 
@@ -204,6 +362,8 @@ The following name components are used in the naming format statements:
 | Role Name | A noun or noun phrase that describes the function of a foreign key |
 | Sequence | A numeric component of a name that differentiates an object from another that would be identically named without it. |
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 1.3.3       Requirement Level Key Words
 
 The standards in this document use key words to reflect varying levels of adherence that are required. When encountered in the standard, they will be capitalized and bolded. The table below defines the requirement level key words and their meaning.
@@ -216,11 +376,15 @@ The standards in this document use key words to reflect varying levels of adhere
 | SHOULD NOT | NOT RECOMMENDED | There may be valid reasons to ignore a particular item or behavior, but the full implications must be understood and carefully weighed before choosing a different course. |
 | MAY | OPTIONAL | An item is truly optional. |
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 1.3.4       Standard Business Terms and Abbreviations
 
 For the development of new systems and databases, all _prime terms, object class terms, property terms, modifiers, qualifier terms_ and _representation terms_ MUST be derived from theDepartment's repository of standard business terms wherever possible. If a desired term is not present, it MUST be registered in the Enterprise Metadata Repository (EMR) and made available for re-use. Legacy systems that are in use in the Department will go through a procedure of registration of data elements. The legacy systems metadata will be scanned into the EMR and mapped to existing Standard Data Element (SDE) names, as applicable. Candidate standard data element names will be proposed where SDEs have not already been identified. The candidate elements will be created in accordance with DM's standard naming convention, and be prepared to be approved by the Enterprise Data Administrative Group (E-DAWG) to become SDEs.
 
 Candidate standard business terms may be submitted via e-mail to Data Management at [DataMgmtSupport@state.gov](mailto:DataMgmtSupport@state.gov) by sending a request citing the business term, a definition, and proposed abbreviation.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ### 1.3.5       Business Name vs. Abbreviated Name vs. Synonym Name
 
@@ -260,6 +424,8 @@ In data models and databases, the _Business Names, Abbreviated Names,_ and _Syno
 | Purpose | MAY be used | May be used | MUST NOT be used |
 | View | SHOULD be used | MAY be used | MAY be used |
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 1.3.6 General principles and Naming Rules
 
 General Principles:
@@ -293,9 +459,13 @@ Naming Guidelines Physical Data Model:
   - The terms used in names SHOULD be plural nouns and MUST NOT be verbs (except in _Relationships_). 
   - Possessive MUST not be used in names 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 1.3.7       Language Specific Exceptions
 
 This standard has been developed to accommodate most popular Relational Database Management Systems (RDBMS) in use at the Department. It is understood, however, that physical database limitations may require shorter names than what would typically be derived using this standard.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ### 1.3.8       Invalid Name Components
 
@@ -303,15 +473,21 @@ Synonyms are not to be used in place of a business term already in use to descri
 
  Appendix A. provides a list of invalid and reserved name components, which are not to be used in formulating names.
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ## 1.4   Standard Data Elements and the Enterprise Conceptual Data Model
 
 Standard Data Elements (SDEs) are data attributes that have been standardized for usage across the Department. As such, the naming conventions for SDEs are the same as those outlined in this document.
 
 The Enterprise Conceptual Data Model (ECDM) provides a specification of the key data entities that support Department of State's (DOS) business process. The purpose of the Enterprise Conceptual Data Model (ECDM) is to provide a conceptual view the key data entities and their relationships that support DOS's mission. DOS requires such a model in order to provide an organizing framework for further enterprise data architecture efforts. The ECDM acts as a high-level taxonomy organizing all of DOS's data assets into groups and rules. This high-level presentation will allow DOS management and stakeholders to effectively understand the current state of the data architecture and to plan for a future state data architecture that will enhance DOS.  It is composed of entities, relationships, general definitions and attributes. The ECDM defines the major data domains of information maintained to conduct Department business and consists of business objects (Entities) in the Department. These entities represent the highest-level view, the most essential data categories that define the boundaries and the nature of the Department's business and distinguish it fromany other government enterprise. ECDM is currently a work in progress model detail is being added by analysis and discussion that identify additional data requirements. Entities are added, and as facts are identified for each Entity, they become attributes of that Entity. These attributes can become _Candidate Standard Data Elements_ and ultimately be approved as _Standard Data Elements_.  For more information on SDEs and the Enterprise conceptual data Model contact Data Management at [DataMgmtSupport@state.gov](mailto:DataMgmtSupport@state.gov).
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 # 2. Entities
 
 An _Entity_ is a set of real or abstract things (a person, place, thing, resource, concept, or event) that have common _Attributes_ or characteristics about which a business retains information. In data modeling, it is a logical object whose physical counterpart is usually a _Table_.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 2.1    Entity Types
 
@@ -330,6 +506,8 @@ There are five types of entities.
 **Supertype** – An Entity that represents a general class of business objects that may be broken down into a hierarchy of more specific classes. A _Supertype Entity_'s attributes apply to all of its _Subtype Entities_, and the _Subtypes_ inherit its identifier. It is also known as a Generic entity.
 
 **Subtype** – An Entity that identifies or represents an occurrence of another Entity with the same Primary Key but has a narrower definition, a subset of different Attributes, and/or different relationships. It inherits all the attributes of the _Supertype Entity_. It is also known as a _Category Entity._
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 2.2 Describing Entities
 
@@ -378,6 +556,9 @@ The following rules apply when describing an _Entity_ of any type (_Fundamental,
   - Complete and accurate, fully reflecting the meaning of the Entity. 
   - Written in active voice, where possible. 
   
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ## 2.3 Naming Entities
 
 Legacy systems in use in the Department are not required to change existing entity names to adhere to this standard. Those entities will be mapped to standard names where possible.
@@ -403,6 +584,8 @@ A _Synonym Name_ MUST be defined for use as the _prime term/object class term_ i
 
 Candidate _Synonym Names_ may be submitted via e-mail to Data Management at [DataMgmtSupport@state.gov](mailto:DataMgmtSupport@state.gov)  by sending a request citing the prime term/object class term and the proposed synonym.
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 2.3.1        Entity Name Formats
 
 All Entities MUST be named according to one of the formats described below:
@@ -415,9 +598,13 @@ All Entities MUST be named according to one of the formats described below:
 | Subtype entities MAY use the formats | &lt;parent entity name> (space) &lt;modifier(s)>&lt;modifier(s)> (space) &lt;parent entity name> e.g. HUMAN RESOURCES PERSONAL  ACCOUNT TYPE DATA |
 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 2.3.2       Prime Terms/Object Class Terms
 
 An _Entity's Business Name_ is also known as _a prime term_ or _object class term_, which may be composed of more than one word. The designation of a prime term/object class term is critical to the successful implementation of establishing standard data elements. _Prime terms_ reflect the subject area information used by various business areas in the Department. They are also a key component of _Attribute_ names. For _Attribute Abbreviated Names_, the prime term/object class term may be expressed as the _Synonym Name_ instead of the _Entity Abbreviated Name_ to satisfy the 30 characters or less length requirement.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 2.4 Entity Metadata Properties
 
@@ -434,10 +621,14 @@ The metadata properties listed in the following table are to be used to fully do
 | Non-Key Attributes | Identifies all attributes in the entity that are not part of the primary key. |
 | _Synonym_ Name | Typically an acronym formed by the first letter or letters of the business terms in a Business Name. The Synonym Name is typically 8 characters or less and is used specifically in the Abbreviated Names of Attributes and Columns |
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 
 # 3. Attributes
 
 An _Attribute_ is an item of data, a fact or piece of information about an _Entity_. An _Attribute_ represents a characteristic or descriptive property of an _Entity_. In data modeling, it is a logical object whose physical counterpart is a _Column._
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 
 ## 3.1 Describing Attributes
@@ -488,6 +679,8 @@ The following rules apply when describing an _Attribute_:
 
 - The description MUST NOT include an example. Examples of an _Attribute's_ domain values MAY be written as a separate business rule. 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ## 3.2        Naming Attributes
 
 Legacy systems in use in the Department are _not_ required to change existing attribute names to adhere to this standard. Those attributes will be mapped to standard data element names where possible.
@@ -503,6 +696,8 @@ The following general standards apply in creating an _Attribute Business Name_:
 - Possessive nouns and proper nouns MUST NOT be used in the name
 - Underscore MUST NOT be used in names
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 3.2.1 Attribute Name Format
 
 _Attribute Names_ MUST use the format:
@@ -514,6 +709,8 @@ _Attribute Names_ MUST use the format:
 _In ISO/IEC 11179 terminology:_
 
    &lt;object class term> (space) [ &lt;qualifier term> (space)]  &lt;property term> (space)  &lt;representation term>
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ### 3.2.2       Class Words/Representation Terms
 
@@ -561,6 +758,8 @@ For each class word, an _Attribute_'s description SHOULD begin as follows:
 | TIME | The time at which… |
 | VIDEO | The video that… |
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 3.2.3 Migrated Foreign Key Attributes
 
 Attributes that exist because of a relationship to another Entity, relationship between the same Entity, multiple relationships with the same entity, or from a Categorization/Supertype Entity have additional rules that must also be followed. These rules impact which object class term/prime term is used in naming the Attribute:
@@ -578,6 +777,8 @@ Migrated foreign key attribute names are illustrated in  Figure 2. Migrated Fore
 Role Names by which migrated foreign keys are illustrated in Figure 3 (Role Names on Migrated Foreign Keys), where RELATED is the role given to the migrated foreign key PERSON IDENTIFIER. In the second example PARENT is the role given to attribute migrated through the recursive relationship of ORGANIZATION with itself
 
 ![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object-Definition-and-Naming-Standard-Fig_3)
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 3.3 Attribute Metadata Properties
 
@@ -611,6 +812,8 @@ The metadata properties listed in the following _Table_ are necessary to fully d
 
 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 
 
 # 4. Relationships
@@ -618,6 +821,8 @@ The metadata properties listed in the following _Table_ are necessary to fully d
 
 
 A _Relationship_ is an association between two or more _Entities_ (a non-recursive relationship) or between occurrences of the same _Entity_ (a recursive relationship) that represents a business rule. _Relationships_ are used in Entity Relationship Diagrams (ERDs) to convey information as to how _Entities_ correspond to one another. In data modeling, it is a logical object whose physicalcounterpart is a _Foreign Key Constraint_.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 4.1 Naming Relationships
 
@@ -642,11 +847,15 @@ The following rules apply when determining a _Relationship Business Name_:
   - Verbs occurring in a _Relationship_ name MUST be singular unless the sense requires the plural. 
   - _Abbreviations_ and _Acronyms_ MUST NOT be used in _Relationship_ names.
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 4.1.1       Relationship Name Format
 
 _Relationships_ MUST use the following format:
 
 &lt;(parent)  entity  name>  (space)  &lt;active  voice  verb  phrase>  (space) &lt;(child)  entity  name>
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 4.2 Describing Relationships
 
@@ -669,9 +878,13 @@ The two _Entities_, together with the nature of the _Relationship_ between two _
 
 **The cardinality between the entities**  , _Relationship_ cardinality indicates how many of one_Entity_ is related to how many of another_ Entity_.  _Relationships_ between two _Entities_ maybe one-to-one (1:1), one-to-many (1: M), or many-to-many (M: M). the modeler should be wary of including 1:1 _Relationships_ in a finished data model. A 1:1 _Relationship_ normally indicates that two _Entities_ can be combined into one _Entity_. An M: M _Relationship_ MUST be represented by two 1: M _Relationships_ and an _Associative Entity_.  When recording the _Relationship Name_, optionality and cardinality, enough information is usually conveyed so that _Relationship_ descriptions are not required.
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ## 4.3 Foreign Key Constraint on Relationship
 
 In some Relational Database Management Systems (RDBMS), _Foreign Key Constraints_ may be used to physically enforce a business rule defined by a _Relationship_. The _Foreign Key_ constraint name in the physical data model does not affect the verb phrase on the _Relationship_ in the logical data model.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ### 4.3.1       Foreign Key Constraints Name Format:
 
@@ -686,12 +899,16 @@ The _purpose, role name or sequence_ is typically only used when more than one c
 
 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 
 # 5. Tables
 
 
 
 A _Table_ is the physical manifestation of an _Entity_, containing rows and columns wherein data may be stored and retrieved and represents a person, place, thing, resource, concept, or event about which a business retains information. These rules also apply for the representation of a _Table_ in a physical data model. _Tables _follow the naming rules of their corresponding _Entities_, but with spaces replaced by underscores. See Section 2 of this document for a complete list of rules for describing and naming Tables, as well as their appropriate metadata properties.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 5.1 Naming Tables
 
@@ -706,6 +923,8 @@ Exceptions:
   - schema model:
   "DIM" for dimension and "FACT" for fact.
 - Underscore MUST be used in place of space 
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ### 5.1.1 Name Format:
 
@@ -728,10 +947,14 @@ The metadata properties used to fully document a _Table_ are the same as those f
 
 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 
 # 6. Columns
 
 A _Column_ is a vertical segment in a _Table_ and the physical manifestation of an _Attribute_. These rules also apply for the representation of a _Column_ in a physical data model. See Section 2 of this document for a complete list of rules for describing and naming Columns, as well as their appropriate metadata properties.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 6.1 Naming Columns
 
@@ -743,6 +966,8 @@ _Columns_ MUST be named in the same way as their corresponding _Attributes_. Whe
 - Columns MUST be  named with a class word, or it's abbreviation
 - Acronyms and abbreviation from glossary of standard term MUST BE used if exist
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 6.1.1Name Format:
 
 [&lt;modifier(s)> (\_)] &lt;noun>[&lt;qualifier term> (\_)] &lt;object class term> <br> e.g..: long\_term\_plan\_dsc
@@ -751,15 +976,21 @@ _Columns_ MUST be named in the same way as their corresponding _Attributes_. Whe
 
 _Columns_ MUST be described in the same fashion as_ Attributes_.
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ## 6.3 Column Metadata Properties
 
 The metadata properties used to fully document a _Column_ are the same as those for an _Attribute_.
 
 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 # 7. Views
 
 A _View_ is a specific physical data object that provides access to all or a portion of one or more _Tables_. In the case of multiple _Tables in a _View_, the _Tables_ must be capable of being joined. Aprinciple reason for creating a _View_ is to give a user somewhat limited access to the columns in the _View's_ tables. See Section 2 of this document for a complete list of rules for describing and naming _Views_, as well as their appropriate metadata properties.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 7.1 Describing Views
 
@@ -773,6 +1004,8 @@ _Exception:_
 
 - View name MUST have a prefix "VW_"
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 7.2.1       View Name Format
 
 
@@ -780,6 +1013,8 @@ _View Names_ SHOULD use the format:
 
 [&lt;Prime Term> (space)] &lt;modifier(s)>[&lt;qualifier term> (space)] &lt;object class term> <br>  e.g.: VW\__HR\_ PERSONAL DATA_
 
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 7.3 View Metadata Properties
 
@@ -794,11 +1029,15 @@ The metadata properties listed in the following table are to be used to fully do
 | Columns | The columns included in the _View._ |
 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 
 
 #8. Indexes
 
 An _Index_ is a set of ordered pointers to data contained in a _Table_, and it can be created with one or more columns contained in the _Table_. Three _Indexes_ will be defined in this section: _Primary Key Index, Foreign Key Index, and Alternate Key Index_.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 8.1 Index Types
 
@@ -807,10 +1046,14 @@ An _Index_ is a set of ordered pointers to data contained in a _Table_, and it c
 **Foreign Key Index** – An index placed on the column or columns that represent a foreign key constraint to another table.<br>
 **Non-key Index** – An index placed on a column that does not represent a key of any of the types described above.
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ## 8.2 Naming Indexes
 
 - Index MUST be named according to their function and Table Name
 - The Index MUST not exceed 30 characters in length
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ### 8.2.1       Index Name Formats
 
@@ -822,6 +1065,8 @@ Indexes MUST be named according to one of the following formats:
 | Alternate Key Index:   | AK\_&lt;table name>\_&lt;purpose, role name or sequence> |
 | Foreign Key Index | XFK\_&lt;table name>\_&lt;referential table name>\_&lt;purpose, role name or sequence> |
 | _Non\_Key\_Index_ | &lt;Table name>\_&lt;purpose, role name or sequence> |
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 8.3 Index Metadata Properties
 
@@ -837,9 +1082,13 @@ The metadata properties listed in the following _Table_ are necessary to fully d
 
 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 # 9. Triggers
 
 Some RDBMS support _Triggers_ that are stored code objects that execute for specific events on _Tables_. These events are defined as before or after an insert, update or delete of a row orstatement on a specific table.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 9.1 Naming Triggers
 
@@ -857,6 +1106,8 @@ _Trigger Names_ are based on when they fire, whether they fire for every row in 
 - The last portion of the trigger name MUST be the table name on which it fires an activity on 
 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 
 ### 9.1.1       Formatting Triggers
 
@@ -870,6 +1121,8 @@ B or A – Before or After <br>
 R or S – Row or Statement <br>
 I, U, D – Insert, Update, Delete <br>
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ## 9.2 Trigger Metadata
 
 _Metadata Properties:_
@@ -879,6 +1132,8 @@ _Metadata Properties:_
 | The textual description of the triggers and Purpose | Any remarks of significance to the understanding of the triggers history. |
 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 # 10. Constraints
 
 Database constraints are restrictions on the contents of the database or on database operations. Database constraints provide a way to guarantee that:
@@ -887,6 +1142,8 @@ Database constraints are restrictions on the contents of the database or on data
 - rows in a dependent table have valid foreign key values that reference rows in a parent table
 - individual column values are valid 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ## 10.1 Type of Constraints
 
 1) Primary Key (PK) - Serves as the unique identifier for rows in the table <br>
@@ -894,12 +1151,16 @@ Database constraints are restrictions on the contents of the database or on data
 3) Foreign key constraint (FK) - The relationship between rows in two tables is expressed by a foreign key in the dependent table. A foreign key is one or more columns that contain a value identical to a primary key (or unique key) value in some row in the parent table (i.e., the referenced table).<br>
 4) Check Constraints (CHK) - Used to enforce the validity of column values <br>
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ## 10.2 Naming Constraints
 
 - MUST including Keyword stating the database object
 - MUST include suffix with abbreviation for the type of Constraints
 - Separate each word with an underscore
 - If more than one constraint is required exist within a type of constraint, MUST add a numeric suffix of 1 through 9.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ### 10.2.1      Constraints Name Formats
 
@@ -944,6 +1205,8 @@ Constraints MUST be named according to one of the following formats:
 </table>
 
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 
 ## 10.3 Constraint Metadata Properties
 
@@ -956,9 +1219,13 @@ The metadata properties listed in the following table are necessary to fully doc
 | Table Name | The name of the table in which the constrain is defined |
 | Column(s) | The name(s) of the column(s) contained in the constrain |
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 # 11. Stored Procedure
 
 An action oriented named program or routine stored in a database. Stored procedures are precompiled database queries that improve the security, efficiency and usability of database client/server applications. Developers specify a stored procedure in terms of input and output variables
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 11.2 Naming Stored Procedure
 
@@ -967,11 +1234,15 @@ An action oriented named program or routine stored in a database. Stored procedu
 - MUST use keyword of the object
 - SHOULD use underscore to separate words
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ### 11.2.1      Stored Procedure Name Formats
 
 Stored Procedure MUST be named according to one of the following formats:
 
 Prefix (verb) &lt;\_>, &lt;Prime term>, &lt;qualifier >  <br>e.g..: Get\_Customer\_Details Insert\_Customer\_Info
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 11.3 Stored Procedure Metadata Properties
 
@@ -984,12 +1255,16 @@ The metadata properties listed in the following table are necessary to fully doc
 | Table Name | The name of the table in which the stored procedure is defined |
 | Column(s) | The name(s) of the column(s) contained in the procedure |
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 
 # 12. Acronyms and Abbreviations
 
 _Acronyms_ and _Abbreviations_ are necessary due to some physical tool constraints. They eliminate objectname redundancy and inconsistency and improve the quality of model descriptions and application documentation by using clear and commonly used words. Acronym and _Abbreviation_ standards enable analysts to select _Acronyms_ and abbreviations that are as clear and commonly used as possible. The standards also require a consistent use of the _Acronyms_ and _Abbreviations_, regardless of the length of the name. The _Abbreviated Name_ MUST have each word in the name abbreviated in accordance with this section. A Business Name MUST use Standard abbreviations (from glossary of approved standard term) MUST be used where they exist.
 
 For the purposes of this document, the definition of _acronym_ is "a word formed from the first (or first few) letters of a series of words." An _Abbreviation_ is defined as "a shortened _Form_ of a word or phrase by contraction, or by omission of letters." A _candidate_ is defined as an acronym or _Abbreviation_ which an organization wants to use that does not yet exist in the repository."
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 12.1 Creating Abbreviations
 
@@ -1036,15 +1311,21 @@ Create a candidate _Abbreviation_ by using the following rules:
 15. If a root word is five or fewer characters and is not abbreviated, its derivatives may have the root portion spelled out or abbreviated, but, if abbreviated, all derivatives must have the same _Abbreviation_ of the root portion of the word. For example, _PRINT_ is not abbreviated since it is five characters. _PRINTING_ can be abbreviated _PRINTG_, and all other derivatives would also contain the root _PRINT_. On the other hand, _CLEAR_ is not abbreviated, but _CLEARANCE_ MAY be abbreviated _CLRNC_. In this case _CLR_ MUST be used as the root for all derivatives of _CLEAR_.
 16. _Abbreviations_ must not spell an expletive.
 
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
+
 ## 12.2 Creating Acronyms
 
 The rule for creating a candidate acronym is a simple. An acronym is formed from the first or first few, letters of a series of words. Examples include "FICA" in place of "F ederal I nsurance Contributions Act," and "radar" in place of "RAdio Detecting and Ranging."_Acronyms_ are not to be used in Business Name s; nor are they to be used in descriptions unless they are first spelled out. However, some _Acronyms_, such as radar and sonar, become so common that they are accepted as words, and are notcapitalized in normal use. _Acronyms_ must not spell an expletive.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 ## 12.3 Candidate Term Submittals
 
 All candidate _Acronyms, Abbreviations_, and _Synonym Names_ submitted to Data Management will go through a review and approval cycle. Once DM accepts candidates, they will be reviewed in a timely manner. Candidate _Acronyms_ and _Abbreviations_ that an organization desires to use, but do not exist in the _Standard Acronyms_ and _Abbreviations List_ for Common Business Terms, will be measured against the rules in this section.
 
 Candidate terms may be submitted via e-mail to Data Management at [ DataMgmtSupport@state.gov,](mailto:DA@state.gov) citing the candidate term, the definition, and the proposed synonym.
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 
 # Appendix A:  Invalid Entity and Attribute Name Components
@@ -1119,6 +1400,8 @@ Invalid _Entity_ and _Attribute Names_ name components:
 
 The word **KEY** is reserved for use in naming key fields.
 
+
+#### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
 
 # Appendix C:  Document Revision
