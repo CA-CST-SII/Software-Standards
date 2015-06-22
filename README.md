@@ -34,7 +34,7 @@ This language agnostic guide gives general guidelines applicable to many differe
 ## CAST rules and metrics
 [JEE rules](http://htmlpreview.github.com/?https://github.com/CA-CST-SII/Software-Standards/blob/master/CAST%20Rules/navTree.generated.html)
 
-[All rules](https://rawgit.com/Mcho11/CA-CST-SII/CAST-rules/blob/master/html%20help/index.html)
+[All rules](https://rawgit.com/CA-CST-SII/CAST-rules/master/html%20help/index.html)
 
 ## Draft standards
 
