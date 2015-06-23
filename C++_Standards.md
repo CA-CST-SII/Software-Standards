@@ -25,7 +25,7 @@
 
   3.7 [Exception Handling](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#37-exception-handling)
 
-    3.7.1 [Error Handling](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#371-error-handling)
+   &nbsp;&nbsp; 3.7.1 [Error Handling](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#371-error-handling)
 
 4. [Naming Conventions](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#4-naming-conventions)
 
@@ -39,19 +39,19 @@
 
   5.2 [Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#52-comments)
 
-    5.2.1 [Comments: Class Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#521-comments-class-header)
+   &nbsp;&nbsp; 5.2.1 [Comments: Class Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#521-comments-class-header)
 
-    5.2.2 [Comments: Method Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#522-comments-method-header)
+   &nbsp;&nbsp; 5.2.2 [Comments: Method Header](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#522-comments-method-header)
 
-    5.2.3 [Non-Javadoc Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#523-non-javadoc-comments)
+   &nbsp;&nbsp; 5.2.3 [Non-Javadoc Comments](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#523-non-javadoc-comments)
 
   5.3 [Indentation](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#53-indentation)
 
   5.4 [White Space](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#54-white-space)
 
-    5.4.1 [Blank Lines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#541-blank-lines)
+  &nbsp;&nbsp;  5.4.1 [Blank Lines](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#541-blank-lines)
 
-    5.4.2 [Blank Spaces](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#542-blank-spaces)
+    &nbsp;&nbsp; 5.4.2 [Blank Spaces](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#542-blank-spaces)
 
 6. [Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6-statements)
 
@@ -75,9 +75,9 @@
 
   6.10 [Exception Statements](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#610-exception-statements)
 
-    6.10.1 [Throwing an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6101-throwing-an-exception)
+   &nbsp;&nbsp; 6.10.1 [Throwing an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6101-throwing-an-exception)
 
-    6.10.2 [Catching an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6102-catching-an-exception)
+   &nbsp;&nbsp; 6.10.2 [Catching an Exception](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#6102-catching-an-exception)
 
 7. [Declarations](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%2B%2B_Standards.md#7-declarations)
 
