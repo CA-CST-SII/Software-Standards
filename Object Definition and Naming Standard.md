@@ -771,12 +771,11 @@ Attributes that exist because of a relationship to another Entity, relationship 
 Migrated foreign key attribute names are illustrated in  Figure 2. Migrated Foreign Key Attribute  Names below. Note that the migrated attributes in the CUSTOMER ACCOUNT associative entity maintain the object class term/prime term of their originating entities: CUSTOMER and ACCOUNT rather than take on the prime term of their actual entity CUSTOMER ACCOUNT.
 
  
-
-![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object-Definition-and-Naming-Standard-Fig_2)
+![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object_Definition_and_Naming_Standard%20Fig_2.PNG)
 
 Role Names by which migrated foreign keys are illustrated in Figure 3 (Role Names on Migrated Foreign Keys), where RELATED is the role given to the migrated foreign key PERSON IDENTIFIER. In the second example PARENT is the role given to attribute migrated through the recursive relationship of ORGANIZATION with itself
 
-![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object-Definition-and-Naming-Standard-Fig_3)
+![pic-3](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Object_Definition_and_Naming_Standard%20Fig_3.PNG)
 
 #### [Table Of Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md#table-of-contents)
 
