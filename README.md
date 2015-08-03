@@ -30,6 +30,7 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division Object Definition and Naming Standard](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object Definition and Naming Standard.md)
 
+[Oracle Application Architecture Guides](https://github.com/CA-CST-SII/Software-Standards/blob/master/Oracle%20Application%20Architecture%20Guides)
 
 ## CAST rules and metrics
 
@@ -38,3 +39,4 @@ This language agnostic guide gives general guidelines applicable to many differe
 ## Draft standards
 
 [Draft Word Version Standards Docoments](https://github.com/CA-CST-SII/Software-Standards/tree/master/Draft%20Standard)
+
