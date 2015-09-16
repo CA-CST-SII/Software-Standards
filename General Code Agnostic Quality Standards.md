@@ -7,7 +7,7 @@
 
 [Key Coding Standard Factors] (https://github.com/CA-CST-SII/Software-Standards/blob/master/General%20Code%20Agnostic%20Quality%20Standards.md#key-coding-standard-factors)
 
-[Reliability = Resiliency & Dependability] (https://github.com/CA-CST-SII/Software-Standards/blob/master/General%20Code%20Agnostic%20Quality%20Standards.md#reliability---resiliency--dependability)
+[Reliability - Resiliency & Dependability] (https://github.com/CA-CST-SII/Software-Standards/blob/master/General%20Code%20Agnostic%20Quality%20Standards.md#reliability---resiliency--dependability)
 
 &nbsp;&nbsp;[- Handling unforeseen situations] (https://github.com/CA-CST-SII/Software-Standards/blob/master/General%20Code%20Agnostic%20Quality%20Standards.md#handling-unforeseen-situations)
 
