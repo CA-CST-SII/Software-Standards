@@ -262,6 +262,7 @@ equal to the parameter names, rather than depending upon the position.
 9.All SPs should be indented (recommended 2 spaces per indent) per the
 following example.
 
+```SQL
 CREATE PROCEDURE dbo.<spName> (
 
 `@pParmOne varchar(255) = NULL,      -- define the parm, such as ’Last name of the applicant’`\
@@ -373,7 +374,7 @@ ERR\_HANDLER:
 ` select @ErrNum = @@error  `
 
 ` goto END_PROC`
-
+```
 Other stored procedure standards not demonstrated in the template
 include:
 
