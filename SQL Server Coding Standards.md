@@ -228,24 +228,138 @@ Following is a template to use when creating a stored procedure. Some
 general standard guidelines that are demonstrated within the template
 are:
 
-1\. Input parameter names are prefixed with @p to distinguish them from
+1.Input parameter names are prefixed with @p to distinguish them from
 local variables within the code of the procedure. Output parameter names
-are prefixed with @o. 2. It is recommended that variable names be
-declared immediately after the comments section. Variable names should
-be descriptive. 3. Define the parameters immediately after the
-declaration. Within the parameter definition, it is recommended to
-default parameters to NULL, then check for required parameters so that
-missing values can be handled gracefully. 4. The header info for the SP
-goes after the ‘create procedure’ statement, so that the comments are
-included in the SP when it is installed in the database. 5. Define all
-parameters to a stored procedure as NULL (or otherwise default them to a
-value). Then, as one of the first steps in the SP, check whether
-REQUIRED inputs were input as null. If they were, raise an error. This
-is a graceful way of handling SP calls that did not supply required
-values. 6. Execute sub-procedure calls in a standard fashion: check both
-the return code and @@error after the call; qualify the procedure name
-with the owner name. 7. Execute sub-procedure calls by explicitly
-setting the input values equal to the parameter names, rather than
-depending upon the position. 8. GOTO’s are only permitted in the error
-handling portion of the code. 9. All SPs should be indented (recommended
-2 spaces per indent) per the following example.
+are prefixed with @o.
+
+2.It is recommended that variable names be declared immediately after
+the comments section. Variable names should be descriptive.
+
+3.Define the parameters immediately after the declaration. Within the
+parameter definition, it is recommended to default parameters to NULL,
+then check for required parameters so that missing values can be handled
+gracefully.
+
+4.The header info for the SP goes after the ‘create procedure’
+statement, so that the comments are included in the SP when it is
+installed in the database.
+
+5.Define all parameters to a stored procedure as NULL (or otherwise
+default them to a value). Then, as one of the first steps in the SP,
+check whether REQUIRED inputs were input as null. If they were, raise an
+error. This is a graceful way of handling SP calls that did not supply
+required values.
+
+6.Execute sub-procedure calls in a standard fashion: check both the
+return code and @@error after the call; qualify the procedure name with
+the owner name.
+
+7.Execute sub-procedure calls by explicitly setting the input values
+equal to the parameter names, rather than depending upon the position.
+
+8.GOTO’s are only permitted in the error handling portion of the code.
+
+9.All SPs should be indented (recommended 2 spaces per indent) per the
+following example.
+
+CREATE PROCEDURE dbo.<spName> (
+
+`@pParmOne varchar(255) = NULL,      -- define the parm, such as ’Last name of the applicant’`\
+`@pParmID int = NULL,                -- define the parm, such as ‘Identifier to the application being processed’`\
+`@oOutputParm int = NULL OUTPUT      -- define the parm, such as ‘Identifier to the login created by this SP’`
+
+) as
+
+/\* \[DESCRIPTION\]
+
+`* (detailed description, such as:`\
+`*`\
+`*  This SP is used to create new ApplicationDetail information on a passport applicant.`\
+`*  It is called from the DOSPassport application, and passes back an identifier to`\
+`*  the applicant’s new login.`\
+`*`\
+`* [CHANGE INFORMATION]`\
+`* Author            Date            Description of Change`\
+`* ------            ----            ---------------------`\
+`* `<Author>`          3/25/2005       Created`\
+`*`\
+`* [RETURNS]`\
+`* (Single record, Recordset, integer, ...)`\
+`*/`
+
+declare @ErrNum int,
+
+`       @ReturnCode int,`\
+`       @SysName varchar(35),`\
+`       @ErrMsg varchar(255),`\
+`       @RowCount int `
+
+-- init some variables
+
+set @ErrNum = 0 set @SPName = object\_name(@@procid)
+
+-- check the required parameters
+
+If isnull(@pParmID, 0) &lt; 1
+
+` Or isnull(@pParmOne, ‘’) = ‘’`
+
+begin
+
+` set @ErrMsg = ‘A required input parameter (ParmID or ParmOne) is missing.’`\
+` goto ERR_HANDLER`
+
+end
+
+-- when calling other stored procedures, check both ReturnCode and
+@@error. Always have a stored procedure return -- ZERO if there were no
+errors during execution. Do NOT use the return code to return parameter
+values - use -- OUTPUT variables for that.
+
+exec @ReturnCode = dbo.spSomeOtherProcedure @pInputParmName = @pParmOne
+
+set @ErrNum = @@error if @ReturnCode &lt;&gt; 0 or @ErrNum &lt;&gt; 0
+begin
+
+` if @ErrNum = 0 `\
+`   set @ErrNum = @ReturnCode  -- this preserves all errors`\
+`   set @ErrMsg = ‘Make this a descriptive msg: Error returned from spSomeOtherProcedure; error: ‘`\
+`              + convert(varchar(11), @ErrNum) + ‘.’`\
+`   Goto ERR_HANDLER`
+
+end
+
+-- Here we show how to perform an insert and do some checking.
+
+Begin transaction
+
+Insert dbo.SomeTable (ColA, ColB, ColC) Select b.Colxx, b.Colyy, b.Colzz
+From dbo.Table1 a inner join dbo.Table2 b
+
+` On a.PKcol = b.FKCol`
+
+Where b.ParmID = @pParmID
+
+Select @RowCount = @@rowcount, @ErrNum = @@error
+
+If @ErrNum &lt;&gt; 0 or @RowCount &lt;&gt; 1 Begin
+
+` Rollback transaction`
+
+` set @ErrMsg = ‘Error inserting SomeTable using ParmID ‘ + convert(varchar(10), @pParmID)`\
+`       + ‘; error, rowcount ‘ + convert(varchar(11), @ErrNum) + ‘, ’`\
+`       + convert(varchar(11), @RowCount) + ‘.’`\
+` Goto ERR_HANDLER`
+
+end
+
+-- if we are here we can commit the transaction
+
+Commit transaction
+
+END\_PROC:
+
+` return @ErrNum`
+
+-- this error handler captures the error in errLog, then raises an error
+and returns a non-zero error number.
