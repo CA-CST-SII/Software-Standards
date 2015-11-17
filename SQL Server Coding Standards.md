@@ -363,3 +363,132 @@ END\_PROC:
 
 -- this error handler captures the error in errLog, then raises an error
 and returns a non-zero error number.
+
+ERR\_HANDLER:
+
+` insert dbo.ErrLog ( ErrNum, ErrSource, ErrDesc, CreatedFromHost )`\
+` select @ErrNum, @SPName, @ErrMsg, host_name() `
+
+` raiserror(@ErrMsg, 16, 1)`\
+` select @ErrNum = @@error  `
+
+` goto END_PROC`
+
+Other stored procedure standards not demonstrated in the template
+include:
+
+10\. When using dynamic SQL, use sp\_executesql, as the error information
+returned from that system proc is more robust than simply using ‘exec’.
+In addition, use parameterized queries with sp\_executesql whenever
+possible; this promotes query plan reuse. 11. If a stored procedure
+begins a transaction and calls another stored proc that contains
+transactions, consider implementing the inner transaction via savepoints
+(SAVE TRANSACTION). This allows greater flexibility in rolling back the
+inner transaction, without disturbing the outer transaction. SQL Server
+does not support true nested transactions, but savepoints plus rigorous
+error checking can mimic nested transaction functionality pretty well.
+The one wrinkle is that error logging done in the ‘inner’ stored
+procedure, will be lost when the outer transaction rolls back, if it
+needs to. SQL Server 2005 supposedly will introduce the concept of error
+queues, so that even when an outer transaction is rolled back, the inner
+error can be captured. 12. Consistently return ZERO from a stored
+procedure if no errors are detected; return a non-zero value if an error
+is detected. 13. Liberally comment stored procedures in-line. In
+particular, when code or logic is complex or its purpose not easily
+discernible, even a brief comment can help with future maintenance.
+Avoid code ‘shortcuts’ that may decrease the lines of code in a
+procedure, but make it harder to understand (for example, re-using local
+variables for different purposes at different points in the code). 14. A
+local variable naming standard is not mandated at this time. However,
+consistency of naming methodology within a procedure is desirable.
+Variable names should match table column names for consistency. If
+underscores are preferred instead of mixed case in local variable names,
+use that method consistently within the procedure. 15. When a
+modification is made to a stored procedure that has been deployed to
+production, a comment in the header of the procedure is required as well
+as describing what the mod was (i.e., ‘Added new parameter @pNewApp.’).
+The reason for the mod and the CR\# are also required (‘Added new
+parameter @pNewApp in order to filter result set by application;
+required for new OPS report; see CR \#505.’).
+
+3.4 Error Handling Standard
+
+In SQL Server 2000, error handling is notoriously inconsistent. The
+upcoming version is reputed to have only minor improvements in how
+errors are returned.
+
+A review of what can happen when an error occurs in T-SQL (from the
+least drastic to the most drastic):
+
+1\. The current statement is aborted and rolled back, but execution
+continues on to the next statement. No transaction is rolled back.
+Typicalerrors of this kind are PK/FK constraint violations. Note: if SET
+XACT\_ABORT is set ON, this type of error aborts the batch (like type 1
+below) and is therefore impossible to trap. Do not set XACT\_ABORT to
+ON.
+
+2\. The running scope is terminated. The typical error of this type is a
+reference to a non-existent object or table column, or some other
+query-parsing error that happens at runtime. Execution continues in the
+caller of the scope, and any open transaction remains active. ‘Scope’ is
+normally a stored procedure. The return value from the SP in which the
+error happens, will be null in this case; @@error, however, will most
+likely be set.
+
+3\. The process is terminated, and everything is rolled back. These are
+known as fatal errors or batch-aborting errors. Examples are access
+violations and data conversion errors. These errors can only be trapped
+by the client, not by T-SQL code. An explicit rollback command in a
+trigger (or an ‘implicit’ rollback that results if ANY error gets raised
+by SQL Server during the trigger’s execution) also falls into this
+category, so error handling in triggers is very tricky. Open
+transactions are always rolled back in this type of error.
+
+In order to trap errors of the first 2 types and to avoid type 3
+whenever possible, the guidelines are:
+
+1\. Return ZERO from a stored procedure if it executes without error;
+otherwise, return a non-zero value. 2. After each stored procedure call,
+check both the return value and @@error. If either is not zero, handle
+that as an error. 3. Capture the explicit SQL Server error number at the
+lowest level possible, so that the code where the error occurred can be
+flagged. 4. Store error information in a permanent SQL Server table.
+Information that should be captured includes SPName, ErrNum, ErrMsg,
+HostName, and CreateDate. In addition, have CLIENT code also write error
+information to a SQL Server table (using the same table as stored
+procedures write to is fine). This is needed because type 3 errors (see
+above) cannot be trapped by SQL Server. 5. Trigger code should never
+issue an explicit rollback, as this aborts the SQL Server batch and is
+only trappable by the client. Instead, when trigger code discerns an
+error, it should issue a raiserror with an appropriate message, and let
+the code that issued the insert, update, or delete, check @@error after
+the statement. Then, the code can rollback as appropriate. However, this
+strategy works mostly for business-rule type errors that can be caught
+in the trigger code. A FK violation that occurs inside of a trigger, for
+example, aborts the batch and no handling is possible. Note that
+replication that kicks off triggers on the subscriber, needs to be
+handled a little differently. There, explicit rollbacks are more
+appropriate than issuing raiserror commands, since there is no batch
+process to check @@error that is part of replication. In this case,
+explicit rollbacks in a subscriber trigger will cause a replication failure, which is what needs to happen so the problem can be brought to
+administrative attention and fixed. 6. Do not use SET XACT\_ABORT ON, as
+this escalates a type \#1 error to a type \#3. The exception to this
+rule is if a design decision is made to handle all database errors in
+the client code.
+
+The stored procedure template in section 3.3 of this document contains
+sample error handling code that demonstrates many of the above
+guidelines
+
+If you do not use any of the error handling guidelines as specified in
+this document, you must include a detailed description of why you chose
+to not do so in the header section of the stored procedure.
+
+Transactions. Wrap units of work within explicit transactions. If a unit
+of work spans multiple stored procedures, use savepoints within the
+called stored procedures, to mimic nested transactions by committing /
+rolling back the work done within each procedure. Without savepoints, a
+rollback of an inner transaction rolls back the entire transaction, and
+the outer procedures will need to check @@trancount to properly handle
+that. SQL Server does not support nested transactions.
+
