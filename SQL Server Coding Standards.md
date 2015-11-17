@@ -79,11 +79,27 @@ General naming guidelines:
 
 Some objects should be named in an abbreviated form, when they are part
 of database object names. Please see DBA staff to suggest other
-abbreviated forms for inclusion. . Business Name Abbreviation Account
-Acct Address Addr Administration Admin Amount Amt Application Appl
-Attribute Attr Business Bus Date DT Description Desc Document Doc
-Identifier ID Number Num Parameter Parm Passport PPT Percent Pct
-Sequence Seq System Sys
+abbreviated forms for inclusion. 
+| Business Name  | Abbreviation | 
+|----------------|--------------| 
+| Account        | Acct         | 
+| Address        | Addr         | 
+| Administration | Admin        | 
+| Amount         | Amt          | 
+| Application    | Appl         | 
+| Attribute      | Attr         | 
+| Business       | Bus          | 
+| Date           | DT           | 
+| Description    | Desc         | 
+| Document       | Doc          | 
+| Identifier     | ID           | 
+| Number         | Num          | 
+| Parameter      | Parm         | 
+| Passport       | PPT          | 
+| Percent        | Pct          | 
+| Sequence       | Seq          | 
+| System         | Sys          | 
+
 
 3.1.2 Table Names
 
