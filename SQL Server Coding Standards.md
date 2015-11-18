@@ -275,30 +275,30 @@ following example.
 ```SQL
 CREATE PROCEDURE dbo.<spName> (
 
-`@pParmOne varchar(255) = NULL,      -- define the parm, such as ’Last name of the applicant’`\
-`@pParmID int = NULL,                -- define the parm, such as ‘Identifier to the application being processed’`\
-`@oOutputParm int = NULL OUTPUT      -- define the parm, such as ‘Identifier to the login created by this SP’`
+@pParmOne varchar(255) = NULL,      -- define the parm, such as ’Last name of the applicant’
+@pParmID int = NULL,                -- define the parm, such as ‘Identifier to the application being processed’
+@oOutputParm int = NULL OUTPUT      -- define the parm, such as ‘Identifier to the login created by this SP’
 
 ) 
 as
 
 /* [DESCRIPTION]
+ * (detailed description, such as:
+ *
+ *  This SP is used to create new ApplicationDetail information on a passport applicant.
+ *  It is called from the DOSPassport application, and passes back an identifier to
+ *  the applicant’s new login.
+ *
+ * [CHANGE INFORMATION]
+ * Author            Date            Description of Change
+ * ------            ----            ---------------------
+ * <Author>          3/25/2005       Created
+ *
+ * [RETURNS]
 
-`* (detailed description, such as:`
-`*`
-`*  This SP is used to create new ApplicationDetail information on a passport applicant.`
-`*  It is called from the DOSPassport application, and passes back an identifier to`
-`*  the applicant’s new login.`
-`*`
-`* [CHANGE INFORMATION]`
-`* Author            Date            Description of Change`
-`* ------            ----            ---------------------`
-`* `<Author>`          3/25/2005       Created`
-`*`
-`* [RETURNS]`
-`* (Single record, Recordset, integer, ...)`
-`*`
-
+ * (Single record, Recordset, integer, ...)
+ */
+ 
 declare @ErrNum int,
         @ReturnCode int,
         @SysName varchar(35),
