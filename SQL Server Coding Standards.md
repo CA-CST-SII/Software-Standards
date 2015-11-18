@@ -1,11 +1,9 @@
-Overview
---------
+## 1.0 Overview
 
 This document sets forth guidelines for production SQL code deployed by
 Apptis, Inc.
 
-Purpose
--------
+## 2.0 Purpose
 
 SQL coding standards are maintained by database administrators in the
 development database group. The target audience is DBA’s, SQL
@@ -29,8 +27,7 @@ degree possible, as modifications to that code are required. Note that
 implementation of error handling in only a subset of stored procedures
 will reduce the utility of a standardized approach.
 
-Standards Categories
---------------------
+## 3.0 Standards Categories
 
 Object Naming Standards define how tables, columns, stored procedures,
 etc are named. A list of approved abbreviations or short names (for
@@ -51,7 +48,7 @@ section. Note that client handling of errors returned from the database
 is not addressed in this standards document, but is an important factor
 in the overall efficacy of a standard error handling approach.
 
-### Object Naming Standards
+### 3.1 Object Naming Standards
 
 Object names will be English words and abbreviations, which convey
 meaning about what the object represents in the system. Mixed-case will
@@ -75,7 +72,7 @@ General naming guidelines:
 -   Never name an object with a SQL Server reserved word. See Books
     Online, ‘Reserved Keywords’ section.
 
-3.1.1 Approved Object Name Abbreviations
+#### 3.1.1 Approved Object Name Abbreviations
 
 Some objects should be named in an abbreviated form, when they are part
 of database object names. Please see DBA staff to suggest other
@@ -102,7 +99,7 @@ abbreviated forms for inclusion.
 | System         | Sys          | 
 
 
-3.1.2 Table Names
+#### 3.1.2 Table Names
 
 Data tables are defined as tables containing data specific to the
 business of the application. Their names may include a prefix, to group
@@ -134,7 +131,7 @@ case, with no underscore\]
 | Backup Tables                                     | Tables used to back up other tables                                     | Application Group Name where Appropriate | BKUP                        | 
 
 
-3.1.3 Column Names
+#### 3.1.3 Column Names
 
 Columns name should provide a clear, concise description of the
 attribute in mixed case, without prefixes or underscores.
@@ -156,7 +153,7 @@ column,since timestamp is a non-temporal datatype; the name is misleading.
 UID \[Unique Identifier\] is a binary record identifier that is unique
 across all agencies.
 
-3.1.4 Index Names
+#### 3.1.4 Index Names
 
 Index names should provide a clear and concise description of the index.
 An upper-case prefix is always used in the index name to indicate the
@@ -173,7 +170,7 @@ the columns indexed. By type, the definitions are as follows:
 
 **(open issue, should be clearly identify clustered keys)**
 
-3.1.5 Naming Views, Check Constraints, Defaults, and Rules
+#### 3.1.5 Naming Views, Check Constraints, Defaults, and Rules
 
 Check constraints are preferred over rules; do not create new rules,
 which are supported as a back-ward compatibility feature of SQL Server
@@ -194,7 +191,7 @@ example, CHK\_ApplicationNameIsValid).
 | View             | vw + name                       | vwAcctPersonProfile   | 
 | Check Constraint | CHK_ + name                     | CHK_ApplicationFeeMax | 
 
-3.1.6 Stored Procedure Names
+#### 3.1.6 Stored Procedure Names
 
 Procedures may be grouped by purpose or by the name of the entity
 processed. For example, there may be a group of procedures that
@@ -214,13 +211,13 @@ Input parameters to a stored procedure shall be named with the prefix
 @p, so they can be distinguished in code from local variables. Output
 parameters to a stored procedure shall be named with the prefix @o.
 
-3.1.7 DTS Package and SQL Job Names
+#### 3.1.7 DTS Package and SQL Job Names
 
 DTS Package and SQL Job names should be prefixed with the primary
 project it supports (for example: TDISArchiveETL,
 MISPassportSpecialistETL, TDISAgencyPurge, etc).
 
-3.2 DML Syntax Standard
+### 3.2 DML Syntax Standard
 
 Include the table owner when referencing a table in DML (i.e., select
 columnA from dbo.tableB). Otherwise, SQL server looks to see if the user
@@ -240,7 +237,7 @@ Use ANSI-92 standard SQL syntax. This includes DELETE FROM and INNER /
 OUTER / LEFT join syntax. A good concise source for checking ANSI SQL
 syntax is <http://www.ocelot.ca/commands.htm>.
 
-3.3 General Stored Procedure Standard
+### 3.3 General Stored Procedure Standard
 
 Following is a template to use when creating a stored procedure. Some
 general standard guidelines that are demonstrated within the template
@@ -396,7 +393,7 @@ discernible, even a brief comment can help with future maintenance. Avoid code �
 15. When a modification is made to a stored procedure that has been deployed to production, a comment in the header of the procedure is required as well as describing what the mod was (i.e., ‘Added new parameter @pNewApp.’).
 The reason for the mod and the CR\# are also required (‘Added new parameter @pNewApp in order to filter result set by application; required for new OPS report; see CR \#505.’).
 
-3.4 Error Handling Standard
+###3.4 Error Handling Standard
 
 In SQL Server 2000, error handling is notoriously inconsistent. The upcoming version is reputed to have only minor improvements in how errors are returned.
 
