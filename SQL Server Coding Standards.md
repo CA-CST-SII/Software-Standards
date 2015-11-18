@@ -164,17 +164,14 @@ type of index, and should include an underscore separator. The body of
 the index name includes the table name and may include the name(s) of
 the columns indexed. By type, the definitions are as follows:
 
-Index Type Naming convention Example Primary Key PK\_ + Name of Table
-PK\_pTDISAppl Foreign Key FK\_ + Name of Table + ‘\_’ + Name of Column
-(first column name required, rest optional) FK\_Trace\_BatchID
-Alternative Key AK\_ + name of Table + ‘\_’ + Name of Column This type
-of index is associated with a unique constraint on a table (i.e., an
-alternate primary key). AK\_Acct\_SSN
+| Index Type        | Naming convention                                                                 | Example          | 
+|-------------------|-----------------------------------------------------------------------------------|------------------| 
+| Primary Key       | PK_  +  Name of Table                                                             | PK_pTDISAppl     | 
+| Foreign Key       | FK_ +  Name of Table + ‘_’ + Name of Column  (first column name required, rest optional) | FK_Trace_BatchID |                  | 
+| Alternative Key   | AK_ + name of Table + ‘_’ + Name of Column       This type of index is associated with a unique constraint on a table (i.e., an alternate primary key). | AK_Acct_SSN  |                  | 
+| Other             | An index that is not related to a primary, foreign, or ‘alternative’ key on the table. | IX_Acct_LastName | 
 
-Other An index that is not related to a primary, foreign, or
-‘alternative’ key on the table. IX\_Acct\_LastName
-
-(open issue, should be clearly identify clustered keys)
+**(open issue, should be clearly identify clustered keys)**
 
 3.1.5 Naming Views, Check Constraints, Defaults, and Rules
 
@@ -191,9 +188,11 @@ must be unique, so a reference to the object table name is appropriate;
 however, the table name can be embedded in the descriptive name (for
 example, CHK\_ApplicationNameIsValid).
 
-Database Object Format Example Default df\_ + table name + column name
-df\_ApplicationSSN View vw + name vwAcctPersonProfile Check Constraint
-CHK\_ + name CHK\_ApplicationFeeMax
+| Database Object  | Format                          | Example               | 
+|------------------|---------------------------------|-----------------------| 
+| Default          | df_ +  table name + column name | df_ApplicationSSN     | 
+| View             | vw + name                       | vwAcctPersonProfile   | 
+| Check Constraint | CHK_ + name                     | CHK_ApplicationFeeMax | 
 
 3.1.6 Stored Procedure Names
 
@@ -247,38 +246,30 @@ Following is a template to use when creating a stored procedure. Some
 general standard guidelines that are demonstrated within the template
 are:
 
-1.Input parameter names are prefixed with @p to distinguish them from
+1. Input parameter names are prefixed with @p to distinguish them from
 local variables within the code of the procedure. Output parameter names
 are prefixed with @o.
-
-2.It is recommended that variable names be declared immediately after
+2. It is recommended that variable names be declared immediately after
 the comments section. Variable names should be descriptive.
-
-3.Define the parameters immediately after the declaration. Within the
+3. Define the parameters immediately after the declaration. Within the
 parameter definition, it is recommended to default parameters to NULL,
 then check for required parameters so that missing values can be handled
 gracefully.
-
-4.The header info for the SP goes after the ‘create procedure’
+4. The header info for the SP goes after the ‘create procedure’
 statement, so that the comments are included in the SP when it is
 installed in the database.
-
-5.Define all parameters to a stored procedure as NULL (or otherwise
+5. Define all parameters to a stored procedure as NULL (or otherwise
 default them to a value). Then, as one of the first steps in the SP,
 check whether REQUIRED inputs were input as null. If they were, raise an
 error. This is a graceful way of handling SP calls that did not supply
 required values.
-
-6.Execute sub-procedure calls in a standard fashion: check both the
+6. Execute sub-procedure calls in a standard fashion: check both the
 return code and @@error after the call; qualify the procedure name with
 the owner name.
-
-7.Execute sub-procedure calls by explicitly setting the input values
+7. Execute sub-procedure calls by explicitly setting the input values
 equal to the parameter names, rather than depending upon the position.
-
-8.GOTO’s are only permitted in the error handling portion of the code.
-
-9.All SPs should be indented (recommended 2 spaces per indent) per the
+8. GOTO’s are only permitted in the error handling portion of the code.
+9. All SPs should be indented (recommended 2 spaces per indent) per the
 following example.
 
 ```SQL
@@ -288,109 +279,106 @@ CREATE PROCEDURE dbo.<spName> (
 `@pParmID int = NULL,                -- define the parm, such as ‘Identifier to the application being processed’`\
 `@oOutputParm int = NULL OUTPUT      -- define the parm, such as ‘Identifier to the login created by this SP’`
 
-) as
+) 
+as
 
-/\* \[DESCRIPTION\]
+/* [DESCRIPTION]
 
-`* (detailed description, such as:`\
-`*`\
-`*  This SP is used to create new ApplicationDetail information on a passport applicant.`\
-`*  It is called from the DOSPassport application, and passes back an identifier to`\
-`*  the applicant’s new login.`\
-`*`\
-`* [CHANGE INFORMATION]`\
-`* Author            Date            Description of Change`\
-`* ------            ----            ---------------------`\
-`* `<Author>`          3/25/2005       Created`\
-`*`\
-`* [RETURNS]`\
-`* (Single record, Recordset, integer, ...)`\
-`*/`
+`* (detailed description, such as:`
+`*`
+`*  This SP is used to create new ApplicationDetail information on a passport applicant.`
+`*  It is called from the DOSPassport application, and passes back an identifier to`
+`*  the applicant’s new login.`
+`*`
+`* [CHANGE INFORMATION]`
+`* Author            Date            Description of Change`
+`* ------            ----            ---------------------`
+`* `<Author>`          3/25/2005       Created`
+`*`
+`* [RETURNS]`
+`* (Single record, Recordset, integer, ...)`
+`*`
 
 declare @ErrNum int,
-
-`       @ReturnCode int,`\
-`       @SysName varchar(35),`\
-`       @ErrMsg varchar(255),`\
-`       @RowCount int `
+        @ReturnCode int,
+        @SysName varchar(35),
+        @ErrMsg varchar(255),
+        @RowCount int 
 
 -- init some variables
 
-set @ErrNum = 0 set @SPName = object\_name(@@procid)
+set @ErrNum = 0
+set @SPName = object_name(@@procid)
 
 -- check the required parameters
 
-If isnull(@pParmID, 0) &lt; 1
-
-` Or isnull(@pParmOne, ‘’) = ‘’`
-
+If isnull(@pParmID, 0) < 1
+  Or isnull(@pParmOne, ‘’) = ‘’
 begin
-
-` set @ErrMsg = ‘A required input parameter (ParmID or ParmOne) is missing.’`\
-` goto ERR_HANDLER`
-
+  set @ErrMsg = ‘A required input parameter (ParmID or ParmOne) is missing.’
+  goto ERR_HANDLER
 end
 
--- when calling other stored procedures, check both ReturnCode and
-@@error. Always have a stored procedure return -- ZERO if there were no
-errors during execution. Do NOT use the return code to return parameter
-values - use -- OUTPUT variables for that.
+
+--  when calling other stored procedures, check both ReturnCode and @@error.  Always have a stored procedure return
+--  ZERO if there were no errors during execution.  Do NOT use the return code to return parameter values - use
+--  OUTPUT variables for that.
 
 exec @ReturnCode = dbo.spSomeOtherProcedure @pInputParmName = @pParmOne
 
-set @ErrNum = @@error if @ReturnCode &lt;&gt; 0 or @ErrNum &lt;&gt; 0
+set @ErrNum = @@error
+if @ReturnCode <> 0 or @ErrNum <> 0
 begin
-
-` if @ErrNum = 0 `\
-`   set @ErrNum = @ReturnCode  -- this preserves all errors`\
-`   set @ErrMsg = ‘Make this a descriptive msg: Error returned from spSomeOtherProcedure; error: ‘`\
-`              + convert(varchar(11), @ErrNum) + ‘.’`\
-`   Goto ERR_HANDLER`
-
+  if @ErrNum = 0 
+    set @ErrNum = @ReturnCode  -- this preserves all errors
+    set @ErrMsg = ‘Make this a descriptive msg: Error returned from spSomeOtherProcedure; error: ‘
+               + convert(varchar(11), @ErrNum) + ‘.’
+    Goto ERR_HANDLER
 end
-
+ 
 -- Here we show how to perform an insert and do some checking.
 
 Begin transaction
 
-Insert dbo.SomeTable (ColA, ColB, ColC) Select b.Colxx, b.Colyy, b.Colzz
+Insert dbo.SomeTable (ColA, ColB, ColC)
+Select b.Colxx, b.Colyy, b.Colzz
 From dbo.Table1 a inner join dbo.Table2 b
-
-` On a.PKcol = b.FKCol`
-
+  On a.PKcol = b.FKCol
 Where b.ParmID = @pParmID
 
 Select @RowCount = @@rowcount, @ErrNum = @@error
 
-If @ErrNum &lt;&gt; 0 or @RowCount &lt;&gt; 1 Begin
+If @ErrNum <> 0 or @RowCount <> 1
+Begin
+  Rollback transaction
 
-` Rollback transaction`
-
-` set @ErrMsg = ‘Error inserting SomeTable using ParmID ‘ + convert(varchar(10), @pParmID)`\
-`       + ‘; error, rowcount ‘ + convert(varchar(11), @ErrNum) + ‘, ’`\
-`       + convert(varchar(11), @RowCount) + ‘.’`\
-` Goto ERR_HANDLER`
-
+  set @ErrMsg = ‘Error inserting SomeTable using ParmID ‘ + convert(varchar(10), @pParmID)
+        + ‘; error, rowcount ‘ + convert(varchar(11), @ErrNum) + ‘, ’
+        + convert(varchar(11), @RowCount) + ‘.’
+  Goto ERR_HANDLER
 end
+
 
 -- if we are here we can commit the transaction
 
 Commit transaction
 
-END\_PROC:
 
-` return @ErrNum`
+END_PROC:
 
--- this error handler captures the error in errLog, then raises an error
-and returns a non-zero error number.
+  return @ErrNum
 
-ERR\_HANDLER:
 
-` insert dbo.ErrLog ( ErrNum, ErrSource, ErrDesc, CreatedFromHost )`\
-` select @ErrNum, @SPName, @ErrMsg, host_name() `
 
-` raiserror(@ErrMsg, 16, 1)`\
-` select @ErrNum = @@error  `
+--  this error handler captures the error in errLog, then raises an error and returns a non-zero error number.
+
+ERR_HANDLER:
+
+  insert dbo.ErrLog ( ErrNum, ErrSource, ErrDesc, CreatedFromHost )
+  select @ErrNum, @SPName, @ErrMsg, host_name() 
+
+  raiserror(@ErrMsg, 16, 1)
+  select @ErrNum = @@error  
 
 ` goto END_PROC`
 ```
