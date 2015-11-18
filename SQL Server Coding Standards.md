@@ -109,7 +109,11 @@ business of the application. Their names may include a prefix, to group
 tables of similar business purpose. The set of approved data table name
 prefixes is defined below (TBD):
 
-Prefix Definition Lkup Lookup data Imp “Import” or staging data
+| Prefix | Definition               | 
+|--------|--------------------------| 
+| Lkup   | Lookup data              | 
+| Imp    | “Import” or staging data | 
+
 
 Non-data tables are used for more generic purpose: error handling,
 maintenance, work holding space, etc. Their names may also include a
@@ -121,16 +125,14 @@ below:
 \[All prefixes should be in camel case. All suffixes should be upper
 case, with no underscore\]
 
-Table Group Definitions Prefix Suffix Application Static Tables (code
-lookup tables) State code and other code lookup tables. os = Operational
-Standards os Note: going forward, we will use the Lkup prefix. (no
-suffix) System Utility Tables Tables to support Administrative utilities
-admin (no suffix) Persistent Work Tables Tables to support interim work
-steps Application Group Name where Appropriate WORK Staging Tables (For
-import/export) Tables used to hold imported and exported data
-Application Group Name where Appropriate (no suffix; use Inp prefix)
-Backup Tables Tables used to back up other tables Application Group Name
-where Appropriate BKUP
+| Table Group                                       | Definitions                                                             | Prefix                                   | Suffix                      | 
+|---------------------------------------------------|-------------------------------------------------------------------------|------------------------------------------|-----------------------------| 
+| Application Static Tables (code lookup tables)    | State code and other code lookup tables.  os = Operational Standards    | os (Note: going forward, we will use the Lkup prefix.) | (no suffix)               |                                          |                             | 
+| System Utility Tables                             | Tables to support Administrative utilities                              | admin                                    | (no suffix)                 | 
+| Persistent Work Tables                            | Tables to support interim work steps                                    | Application Group Name  where Appropriate                                 | WORK                                                                    |                                          |                             | 
+| Staging Tables (For import/export)                | Tables used to hold imported and exported data                          | Application Group Name where Appropriate | (no suffix; use Inp prefix) | 
+| Backup Tables                                     | Tables used to back up other tables                                     | Application Group Name where Appropriate | BKUP                        | 
+
 
 3.1.3 Column Names
 
