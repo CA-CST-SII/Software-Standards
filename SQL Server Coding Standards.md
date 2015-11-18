@@ -1,3 +1,6 @@
+![Fig12.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/SQL1.png "SQL Standards Coversheet")
+![Fig12.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/SQL2.png "SQL Standards History")
+
 ## 1.0 Overview
 
 This document sets forth guidelines for production SQL code deployed by
