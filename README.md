@@ -30,6 +30,8 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division Object Definition and Naming Standard](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object Definition and Naming Standard.md)
 
+[Consular Systems and Technology Division SQL Server Coding Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md)
+
 [Oracle Application Architecture Guides](https://github.com/CA-CST-SII/Software-Standards/blob/master/Oracle%20Application%20Architecture%20Guides)
 
 ## CAST rules and metrics
