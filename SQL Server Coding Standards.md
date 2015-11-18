@@ -79,7 +79,8 @@ General naming guidelines:
 
 Some objects should be named in an abbreviated form, when they are part
 of database object names. Please see DBA staff to suggest other
-abbreviated forms for inclusion. 
+abbreviated forms for inclusion.
+
 | Business Name  | Abbreviation | 
 |----------------|--------------| 
 | Account        | Acct         | 
