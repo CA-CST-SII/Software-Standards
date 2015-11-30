@@ -13,7 +13,8 @@
 
 This document sets forth guidelines for production SQL code deployed by
 Apptis, Inc.
-**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
+
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
 
 ## 2.0 Purpose
 
@@ -38,7 +39,8 @@ existing code can be retrofitted to meet the standards to whatever
 degree possible, as modifications to that code are required. Note that
 implementation of error handling in only a subset of stored procedures
 will reduce the utility of a standardized approach.
-**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
+
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
 
 ## 3.0 Standards Categories
 
@@ -60,7 +62,8 @@ Recommendations for implementing transactions are also contained in this
 section. Note that client handling of errors returned from the database
 is not addressed in this standards document, but is an important factor
 in the overall efficacy of a standard error handling approach.
-**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
+
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
 
 ### 3.1 Object Naming Standards
 
@@ -85,6 +88,8 @@ General naming guidelines:
     LkupCountryCode, @ErrNum, etc).
 -   Never name an object with a SQL Server reserved word. See Books
     Online, ‘Reserved Keywords’ section.
+
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
 
 #### 3.1.1 Approved Object Name Abbreviations
 
@@ -112,6 +117,7 @@ abbreviated forms for inclusion.
 | Sequence       | Seq          | 
 | System         | Sys          | 
 
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
 
 #### 3.1.2 Table Names
 
@@ -144,6 +150,7 @@ case, with no underscore\]
 | Staging Tables (For import/export)                | Tables used to hold imported and exported data                          | Application Group Name where Appropriate | (no suffix; use Inp prefix) | 
 | Backup Tables                                     | Tables used to back up other tables                                     | Application Group Name where Appropriate | BKUP                        | 
 
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
 
 #### 3.1.3 Column Names
 
@@ -167,6 +174,8 @@ column,since timestamp is a non-temporal datatype; the name is misleading.
 UID \[Unique Identifier\] is a binary record identifier that is unique
 across all agencies.
 
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
+
 #### 3.1.4 Index Names
 
 Index names should provide a clear and concise description of the index.
@@ -183,6 +192,8 @@ the columns indexed. By type, the definitions are as follows:
 | Other             | An index that is not related to a primary, foreign, or ‘alternative’ key on the table. | IX_Acct_LastName | 
 
 **(open issue, should be clearly identify clustered keys)**
+
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
 
 #### 3.1.5 Naming Views, Check Constraints, Defaults, and Rules
 
@@ -205,6 +216,8 @@ example, CHK\_ApplicationNameIsValid).
 | View             | vw + name                       | vwAcctPersonProfile   | 
 | Check Constraint | CHK_ + name                     | CHK_ApplicationFeeMax | 
 
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
+
 #### 3.1.6 Stored Procedure Names
 
 Procedures may be grouped by purpose or by the name of the entity
@@ -225,11 +238,15 @@ Input parameters to a stored procedure shall be named with the prefix
 @p, so they can be distinguished in code from local variables. Output
 parameters to a stored procedure shall be named with the prefix @o.
 
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
+
 #### 3.1.7 DTS Package and SQL Job Names
 
 DTS Package and SQL Job names should be prefixed with the primary
 project it supports (for example: TDISArchiveETL,
 MISPassportSpecialistETL, TDISAgencyPurge, etc).
+
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
 
 ### 3.2 DML Syntax Standard
 
@@ -250,6 +267,8 @@ procedure.
 Use ANSI-92 standard SQL syntax. This includes DELETE FROM and INNER /
 OUTER / LEFT join syntax. A good concise source for checking ANSI SQL
 syntax is <http://www.ocelot.ca/commands.htm>.
+
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
 
 ### 3.3 General Stored Procedure Standard
 
@@ -407,6 +426,8 @@ discernible, even a brief comment can help with future maintenance. Avoid code �
 15. When a modification is made to a stored procedure that has been deployed to production, a comment in the header of the procedure is required as well as describing what the mod was (i.e., ‘Added new parameter @pNewApp.’).
 The reason for the mod and the CR\# are also required (‘Added new parameter @pNewApp in order to filter result set by application; required for new OPS report; see CR \#505.’).
 
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
+
 ###3.4 Error Handling Standard
 
 In SQL Server 2000, error handling is notoriously inconsistent. The upcoming version is reputed to have only minor improvements in how errors are returned.
@@ -433,3 +454,5 @@ appropriate than issuing raiserror commands, since there is no batch process to 
 *If you do not use any of the error handling guidelines as specified in this document, you must include a detailed description of why you chose to not do so in the header section of the stored procedure.*
 
 **Transactions** Wrap units of work within explicit transactions. If a unit of work spans multiple stored procedures, use savepoints within the called stored procedures, to mimic nested transactions by committing / rolling back the work done within each procedure. Without savepoints, a rollback of an inner transaction rolls back the entire transaction, and the outer procedures will need to check @@trancount to properly handle that. SQL Server does not support nested transactions.
+
+**[Contents](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#contents)** 
