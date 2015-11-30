@@ -5,7 +5,7 @@
 
 [1.0 Overview](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md##1.0-Overview)
 
-[2.0 Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md##2.0-Purpose)
+[2.0 Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#20-purpose)
 
 [3.0 Standards Categories](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#30-standards-categories)
 
@@ -13,6 +13,7 @@
 
 This document sets forth guidelines for production SQL code deployed by
 Apptis, Inc.
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
 ## 2.0 Purpose
 
@@ -37,6 +38,7 @@ existing code can be retrofitted to meet the standards to whatever
 degree possible, as modifications to that code are required. Note that
 implementation of error handling in only a subset of stored procedures
 will reduce the utility of a standardized approach.
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
 ## 3.0 Standards Categories
 
@@ -58,6 +60,7 @@ Recommendations for implementing transactions are also contained in this
 section. Note that client handling of errors returned from the database
 is not addressed in this standards document, but is an important factor
 in the overall efficacy of a standard error handling approach.
+**[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
 
 ### 3.1 Object Naming Standards
 
