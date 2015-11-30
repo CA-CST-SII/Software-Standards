@@ -7,7 +7,7 @@
 
 [2.0 Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md##2.0-Purpose)
 
-[3.0 Standards Categories](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md##3.0-Standards Categories)
+[3.0 Standards Categories](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#30-standards-categories)
 
 ## 1.0 Overview
 
