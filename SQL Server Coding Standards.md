@@ -9,6 +9,14 @@
 
 [3.0 Standards Categories](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#30-standards-categories)
 
+ [3.1 Object Naming Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#31-object-naming-standards)
+ 
+ [3.2 Object Naming Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#31-object-naming-standards)
+ 
+ [3.3 Object Naming Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#31-object-naming-standards)
+ 
+ [3.4 Object Naming Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md#31-object-naming-standards)
+
 ## 1.0 Overview
 
 This document sets forth guidelines for production SQL code deployed by
