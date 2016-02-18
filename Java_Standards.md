@@ -730,7 +730,7 @@ A “switch” statement should have the following form:
 switch (condition) {
 case ABC:
     statements;
-    /*  falls through * /
+    /*  falls through */
 
 case DEF:
     statements;
