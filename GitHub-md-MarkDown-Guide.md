@@ -5,9 +5,11 @@ The overriding design goal for Markdown’s formatting syntax is to make it as r
 
 You can use Markdown most places around GitHub:
 
-* Gists
+* [Gists](https://gist.github.com/)
 * Comments in Issues and Pull Requests
 * Files with the .md or .markdown extension
+
+This Guide is primaraly derived from [GitHub's mastering-markdown](https://guides.github.com/features/mastering-markdown/)
 
 ## Syntax guide
 Here’s an overview of Markdown syntax that you can use anywhere on GitHub.com or in your own text files.
@@ -227,6 +229,12 @@ GitHub supports emoji! ```:sparkles: :camel: :boom:```
 :sparkles: :camel: :boom:
 
 To see a list of every image we support, check out the [Emoji Cheat Sheet](http://www.emoji-cheat-sheet.com/).
+
+### Tools:
+
+http://pandoc.org/ This is to convert files from one markup format into another, pandoc is your swiss-army knife.
+http://www.tablesgenerator.com/markdown_tables This is used to generate tables.
+
 ### Refrences:
 
 * http://daringfireball.net/projects/markdown/
