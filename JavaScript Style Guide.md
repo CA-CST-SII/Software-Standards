@@ -34,10 +34,13 @@ Note that @const does not necessarily imply `CONSTANT_VALUES_CASE`. However, `CO
 /**
  * Request timeout in milliseconds.
  * @type {number}
- */```
+ */
 goog.example.TIMEOUT_IN_MILLISECONDS = 60;
-The number of seconds in a minute never changes. It is a constant value. ALL_CAPS also implies @const, so the constant cannot be overwritten.
-The open source compiler will allow the symbol to be overwritten because the constant is not marked as @const.
+```
+The number of seconds in a minute never changes. It is a constant value. `ALL_CAPS` also implies `@const`, so the constant cannot be overwritten.
+
+The open source compiler will allow the symbol to be overwritten because the constant is not marked as `@const`.
+```javascript
 /**
  * Map of URL to response string.
  * @const
@@ -49,12 +52,16 @@ MyClass.fetchedUrlCache_ = new goog.structs.Map();
  * @constructor
  */
 sloth.MyFinalClass = function() {};
-In this case, the pointer can never be overwritten, but value is highly mutable and not constant (and thus in camelCase, not ALL_CAPS).
-Semicolons
+```
+In this case, the pointer can never be overwritten, but value is highly mutable and not constant (and thus in `camelCase`, not `ALL_CAPS`).
+
+###Semicolons
 
 Always use semicolons.
+
 Relying on implicit insertion can cause subtle, hard to debug problems. Don't do it. You're better than that.
 There are a couple places where missing semicolons are particularly dangerous:
+```javascript
 // 1.
 MyClass.prototype.myMethod = function() {
   return 42;
@@ -79,11 +86,13 @@ var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // No semicolon here.
 
 // 3. conditional execution a la bash
 -1 == resultOfOperation() || die();
-So what happens?
+```
+####So what happens?
 1.	JavaScript error - first the function returning 42 is called with the second function as a parameter, then the number 42 is "called" resulting in an error.
 2.	You will most likely get a 'no such property in undefined' error at runtime as it tries to call x[ffVersion, ieVersion][isIE]().
 3.	die is always called since the array minus 1 is NaN which is never equal to anything (not even if resultOfOperation() returns NaN) and THINGS_TO_EAT gets assigned the result of die().
-Why?
+
+####Why?
 JavaScript requires statements to end with a semicolon, except when it thinks it can safely infer their existence. In each of these examples, a function declaration or object or array literal is used inside a statement. The closing brackets are not enough to signal the end of the statement. Javascript never ends a statement if the next token is an infix or bracket operator.
 This has really surprised people, so make sure your assignments end with semicolons.
 Clarification: Semicolons and functions
