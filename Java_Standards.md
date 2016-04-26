@@ -347,7 +347,7 @@ This section describes the naming conventions for development files created in t
 <tr class="even">
 <td align="left"><p>Compressed package files</p></td>
 <td align="left"><p>Name should not be capitalized like class names.</p></td>
-<td align="left"><p><code>ca1-dal-jpa-2.0.jar</code></p></td>
+<td align="left"><p><code>ca-dal-jpa-2.0.jar</code></p></td>
 </tr>
 </tbody>
 </table>
