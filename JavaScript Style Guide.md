@@ -89,14 +89,17 @@ var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // No semicolon here.
 ```
 ####So what happens?
 1.	JavaScript error - first the function returning 42 is called with the second function as a parameter, then the number 42 is "called" resulting in an error.
-2.	You will most likely get a 'no such property in undefined' error at runtime as it tries to call x[ffVersion, ieVersion][isIE]().
-3.	die is always called since the array minus 1 is NaN which is never equal to anything (not even if resultOfOperation() returns NaN) and THINGS_TO_EAT gets assigned the result of die().
+2.	You will most likely get a 'no such property in undefined' error at runtime as it tries to call `x[ffVersion, ieVersion][isIE]()`.
+3.	`die` is always called since the array minus 1 is `NaN` which is never equal to anything (not even if `resultOfOperation()` returns `NaN`) and `THINGS_TO_EAT` gets assigned the result of `die()`.
 
 ####Why?
 JavaScript requires statements to end with a semicolon, except when it thinks it can safely infer their existence. In each of these examples, a function declaration or object or array literal is used inside a statement. The closing brackets are not enough to signal the end of the statement. Javascript never ends a statement if the next token is an infix or bracket operator.
+
 This has really surprised people, so make sure your assignments end with semicolons.
-Clarification: Semicolons and functions
+
+####Clarification: Semicolons and functions
 Semicolons should be included at the end of function expressions, but not at the end of function declarations. The distinction is best illustrated with an example:
+```javascript
 var foo = function() {
   return true;
 };  // semicolon here.
@@ -104,36 +107,46 @@ var foo = function() {
 function foo() {
   return true;
 }  // no semicolon here.
-Nested functions
-link▽
+```
+###Nested functions
 Yes
+
 Nested functions can be very useful, for example in the creation of continuations and for the task of hiding helper functions. Feel free to use them.
-Function Declarations Within Blocks
-link▽
+
+###Function Declarations Within Blocks
 No
+
 Do not do this:
+```javascript
 if (x) {
   function foo() {}
 }
+```
 While most script engines support Function Declarations within blocks it is not part of ECMAScript (see ECMA-262, clause 13 and 14). Worse implementations are inconsistent with each other and with future EcmaScript proposals. ECMAScript only allows for Function Declarations in the root statement list of a script or function. Instead use a variable initialized with a Function Expression to define a function within a block:
+```javascript
 if (x) {
   var foo = function() {};
 }
-Exceptions
-link▽
+```
+###Exceptions
 Yes
+
 You basically can't avoid exceptions if you're doing something non-trivial (using an application development framework, etc.). Go for it.
-Custom exceptions
-link▽
+
+###Custom exceptions
 Yes
+
 Without custom exceptions, returning error information from a function that also returns a value can be tricky, not to mention inelegant. Bad solutions include passing in a reference type to hold error information or always returning Objects with a potential error member. These basically amount to a primitive exception handling hack. Feel free to use custom exceptions when appropriate.
-Standards features
-link▽
+
+###Standards features
+
 Always preferred over non-standards features
-For maximum portability and compatibility, always prefer standards features over non-standards features (e.g., string.charAt(3) over string[3] and element access with DOM functions instead of using an application-specific shorthand).
-Wrapper objects for primitive types
-link▽
+
+For maximum portability and compatibility, always prefer standards features over non-standards features (e.g., `string.charAt(3)` over `string[3]` and element access with DOM functions instead of using an application-specific shorthand).
+
+###Wrapper objects for primitive types
 No
+
 There's no reason to use wrapper objects for primitive types, plus they're dangerous:
 var x = new Boolean(false);
 if (x) {
@@ -149,7 +162,7 @@ typeof Boolean(0) == 'boolean';
 typeof new Boolean(0) == 'object';
 This is very useful for casting things to number, string and boolean.
 Multi-level prototype hierarchies
-link▽
+
 Not preferred
 Multi-level prototype hierarchies are how JavaScript implements inheritance. You have a multi-level hierarchy if you have a user-defined class D with another user-defined class B as its prototype. These hierarchies are much harder to get right than they first appear!
 For that reason, it is best to use goog.inherits() from the Closure Library or a similar library function.
@@ -162,7 +175,7 @@ D.prototype.method = function() {
   ...
 };
 Method and property definitions
-link▽
+
 /** @constructor */ function SomeConstructor() { this.someProperty = 1; } Foo.prototype.someMethod = function() { ... };
 While there are several ways to attach methods and properties to an object created via "new", the preferred style for methods is:
 Foo.prototype.bar = function() {
@@ -176,7 +189,7 @@ function Foo() {
 Why?
 Current JavaScript engines optimize based on the "shape" of an object, adding a property to an object (including overriding a value set on the prototype) changes the shape and can degrade performance.
 delete
-link▽
+
 Prefer this.foo = null.
 Foo.prototype.dispose = function() {
   this.property_ = null;
@@ -187,7 +200,7 @@ Foo.prototype.dispose = function() {
 };
 In modern JavaScript engines, changing the number of properties on an object is much slower than reassigning the values. The delete keyword should be avoided except when it is necessary to remove a property from an object's iterated list of keys, or to change the result of if (key in obj).
 Closures
-link▽
+
 Yes, but be careful.
 The ability to create closures is perhaps the most useful and often overlooked feature of JS. Here is a good description of how closures work.
 One thing to keep in mind, however, is that a closure keeps a pointer to its enclosing scope. As a result, attaching a closure to a DOM element can create a circular reference and thus, a memory leak. For example, in the following code:
@@ -203,7 +216,7 @@ function bar(a, b) {
   return function() { /* uses a and b */ };
 }
 eval()
-link▽
+
 Only for code loaders and REPL (Read–eval–print loop)
 eval() makes for confusing semantics and is dangerous to use if the string being eval()'d contains user input. There's usually a better, clearer, and safer way to write your code, so its use is generally not permitted.
 For RPC you can always use JSON and read the result using JSON.parse() instead of eval().
@@ -220,7 +233,7 @@ var userInfo = JSON.parse(feed);
 var email = userInfo['email'];
 With JSON.parse, invalid JSON (including all executable JavaScript) will cause an exception to be thrown.
 with() {}
-link▽
+
 No
 Using with clouds the semantics of your program. Because the object of the with can have properties that collide with local variables, it can drastically change the meaning of your program. For example, what does this do?
 with (foo) {
@@ -229,14 +242,14 @@ with (foo) {
 }
 Answer: anything. The local variable x could be clobbered by a property of foo and perhaps it even has a setter, in which case assigning 3 could cause lots of other code to execute. Don't use with.
 this
-link▽
+
 Only in object constructors, methods, and in setting up closures
 The semantics of this can be tricky. At times it refers to the global object (in most places), the scope of the caller (in eval), a node in the DOM tree (when attached using an event handler HTML attribute), a newly created object (in a constructor), or some other object (if function was call()ed or apply()ed).
 Because this is so easy to get wrong, limit its use to those places where it is required:
 •	in constructors
 •	in methods of objects (including in the creation of closures)
 for-in loop
-link▽
+
 Only for iterating over keys in an object/map/hash
 for-in loops are often incorrectly used to loop over the elements in an Array. This is however very error prone because it does not loop from 0 to length - 1 but over all the present keys in the object and its prototype chain. Here are a few cases where it fails:
 function printArray(arr) {
@@ -268,11 +281,11 @@ function printArray(arr) {
   }
 }
 Associative Arrays
-link▽
+
 Never use Array as a map/hash/associative array
 Associative Arrays are not allowed... or more precisely you are not allowed to use non number indexes for arrays. If you need a map/hash use Object instead of Array in these cases because the features that you want are actually features of Object and not of Array. Array just happens to extend Object (like any other object in JS and therefore you might as well have used Date, RegExp or String).
 Multiline string literals
-link▽
+
 No
 Do not do this:
 var myString = 'A rather long string of English text, an error message \
@@ -290,7 +303,7 @@ var myString = 'A rather long string of English text, an error message ' +
     'you\'ve got an error and all the extraneous whitespace is ' +
     'just gravy.  Have a nice day.';
 Array and Object literals
-link▽
+
 Yes
 Use Array and Object literals instead of Array and Object constructors.
 Array constructors are error-prone due to their arguments.
@@ -331,11 +344,11 @@ var o2 = {
   'strange key': 3
 };
 Modifying prototypes of builtin objects
-link▽
+
 No
 Modifying builtins like Object.prototype and Array.prototype are strictly forbidden. Modifying other builtins like Function.prototype is less dangerous but still leads to hard to debug issues in production and should be avoided.
 Internet Explorer's Conditional Comments
-link▽
+
 No
 Don't do this:
 var f = function () {
@@ -344,7 +357,7 @@ var f = function () {
 Conditional Comments hinder automated tools as they can vary the JavaScript syntax tree at runtime.
 JavaScript Style Rules
 Naming
-link▽
+
 In general, use functionNamesLikeThis, variableNamesLikeThis, ClassNamesLikeThis, EnumNamesLikeThis, methodNamesLikeThis, CONSTANT_VALUES_LIKE_THIS,foo.namespaceNamesLikeThis.bar, and filenameslikethis.js.
 Properties and methods
 •	Private properties and methods should be named with a trailing underscore.
@@ -454,19 +467,19 @@ Never create aliases in the global scope. Use them only in function blocks.
 Filenames
 Filenames should be all lowercase in order to avoid confusion on case-sensitive platforms. Filenames should end in .js, and should contain no punctuation except for - or _ (prefer - to _).
 Custom toString() methods
-link▽
+
 Must always succeed without side effects.
 You can control how your objects string-ify themselves by defining a custom toString() method. This is fine, but you need to ensure that your method (1) always succeeds and (2) does not have side-effects. If your method doesn't meet these criteria, it's very easy to run into serious problems. For example, if toString() calls a method that does an assert, assert might try to output the name of the object in which it failed, which of course requires calling toString().
 Deferred initialization
-link▽
+
 OK
 It isn't always possible to initialize variables at the point of declaration, so deferred initialization is fine.
 Explicit scope
-link▽
+
 Always
 Always use explicit scope - doing so increases portability and clarity. For example, don't rely on window being in the scope chain. You might want to use your function in another application for which window is not the content window.
 Code formatting
-link▽
+
 Expand for more information.
 We follow the C++ formatting rules in spirit, with the following additional clarifications.
 Curly Braces
@@ -664,17 +677,17 @@ var x = foo.bar().
     doSomething().
     doSomethingElse();
 Parentheses
-link▽
+
 Only where required
 Use sparingly and in general only where required by the syntax and semantics.
 Never use parentheses for unary operators such as delete, typeof and void or after keywords such as return, throw as well as others (case, in or new).
 Strings
-link▽
+
 Prefer ' over "
 For consistency single-quotes (') are preferred to double-quotes ("). This is helpful when creating strings that include HTML:
 var msg = 'This is some HTML';
 Visibility (private and protected fields)
-link▽
+
 Encouraged, use JSDoc annotations @private and @protected
 We recommend the use of the JSDoc annotations @private and @protected to indicate visibility levels for classes, functions, and properties.
 The --jscomp_warning=visibility compiler flag turns on compiler warnings for visibility violations. See Closure Compiler Warnings.
@@ -755,7 +768,7 @@ AA_SubClass.prototype.method = function() {
 };
 Notice that in JavaScript, there is no distinction between a type (like AA_PrivateClass_) and the constructor for that type. There is no way to express both that a type is public and its constructor is private (because the constructor could easily be aliased in a way that would defeat the privacy check).
 JavaScript Types
-link▽
+
 Encouraged and enforced by the compiler.
 When documenting a type in JSDoc, be as specific and accurate as possible. The types we support are based on the EcmaScript 4 spec.
 The JavaScript Type Language
@@ -980,7 +993,7 @@ goog.bind(function() { this.someProperty; }, new SomeClass());
 // Generates an undefined this warning.
 goog.bind(function() { this.someProperty; });
 Comments
-link▽
+
 Use JSDoc
 We follow the C++ style for comments in spirit.
 All files, classes, methods and properties should be documented with JSDoc comments with the appropriate tags and types. Textual descriptions for properties, methods, method parameters and method return values should be included unless obvious from the property, method, or parameter name.
@@ -1472,7 +1485,7 @@ You may also see other types of JSDoc annotations in third-party code. These ann
 •	@static
 •	@version
 Providing Dependencies With goog.provide
-link▽
+
 Only provide top-level symbols.
 All members defined on a class should be in the same file. So, only top-level classes should be provided in a file that contains multiple members defined on the same class (e.g. enums, inner classes, etc).
 Do this:
@@ -1489,11 +1502,11 @@ goog.provide('foo.bar');
 goog.provide('foo.bar.method');
 goog.provide('foo.bar.CONSTANT');
 Compiling
-link▽
+
 Required
 Use of JS compilers such as the Closure Compiler is required for all customer-facing code.
 Tips and Tricks
-link▽
+
 JavaScript tidbits
 True and False Boolean Expressions
 The following are all false in boolean expressions:
