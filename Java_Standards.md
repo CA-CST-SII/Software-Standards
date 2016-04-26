@@ -282,11 +282,11 @@ This section describes Java coding best practices and the resources used to supp
 <td align="left"><ul>
 <li>The prefix of a unique package name is always written in all-lowercase ASCII letters and should be one of the top-level domain names, currently com, edu, gov, mil, net, org, or one of the English two-letter codes identifying countries as specified in ISO Standard 3166, 1981.</li>
 <li>Subsequent components of the package name vary according to an organization's own internal naming conventions. Such conventions might specify that certain directory name components be division, department, project, machine, or login names.</li>
-<li>The prefix for an CA/CST package will be (for example) gov.state.ca1.portal.</li>
+<li>The prefix for an CA/CST package will be (for example) gov.state.ca.portal.</li>
 </ul></td>
-<td align="left"><p><code>gov.state.ca1. Interface.daos</code></p>
-<p><code>gov.state.ca1.generic.captureapplet.app</code></p>
-<p><code>gov.state.ca1.generic.interfaces</code></p></td>
+<td align="left"><p><code>gov.state.ca.interface.daos</code></p>
+<p><code>gov.state.ca.generic.captureapplet.app</code></p>
+<p><code>gov.state.ca.generic.interfaces</code></p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>Classes and Enumerations</p></td>
