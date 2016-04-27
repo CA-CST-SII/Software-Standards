@@ -148,24 +148,31 @@ For maximum portability and compatibility, always prefer standards features over
 No
 
 There's no reason to use wrapper objects for primitive types, plus they're dangerous:
+```javascript
 var x = new Boolean(false);
 if (x) {
   alert('hi');  // Shows 'hi'.
 }
+```
 Don't do it!
 However type casting is fine.
+```javascript
 var x = Boolean(0);
 if (x) {
   alert('hi');  // This will never be alerted.
 }
 typeof Boolean(0) == 'boolean';
 typeof new Boolean(0) == 'object';
-This is very useful for casting things to number, string and boolean.
-Multi-level prototype hierarchies
+```
+This is very useful for casting things to `number`, `string` and `boolean`.
 
+###Multi-level prototype hierarchies
 Not preferred
+
 Multi-level prototype hierarchies are how JavaScript implements inheritance. You have a multi-level hierarchy if you have a user-defined class D with another user-defined class B as its prototype. These hierarchies are much harder to get right than they first appear!
-For that reason, it is best to use goog.inherits() from the Closure Library or a similar library function.
+
+For that reason, it is best to use `goog.inherits()` from the [Closure Library](https://developers.google.com/closure/library/?csw=1) or a similar library function.
+```javascript
 function D() {
   goog.base(this)
 }
@@ -174,40 +181,54 @@ goog.inherits(D, B);
 D.prototype.method = function() {
   ...
 };
-Method and property definitions
-
+```
+###Method and property definitions
+```javascript
 /** @constructor */ function SomeConstructor() { this.someProperty = 1; } Foo.prototype.someMethod = function() { ... };
+```
 While there are several ways to attach methods and properties to an object created via "new", the preferred style for methods is:
+```javascript
 Foo.prototype.bar = function() {
   /* ... */
 };
+```
 The preferred style for other properties is to initialize the field in the constructor:
+```javascript
 /** @constructor */
 function Foo() {
   this.bar = value;
 }
-Why?
-Current JavaScript engines optimize based on the "shape" of an object, adding a property to an object (including overriding a value set on the prototype) changes the shape and can degrade performance.
-delete
+```
+####Why?
+Current JavaScript engines optimize based on the "shape" of an object, [adding a property to an object (including overriding a value set on the prototype) changes the shape and can degrade performance].(https://developers.google.com/v8/design#prop_access)
 
+###delete
+```javascript
 Prefer this.foo = null.
 Foo.prototype.dispose = function() {
   this.property_ = null;
 };
+```
 Instead of:
+```javascript
 Foo.prototype.dispose = function() {
   delete this.property_;
 };
-In modern JavaScript engines, changing the number of properties on an object is much slower than reassigning the values. The delete keyword should be avoided except when it is necessary to remove a property from an object's iterated list of keys, or to change the result of if (key in obj).
-Closures
+```
+In modern JavaScript engines, changing the number of properties on an object is much slower than reassigning the values. The delete keyword should be avoided except when it is necessary to remove a property from an object's iterated list of keys, or to change the result of if `(key in obj)`.
+
+###Closures
 
 Yes, but be careful.
-The ability to create closures is perhaps the most useful and often overlooked feature of JS. Here is a good description of how closures work.
+The ability to create closures is perhaps the most useful and often overlooked feature of JS. Here is [a good description of how closures work].(http://jibbering.com/faq/faq_notes/closures.html)
 One thing to keep in mind, however, is that a closure keeps a pointer to its enclosing scope. As a result, attaching a closure to a DOM element can create a circular reference and thus, a memory leak. For example, in the following code:
+```
 function foo(element, a, b) {
   element.onclick = function() { /* uses a and b */ };
 }
-the function closure keeps a reference to element, a, and b even if it never uses element. Since element also keeps a reference to the closure, we have a cycle that won't be cleaned up by garbage collection. In these situations, the code can be structured as follows:
+```
+the function closure keeps a reference to `element, a`, and `b` even if it never uses element. Since element also keeps a reference to the closure, we have a cycle that won't be cleaned up by garbage collection. In these situations, the code can be structured as follows:
+```javascript
 function foo(element, a, b) {
   element.onclick = bar(a, b);
 }
@@ -215,12 +236,14 @@ function foo(element, a, b) {
 function bar(a, b) {
   return function() { /* uses a and b */ };
 }
-eval()
+```
+###eval()
 
 Only for code loaders and REPL (Read–eval–print loop)
 eval() makes for confusing semantics and is dangerous to use if the string being eval()'d contains user input. There's usually a better, clearer, and safer way to write your code, so its use is generally not permitted.
 For RPC you can always use JSON and read the result using JSON.parse() instead of eval().
 Let's assume we have a server that returns something like this:
+```
 {
   "name": "Alice",
   "id": 31502,
