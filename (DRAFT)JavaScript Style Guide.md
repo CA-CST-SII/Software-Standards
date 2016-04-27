@@ -1,7 +1,7 @@
 #JavaScript Style Guide
 ###Background
 JavaScript is the main client-side scripting language used by many of Consular Systems and Technology (CST) web applications projects. This style guide is a list of dos and don'ts for JavaScript programs. This content was adapted from the Google JavaScript Style Guide retrieved from https://google.github.io/styleguide/javascriptguide.xml by Aaron Whyte, Bob Jervis, Dan Pupius, Erik Arvidsson, Fritz Schneider, and Robby Walker. Content was modified for use in CST. It is distributed under the CC-By 3.0 License for open source. Content was added from input of the Systems Integration, and Innovation (SII) Branch as well as from various Government and industry subject matter experts.
-##JavaScript Language Rules
+##1. JavaScript Language Rules
 ###var
 Declarations with `var:` Always
 
@@ -394,55 +394,71 @@ var o2 = {
 ###Modifying prototypes of builtin objects
 
 No
-Modifying builtins like Object.prototype and Array.prototype are strictly forbidden. Modifying other builtins like Function.prototype is less dangerous but still leads to hard to debug issues in production and should be avoided.
-Internet Explorer's Conditional Comments
+Modifying builtins like `Object.prototype` and `Array.prototype` are strictly forbidden. Modifying other builtins like `Function.prototype` is less dangerous but still leads to hard to debug issues in production and should be avoided.
+
+###Internet Explorer's Conditional Comments
 
 No
 Don't do this:
+```javascript
 var f = function () {
     /*@cc_on if (@_jscript) { return 2* @*/  3; /*@ } @*/
 };
+```
 Conditional Comments hinder automated tools as they can vary the JavaScript syntax tree at runtime.
-JavaScript Style Rules
-Naming
+##2. JavaScript Style Rules
+###Naming
 
-In general, use functionNamesLikeThis, variableNamesLikeThis, ClassNamesLikeThis, EnumNamesLikeThis, methodNamesLikeThis, CONSTANT_VALUES_LIKE_THIS,foo.namespaceNamesLikeThis.bar, and filenameslikethis.js.
-Properties and methods
+In general, use `functionNamesLikeThis, variableNamesLikeThis, ClassNamesLikeThis, EnumNamesLikeThis, methodNamesLikeThis, CONSTANT_VALUES_LIKE_THIS,foo.namespaceNamesLikeThis.bar`, and `filenameslikethis.js`.
+
+####Properties and methods
 •	Private properties and methods should be named with a trailing underscore.
 •	Protected properties and methods should be named without a trailing underscore (like public ones).
 For more information on private and protected, read the section on visibility.
-Method and function parameter
-Optional function arguments start with opt_.
-Functions that take a variable number of arguments should have the last argument named var_args. You may not refer to var_args in the code; use the arguments array.
-Optional and variable arguments can also be specified in @param annotations. Although either convention is acceptable to the compiler, using both together is preferred.
-Getters and Setters
+
+####Method and function parameter
+Optional function arguments start with `opt_`.
+Functions that take a variable number of arguments should have the last argument named `var_args`. You may not refer to `var_args` in the code; use the `arguments` array.
+Optional and variable arguments can also be specified in `@param` annotations. Although either convention is acceptable to the compiler, using both together is preferred.
+
+####Getters and Setters
 EcmaScript 5 getters and setters for properties are discouraged. However, if they are used, then getters must not change observable state.
+```javascript
 /**
  * WRONG -- Do NOT do this.
  */
 var foo = { get next() { return this.nextId++; } };
-Accessor functions
-Getters and setters methods for properties are not required. However, if they are used, then getters must be named getFoo() and setters must be named setFoo(value). (For boolean getters, isFoo() is also acceptable, and often sounds more natural.)
-Namespaces
+```
+####Accessor functions
+Getters and setters methods for properties are not required. However, if they are used, then getters must be named `getFoo()` and setters must be named `setFoo(value)`. (For boolean getters, `isFoo()` is also acceptable, and often sounds more natural.)
+
+####Namespaces
 JavaScript has no inherent packaging or namespacing support.
 Global name conflicts are difficult to debug, and can cause intractable problems when two projects try to integrate. In order to make it possible to share common JavaScript code, we've adopted conventions to prevent collisions.
-Use namespaces for global code
-ALWAYS prefix identifiers in the global scope with a unique pseudo namespace related to the project or library. If you are working on "Project Sloth", a reasonable pseudo namespace would be sloth.*.
+
+#####Use namespaces for global code
+ALWAYS prefix identifiers in the global scope with a unique pseudo namespace related to the project or library. If you are working on "Project Sloth", a reasonable pseudo namespace would be `sloth.*`.
+```javascript
 var sloth = {};
 
 sloth.sleep = function() {
   ...
 };
-Many JavaScript libraries, including the Closure Library and Dojo toolkit give you high-level functions for declaring your namespaces. Be consistent about how you declare your namespaces.
+```
+Many JavaScript libraries, including the [Closure Library](https://developers.google.com/closure/library/?csw=1) and [Dojo toolkit](http://dojotoolkit.org/) give you high-level functions for declaring your namespaces. Be consistent about how you declare your namespaces.
+```javascript
 goog.provide('sloth');
 
 sloth.sleep = function() {
   ...
 };
-Respect namespace ownership
-When choosing a child-namespace, make sure that the owners of the parent namespace know what you are doing. If you start a project that creates hats for sloths, make sure that the Sloth team knows that you're using sloth.hats.
-Use different namespaces for external code and internal code
-"External code" is code that comes from outside your codebase, and is compiled independently. Internal and external names should be kept strictly separate. If you're using an external library that makes things available in foo.hats.*, your internal code should not define all its symbols in foo.hats.*, because it will break if the other team defines new symbols.
+```
+#####Respect namespace ownership
+When choosing a child-namespace, make sure that the owners of the parent namespace know what you are doing. If you start a project that creates hats for sloths, make sure that the Sloth team knows that you're using `sloth.hats`.
+
+#####Use different namespaces for external code and internal code
+"External code" is code that comes from outside your codebase, and is compiled independently. Internal and external names should be kept strictly separate. If you're using an external library that makes things available in `foo.hats.*`, your internal code should not define all its symbols in `foo.hats.*`, because it will break if the other team defines new symbols.
+```javascript
 foo.require('foo.hats');
 
 /**
@@ -452,7 +468,9 @@ foo.require('foo.hats');
  */
 foo.hats.BowlerHat = function() {
 };
+```
 If you need to define new APIs on an external namespace, then you should explicitly export the public API functions, and only those functions. Your internal code should call the internal APIs by their internal names, for consistency and so that the compiler can optimize them better.
+```javascript
 foo.provide('googleyhats.BowlerHat');
 
 foo.require('foo.hats');
@@ -466,8 +484,10 @@ googleyhats.BowlerHat = function() {
 };
 
 goog.exportSymbol('foo.hats.BowlerHat', googleyhats.BowlerHat);
-Alias long type names to improve readability
+```
+#####Alias long type names to improve readability
 Use local aliases for fully-qualified types if doing so improves readability. The name of a local alias should match the last part of the type.
+```javascript
 /**
  * @constructor
  */
@@ -486,12 +506,16 @@ myapp.main = function() {
   var staticHelper = some.long.namespace.MyClass.staticHelper;
   staticHelper(new MyClass());
 };
-Do not create local aliases of namespaces. Namespaces should only be aliased using goog.scope.
+```
+Do not create local aliases of namespaces. Namespaces should only be aliased using `goog.scope`.
+```javascript
 myapp.main = function() {
   var namespace = some.long.namespace;
   namespace.MyClass.staticHelper(new namespace.MyClass());
 };
+```
 Avoid accessing properties of an aliased type, unless it is an enum.
+```javascript
 /** @enum {string} */
 some.long.namespace.Fruit = {
   APPLE: 'a',
@@ -511,18 +535,23 @@ myapp.main = function() {
   var MyClass = some.long.namespace.MyClass;
   MyClass.staticHelper(null);
 };
+```
 Never create aliases in the global scope. Use them only in function blocks.
-Filenames
+
+#####Filenames
 Filenames should be all lowercase in order to avoid confusion on case-sensitive platforms. Filenames should end in .js, and should contain no punctuation except for - or _ (prefer - to _).
-Custom toString() methods
+
+###Custom toString() methods
 
 Must always succeed without side effects.
-You can control how your objects string-ify themselves by defining a custom toString() method. This is fine, but you need to ensure that your method (1) always succeeds and (2) does not have side-effects. If your method doesn't meet these criteria, it's very easy to run into serious problems. For example, if toString() calls a method that does an assert, assert might try to output the name of the object in which it failed, which of course requires calling toString().
-Deferred initialization
+You can control how your objects string-ify themselves by defining a custom `toString()` method. This is fine, but you need to ensure that your method (1) always succeeds and (2) does not have side-effects. If your method doesn't meet these criteria, it's very easy to run into serious problems. For example, if `toString()` calls a method that does an `assert`, `assert` might try to output the name of the object in which it failed, which of course requires calling `toString()`.
+
+###Deferred initialization
 
 OK
 It isn't always possible to initialize variables at the point of declaration, so deferred initialization is fine.
-Explicit scope
+
+###Explicit scope
 
 Always
 Always use explicit scope - doing so increases portability and clarity. For example, don't rely on window being in the scope chain. You might want to use your function in another application for which window is not the content window.
