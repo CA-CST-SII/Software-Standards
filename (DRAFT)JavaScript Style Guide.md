@@ -243,7 +243,7 @@ Only for code loaders and REPL (Read–eval–print loop)
 eval() makes for confusing semantics and is dangerous to use if the string being eval()'d contains user input. There's usually a better, clearer, and safer way to write your code, so its use is generally not permitted.
 For RPC you can always use JSON and read the result using JSON.parse() instead of eval().
 Let's assume we have a server that returns something like this:
-```
+```javascript
 {
   "name": "Alice",
   "id": 31502,
@@ -251,27 +251,35 @@ Let's assume we have a server that returns something like this:
 }
 var userInfo = eval(feed);
 var email = userInfo['email'];
+```
 If the feed was modified to include malicious JavaScript code, then if we use eval then that code will be executed.
+```javascript
 var userInfo = JSON.parse(feed);
 var email = userInfo['email'];
-With JSON.parse, invalid JSON (including all executable JavaScript) will cause an exception to be thrown.
-with() {}
+```
+With `JSON.parse`, invalid JSON (including all executable JavaScript) will cause an exception to be thrown.
+
+###with() {}
 
 No
 Using with clouds the semantics of your program. Because the object of the with can have properties that collide with local variables, it can drastically change the meaning of your program. For example, what does this do?
+```javascript
 with (foo) {
   var x = 3;
   return x;
 }
-Answer: anything. The local variable x could be clobbered by a property of foo and perhaps it even has a setter, in which case assigning 3 could cause lots of other code to execute. Don't use with.
-this
+```
+Answer: anything. The local variable `x` could be clobbered by a property of `foo` and perhaps it even has a setter, in which case assigning `3` could cause lots of other code to execute. Don't use `with`.
+
+###this
 
 Only in object constructors, methods, and in setting up closures
-The semantics of this can be tricky. At times it refers to the global object (in most places), the scope of the caller (in eval), a node in the DOM tree (when attached using an event handler HTML attribute), a newly created object (in a constructor), or some other object (if function was call()ed or apply()ed).
+The semantics of this can be tricky. At times it refers to the global object (in most places), the scope of the caller (in eval), a node in the DOM tree (when attached using an event handler HTML attribute), a newly created object (in a constructor), or some other object (if function was `call()`ed or `apply()`ed).
 Because this is so easy to get wrong, limit its use to those places where it is required:
 •	in constructors
 •	in methods of objects (including in the creation of closures)
-for-in loop
+
+###for-in loop
 
 Only for iterating over keys in an object/map/hash
 for-in loops are often incorrectly used to loop over the elements in an Array. This is however very error prone because it does not loop from 0 to length - 1 but over all the present keys in the object and its prototype chain. Here are a few cases where it fails:
