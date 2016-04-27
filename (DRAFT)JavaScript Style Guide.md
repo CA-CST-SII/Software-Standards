@@ -1,6 +1,6 @@
 #JavaScript Style Guide
 ###Background
-JavaScript is the main client-side scripting language used by many of Google's open-source projects. This style guide is a list of dos and don'ts for JavaScript programs.
+JavaScript is the main client-side scripting language used by many of Consular Systems and Technology (CST) web applications projects. This style guide is a list of dos and don'ts for JavaScript programs. This content was adapted from the Google JavaScript Style Guide retrieved from https://google.github.io/styleguide/javascriptguide.xml by Aaron Whyte, Bob Jervis, Dan Pupius, Erik Arvidsson, Fritz Schneider, and Robby Walker. Content was modified for use in CST. It is distributed under the CC-By 3.0 License for open source. Content was added from input of the Systems Integration, and Innovation (SII) Branch as well as from various Government and industry subject matter experts.
 ##JavaScript Language Rules
 ###var
 Declarations with `var:` Always
