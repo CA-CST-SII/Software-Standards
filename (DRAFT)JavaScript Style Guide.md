@@ -282,7 +282,8 @@ Because this is so easy to get wrong, limit its use to those places where it is 
 ###for-in loop
 
 Only for iterating over keys in an object/map/hash
-for-in loops are often incorrectly used to loop over the elements in an Array. This is however very error prone because it does not loop from 0 to length - 1 but over all the present keys in the object and its prototype chain. Here are a few cases where it fails:
+`for-in` loops are often incorrectly used to loop over the elements in an `Array`. This is however very error prone because it does not loop from` 0` to `length - 1` but over all the present keys in the object and its prototype chain. Here are a few cases where it fails:
+```javascript
 function printArray(arr) {
   for (var key in arr) {
     print(arr[key]);
@@ -304,40 +305,49 @@ printArray(a);  // This is wrong again.
 a = new Array;
 a[3] = 3;
 printArray(a);  // This is wrong again.
+```
 Always use normal for loops when using arrays.
+```javascript
 function printArray(arr) {
   var l = arr.length;
   for (var i = 0; i < l; i++) {
     print(arr[i]);
   }
 }
-Associative Arrays
+```
+###Associative Arrays
 
-Never use Array as a map/hash/associative array
-Associative Arrays are not allowed... or more precisely you are not allowed to use non number indexes for arrays. If you need a map/hash use Object instead of Array in these cases because the features that you want are actually features of Object and not of Array. Array just happens to extend Object (like any other object in JS and therefore you might as well have used Date, RegExp or String).
-Multiline string literals
+Never use `Array` as a map/hash/associative array
+Associative Arrays are not allowed... or more precisely you are not allowed to use non number indexes for arrays. If you need a map/hash use `Object` instead of `Array` in these cases because the features that you want are actually features of `Object` and not of `Array`. `Array` just happens to extend `Object` (like any other object in JS and therefore you might as well have used `Date`, `RegExp` or `String`).
+
+###Multiline string literals
 
 No
 Do not do this:
+```javascript
 var myString = 'A rather long string of English text, an error message \
                 actually that just keeps going and going -- an error \
                 message to make the Energizer bunny blush (right through \
                 those Schwarzenegger shades)! Where was I? Oh yes, \
                 you\'ve got an error and all the extraneous whitespace is \
                 just gravy.  Have a nice day.';
+  ```
 The whitespace at the beginning of each line can't be safely stripped at compile time; whitespace after the slash will result in tricky errors; and while most script engines support this, it is not part of ECMAScript.
 Use string concatenation instead:
+```javascript
 var myString = 'A rather long string of English text, an error message ' +
     'actually that just keeps going and going -- an error ' +
     'message to make the Energizer bunny blush (right through ' +
     'those Schwarzenegger shades)! Where was I? Oh yes, ' +
     'you\'ve got an error and all the extraneous whitespace is ' +
     'just gravy.  Have a nice day.';
-Array and Object literals
+```
+###Array and Object literals
 
 Yes
-Use Array and Object literals instead of Array and Object constructors.
+Use `Array` and `Object` literals instead of `Array` and `Object` constructors.
 Array constructors are error-prone due to their arguments.
+```javascript
 // Length is 3.
 var a1 = new Array(x1, x2, x3);
 
@@ -351,13 +361,17 @@ var a3 = new Array(x1);
 
 // Length is 0.
 var a4 = new Array();
+```
 Because of this, if someone changes the code to pass 1 argument instead of 2 arguments, the array might not have the expected length.
 To avoid these kinds of weird cases, always use the more readable array literal.
+```javascript
 var a = [x1, x2, x3];
 var a2 = [x1, x2];
 var a3 = [x1];
 var a4 = [];
+```
 Object constructors don't have the same problems, but for readability and consistency object literals should be used.
+```javascript
 var o = new Object();
 
 var o2 = new Object();
@@ -365,7 +379,9 @@ o2.a = 0;
 o2.b = 1;
 o2.c = 2;
 o2['strange key'] = 3;
+```
 Should be written as:
+```javascript
 var o = {};
 
 var o2 = {
@@ -374,7 +390,8 @@ var o2 = {
   c: 2,
   'strange key': 3
 };
-Modifying prototypes of builtin objects
+```
+###Modifying prototypes of builtin objects
 
 No
 Modifying builtins like Object.prototype and Array.prototype are strictly forbidden. Modifying other builtins like Function.prototype is less dangerous but still leads to hard to debug issues in production and should be avoided.
