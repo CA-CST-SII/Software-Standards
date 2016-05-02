@@ -1500,7 +1500,7 @@ As the ES4 proposal has evolved, this language has changed. The compiler still s
               </tr>
             </tbody>
           </table>
-</XML          
+</XML>          
 
 
 ####Type Casts
@@ -1560,9 +1560,10 @@ function MyClass(opt_value) {
   this.myValue_ = opt_value;
 }
 ```
-This tells the compiler that myValue_ may hold an Object, null, or remain undefined.
-Note that the optional parameter opt_value is declared to be of type {Object=}, not {Object|undefined}. This is because optional parameters may, by definition, be undefined. While there is no harm in explicitly declaring an optional parameter as possibly undefined, it is both unnecessary and makes the code harder to read.
+This tells the compiler that `myValue_` may hold an Object, null, or remain undefined.
+Note that the optional parameter opt_value is declared to be of type `{Object=}`, not `{Object|undefined}`. This is because optional parameters may, by definition, be undefined. While there is no harm in explicitly declaring an optional parameter as possibly undefined, it is both unnecessary and makes the code harder to read.
 Finally, note that being nullable and being optional are orthogonal properties. The following four declarations are all different:
+```Javascript
 /**
  * Takes four arguments, two of which are nullable, and two of which are
  * optional.
@@ -1575,8 +1576,10 @@ Finally, note that being nullable and being optional are orthogonal properties. 
 function strangeButTrue(nonNull, mayBeNull, opt_nonNull, opt_mayBeNull) {
   // ...
 };
-Typedefs
+```
+####Typedefs
 Sometimes types can get complicated. A function that accepts content for an Element might look like:
+```javascript
 /**
  * @param {string} tagName
  * @param {(string|Element|Text|Array.<Element>|Array.<Text>)} contents
@@ -1585,7 +1588,9 @@ Sometimes types can get complicated. A function that accepts content for an Elem
 goog.createElement = function(tagName, contents) {
   ...
 };
-You can define commonly used type expressions with a @typedef tag. For example,
+```
+You can define commonly used type expressions with a `@typedef` tag. For example,
+```javascript
 /** @typedef {(string|Element|Text|Array.<Element>|Array.<Text>)} */
 goog.ElementContent;
 
@@ -1597,8 +1602,10 @@ goog.ElementContent;
 goog.createElement = function(tagName, contents) {
 ...
 };
-Template types
+```
+####Template types
 The compiler has limited support for template types. It can only infer the type of this inside an anonymous function literal from the type of the this argument and whether the this argument is missing.
+```javascript
 /**
  * @param {function(this:T, ...)} fn
  * @param {T} thisObj
@@ -1612,22 +1619,28 @@ goog.bind = function(fn, thisObj, var_args) {
 goog.bind(function() { this.someProperty; }, new SomeClass());
 // Generates an undefined this warning.
 goog.bind(function() { this.someProperty; });
-Comments
+```
+###Comments
 
 Use JSDoc
-We follow the C++ style for comments in spirit.
-All files, classes, methods and properties should be documented with JSDoc comments with the appropriate tags and types. Textual descriptions for properties, methods, method parameters and method return values should be included unless obvious from the property, method, or parameter name.
+We follow the <a href="cppguide.html#Comments">C++ style for comments</a> in spirit.
+All files, classes, methods and properties should be documented with <a href="https://code.google.com/p/jsdoc-toolkit/">JSDoc</a>
+comments with the appropriate <a href="#JSDoc_Tag_Reference">tags</a> and <a href="#JsTypes">types</a>. Textual descriptions for properties, methods, method parameters and method return values should be included unless obvious from the property, method, or parameter name.
 Inline comments should be of the // variety.
 Complete sentences are recommended but not required. Complete sentences should use appropriate capitalization and punctuation.
-Comment Syntax
+
+####Comment Syntax
 The JSDoc syntax is based on JavaDoc. Many tools extract metadata from JSDoc comments to perform code validation and optimizations. These comments must be well-formed.
+```javascript
 /**
  * A JSDoc comment should begin with a slash and 2 asterisks.
  * Inline tags should be enclosed in braces like {@code this}.
  * @desc Block tags should always start on their own line.
  */
-JSDoc Indentation
+ ```
+####JSDoc Indentation
 If you have to line break a block tag, you should treat this as breaking a code statement and indent it four spaces.
+```javascript
 /**
  * Illustrates line wrapping for long param/return descriptions.
  * @param {string} foo This is a param with a description too long to fit in
@@ -1638,8 +1651,10 @@ If you have to line break a block tag, you should treat this as breaking a code 
 project.MyClass.prototype.method = function(foo) {
   return 5;
 };
-You should not indent the @fileoverview command. You do not have to indent the @desc command.
+```
+You should not indent the `@fileoverview` command. You do not have to indent the `@desc` command.
 Even though it is not preferred, it is also acceptable to line up the description.
+```javascript
 /**
  * This is NOT the preferred indentation method.
  * @param {string} foo This is a param with a description too long to fit in
@@ -1650,18 +1665,22 @@ Even though it is not preferred, it is also acceptable to line up the descriptio
 project.MyClass.prototype.method = function(foo) {
   return 5;
 };
-HTML in JSDoc
-Like JavaDoc, JSDoc supports many HTML tags, like <code>, <pre>, <tt>, <strong>, <ul>, <ol>, <li>, <a>, and others.
+```
+####HTML in JSDoc
+Like JavaDoc, JSDoc supports many HTML tags, like `<code>, <pre>, <tt>, <strong>, <ul>, <ol>, <li>, <a>,` and others.
 This means that plaintext formatting is not respected. So, don't rely on whitespace to format JSDoc:
+```javascript
 /**
  * Computes weight based on three factors:
  *   items sent
  *   items received
  *   last timestamp
  */
+ ```
 It'll come out like this:
 Computes weight based on three factors: items sent items received last timestamp
 Instead, do this:
+```javascript
 /**
  * Computes weight based on three factors:
  * <ul>
@@ -1670,15 +1689,21 @@ Instead, do this:
  * <li>last timestamp
  * </ul>
  */
-The JavaDoc style guide is a useful resource on how to write well-formed doc comments.
-Top/File-Level Comments
-A copyright notice and author information are optional. File overviews are generally recommended whenever a file consists of more than a single class definition. The top level comment is designed to orient readers unfamiliar with the code to what is in this file. If present, it should provide a description of the file's contents and any dependencies or compatibility information. As an example:
+ ```
+The <a href="https://www.oracle.com/technetwork/java/javase/documentation/index-137868.html">
+          JavaDoc</a> style guide is a useful resource on how to write well-formed doc comments.
+          
+####Top/File-Level Comments
+A <a href="copyright.html">copyright notice</a> and author information are optional. File overviews are generally recommended whenever a file consists of more than a single class definition. The top level comment is designed to orient readers unfamiliar with the code to what is in this file. If present, it should provide a description of the file's contents and any dependencies or compatibility information. As an example:
+```javascript
 /**
  * @fileoverview Description of file, its uses and information
  * about its dependencies.
  */
-Class Comments
+ ```
+####Class Comments
 Classes must be documented with a description and a type tag that identifies the constructor.
+```javascript
 /**
  * Class making something fun and easy.
  * @param {string} arg1 An argument that makes this more interesting.
@@ -1690,8 +1715,10 @@ project.MyClass = function(arg1, arg2) {
   // ...
 };
 goog.inherits(project.MyClass, goog.Disposable);
-Method and Function Comments
+```
+####Method and Function Comments
 Parameter and return types should be documented. The method description may be omitted if it is obvious from the parameter or return type descriptions. Method descriptions should start with a sentence written in the third person declarative voice.
+```javascript
 /**
  * Operates on an instance of MyClass and returns something.
  * @param {project.MyClass} obj Instance of MyClass which leads to a long
@@ -1701,7 +1728,9 @@ Parameter and return types should be documented. The method description may be o
 function PR_someMethod(obj) {
   // ...
 }
-Property Comments
+```
+####Property Comments
+```javascript
 /** @constructor */
 project.MyClass = function() {
   /**
@@ -1710,538 +1739,1160 @@ project.MyClass = function() {
    */
   this.someProperty = 4;
 }
-JSDoc Tag Reference
-Tag	Template & Examples	Description
-@author	@author username@google.com (first last)
-For example:
-/**
- * @fileoverview Utilities for handling textareas.
- * @author kuth@google.com (Uthur Pendragon)
- */	Document the author of a file or the owner of a test, generally only used in the@fileoverview comment.
-@code	{@code ...}
-For example:
-/**
- * Moves to the next position in the selection.
- * Throws {@code goog.iter.StopIteration} when it
- * passes the end of the range.
- * @return {Node} The node at the next position.
- */
-goog.dom.RangeIterator.prototype.next = function() {
-  // ...
-};	Indicates that a term in a JSDoc description is code so it may be correctly formatted in generated documentation.
-@const	@const
-@const {type}
-For example:
-/** @const */ var MY_BEER = 'stout';
+```
+####JSDoc Tag Reference
+<table border="1" style="border-collapse:collapse" cellpadding="4">
+            <thead>
+              <tr>
+                <th>Tag</th>
+                <th>Template &amp; Examples</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a name="tag-author">@author</a>
+                  
+                </td>
+                <td>
+                  <code>@author username@google.com (first last)</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * @fileoverview Utilities for handling textareas.
+                     * @author kuth@google.com (Uthur Pendragon)
+                     */
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Document the author of a file or the owner of a test,
+                  generally only used in the <code>@fileoverview</code> comment.
+                  
+                </td>
+              </tr>
 
-/**
- * My namespace's favorite kind of beer.
- * @const {string}
- */
-mynamespace.MY_BEER = 'stout';
+              
 
-/** @const */ MyClass.MY_BEER = 'stout';
+              <tr>
+                <td><a name="tag-code">@code</a></td>
+                <td>
+                  <code>{@code ...}</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * Moves to the next position in the selection.
+                     * Throws {@code goog.iter.StopIteration} when it
+                     * passes the end of the range.
+                     * @return {Node} The node at the next position.
+                     */
+                    goog.dom.RangeIterator.prototype.next = function() {
+                      // ...
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Indicates that a term in a JSDoc description is code so it may
+                  be correctly formatted in generated documentation.
+                </td>
+              </tr>
 
-/**
- * Initializes the request.
- * @const
- */
-mynamespace.Request.prototype.initialize = function() {
-  // This method cannot be overridden in a subclass.
-};	Marks a variable (or property) as read-only and suitable for inlining.
-A @const variable is an immutable pointer to a value. If a variable or property marked as@const is overwritten, JSCompiler will give warnings.
-The type declaration of a constant value can be omitted if it can be clearly inferred. An additional comment about the variable is optional.
-When @const is applied to a method, it implies the method is not only not overwritable, but also that the method is finalized — not overridable in subclasses.
-For more on @const, see the Constants section.
+              <tr>
+                <td><a name="tag-const">@const</a></td>
+                <td>
+                  <code>@const</code><br/>
+                  <code>@const {type}</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /** @const */ var MY_BEER = 'stout';
 
-@constructor	@constructor
-For example:
-/**
- * A rectangle.
- * @constructor
- */
-function GM_Rect() {
-  ...
-}	Used in a class's documentation to indicate the constructor.
-@define	@define {Type} description
-For example:
-/** @define {boolean} */
-var TR_FLAGS_ENABLE_DEBUG = true;
+                    /**
+                     * My namespace's favorite kind of beer.
+                     * @const {string}
+                     */
+                    mynamespace.MY_BEER = 'stout';
 
-/**
- * @define {boolean} Whether we know at compile-time that
- *     the browser is IE.
- */
-goog.userAgent.ASSUME_IE = false;	Indicates a constant that can be overridden by the compiler at compile-time. In the example, the compiler flag --define='goog.userAgent.ASSUME_IE=true' could be specified in the BUILD file to indicate that the constant goog.userAgent.ASSUME_IEshould be replaced with true.
-@deprecated	@deprecated Description
-For example:
-/**
- * Determines whether a node is a field.
- * @return {boolean} True if the contents of
- *     the element are editable, but the element
- *     itself is not.
- * @deprecated Use isField().
- */
-BN_EditUtil.isTopEditableField = function(node) {
-  // ...
-};	Used to tell that a function, method or property should not be used any more. Always provide instructions on what callers should use instead.
-@dict	@dict Description
-For example:
-/**
- * @constructor
- * @dict
- */
-function Foo(x) {
-  this['x'] = x;
-}
-var obj = new Foo(123);
-var num = obj.x;  // warning
+                    /** @const */ MyClass.MY_BEER = 'stout';
 
-(/** @dict */ { x: 1 }).x = 123;  // warning	When a constructor (Foo in the example) is annotated with @dict, you can only use the bracket notation to access the properties of Foo objects. The annotation can also be used directly on object literals.
-@enum	@enum {Type}
-For example:
-/**
- * Enum for tri-state values.
- * @enum {number}
- */
-project.TriState = {
-  TRUE: 1,
-  FALSE: -1,
-  MAYBE: 0
-};	
-@export	@export
-For example:
-/** @export */
-foo.MyPublicClass.prototype.myPublicMethod = function() {
-  // ...
-};	Given the code on the left, when the compiler is run with the --generate_exports flag, it will generate the code:
-goog.exportSymbol('foo.MyPublicClass.prototype.myPublicMethod',
-    foo.MyPublicClass.prototype.myPublicMethod);
-which will export the symbols to uncompiled code. Code that uses the @exportannotation must either
-1.	include //javascript/closure/base.js, or
-2.	define both goog.exportSymbol and goog.exportProperty with the same method signature in their own codebase.
-@expose	@expose
-For example:
-/** @expose */
-MyClass.prototype.exposedProperty = 3;	Declares an exposed property. Exposed properties will not be removed, or renamed, or collapsed, or optimized in any way by the compiler. No properties with the same name will be able to be optimized either.
-@expose should never be used in library code, because it will prevent that property from ever getting removed.
-@extends	@extends Type
-@extends {Type}
-For example:
-/**
- * Immutable empty node list.
- * @constructor
- * @extends goog.ds.BasicNodeList
- */
-goog.ds.EmptyNodeList = function() {
-  ...
-};	Used with @constructor to indicate that a class inherits from another class. Curly braces around the type are optional.
-@externs	@externs
-For example:
-/**
- * @fileoverview This is an externs file.
- * @externs
- */
+                    /**
+                     * Initializes the request.
+                     * @const
+                     */
+                    mynamespace.Request.prototype.initialize = function() {
+                      // This method cannot be overridden in a subclass.
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  <p>Marks a variable (or property) as read-only and suitable
+                  for inlining.</p>
 
-var document;	Declares an externs file.
-@fileoverview	@fileoverview Description
-For example:
-/**
- * @fileoverview Utilities for doing things that require this very long
- * but not indented comment.
- * @author kuth@google.com (Uthur Pendragon)
- */	Makes the comment block provide file level information.
-@implements	@implements Type
-@implements {Type}
-For example:
-/**
- * A shape.
- * @interface
- */
-function Shape() {};
-Shape.prototype.draw = function() {};
+                  <p>A <code>@const</code> variable is an immutable pointer to
+                  a value.  If a variable or property marked as
+                  <code>@const</code> is overwritten, JSCompiler will give
+                  warnings.</p>
 
-/**
- * @constructor
- * @implements {Shape}
- */
-function Square() {};
-Square.prototype.draw = function() {
-  ...
-};	Used with @constructor to indicate that a class implements an interface. Curly braces around the type are optional.
-@inheritDoc	@inheritDoc
-For example:
-/** @inheritDoc */
-project.SubClass.prototype.toString() {
-  // ...
-};	Deprecated. Use @override instead.
-Indicates that a method or property of a subclass intentionally hides a method or property of the superclass, and has exactly the same documentation. Notice that @inheritDocimplies @override
-@interface	@interface
-For example:
-/**
- * A shape.
- * @interface
- */
-function Shape() {};
-Shape.prototype.draw = function() {};
+                  <p>The type declaration of a constant value can be omitted
+                    if it can be clearly inferred. An additional comment about
+                    the variable is optional.</p>
 
-/**
- * A polygon.
- * @interface
- * @extends {Shape}
- */
-function Polygon() {};
-Polygon.prototype.getSides = function() {};	Used to indicate that the function defines an interface.
-@lends	@lends objectName
-@lends {objectName}
-For example:
-goog.object.extend(
-    Button.prototype,
-    /** @lends {Button.prototype} */ {
-      isButton: function() { return true; }
-    });	Indicates that the keys of an object literal should be treated as properties of some other object. This annotation should only appear on object literals.
-Notice that the name in braces is not a type name like in other annotations. It's an object name. It names the object on which the properties are "lent". For example, @type {Foo}means "an instance of Foo", but @lends {Foo} means "the constructor Foo".
-The JSDoc Toolkit docs have more information on this annotation.
-@license or@preserve	@license Description
-For example:
-/**
- * @preserve Copyright 2009 SomeThirdParty.
- * Here is the full license text and copyright
- * notice for this file. Note that the notice can span several
- * lines and is only terminated by the closing star and slash:
- */	Anything marked by @license or @preserve will be retained by the compiler and output at the top of the compiled code for that file. This annotation allows important notices (such as legal licenses or copyright text) to survive compilation unchanged. Line breaks are preserved.
-@noalias	@noalias
-For example:
-/** @noalias */
-function Range() {}	Used in an externs file to indicate to the compiler that the variable or function should not be aliased as part of the alias externals pass of the compiler.
-@nocompile	@nocompile
-For example:
-/** @nocompile */
+                  <p>When <code>@const</code> is applied to a method, it
+                    implies the method is not only not overwritable, but also
+                    that the method is <em>finalized</em> —
+                    not overridable in subclasses.</p>
 
-// JavaScript code	Used at the top of a file to tell the compiler to parse this file but not compile it. Code that is not meant for compilation and should be omitted from compilation tests (such as bootstrap code) uses this annotation. Use sparingly.
-@nosideeffects	@nosideeffects
-For example:
-/** @nosideeffects */
-function noSideEffectsFn1() {
-  // ...
-}
+                  <p>For more on <code>@const</code>, see the
+                    <a href="#Constants">Constants</a> section.</p>
 
-/** @nosideeffects */
-var noSideEffectsFn2 = function() {
-  // ...
-};
+                </td>
+              </tr>
 
-/** @nosideeffects */
-a.prototype.noSideEffectsFn3 = function() {
-  // ...
-};	This annotation can be used as part of function and constructor declarations to indicate that calls to the declared function have no side-effects. This annotation allows the compiler to remove calls to these functions if the return value is not used.
-@override	@override
-For example:
-/**
- * @return {string} Human-readable representation of project.SubClass.
- * @override
- */
-project.SubClass.prototype.toString = function() {
-  // ...
-};	Indicates that a method or property of a subclass intentionally hides a method or property of the superclass. If no other documentation is included, the method or property also inherits documentation from its superclass.
-@param	@param {Type} varname Description
-For example:
-/**
- * Queries a Baz for items.
- * @param {number} groupNum Subgroup id to query.
- * @param {string|number|null} term An itemName,
- *     or itemId, or null to search everything.
- */
-goog.Baz.prototype.query = function(groupNum, term) {
-  // ...
-};	Used with method, function and constructor calls to document the arguments of a function.
-Type names must be enclosed in curly braces. If the type is omitted, the compiler will not type-check the parameter.
-@private	@private
-@private {type}
-For example:
-/**
- * Handlers that are listening to this logger.
- * @private {!Array.<Function>}
- */
-this.handlers_ = [];	Used in conjunction with a trailing underscore on the method or property name to indicate that the member is private and final.
+              <tr>
+                <td><a name="tag-constructor">@constructor</a></td>
+                <td>
+                  <code>@constructor</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * A rectangle.
+                     * @constructor
+                     */
+                    function GM_Rect() {
+                      ...
+                    }
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used in a class's documentation to indicate the constructor.
+                </td>
+              </tr>
 
-@protected	@protected
-@protected {type}
-For example:
-/**
- * Sets the component's root element to the given element.
- * @param {Element} element Root element for the component.
- * @protected
- */
-goog.ui.Component.prototype.setElementInternal = function(element) {
-  // ...
-};	Used to indicate that the member or property is protected. Should be used in conjunction with names with no trailing underscore.
-@public	@public
-@public {type}
-For example:
-/**
- * Whether to cancel the event in internal capture/bubble processing.
- * @public {boolean}
- * @suppress {visiblity} Referencing this outside this package is strongly
- * discouraged.
- */
- goog.events.Event.prototype.propagationStopped_ = false;	Used to indicate that the member or property is public. Variables and properties are public by default, so this annotation is rarely necessary. Should only be used in legacy code that cannot be easily changed to override the visibility of members that were named as private variables.
-@return	@return {Type} Description
-For example:
-/**
- * @return {string} The hex ID of the last item.
- */
-goog.Baz.prototype.getLastId = function() {
-  // ...
-  return id;
-};	Used with method and function calls to document the return type. When writing descriptions for boolean parameters, prefer "Whether the component is visible" to "True if the component is visible, false otherwise". If there is no return value, do not use an@return tag.
-Type names must be enclosed in curly braces. If the type is omitted, the compiler will not type-check the return value.
-@see	@see Link
-For example:
-/**
- * Adds a single item, recklessly.
- * @see #addSafely
- * @see goog.Collect
- * @see goog.RecklessAdder#add
- ...	Reference a lookup to another class function or method.
-@struct	@struct Description
-For example:
-/**
- * @constructor
- * @struct
- */
-function Foo(x) {
-  this.x = x;
-}
-var obj = new Foo(123);
-var num = obj['x'];  // warning
-obj.y = "asdf";  // warning
+              <tr>
+                <td><a name="tag-define">@define</a></td>
+                <td>
+                  <code>@define {Type} description</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /** @define {boolean} */
+                    var TR_FLAGS_ENABLE_DEBUG = true;
 
-Foo.prototype = /** @struct */ {
-  method1: function() {}
-};
-Foo.prototype.method2 = function() {};  // warning	When a constructor (Foo in the example) is annotated with @struct, you can only use the dot notation to access the properties of Foo objects. Also, you cannot add new properties to Foo objects after they have been created. The annotation can also be used directly on object literals.
-@supported	@supported Description
-For example:
-/**
- * @fileoverview Event Manager
- * Provides an abstracted interface to the
- * browsers' event systems.
- * @supported So far tested in IE6 and FF1.5
- */	Used in a fileoverview to indicate what browsers are supported by the file.
-@suppress	@suppress {warning1|warning2} @suppress {warning1,warning2}
-For example:
-/**
- * @suppress {deprecated}
- */
-function f() {
-  deprecatedVersionOfF();
-}	Suppresses warnings from tools. Warning categories are separated by | or ,.
-@template	@template
-For example:
-/**
- * @param {function(this:T, ...)} fn
- * @param {T} thisObj
- * @param {...*} var_args
- * @template T
- */
-goog.bind = function(fn, thisObj, var_args) {
-   ...
-};	This annotation can be used to declare a template typename.
+                    /**
+                     * @define {boolean} Whether we know at compile-time that
+                     *     the browser is IE.
+                     */
+                    goog.userAgent.ASSUME_IE = false;
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Indicates a constant that can be overridden by the compiler at
+                  compile-time. In the example, the compiler flag
+                  <code>--define='goog.userAgent.ASSUME_IE=true'</code>
+                  could be specified in the BUILD file to indicate that the
+                  constant <code>goog.userAgent.ASSUME_IE</code> should be replaced
+                  with <code>true</code>.
+                </td>
+              </tr>
 
-@this	@this Type
-@this {Type}
-For example:
-pinto.chat.RosterWidget.extern('getRosterElement',
-/**
- * Returns the roster widget element.
- * @this pinto.chat.RosterWidget
- * @return {Element}
- */
-function() {
-  return this.getWrappedComponent_().getElement();
-});	The type of the object in whose context a particular method is called. Required when thethis keyword is referenced from a function that is not a prototype method.
-@type	@type Type
-@type {Type}
-For example:
-/**
- * The message hex ID.
- * @type {string}
- */
-var hexId = hexId;	Identifies the type of a variable, property, or expression. Curly braces are not required around most types, but some projects mandate them for all types, for consistency.
-@typedef	@typedef
-For example:
-/** @typedef {(string|number)} */
-goog.NumberLike;
+              <tr>
+                <td><a name="tag-deprecated">@deprecated</a></td>
+                <td>
+                  <code>@deprecated Description</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * Determines whether a node is a field.
+                     * @return {boolean} True if the contents of
+                     *     the element are editable, but the element
+                     *     itself is not.
+                     * @deprecated Use isField().
+                     */
+                    BN_EditUtil.isTopEditableField = function(node) {
+                      // ...
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used to tell that a function, method or property should not be
+                  used any more.  Always provide instructions on what callers
+                  should use instead.
+                </td>
+              </tr>
 
-/** @param {goog.NumberLike} x A number or a string. */
-goog.readNumber = function(x) {
-  ...
-}	This annotation can be used to declare an alias of a more complex type.
+              <tr>
+                <td><a name="tag-dict">@dict</a></td>
+                <td>
+                  <code>@dict Description</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * @constructor
+                     * @dict
+                     */
+                    function Foo(x) {
+                      this['x'] = x;
+                    }
+                    var obj = new Foo(123);
+                    var num = obj.x;  // warning
 
-You may also see other types of JSDoc annotations in third-party code. These annotations appear in the JSDoc Toolkit Tag Reference but are currently discouraged in Google code. You should consider them "reserved" names for future use. These include:
-•	@augments
-•	@argument
-•	@borrows
-•	@class
-•	@constant
-•	@constructs
-•	@default
-•	@event
-•	@example
-•	@field
-•	@function
-•	@ignore
-•	@inner
-•	@link
-•	@memberOf
-•	@name
-•	@namespace
-•	@property
-•	@public
-•	@requires
-•	@returns
-•	@since
-•	@static
-•	@version
-Providing Dependencies With goog.provide
+                    (/** @dict */ { x: 1 }).x = 123;  // warning
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  When a constructor (<code>Foo</code> in the example) is
+                  annotated with <code>@dict</code>, you can only use the
+                  bracket notation to access the properties of <code>Foo</code>
+                  objects.
+                  The annotation can also be used directly on object literals.
+                </td>
+              </tr>
 
-Only provide top-level symbols.
+              <tr>
+                <td><a name="tag-enum">@enum</a></td>
+                <td>
+                  <code>@enum {Type}</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * Enum for tri-state values.
+                     * @enum {number}
+                     */
+                    project.TriState = {
+                      TRUE: 1,
+                      FALSE: -1,
+                      MAYBE: 0
+                    };
+                  </CODE_SNIPPET>
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-export">@export</a></td>
+                <td>
+                  <code>@export</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /** @export */
+                    foo.MyPublicClass.prototype.myPublicMethod = function() {
+                      // ...
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  <p>Given the code on the left, when the compiler is run with
+                  the <code>--generate_exports</code> flag, it will generate the
+                  code:</p>
+                  <CODE_SNIPPET>
+                    goog.exportSymbol('foo.MyPublicClass.prototype.myPublicMethod',
+                        foo.MyPublicClass.prototype.myPublicMethod);
+                  </CODE_SNIPPET>
+                  <p>which will export the symbols to uncompiled code.
+                  Code that uses the <code>@export</code> annotation must either</p>
+                  <ol>
+                    <li>include <code>//javascript/closure/base.js</code>, or</li>
+                    <li>define both <code>goog.exportSymbol</code> and
+                      <code>goog.exportProperty</code> with the same method
+                      signature in their own codebase.</li>
+                  </ol>
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-expose">@expose</a></td>
+                <td>
+                  <code>@expose</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /** @expose */
+                    MyClass.prototype.exposedProperty = 3;
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  <p>
+                    Declares an exposed property. Exposed properties
+                    will not be removed, or renamed, or collapsed,
+                    or optimized in any way by the compiler. No properties
+                    with the same name will be able to be optimized either.
+                  </p>
+
+                  <p>
+                    <code>@expose</code> should never be used in library code,
+                    because it will prevent that property from ever getting
+                    removed.
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-extends">@extends</a></td>
+                <td>
+                  <code>
+                    @extends Type<br/>
+                    @extends {Type}
+                  </code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * Immutable empty node list.
+                     * @constructor
+                     * @extends goog.ds.BasicNodeList
+                     */
+                    goog.ds.EmptyNodeList = function() {
+                      ...
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used with <code>@constructor</code> to indicate that a class
+                  inherits from another class. Curly braces around the type are
+                  optional.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-externs">@externs</a></td>
+                <td>
+                  <code>@externs</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * @fileoverview This is an externs file.
+                     * @externs
+                     */
+
+                    var document;
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  <p>
+                    Declares an
+                    
+                    externs file.
+                  </p>
+
+                  
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-fileoverview">@fileoverview</a></td>
+                <td>
+                  <code>@fileoverview Description</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * @fileoverview Utilities for doing things that require this very long
+                     * but not indented comment.
+                     * @author kuth@google.com (Uthur Pendragon)
+                     */
+                  </CODE_SNIPPET>
+                </td>
+                <td>Makes the comment block provide file level information.</td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-implements">@implements</a></td>
+                <td>
+                  <code>
+                    @implements Type<br/>
+                    @implements {Type}
+                  </code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * A shape.
+                     * @interface
+                     */
+                    function Shape() {};
+                    Shape.prototype.draw = function() {};
+
+                    /**
+                     * @constructor
+                     * @implements {Shape}
+                     */
+                    function Square() {};
+                    Square.prototype.draw = function() {
+                      ...
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used with <code>@constructor</code> to indicate that a class
+                  implements an interface. Curly braces around the type are
+                  optional.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-inheritDoc">@inheritDoc</a></td>
+                <td>
+                  <code>@inheritDoc</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /** @inheritDoc */
+                    project.SubClass.prototype.toString() {
+                      // ...
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  <p style="font-weight:bold">Deprecated. Use
+                    <code>@override</code> instead.</p>
+
+                  Indicates that a method or property of a subclass
+                  intentionally hides a method or property of the superclass,
+                  and has exactly the same documentation. Notice that
+                  <code>@inheritDoc</code> implies <code>@override</code>
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-interface">@interface</a></td>
+                <td>
+                  <code>@interface</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * A shape.
+                     * @interface
+                     */
+                    function Shape() {};
+                    Shape.prototype.draw = function() {};
+
+                    /**
+                     * A polygon.
+                     * @interface
+                     * @extends {Shape}
+                     */
+                    function Polygon() {};
+                    Polygon.prototype.getSides = function() {};
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used to indicate that the function defines an interface.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-lends">@lends</a></td>
+                <td>
+                  <code>@lends objectName</code><br/>
+                  <code>@lends {objectName}</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    goog.object.extend(
+                        Button.prototype,
+                        /** @lends {Button.prototype} */ {
+                          isButton: function() { return true; }
+                        });
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Indicates that the keys of an object literal should
+                  be treated as properties of some other object. This annotation
+                  should only appear on object literals.<p/>
+
+                  Notice that the name in braces is not a type name like
+                  in other annotations. It's an object name. It names
+                  the object on which the properties are "lent".
+                  For example, <code>@type {Foo}</code> means "an instance of Foo",
+                  but <code>@lends {Foo}</code> means "the constructor Foo".<p/>
+
+                  The <a href="https://code.google.com/p/jsdoc-toolkit/wiki/TagLends">
+                  JSDoc Toolkit docs</a> have more information on this
+                  annotation.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-license">@license</a> or
+                  <a name="tag-preserve">@preserve</a></td>
+                <td>
+                  <code>@license Description</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * @preserve Copyright 2009 SomeThirdParty.
+                     * Here is the full license text and copyright
+                     * notice for this file. Note that the notice can span several
+                     * lines and is only terminated by the closing star and slash:
+                     */
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Anything marked by <code>@license</code> or
+                  <code>@preserve</code> will be retained by the compiler and
+                  output at the top of the compiled code for that file. This
+                  annotation allows important notices (such as legal licenses or
+                  copyright text) to survive compilation unchanged. Line breaks
+                  are preserved.
+                </td>
+              </tr>
+
+              
+
+              
+
+              <tr>
+                <td><a name="tag-noalias">@noalias</a></td>
+                <td>
+                  <code>@noalias</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /** @noalias */
+                    function Range() {}
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used in an externs file to indicate to the compiler that the
+                  variable or function should not be aliased as part of the
+                  alias externals pass of the compiler.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-nocompile">@nocompile</a></td>
+                <td>
+                  <code>@nocompile</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /** @nocompile */
+
+                    // JavaScript code
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used at the top of a file to tell the compiler to parse this
+                  file but not compile it.
+                  Code that is not meant for compilation and should be omitted
+                  from compilation tests (such as bootstrap code) uses this
+                  annotation.
+                  Use sparingly.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-nosideeffects">@nosideeffects</a></td>
+                <td>
+                  <code>@nosideeffects</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /** @nosideeffects */
+                    function noSideEffectsFn1() {
+                      // ...
+                    }
+
+                    /** @nosideeffects */
+                    var noSideEffectsFn2 = function() {
+                      // ...
+                    };
+
+                    /** @nosideeffects */
+                    a.prototype.noSideEffectsFn3 = function() {
+                      // ...
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  This annotation can be used as part of function and
+                  constructor declarations to indicate that calls to the
+                  declared function have no side-effects.  This annotation
+                  allows the compiler to remove calls to these functions if the
+                  return value is not used.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-override">@override</a></td>
+                <td>
+                  <code>@override</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * @return {string} Human-readable representation of project.SubClass.
+                     * @override
+                     */
+                    project.SubClass.prototype.toString = function() {
+                      // ...
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Indicates that a method or property of a subclass
+                  intentionally hides a method or property of the superclass. If
+                  no other documentation is included, the method or property
+                  also inherits documentation from its superclass.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-param">@param</a></td>
+                <td>
+                  <code>@param {Type} varname Description</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * Queries a Baz for items.
+                     * @param {number} groupNum Subgroup id to query.
+                     * @param {string|number|null} term An itemName,
+                     *     or itemId, or null to search everything.
+                     */
+                    goog.Baz.prototype.query = function(groupNum, term) {
+                      // ...
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used with method, function and constructor calls to document
+                  the arguments of a function.<p/>
+
+                  <a href="#JsTypes">Type</a>
+                  names must be enclosed in curly braces. If the type
+                  is omitted, the compiler will not type-check the parameter.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-private">@private</a></td>
+                <td>
+                  <code>@private</code><br/>
+                  <code>@private {type}</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * Handlers that are listening to this logger.
+                     * @private {!Array.&lt;Function&gt;}
+                     */
+                    this.handlers_ = [];
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used in conjunction with a trailing underscore on the method
+                  or property name to indicate that the member is
+                  <a href="#Visibility__private_and_protected_fields_">private</a> and final.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-protected">@protected</a></td>
+                <td>
+                  <code>@protected</code><br/>
+                  <code>@protected {type}</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * Sets the component's root element to the given element.
+                     * @param {Element} element Root element for the component.
+                     * @protected
+                     */
+                    goog.ui.Component.prototype.setElementInternal = function(element) {
+                      // ...
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used to indicate that the member or property is
+                  <a href="#Visibility__private_and_protected_fields_">protected</a>.
+                  Should be used in conjunction with names with no trailing
+                  underscore.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-public">@public</a></td>
+                <td>
+                  <code>@public</code><br/>
+                  <code>@public {type}</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * Whether to cancel the event in internal capture/bubble processing.
+                     * @public {boolean}
+                     * @suppress {visiblity} Referencing this outside this package is strongly
+                     * discouraged.
+                     */
+                     goog.events.Event.prototype.propagationStopped_ = false;
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used to indicate that the member or property is public. Variables and
+                  properties are public by default, so this annotation is rarely necessary.
+                  Should only be used in legacy code that cannot be easily changed to
+                  override the visibility of members that were named as private variables.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-return">@return</a></td>
+                <td>
+                  <code>@return {Type} Description</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * @return {string} The hex ID of the last item.
+                     */
+                    goog.Baz.prototype.getLastId = function() {
+                      // ...
+                      return id;
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used with method and function calls to document the return
+                  type.  When writing descriptions for boolean parameters,
+                  prefer "Whether the component is visible" to "True if the
+                  component is visible, false otherwise". If there is no return
+                  value, do not use an <code>@return</code> tag.<p/>
+
+                  <a href="#JsTypes">Type</a>
+                  names must be enclosed in curly braces. If the type
+                  is omitted, the compiler will not type-check the return value.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-see">@see</a></td>
+                <td>
+                  <code>@see Link</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * Adds a single item, recklessly.
+                     * @see #addSafely
+                     * @see goog.Collect
+                     * @see goog.RecklessAdder#add
+                     ...
+                  </CODE_SNIPPET>
+                </td>
+                <td>Reference a lookup to another class function or method.</td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-struct">@struct</a></td>
+                <td>
+                  <code>@struct Description</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * @constructor
+                     * @struct
+                     */
+                    function Foo(x) {
+                      this.x = x;
+                    }
+                    var obj = new Foo(123);
+                    var num = obj['x'];  // warning
+                    obj.y = "asdf";  // warning
+
+                    Foo.prototype = /** @struct */ {
+                      method1: function() {}
+                    };
+                    Foo.prototype.method2 = function() {};  // warning
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  When a constructor (<code>Foo</code> in the example) is
+                  annotated with <code>@struct</code>, you can only use the dot
+                  notation to access the properties of <code>Foo</code> objects.
+                  Also, you cannot add new properties to <code>Foo</code>
+                  objects after they have been created.
+                  The annotation can also be used directly on object literals.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-supported">@supported</a></td>
+                <td>
+                  <code>@supported Description</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * @fileoverview Event Manager
+                     * Provides an abstracted interface to the
+                     * browsers' event systems.
+                     * @supported So far tested in IE6 and FF1.5
+                     */
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Used in a fileoverview to indicate what browsers are supported
+                  by the file.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-suppress">@suppress</a></td>
+                <td>
+                  <code>
+                    @suppress {warning1|warning2}
+                  </code>
+                  <code>
+                    @suppress {warning1,warning2}
+                  </code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * @suppress {deprecated}
+                     */
+                    function f() {
+                      deprecatedVersionOfF();
+                    }
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Suppresses warnings from tools. Warning categories are
+                  separated by <code>|</code> or <code>,</code>.
+                  
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-template">@template</a></td>
+                <td>
+                  <code>@template</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * @param {function(this:T, ...)} fn
+                     * @param {T} thisObj
+                     * @param {...*} var_args
+                     * @template T
+                     */
+                    goog.bind = function(fn, thisObj, var_args) {
+                       ...
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  This annotation can be used to declare a
+                  <a href="#Template_types">template typename</a>.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-this">@this</a></td>
+                <td>
+                  <code>
+                    @this Type<br/>
+                    @this {Type}
+                  </code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    pinto.chat.RosterWidget.extern('getRosterElement',
+                    /**
+                     * Returns the roster widget element.
+                     * @this pinto.chat.RosterWidget
+                     * @return {Element}
+                     */
+                    function() {
+                      return this.getWrappedComponent_().getElement();
+                    });
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  The type of the object in whose context a particular method is
+                  called. Required when the <code>this</code> keyword is referenced
+                  from a function that is not a prototype method.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-type">@type</a></td>
+                <td>
+                  <code>
+                    @type Type<br/>
+                    @type {Type}
+                  </code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /**
+                     * The message hex ID.
+                     * @type {string}
+                     */
+                    var hexId = hexId;
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Identifies the <a href="#JsTypes">type</a> of a variable,
+                  property, or expression. Curly braces are not required around
+                  most types, but some projects mandate them for all types, for
+                  consistency.
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-typedef">@typedef</a></td>
+                <td>
+                  <code>@typedef</code>
+                  <p><i>For example:</i></p>
+                  <CODE_SNIPPET>
+                    /** @typedef {(string|number)} */
+                    goog.NumberLike;
+
+                    /** @param {goog.NumberLike} x A number or a string. */
+                    goog.readNumber = function(x) {
+                      ...
+                    }
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  This annotation can be used to declare an alias of a more
+                  <a href="#Typedefs">complex type</a>.
+                </td>
+              </tr>
+
+              
+
+            </tbody>
+          </table>
+
+You may also see other types of JSDoc annotations in third-party code. These annotations appear in the <a href="https://code.google.com/p/jsdoc-toolkit/wiki/TagReference">JSDoc Toolkit Tag Reference</a> but are currently discouraged in Google code. You should consider them "reserved" names for future use. These include:
+
+•	`@augments`
+•	`@argument`
+•	`@borrows`
+•	`@class`
+•	`@constant`
+•	`@constructs`
+•	`@default`
+•	`@event`
+•	`@example`
+•	`@field`
+•	`@function`
+•	`@ignore`
+•	`@inner`
+•	`@link`
+•	`@memberOf`
+•	`@name`
+•	`@namespace`
+•	`@property`
+•	`@public`
+•	`@requires`
+•	`@returns`
+•	`@since`
+•	`@static`
+•	`@version`
+
+###Providing Dependencies With `goog.provide`
+
+####Only provide top-level symbols.
 All members defined on a class should be in the same file. So, only top-level classes should be provided in a file that contains multiple members defined on the same class (e.g. enums, inner classes, etc).
 Do this:
+```javascript
 goog.provide('namespace.MyClass');
+```
 Not this:
+```javascript
 goog.provide('namespace.MyClass');
 goog.provide('namespace.MyClass.Enum');
 goog.provide('namespace.MyClass.InnerClass');
 goog.provide('namespace.MyClass.TypeDef');
 goog.provide('namespace.MyClass.CONSTANT');
 goog.provide('namespace.MyClass.staticMethod');
+```
 Members on namespaces may also be provided:
+```javascript
 goog.provide('foo.bar');
 goog.provide('foo.bar.method');
 goog.provide('foo.bar.CONSTANT');
-Compiling
+```
+###Compiling
 
 Required
-Use of JS compilers such as the Closure Compiler is required for all customer-facing code.
-Tips and Tricks
+Use of JS compilers such as the <a href="https://code.google.com/closure/compiler/">Closure Compiler</a> is required for all customer-facing code.
 
-JavaScript tidbits
-True and False Boolean Expressions
-The following are all false in boolean expressions:
-•	null
-•	undefined
-•	'' the empty string
-•	0 the number
-But be careful, because these are all true:
-•	'0' the string
-•	[] the empty array
-•	{} the empty object
-This means that instead of this:
-while (x != null) {
-you can write this shorter code (as long as you don't expect x to be 0, or the empty string, or false):
-while (x) {
-And if you want to check a string to see if it is null or empty, you could do this:
-if (y != null && y != '') {
-But this is shorter and nicer:
-if (y) {
-Caution: There are many unintuitive things about boolean expressions. Here are some of them:
-•	Boolean('0') == true
-'0' != true
-•	0 != null
-0 == []
-0 == false
-•	Boolean(null) == false
-null != true
-null != false
-•	Boolean(undefined) == false
-undefined != true
-undefined != false
-•	Boolean([]) == true
-[] != true
-[] == false
-•	Boolean({}) == true
-{} != true
-{} != false
-Conditional (Ternary) Operator (?:)
-Instead of this:
-if (val) {
-  return foo();
-} else {
-  return bar();
-}
-you can write this:
-return val ? foo() : bar();
-The ternary conditional is also useful when generating HTML:
-var html = '<input type="checkbox"' +
-    (isChecked ? ' checked' : '') +
-    (isEnabled ? '' : ' disabled') +
-    ' name="foo">';
-&& and ||
-These binary boolean operators are short-circuited, and evaluate to the last evaluated term.
-"||" has been called the 'default' operator, because instead of writing this:
-/** @param {*=} opt_win */
-function foo(opt_win) {
-  var win;
-  if (opt_win) {
-    win = opt_win;
-  } else {
-    win = window;
-  }
-  // ...
-}
-you can write this:
-/** @param {*=} opt_win */
-function foo(opt_win) {
-  var win = opt_win || window;
-  // ...
-}
-"&&" is also useful for shortening code. For instance, instead of this:
-if (node) {
-  if (node.kids) {
-    if (node.kids[index]) {
-      foo(node.kids[index]);
-    }
-  }
-}
-you could do this:
-if (node && node.kids && node.kids[index]) {
-  foo(node.kids[index]);
-}
-or this:
-var kid = node && node.kids && node.kids[index];
-if (kid) {
-  foo(kid);
-}
-However, this is going a little too far:
-node && node.kids && node.kids[index] && foo(node.kids[index]);
-Iterating over Node Lists
-Node lists are often implemented as node iterators with a filter. This means that getting a property like length is O(n), and iterating over the list by re-checking the length will be O(n^2).
-var paragraphs = document.getElementsByTagName('p');
-for (var i = 0; i < paragraphs.length; i++) {
-  doSomething(paragraphs[i]);
-}
-It is better to do this instead:
-var paragraphs = document.getElementsByTagName('p');
-for (var i = 0, paragraph; paragraph = paragraphs[i]; i++) {
-  doSomething(paragraph);
-}
-This works well for all collections and arrays as long as the array does not contain things that are treated as boolean false.
-In cases where you are iterating over the childNodes you can also use the firstChild and nextSibling properties.
-var parentNode = document.getElementById('foo');
-for (var child = parentNode.firstChild; child; child = child.nextSibling) {
-  doSomething(child);
-}
-Parting Words
-BE CONSISTENT.
+###Tips and Tricks
+<XML>
+<SUMMARY>JavaScript tidbits</SUMMARY>
+      <BODY>
+<SUBSECTION title="True and False Boolean Expressions">
+          <p>The following are all false in boolean expressions:</p>
+          <ul>
+            <li><code>null</code></li>
+            <li><code>undefined</code></li>
+            <li><code>''</code> the empty string</li>
+            <li><code>0</code> the number</li>
+          </ul>
+          <p>But be careful, because these are all true:</p>
+          <ul>
+            <li><code>'0'</code> the string</li>
+            <li><code>[]</code> the empty array</li>
+            <li><code>{}</code> the empty object</li>
+          </ul>
+
+          <p>This means that instead of this:</p>
+          <BAD_CODE_SNIPPET>
+            while (x != null) {
+          </BAD_CODE_SNIPPET>
+          <p>you can write this shorter code (as long as you don't expect x to
+            be 0, or the empty string, or false):</p>
+          <CODE_SNIPPET>
+            while (x) {
+          </CODE_SNIPPET>
+
+          <p>And if you want to check a string to see if it is null or empty,
+            you could do this:</p>
+          <BAD_CODE_SNIPPET>
+            if (y != null &amp;&amp; y != '') {
+          </BAD_CODE_SNIPPET>
+          <p>But this is shorter and nicer:</p>
+          <CODE_SNIPPET>
+            if (y) {
+          </CODE_SNIPPET>
+
+          <p><strong>Caution:</strong> There are many unintuitive things about
+            boolean expressions.  Here are some of them:</p>
+          <ul>
+            <li><code>
+              Boolean('0') == true<br/>
+              '0' != true</code></li>
+            <li><code>
+              0 != null<br/>
+              0 == []<br/>
+              0 == false</code></li>
+            <li><code>
+              Boolean(null) == false<br/>
+              null != true<br/>
+              null != false</code></li>
+            <li><code>
+              Boolean(undefined) == false<br/>
+              undefined != true<br/>
+              undefined != false</code></li>
+            <li><code>
+              Boolean([]) == true<br/>
+              [] != true<br/>
+              [] == false</code></li>
+            <li><code>
+              Boolean({}) == true<br/>
+              {} != true<br/>
+              {} != false</code></li>
+          </ul>
+        </SUBSECTION>
+
+        <SUBSECTION title="Conditional (Ternary) Operator (?:)">
+          <p>Instead of this:</p>
+          <CODE_SNIPPET>
+            if (val) {
+              return foo();
+            } else {
+              return bar();
+            }
+          </CODE_SNIPPET>
+          <p>you can write this:</p>
+          <CODE_SNIPPET>
+            return val ? foo() : bar();
+          </CODE_SNIPPET>
+
+          <p>The ternary conditional is also useful when generating HTML:</p>
+          <CODE_SNIPPET>
+            var html = '&lt;input type="checkbox"' +
+                (isChecked ? ' checked' : '') +
+                (isEnabled ? '' : ' disabled') +
+                ' name="foo"&gt;';
+          </CODE_SNIPPET>
+        </SUBSECTION>
+
+        <SUBSECTION title="&amp;&amp; and ||">
+          <p>These binary boolean operators are short-circuited, and evaluate
+            to the last evaluated term.</p>
+
+          <p>"||" has been called the 'default' operator, because instead of
+            writing this:</p>
+          <BAD_CODE_SNIPPET>
+            /** @param {*=} opt_win */
+            function foo(opt_win) {
+              var win;
+              if (opt_win) {
+                win = opt_win;
+              } else {
+                win = window;
+              }
+              // ...
+            }
+          </BAD_CODE_SNIPPET>
+          <p>you can write this:</p>
+          <CODE_SNIPPET>
+            /** @param {*=} opt_win */
+            function foo(opt_win) {
+              var win = opt_win || window;
+              // ...
+            }
+          </CODE_SNIPPET>
+
+          <p>"&amp;&amp;" is also useful for shortening code. For instance,
+            instead of this:</p>
+          <BAD_CODE_SNIPPET>
+            if (node) {
+              if (node.kids) {
+                if (node.kids[index]) {
+                  foo(node.kids[index]);
+                }
+              }
+            }
+          </BAD_CODE_SNIPPET>
+
+          <p>you could do this:</p>
+          <CODE_SNIPPET>
+            if (node &amp;&amp; node.kids &amp;&amp; node.kids[index]) {
+              foo(node.kids[index]);
+            }
+          </CODE_SNIPPET>
+
+          <p>or this:</p>
+          <CODE_SNIPPET>
+            var kid = node &amp;&amp; node.kids &amp;&amp; node.kids[index];
+            if (kid) {
+              foo(kid);
+            }
+          </CODE_SNIPPET>
+
+          <p>However, this is going a little too far:</p>
+          <BAD_CODE_SNIPPET>
+            node &amp;&amp; node.kids &amp;&amp; node.kids[index] &amp;&amp; foo(node.kids[index]);
+          </BAD_CODE_SNIPPET>
+        </SUBSECTION>
+
+        <SUBSECTION title="Iterating over Node Lists">
+          <p>Node lists are often implemented as node iterators with a filter.
+            This means that getting a property like length is O(n), and
+            iterating over the list by re-checking the length will be
+            O(n^2).</p>
+          <BAD_CODE_SNIPPET>
+            var paragraphs = document.getElementsByTagName('p');
+            for (var i = 0; i &lt; paragraphs.length; i++) {
+              doSomething(paragraphs[i]);
+            }
+          </BAD_CODE_SNIPPET>
+
+          <p>It is better to do this instead:</p>
+          <CODE_SNIPPET>
+            var paragraphs = document.getElementsByTagName('p');
+            for (var i = 0, paragraph; paragraph = paragraphs[i]; i++) {
+              doSomething(paragraph);
+            }
+          </CODE_SNIPPET>
+
+          <p>This works well for all collections and arrays as long as the array
+            does not contain things that are treated as boolean false.</p>
+
+          <p>In cases where you are iterating over the childNodes you can also
+            use the firstChild and nextSibling properties.</p>
+          <CODE_SNIPPET>
+            var parentNode = document.getElementById('foo');
+            for (var child = parentNode.firstChild; child; child = child.nextSibling) {
+              doSomething(child);
+            }
+          </CODE_SNIPPET>
+        </SUBSECTION>
+      </BODY>
+      </XML>
+      
+###Parting Words
+*BE CONSISTENT.*
 If you're editing code, take a few minutes to look at the code around you and determine its style. If they use spaces around all their arithmetic operators, you should too. If their comments have little boxes of hash marks around them, make your comments have little boxes of hash marks around them too.
 The point of having style guidelines is to have a common vocabulary of coding so people can concentrate on what you're saying rather than on how you're saying it. We present global style rules here so people know the vocabulary, but local style is also important. If code you add to a file looks drastically different from the existing code around it, it throws readers out of their rhythm when they go to read it. Avoid this.
-Revision 2.93
-Aaron Whyte
-Bob Jervis
-Dan Pupius
-Erik Arvidsson
-Fritz Schneider
-Robby Walker
 
+##License
+This style guides are licensed under the CC-By 3.0 License, which encourages you to share these documents. See http://creativecommons.org/licenses/by/3.0/ for more details.
+
+##References
+Whyte, A., Jervis, B., Pupius, D., Arvidsson, E., Schneider, F., Walker, R. (November 22, 2015). Google JavaScript Style Guide. Retrieved from https://google.github.io/styleguide/javascriptguide.xml
