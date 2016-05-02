@@ -883,9 +883,276 @@ Notice that in JavaScript, there is no distinction between a type (like `AA_Priv
 
 Encouraged and enforced by the compiler.
 When documenting a type in JSDoc, be as specific and accurate as possible. The types we support are based on the EcmaScript 4 spec.
-The JavaScript Type Language
+
+####The JavaScript Type Language
 The ES4 proposal contained a language for specifying JavaScript types. We use this language in JsDoc to express the types of function parameters and return values.
 As the ES4 proposal has evolved, this language has changed. The compiler still supports old syntaxes for types, but those syntaxes are deprecated.
+<xml>
+<table border="1" style="border-collapse:collapse" cellpadding="4">
+            <thead>
+              <tr>
+                <th>Syntax Name</th>
+                <th>Syntax</th>
+                <th>Description</th>
+                <th>Deprecated Syntaxes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Primitive Type</td>
+                <td>
+                  There are 5 primitive types in JavaScript:
+                  <code>{null}</code>,
+                  <code>{undefined}</code>,
+                  <code>{boolean}</code>,
+                  <code>{number}</code>, and
+                  <code>{string}</code>.
+                </td>
+                <td>Simply the name of a type.</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Instance Type</td>
+                <td>
+                  <code>{Object}</code><br/>
+                  An instance of Object or null.<p/>
+                  <code>{Function}</code><br/>
+                  An instance of Function or null.<p/>
+                  <code>{EventTarget}</code><br/>
+                  An instance of a constructor that implements the EventTarget
+                  interface, or null.
+                </td>
+                <td>An instance of a constructor or interface function.<p/>
+
+                Constructor functions are functions defined with the
+                <code>@constructor</code> JSDoc tag.
+                Interface functions are functions defined with the
+                <code>@interface</code> JSDoc tag.<p/>
+
+                By default, instance types will accept null. This is the only
+		type syntax that makes the type nullable. Other type syntaxes
+		in this table will not accept null.
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Enum Type</td>
+                <td>
+                  <code>{goog.events.EventType}</code><br/>
+                  One of the properties of the object literal initializer
+                  of <code>goog.events.EventType</code>.
+                </td>
+                <td>An enum must be initialized as an object literal, or as
+                an alias of another enum, annotated with the <code>@enum</code>
+                JSDoc tag. The properties of this literal are the instances
+                of the enum. The syntax of the enum is defined
+                <a href="#enums">below</a>.<p/>
+
+                Note that this is one of the few things in our type system
+                that were not in the ES4 spec.
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Type Application</td>
+                <td>
+                  <code>{Array.&lt;string&gt;}</code><br/>An array of strings.<p/>
+                  <code>{Object.&lt;string, number&gt;}</code>
+                  <br/>An object in which the keys are strings and the values
+                  are numbers.
+                </td>
+                <td>Parameterizes a type, by applying a set of type arguments
+                  to that type. The idea is analogous to generics in Java.
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Type Union</td>
+                <td>
+                  <code>{(number|boolean)}</code><br/>A number or a boolean.
+                </td>
+                <td>Indicates that a value might have type A OR type B.<p/>
+
+                  The parentheses may be omitted at the top-level
+                  expression, but the parentheses should be included in
+                  sub-expressions to avoid ambiguity.<br/>
+                  <code>{number|boolean}</code><br/>
+                  <code>{function(): (number|boolean)}</code>
+                </td>
+                <td>
+                  <code>{(number,boolean)}</code>,<br/>
+                  <code>{(number||boolean)}</code>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Nullable type</td>
+                <td>
+                  <code>{?number}</code><br/> A number or null.
+                </td>
+                <td>Shorthand for the union of the null type with any
+                other type. This is just syntactic sugar.
+                </td>
+                <td>
+                  <code>{number?}</code>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Non-nullable type</td>
+                <td>
+                  <code>{!Object}</code><br/> An Object, but never the
+                  <code>null</code> value.
+                </td>
+                <td>Filters null out of nullable types. Most often used
+                with instance types, which are nullable by default.
+                </td>
+                <td>
+                  <code>{Object!}</code>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Record Type</td>
+                <td>
+                  <code>{{myNum: number, myObject}}</code>
+                  <br/>An anonymous type with the given type members.
+                </td>
+                <td>
+                  <p>Indicates that the value has the specified members with the
+                    specified types. In this case, <code>myNum</code> with a
+                    type <code>number</code> and <code>myObject</code> with any
+                    type.</p>
+                  <p>Notice that the braces are part of the type syntax. For
+                    example, to denote an <code>Array</code> of objects that
+                    have a <code>length</code> property, you might write
+                  <code>Array.&lt;{length}&gt;</code>.</p>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Function Type</td>
+                <td>
+                  <code>{function(string, boolean)}</code><br/>
+                  A function that takes two arguments (a string and a boolean),
+                  and has an unknown return value.<br/>
+                </td>
+                <td>Specifies a function.</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Function Return Type</td>
+                <td>
+                  <code>{function(): number}</code><br/>
+                  A function that takes no arguments and returns a number.<br/>
+                </td>
+                <td>Specifies a function return type.</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Function <code>this</code> Type</td>
+                <td>
+                  <code>{function(this:goog.ui.Menu, string)}</code><br/>
+                  A function that takes one argument (a string), and executes
+                  in the context of a goog.ui.Menu.
+                </td>
+                <td>Specifies the context type of a function type.</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Function <code>new</code> Type</td>
+                <td>
+                  <code>{function(new:goog.ui.Menu, string)}</code><br/>
+                  A constructor that takes one argument (a string), and
+                  creates a new instance of goog.ui.Menu when called
+                  with the 'new' keyword.
+                </td>
+                <td>Specifies the constructed type of a constructor.</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Variable arguments</td>
+                <td>
+                  <code>{function(string, ...[number]): number}</code><br/>
+                  A function that takes one argument (a string), and then a
+                  variable number of arguments that must be numbers.
+                </td>
+                <td>Specifies variable arguments to a function.</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>
+                  <a name="var-args-annotation"/>
+                  Variable arguments (in <code>@param</code> annotations)
+                </td>
+                <td>
+                  <code>@param {...number} var_args</code><br/>
+                  A variable number of arguments to an annotated function.
+                </td>
+                <td>
+                  Specifies that the annotated function accepts a variable
+                  number of arguments.
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Function <a href="#optional">optional arguments</a></td>
+                <td>
+                  <code>{function(?string=, number=)}</code><br/>
+                  A function that takes one optional, nullable string and one
+                  optional number as arguments. The <code>=</code> syntax is
+                  only for <code>function</code> type declarations.
+                </td>
+                <td>Specifies optional arguments to a function.</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>
+                  <a name="optional-arg-annotation"/>
+                  Function <a href="#optional">optional arguments</a>
+                  (in <code>@param</code> annotations)
+                </td>
+                <td>
+                  <code>@param {number=} opt_argument</code><br/>
+                  An optional parameter of type <code>number</code>.
+                </td>
+                <td>Specifies that the annotated function accepts an optional
+                  argument.</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>The ALL type</td>
+                <td><code>{*}</code></td>
+                <td>Indicates that the variable can take on any type.</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>The UNKNOWN type</td>
+                <td><code>{?}</code></td>
+                <td>Indicates that the variable can take on any type,
+                    and the compiler should not type-check any uses of it.</td>
+                <td/>
+              </tr>
+            </tbody>
+          </table>
+</XML>
+
+
+
 Syntax Name	Syntax	Description	Deprecated Syntaxes
 Primitive Type	There are 5 primitive types in JavaScript: {null},{undefined}, {boolean}, {number}, and {string}.	Simply the name of a type.	
 Instance Type	{Object}
