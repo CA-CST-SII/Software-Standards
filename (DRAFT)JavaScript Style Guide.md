@@ -1741,7 +1741,7 @@ project.MyClass = function() {
 }
 ```
 ####JSDoc Tag Reference
-<table border="0" style="border-collapse:collapse" cellpadding="2">
+<table style="width: 100%" cellpadding="0" cellspacing="0">
             <thead>
               <tr>
                 <th>Tag</th>
@@ -2648,28 +2648,51 @@ project.MyClass = function() {
 You may also see other types of JSDoc annotations in third-party code. These annotations appear in the <a href="https://code.google.com/p/jsdoc-toolkit/wiki/TagReference">JSDoc Toolkit Tag Reference</a> but are currently discouraged in Google code. You should consider them "reserved" names for future use. These include:
 
 •	`@augments`
+
 •	`@argument`
+
 •	`@borrows`
+
 •	`@class`
+
 •	`@constant`
+
 •	`@constructs`
+
 •	`@default`
+
 •	`@event`
+
 •	`@example`
+
 •	`@field`
+
 •	`@function`
+
 •	`@ignore`
+
 •	`@inner`
+
 •	`@link`
+
 •	`@memberOf`
+
 •	`@name`
+
 •	`@namespace`
+
 •	`@property`
+
 •	`@public`
+
 •	`@requires`
+
 •	`@returns`
+
 •	`@since`
+
 •	`@static`
+
 •	`@version`
 
 ###Providing Dependencies With `goog.provide`
