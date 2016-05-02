@@ -669,6 +669,7 @@ if (veryLongFunctionNameA(
 ```
 ####Passing Anonymous Functions
 When declaring an anonymous function in the list of arguments for a function call, the body of the function is indented two spaces from the left edge of the statement, or two spaces from the left edge of the function keyword. This is to make the body of the anonymous function easier to read (i.e. not be all squished up into the right half of the screen).
+
 ```javascript
 prefix.something.reallyLongFunctionName('whatever', function(a1, a2) {
   if (a1.equals(a2)) {
@@ -683,7 +684,8 @@ var names = prefix.something.myExcellentMapFunction(
     function(item) {
       return item.name;
     });
-    ```
+```
+
 ####Aliasing with goog.scope
 `goog.scope` may be used to shorten references to namespaced symbols in programs using the Closure Library.
 Only one `goog.scope` invocation may be added per file. Always place it in the global scope.
@@ -765,13 +767,12 @@ andNowWith(z);
 ```
 ####Binary and Ternary Operators
 Always put the operator on the preceding line. Otherwise, line breaks and indentation follow the same rules as in other Google style guides. This operator placement was initially agreed upon out of concerns about automatic semicolon insertion. In fact, semicolon insertion cannot happen before a binary operator, but new code should stick to this style for consistency.
+
 ```javascript
 var x = a ? b : c;  // All on one line if it will fit.
-
 // Indentation +4 is OK.
 var y = a ?
     longButSimpleOperandB : longButSimpleOperandC;
-
 // Indenting to the line position of the first operand is also OK.
 var z = a ?
         moreComplicatedB :
@@ -780,7 +781,7 @@ This includes the dot operator.
 var x = foo.bar().
     doSomething().
     doSomethingElse();
-    ```
+```
 ###Parentheses
 
 Only where required
