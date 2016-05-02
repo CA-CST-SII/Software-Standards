@@ -1151,133 +1151,368 @@ As the ES4 proposal has evolved, this language has changed. The compiler still s
             </tbody>
           </table>
 </XML>
+	
+####Types in JavaScript
+<XML>
+<table border="1" style="border-collapse:collapse" cellpadding="4">
+            <thead>
+              <tr>
+                <th>Type Example</th>
+                <th>Value Examples</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td>number</td>
+                <td>
+                  <CODE_SNIPPET>
+                    1
+                    1.0
+                    -5
+                    1e5
+                    Math.PI
+                  </CODE_SNIPPET>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Number</td>
+                <td>
+                  <CODE_SNIPPET>
+                    new Number(true)
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  <a href="#Wrapper_objects_for_primitive_types">
+                    Number object
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>string</td>
+                <td>
+                  <CODE_SNIPPET>
+                    'Hello'
+                    "World"
+                    String(42)
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  String value
+                </td>
+              </tr>
+
+              <tr>
+                <td>String</td>
+                <td>
+                  <CODE_SNIPPET>
+                    new String('Hello')
+                    new String(42)
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  <a href="#Wrapper_objects_for_primitive_types">
+                    String object
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>boolean</td>
+                <td>
+                  <CODE_SNIPPET>
+                    true
+                    false
+                    Boolean(0)
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  Boolean value
+                </td>
+              </tr>
+
+              <tr>
+                <td>Boolean</td>
+                <td>
+                  <CODE_SNIPPET>
+                    new Boolean(true)
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  <a href="#Wrapper_objects_for_primitive_types">
+                    Boolean object
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>RegExp</td>
+                <td>
+                  <CODE_SNIPPET>
+                    new RegExp('hello')
+                    /world/g
+                  </CODE_SNIPPET></td><td>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Date</td>
+                <td>
+                  <CODE_SNIPPET>
+                    new Date
+                    new Date()
+                  </CODE_SNIPPET></td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>
+                  
+                  null
+                  
+                </td>
+                <td>
+                  <CODE_SNIPPET>
+                    null
+                  </CODE_SNIPPET>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>
+                  
+                  undefined
+                  
+                </td>
+                <td>
+                  <CODE_SNIPPET>
+                    undefined
+                  </CODE_SNIPPET>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>void</td>
+                <td>
+                  <CODE_SNIPPET>
+                    function f() {
+                      return;
+                    }
+                  </CODE_SNIPPET>
+                </td>
+                <td>No return value</td>
+              </tr>
+
+              <tr>
+                <td>Array</td>
+                <td>
+                  <CODE_SNIPPET>
+                    ['foo', 0.3, null]
+                    []
+                  </CODE_SNIPPET>
+                </td>
+                <td>Untyped Array</td>
+              </tr>
+
+              <tr>
+                <td>Array.&lt;number&gt;</td>
+                <td>
+                  <CODE_SNIPPET>
+                    [11, 22, 33]
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  An Array of numbers
+                </td>
+              </tr>
+
+              <tr>
+                <td>Array.&lt;Array.&lt;string&gt;&gt;</td>
+                <td>
+                  <CODE_SNIPPET>
+                    [['one', 'two', 'three'], ['foo', 'bar']]
+                  </CODE_SNIPPET>
+                </td>
+                <td>Array of Arrays of strings</td>
+              </tr>
+
+              <tr>
+                <td>Object</td>
+                <td>
+                  <CODE_SNIPPET>
+                    {}
+                    {foo: 'abc', bar: 123, baz: null}
+                  </CODE_SNIPPET>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>Object.&lt;string&gt;</td>
+                <td>
+                  <CODE_SNIPPET>
+                    {'foo': 'bar'}
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  An Object in which the values are strings.
+                </td>
+              </tr>
+
+              <tr>
+                <td>Object.&lt;number, string&gt;</td>
+                <td>
+                  <CODE_SNIPPET>
+                    var obj = {};
+                    obj[1] = 'bar';
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  An Object in which the keys are numbers and the values are
+                  strings.  <p/>Note that in JavaScript, the keys are always
+                  implicitly converted to strings, so
+                  <code>obj['1'] == obj[1]</code>.
+                  So the key will always be a string in for...in loops. But the
+                  compiler will verify the type of the key when indexing into
+                  the object.
+                </td>
+              </tr>
+
+              <tr>
+                <td>Function</td>
+                <td>
+                  <CODE_SNIPPET>
+                    function(x, y) {
+                      return x * y;
+                    }
+                  </CODE_SNIPPET>
+                </td>
+                <td>
+                  <a href="#Wrapper_objects_for_primitive_types">
+                    Function object
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>function(number, number): number</td>
+                <td>
+                  <CODE_SNIPPET>
+                    function(x, y) {
+                      return x * y;
+                    }
+                  </CODE_SNIPPET>
+                </td>
+                <td>function value</td>
+              </tr>
+
+              <tr>
+                <td><a name="constructor-tag">SomeClass</a></td>
+                <td>
+                  <CODE_SNIPPET>
+                    /** @constructor */
+                    function SomeClass() {}
+
+                    new SomeClass();
+                  </CODE_SNIPPET>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>SomeInterface</td>
+                <td>
+                  <CODE_SNIPPET>
+                    /** @interface */
+                    function SomeInterface() {}
+
+                    SomeInterface.prototype.draw = function() {};
+                  </CODE_SNIPPET>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>project.MyClass</td>
+                <td>
+                  <CODE_SNIPPET>
+                    /** @constructor */
+                    project.MyClass = function () {}
+
+                    new project.MyClass()
+                  </CODE_SNIPPET>
+                </td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>project.MyEnum</td>
+                <td>
+                  <CODE_SNIPPET>
+                    /** @enum {string} */
+                    project.MyEnum = {
+                      /** The color blue. */
+                      BLUE: '#0000dd',
+                      /** The color red. */
+                      RED: '#dd0000'
+                    };
+                  </CODE_SNIPPET>
+                </td>
+                <td><a name="enums">Enumeration</a><p/>
+                  JSDoc comments on enum values are optional.
+                </td>
+              </tr>
+
+              <tr>
+                <td>Element</td>
+                <td>
+                  <CODE_SNIPPET>
+                    document.createElement('div')
+                  </CODE_SNIPPET>
+                </td>
+                <td>Elements in the DOM.</td>
+              </tr>
+
+              <tr>
+                <td>Node</td>
+                <td>
+                  <CODE_SNIPPET>
+                    document.body.firstChild
+                  </CODE_SNIPPET>
+                </td>
+                <td>Nodes in the DOM.</td>
+              </tr>
+
+              <tr>
+                <td>HTMLInputElement</td>
+                <td>
+                  <CODE_SNIPPET>
+                    htmlDocument.getElementsByTagName('input')[0]
+                  </CODE_SNIPPET>
+                </td>
+                <td>A specific type of DOM element.</td>
+              </tr>
+            </tbody>
+          </table>
+</XML          
 
 
-
-Syntax Name	Syntax	Description	Deprecated Syntaxes
-Primitive Type	There are 5 primitive types in JavaScript: {null},{undefined}, {boolean}, {number}, and {string}.	Simply the name of a type.	
-Instance Type	{Object}
-An instance of Object or null.
-{Function}
-An instance of Function or null.
-{EventTarget}
-An instance of a constructor that implements the EventTarget interface, or null.	An instance of a constructor or interface function.
-Constructor functions are functions defined with the @constructor JSDoc tag. Interface functions are functions defined with the @interface JSDoc tag.
-By default, instance types will accept null. This is the only type syntax that makes the type nullable. Other type syntaxes in this table will not accept null.	
-Enum Type	{goog.events.EventType}
-One of the properties of the object literal initializer ofgoog.events.EventType.	An enum must be initialized as an object literal, or as an alias of another enum, annotated with the @enum JSDoc tag. The properties of this literal are the instances of the enum. The syntax of the enum is defined below.
-Note that this is one of the few things in our type system that were not in the ES4 spec.	
-Type Application	{Array.<string>}
-An array of strings.
-{Object.<string, number>} 
-An object in which the keys are strings and the values are numbers.	Parameterizes a type, by applying a set of type arguments to that type. The idea is analogous to generics in Java.	
-Type Union	{(number|boolean)}
-A number or a boolean.	Indicates that a value might have type A OR type B.
-The parentheses may be omitted at the top-level expression, but the parentheses should be included in sub-expressions to avoid ambiguity.
-{number|boolean}
-{function(): (number|boolean)}	{(number,boolean)},
-{(number||boolean)}
-Nullable type	{?number}
-A number or null.	Shorthand for the union of the null type with any other type. This is just syntactic sugar.	{number?}
-Non-nullable type	{!Object}
-An Object, but never the null value.	Filters null out of nullable types. Most often used with instance types, which are nullable by default.	{Object!}
-Record Type	{{myNum: number, myObject}} 
-An anonymous type with the given type members.	Indicates that the value has the specified members with the specified types. In this case,myNum with a type number and myObject with any type.
-Notice that the braces are part of the type syntax. For example, to denote an Array of objects that have a length property, you might write Array.<{length}>.	
-Function Type	{function(string, boolean)}
-A function that takes two arguments (a string and a boolean), and has an unknown return value.	Specifies a function.	
-Function Return Type	{function(): number}
-A function that takes no arguments and returns a number.	Specifies a function return type.	
-Function this Type	{function(this:goog.ui.Menu, string)}
-A function that takes one argument (a string), and executes in the context of a goog.ui.Menu.	Specifies the context type of a function type.	
-Function new Type	{function(new:goog.ui.Menu, string)}
-A constructor that takes one argument (a string), and creates a new instance of goog.ui.Menu when called with the 'new' keyword.	Specifies the constructed type of a constructor.	
-Variable arguments	{function(string, ...[number]): number}
-A function that takes one argument (a string), and then a variable number of arguments that must be numbers.	Specifies variable arguments to a function.	
-Variable arguments (in @paramannotations)	@param {...number} var_args
-A variable number of arguments to an annotated function.	Specifies that the annotated function accepts a variable number of arguments.	
-Function optional arguments
-{function(?string=, number=)}
-A function that takes one optional, nullable string and one optional number as arguments. The = syntax is only forfunction type declarations.	Specifies optional arguments to a function.	
-Function optional arguments (in@param annotations)	@param {number=} opt_argument
-An optional parameter of type number.	Specifies that the annotated function accepts an optional argument.	
-The ALL type	{*}	Indicates that the variable can take on any type.	
-The UNKNOWN type	{?}	Indicates that the variable can take on any type, and the compiler should not type-check any uses of it.	
-Types in JavaScript
-Type Example	Value Examples	Description
-number	1
-1.0
--5
-1e5
-Math.PI	
-Number	new Number(true)	Number object
-
-string	'Hello'
-"World"
-String(42)	String value
-String	new String('Hello')
-new String(42)	String object
-
-boolean	true
-false
-Boolean(0)	Boolean value
-Boolean	new Boolean(true)	Boolean object
-
-RegExp	new RegExp('hello')
-/world/g	
-Date	new Date
-new Date()	
-null	null	
-undefined	undefined	
-void	function f() {
-  return;
-}	No return value
-Array	['foo', 0.3, null]
-[]	Untyped Array
-Array.<number>	[11, 22, 33]	An Array of numbers
-Array.<Array.<string>>	[['one', 'two', 'three'], ['foo', 'bar']]	Array of Arrays of strings
-Object	{}
-{foo: 'abc', bar: 123, baz: null}	
-Object.<string>	{'foo': 'bar'}	An Object in which the values are strings.
-Object.<number, string>	var obj = {};
-obj[1] = 'bar';	An Object in which the keys are numbers and the values are strings.
-Note that in JavaScript, the keys are always implicitly converted to strings, so obj['1'] == obj[1]. So the key will always be a string in for...in loops. But the compiler will verify the type of the key when indexing into the object.
-Function	function(x, y) {
-  return x * y;
-}	Function object
-
-function(number, number): number	function(x, y) {
-  return x * y;
-}	function value
-SomeClass	/** @constructor */
-function SomeClass() {}
-
-new SomeClass();	
-SomeInterface	/** @interface */
-function SomeInterface() {}
-
-SomeInterface.prototype.draw = function() {};	
-project.MyClass	/** @constructor */
-project.MyClass = function () {}
-
-new project.MyClass()	
-project.MyEnum	/** @enum {string} */
-project.MyEnum = {
-  /** The color blue. */
-  BLUE: '#0000dd',
-  /** The color red. */
-  RED: '#dd0000'
-};	Enumeration
-JSDoc comments on enum values are optional.
-Element	document.createElement('div')	Elements in the DOM.
-Node	document.body.firstChild	Nodes in the DOM.
-HTMLInputElement	htmlDocument.getElementsByTagName('input')[0]	A specific type of DOM element.
-Type Casts
+####Type Casts
 In cases where type-checking doesn't accurately infer the type of an expression, it is possible to add a type cast comment by adding a type annotation comment and enclosing the expression in parentheses. The parentheses are required.
+```javascript
 /** @type {number} */ (x)
-Nullable vs. Optional Parameters and Properties
+```
+
+####Nullable vs. Optional Parameters and Properties
 Because JavaScript is a loosely-typed language, it is very important to understand the subtle differences between optional, nullable, and undefined function parameters and class properties.
 Instances of classes and interfaces are nullable by default. For example, the following declaration
+```javascript
 /**
  * Some class, initialized with a value.
  * @param {Object} value Some value.
@@ -1291,7 +1526,9 @@ function MyClass(value) {
    */
   this.myValue_ = value;
 }
+```
 tells the compiler that the myValue_ property holds either an Object or null. If myValue_ must never be null, it should be declared like this:
+```javascript
 /**
  * Some class, initialized with a non-null value.
  * @param {!Object} value Some value.
@@ -1305,8 +1542,10 @@ function MyClass(value) {
    */
   this.myValue_ = value;
 }
+```
 This way, if the compiler can determine that somewhere in the code MyClass is initialized with a null value, it will issue a warning.
 Optional parameters to functions may be undefined at runtime, so if they are assigned to class properties, those properties must be declared accordingly:
+```javascript
 /**
  * Some class, initialized with an optional value.
  * @param {Object=} opt_value Some value (optional).
@@ -1320,6 +1559,7 @@ function MyClass(opt_value) {
    */
   this.myValue_ = opt_value;
 }
+```
 This tells the compiler that myValue_ may hold an Object, null, or remain undefined.
 Note that the optional parameter opt_value is declared to be of type {Object=}, not {Object|undefined}. This is because optional parameters may, by definition, be undefined. While there is no harm in explicitly declaring an optional parameter as possibly undefined, it is both unnecessary and makes the code harder to read.
 Finally, note that being nullable and being optional are orthogonal properties. The following four declarations are all different:
