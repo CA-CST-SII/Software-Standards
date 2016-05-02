@@ -889,7 +889,7 @@ When documenting a type in JSDoc, be as specific and accurate as possible. The t
 The ES4 proposal contained a language for specifying JavaScript types. We use this language in JsDoc to express the types of function parameters and return values.
 As the ES4 proposal has evolved, this language has changed. The compiler still supports old syntaxes for types, but those syntaxes are deprecated.
 <xml>
-<table border="1" style="border-collapse:collapse" cellpadding="4">
+<table border="0" style="border-collapse:collapse" cellpadding="2">
             <thead>
               <tr>
                 <th>Syntax Name</th>
@@ -1154,7 +1154,7 @@ As the ES4 proposal has evolved, this language has changed. The compiler still s
 	
 ####Types in JavaScript
 <XML>
-<table border="1" style="border-collapse:collapse" cellpadding="4">
+<table border="0" style="border-collapse:collapse" cellpadding="2">
             <thead>
               <tr>
                 <th>Type Example</th>
@@ -1741,7 +1741,7 @@ project.MyClass = function() {
 }
 ```
 ####JSDoc Tag Reference
-<table border="1" style="border-collapse:collapse" cellpadding="4">
+<table border="0" style="border-collapse:collapse" cellpadding="2">
             <thead>
               <tr>
                 <th>Tag</th>
