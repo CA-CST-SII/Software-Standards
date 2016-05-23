@@ -59,7 +59,7 @@ In this case, the pointer can never be overwritten, but value is highly mutable 
 
 Always use semicolons.
 
-Relying on implicit insertion can cause subtle, hard to debug problems. Don't do it. You're better than that.
+Relying on implicit insertion can cause subtle, hard to debug problems. Don't do it.
 There are a couple places where missing semicolons are particularly dangerous:
 ```javascript
 // 1.
