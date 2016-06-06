@@ -444,6 +444,7 @@ Getters and setters methods for properties are not required. However, if they ar
 
 ####Namespaces
 JavaScript has no inherent packaging or namespacing support.
+
 Global name conflicts are difficult to debug, and can cause intractable problems when two projects try to integrate. In order to make it possible to share common JavaScript code, we've adopted conventions to prevent collisions.
 
 #####Use namespaces for global code
@@ -554,21 +555,25 @@ Filenames should be all lowercase in order to avoid confusion on case-sensitive 
 ###Custom toString() methods
 
 Must always succeed without side effects.
+
 You can control how your objects string-ify themselves by defining a custom `toString()` method. This is fine, but you need to ensure that your method (1) always succeeds and (2) does not have side-effects. If your method doesn't meet these criteria, it's very easy to run into serious problems. For example, if `toString()` calls a method that does an `assert`, `assert` might try to output the name of the object in which it failed, which of course requires calling `toString()`.
 
 ###Deferred initialization
 
 OK
+
 It isn't always possible to initialize variables at the point of declaration, so deferred initialization is fine.
 
 ###Explicit scope
 
 Always
+
 Always use explicit scope - doing so increases portability and clarity. For example, don't rely on window being in the scope chain. You might want to use your function in another application for which window is not the content window.
 
 ###Code formatting
 
 Expand for more information.
+
 We follow the [C++ formatting rules](http://google.github.io/styleguide/cppguide.html#Formatting) in spirit, with the following additional clarifications.
 
 ####Curly Braces
@@ -795,18 +800,21 @@ var x = foo.bar().
 ###Parentheses
 
 Only where required
+
 Use sparingly and in general only where required by the syntax and semantics.
 Never use parentheses for unary operators such as `delete`, `typeof` and `void` or after keywords such as `return`, `throw` as well as others (`case`, `in` or `new`).
 
 ###Strings
 
 Prefer `'` over `"`
+
 For consistency single-quotes (`'`) are preferred to double-quotes (`"`). This is helpful when creating strings that include HTML:
 `var msg = 'This is some HTML';`
 
 ###Visibility (private and protected fields)
 
 Encouraged, use JSDoc annotations `@private` and `@protected`
+
 We recommend the use of the JSDoc annotations `@private` and `@protected` to indicate visibility levels for classes, functions, and properties.
 The `--jscomp_warning=visibility` compiler flag turns on compiler warnings for visibility violations. See Closure Compiler Warnings.
 `@private global` variables and functions are only accessible to code in the same file.
@@ -893,6 +901,7 @@ Notice that in JavaScript, there is no distinction between a type (like `AA_Priv
 ###JavaScript Types
 
 Encouraged and enforced by the compiler.
+
 When documenting a type in JSDoc, be as specific and accurate as possible. The types we support are based on the EcmaScript 4 spec.
 
 ####The JavaScript Type Language
@@ -1633,6 +1642,7 @@ goog.bind(function() { this.someProperty; });
 ###Comments
 
 Use JSDoc
+
 We follow the <a href="cppguide.html#Comments">C++ style for comments</a> in spirit.
 All files, classes, methods and properties should be documented with <a href="https://code.google.com/p/jsdoc-toolkit/">JSDoc</a>
 comments with the appropriate <a href="#JSDoc_Tag_Reference">tags</a> and <a href="#JsTypes">types</a>. Textual descriptions for properties, methods, method parameters and method return values should be included unless obvious from the property, method, or parameter name.
@@ -2731,6 +2741,7 @@ goog.provide('foo.bar.CONSTANT');
 ###Compiling
 
 Required
+
 Use of JS compilers such as the <a href="https://code.google.com/closure/compiler/">Closure Compiler</a> is required for all customer-facing code.
 
 ###Tips and Tricks
@@ -2921,7 +2932,9 @@ Use of JS compilers such as the <a href="https://code.google.com/closure/compile
       
 ###Parting Words
 *BE CONSISTENT.*
+
 If you're editing code, take a few minutes to look at the code around you and determine its style. If they use spaces around all their arithmetic operators, you should too. If their comments have little boxes of hash marks around them, make your comments have little boxes of hash marks around them too.
+
 The point of having style guidelines is to have a common vocabulary of coding so people can concentrate on what you're saying rather than on how you're saying it. We present global style rules here so people know the vocabulary, but local style is also important. If code you add to a file looks drastically different from the existing code around it, it throws readers out of their rhythm when they go to read it. Avoid this.
 
 ##License
