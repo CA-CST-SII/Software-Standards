@@ -9,7 +9,7 @@ You can use Markdown most places around GitHub:
 * Comments in Issues and Pull Requests
 * Files with the .md or .markdown extension
 
-This Guide is primaraly derived from [GitHub's mastering-markdown](https://guides.github.com/features/mastering-markdown/)
+This Guide is primarily derived from [GitHub's mastering-markdown](https://guides.github.com/features/mastering-markdown/)
 
 ## Syntax guide
 Here’s an overview of Markdown syntax that you can use anywhere on GitHub.com or in your own text files.
@@ -88,15 +88,15 @@ http://github.com - automatic!
 [GitHub](http://github.com)
 
 
-### Blockquotes
+### Block quotes
 ```md
 As Jane Cobb said:
 
-> "Lets go be badguys!"
+> "Lets go be bad guys!"
 ```
 As Jane Cobb said:
 
-> "Lets go be badguys!"
+> "Let's go be bad guys!"
 
 ### Inline code
 ```md
@@ -134,6 +134,7 @@ You can also simply indent your code by four spaces:
 ```
 
 ### Task Lists
+
 ```md
 - [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> supported
 - [x] list syntax required (any unordered or ordered list supported)
