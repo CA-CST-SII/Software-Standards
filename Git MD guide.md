@@ -122,6 +122,7 @@ function fancyAlert(arg) {
   }
 }
     ```
+ ```
 
 
 You can also simply indent your code by four spaces:
@@ -233,10 +234,10 @@ To see a list of every image we support, check out the [Emoji Cheat Sheet](http:
 
 ### Tools:
 
-http://pandoc.org/ This is to convert files from one markup format into another, pandoc is your swiss-army knife.
+http://pandoc.org/ this is to convert files from one markup format into another, pandoc is your Swiss-army knife. 
 http://www.tablesgenerator.com/markdown_tables This is used to generate tables.
 
-### Refrences:
+### References:
 
 * http://daringfireball.net/projects/markdown/
 * https://guides.github.com/features/mastering-markdown/ Last updated Jan 15, 2014
