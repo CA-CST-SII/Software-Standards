@@ -41,8 +41,8 @@ This "MarkDown" is an adaptation of “How to Deliver Resilient, Secure, Efficie
 In pursuit of division code quality standards, several professional objectives and interests from the CST Strategic Plan 2014-2016 are supported and benefit from these activities:
 * (1.2) Continue building CA stakeholder participation into IT development projects and encourage consultations and visits with CST Staff
 * (2.5) Review and develop means to accelerate technology adoption processes
-* (3.1) Lead the implementation of or serve as an early adopter for Federal CIO initiatives.
-* (4.4) Build continuous collaboration mechanisms with IRM & DS management.
+* (3.1) Lead the implementation of or serve as an early adopter for Federal CIO initiatives
+* (4.4) Build continuous collaboration mechanisms with IRM & DS management
 * (6.2) Create rotational assignments for CST staff
 * (6.3) Create a performance matrix and standards for CST staff
 * (6.6) Hire more technical talent in key roles throughout CST
