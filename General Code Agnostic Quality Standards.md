@@ -30,6 +30,8 @@
 [References] (https://github.com/CA-CST-SII/Software-Standards/blob/master/General%20Code%20Agnostic%20Quality%20Standards.md#references)
 
 ##Abstract##
+The Consular Systems and Technology Division of the Bureau of Consular Affairs recognizes the code quality standards between Bureau systems are inconsistently applied and will ultimately harm its ability to unify systems toward a modern architecture.  By addressing this issue with widespread adoption, training, adaptation and monitoring of Division guidelines throughout its family of business systems, tangible operational stability benefits including improved reliability, faster time to repair and resistance to security threats will principally follow suit.  Improved system maintainability, performance and management transparency is anticipated when accompanied by corresponding software development life cycle processes and tooling.
+
 This "MarkDown" is an adaptation of “How to Deliver Resilient, Secure, Efficient, and Easily Changed IT Systems in Line with CISQ Recommendations” produced by Consortium for IT Software Quality (CISQ) which proposes a minimal set of language agnostic code development guidelines.  With a framework of language agnostic guidelines, the Division shall endorse a set of detailed and actionable set of coding standards for languages approved for use within the enterprise.  These standards are understood to be dynamic documents subject to continuous improvement to capture changes to architecture and Bureau constraints.  Input from development staff and software engineering staff, leveraging both private and public sector personnel were included.
 ****
 
