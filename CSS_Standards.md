@@ -1041,9 +1041,14 @@ An example of various conventions.
 ##33 References:
 
 http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml#CSS_Style_Rules
+
 http://make.wordpress.org/core/handbook/coding-standards/css/
+
 https://drupal.org/node/1887862
+
 http://make.wordpress.org/core/handbook/coding-standards/javascript/
+
 http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+
 https://github.com/rwaldron/idiomatic.js/
 
