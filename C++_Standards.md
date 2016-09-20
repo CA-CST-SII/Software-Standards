@@ -1104,6 +1104,6 @@ Below is a one-page C++ coding styling standard quick reference using a sample c
 <a name="Figure 12_1"></a>
 *Figure 12-1. C++ Coding Style Example*
  
-![Fig12.1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/Figure%2012-1.png "C++ Coding Style Example")
+![Fig12.1](Images/Figure%2012-1.png "C++ Coding Style Example")
 
 **[Contents]( https://github.com/CA-CST-SII/Software-Standards/blob/master/C++_Standards.md#contents)** 
