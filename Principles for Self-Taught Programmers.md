@@ -91,14 +91,18 @@ Imagine a process to retrieve a file
 4.	display the result
 5.	add a line with the total to the file
 6.	saves the file
+
 All of this can be done in a single method, in a single class. But if examined closely there are 3 basic operations:
 
 1.	Open, read and save the file (Date Read and Persistence)
 2.	Sum the values (Business logic)
 3.	Display the value (Interface)
+
 If those groups of functions are each in a separate class with atomic methods the code will be more maintainable with greater efficiency. For instance, the file manipulation code can be reused in other parts of the code. Or if the business logic changes (adding a percentage to the total for example), it will be easier to locate the point of change. Also, when dealing with bugs or corrections, it is easier to identify what is causing the problem.
+
 In the sample above, imagine that the value is correct but is not being displayed in the correct format. The display class could easily be targeted to make the correction. And there is no reason to touch the other two classes that are working fine.
 This is just a very simple example. Algorithms normally are far more complex than that. But this principle helps make complex application code easier to see read, identify reuse blocks, focus points of attention, and transform code into services or external libraries etc.
+
 ### Open/Close Principle
 "Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification."
 Bertrand Meyer is generally credited as having originated the term which appeared in his 1988 book Object Oriented Software Construction. Later in 1990 the concept were redefined to refer to the use of abstract interfaces.
