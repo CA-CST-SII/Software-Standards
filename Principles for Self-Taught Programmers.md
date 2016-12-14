@@ -1,4 +1,4 @@
-Computer Science Object Oriented Programming Principles for Self-Taught Programmers.
+# Computer Science Object Oriented Programming Principles for Self-Taught Programmers.
 Writing GOOD code is not only about getting an application/functionality to do what it’s supposed to. It also has to be simple, clear and maintainable. During the development process, any code written will most probably have errors, and will be read by other developers. How that code is written will have a huge impact on how easy it will be to correct errors and make other adaptions or changes to it. That impact will be felt as the amount of time required to do the correction/change.
 So these principles are tools to help make the code more developer friendly.
 DRY
