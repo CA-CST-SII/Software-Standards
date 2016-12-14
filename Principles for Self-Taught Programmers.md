@@ -1,8 +1,10 @@
 # Computer Science Object Oriented Programming Principles for Self-Taught Programmers.
+-------------
 Writing GOOD code is not only about getting an application/functionality to do what it’s supposed to. It also has to be simple, clear and maintainable. During the development process, any code written will most probably have errors, and will be read by other developers. How that code is written will have a huge impact on how easy it will be to correct errors and make other adaptions or changes to it. That impact will be felt as the amount of time required to do the correction/change.
 So these principles are tools to help make the code more developer friendly.
-DRY
+## DRY
 DRY stands for “Don’t Repeat Yourself”. As developers many times we do not see how many duplicates of code we write. It is very easy to copy and paste and normally you would think that “if it’s working over there it should probably work over here with some minor changes”. But when you repeat a code, you multiply the number of potential errors and change requirements by the number of repetitions. Even worse, it leads quickly to spaghetti code. Consider the code below…
+```Java
 public string listByInput(string input, int[] values) {
 	var result = "";
 	switch (input) {
@@ -29,8 +31,10 @@ public string listByInput(string input, int[] values) {
 	}
 	return result;
 }
+```
 Imagine that the client reports that the result list is “,1,2,3,4” and the correct would be “1,2,3,4”. Ok it is a quick fix but how many other places does that correction need to be applied to? The client just detected the bug on the path that the application passed at that moment. What about the other possible paths in that part of the code. That sample is a very short sample. Imagine it is in a file with hundreds and maybe thousands of lines, or even a code repeated in different files throughout a project.
 Now consider that other code:
+```Java
 private string joinValues(string separator, int[] values) {
 	var result = "";
 	foreach (var value in values) {
@@ -50,6 +54,7 @@ public string listByInput(string input, int[] values) {
 			return joinValues(".", values);
 	}
 }
+```
 Both codes do exactly the same thing. Both codes would have the same problem reported by the client. Which one would require less points of attention to apply any correction?
 Code repetition always leads to multiple points of maintenance, making corrections or changes more difficult, and more prone to be incomplete.
 Avoiding repetition also improves the readability of the code. A small simple function is easier to read and understand than a huge complex one.
@@ -59,16 +64,16 @@ Consider these steps to reduce the complexity and code repetition:
 3.	Repeat the process with the new functions until there is a set of meaningful atomic functions
 4.	Reduce the repetition by eliminating identical functions and merging very similar functions into a single one.
 5.	If it is possible and makes sense, make the atomic functions available to be reused by other parts of the application.
-SOLID
+## SOLID
 SOLID is an acronym of acronyms. Shown in the table below:
-S	SRP	Single Responsibility Principle
-O	OCP	Open/Close Principle
-L	LSP	Liskov Substitution Principle
-I	ISP	Interface Segregation Principle
-D	DIP	Dependency Inversion Principle
+|S	|SRP	|Single Responsibility Principle|
+|O	|OCP	|Open/Close Principle|
+|L	|LSP	|Liskov Substitution Principle|
+|I	|ISP	|Interface Segregation Principle|
+|D	|DIP	|Dependency Inversion Principle|
          
 These principles are themes that fill many books on coding. They represent studies of programing’s best practices in the OO (object oriented) world. It is a recommended an excellent framework to improve coding.
-The Single Responsibility Principle
+### The Single Responsibility Principle
 “Every class should have a single responsibility, and that responsibility should be entirely encapsulated by the class. All its services should be narrowly aligned with that responsibility.”
 That principle was introduced by Robert C. Martin in an article by the same name as part of his Principles of Object Oriented Design. It is based on the principles of “cohesion” and “separation of concerns”.
 It basically says to put things that are related together and keep things that are not related to them elsewhere.
@@ -87,7 +92,7 @@ All of this can be done in a single method, in a single class. But if examined c
 If those groups of functions are each in a separate class with atomic methods the code will be more maintainable with greater efficiency. For instance, the file manipulation code can be reused in other parts of the code. Or if the business logic changes (adding a percentage to the total for example), it will be easier to locate the point of change. Also, when dealing with bugs or corrections, it is easier to identify what is causing the problem.
 In the sample above, imagine that the value is correct but is not being displayed in the correct format. The display class could easily be targeted to make the correction. And there is no reason to touch the other two classes that are working fine.
 This is just a very simple example. Algorithms normally are far more complex than that. But this principle helps make complex application code easier to see read, identify reuse blocks, focus points of attention, and transform code into services or external libraries etc.
-Open/Close Principle
+### Open/Close Principle
 "Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification."
 Bertrand Meyer is generally credited as having originated the term which appeared in his 1988 book Object Oriented Software Construction. Later in 1990 the concept were redefined to refer to the use of abstract interfaces.
 Meyer said that once completed, the implementation of a class could only be modified to correct errors and that new or changed features would require that a different all together.
@@ -117,13 +122,13 @@ public class SumAndPercent : IBusinessLogic {
 	}
 }
 The interface guarantees that the code is interchangeable between the two classes now only the reference to an instance new class where the change is required will need changing. Again this is very simplistic used to illustrate the concept. Obviously the process is more complicated than this but even with more complicated scenarios that principle reduces the potential errors generated by a change.
-The Liskov Substitution Principle
+### The Liskov Substitution Principle
 “In a computer program, if S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e., objects of type S may substitute objects of type T) without altering any of the desirable properties of that program (correctness, task performed, etc.).”
 This principle was initially introduced by Barbara Liskov in a 1987 conference keynote address entitled “Data Abstraction and Hierarchy”. It is a semantic principle rather than merely syntactic relation because it intends to guarantee semantic interoperability of types in a hierarchy, object types in particular.
 It says that if an object X of type T has a property (or method) P that behaves in a defined way, the object Y of type S, where S is a subtype of T, should have the same property (or method) P behaving the same way.
 This principle is well aligned with the open/closed principle because it clearly states that a subtype cannot change the behavior of the original type (closed for changes) but subtypes can be used to extend the original type with new methods or properties (open for extensions).
 Liskov’s principle imposes some standard requirements on signatures that have been adopted in newer object-oriented programming languages, like Contravariance, Covariance and Invariance (those concepts are out of the scope of this paper but is recommend reading). Liskov’s principle also is an excellent tool for the design of class hierarchies in a system.
-The Interface Segregation Principle
+### The Interface Segregation Principle
 “Many purpose specific interfaces are better than a general purpose one.”
 This principle was first used and formulated by Robert C. Martin when doing some consulting for Xerox. The fact is mentioned in 2002 Robert’s book Agile Software Development: Principles, Patterns and Practices. Here is a short version of the history:
 Xerox had created a new printer system that could perform a variety of tasks like stapling a set of printed papers and faxing. The software for this system was created from the ground up and performed its tasks successfully. As the software grew, making modification became more and more difficult so that even the smallest change would take hours to be applied.
@@ -134,7 +139,7 @@ A class can implement multiple interfaces so that capacity should be utilized to
 A good sample is the IDisposable interface. It is an interface that defines classes that have to dispose of some resources and indicates the system that it can use the Dispose method to do so. It is very simple, has only one method and can be added to any class that has to have that behavior.
 But adding that method on a higher level interface would require that classes that does not have to dispose of resources to also implement that method unnecessarily. That would obviously lead to new potential bugs and more points of attention in the code.
 So keep the interfaces lean and with a specific behavior in mind.
-The Dependency Inversion Principle
+### The Dependency Inversion Principle
 The principle states:
 A. High-level modules should not depend on low-level modules. Both should depend on abstractions.
 B. Abstractions should not depend upon details. Details should depend upon abstractions.
