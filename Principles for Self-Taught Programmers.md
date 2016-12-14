@@ -66,11 +66,12 @@ Consider these steps to reduce the complexity and code repetition:
 5.	If it is possible and makes sense, make the atomic functions available to be reused by other parts of the application.
 ## SOLID
 SOLID is an acronym of acronyms. Shown in the table below:
-|S	|SRP	|Single Responsibility Principle|
-|O	|OCP	|Open/Close Principle|
-|L	|LSP	|Liskov Substitution Principle|
-|I	|ISP	|Interface Segregation Principle|
-|D	|DIP	|Dependency Inversion Principle|
+
+S	| SRP	| Single Responsibility Principle
+O	| OCP	| Open/Close Principle
+L	| LSP	| Liskov Substitution Principle
+I	| ISP	| Interface Segregation Principle
+D	| DIP	| Dependency Inversion Principle
          
 These principles are themes that fill many books on coding. They represent studies of programing’s best practices in the OO (object oriented) world. It is a recommended an excellent framework to improve coding.
 ### The Single Responsibility Principle
