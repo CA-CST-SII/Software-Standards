@@ -56,14 +56,19 @@ public string listByInput(string input, int[] values) {
 }
 ```
 Both codes do exactly the same thing. Both codes would have the same problem reported by the client. Which one would require less points of attention to apply any correction?
+
 Code repetition always leads to multiple points of maintenance, making corrections or changes more difficult, and more prone to be incomplete.
+
 Avoiding repetition also improves the readability of the code. A small simple function is easier to read and understand than a huge complex one.
+
 Consider these steps to reduce the complexity and code repetition:
+
 1.	Break huge functions as a sequence of higher level steps;
 2.	Write every step as a separate function;
 3.	Repeat the process with the new functions until there is a set of meaningful atomic functions
 4.	Reduce the repetition by eliminating identical functions and merging very similar functions into a single one.
 5.	If it is possible and makes sense, make the atomic functions available to be reused by other parts of the application.
+
 ## SOLID
 SOLID is an acronym of acronyms. Shown in the table below:
 
