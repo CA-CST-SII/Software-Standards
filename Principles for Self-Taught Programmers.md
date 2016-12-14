@@ -3,7 +3,7 @@
 Writing GOOD code is not only about getting an application/functionality to do what it’s supposed to. It also has to be simple, clear and maintainable. During the development process, any code written will most probably have errors, and will be read by other developers. How that code is written will have a huge impact on how easy it will be to correct errors and make other adaptions or changes to it. That impact will be felt as the amount of time required to do the correction/change.
 So these principles are tools to help make the code more developer friendly.
 ## DRY
-DRY stands for “Don’t Repeat Yourself”. As developers many times we do not see how many duplicates of code we write. It is very easy to copy and paste and normally you would think that “if it’s working over there it should probably work over here with some minor changes”. But when you repeat a code, you multiply the number of potential errors and change requirements by the number of repetitions. Even worse, it leads quickly to spaghetti code. Consider the code below…
+DRY stands for **“Don’t Repeat Yourself”**. As developers many times we do not see how many duplicates of code we write. It is very easy to copy and paste and normally you would think that “if it’s working over there it should probably work over here with some minor changes”. But when you repeat a code, you multiply the number of potential errors and change requirements by the number of repetitions. Even worse, it leads quickly to spaghetti code. Consider the code below…
 ```Java
 public string listByInput(string input, int[] values) {
 	var result = "";
@@ -81,13 +81,16 @@ I	| ISP	   | Interface Segregation Principle
 D	| DIP	   | Dependency Inversion Principle
          
 These principles are themes that fill many books on coding. They represent studies of programing’s best practices in the OO (object oriented) world. It is a recommended an excellent framework to improve coding.
+
 ### The Single Responsibility Principle
 “Every class should have a single responsibility, and that responsibility should be entirely encapsulated by the class. All its services should be narrowly aligned with that responsibility.”
 
-That principle was introduced by Robert C. Martin in an article by the same name as part of his Principles of Object Oriented Design. It is based on the principles of “cohesion” and “separation of concerns”.
+That principle was introduced by Robert C. Martin in an article by the same name as part of his *Principles of Object Oriented Design*. It is based on the principles of “cohesion” and “separation of concerns”.
 
-It basically says to put things that are related together and keep things that are not related to them elsewhere.
+**It basically says to put things that are related together and keep things that are not related to them elsewhere.**
+
 This is very important because every point of the application is a potential source of errors. The chances that a change to the code will need to be made at some point are high. Also, chances are that a correction or change will affect some of the functionalities that are more closely related to it. These changes become easier to manage when they have defined boundaries and a set of functions that can be reused in other parts of the software or even in other future developments.
+
 Imagine a process to retrieve a file
 
 1.	open it
@@ -110,11 +113,16 @@ This is just a very simple example. Algorithms normally are far more complex tha
 
 ### Open/Close Principle
 "Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification."
-Bertrand Meyer is generally credited as having originated the term which appeared in his 1988 book Object Oriented Software Construction. Later in 1990 the concept were redefined to refer to the use of abstract interfaces.
+
+Bertrand Meyer is generally credited as having originated the term which appeared in his 1988 book *Object Oriented Software Construction*. Later in 1990 the concept were redefined to refer to the use of abstract interfaces.
+
 Meyer said that once completed, the implementation of a class could only be modified to correct errors and that new or changed features would require that a different all together.
+
 The redefined concept stated that those classes (the original and the new ones) should derive from an abstract interface that defines the functionality to allow it to polymorphically substituted for each other. In other words, once the implementation of a class is done, changing the behavior of a method in the class would often leads to breaking in the code and usually it is not easy to determine every possible break point.
+
 Protect the implementation of that functionality in that class helps to avoid problems. To change a behavior, another class that implements differently the same method and to guarantee that the method signature is the same an abstract interface is used.
 An abstract interface is like a contract that says what are the formats of the input and the output of a method but has no implementation.
+
 Consider the sample above. Examine the calculation class as below:
 ```Java
 public class Sum {
@@ -143,6 +151,7 @@ public class SumAndPercent : IBusinessLogic {
 }
 ```
 The interface guarantees that the code is interchangeable between the two classes now only the reference to an instance new class where the change is required will need changing. Again this is very simplistic used to illustrate the concept. Obviously the process is more complicated than this but even with more complicated scenarios that principle reduces the potential errors generated by a change.
+
 ### The Liskov Substitution Principle
 “In a computer program, if S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e., objects of type S may substitute objects of type T) without altering any of the desirable properties of that program (correctness, task performed, etc.).”
 
@@ -153,6 +162,7 @@ It says that if an object X of type T has a property (or method) P that behaves 
 This principle is well aligned with the open/closed principle because it clearly states that a subtype cannot change the behavior of the original type (closed for changes) but subtypes can be used to extend the original type with new methods or properties (open for extensions).
 
 Liskov’s principle imposes some standard requirements on signatures that have been adopted in newer object-oriented programming languages, like Contravariance, Covariance and Invariance (those concepts are out of the scope of this paper but is recommend reading). Liskov’s principle also is an excellent tool for the design of class hierarchies in a system.
+
 ### The Interface Segregation Principle
 “Many purpose specific interfaces are better than a general purpose one.”
 
@@ -172,13 +182,14 @@ A good sample is the IDisposable interface. It is an interface that defines clas
 
 But adding that method on a higher level interface would require that classes that does not have to dispose of resources to also implement that method unnecessarily. That would obviously lead to new potential bugs and more points of attention in the code.
 So keep the interfaces lean and with a specific behavior in mind.
+
 ### The Dependency Inversion Principle
 The principle states:
 
-A. High-level modules should not depend on low-level modules. Both should depend on abstractions.
-B. Abstractions should not depend upon details. Details should depend upon abstractions.
+A. *High-level modules should not depend on low-level modules. Both should depend on abstractions.*
+B. *Abstractions should not depend upon details. Details should depend upon abstractions.*
 
-The dependency inversion principle was also postulated by Robert C. Martin and described in several publications including the paper Object Oriented Design Quality Metrics: an analysis of dependencies, an article appearing in the C++ Report in May 1996 entitled The Dependency Inversion Principle, and the books Agile Software Development, Principles, Patterns, and Practices, and Agile Principles, Patterns, and Practices in C#.
+The dependency inversion principle was also postulated by Robert C. Martin and described in several publications including the paper *Object Oriented Design Quality Metrics: an analysis of dependencies*, an article appearing in the C++ Report in May 1996 entitled *The Dependency Inversion Principle*, and the books *Agile Software Development, Principles, Patterns, and Practices,* and *Agile Principles, Patterns, and Practices in C#*.
 
 This principle refers to a specific form of decoupling where conventional dependency relationships established from high-level, policy-setting modules to low-level, dependency modules are inverted (i.e. reversed) for the purpose of rendering high-level modules independent of the low-level module implementation details.
 
