@@ -208,3 +208,17 @@ More Flexible and Less Dependencies
 The DRY and SOLID principles are tools and practices designed to make your coding more flexible and with less dependencies. That leads to a code less prone to errors, with fewer points of potential bugs and easier to maintain.
 
 They are advanced concepts and their use will depend on the experience in coding, and the knowledge of the business requirements a developer is trying to solve. These are concepts taught in computer science course work that many “self-taught” coders may not have had exposure too, by studying this principles code will be higher quality and much easier for a community of developers to maintain. 
+
+## Refrences
+
+http://blog.cimpl.com/always-try-to-be-dry-and-solid-object-oriented-oo-programming-principles-part-1
+
+https://www.codeproject.com/articles/36712/solid-and-dry
+
+https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)
+
+http://blog.gauffin.org/2012/05/solid-principles-with-real-world-examples/
+
+
+
+
