@@ -14,6 +14,8 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division Java Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/Java_Standards.md)
 
+[Consular Systems and Technology Division JavaScript Style Guide](https://github.com/CA-CST-SII/Software-Standards/blob/master/JavaScript%20Style%20Guide.md)
+
 [Consular Systems and Technology Division HTML Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/HTML_Standards.md)
 
 [Consular Systems and Technology Division CSS Code Development Guidelines](https://github.com/CA-CST-SII/Software-Standards/blob/master/CSS_Standards.md)
@@ -30,9 +32,17 @@ This language agnostic guide gives general guidelines applicable to many differe
 
 [Consular Systems and Technology Division Object Definition and Naming Standard](https://github.com/CA-CST-SII/Software-Standards/blob/master/Object%20Definition%20and%20Naming%20Standard.md)
 
+[Consular Systems and Technology Division Business Process Execution Language (BPEL) Coding Practice](https://github.com/CA-CST-SII/Software-Standards/blob/master/Business%20Process%20Execution%20Language%20(BPEL)%20Coding%20Practice.md)
+
 [Consular Systems and Technology Division SQL Server Coding Standards](https://github.com/CA-CST-SII/Software-Standards/blob/master/SQL%20Server%20Coding%20Standards.md)
 
+[Consular Systems and Technology Division GitHub/GitLab md markdown guide](https://github.com/CA-CST-SII/Software-Standards/blob/master/GitHub-md-MarkDown-Guide.md)
+
 [Oracle Application Guides](https://github.com/CA-CST-SII/Software-Standards/blob/master/Oracle%20Application%20Guides.md)
+
+## Adopted From GSA 18F 
+
+[U.S. Web Design Standards](https://standards.usa.gov/)
 
 ## CAST rules and metrics
 
