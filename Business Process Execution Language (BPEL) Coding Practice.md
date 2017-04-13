@@ -42,7 +42,7 @@ This document is intended for the CST Systems Engineering and Integration (SEI) 
 Follow these general naming standards:
 
  •	Lower-Camel-case must be used for naming attributes.
-Example: <xsd:attribute name="unitCode"/>
+Example: ```<xsd:attribute name="unitCode"/>```
 
 
 •	Upper-Camel-case must be used for naming elements and types.
@@ -53,7 +53,7 @@ Example: ```<xsd:element name="UnitOfMeasure"/> <xsd:complexType name="InvoiceEB
 For example repeating elements must have a singular name.
 
 
- •	Names must not contain special characters such as: space, '-', '_', '.', '$', '%', '#', ....
+ •	Names must not contain special characters such as: ```space, '-', '_', '.', '$', '%', '#', ....```
 
 
  •	Avoid having numeric characters in the name.
@@ -61,11 +61,11 @@ There are cases were using a numeric character is required to convey some signif
 
 
  •	Complex type names should end with the 'Type' suffix to help recognize types from elements.
-Example: <xsd:complexType name="InvoiceEBOType"/>
+Example: ```<xsd:complexType name="InvoiceEBOType"/>```
 
 
  •	The name of a simple type definition should be the name of the root element with the 'ContentType' suffix.
-Example: <xsd:simpleType name="PhoneNumberContentType">
+Example: ```<xsd:simpleType name="PhoneNumberContentType">```
 ## 4.2	General Namespace Naming Standards
 
 Follow these general namespace naming standards:
@@ -93,7 +93,7 @@ Example: Horizontal: http://xmlns.oracle.com/EnterpriseObjects/Core/EBO/Invoice/
 
 
 •	When importing or including schema in a schema file, the schema location must always use relative path.
-Example: <xsd:importnamespace="http://xmlns.oracle.com/EnterpriseObjects/Core/EBO/Invoice/V1" schemaLocation="../../../../Core/EBO/Invoice/InvoiceEBO .xsd"/>
+Example: ```<xsd:importnamespace="http://xmlns.oracle.com/EnterpriseObjects/Core/EBO/Invoice/V1" schemaLocation="../../../../Core/EBO/Invoice/InvoiceEBO .xsd"/>```
 
 
 •	Namespace prefixes must be a minimum of six (6) lowercase characters abbreviation of the namespace.  The abbreviation must be descriptive and unambiguous within the context where it is being used.
@@ -129,8 +129,8 @@ Follow these guidelines:
 •	Followed by a name describing what is being assigned. If what is assigned is a message, then use the message name.
 
 •	In case there are multiple assignments, provide a name that describes the group of assignments if possible.
-Pattern: Assign<Name of what is being assigned>
-Example: AssignPaymentEBM, AssignOrderInitialValues
+Pattern: ```Assign<Name of what is being assigned>```
+Example: ```AssignPaymentEBM```, ```AssignOrderInitialValues```
 
 ### 4.3.3	Compensate
 
@@ -141,8 +141,8 @@ Follow these guidelines:
 •	Start with the Compensate prefix.
 
 •	Followed by the scope encapsulating the tasks to be compensated.
-Pattern: Compensate<scope name>
-Example: CompensateProcessCreditCheckMilestone, Compensate TranseferFundsScope
+Pattern: ```Compensate<scope name>```
+Example: ```CompensateProcessCreditCheckMilestone```, ```Compensate TranseferFundsScope```
 
 ### 4.3.4	Flow
 Follow these guidelines:
@@ -152,8 +152,8 @@ Follow these guidelines:
 •	Starts by a name describing the tasks being run concurrently.
 
 •	Ends with the Flow suffix.
-Pattern: <Name describing concurrent tasks>Flow
-Example: CallManufacturersFlow, GetQuotesFlow
+Pattern: ```<Name describing concurrent tasks>Flow```
+Example: ```CallManufacturersFlow```, ```GetQuotesFlow```
 
 ### 4.3.5	FlowN
 Follow these guidelines:
@@ -165,8 +165,8 @@ Follow these guidelines:
 •	Ends with the FlowN suffix.
 
 •	The index variable name should be the flow name with Index as suffix.
-Pattern: name = <Name describing concurrent tasks>FlowN, index variable = <Name describing concurrent tasks>FlowNIndex
-Example: ActivateUsersFlowN (ActivateUsersFlowNIndex), CheckSuppliersFlowN (CheckSuppliersFlowNIndex)
+```Pattern: name = <Name describing concurrent tasks>FlowN```, ```index variable = <Name describing concurrent tasks>FlowNIndex```
+Example: ```ActivateUsersFlowN (ActivateUsersFlowNIndex)```, ```CheckSuppliersFlowN (CheckSuppliersFlowNIndex)```
 
 ### 4.3.6	Invoke
 Follow these guidelines:
@@ -180,8 +180,8 @@ Follow these guidelines:
 •	Followed by Call if synchronous invocation or Start if asynchronous invocation.
 
 •	Followed by the operation name within the partner link.
-Pattern: Invoke<Partner Link Name>{Call/Start}<Operation>
-Example: InvokeCustomerServiceCallGetCustomer, InvokeNotificationServiceStartNotifyByEmail
+Pattern: ```Invoke<Partner Link Name>{Call/Start}<Operation>```
+Example: ```InvokeCustomerServiceCallGetCustomer```, ```InvokeNotificationServiceStartNotifyByEmail```
 
 ### 4.3.7	Java Embedding
 Follow these guidelines:
@@ -200,7 +200,7 @@ Follow these guidelines:
 •	Starts with the Pick prefix.
 
 •	Followed by a name describing as accurate as possible all branches (onMessage and onAlarm) within the pick activity.
-Pattern: Pick<Name describing the branches to pick from>
+Pattern: ```Pick<Name describing the branches to pick from>```
 Example: PickOrderAckOrTimeout, PickFirstQuote
 
 ### 4.3.9	Receive
