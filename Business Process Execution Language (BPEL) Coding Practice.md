@@ -189,8 +189,8 @@ Follow these guidelines:
 •	The name should follow the general standard naming standards.
 
 •	The name should be similar to a Java method Name with lower-camel-case.
-Pattern: <A name describing the functionality>
-Example: getDiscountPrice
+Pattern: ```<A name describing the functionality>```
+Example: ```getDiscountPrice```
 
 ### 4.3.8	Pick
 Follow these guidelines:
@@ -201,7 +201,7 @@ Follow these guidelines:
 
 •	Followed by a name describing as accurate as possible all branches (onMessage and onAlarm) within the pick activity.
 Pattern: ```Pick<Name describing the branches to pick from>```
-Example: PickOrderAckOrTimeout, PickFirstQuote
+Example: ```PickOrderAckOrTimeout```, ```PickFirstQuote```
 
 ### 4.3.9	Receive
 Follow these guidelines:
@@ -210,8 +210,8 @@ Follow these guidelines:
 •	Starts with the Receive prefix.
 
 •	Contains the name of the message it is receiving.
-Pattern: Receive<Message Name>
-Example: ReceiveUpdateInvoiceEBM
+Pattern: ```Receive<Message Name>```
+Example: ```ReceiveUpdateInvoiceEBM```
 
 ### 4.3.10	Scope
 Follow these guidelines:
@@ -222,8 +222,8 @@ Follow these guidelines:
 •	Use Milestone as the suffix if the scope is a candidate for end-user monitor.
 
 •	If it is not intended for the end-user monitor, use Scope as the suffix.
-Pattern: <Name describing the Scoped Tasks>{ Scope |Milestone}
-Examples: GetCreditRatingScope, GetLoanOfferScope, ProcessCreditCheckMilestone
+Pattern: ```<Name describing the Scoped Tasks>{ Scope |Milestone}```
+Examples: ```GetCreditRatingScope```, ```GetLoanOfferScope```, ```ProcessCreditCheckMilestone```
 
 ### 4.3.11	Sequence
 Follow these guidelines:
@@ -243,8 +243,8 @@ Follow these guidelines:
 •	Start with the Switch prefix.
 
 •	Followed by what is being evaluated
-Pattern: Switch<Name of what is being evaluated>
-Example: SwitchCreditRating
+Pattern: ```Switch<Name of what is being evaluated>```
+Example: ```SwitchCreditRating```
 
 ### 4.3.13	Case
 Follow these guidelines:
@@ -253,8 +253,8 @@ Follow these guidelines:
 •	Start with the Case prefix.
 
 •	Followed by the evaluated value.
-Pattern: Case<Name evaluated value>
-Example: CaseBadCredit, CaseApprovalRequired
+Pattern: ```Case<Name evaluated value>```
+Example: ```CaseBadCredit```, ```CaseApprovalRequired```
 
 ### 4.3.14	Terminate
 Follow these guidelines:
@@ -263,8 +263,8 @@ Follow these guidelines:
 •	Starts with the Terminate prefix.
 
 •	Followed by a name describing the termination reason.
-Pattern: Terminate<reason of termination>
-Example: TerminateTimeout, TerminateEndOfProcess
+Pattern: ```Terminate<reason of termination>```
+Example: ```TerminateTimeout```, ```TerminateEndOfProcess```
 
 ### 4.3.15	Throw
 Follow these guidelines:
@@ -275,7 +275,7 @@ Follow these guidelines:
 •	Followed by the fault name.
 
 •	The fault variable name is typically named the same as the fault name.
-Pattern: Throw<fault name>
+Pattern: ```Throw<fault name>```
 Example: ThrowExceededMaxAmount, which uses ExceededMaxAmount variable.
 Note:
 When defining a Catch in the Scope activity, the displayed catch name is the fault name.
@@ -290,8 +290,8 @@ The name should follow the general standard naming standards.
 •	Followed by To.
 
 •	Followed by the destination name.
-Pattern: Xform<source>To<destination>
-Example: XformBillToPortal80Bill
+Pattern: ```Xform<source>To<destination>```
+Example: ```XformBillToPortal80Bill```
 
 ### 4.3.17	Wait
 Follow these guidelines:
@@ -299,8 +299,8 @@ The name should follow the general standard naming standards.
 •	Starts with the Wait prefix.
 
 •	Followed by a name describing the reason for waiting.
-Pattern: Wait<Name describing the waiting reason>
-Example: WaitOrderAcknowledgeTimeout, WaitWarmUpTime
+Pattern: ```Wait<Name describing the waiting reason>```
+Example: ```WaitOrderAcknowledgeTimeout```, ```WaitWarmUpTime```
 
 ### 4.3.18	While
 Follow these guidelines:
@@ -309,8 +309,8 @@ Follow these guidelines:
 •	Starts with the While prefix.
 
 •	Followed by a name describing the loop condition.
-Pattern: While<Name describing the loop condition>
-Example: WhileAllMsgsSent
+Pattern: ```While<Name describing the loop condition>```
+Example: ```WhileAllMsgsSent```
 
 ## 4.4	Other BPEL Artifacts
 
@@ -321,7 +321,7 @@ Follow these guidelines:
 •	Use lower-camel-case for variable names.
 
 •	The data type must not be part of the variable name.
-Example: accountBalance, invoiceAmount.
+Example: ```accountBalance```, ```invoiceAmount```.
 
 ### 4.4.2	Properties
 Property names follow the general BPEL variables naming standards.
