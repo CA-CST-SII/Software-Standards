@@ -484,9 +484,10 @@ Compensation occurs when the BPEL process cannot complete a series of operations
 You can invoke a compensation handler by using the compensate activity, which names the scope for which the compensation is to be performed (that is, the scope whose compensation handler is to be invoked). A compensation handler for a scope is available for invocation only when the scope completes normally. Invoking a compensation handler that has not been installed is equivalent to using the empty activity.  This ensures that fault handlers do not have to rely on state to determine which nested scopes have completed successfully. The semantics of a process in which an installed compensation handler is invoked more than once are undefined.
 
 If an invoke activity has a compensation handler defined inline, then the name of the activity is the name of the scope to be used in the compensate activity. The syntax is as follows:
-```<compensate scope="ncname"? standard-attributes>
+
+<compensate scope="ncname"? standard-attributes>
 standard-elements
-</compensate>```
+</compensate>
 ## 5.7	Use the terminate activity to stop a business process instance
 
 The terminate activity immediately terminates the behavior of a business process instance within which the terminate activity is performed.  All currently running activities must be terminated as soon as possible without any fault handling or compensation behavior.  The terminate activity does not send any notifications of the status of a BPEL process.
