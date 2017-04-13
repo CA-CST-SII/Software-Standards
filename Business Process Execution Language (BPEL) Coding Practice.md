@@ -493,9 +493,9 @@ standard-elements
 The terminate activity immediately terminates the behavior of a business process instance within which the terminate activity is performed.  All currently running activities must be terminated as soon as possible without any fault handling or compensation behavior.  The terminate activity does not send any notifications of the status of a BPEL process.
 
 The syntax for the terminate activity is as follows:
-```<terminate standard-attributes>
+<terminate standard-attributes>
  standard-elements
-</terminate>```
+</terminate>
 # 6	Code Level Metrics
  Name	Description and How to Calculate	Recommended Threshold
 Minimize the Number of BPEL Variables	Use as few variables as possible, and minimize the size and the number of business objects used. 	Less than x
