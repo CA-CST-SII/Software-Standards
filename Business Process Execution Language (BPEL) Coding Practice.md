@@ -1,16 +1,23 @@
-1	Introduction
+# 1	Introduction
+
 Business Process Execution Language for Web Services (BPEL or BPEL4WS) is a language used for the definition and execution of business processes using Web services.  BPEL enables the top-down realization of Service Oriented Architecture (SOA) through composition, orchestration, and coordination of Web services.  BPEL provides a relatively easy and straightforward way to compose several Web services into new composite services called business processes, which is a collection of coordinated service invocations and related activities that produce a result.
 BPEL builds on the foundation of XML and Web services; it uses an XML-based language that supports the Web services technology stack, including SOAP, WSDL, UDDI, WS-Reliable Messaging, WS-Addressing, WS-Coordination, and WS-Transaction.  BPEL is used to standardize enterprise application integration as well as to extend the integration to the Consular Affairs (CA) legacy applications and services where an Oracle Enterprise Service Bus is a middleware solution as an intermediary between service requesters and service providers.
 Using BPEL a series of discreet services can be integrated into an end-to-end process flow that reduces process cost and complexity.  The BPEL enables to define how to:
+
 •	Send XML messages to, and asynchronously receive XML messages from, remote services.
+
 •	Manipulate XML data structures.
+
 •	Manage events and exceptions.
+
 •	Design parallel flows of process execution.
+
 •	Undo portions of processes when exceptions occur.
 
 
+
  
-2	Reference
+# 2	Reference
 The following sources were used in creation of the original version of this standard.
 o	Oracle Infrastructure Components and Utilities User's Guide for Oracle Application Integration Architecture Foundation Pack, https://docs.oracle.com/cd/E28280_01/doc.1111/e17366/toc.htm
 
@@ -22,14 +29,14 @@ o	OASIS WS-BPEL v2.0 specification, http://docs.oasis-open.org/wsbpel/2.0/OS/wsb
 
 o	Oracle SOA Suite 11g Handbook by Lucas Jellema
  
-3	 Purpose
+# 3	 Purpose
 Each business unit is at a different point in the journey of adopting BPEL applications.  Although the answer can vary depending on the current state of maturity, there are important concepts, design decisions, coding practices, and considerations that need to be taken into account to benefit most from BPEL projects.
 
 The purpose of this document is to collect industry best practices and recommendations to move toward higher levels of maturity. Conformance to the practices and guidelines will promote measurable improvements in the performance of BPEL projects and a reduction in sustainment costs.    
 
 This document is intended for the CST Systems Engineering and Integration (SEI) team and development teams.  
  
-4	Naming Conventions
+# 4	Naming Conventions
 4.1	General Naming Standards
 
 Follow these general naming standards:
@@ -37,19 +44,25 @@ Follow these general naming standards:
 •	Lower-Camel-case must be used for naming attributes.
 Example: <xsd:attribute name="unitCode"/>
 
+
 •	Upper-Camel-case must be used for naming elements and types.
 Example: <xsd:element name="UnitOfMeasure"/> <xsd:complexType name="InvoiceEBOType"/>
+
 
 •	Names must be singular unless the concept itself is plural.
 For example repeating elements must have a singular name.
 
+
 •	Names must not contain special characters such as: space, '-', '_', '.', '$', '%', '#', ....
+
 
 •	Avoid having numeric characters in the name.
 There are cases were using a numeric character is required to convey some significance.
 
+
 •	Complex type names should end with the 'Type' suffix to help recognize types from elements.
 Example: <xsd:complexType name="InvoiceEBOType"/>
+
 
 •	The name of a simple type definition should be the name of the root element with the 'ContentType' suffix.
 Example: <xsd:simpleType name="PhoneNumberContentType">
@@ -57,23 +70,31 @@ Example: <xsd:simpleType name="PhoneNumberContentType">
 
 Follow these general namespace naming standards:
 
+
 •	All namespaces must start with http://xmlns.oracle.com/.
+
 
 •	Namespaces used by Enterprise Business Objects(EBOs) and Enterprise Business Messages (EBMs) start with http://xmlns.oracle.com/EnterpriseObjects/.
 Example: http://xmlns.oracle.com/EnterpriseObjects/Core/EBO/Invoice/V1
 
+
 •	Namespaces used for externally facing services must start with http://xmlns.oracle.com/EnterpriseServices/.
 Examples: http://xmlns.oracle.com/EnterpriseServices/Core/Invoice/V1 
+
 
 •	Namespaces for versioned artifacts must have the major version number as a suffix with 'V' as an abbreviation for 'version'.
 Example: http://xmlns.oracle.com/ EnterpriseObjects/Core/EBO/Invoice/V1
 
+
 •	The namespace structure should closely map to the taxonomy of the types it encapsulates.
 Example: Horizontal: http://xmlns.oracle.com/EnterpriseObjects/Core/EBO/Invoice/V1.
+
 •	Namespaces for artifacts generated within ABCSs must start with: http://xmlns.oracle.com/ABCS/
+
 
 •	When importing or including schema in a schema file, the schema location must always use relative path.
 Example: <xsd:importnamespace="http://xmlns.oracle.com/EnterpriseObjects/Core/EBO/Invoice/V1" schemaLocation="../../../../Core/EBO/Invoice/InvoiceEBO .xsd"/>
+
 
 •	Namespace prefixes must be a minimum of six (6) lowercase characters abbreviation of the namespace.  The abbreviation must be descriptive and unambiguous within the context where it is being used.
 
@@ -236,7 +257,8 @@ Pattern: <Name describing the correlation>CorSet
 Example: PurchaseOrderCorSet
 4.4.4	Correlation Set Properties
 The correlation set property names follows the general BPEL variables naming standards.
-5	Fault Handling
+
+# 5	Fault Handling
 The term fault refers to any exceptional condition that can alter the normal processing of a business process. Within the context of a business process, a fault need not result in a process ending condition; instead, a fault should lead to an actionable event. If a fault is not handled, it will lead to unexpected conditions, outcomes or even unpredictable failures of the business process. A well-designed business process should handle faults so that failures lead to predictable outcomes. Within BPEL, fault handlers can catch faults and attach business relevant execution logic to deal with the exceptional situation.
 
 Explicit fault handlers, if used, attached to a scope provide a way to define a set of custom fault-handling activities, defined by <catch> and <catchAll> constructs.  Each <catch> construct is defined to intercept a specific kind of fault, defined by a fault QName.  An optional variable can be provided to hold the data associated with the fault.  If the fault name is missing, then the catch will intercept all faults with the same type of fault data.  The fault variable is specified using the fault Variable attribute in a <catch> fault handler.  The variable is deemed to be implicitly declared by virtue of being used as the value of this attribute and is local to the fault handler. It is not visible or usable outside the fault handler in which it is declared. A <catchAll> clause can be added to catch any fault not caught by a more specific fault handler.
@@ -354,14 +376,14 @@ The syntax for the terminate activity is as follows:
 <terminate standard-attributes>
  standard-elements
 </terminate>
-6	Code Level Metrics
+# 6	Code Level Metrics
  Name	Description and How to Calculate	Recommended Threshold
 Minimize the Number of BPEL Variables	Use as few variables as possible, and minimize the size and the number of business objects used. 	Less than x
 Avoid BPEL Processes with High Depth of Code	Depth of Code is measured as the maximum number of nested control statements in an artifact. For example, an artifact that contains an IF statement which contains a While loop which itself contains another IF statement will have a Depth of Code of 3 (at least).	Less than 9
 Avoid Large Java Snippets	BPEL is an orchestration language. The services that are being orchestrated should be implemented outside of BPEL. Java should be used only for small interactions only. Long Java Snippets make BPEL more complex.  Java Snippets should not have more than X lines of code.	Less than x
 Avoid BPEL artifacts with low comments/code ratio	Maintainability of the code is facilitated if there is documentation in the code. This rule will ensure there are comments within the Artifact.	More than 5%
 
-7	Simple Coding Guidelines
+# 7	Simple Coding Guidelines
 SOA and BPEL bring a range of new challenges as composite applications introduce greater complexity and more dependencies. 
 
 7.1	Avoid interruptible processes
@@ -490,7 +512,7 @@ Security related information is not normally not advertised in a Web Service’s
 
 Using a file adaptor for logging for debugging purposes is too intrusive on the application.
 
-8	Code Examples
+# 8	Code Examples
 Below are code examples for BPEL concepts, fault handling, and invoking an asynchronous and synchronous services.
  
  
@@ -499,7 +521,7 @@ Below are code examples for BPEL concepts, fault handling, and invoking an async
  
  
  
-9	Leading practices for success of BPEL implementation
+# 9	Leading practices for success of BPEL implementation
 To increase project success rates and decrease risks of BPEL projects, it is recommended to follow the following initiative that consists of a combination of process, rules, integration using services, and underlying data.
 
 9.1	Assessments and maturity models
