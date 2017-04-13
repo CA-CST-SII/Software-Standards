@@ -41,30 +41,30 @@ This document is intended for the CST Systems Engineering and Integration (SEI) 
 
 Follow these general naming standards:
 
-•	Lower-Camel-case must be used for naming attributes.
+ •	Lower-Camel-case must be used for naming attributes.
 Example: <xsd:attribute name="unitCode"/>
 
 
 •	Upper-Camel-case must be used for naming elements and types.
-Example: <xsd:element name="UnitOfMeasure"/> <xsd:complexType name="InvoiceEBOType"/>
+Example: ```<xsd:element name="UnitOfMeasure"/> <xsd:complexType name="InvoiceEBOType"/>```
 
 
-•	Names must be singular unless the concept itself is plural.
+ •	Names must be singular unless the concept itself is plural.
 For example repeating elements must have a singular name.
 
 
-•	Names must not contain special characters such as: space, '-', '_', '.', '$', '%', '#', ....
+ •	Names must not contain special characters such as: space, '-', '_', '.', '$', '%', '#', ....
 
 
-•	Avoid having numeric characters in the name.
+ •	Avoid having numeric characters in the name.
 There are cases were using a numeric character is required to convey some significance.
 
 
-•	Complex type names should end with the 'Type' suffix to help recognize types from elements.
+ •	Complex type names should end with the 'Type' suffix to help recognize types from elements.
 Example: <xsd:complexType name="InvoiceEBOType"/>
 
 
-•	The name of a simple type definition should be the name of the root element with the 'ContentType' suffix.
+ •	The name of a simple type definition should be the name of the root element with the 'ContentType' suffix.
 Example: <xsd:simpleType name="PhoneNumberContentType">
 ## 4.2	General Namespace Naming Standards
 
