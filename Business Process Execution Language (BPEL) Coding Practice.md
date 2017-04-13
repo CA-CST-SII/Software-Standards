@@ -103,158 +103,239 @@ Example: <xsd:importnamespace="http://xmlns.oracle.com/EnterpriseObjects/Core/EB
 4.3.1	BPEL Process Name and Namespace
 
 The BPEL process JDeveloper project name should match the BPEL process name (use default project setting).
+
 Name standards
+
 •	The name should follow the general standard naming standards depending on whether it is being used for EBS, Application Business Connector Services (ABCS), or Adapter Service.
+
 •	The name should clearly describe the process and action/verb being performed.
+
 Namespace standards:
+
 •	The namespace should follow the general namespace standards depending on whether it is being used for EBS, ABCS or Adapter Service.
+
 •	The namespace must reflect the taxonomy of the process.
+
 •	The namespace must include the major version number where appropriate.
+
 •	BPEL composite's reference component name should follow the general naming standards based on the type of AIA artifacts it is calling.
 4.3.2	Assign
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
+
 •	Starts with the Assign prefix.
+
 •	Followed by a name describing what is being assigned. If what is assigned is a message, then use the message name.
+
 •	In case there are multiple assignments, provide a name that describes the group of assignments if possible.
 Pattern: Assign<Name of what is being assigned>
 Example: AssignPaymentEBM, AssignOrderInitialValues
+
 4.3.3	Compensate
+
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
+
 •	Start with the Compensate prefix.
+
 •	Followed by the scope encapsulating the tasks to be compensated.
 Pattern: Compensate<scope name>
 Example: CompensateProcessCreditCheckMilestone, Compensate TranseferFundsScope
+
 4.3.4	Flow
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
+
 •	Starts by a name describing the tasks being run concurrently.
+
 •	Ends with the Flow suffix.
 Pattern: <Name describing concurrent tasks>Flow
 Example: CallManufacturersFlow, GetQuotesFlow
+
 4.3.5	FlowN
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
+
 •	Starts by a name describing the dynamic tasks being run concurrently.
+
 •	Ends with the FlowN suffix.
+
 •	The index variable name should be the flow name with Index as suffix.
 Pattern: name = <Name describing concurrent tasks>FlowN, index variable = <Name describing concurrent tasks>FlowNIndex
 Example: ActivateUsersFlowN (ActivateUsersFlowNIndex), CheckSuppliersFlowN (CheckSuppliersFlowNIndex)
+
 4.3.6	Invoke
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
+
 •	Starts with the Invoke prefix.
+
 •	Followed by the partner link to be invoked.
+
 •	Followed by Call if synchronous invocation or Start if asynchronous invocation.
+
 •	Followed by the operation name within the partner link.
 Pattern: Invoke<Partner Link Name>{Call/Start}<Operation>
 Example: InvokeCustomerServiceCallGetCustomer, InvokeNotificationServiceStartNotifyByEmail
+
 4.3.7	Java Embedding
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
+
 •	The name should be similar to a Java method Name with lower-camel-case.
 Pattern: <A name describing the functionality>
 Example: getDiscountPrice
+
 4.3.8	Pick
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
+
 •	Starts with the Pick prefix.
+
 •	Followed by a name describing as accurate as possible all branches (onMessage and onAlarm) within the pick activity.
 Pattern: Pick<Name describing the branches to pick from>
 Example: PickOrderAckOrTimeout, PickFirstQuote
+
 4.3.9	Receive
 Follow these guidelines:
 •	The name should follow the general standard naming standards.
+
 •	Starts with the Receive prefix.
+
 •	Contains the name of the message it is receiving.
 Pattern: Receive<Message Name>
 Example: ReceiveUpdateInvoiceEBM
+
 4.3.10	Scope
 Follow these guidelines:
 •	The name should follow the general standard naming standards.
+
 •	Including brief information about transaction type may be appropriate.
+
 •	Use Milestone as the suffix if the scope is a candidate for end-user monitor.
+
 •	If it is not intended for the end-user monitor, use Scope as the suffix.
 Pattern: <Name describing the Scoped Tasks>{ Scope |Milestone}
 Examples: GetCreditRatingScope, GetLoanOfferScope, ProcessCreditCheckMilestone
+
 4.3.11	Sequence
 Follow these guidelines:
 •	The name should follow the general standard naming standards.
+
 •	The sequence name should describe the steps performed in the sequence.
+
 •	The sequence name should end with Sequence suffix.
 Pattern: <Name describing the Sequenced Tasks>Sequence
 Example: GetCustomerInfoSequence
+
 4.3.12	Switch
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
+
 •	Start with the Switch prefix.
+
 •	Followed by what is being evaluated
 Pattern: Switch<Name of what is being evaluated>
 Example: SwitchCreditRating
+
 4.3.13	Case
 Follow these guidelines:
 •	The name should follow the general standard naming standards.
+
 •	Start with the Case prefix.
+
 •	Followed by the evaluated value.
 Pattern: Case<Name evaluated value>
 Example: CaseBadCredit, CaseApprovalRequired
+
 4.3.14	Terminate
 Follow these guidelines:
 •	The name should follow the general standard naming standards.
+
 •	Starts with the Terminate prefix.
+
 •	Followed by a name describing the termination reason.
 Pattern: Terminate<reason of termination>
 Example: TerminateTimeout, TerminateEndOfProcess
+
 4.3.15	Throw
 Follow these guidelines:
 •	The name should follow the general standard naming standards.
+
 •	Starts with the Throw prefix.
+
 •	Followed by the fault name.
+
 •	The fault variable name is typically named the same as the fault name.
 Pattern: Throw<fault name>
 Example: ThrowExceededMaxAmount, which uses ExceededMaxAmount variable.
 Note:
 When defining a Catch in the Scope activity, the displayed catch name is the fault name.
+
 4.3.16	Transform
 Follow these guidelines:
 The name should follow the general standard naming standards.
 •	Starts with the Xform prefix.
+
 •	Followed by the source name.
+
 •	Followed by To.
+
 •	Followed by the destination name.
 Pattern: Xform<source>To<destination>
 Example: XformBillToPortal80Bill
+
 4.3.17	Wait
 Follow these guidelines:
 The name should follow the general standard naming standards.
 •	Starts with the Wait prefix.
+
 •	Followed by a name describing the reason for waiting.
 Pattern: Wait<Name describing the waiting reason>
 Example: WaitOrderAcknowledgeTimeout, WaitWarmUpTime
+
 4.3.18	While
 Follow these guidelines:
 •	The name should follow the general standard naming standards.
+
 •	Starts with the While prefix.
+
 •	Followed by a name describing the loop condition.
 Pattern: While<Name describing the loop condition>
 Example: WhileAllMsgsSent
+
 4.4	Other BPEL Artifacts
+
 4.4.1	Variables
 Follow these guidelines:
 •	The name should follow the general standard naming standards.
+
 •	Use lower-camel-case for variable names.
+
 •	The data type must not be part of the variable name.
 Example: accountBalance, invoiceAmount.
+
 4.4.2	Properties
 Property names follow the general BPEL variables naming standards.
+
 4.4.3	Correlation Sets
 Follow these guidelines:
 •	The name should follow the general standard naming standards.
+
 •	Starts with a name describing the correlation set.
+
 •	Ends with CorSet suffix.
 Pattern: <Name describing the correlation>CorSet
 Example: PurchaseOrderCorSet
+
 4.4.4	Correlation Set Properties
 The correlation set property names follows the general BPEL variables naming standards.
 
