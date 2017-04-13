@@ -1,43 +1,3 @@
-
-
-
-
-
-Business Process Execution Language (BPEL) Practice v2.3
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Date: August 5, 2015
-
- 
- 
-
 1	Introduction
 Business Process Execution Language for Web Services (BPEL or BPEL4WS) is a language used for the definition and execution of business processes using Web services.  BPEL enables the top-down realization of Service Oriented Architecture (SOA) through composition, orchestration, and coordination of Web services.  BPEL provides a relatively easy and straightforward way to compose several Web services into new composite services called business processes, which is a collection of coordinated service invocations and related activities that produce a result.
 BPEL builds on the foundation of XML and Web services; it uses an XML-based language that supports the Web services technology stack, including SOAP, WSDL, UDDI, WS-Reliable Messaging, WS-Addressing, WS-Coordination, and WS-Transaction.  BPEL is used to standardize enterprise application integration as well as to extend the integration to the Consular Affairs (CA) legacy applications and services where an Oracle Enterprise Service Bus is a middleware solution as an intermediary between service requesters and service providers.
@@ -587,5 +547,4 @@ Start with an industry-standard reference architecture, and then customize key a
 All of the standards and leading practices and methods that are agreed upon by one group of people at a given point in time fade from organizational memory unless they are institutionalized. Usually, a construct such as a center of competency (CoC) is established as a steward and focal point for best practices and standards. It also facilitates the enforcement of the standards, or the appeal for exceptions should the need arise.
 
 Governance defines the policies, and the management function enforces those policies in practice.
-
 
