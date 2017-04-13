@@ -1,235 +1,591 @@
-__1. Introduction__
 
- Business Process Execution Language for Web Services (BPEL or BPEL4WS) is a language used for the definition and execution of business processes using Web services.  BPEL enables the top-down realization of Service Oriented Architecture (SOA) through composition, orchestration, and coordination of Web services.  BPEL provides a relatively easy and straightforward way to compose several Web services into new composite services called business processes, which is a collection of coordinated service invocations and related activities that produce a result.
 
- BPEL builds on the foundation of XML and Web services; it uses an XML-based language that supports the Web services technology stack, including SOAP, WSDL, UDDI, WS-Reliable Messaging, WS-Addressing, WS-Coordination, and WS-Transaction.
+
+
+
+Business Process Execution Language (BPEL) Practice v2.3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date: August 5, 2015
+
+ 
+ 
+
+1	Introduction
+Business Process Execution Language for Web Services (BPEL or BPEL4WS) is a language used for the definition and execution of business processes using Web services.  BPEL enables the top-down realization of Service Oriented Architecture (SOA) through composition, orchestration, and coordination of Web services.  BPEL provides a relatively easy and straightforward way to compose several Web services into new composite services called business processes, which is a collection of coordinated service invocations and related activities that produce a result.
+BPEL builds on the foundation of XML and Web services; it uses an XML-based language that supports the Web services technology stack, including SOAP, WSDL, UDDI, WS-Reliable Messaging, WS-Addressing, WS-Coordination, and WS-Transaction.  BPEL is used to standardize enterprise application integration as well as to extend the integration to the Consular Affairs (CA) legacy applications and services where an Oracle Enterprise Service Bus is a middleware solution as an intermediary between service requesters and service providers.
+Using BPEL a series of discreet services can be integrated into an end-to-end process flow that reduces process cost and complexity.  The BPEL enables to define how to:
+•	Send XML messages to, and asynchronously receive XML messages from, remote services.
+•	Manipulate XML data structures.
+•	Manage events and exceptions.
+•	Design parallel flows of process execution.
+•	Undo portions of processes when exceptions occur.
+
+
+ 
+2	Reference
+The following sources were used in creation of the original version of this standard.
+o	Oracle Infrastructure Components and Utilities User's Guide for Oracle Application Integration Architecture Foundation Pack, https://docs.oracle.com/cd/E28280_01/doc.1111/e17366/toc.htm
+
+o	Fusion Middleware Developer's Guide for Oracle Application Integration Architecture Foundation Pack, 11g Release 1 (11.1.1.7), https://docs.oracle.com/cd/E28280_01/doc.1111/e17364/toc.htm
+
+o	Fusion Middleware Developer's Guide for Oracle SOA Suite, https://docs.oracle.com/cd/E28280_01/dev.1111/e10224/bp_appx_ref.htm#SOASE2070
+
+o	OASIS WS-BPEL v2.0 specification, http://docs.oasis-open.org/wsbpel/2.0/OS/wsbpel-v2.0-OS.pdf.  
+
+o	Oracle SOA Suite 11g Handbook by Lucas Jellema
+ 
+3	 Purpose
+Each business unit is at a different point in the journey of adopting BPEL applications.  Although the answer can vary depending on the current state of maturity, there are important concepts, design decisions, coding practices, and considerations that need to be taken into account to benefit most from BPEL projects.
+
+The purpose of this document is to collect industry best practices and recommendations to move toward higher levels of maturity. Conformance to the practices and guidelines will promote measurable improvements in the performance of BPEL projects and a reduction in sustainment costs.    
+
+This document is intended for the CST Systems Engineering and Integration (SEI) team and development teams.  
+ 
+4	Naming Conventions
+4.1	General Naming Standards
+
+Follow these general naming standards:
+
+•	Lower-Camel-case must be used for naming attributes.
+Example: <xsd:attribute name="unitCode"/>
+
+•	Upper-Camel-case must be used for naming elements and types.
+Example: <xsd:element name="UnitOfMeasure"/> <xsd:complexType name="InvoiceEBOType"/>
+
+•	Names must be singular unless the concept itself is plural.
+For example repeating elements must have a singular name.
+
+•	Names must not contain special characters such as: space, '-', '_', '.', '$', '%', '#', ....
+
+•	Avoid having numeric characters in the name.
+There are cases were using a numeric character is required to convey some significance.
+
+•	Complex type names should end with the 'Type' suffix to help recognize types from elements.
+Example: <xsd:complexType name="InvoiceEBOType"/>
+
+•	The name of a simple type definition should be the name of the root element with the 'ContentType' suffix.
+Example: <xsd:simpleType name="PhoneNumberContentType">
+4.2	General Namespace Naming Standards
+
+Follow these general namespace naming standards:
+
+•	All namespaces must start with http://xmlns.oracle.com/.
+
+•	Namespaces used by Enterprise Business Objects(EBOs) and Enterprise Business Messages (EBMs) start with http://xmlns.oracle.com/EnterpriseObjects/.
+Example: http://xmlns.oracle.com/EnterpriseObjects/Core/EBO/Invoice/V1
+
+•	Namespaces used for externally facing services must start with http://xmlns.oracle.com/EnterpriseServices/.
+Examples: http://xmlns.oracle.com/EnterpriseServices/Core/Invoice/V1 
+
+•	Namespaces for versioned artifacts must have the major version number as a suffix with 'V' as an abbreviation for 'version'.
+Example: http://xmlns.oracle.com/ EnterpriseObjects/Core/EBO/Invoice/V1
+
+•	The namespace structure should closely map to the taxonomy of the types it encapsulates.
+Example: Horizontal: http://xmlns.oracle.com/EnterpriseObjects/Core/EBO/Invoice/V1.
+•	Namespaces for artifacts generated within ABCSs must start with: http://xmlns.oracle.com/ABCS/
+
+•	When importing or including schema in a schema file, the schema location must always use relative path.
+Example: <xsd:importnamespace="http://xmlns.oracle.com/EnterpriseObjects/Core/EBO/Invoice/V1" schemaLocation="../../../../Core/EBO/Invoice/InvoiceEBO .xsd"/>
+
+•	Namespace prefixes must be a minimum of six (6) lowercase characters abbreviation of the namespace.  The abbreviation must be descriptive and unambiguous within the context where it is being used.
+
+•	Namespace prefixes for EBOs and EBMs must adhere to the following standard wherever used regardless of the applications or technology used.  Auto-generated prefixes such as ns1, ns2 must not be used. Auto-generated prefixes for standard namespaces such as xsd, xsi are acceptable.
+4.3	BPEL Activities
+4.3.1	BPEL Process Name and Namespace
+
+The BPEL process JDeveloper project name should match the BPEL process name (use default project setting).
+Name standards
+•	The name should follow the general standard naming standards depending on whether it is being used for EBS, Application Business Connector Services (ABCS), or Adapter Service.
+•	The name should clearly describe the process and action/verb being performed.
+Namespace standards:
+•	The namespace should follow the general namespace standards depending on whether it is being used for EBS, ABCS or Adapter Service.
+•	The namespace must reflect the taxonomy of the process.
+•	The namespace must include the major version number where appropriate.
+•	BPEL composite's reference component name should follow the general naming standards based on the type of AIA artifacts it is calling.
+4.3.2	Assign
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Starts with the Assign prefix.
+•	Followed by a name describing what is being assigned. If what is assigned is a message, then use the message name.
+•	In case there are multiple assignments, provide a name that describes the group of assignments if possible.
+Pattern: Assign<Name of what is being assigned>
+Example: AssignPaymentEBM, AssignOrderInitialValues
+4.3.3	Compensate
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Start with the Compensate prefix.
+•	Followed by the scope encapsulating the tasks to be compensated.
+Pattern: Compensate<scope name>
+Example: CompensateProcessCreditCheckMilestone, Compensate TranseferFundsScope
+4.3.4	Flow
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Starts by a name describing the tasks being run concurrently.
+•	Ends with the Flow suffix.
+Pattern: <Name describing concurrent tasks>Flow
+Example: CallManufacturersFlow, GetQuotesFlow
+4.3.5	FlowN
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Starts by a name describing the dynamic tasks being run concurrently.
+•	Ends with the FlowN suffix.
+•	The index variable name should be the flow name with Index as suffix.
+Pattern: name = <Name describing concurrent tasks>FlowN, index variable = <Name describing concurrent tasks>FlowNIndex
+Example: ActivateUsersFlowN (ActivateUsersFlowNIndex), CheckSuppliersFlowN (CheckSuppliersFlowNIndex)
+4.3.6	Invoke
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Starts with the Invoke prefix.
+•	Followed by the partner link to be invoked.
+•	Followed by Call if synchronous invocation or Start if asynchronous invocation.
+•	Followed by the operation name within the partner link.
+Pattern: Invoke<Partner Link Name>{Call/Start}<Operation>
+Example: InvokeCustomerServiceCallGetCustomer, InvokeNotificationServiceStartNotifyByEmail
+4.3.7	Java Embedding
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	The name should be similar to a Java method Name with lower-camel-case.
+Pattern: <A name describing the functionality>
+Example: getDiscountPrice
+4.3.8	Pick
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Starts with the Pick prefix.
+•	Followed by a name describing as accurate as possible all branches (onMessage and onAlarm) within the pick activity.
+Pattern: Pick<Name describing the branches to pick from>
+Example: PickOrderAckOrTimeout, PickFirstQuote
+4.3.9	Receive
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Starts with the Receive prefix.
+•	Contains the name of the message it is receiving.
+Pattern: Receive<Message Name>
+Example: ReceiveUpdateInvoiceEBM
+4.3.10	Scope
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Including brief information about transaction type may be appropriate.
+•	Use Milestone as the suffix if the scope is a candidate for end-user monitor.
+•	If it is not intended for the end-user monitor, use Scope as the suffix.
+Pattern: <Name describing the Scoped Tasks>{ Scope |Milestone}
+Examples: GetCreditRatingScope, GetLoanOfferScope, ProcessCreditCheckMilestone
+4.3.11	Sequence
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	The sequence name should describe the steps performed in the sequence.
+•	The sequence name should end with Sequence suffix.
+Pattern: <Name describing the Sequenced Tasks>Sequence
+Example: GetCustomerInfoSequence
+4.3.12	Switch
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Start with the Switch prefix.
+•	Followed by what is being evaluated
+Pattern: Switch<Name of what is being evaluated>
+Example: SwitchCreditRating
+4.3.13	Case
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Start with the Case prefix.
+•	Followed by the evaluated value.
+Pattern: Case<Name evaluated value>
+Example: CaseBadCredit, CaseApprovalRequired
+4.3.14	Terminate
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Starts with the Terminate prefix.
+•	Followed by a name describing the termination reason.
+Pattern: Terminate<reason of termination>
+Example: TerminateTimeout, TerminateEndOfProcess
+4.3.15	Throw
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Starts with the Throw prefix.
+•	Followed by the fault name.
+•	The fault variable name is typically named the same as the fault name.
+Pattern: Throw<fault name>
+Example: ThrowExceededMaxAmount, which uses ExceededMaxAmount variable.
+Note:
+When defining a Catch in the Scope activity, the displayed catch name is the fault name.
+4.3.16	Transform
+Follow these guidelines:
+The name should follow the general standard naming standards.
+•	Starts with the Xform prefix.
+•	Followed by the source name.
+•	Followed by To.
+•	Followed by the destination name.
+Pattern: Xform<source>To<destination>
+Example: XformBillToPortal80Bill
+4.3.17	Wait
+Follow these guidelines:
+The name should follow the general standard naming standards.
+•	Starts with the Wait prefix.
+•	Followed by a name describing the reason for waiting.
+Pattern: Wait<Name describing the waiting reason>
+Example: WaitOrderAcknowledgeTimeout, WaitWarmUpTime
+4.3.18	While
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Starts with the While prefix.
+•	Followed by a name describing the loop condition.
+Pattern: While<Name describing the loop condition>
+Example: WhileAllMsgsSent
+4.4	Other BPEL Artifacts
+4.4.1	Variables
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Use lower-camel-case for variable names.
+•	The data type must not be part of the variable name.
+Example: accountBalance, invoiceAmount.
+4.4.2	Properties
+Property names follow the general BPEL variables naming standards.
+4.4.3	Correlation Sets
+Follow these guidelines:
+•	The name should follow the general standard naming standards.
+•	Starts with a name describing the correlation set.
+•	Ends with CorSet suffix.
+Pattern: <Name describing the correlation>CorSet
+Example: PurchaseOrderCorSet
+4.4.4	Correlation Set Properties
+The correlation set property names follows the general BPEL variables naming standards.
+5	Fault Handling
+The term fault refers to any exceptional condition that can alter the normal processing of a business process. Within the context of a business process, a fault need not result in a process ending condition; instead, a fault should lead to an actionable event. If a fault is not handled, it will lead to unexpected conditions, outcomes or even unpredictable failures of the business process. A well-designed business process should handle faults so that failures lead to predictable outcomes. Within BPEL, fault handlers can catch faults and attach business relevant execution logic to deal with the exceptional situation.
+
+Explicit fault handlers, if used, attached to a scope provide a way to define a set of custom fault-handling activities, defined by <catch> and <catchAll> constructs.  Each <catch> construct is defined to intercept a specific kind of fault, defined by a fault QName.  An optional variable can be provided to hold the data associated with the fault.  If the fault name is missing, then the catch will intercept all faults with the same type of fault data.  The fault variable is specified using the fault Variable attribute in a <catch> fault handler.  The variable is deemed to be implicitly declared by virtue of being used as the value of this attribute and is local to the fault handler. It is not visible or usable outside the fault handler in which it is declared. A <catchAll> clause can be added to catch any fault not caught by a more specific fault handler.
+5.1	BPEL Standard Faults
+5.1.1	BPEL 2.0 Standard Faults
+
+The following list specifies the standard faults defined within the WS-BPEL specification. All standard fault names are qualified with the standard WS-BPEL namespace.
+
+
+Fault name	Description
+ambiguousReceive	Thrown when a business process instance simultaneously enables two or more IMAs for the same partnerLink, portType, operation but different correlationSets, and the correlations of multiple of these activities match an incoming request message.
+completionConditionFailure	Thrown if upon completion of a directly enclosed <scope> activity within <forEach> activity it can be determined that the completion condition can never be true.
+conflictingReceive	Thrown when more than one inbound message activity is enabled simultaneously for the same partner link, port type, operation and correlation set(s).
+conflictingRequest	Thrown when more than one inbound message activity is open for the same partner link, operation and message exchange.
+correlationViolation	Thrown when the contents of the messages that are processed in an <invoke>, <receive>, <reply>, <onMessage>, or <onEvent> do not match specified correlation information.
+invalidBranchCondition	Thrown if the integer value used in the <branches> completion condition of <forEach> is larger than the number of directly enclosed <scope> activities.
+invalidExpressionValue	Thrown when an expression used within a WS-BPEL construct (except <assign>) returns an invalid value with respect to the expected XML Schema type.
+invalidVariables	Thrown when an XML Schema validation (implicit or explicit) of a variable value fails.
+joinFailure	Thrown when the join condition of an activity evaluates to false and the value of the suppressJoinFailure attribute is yes.
+mismatchedAssignmentFailure	Thrown when incompatible types or incompatible XML infoset structure are encountered in an <assign> activity.
+missingReply	Thrown when an inbound message activity has been executed, and the process instance or scope instance reaches the end of its execution without a corresponding <reply> activity having been executed.
+missingRequest	Thrown when a <reply> activity cannot be associated with an open inbound message activity by matching the partner link, operation and message exchange tuple.
+scopeInitializationFailure	Thrown if there is any problem creating any of the objects defined as part of scope initialization. This fault is always caught by the parent scope of the faulted scope.
+selectionFailure	Thrown when a selection operation performed either in a function such as bpel:getVariableProperty, or in an assignment, encounters an error.
+subLanguageExecutionFault	Thrown when the execution of an expression results in an unhandled fault in an expression language or query language.
+uninitializedPartnerRole	Thrown when an <invoke> or <assign> activity references a partner link whose partnerRole endpoint reference is not initialized.
+uninitializedVariable	Thrown when there is an attempt to access the value of an uninitialized variable or in the case of a message type variable one of its uninitialized parts.
+unsupportedReference	Thrown when a WS-BPEL implementation fails to interpret the combination of the reference-scheme attribute and the content element OR just the content element alone.
+xsltInvalidSource	Thrown when the transformation source provided in a bpel:doXslTransform function call was not legal (i.e., not an EII).
+xsltStylesheetNotFound	Thrown when the named style sheet in a bpel:doXslTransform function call was not found.
  
- BPEL is used to standardize enterprise application integration as well as to extend the integration to the Consular Affairs (CA) legacy applications and services where an Oracle Enterprise Service Bus is a middleware solution as an intermediary between service requesters and service providers.
- 
-__2. Purpose__
+5.1.2	Fault handling order of precedence in BPEL 2.0
 
- The purpose is to document industry best practices and recommendations for BPEL coding to improve the overall quality, performance, security, maintainability, and robustness of Oracle BPEL solutions implementation. Conformance to the practices will promote measurable improvements in the performance of codes and a reduction in sustainment costs.  
+In BPEL 2.0, the order of precedence for catching faults thrown without associated data is as follows:
+•	If there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity.
+•	Otherwise, if there is a catchAll activity, the fault is sent to the catchAll fault handler.
+•	Otherwise, the fault is processed by the default fault handler.
 
- Consular Systems and Technology’s (CST) implements CAST as a quality gate to minimize software risk.  CAST is a software analysis and measurement automation tool that provides on the current and ongoing delivery code quality to reduce production risks and costs for fixes and rework.  Currently, CAST framework has a limited analytical capability in supporting BPEL.  So until BPEL analysis is fully implement by CAST, the best practices will provide guidance in performing manual analysis of systems written in BPEL.
+In BPEL 2.0, the order of precedence for catching faults thrown with associated data is as follows:
 
- This document is intended for the CST Systems Engineering and Integration (SEI) team and development teams.  Upon review of this document, the best practices will be converted to CAST rules.
- 
-__3. Industry Best Coding Practice__
+•	If there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity.
+•	If the fault data is a WSDL message type in which the following exists:
+o	The message contains a single part defined by an element.
+o	There exists a catch activity with a matching faultName value that has a faultVariable whose associated faultElement QName matches the QName of the runtime element data of the single WSDL message part.
+Then, the fault is sent to the identified catch activity with the faultVariable initialized to the value in the single part's element.
+•	Otherwise, if there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity. In this case, the fault value is not available from within the fault handler, but is available to the rethrow activity.
+•	Otherwise, if there is a catch construct without a faultName attribute that has a faultVariable whose type matches the type of the runtime fault data, then the fault is sent to the identified catch activity.
+•	Otherwise, if the fault data is a WSDL message type in which the message contains a single part defined by an element and there exists a catch activity without a faultName attribute that has a faultVariable whose associated faultElement's QName matches the QName of the runtime element data of the single WSDL message part, the fault is sent to the identified catch activity with the faultVariable initialized to the value in the single part's element.
+•	Otherwise, if there is a catchAll activity, the fault is sent to the catchAll fault handler.
+•	Otherwise, the fault is handled by the default fault handler.
 
- __3.1. Create scopes for each step of the flow in the process__
- 
-   Create scopes for each step of the flow in the process so as to make it modular.  This will help in creating local variables within that scope.  Scopes provide a context for the execution and/or documentation of enclosed activities, and they can have variables that are visible and usable at and within the scope level. Scopes can have both default and defined Fault and Event handling logic, and they can be undone, if necessary. Undoing the work of a Scope involves the concept of compensation.  When designing BPEL processes, they should be organized into logical units of work that can be undone.  Scopes can be used as a context to create variables, fault/compensation/event handlers and for organizational purposes. They are the basic building blocks used to assemble a BPEL process.
+5.2	Categories of BPEL Faults
 
- __3.2. Use Global variables when required__
- 
-  This will help in maintainability.  However, declaring many global variables needs to be avoided in a BPEL process, instead use scope or local variables. The variables defined at the Process root are global variables, which have a global visibility throughout the entire process.  The variables defined within a particular Scope are visible only inside that Scope and all nested Scopes.  These variables are called local variables.  A variable defined for an inner Scope element can hide an upper defined variable of the same name.
+A BPEL fault has a fault name called a Qname (name qualified with a namespace) and a possible messageType. There are two categories of BPEL faults:
 
- __3.3. Consider creating sequences instead of scopes for performance__
- 
-  Do not add too many scopes since it may affect the performance. Instead, consider creating sequences. A Sequence is a structured activity which can contain other activities, all of which will be executed in a specifically defined order.  The purpose of a Sequence, therefore, is to define the execution order for a group of activities.  BPEL Sequences can contain other Sequences and can be nested as deeply as you want.  Sequences have all the standard attributes and elements and they must contain at least one or more activities.
+•	Business faults
+•	Runtime faults
+5.2.1	Business Faults
 
- __3.4. Adopt naming standards for maintainability and scalability__
+Business faults are application-specific faults that are generated when there is a problem with the information being processed (for example, when a social security number is not found in the database). A business fault occurs when an application executes a throw activity or when an invoke activity receives a fault as a response. The fault name of a business fault is specified by the BPEL process service component. The messageType, if applicable, is defined in the WSDL. A business fault can be caught with a faultHandler using the faultName and a faultVariable.
+<catch faultName="ns1:faultName" faultVariable="varName">
+5.2.2	Runtime Faults
 
-  Naming convention is company/project specific that the Department has to come up with its own standards.  This should be part of the governance strategy.  BPEL activities need naming conventions and should not be changed.  Also, activities with default names like ```'Assign_1'```, ```'Assign_2'``` are meaningless and also doesn’t help much during auditing and debugging.
+Runtime faults are the result of problems within the running of the BPEL process service component or web service (for example, data cannot be copied properly because the variable name is incorrect). These faults are not user-defined, and are thrown by the system. They are generated if the process tries to use a value incorrectly, a logic error occurs (such as an endless loop), a Simple Object Access Protocol (SOAP) fault occurs in a SOAP call, an exception is thrown by the server, and so on.
 
- __3.5. Handle all the exceptions__
+•	bindingFault: a bindingFault is thrown inside an activity if the preparation of the invocation fails.  For example, the WSDL of the process fails to load. A bindingFault is not retryable.  This type of fault usually must be fixed by human intervention.
+•	remoteFault: a remoteFault is also thrown inside an activity. It is thrown because the invocation fails.  For example, a SOAP fault is returned by the remote service.  
+•	replayFault: a replayFault replays the activity inside a scope. At any point inside a scope, this fault is migrated up to the scope. The server then re-executes the scope from the beginning.
+5.3	Typical fault handling flow
 
-  The ability to specify exceptional conditions and their consequences, including recovery sequences, is at least as important for business processes as the ability to define the behavior in the "all goes well" case.  Use a catch branch for a different scope to catch binding, remote, custom faults, and business faults.
+When a fault occurs in a process, the current operational flow moves to the fault handler within the immediate scope.  If the current fault handler does not have the appropriate Catch element defined to trap and handle this fault, the business process container checks from inner scope to outer scope until it finds an appropriate fault handler that can trap this fault. 
 
-   _3.5.1. Using a Fault Handler_
+The Catch mechanism handles a specific application or standard fault.  In cases when the type of a fault is unknown, the Catch All element can be used.   It is a best practice to use a Catch All element in the global process’s fault handler.
 
-   The BPEL language provides the capability to catch and manage exceptions using fault handlers. For example, exceptions occur when web services return different data than was expected. If faults are not handled, the entire BPEL process can be thrown into a faulted state. Therefore, to prevent the entire process from fault, add fault handlers to catch and manage exceptions within particular Scopes.
+When designing fault handlers, consider the following options:
+•	Catch a fault and try to correct the problem, allowing the business process to continue to normal completion.
+•	Catch a fault and find that it is not resolvable at this scope. Additional options can be used: 
+o	Throw a new fault.
+o	Re-throw the original fault to allow another scope to handle it.
+o	Reply with a fault to the process initiator. 
+o	Invoke a human task to correct the issue. 
+o	If the fault handler cannot resolve the issue, you might need to rollback and compensate.
+5.4	BPEL activities to propagate a fault
+BPEL allows fault propagation using throw, rethrow and reply within a fault handler.
+5.4.1	Throw
+A throw activity indicates a problem that a business process flow cannot handle. It is used to throw an exception corresponding to an internal error condition. Use a throw activity within the flow of a business process or within a fault handler, to allow an outer fault handler to handle the fault. A throw activity can throw one of the standard BPEL faults or a custom fault. 
 
-  Each fault handler contains an activity that runs in case of an error. For example, a partner service is notified if an error has occurred. Fault handlers can be added to the entire process or to individual Scope elements.
+5.4.2	Rethrow
+When the current fault handler cannot handle the fault and wants to propagate it to an outer-scoped fault handler, use a rethrow activity.  In the absence of a rethrow activity, a fault propagated to a higher level using a throw activity would be a new fault. When a rethrow activity is invoked, the fault is the same instance. The rethrow activity is available only within a fault handler because only an existing fault can be rethrown.
+5.4.3	Reply with a fault
 
-  _3.5.2. Using an Event Handler_
+This construct allows the propagation of the fault to the client that initiated the process. A reply with fault activity can only return a fault defined on the interface the process is implementing. This is useful when the business process cannot properly respond to the caught fault, and the process initiator may be better equipped to respond; for example if the client passes an account number that is not found by the business process, the process should reply to the service call with an AccountNotFound Fault.
+5.5	Use a fault handler within a scope
 
-  The entire BPEL process as well as each individual Scope can be associated with a set of Event Handlers that are invoked concurrently if the corresponding event occurs. The actions taken within an Event Handler can be any type of activity, such as Sequence or Flow.
+If a fault is not handled, it creates a faulted state that migrates up through the application and can throw the entire process into a faulted state.  To prevent this, contain the parts of the process that have the potential to receive faults within a scope. The catch activity works within a scope to catch faults and exceptions before they can throw the entire process into a faulted state.
 
-  _3.5.3. Using a Compensation Handler_
+You can use specific fault names in the catch activity to respond in a specific way to an
+individual fault. To catch any faults that are not already handled by name-specific
+catch activities, use the catchAll activity.
+5.6	Use compensation after undoing a series of operations
 
-  A business process often contains several nested transactions. The overall business transaction can fail or be cancelled after many enclosed transactions have already been processed. Then it is necessary to reverse the effect obtained during process execution. For example, a travel planning process can include several nested transactions to book a ticket, to reserve a hotel and a car. If the trip is cancelled, the reservation transactions must be compensated for by cancellation transactions in the appropriate order.
+Compensation occurs when the BPEL process cannot complete a series of operations after some of them have already completed, and the BPEL process must backtrack and undo the previously completed transactions. For example, if a BPEL process is designed to book a rental car, a hotel, and a flight, it may book the car and the hotel and then be unable to book a flight for the right day. In this case, the BPEL flow performs compensation by going back and unbooking the car and the hotel.
 
-  _3.5.4. Using a Termination Handler_
+You can invoke a compensation handler by using the compensate activity, which names the scope for which the compensation is to be performed (that is, the scope whose compensation handler is to be invoked). A compensation handler for a scope is available for invocation only when the scope completes normally. Invoking a compensation handler that has not been installed is equivalent to using the empty activity.  This ensures that fault handlers do not have to rely on state to determine which nested scopes have completed successfully. The semantics of a process in which an installed compensation handler is invoked more than once are undefined.
 
-  The termination handler is used to control the termination of a running scope. The termination of a running scope happens if a scope or process enclosing it has faulted.  When a fault is thrown inside a scope or process, a fault handler associated with the scope or process should be run, but before that all the running activities inside the faulted scope or process should be terminated. 
+If an invoke activity has a compensation handler defined inline, then the name of the activity is the name of the scope to be used in the compensate activity. The syntax is as follows:
+<compensate scope="ncname"? standard-attributes>
+standard-elements
+</compensate>
+5.7	Use the terminate activity to stop a business process instance
 
- __3.6. Use assign activity instead of transform activity__
+The terminate activity immediately terminates the behavior of a business process instance within which the terminate activity is performed.  All currently running activities must be terminated as soon as possible without any fault handling or compensation behavior.  The terminate activity does not send any notifications of the status of a BPEL process.
 
- Use assign activity instead of transform activity where ever possible since it take less memory.
+The syntax for the terminate activity is as follows:
+<terminate standard-attributes>
+ standard-elements
+</terminate>
+6	Code Level Metrics
+ Name	Description and How to Calculate	Recommended Threshold
+Minimize the Number of BPEL Variables	Use as few variables as possible, and minimize the size and the number of business objects used. 	Less than x
+Avoid BPEL Processes with High Depth of Code	Depth of Code is measured as the maximum number of nested control statements in an artifact. For example, an artifact that contains an IF statement which contains a While loop which itself contains another IF statement will have a Depth of Code of 3 (at least).	Less than 9
+Avoid Large Java Snippets	BPEL is an orchestration language. The services that are being orchestrated should be implemented outside of BPEL. Java should be used only for small interactions only. Long Java Snippets make BPEL more complex.  Java Snippets should not have more than X lines of code.	Less than x
+Avoid BPEL artifacts with low comments/code ratio	Maintainability of the code is facilitated if there is documentation in the code. This rule will ensure there are comments within the Artifact.	More than 5%
+
+7	Simple Coding Guidelines
+SOA and BPEL bring a range of new challenges as composite applications introduce greater complexity and more dependencies. 
+
+7.1	Avoid interruptible processes
+
+Use interruptible processes, also known as macroflows or long-running processes, only when required.  Whenever possible, use synchronous interactions for non-interruptible processes.  A non-interruptible process is much more efficient than an interruptible process.  If interruptible processes are required for some capabilities, separate the processes such that the most frequent scenarios can be executed in non-interruptible processes and exceptional cases are handled in interruptible processes.
+7.2	Avoid missing OTHERSWISE in SWITCH statements
+
+ The OTHERWISE CASE is executed when none of the conditions being tested for in the CASE statement are met or executed.  Having no OTHERWISE means that there is a strong assumption about the value of data. The cases that are "impossible" today are the ones most likely to be the causes of untraceable bugs in the future, when the impossible changes to the standard.  Add the proper exception handling code in the OTHERWISE clause.
+7.3	Avoid using invoke without catch
+
+The BPEL process has to perform the task efficiently and reliably enough that network interruptions or the unavailability of a web service or other resource doesn't break it down.
+7.4	Create scopes for each step of the flow in the process
+
+Create scopes for each step of the flow in the process so as to make it modular.  This will help in creating local variables within that scope.  Scopes provide a context for the execution and/or documentation of enclosed activities, and they can have variables that are visible and usable at and within the scope level. Scopes can have both default and defined fault and event handling logic, and they can be undone, if necessary. Undoing the work of a scope involves the concept of compensation.  When designing BPEL processes, they should be organized into logical units of work that can be undone.  Scopes can be used as a context to create variables, fault/compensation/event handlers and for organizational purposes. They are the basic building blocks used to assemble a BPEL process.
+
+7.5	Use short-running flows where possible
+
+A business transaction that is represented through a long-running flow has a lifetime that can span minutes, hours, days or even months, and is typically divided into several technical transactions.  The state of such a process instance is persisted in a database between two transactions so that operating system resources are occupied only during an in-flight transaction. 
+
+The short-running flow is used when the corresponding business transaction is fully automated, completes within a short timeframe, and has no asynchronous request/response operations.  The entire set of flow activities runs within one single technical transaction, navigation is all done in memory, and the intermediate state is not saved to a database.  Such short-running flows can run between five and fifty times faster than comparable long-running flows and are recommended, where possible.
+7.6	Use global variables when required
+
+This will help in maintainability.  However, declaring many global variables needs to be avoided in a BPEL process, instead use scope or local variables. The variables defined at the process root are global variables, which have a global visibility throughout the entire process.  The variables defined within a particular scope are visible only inside that scope and all nested scopes.  These variables are called local variables.  A variable defined for an inner scope element can hide an upper defined variable of the same name.
+7.7	Consider creating sequences instead of scopes for performance
+
+Do not add too many scopes since it may affect the performance. Instead, consider creating sequences. A sequence is a structured activity which can contain other activities, all of which will be executed in a specifically defined order.  The purpose of a sequence, therefore, is to define the execution order for a group of activities.  BPEL sequences can contain other sequences and can be nested as deeply as you want.  Sequences have all the standard attributes and elements and they must contain at least one or more activities.
+7.8	Use assign activities instead of transform activities
+
+Use assign activities instead of transform activities wherever possible since it take less memory.
 Assign activity provides a method for data manipulation, such as copying the contents of one variable to another. This activity can contain any number of elementary assignments.  Transform activity enables to create a transformation that maps source elements to target elements (for example, incoming purchase order data into outgoing purchase order acknowledgment data).
+7.9	Use XSL to construct messages instead of multiple assign statements
 
- __3.7. Use XSL to construct messages and do multiple assign statement__
+Don’t use multiple assign statement to construct a message; use XSL to construct messages.
+7.10	Use XPath Expression constraints to check the data constraints
 
- Don’t use multiple assign statement to construct a message; use XSL to construct messages.
+Don’t loop through the data to check data constraints; use XPath Expression constraints to check the data constraints. Use Fully Qualified XPath expressions.
+7.11	Initialize a BPEL variable before copying values to internal elements
 
- __3.8. Use XPath Expression constraints to check the data constraints__
+Variables offer the possibility to store messages that hold the state of the process.  Initialize a variable before copying values to internal elements to avoid “SelectionFailurefaults or "variable counter isn't properly initialized" on execution.
+7.12	Use <nonBlockingInvoke> in BPEL flow for performance improvements
 
- Don’t loop through the data for checking data constraints; use XPath Expression constraints to check the data constraints. Use Fully Qualified XPath expression.
+Normally when executing a synchronous (two-way) invoke activity, Oracle BPEL
+server waits for the response from the endpoint before executing the subsequent
+activity. This behavior can present problems when synchronous invoke activities are
+placed inside a flow activity, because Oracle BPEL Server executes the flow using
+pseudo-parallelism.
+
  
- __3.9. Initialize a BPEL variable before copying values to internal elements__
 
- Variables offer the possibility to store messages that hold the state of the process.  Initialize a variable before copying values to internal elements to avoid SelectionFailure faults or "variable counter isn't properly initialized" on execution.
+The second invoke activity is not executed until the response from the first invoke activity is received. If the number of branches in the flow is large, the delay before the final invoke activity is executed is the sum of all the preceding synchronous invoke activities.
 
- __3.10. Use <nonBlockingInvoke> in BPEL flow for Performance improvement__
+Solution 
 
- Normally when executing a synchronous (two-way) invoke activity, Oracle BPEL Server waits for the response from the endpoint before executing the subsequent activity. This behavior can present problems when synchronous invoke activities are placed inside a flow activity, because Oracle BPEL Server executes the flow using pseudo-parallelism.
+With a non-blocking invoke depicted in Pic 1 and Pic 2, the execution of the synchronous invoke activity is scheduled to be performed by a separate thread in the background. With this change, the initial execution time of the invoke activities is reduced.
 
-![pseudo-parallelism](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/BPEL_FIG_1.png) 
-
- The second invoke activity is not executed until the response from the first invoke activity is received. If the number of branches in the flow is large, the delay before the final invoke activity is executed is the sum of all the preceding synchronous invoke activities.
-
- **Solution** 
-
- With a nonblocking invoke depicted in Pic 1 and Pic 2, the execution of the synchronous invoke activity is scheduled to be performed by a separate thread in the background. With this change, the initial execution time of the invoke activities is reduced.
-
-![pic-1](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/BPEL_FIG_2.png)  
  
-![pic-2](https://github.com/CA-CST-SII/Software-Standards/blob/master/Images/BPEL_FIG_3.png) 
-
- The sequence of events in Pic 1 and Pic 2 for a nonblocking invoke call is as follows:
-
- 1.	The first synchronous invoke activity sends a message to a JMS queue. This activity now waits for the asynchronous response and relinquishes control to the next activity.
- 2.	The second synchronous invoke activity sends a message to a JMS queue.
- 3.	Since there are no additional activities to execute, the instance now dehydrates.
- 4.	The invoke activities cannot complete until they receive their callbacks.
- 5.	Two InvokerBean instances pick up the messages in the JMS queue and execute the synchronous invoke against the partner endpoint.
- 6.	The response from the endpoint is cached and a callback message is scheduled with the dispatcher module.
- 7.	The first invoke activity receives its callback. The instance is rehydrated during this step.
- 8.	The second invoke activity receives its callback. The instance is rehydrated during this step.
-
-**Conclusion**
-
-A performance test showed a 30 % improvement in comparison with not using NonBlocking invoke.
-
-__3.11. Keep the number of activities in BPEL as minimal as possible__
-
- Keep the number of activities in BPEL as minimal as possible; increasing the number of activities will decrease the performance of BPEL Engine.
-  
-__3.12. Avoid empty activity__
-
-__3.13. Avoid unused partner links__
-
-__3.14. Avoid repetitive names for different Activities__
-
-__3.15. Don’t use BPEL for intensive time scheduled activities__
-
-  Extensive use of activities such as alarm and wait can lower system performance.
-  
-__3.16. Do not include any special characters in the project name__
-
-  Special characters (such as periods) in the project name cause errors during compilation.
-  
-__3.17. Don’t use Pick based Initiate pattern for interdependent operations__ 
-
-  The pick activity waits for the occurrence of exactly one event from a set of events, then executes the activity associated with that event. After an event has been selected, the other events are no longer accepted by that pick. So, don’t use Pick based Initiate pattern for implementing interdependent operations. If a race condition occurs between multiple events, the choice of the event is implementation dependent.
-  
-  __3.18. Don’t let SOA Composite instance grow exponentially__
-
-  Define rules to keep the house clean, purge the instances at regular interval to obtain better performance from BPEL engine and Enterprise Manager.
-  
-  __3.19. Static Analysis Checks__
  
-  Systems integration requires more than the ability to conduct simple interactions by using standard protocols. Interoperability between applications can be achieved by using Web standards. To ensure conformant implementations of BPEL, the basic static analysis of a business process must be performed to detect any undefined semantics or invalid semantics within a process definition and reject process definitions that fail any of those static analysis checks. 
+
+The sequence of events in Pic 1 and Pic 2 for a non-blocking invoke call is as follows:
+
+1.	The first synchronous invoke activity sends a message to a JMS queue. This activity now waits for the asynchronous response and relinquishes control to the next activity.
+2.	The second synchronous invoke activity sends a message to a JMS queue.
+3.	Since there are no additional activities to execute, the instance now dehydrates.
+4.	The invoke activities cannot complete until they receive their callbacks.
+5.	Two InvokerBean instances pick up the messages in the JMS queue and execute
+the synchronous invoke against the partner endpoint.
+6.	The response from the endpoint is cached and a callback message is scheduled
+with the dispatcher module.
+7.	The first invoke activity receives its callback. The instance is rehydrated during this step.
+8.	The second invoke activity receives its callback. The instance is rehydrated during this step.
+
+A performance test showed a 30 % improvement in comparison with not using nonBlockingInvoke.
+7.13	Keep the number of activities in BPEL as minimal as possible
+Keep the number of activities in BPEL as minimal as possible; increasing the number of activities will decrease the performance of BPEL engine.
+7.14	Avoid unused partner links.
+7.15	Avoid repetitive names for different activities.
+7.16	Don’t use BPEL for intensive time scheduled activities
+
+Extensive use of activities such as alarm and wait can lower system performance.
+7.17	Follow project name conventions.
+
+A project name SHOULD:
+•	Be a noun, in mixed case with the first letter of each internal word capitalized.
+•	Be simple and meaningful.
+•	Be abstract.
+•	Be abbreviated, where possible.
+o	Common government acronyms are acceptable.
+A project name SHOULD NOT:
+•	Identify a particular department, bureau, agency, or other entity. 
+•	Identify a particular product or technology, e.g. SOA, OSB, ESB, etc.
+•	Identify the type of service, e.g. synchronous/sync or asynchronous/asynchronous.
+•	Include the following word(s):
+•	Project,
+•	Proxy, and/or
+•	Service.
+7.18	Follow variable name conventions.
+
+A variable name SHOULD:
+•	Be meaningful.
+•	Begin with a lower-case letter.
+•	Be in camelCase where the first letter of a composite word is capitalized, e.g. thisIsAVariable.
+•	Use complete words
+A variable name SHOULD NOT:
+•	Be abbreviated.
+•	Contain _’s (underscore), unless declaring a constant.
+•	Use a keyword or reserved word.
+7.19	Don’t use the pick based initiate pattern for interdependent operations 
+
+The pick activity waits for the occurrence of exactly one event from a set of events, then executes the activity associated with that event. After an event has been selected, the other events are no longer accepted by that pick. If a race condition occurs between multiple events, the choice of the event is implementation dependent. 
+7.20	Don’t let a SOA composite instance grow exponentially.
+
+Define rules to keep the house clean, purge the instances at regular interval to obtain better performance from the BPEL engine and Enterprise Manager.
+7.21	Avoid empty sequence.
+7.22	Code cleaning in process level variables created by default.
+
+A database adapter is configured and deleted it later, the configuration files (schemas, mappings, etc.) for the adaptor still remains in BPEL project folder and not deleted automatically.
+7.23	Define a common error process to handle errors across multiple business process.
+7.24	Adapters should be defined as an ESB service for reusability standards.  
+
+Oracle SOA Suite contain two components that implement many characteristics of what the industry has dubbed he enterprise service bus (ESB).  An ESB provides decoupling between the senders of service requests and the service providers.  This helps in Endpoint Virtualization. 
+Also, BPEL process gains homogeneity, focusing on business problems rather than protocol transformation.
+7.25	Externalize security from service providers and consumers through agents and gateways for IT security.
+
+Security related information is not normally not advertised in a Web Service’s WSDL document. A SOA environment consists of heterogeneous infrastructure components.  Each has its own security design and implementation.  The can cause poor interoperability and result I more security customizations and a higher risk of security breaches.  A best practice is to use a separate and specialized component aimed at IT security through agents and gateways.  In this pattern, agents contain a service specific security configuration (also called policies) while gateways contains more generic security configuration that should be enforced for more or all services.
+7.26	Do not use a file adaptor for logging for debugging purposes.
+
+Using a file adaptor for logging for debugging purposes is too intrusive on the application.
+
+8	Code Examples
+Below are code examples for BPEL concepts, fault handling, and invoking an asynchronous and synchronous services.
  
-  The basic static analysis is based on the OASIS WS-BPEL v2.0 specification (http://docs.oasis-open.org/wsbpel/2.0/OS/wsbpel-v2.0-OS.pdf).  Below summarize the static analysis requirements listed in Appendix B of the specification.  Please refer to the specification for further details of static analysis fault codes and descriptions.
  
-  Note: A WS-BPEL implementation MAY perform extra static analysis checking beyond the basic static analysis required by this specification to signal warnings or even reject process definitions. It is recommended that these non-specified static analysis checks should be configurable to disable.
+ 
+ 
+ 
+ 
+ 
+9	Leading practices for success of BPEL implementation
+To increase project success rates and decrease risks of BPEL projects, it is recommended to follow the following initiative that consists of a combination of process, rules, integration using services, and underlying data.
+
+9.1	Assessments and maturity models
+
+A first important step is to agree on the features that characterize your current processes, and then decide which set of capabilities you need to have in a future or to-be state. This assessment needs to be predicated on some kind of a maturity model. 
+
+Course corrections are then made possible by assessing deviations from the roadmap that you have created. The roadmap consists of a set of initiatives, projects that are implemented to get you to your wanted future state in each of the dimensions defined by the maturity model that you use.
+For example:
+•	Rules and decisions
+•	Analytics and key performance indicators (KPIs)
+•	Services and integrations
+•	API management
+•	Data or Information Architecture
+•	Infrastructure
+9.2	A strategic roadmap and tactical plan
+You can create a strategic roadmap (often as a program consisting of multiple projects and initiatives), and a tactical plan. This plan is based on an evaluation of the as-is state, and a determination of the wanted to-be state that you have worked out in your maturity assessment.
+
+A tactical project plan is created for the shorter term, and a longer-term plan is crafted with schedules, initiatives, and objectives to be attained. Resources are trained and allocated to meet these objectives and timelines.
+
+9.3	Agile methods and processes
+
+Paramount to large-scale software development across an organization is consistency and prescriptiveness. This involves large groups of distributed staff working from the same templates so that activities converge and outputs are relevant across the organization. Prescriptiveness is important to help guide technical and business resources to engage in the correct activities to produce the wanted artifacts and deliverables.
+
+It is suggested to define a few project types as the baseline. Map other projects in terms of size, complexity, and domain.  The outcome is a work breakdown structure that can serve as a guide for future projects.
+Remember that agile methods are appropriate for smaller projects. As project size and complexity increase, a tailoring of the agile method needs to be conducted. For example, it is tempting to assume that, after a quick win pilot or an initial working prototype, we can continue onward into the full-fledged project using the same approach.
+
+After the initial pilot or prototype, it is advised to look holistically at the macro level of the project:
+•	The integration
+•	The architecture as a whole
+•	Database considerations
+•	Infrastructure issues
+•	Configurations for the various development, staging, testing, and production
+Environments
+
+9.4	Reference architecture
+
+Reference architectures, such as service-oriented architecture (SOA), can provide a blueprint for the logical and physical manifestations of the components and architectural building blocks that are agreed-upon standards within an organization. 
+
+The key point is that you ensure that it is not an ad hoc architecture that gets built every time a new project comes along. A basis is established as a standard in effect, which is adhered to by using governance and management.
+
+Start with an industry-standard reference architecture, and then customize key aspects for your organization or line of business.  This practice helps establish uniformity and consistency that can aid in the governance of enterprise initiatives.  The SOA Reference Architecture from the Open Group (http://opengroup.org) provides the basis for architectural building blocks that enable refinements needed to support business processes.
+
+9.5	Governance
+
+All of the standards and leading practices and methods that are agreed upon by one group of people at a given point in time fade from organizational memory unless they are institutionalized. Usually, a construct such as a center of competency (CoC) is established as a steward and focal point for best practices and standards. It also facilitates the enforcement of the standards, or the appeal for exceptions should the need arise.
+
+Governance defines the policies, and the management function enforces those policies in practice.
 
 
-| 	Static Analysis Fault Code	 | 	Static analysis Description	 | 	Section Reference	 |
-| ------------------------------------- | ------------------------------------- | ------------------------------ | 
-| 	SA00001	 | 	A WS-BPEL processor MUST reject a WS-BPEL that refers to solicit-response or notification operations portTypes.	 | 	Section 3	 | 
-| 	SA00002	 | 	A WS-BPEL processor MUST reject any WSDL portType definition that includes overloaded operation names.	 | 	Section 3	 | 
-| 	SA00003	 | 	If the value of exitOnStandardFault of a or is set to ?yes?, then a fault handler that explicitly targets the WS-BPEL standard faults MUST NOT be used in that scope.	 | 	Section 5.2	 | 
-| 	SA00004	 | 	If any referenced queryLanguage or expressionLanguage is unsupported by the WS-BPEL processor then the processor MUST reject the submitted WS-BPEL process definition.	 | 	Section 5.2	 | 
-| 	SA00005	 | 	If the portType attribute is included for readability, in a , , , or element, the value of the portType attribute MUST match the portType value implied by the combination of the specified partnerLink and the role implicitly specified by the activity.	 | 	Section 5.2	 | 
-| 	SA00006	 | 	The activity MUST only be used within a faultHandler (i.e. and elements).	 | 	Section 5.2	 | 
-| 	SA00007	 | 	The activity MUST only be used from within a faultHandler, another compensationHandler, or a terminationHandler.	 | 	Section 5.2	 | 
-| 	SA00008	 | 	The activity MUST only be used from within a faultHandler, another compensationHandler, or a terminationHandler.	 | 	Section 5.2	 | 
-| 	SA00009	 | 	In the case of mandatory extensions declared in the element not supported by a WS-BPEL implementation, the process definition MUST be rejected.	 | 	Section 5.3	 | 
-| 	SA00010	 | 	A WS-BPEL process definition MUST import all XML Schema and WSDL definitions it uses. This includes all XML Schema type and element definitions, all WSDL port types and message types as well as property and property alias definitions used by the process.	 | 	Section 5.4	 | 
-| 	SA00011	 | 	If a namespace attribute is specified on an then the imported definitions MUST be in that namespace.	 | 	Section 5.4	 | 
-| 	SA00012	 | 	If no namespace is specified then the imported definitions MUST NOT contain a targetNamespace specification. | 	Section 5.4	 | 
-| 	SA00013	 | 	The value of the importType attribute of element MUST be set to http://www.w3.org/2001/XMLSchema when importing XML Schema 1.0 documents, and to http://schemas.xmlsoap.org/wsdl/ when importing WSDL 1.1 documents.	 | 	Section 5.4	 | 
-| 	SA00014	 | 	A WS-BPEL process definition MUST be rejected if the imported documents contain conflicting definitions of a component used by the importing process definition (as could be caused, for example, when the XSD redefinition mechanism is used).	 | 	Section 5.4	 | 
-| 	SA00015	 | 	To be instantiated, an executable business process MUST contain at least one or activity annotated with a createInstance="yes" attribute.	 | 	Section 5.5	 | 
-| 	SA00016	 | 	A partnerLink MUST specify the myRole or the partnerRole, or both.	 | 	Section 6.2	 | 
-| 	SA00017	 | 	The initializePartnerRole attribute MUST NOT be used on a partnerLink that does not have a partner role.	 | 	Section 6.2	 | 
-| 	SA00018	 | 	The name of a partnerLink MUST be unique among the names of all partnerLinks defined within the same immediately enclosing scope.	 | 	Section 6.2	 | 
-| 	SA00019	 | 	Either the type or element attributes MUST be present in a element but not both.	 | 	Section 7.2	 | 
-| 	SA00020	 | 	A ```<vprop:propertyAlias>``` element MUST use one of the three following combinations of attributes: messageType and part, type or element	 | 	Section 7.3 	 | 
-| 	SA00021 	 | 	Static analysis MUST detect property usages where propertyAliases for the associated variable's type are not found in any WSDL definitions directly imported by the WS-BPEL process. 	 | 	Section 7.3 	 | 
-| 	SA00022 	 | 	A WS-BPEL process definition MUST NOT be accepted for processing if it defines two or more propertyAliases for the same property name and WS-BPEL variable type. 	 | 	Section 7.3 	 | 
-| 	SA00023 	 | 	The name of a variable MUST be unique among the names of all variables defined within the same immediately enclosing scope. 	 | 	Section 8.1 	 | 
-| 	SA00024 	 | 	Variable names are BPELVariableNames, that is, NCNames (as defined in XML Schema specification) but in addition they MUST NOT contain the ?.? character. 	 | 	Section 8.1 	 | 
-| 	SA00025 	 | 	The messageType, type or element attributes are used to specify the type of a variable. Exactly one of these attributes MUST be used. 	 | 	Section 8.1 	 | 
-| 	SA00026 	 | 	Variable initialization logic contained in scopes that contain or whose children contain a start activity MUST only use idempotent functions in the from-spec. 	 | 	Section 8.1 	 | 
-| 	SA00027 	 | 	When XPath 1.0 is used as an expression language in WS-BPEL there is no context node available. Therefore the legal values of the XPath Expr (http://www.w3.org/TR/xpath#NT-Expr) production must be restricted in order to prevent access to the context node. Specifically, the ```"LocationPath"``` (http://www.w3.org/TR/xpath#NT-LocationPath) production rule of ```"PathExpr"``` (http://www.w3.org/TR/xpath#NT-PathExpr) production rule MUST NOT be used when XPath is used as an expression language. 	 | 	Section 8.2.4 	 | 
-| 	SA00028 	 | 	WS-BPEL functions MUST NOT be used in joinConditions. 	 | 	Section 8.2.5 	 | 
-| 	SA00029 	 | 	WS-BPEL variables and WS-BPEL functions MUST NOT be used in query expressions of propertyAlias definitions. 	 | 	Section 8.2.6 	 | 
-| 	SA00030 	 | 	The arguments to bpel:getVariableProperty MUST be given as quoted strings. It is therefore illegal to pass into a WS-BPEL XPath function any XPath variables, the output of XPath functions, a XPath location path or any other value that is not a quoted string. 	 | 	Section 8.3	 | 
-| 	SA00031 	 | 	The second argument of the XPath 1.0 extension function bpel:getVariableProperty(string, string) MUST be a string literal conforming to the definition of QName in [XML Namespaces] section 3. 	 | 	Section 8.3 	 | 
-| 	SA00032 	 | 	<p>For &lt;assign&gt;, the &lt;from&gt; and &lt;to&gt; element MUST be one of the specified variants.</p><p>The &lt;assign&gt; activity copies a type-compatible value from the source ("from-spec") to the destination ("to-spec"), using the &lt;copy&gt; element. Except in Abstract Processes, the from-spec MUST be one of the following variants:</p><p>&lt;from variable="BPELVariableName" part="NCName"?&gt;</p><p>&lt;query queryLanguage="anyURI"?&gt;?</p><p>queryContent</p><p>&lt;/query&gt;</p><p>&lt;/from&gt;</p><p>&lt;from partnerLink="NCName"</p><p>endpointReference="myRole - partnerRole" /&gt;</p><p>&lt;from variable="BPELVariableName"</p><p>property="QName" /&gt;</p><p>&lt;from expressionLanguage="anyURI"?&gt;</p><p>expression</p><p>&lt;/from&gt;</p><p>&lt;from&gt;</p><p>&lt;literal&gt;literal value&lt;/literal&gt;</p><p>&lt;/from&gt;</p><p>&lt;from/&gt;</p><p>In Abstract Processes, the from-spec MUST be either one of the above or the opaque variant described in section 13.1.3. Hiding Syntactic Elements</p><p>The to-spec MUST be one of the following variants:</p><p>&lt;to variable="BPELVariableName" part="NCName"?&gt;</p><p>&lt;query queryLanguage="anyURI"?&gt;?</p><p>queryContent</p><p>&lt;/query&gt;</p><p>&lt;/to&gt;</p><p>&lt;to partnerLink="NCName" /&gt;</p><p>&lt;to variable="BPELVariableName"</p><p>property="QName" /&gt;</p><p>&lt;to expressionLanguage="anyURI"?&gt;</p><p>expression</p><p>&lt;/to&gt;</p><p>&lt;to/&gt;&nbsp;</p> | 	Section 8.4	 | 
-| 	SA00033 	 | 	The XPath expression in `<to>` MUST begin with an XPath VariableReference. 	 | 	Section 8.4 	 | 
-| 	SA00034 	 | 	When the variable used in `<from>` or `<to>` is defined using XML Schema types (simple or complex) or element, the part attribute MUST NOT be used. 	 | 	Section 8.4 	 | 
-| 	SA00035 	 | 	In the from-spec of the partnerLink variant of `<assign>` the value "myRole" for attribute endpointReference is only permitted when the partnerLink specifies the attribute myRole. 	 | 	Section 8.4 	 | 
-| 	SA00036 	 | 	In the from-spec of the partnerLink variant of `<assign>` the value "partnerRole" for attribute endpointReference is only permitted when the partnerLink specifies the attribute partnerRole. 	 | 	Section 8.4 	 | 
-| 	SA00037 	 | 	In the to-spec of the partnerLink variant of assign only partnerLinks are permitted which specify the attribute partnerRole. 	 | 	Section 8.4 	 | 
-| 	SA00038 	 | 	The literal from-spec variant returns values as if it were a from-spec that selects the children of the `<literal>` element in the WS-BPEL source code. The return value MUST be a single EII or Text Information Item (TII) only. 	 | 	Section 8.4 	 | 
-| 	SA00039 	 | 	The first parameter of the XPath 1.0 extension function `bpel:doXslTransform(string, node-set, (string, object)*)` is an XPath string providing a URI naming the style sheet to be used by the WS-BPEL processor. This MUST take the form of a string literal. 	 | 	Section 8.4 	 | 
-| 	SA00040 	 | 	In the XPath 1.0 extension function `bpel:doXslTransform(string, node-set, (string, object)*)` the optional parameters after the second parameter MUST appear in pairs. An odd number of parameters is not valid. 	 | 	Section 8.4 	 | 
-| 	SA00041 	 | 	For the third and subsequent parameters of the XPath 1.0 extension function `bpel:doXslTransform(string, node-set, (string, object)*)` the global parameter names MUST be string literals conforming to the definition of QName in section 3 of `[Namespaces in XML]`. 	 | 	Section 8.4 	 | 
-| 	SA00042 	 | 	For <copy> the optional keepSrcElementName attribute is provided to further refine the behavior. It is only applicable when the results of both from-spec and to-spec are EIIs, and MUST NOT be explicitly set in other cases. 	 | 	Section 	 | 
-| 	SA00043 	 | 	For a copy operation to be valid, the data referred to by the from-spec and the to-spec MUST be of compatible types. <p>The following situations are considered type incompatible:</p>  <li>the selection results of both the from-spec and the to-spec are variables of a WSDL message type, and the two variables are not of the same WSDL message type (two WSDL message types are the same if their QNames are equal).</li>  <li>the selection result of the from-spec is a variable of a WSDL message type and that of the to-spec is not, or vice versa (parts of variables, selections of variable parts, or endpoint references cannot be assigned to/from variables of WSDL message types directly).</li> 	 | 	Section 8.4.3 	 | 
-| 	SA00044 	 | 	The name of a `<correlationSet>` MUST be unique among the names of all `<correlationSet>` defined within the same immediately enclosing scope. 	 | 	Section 9.1 	 | 
-| 	SA00045 	 | 	Properties used in a `<correlationSet>` MUST be defined using XML Schema simple types. 	 | 	Section 9.2 	 | 
-| 	SA00046 	 | 	The pattern attribute used in `<correlation>` within `<invoke>` is required for request-response operations, and disallowed when a one-way operation is invoked. 	 | 	Section 9.2 	 | 
-| 	SA00047 	 | 	One-way invocation requires only the inputVariable (or its equivalent `<toPart>` elements) since a response is not expected as part of the operation (see section 10.4. Providing Web Service Operations `--` Receive and Reply ). Request-response invocation requires both an inputVariable (or its equivalent `<toPart>` elements) and an outputVariable (or its equivalent `<fromPart>` elements). If a WSDL message definition does not contain any parts, then the associated attributes variable, inputVariable or outputVariable, MAY be omitted,and the `<fromParts>` or `<toParts>` construct MUST be omitted. 	 | 	Section 10.3,  Section 10.4,  Section 10.4,  Section 11.5,  Section 12.7	 | 
-| 	SA00048 	 | 	When the optional inputVariable and outputVariable attributes are being used in an `<invoke>` activity, the variables referenced by inputVariable and outputVariable MUST be messageType variables whose QName matches the QName of the input and output message type used in the operation, respectively, except as follows: if the WSDL operation used in an <invoke> activity uses a message containing exactly one part which itself is defined using an element, then a variable of the same element type as used to define the part MAY be referenced by the inputVariable and outputVariable attributes respectively. 	 | 	Section 10.3 	 | 
-| 	SA00050 	 | 	When `<toParts>` is, it is required to have a `<toPart>` for every part in the WSDL message definition; the order in which parts are specified is irrelevant. Parts not explicitly represented by `<toPart>` elements would result in uninitialized parts in the target anonymous WSDL variable used by the `<invoke>` or `<reply>` activity. Such processes with missing `<toPart>` elements MUST be rejected during static analysis. 	 | 	Section 10.3.1 	 | 
-| 	SA00051 	 | 	The inputVariable attribute MUST NOT be used on an Invoke activity that contains `<toPart>` elements. 	 | 	Section 10.3.1 	 | 
-| 	SA00052 	 | 	The outputVariable attribute MUST NOT be used on an `<invoke>` activity that contains a `<fromPart>` element. 	 | 	Section 10.3.1 	 | 
-| 	SA00053 	 | 	For all `<fromPart>` elements the part attribute MUST reference a valid message part in the WSDL message for the operation. 	 | 	Section 5.4 	 | 
-| 	SA00054 	 | 	For all `<toPart>` elements the part attribute MUST reference a valid message part in the WSDL message for the operation. 	 | 	Section 5.4 	 | 
-| 	SA00055 	 | 	For `<receive>`, if `<fromPart>` elements are used on a `<receive>` activity then the variable attribute MUST NOT be used on the same activity. 	 | 	Section 10.4 	 | 
-| 	SA00056 	 | 	A "start activity" is a `<receive>` or `<pick>` activity that is annotated with a createInstance="yes" attribute. Activities other than the following: start activities, `<scope>`, `<flow>` and `<sequence>` MUST NOT be performed prior to or simultaneously with start activities. 	 | 	Section 10.4 	 | 
-| 	SA00057 	 | 	If a process has multiple start activities with correlation sets then all such activities MUST share at least one common correlationSet and all common correlationSets defined on all the activities MUST have the value of the initiate attribute be set to "join". 	 | 	Section 10.4	 | 
-| 	SA00058 	 | 	In a `<receive>` or `<reply>` activity, the variable referenced by the variable attribute MUST be a messageType variable whose QName matches the QName of the input (for `<receive>`) or output (for `<reply>`) message type used in the operation, except as follows: if the WSDL operation uses a message containing exactly one part which itself is defined using an element, then a WS-BPEL variable of the same element type as used to define the part MAY be referenced by the variable attribute of the `<receive>` or `<reply>`activity. 	 | 	Section 10.4 	 | 
-| 	SA00059 	 | 	For `<reply>`, if `<toPart>` elements are used on a `<reply>` activity then the variable attribute MUST NOT be used on the same activity. 	 | 	Section 10.4 	 | 
-| 	SA00060 	 | 	The explicit use of messageExchange is needed only where the execution can result in multiple IMA-`<reply>` pairs (e.g. `<receive>-<reply>` pair) on the same partnerLink and operation being executed simultaneously. In these cases, the process definition MUST explicitly mark the pairing-up relationship. 	 | 	Section 10.4.1 	 | 
-| 	SA00061 	 | 	The name used in the optional messageExchange attribute MUST resolve to a messageExchange declared in a scope (where the process is considered the root scope) which encloses the `<reply>` activity and its corresponding IMA. 	 | 	Section 10.4.1 	 | 
-| 	SA00062 	 | 	If `<pick>` has a createInstance attribute with a value of yes, the events in the `<pick>` MUST all be `<onMessage>` events. 	 | 	Section 11.5 	 | 
-| 	SA00063 	 | 	The semantics of the `<onMessage>` event are identical to a `<receive>` activity regarding the optional nature of the variable attribute or `<fromPart>` elements, if `<fromPart>` elements on an activity then the variable attribute MUST NOT be used on the same activity (see SA00055). 	 | 	Section 11.5 	 | 
-| 	SA00064 	 | 	For `<flow>`, a declared link?s name MUST be unique among all `<link>` names defined within the same immediately enclosing `<flow>`. 	 | 	Section 11.6 	 | 
-| 	SA00065 	 | 	The value of the linkName attribute of `<source>` or `<target>` MUST be the name of a `<link>` declared in an enclosing `<flow>` activity. 	 | 	Section 11.6.1 	 | 
-| 	SA00066 	 | 	Every link declared within a `<flow>` activity MUST have exactly one activity within the `<flow>` as its source and exactly one activity within the `<flow>` as its target. 	 | 	Section 11.6.1	 | 
-| 	SA00067 	 | 	Two different links MUST NOT share the same source and target activities; that is, at most one link may be used to connect two activities. 	 | 	Section 11.6.1 	 | 
-| 	SA00068 	 | 	An activity MAY declare itself to be the source of one or more links by including one or more `<source>` elements. Each `<source>` element MUST use a distinct link name. 	 | 	Section 11.6.1 	 | 
-| 	SA00069 	 | 	An activity MAY declare itself to be the target of one or more links by including one or more `<target>` elements. Each `<target>` element associated with a given activity MUST use a link name distinct from all other `<target>` elements at that activity. 	 | 	Section 11.6.1 	 | 
-| 	SA00070 	 | 	A link MUST NOT cross the boundary of a repeatable construct or the <compensationHandler> element. This means, a link used within a repeatable construct (`<while>`, `<repeatUntil>`, `<forEach>`, `<eventHandlers>`) or a `<compensationHandler>` MUST be declared in a `<flow>` that is itself nested inside the repeatable construct or `<compensationHandler>`. 	 | 	Section 11.6.1 	 | 
-| 	SA00071 	 | 	A link that crosses a `<catch>, <catchAll>` or `<terminationHandler>` element boundary MUST be outbound only, that is, it MUST have its source activity within the `<faultHandlers>` or `<terminationHandler>`, and its target activity outside of the scope associated with the handler. 	 | 	Section 11.6.1 	 | 
-| 	SA00072 	 | 	A `<link>` declared in a `<flow>` MUST NOT create a control cycle, that is, the source activity must not have the target activity as a logically preceding activity. 	 | 	Section 11.6.1 	 | 
-| 	SA00073 	 | 	The expression for a join condition MUST be constructed using only Boolean operators and the activity's incoming links' status values. 	 | 	Section 11.6.2 	 | 
-| 	SA00074 	 | 	The expressions in `<startCounterValue>` and `<finalCounterValue>` MUST return a TII (meaning they contain at least one character) that can be validated as a `xsd:unsignedInt`. Static analysis MAY be used to detect this erroneous situation at design time when possible (for example, when the expression is a constant). 	 | 	Section 11.7 	 | 
-| 	SA00075 	 | 	For the `<forEach>` activity, `<branches>` is an integer value expression. Static analysis MAY be used to detect if the integer value is larger than the number of directly enclosed activities of `<forEach>` at design time when possible (for example, when the branches expression is a constant). 	 | 	Section 11.7	 | 
-| 	SA00076 	 | 	For `<forEach>` the enclosed scope MUST NOT declare a variable with the same name as specified in the counterName attribute of `<forEach>`. 	 | 	Section 11.7 	 | 
-| 	SA00077 	 | 	The value of the target attribute on a `<compensateScope>` activity MUST refer to the name of an immediately enclosed scope of the scope containing the FCT-handler with the `<compensateScope>` activity. This includes immediately enclosed scopes of an event handler (`<onEvent> or <onAlarm>`) associated with the same scope. 	 | 	Section 12.4.3.1 	 | 
-| 	SA00078 	 | 	The target attribute of a `<compensateScope>` activity MUST refer to a scope or an invoke activity with a fault handler or compensation handler. 	 | 	Section 12.4.3.1 	 | 
-| 	SA00079 	 | 	The root scope inside a FCT-handler MUST not have a compensation handler. 	 | 	Section 12.4.4.3 	 | 
-| 	SA00080 	 | 	There MUST be at least one `<catch>` or `<catchAll>` element within a `<faultHandlers>` element. 	 | 	Section 12.5 	 | 
-| 	SA00081 	 | 	For the `<catch>` construct; to have a defined type associated with the fault variable, the faultVariable attribute MUST only be used if either the faultMessageType or faultElement attributes, but not both, accompany it. The faultMessageType and faultElement attributes MUST NOT be used unless accompanied by faultVariable attribute. 	 | 	Section 12.5 	 | 
-| 	SA00082 	 | 	The peer-scope dependency relation MUST NOT include cycles. In other words, WS-BPEL forbids a process in which there are peer scopes S1 and S2 such that S1 has a peer-scope dependency on S2 and S2 has a peer-scope dependency on S1. 	 | 	Section 12.5.2 	 | 
-| 	SA00083 	 | 	An event handler MUST contain at least one `<onEvent>` or `<onAlarm>` element. 	 | 	Section 12.7 	 | 
-| 	SA00084 	 | 	The partnerLink reference of `<onEvent>` MUST resolve to a partner link declared in the process in the following order: the associated scope first and then the ancestor scopes. 	 | 	Section 12.7.1 	 | 
-| 	SA00085 	 | 	The syntax and semantics of the `<fromPart>` elements as used on the `<onEvent>` element are the same as specified for the receive activity. This includes the restriction that if `<fromPart>` elements are used on an onEvent element then the variable, element and messageType attributes MUST NOT be used on the same element. 	 | 	Section 12.7.1	 | 
-| 	SA00086 	 | 	For `<onEvent>`, variables referenced by the variable attribute of `<fromPart>` elements or the variable attribute of an `<onEvent>` element are implicitly declared in the associated scope of the event handler. Variables of the same names MUST NOT be explicitly declared in the associated scope.. 	 | 	Section 12.7.1 	 | 
-| 	SA00087 	 | 	For `<onEvent>`, the type of the variable (as specified by the messageType attribute) MUST be the same as the type of the input message defined by operation referenced by the operation attribute. Optionally the messageType attribute may be omitted and instead the element attribute substituted if the message to be received has a single part and that part is defined with an element type. That element type MUST be an exact match of the element type referenced by the element attribute. 	 | 	Section 12.7.1 	 | 
-| 	SA00088 	 | 	For `<onEvent>`, the resolution order of the correlation set(s) referenced by `<correlation>` MUST be first the associated scope and then the ancestor scopes. 	 | 	Section 12.7.1 	 | 
-| 	SA00089 	 | 	For `<onEvent>`, when the messageExchange attribute is explicitly specified, the resolution order of the message exchange referenced by messageExchange attribute MUST be first the associated scope and then the ancestor scopes. 	 | 	Section 12.7.1 	 | 
-| 	SA00090 	 | 	If the variable attribute is used in the `<onEvent>` element, either the messageType or the element attribute MUST be provided in the `<onEvent>` element. 	 | 	Section 12.7.1 	 | 
-| 	SA00091 	 | 	A scope with the isolated attribute set to "yes" is called an isolated scope. Isolated scopes MUST NOT contain other isolated scopes. 	 | 	Section 12.8 	 | 
-| 	SA00092 	 | 	Within a scope, the name of all named immediately enclosed scopes MUST be unique. 	 | 	Section 12.4.3 	 | 
-| 	SA00093 	 | 	Identical <catch> constructs MUST NOT exist within a `<faultHandlers>` element. 	 | 	Section 12.5 	 | 
-| 	SA00094 	 | 	For `<copy>`, when the keepSrcElementName attribute is set to "yes" and the destination element is the Document EII of an element-based variable or an element-based part of a WSDL message-type-based variable, the name of the source element MUST belong to the substitutionGroup of the destination element. This checking MAY be enforced through static analysis of the expression/query language. 	 | 	Section 8.4.2	 | 
-| 	SA00095 	 | 	For `<onEvent>`, the variable references are resolved to the associated scope only and MUST NOT be resolved to the ancestor scopes. 	 | 	Section 12.7.1	 | 
