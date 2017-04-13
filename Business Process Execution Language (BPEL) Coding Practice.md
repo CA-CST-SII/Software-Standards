@@ -1,18 +1,19 @@
 # 1	Introduction
 
 Business Process Execution Language for Web Services (BPEL or BPEL4WS) is a language used for the definition and execution of business processes using Web services.  BPEL enables the top-down realization of Service Oriented Architecture (SOA) through composition, orchestration, and coordination of Web services.  BPEL provides a relatively easy and straightforward way to compose several Web services into new composite services called business processes, which is a collection of coordinated service invocations and related activities that produce a result.
+
 BPEL builds on the foundation of XML and Web services; it uses an XML-based language that supports the Web services technology stack, including SOAP, WSDL, UDDI, WS-Reliable Messaging, WS-Addressing, WS-Coordination, and WS-Transaction.  BPEL is used to standardize enterprise application integration as well as to extend the integration to the Consular Affairs (CA) legacy applications and services where an Oracle Enterprise Service Bus is a middleware solution as an intermediary between service requesters and service providers.
 Using BPEL a series of discreet services can be integrated into an end-to-end process flow that reduces process cost and complexity.  The BPEL enables to define how to:
 
-•	Send XML messages to, and asynchronously receive XML messages from, remote services.
+   •	Send XML messages to, and asynchronously receive XML messages from, remote services.
 
-•	Manipulate XML data structures.
+   •	Manipulate XML data structures.
 
-•	Manage events and exceptions.
+   •	Manage events and exceptions.
 
-•	Design parallel flows of process execution.
+   •	Design parallel flows of process execution.
 
-•	Undo portions of processes when exceptions occur.
+   •	Undo portions of processes when exceptions occur.
 
 
 
@@ -205,6 +206,7 @@ Example: ```PickOrderAckOrTimeout```, ```PickFirstQuote```
 
 ### 4.3.9	Receive
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
 
 •	Starts with the Receive prefix.
@@ -215,6 +217,7 @@ Example: ```ReceiveUpdateInvoiceEBM```
 
 ### 4.3.10	Scope
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
 
 •	Including brief information about transaction type may be appropriate.
@@ -227,6 +230,7 @@ Examples: ```GetCreditRatingScope```, ```GetLoanOfferScope```, ```ProcessCreditC
 
 ### 4.3.11	Sequence
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
 
 •	The sequence name should describe the steps performed in the sequence.
@@ -248,6 +252,7 @@ Example: ```SwitchCreditRating```
 
 ### 4.3.13	Case
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
 
 •	Start with the Case prefix.
@@ -258,6 +263,7 @@ Example: ```CaseBadCredit```, ```CaseApprovalRequired```
 
 ### 4.3.14	Terminate
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
 
 •	Starts with the Terminate prefix.
@@ -268,6 +274,7 @@ Example: ```TerminateTimeout```, ```TerminateEndOfProcess```
 
 ### 4.3.15	Throw
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
 
 •	Starts with the Throw prefix.
@@ -282,7 +289,9 @@ When defining a Catch in the Scope activity, the displayed catch name is the fau
 
 ### 4.3.16	Transform
 Follow these guidelines:
+
 The name should follow the general standard naming standards.
+
 •	Starts with the Xform prefix.
 
 •	Followed by the source name.
@@ -290,12 +299,15 @@ The name should follow the general standard naming standards.
 •	Followed by To.
 
 •	Followed by the destination name.
+
 Pattern: ```Xform<source>To<destination>```
 Example: ```XformBillToPortal80Bill```
 
 ### 4.3.17	Wait
 Follow these guidelines:
+
 The name should follow the general standard naming standards.
+
 •	Starts with the Wait prefix.
 
 •	Followed by a name describing the reason for waiting.
@@ -304,6 +316,7 @@ Example: ```WaitOrderAcknowledgeTimeout```, ```WaitWarmUpTime```
 
 ### 4.3.18	While
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
 
 •	Starts with the While prefix.
@@ -316,6 +329,7 @@ Example: ```WhileAllMsgsSent```
 
 ### 4.4.1	Variables
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
 
 •	Use lower-camel-case for variable names.
@@ -328,6 +342,7 @@ Property names follow the general BPEL variables naming standards.
 
 ### 4.4.3	Correlation Sets
 Follow these guidelines:
+
 •	The name should follow the general standard naming standards.
 
 •	Starts with a name describing the correlation set.
@@ -374,21 +389,33 @@ xsltStylesheetNotFound	Thrown when the named style sheet in a bpel:doXslTransfor
 ### 5.1.2	Fault handling order of precedence in BPEL 2.0
 
 In BPEL 2.0, the order of precedence for catching faults thrown without associated data is as follows:
+
 •	If there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity.
+
 •	Otherwise, if there is a catchAll activity, the fault is sent to the catchAll fault handler.
+
 •	Otherwise, the fault is processed by the default fault handler.
 
 In BPEL 2.0, the order of precedence for catching faults thrown with associated data is as follows:
 
 •	If there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity.
+
 •	If the fault data is a WSDL message type in which the following exists:
+
 o	The message contains a single part defined by an element.
+
 o	There exists a catch activity with a matching faultName value that has a faultVariable whose associated faultElement QName matches the QName of the runtime element data of the single WSDL message part.
+
 Then, the fault is sent to the identified catch activity with the faultVariable initialized to the value in the single part's element.
+
 •	Otherwise, if there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity. In this case, the fault value is not available from within the fault handler, but is available to the rethrow activity.
+
 •	Otherwise, if there is a catch construct without a faultName attribute that has a faultVariable whose type matches the type of the runtime fault data, then the fault is sent to the identified catch activity.
+
 •	Otherwise, if the fault data is a WSDL message type in which the message contains a single part defined by an element and there exists a catch activity without a faultName attribute that has a faultVariable whose associated faultElement's QName matches the QName of the runtime element data of the single WSDL message part, the fault is sent to the identified catch activity with the faultVariable initialized to the value in the single part's element.
+
 •	Otherwise, if there is a catchAll activity, the fault is sent to the catchAll fault handler.
+
 •	Otherwise, the fault is handled by the default fault handler.
 
 ## 5.2	Categories of BPEL Faults
@@ -396,6 +423,7 @@ Then, the fault is sent to the identified catch activity with the faultVariable 
 A BPEL fault has a fault name called a Qname (name qualified with a namespace) and a possible messageType. There are two categories of BPEL faults:
 
 •	Business faults
+
 •	Runtime faults
 ### 5.2.1	Business Faults
 
@@ -405,9 +433,12 @@ Business faults are application-specific faults that are generated when there is
 
 Runtime faults are the result of problems within the running of the BPEL process service component or web service (for example, data cannot be copied properly because the variable name is incorrect). These faults are not user-defined, and are thrown by the system. They are generated if the process tries to use a value incorrectly, a logic error occurs (such as an endless loop), a Simple Object Access Protocol (SOAP) fault occurs in a SOAP call, an exception is thrown by the server, and so on.
 
-•	bindingFault: a bindingFault is thrown inside an activity if the preparation of the invocation fails.  For example, the WSDL of the process fails to load. A bindingFault is not retryable.  This type of fault usually must be fixed by human intervention.
-•	remoteFault: a remoteFault is also thrown inside an activity. It is thrown because the invocation fails.  For example, a SOAP fault is returned by the remote service.  
-•	replayFault: a replayFault replays the activity inside a scope. At any point inside a scope, this fault is migrated up to the scope. The server then re-executes the scope from the beginning.
+•	```bindingFault```: a bindingFault is thrown inside an activity if the preparation of the invocation fails.  For example, the WSDL of the process fails to load. A bindingFault is not retryable.  This type of fault usually must be fixed by human intervention.
+
+•	```remoteFault```: a remoteFault is also thrown inside an activity. It is thrown because the invocation fails.  For example, a SOAP fault is returned by the remote service.  
+
+•	```replayFault```: a replayFault replays the activity inside a scope. At any point inside a scope, this fault is migrated up to the scope. The server then re-executes the scope from the beginning.
+
 ## 5.3	Typical fault handling flow
 
 When a fault occurs in a process, the current operational flow moves to the fault handler within the immediate scope.  If the current fault handler does not have the appropriate Catch element defined to trap and handle this fault, the business process container checks from inner scope to outer scope until it finds an appropriate fault handler that can trap this fault. 
@@ -415,12 +446,19 @@ When a fault occurs in a process, the current operational flow moves to the faul
 The Catch mechanism handles a specific application or standard fault.  In cases when the type of a fault is unknown, the Catch All element can be used.   It is a best practice to use a Catch All element in the global process’s fault handler.
 
 When designing fault handlers, consider the following options:
+
 •	Catch a fault and try to correct the problem, allowing the business process to continue to normal completion.
+
 •	Catch a fault and find that it is not resolvable at this scope. Additional options can be used: 
+
 o	Throw a new fault.
+
 o	Re-throw the original fault to allow another scope to handle it.
+
 o	Reply with a fault to the process initiator. 
+
 o	Invoke a human task to correct the issue. 
+
 o	If the fault handler cannot resolve the issue, you might need to rollback and compensate.
 ## 5.4	BPEL activities to propagate a fault
 BPEL allows fault propagation using throw, rethrow and reply within a fault handler.
@@ -446,17 +484,17 @@ Compensation occurs when the BPEL process cannot complete a series of operations
 You can invoke a compensation handler by using the compensate activity, which names the scope for which the compensation is to be performed (that is, the scope whose compensation handler is to be invoked). A compensation handler for a scope is available for invocation only when the scope completes normally. Invoking a compensation handler that has not been installed is equivalent to using the empty activity.  This ensures that fault handlers do not have to rely on state to determine which nested scopes have completed successfully. The semantics of a process in which an installed compensation handler is invoked more than once are undefined.
 
 If an invoke activity has a compensation handler defined inline, then the name of the activity is the name of the scope to be used in the compensate activity. The syntax is as follows:
-<compensate scope="ncname"? standard-attributes>
+```<compensate scope="ncname"? standard-attributes>
 standard-elements
-</compensate>
+</compensate>```
 ## 5.7	Use the terminate activity to stop a business process instance
 
 The terminate activity immediately terminates the behavior of a business process instance within which the terminate activity is performed.  All currently running activities must be terminated as soon as possible without any fault handling or compensation behavior.  The terminate activity does not send any notifications of the status of a BPEL process.
 
 The syntax for the terminate activity is as follows:
-<terminate standard-attributes>
+```<terminate standard-attributes>
  standard-elements
-</terminate>
+</terminate>```
 # 6	Code Level Metrics
  Name	Description and How to Calculate	Recommended Threshold
 Minimize the Number of BPEL Variables	Use as few variables as possible, and minimize the size and the number of business objects used. 	Less than x
@@ -611,12 +649,19 @@ A first important step is to agree on the features that characterize your curren
 
 Course corrections are then made possible by assessing deviations from the roadmap that you have created. The roadmap consists of a set of initiatives, projects that are implemented to get you to your wanted future state in each of the dimensions defined by the maturity model that you use.
 For example:
+
 •	Rules and decisions
+
 •	Analytics and key performance indicators (KPIs)
+
 •	Services and integrations
+
 •	API management
+
 •	Data or Information Architecture
+
 •	Infrastructure
+
 ## 9.2	A strategic roadmap and tactical plan
 You can create a strategic roadmap (often as a program consisting of multiple projects and initiatives), and a tactical plan. This plan is based on an evaluation of the as-is state, and a determination of the wanted to-be state that you have worked out in your maturity assessment.
 
@@ -630,11 +675,17 @@ It is suggested to define a few project types as the baseline. Map other project
 Remember that agile methods are appropriate for smaller projects. As project size and complexity increase, a tailoring of the agile method needs to be conducted. For example, it is tempting to assume that, after a quick win pilot or an initial working prototype, we can continue onward into the full-fledged project using the same approach.
 
 After the initial pilot or prototype, it is advised to look holistically at the macro level of the project:
+
 •	The integration
+
 •	The architecture as a whole
+
 •	Database considerations
+
 •	Infrastructure issues
+
 •	Configurations for the various development, staging, testing, and production
+
 Environments
 
 ## 9.4	Reference architecture
