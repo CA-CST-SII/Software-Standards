@@ -1,7 +1,7 @@
 # Table of Contents
 
 - [1 Introduction](#1-introduction)	
-- [2 List Of References](#2-reference)	
+- [2 List Of References](#2-list-of-references)	
 - [3 Purpose](#3-purpose)
 - [4 Naming Conventions](#4-naming-conventions)
   - [4.1 General Naming Standards](#41-general-naming-standards)
