@@ -1,6 +1,7 @@
 # Table of Contents
-- [1. Introduction] (#1	Introduction)	
-2	REFERENCE	
+
+- [# 1	Introduction](#1	Introduction)	
+- [# 1	Reference](Reference)	
 3	PURPOSE	
 4	NAMING CONVENTIONS	
 4.1	GENERAL NAMING STANDARDS	
