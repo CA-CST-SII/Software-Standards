@@ -3,10 +3,10 @@
 - [1	Introduction](#1-introduction)	
 - [2	Reference](#2-reference)	
 - [3	Purpose](#3---purpose)
-- [4. NAMING CONVENTIONS](#4-naming-conventions)
-  - [4.1. GENERAL NAMING STANDARDS](#41-general-naming-standards)
-  - [4.2. GENERAL NAMESPACE NAMING STANDARDS	](#42-general-namespace-naming-standards)
-  - [4.3. BPEL ACTIVITES](#43-bpel-activities)
+- [4. Naming Conventions](#4-naming-conventions)
+  - [4.1. General Naming Standards](#41-general-naming-standards)
+  - [4.2. General Namespace Naming Standards](#42-general-namespace-naming-standards)
+  - [4.3. BPEL Activities](#43-bpel-activities)
 
 4.3.1	BPEL Process Name and Namespace	
 4.3.2	Assign	
