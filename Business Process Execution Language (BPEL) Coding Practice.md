@@ -1,9 +1,9 @@
 # Table of Contents
 
-- [1	Introduction](#1-introduction)	
+- [1. Introduction](#1-introduction)	
 - [2	Reference](#2-reference)	
 - [3	Purpose](#3---purpose)
-- [4. Naming Conventions](#4-naming-conventions)
+- [4  Naming Conventions](#4-naming-conventions)
   - [4.1. General Naming Standards](#41-general-naming-standards)
   - [4.2. General Namespace Naming Standards](#42-general-namespace-naming-standards)
   - [4.3. BPEL Activities](#43-bpel-activities)
@@ -85,7 +85,7 @@
 
 
 
-# 1	Introduction
+## 1. Introduction
 
 Business Process Execution Language for Web Services (BPEL or BPEL4WS) is a language used for the definition and execution of business processes using Web services.  BPEL enables the top-down realization of Service Oriented Architecture (SOA) through composition, orchestration, and coordination of Web services.  BPEL provides a relatively easy and straightforward way to compose several Web services into new composite services called business processes, which is a collection of coordinated service invocations and related activities that produce a result.
 
