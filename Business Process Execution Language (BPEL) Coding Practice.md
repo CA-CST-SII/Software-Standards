@@ -1,6 +1,6 @@
 # Table of Contents
 
-- [# 1	Introduction](#-introduction)	
+- [1	Introduction](#1-introduction)	
 - [# 2	Reference](#2-reference)	
 - [# 3	Purpose](#3---purpose)	
 4	NAMING CONVENTIONS	
