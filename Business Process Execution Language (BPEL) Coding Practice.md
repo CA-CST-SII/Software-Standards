@@ -10,9 +10,7 @@
     - [4.3.1 BPEL Process Name and Namespace](#431-tag-name)
     - [4.3.2 Assign](#432-tag-specialization)
     - [4.3.3 Compensate](#433-tag-signature)
-4.3.1	BPEL Process Name and Namespace	
-4.3.2	Assign	
-4.3.3	Compensate	
+
 4.3.4	Flow	
 4.3.5	FlowN	
 4.3.6	Invoke	
