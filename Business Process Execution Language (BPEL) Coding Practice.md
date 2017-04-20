@@ -2,12 +2,14 @@
 
 - [1 Introduction](#1-introduction)	
 - [2 Reference](#2-reference)	
-- [3 Purpose](#3---purpose)
+- [3 Purpose](#3-purpose)
 - [4 Naming Conventions](#4-naming-conventions)
   - [4.1 General Naming Standards](#41-general-naming-standards)
   - [4.2 General Namespace Naming Standards](#42-general-namespace-naming-standards)
   - [4.3 BPEL Activities](#43-bpel-activities)
-
+    - [4.3.1 BPEL Process Name and Namespace](#531-tag-name)
+    - [4.3.2 Assign](#532-tag-specialization)
+    - [4.3.3 Compensate](#533-tag-signature)
 4.3.1	BPEL Process Name and Namespace	
 4.3.2	Assign	
 4.3.3	Compensate	
@@ -117,7 +119,7 @@ o	OASIS WS-BPEL v2.0 specification, http://docs.oasis-open.org/wsbpel/2.0/OS/wsb
 
 o	Oracle SOA Suite 11g Handbook by Lucas Jellema
  
-# 3	 Purpose
+# 3 Purpose
 Each business unit is at a different point in the journey of adopting BPEL applications.  Although the answer can vary depending on the current state of maturity, there are important concepts, design decisions, coding practices, and considerations that need to be taken into account to benefit most from BPEL projects.
 
 The purpose of this document is to collect industry best practices and recommendations to move toward higher levels of maturity. Conformance to the practices and guidelines will promote measurable improvements in the performance of BPEL projects and a reduction in sustainment costs.    
@@ -187,7 +189,7 @@ Example: ```<xsd:importnamespace="http://xmlns.oracle.com/EnterpriseObjects/Core
 •	Namespace prefixes must be a minimum of six (6) lowercase characters abbreviation of the namespace.  The abbreviation must be descriptive and unambiguous within the context where it is being used.
 
 •	Namespace prefixes for EBOs and EBMs must adhere to the following standard wherever used regardless of the applications or technology used.  Auto-generated prefixes such as ns1, ns2 must not be used. Auto-generated prefixes for standard namespaces such as xsd, xsi are acceptable.
-## 4.3	BPEL Activities
+## 4.3 BPEL Activities
 ### 4.3.1	BPEL Process Name and Namespace
 
 The BPEL process JDeveloper project name should match the BPEL process name (use default project setting).
@@ -302,7 +304,7 @@ Follow these guidelines:
 Pattern: ```Receive<Message Name>```
 Example: ```ReceiveUpdateInvoiceEBM```
 
-### 4.3.10	Scope
+### 4.3.10 Scope
 Follow these guidelines:
 
 •	The name should follow the general standard naming standards.
@@ -315,7 +317,7 @@ Follow these guidelines:
 Pattern: ```<Name describing the Scoped Tasks>{ Scope |Milestone}```
 Examples: ```GetCreditRatingScope```, ```GetLoanOfferScope```, ```ProcessCreditCheckMilestone```
 
-### 4.3.11	Sequence
+### 4.3.11 Sequence
 Follow these guidelines:
 
 •	The name should follow the general standard naming standards.
@@ -326,7 +328,7 @@ Follow these guidelines:
 Pattern: <Name describing the Sequenced Tasks>Sequence
 Example: GetCustomerInfoSequence
 
-### 4.3.12	Switch
+### 4.3.12 Switch
 Follow these guidelines:
 
 •	The name should follow the general standard naming standards.
@@ -337,7 +339,7 @@ Follow these guidelines:
 Pattern: ```Switch<Name of what is being evaluated>```
 Example: ```SwitchCreditRating```
 
-### 4.3.13	Case
+### 4.3.13 Case
 Follow these guidelines:
 
 •	The name should follow the general standard naming standards.
@@ -348,7 +350,7 @@ Follow these guidelines:
 Pattern: ```Case<Name evaluated value>```
 Example: ```CaseBadCredit```, ```CaseApprovalRequired```
 
-### 4.3.14	Terminate
+### 4.3.14 Terminate
 Follow these guidelines:
 
 •	The name should follow the general standard naming standards.
@@ -359,7 +361,7 @@ Follow these guidelines:
 Pattern: ```Terminate<reason of termination>```
 Example: ```TerminateTimeout```, ```TerminateEndOfProcess```
 
-### 4.3.15	Throw
+### 4.3.15 Throw
 Follow these guidelines:
 
 •	The name should follow the general standard naming standards.
@@ -374,7 +376,7 @@ Example: ThrowExceededMaxAmount, which uses ExceededMaxAmount variable.
 Note:
 When defining a Catch in the Scope activity, the displayed catch name is the fault name.
 
-### 4.3.16	Transform
+### 4.3.16 Transform
 Follow these guidelines:
 
 The name should follow the general standard naming standards.
@@ -390,7 +392,7 @@ The name should follow the general standard naming standards.
 Pattern: ```Xform<source>To<destination>```
 Example: ```XformBillToPortal80Bill```
 
-### 4.3.17	Wait
+### 4.3.17 Wait
 Follow these guidelines:
 
 The name should follow the general standard naming standards.
@@ -401,7 +403,7 @@ The name should follow the general standard naming standards.
 Pattern: ```Wait<Name describing the waiting reason>```
 Example: ```WaitOrderAcknowledgeTimeout```, ```WaitWarmUpTime```
 
-### 4.3.18	While
+### 4.3.18 While
 Follow these guidelines:
 
 •	The name should follow the general standard naming standards.
@@ -412,7 +414,7 @@ Follow these guidelines:
 Pattern: ```While<Name describing the loop condition>```
 Example: ```WhileAllMsgsSent```
 
-## 4.4	Other BPEL Artifacts
+## 4.4 Other BPEL Artifacts
 
 ### 4.4.1	Variables
 Follow these guidelines:
@@ -445,8 +447,8 @@ The correlation set property names follows the general BPEL variables naming sta
 The term fault refers to any exceptional condition that can alter the normal processing of a business process. Within the context of a business process, a fault need not result in a process ending condition; instead, a fault should lead to an actionable event. If a fault is not handled, it will lead to unexpected conditions, outcomes or even unpredictable failures of the business process. A well-designed business process should handle faults so that failures lead to predictable outcomes. Within BPEL, fault handlers can catch faults and attach business relevant execution logic to deal with the exceptional situation.
 
 Explicit fault handlers, if used, attached to a scope provide a way to define a set of custom fault-handling activities, defined by <catch> and <catchAll> constructs.  Each <catch> construct is defined to intercept a specific kind of fault, defined by a fault QName.  An optional variable can be provided to hold the data associated with the fault.  If the fault name is missing, then the catch will intercept all faults with the same type of fault data.  The fault variable is specified using the fault Variable attribute in a <catch> fault handler.  The variable is deemed to be implicitly declared by virtue of being used as the value of this attribute and is local to the fault handler. It is not visible or usable outside the fault handler in which it is declared. A <catchAll> clause can be added to catch any fault not caught by a more specific fault handler.
-## 5.1	BPEL Standard Faults
-### 5.1.1	BPEL 2.0 Standard Faults
+## 5.1 BPEL Standard Faults
+### 5.1.1 BPEL 2.0 Standard Faults
 
 The following list specifies the standard faults defined within the WS-BPEL specification. All standard fault names are qualified with the standard WS-BPEL namespace.
 
@@ -526,7 +528,7 @@ Runtime faults are the result of problems within the running of the BPEL process
 
 •	```replayFault```: a replayFault replays the activity inside a scope. At any point inside a scope, this fault is migrated up to the scope. The server then re-executes the scope from the beginning.
 
-## 5.3	Typical fault handling flow
+## 5.3 Typical fault handling flow
 
 When a fault occurs in a process, the current operational flow moves to the fault handler within the immediate scope.  If the current fault handler does not have the appropriate Catch element defined to trap and handle this fault, the business process container checks from inner scope to outer scope until it finds an appropriate fault handler that can trap this fault. 
 
@@ -547,7 +549,7 @@ o	Reply with a fault to the process initiator.
 o	Invoke a human task to correct the issue. 
 
 o	If the fault handler cannot resolve the issue, you might need to rollback and compensate.
-## 5.4	BPEL activities to propagate a fault
+## 5.4 BPEL activities to propagate a fault
 BPEL allows fault propagation using throw, rethrow and reply within a fault handler.
 ### 5.4.1	Throw
 A throw activity indicates a problem that a business process flow cannot handle. It is used to throw an exception corresponding to an internal error condition. Use a throw activity within the flow of a business process or within a fault handler, to allow an outer fault handler to handle the fault. A throw activity can throw one of the standard BPEL faults or a custom fault. 
@@ -557,14 +559,14 @@ When the current fault handler cannot handle the fault and wants to propagate it
 ### 5.4.3	Reply with a fault
 
 This construct allows the propagation of the fault to the client that initiated the process. A reply with fault activity can only return a fault defined on the interface the process is implementing. This is useful when the business process cannot properly respond to the caught fault, and the process initiator may be better equipped to respond; for example if the client passes an account number that is not found by the business process, the process should reply to the service call with an AccountNotFound Fault.
-## 5.5	Use a fault handler within a scope
+## 5.5 Use a fault handler within a scope
 
 If a fault is not handled, it creates a faulted state that migrates up through the application and can throw the entire process into a faulted state.  To prevent this, contain the parts of the process that have the potential to receive faults within a scope. The catch activity works within a scope to catch faults and exceptions before they can throw the entire process into a faulted state.
 
 You can use specific fault names in the catch activity to respond in a specific way to an
 individual fault. To catch any faults that are not already handled by name-specific
 catch activities, use the catchAll activity.
-## 5.6	Use compensation after undoing a series of operations
+## 5.6 Use compensation after undoing a series of operations
 
 Compensation occurs when the BPEL process cannot complete a series of operations after some of them have already completed, and the BPEL process must backtrack and undo the previously completed transactions. For example, if a BPEL process is designed to book a rental car, a hotel, and a flight, it may book the car and the hotel and then be unable to book a flight for the right day. In this case, the BPEL flow performs compensation by going back and unbooking the car and the hotel.
 
@@ -575,7 +577,7 @@ If an invoke activity has a compensation handler defined inline, then the name o
 <compensate scope="ncname"? standard-attributes>
 standard-elements
 </compensate>
-## 5.7	Use the terminate activity to stop a business process instance
+## 5.7 Use the terminate activity to stop a business process instance
 
 The terminate activity immediately terminates the behavior of a business process instance within which the terminate activity is performed.  All currently running activities must be terminated as soon as possible without any fault handling or compensation behavior.  The terminate activity does not send any notifications of the status of a BPEL process.
 
@@ -593,35 +595,35 @@ Avoid BPEL artifacts with low comments/code ratio	Maintainability of the code is
 # 7	Simple Coding Guidelines
 SOA and BPEL bring a range of new challenges as composite applications introduce greater complexity and more dependencies. 
 
-## 7.1	Avoid interruptible processes
+## 7.1 Avoid interruptible processes
 
 Use interruptible processes, also known as macroflows or long-running processes, only when required.  Whenever possible, use synchronous interactions for non-interruptible processes.  A non-interruptible process is much more efficient than an interruptible process.  If interruptible processes are required for some capabilities, separate the processes such that the most frequent scenarios can be executed in non-interruptible processes and exceptional cases are handled in interruptible processes.
-## 7.2	Avoid missing OTHERSWISE in SWITCH statements
+## 7.2 Avoid missing OTHERSWISE in SWITCH statements
 
  The OTHERWISE CASE is executed when none of the conditions being tested for in the CASE statement are met or executed.  Having no OTHERWISE means that there is a strong assumption about the value of data. The cases that are "impossible" today are the ones most likely to be the causes of untraceable bugs in the future, when the impossible changes to the standard.  Add the proper exception handling code in the OTHERWISE clause.
-## 7.3	Avoid using invoke without catch
+## 7.3 Avoid using invoke without catch
 
 The BPEL process has to perform the task efficiently and reliably enough that network interruptions or the unavailability of a web service or other resource doesn't break it down.
-## 7.4	Create scopes for each step of the flow in the process
+## 7.4 Create scopes for each step of the flow in the process
 
 Create scopes for each step of the flow in the process so as to make it modular.  This will help in creating local variables within that scope.  Scopes provide a context for the execution and/or documentation of enclosed activities, and they can have variables that are visible and usable at and within the scope level. Scopes can have both default and defined fault and event handling logic, and they can be undone, if necessary. Undoing the work of a scope involves the concept of compensation.  When designing BPEL processes, they should be organized into logical units of work that can be undone.  Scopes can be used as a context to create variables, fault/compensation/event handlers and for organizational purposes. They are the basic building blocks used to assemble a BPEL process.
 
-## 7.5	Use short-running flows where possible
+## 7.5 Use short-running flows where possible
 
 A business transaction that is represented through a long-running flow has a lifetime that can span minutes, hours, days or even months, and is typically divided into several technical transactions.  The state of such a process instance is persisted in a database between two transactions so that operating system resources are occupied only during an in-flight transaction. 
 
 The short-running flow is used when the corresponding business transaction is fully automated, completes within a short timeframe, and has no asynchronous request/response operations.  The entire set of flow activities runs within one single technical transaction, navigation is all done in memory, and the intermediate state is not saved to a database.  Such short-running flows can run between five and fifty times faster than comparable long-running flows and are recommended, where possible.
-## 7.6	Use global variables when required
+## 7.6 Use global variables when required
 
 This will help in maintainability.  However, declaring many global variables needs to be avoided in a BPEL process, instead use scope or local variables. The variables defined at the process root are global variables, which have a global visibility throughout the entire process.  The variables defined within a particular scope are visible only inside that scope and all nested scopes.  These variables are called local variables.  A variable defined for an inner scope element can hide an upper defined variable of the same name.
-## 7.7	Consider creating sequences instead of scopes for performance
+## 7.7 Consider creating sequences instead of scopes for performance
 
 Do not add too many scopes since it may affect the performance. Instead, consider creating sequences. A sequence is a structured activity which can contain other activities, all of which will be executed in a specifically defined order.  The purpose of a sequence, therefore, is to define the execution order for a group of activities.  BPEL sequences can contain other sequences and can be nested as deeply as you want.  Sequences have all the standard attributes and elements and they must contain at least one or more activities.
-## 7.8	Use assign activities instead of transform activities
+## 7.8 Use assign activities instead of transform activities
 
 Use assign activities instead of transform activities wherever possible since it take less memory.
 Assign activity provides a method for data manipulation, such as copying the contents of one variable to another. This activity can contain any number of elementary assignments.  Transform activity enables to create a transformation that maps source elements to target elements (for example, incoming purchase order data into outgoing purchase order acknowledgment data).
-## 7.9	Use XSL to construct messages instead of multiple assign statements
+## 7.9 Use XSL to construct messages instead of multiple assign statements
 
 Don’t use multiple assign statement to construct a message; use XSL to construct messages.
 ## 7.10	Use XPath Expression constraints to check the data constraints
@@ -731,7 +733,7 @@ Below are code examples for BPEL concepts, fault handling, and invoking an async
 # 9	Leading practices for success of BPEL implementation
 To increase project success rates and decrease risks of BPEL projects, it is recommended to follow the following initiative that consists of a combination of process, rules, integration using services, and underlying data.
 
-## 9.1	Assessments and maturity models
+## 9.1 Assessments and maturity models
 
 A first important step is to agree on the features that characterize your current processes, and then decide which set of capabilities you need to have in a future or to-be state. This assessment needs to be predicated on some kind of a maturity model. 
 
@@ -750,12 +752,12 @@ For example:
 
 •	Infrastructure
 
-## 9.2	A strategic roadmap and tactical plan
+## 9.2 A strategic roadmap and tactical plan
 You can create a strategic roadmap (often as a program consisting of multiple projects and initiatives), and a tactical plan. This plan is based on an evaluation of the as-is state, and a determination of the wanted to-be state that you have worked out in your maturity assessment.
 
 A tactical project plan is created for the shorter term, and a longer-term plan is crafted with schedules, initiatives, and objectives to be attained. Resources are trained and allocated to meet these objectives and timelines.
 
-## 9.3	Agile methods and processes
+## 9.3 Agile methods and processes
 
 Paramount to large-scale software development across an organization is consistency and prescriptiveness. This involves large groups of distributed staff working from the same templates so that activities converge and outputs are relevant across the organization. Prescriptiveness is important to help guide technical and business resources to engage in the correct activities to produce the wanted artifacts and deliverables.
 
@@ -776,7 +778,7 @@ After the initial pilot or prototype, it is advised to look holistically at the 
 
 Environments
 
-## 9.4	Reference architecture
+## 9.4 Reference architecture
 
 Reference architectures, such as service-oriented architecture (SOA), can provide a blueprint for the logical and physical manifestations of the components and architectural building blocks that are agreed-upon standards within an organization. 
 
@@ -784,7 +786,7 @@ The key point is that you ensure that it is not an ad hoc architecture that gets
 
 Start with an industry-standard reference architecture, and then customize key aspects for your organization or line of business.  This practice helps establish uniformity and consistency that can aid in the governance of enterprise initiatives.  The SOA Reference Architecture from the Open Group (http://opengroup.org) provides the basis for architectural building blocks that enable refinements needed to support business processes.
 
-## 9.5	Governance
+## 9.5 Governance
 
 All of the standards and leading practices and methods that are agreed upon by one group of people at a given point in time fade from organizational memory unless they are institutionalized. Usually, a construct such as a center of competency (CoC) is established as a steward and focal point for best practices and standards. It also facilitates the enforcement of the standards, or the appeal for exceptions should the need arise.
 
