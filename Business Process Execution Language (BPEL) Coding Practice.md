@@ -1,7 +1,7 @@
 # Table of Contents
 
 - [1 Introduction](#1-introduction)	
-- [2 Reference](#2-reference)	
+- [2 List Of References](#2-reference)	
 - [3 Purpose](#3-purpose)
 - [4 Naming Conventions](#4-naming-conventions)
   - [4.1 General Naming Standards](#41-general-naming-standards)
@@ -107,7 +107,7 @@ Using BPEL a series of discreet services can be integrated into an end-to-end pr
 
 
  
-# 2	Reference
+# 2	List Of References
 
 The following sources were used in creation of the original version of this standard.
 o	Oracle Infrastructure Components and Utilities User's Guide for Oracle Application Integration Architecture Foundation Pack, https://docs.oracle.com/cd/E28280_01/doc.1111/e17366/toc.htm
