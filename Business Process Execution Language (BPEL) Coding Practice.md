@@ -109,6 +109,7 @@ Using BPEL a series of discreet services can be integrated into an end-to-end pr
  
 # 2	List Of References
 
+
 The following sources were used in creation of the original version of this standard.
 o	Oracle Infrastructure Components and Utilities User's Guide for Oracle Application Integration Architecture Foundation Pack, https://docs.oracle.com/cd/E28280_01/doc.1111/e17366/toc.htm
 
