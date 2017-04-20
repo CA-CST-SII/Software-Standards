@@ -1,12 +1,12 @@
 # Table of Contents
 
 - [1 Introduction](#1-introduction)	
-- [2	Reference](#2-reference)	
-- [3	Purpose](#3---purpose)
-- [4  Naming Conventions](#4-naming-conventions)
-  - [4.1. General Naming Standards](#41-general-naming-standards)
-  - [4.2. General Namespace Naming Standards](#42-general-namespace-naming-standards)
-  - [4.3. BPEL Activities](#43-bpel-activities)
+- [2 Reference](#2-reference)	
+- [3 Purpose](#3---purpose)
+- [4 Naming Conventions](#4-naming-conventions)
+  - [4.1 General Naming Standards](#41-general-naming-standards)
+  - [4.2 General Namespace Naming Standards](#42-general-namespace-naming-standards)
+  - [4.3 BPEL Activities](#43-bpel-activities)
 
 4.3.1	BPEL Process Name and Namespace	
 4.3.2	Assign	
@@ -125,7 +125,7 @@ The purpose of this document is to collect industry best practices and recommend
 This document is intended for the CST Systems Engineering and Integration (SEI) team and development teams.  
  
 # 4	Naming Conventions
-## 4.1	General Naming Standards
+## 4.1 General Naming Standards
 
 Follow these general naming standards:
 
@@ -154,7 +154,7 @@ Example: ```<xsd:complexType name="InvoiceEBOType"/>```
 
  •	The name of a simple type definition should be the name of the root element with the 'ContentType' suffix.
 Example: ```<xsd:simpleType name="PhoneNumberContentType">```
-## 4.2	General Namespace Naming Standards
+## 4.2 General Namespace Naming Standards
 
 Follow these general namespace naming standards:
 
