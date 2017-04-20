@@ -25,12 +25,12 @@
     - [4.3.16 Transform](#433-transform)
     - [4.3.17 Wait](#431-wait)
     - [4.3.18 While](#432-while)
-  - [4.4 OTHER BPEL ARTIFACTS](#4-naming-conventions)
-    - [4.4.1 Variables](#41-general-naming-standards)
-    - [4.4.2 Properties](#42-general-namespace-naming-standards)
-    - [4.4.3 Correlation Sets](#43-bpel-activities)	
-    - [4.4.4 Correlation Sets](#43-bpel-activities)	
-- [5 Fault Handling](#4-naming-conventions)
+  - [4.4 OTHER BPEL ARTIFACTS](#4-other-bpel-artifacts)
+    - [4.4.1 Variables](#41-variables)
+    - [4.4.2 Properties](#42-properties)
+    - [4.4.3 Correlation Sets](#43-correlation-sets)	
+    - [4.4.4 Correlation Sets](#44-correlation-sets)	
+- [5 Fault Handling](#5-fault-handling)
   - [5.1 BPEL STANDARD FAULTS](#41-general-naming-standards)
     - [5.1.1 BPEL 2.0 Standard Faults](#431-bpel-process-name-and-namespace)
     - [5.1.2 Fault handling order of precedence in BPEL 2.0](#432-assign)
@@ -105,7 +105,7 @@ Using BPEL a series of discreet services can be integrated into an end-to-end pr
 
 
  
-# 2	List Of References
+# 2 List Of References
 
 
 The following sources were used in creation of the original version of this standard.
