@@ -7,9 +7,9 @@
   - [4.1 General Naming Standards](#41-general-naming-standards)
   - [4.2 General Namespace Naming Standards](#42-general-namespace-naming-standards)
   - [4.3 BPEL Activities](#43-bpel-activities)
-    - [4.3.1 BPEL Process Name and Namespace](#531-tag-name)
-    - [4.3.2 Assign](#532-tag-specialization)
-    - [4.3.3 Compensate](#533-tag-signature)
+    - [4.3.1 BPEL Process Name and Namespace](#431-tag-name)
+    - [4.3.2 Assign](#432-tag-specialization)
+    - [4.3.3 Compensate](#433-tag-signature)
 4.3.1	BPEL Process Name and Namespace	
 4.3.2	Assign	
 4.3.3	Compensate	
