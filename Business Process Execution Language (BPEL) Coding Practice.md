@@ -453,59 +453,59 @@ Explicit fault handlers, if used, attached to a scope provide a way to define a 
 The following list specifies the standard faults defined within the WS-BPEL specification. All standard fault names are qualified with the standard WS-BPEL namespace.
 
 
-Fault name	Description
-ambiguousReceive	Thrown when a business process instance simultaneously enables two or more IMAs for the same partnerLink, portType, operation but different correlationSets, and the correlations of multiple of these activities match an incoming request message.
-completionConditionFailure	Thrown if upon completion of a directly enclosed <scope> activity within <forEach> activity it can be determined that the completion condition can never be true.
-conflictingReceive	Thrown when more than one inbound message activity is enabled simultaneously for the same partner link, port type, operation and correlation set(s).
-conflictingRequest	Thrown when more than one inbound message activity is open for the same partner link, operation and message exchange.
-correlationViolation	Thrown when the contents of the messages that are processed in an <invoke>, <receive>, <reply>, <onMessage>, or <onEvent> do not match specified correlation information.
-invalidBranchCondition	Thrown if the integer value used in the <branches> completion condition of <forEach> is larger than the number of directly enclosed <scope> activities.
-invalidExpressionValue	Thrown when an expression used within a WS-BPEL construct (except <assign>) returns an invalid value with respect to the expected XML Schema type.
-invalidVariables	Thrown when an XML Schema validation (implicit or explicit) of a variable value fails.
-joinFailure	Thrown when the join condition of an activity evaluates to false and the value of the suppressJoinFailure attribute is yes.
-mismatchedAssignmentFailure	Thrown when incompatible types or incompatible XML infoset structure are encountered in an <assign> activity.
-missingReply	Thrown when an inbound message activity has been executed, and the process instance or scope instance reaches the end of its execution without a corresponding <reply> activity having been executed.
-missingRequest	Thrown when a <reply> activity cannot be associated with an open inbound message activity by matching the partner link, operation and message exchange tuple.
-scopeInitializationFailure	Thrown if there is any problem creating any of the objects defined as part of scope initialization. This fault is always caught by the parent scope of the faulted scope.
-selectionFailure	Thrown when a selection operation performed either in a function such as bpel:getVariableProperty, or in an assignment, encounters an error.
-subLanguageExecutionFault	Thrown when the execution of an expression results in an unhandled fault in an expression language or query language.
-uninitializedPartnerRole	Thrown when an <invoke> or <assign> activity references a partner link whose partnerRole endpoint reference is not initialized.
-uninitializedVariable	Thrown when there is an attempt to access the value of an uninitialized variable or in the case of a message type variable one of its uninitialized parts.
-unsupportedReference	Thrown when a WS-BPEL implementation fails to interpret the combination of the reference-scheme attribute and the content element OR just the content element alone.
-xsltInvalidSource	Thrown when the transformation source provided in a bpel:doXslTransform function call was not legal (i.e., not an EII).
-xsltStylesheetNotFound	Thrown when the named style sheet in a bpel:doXslTransform function call was not found.
+    Fault name	Description
+    ambiguousReceive	Thrown when a business process instance simultaneously enables two or more IMAs for the same partnerLink, portType, operation but different correlationSets, and the correlations of multiple of these activities match an incoming request message.
+    completionConditionFailure	Thrown if upon completion of a directly enclosed <scope> activity within <forEach> activity it can be determined that the completion condition can never be true.
+    conflictingReceive	Thrown when more than one inbound message activity is enabled simultaneously for the same partner link, port type, operation and correlation set(s).
+    conflictingRequest	Thrown when more than one inbound message activity is open for the same partner link, operation and message exchange.
+    correlationViolation	Thrown when the contents of the messages that are processed in an <invoke>, <receive>, <reply>, <onMessage>, or <onEvent> do not match specified correlation information.
+    invalidBranchCondition	Thrown if the integer value used in the <branches> completion condition of <forEach> is larger than the number of directly enclosed <scope> activities.
+    invalidExpressionValue	Thrown when an expression used within a WS-BPEL construct (except <assign>) returns an invalid value with respect to the expected XML Schema type.
+    invalidVariables	Thrown when an XML Schema validation (implicit or explicit) of a variable value fails.
+    joinFailure	Thrown when the join condition of an activity evaluates to false and the value of the suppressJoinFailure attribute is yes.
+    mismatchedAssignmentFailure	Thrown when incompatible types or incompatible XML infoset structure are encountered in an <assign> activity.
+    missingReply	Thrown when an inbound message activity has been executed, and the process instance or scope instance reaches the end of its execution without a corresponding <reply> activity having been executed.
+    missingRequest	Thrown when a <reply> activity cannot be associated with an open inbound message activity by matching the partner link, operation and message exchange tuple.
+    scopeInitializationFailure	Thrown if there is any problem creating any of the objects defined as part of scope initialization. This fault is always caught by the parent scope of the faulted scope.
+    selectionFailure	Thrown when a selection operation performed either in a function such as bpel:getVariableProperty, or in an assignment, encounters an error.
+    subLanguageExecutionFault	Thrown when the execution of an expression results in an unhandled fault in an expression language or query language.
+    uninitializedPartnerRole	Thrown when an <invoke> or <assign> activity references a partner link whose partnerRole endpoint reference is not initialized.
+    uninitializedVariable	Thrown when there is an attempt to access the value of an uninitialized variable or in the case of a message type variable one of its uninitialized parts.
+    unsupportedReference	Thrown when a WS-BPEL implementation fails to interpret the combination of the reference-scheme attribute and the content element OR just the content element alone.
+    xsltInvalidSource	Thrown when the transformation source provided in a bpel:doXslTransform function call was not legal (i.e., not an EII).
+    xsltStylesheetNotFound	Thrown when the named style sheet in a bpel:doXslTransform function call was not found.
  
 ### 5.1.2	Fault handling order of precedence in BPEL 2.0
 
 In BPEL 2.0, the order of precedence for catching faults thrown without associated data is as follows:
 
-•	If there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity.
+- If there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity.
 
-•	Otherwise, if there is a catchAll activity, the fault is sent to the catchAll fault handler.
+- Otherwise, if there is a catchAll activity, the fault is sent to the catchAll fault handler.
 
-•	Otherwise, the fault is processed by the default fault handler.
+- Otherwise, the fault is processed by the default fault handler.
 
 In BPEL 2.0, the order of precedence for catching faults thrown with associated data is as follows:
 
-•	If there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity.
+- If there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity.
 
-•	If the fault data is a WSDL message type in which the following exists:
+- If the fault data is a WSDL message type in which the following exists:
 
-o	The message contains a single part defined by an element.
+  - The message contains a single part defined by an element.
 
-o	There exists a catch activity with a matching faultName value that has a faultVariable whose associated faultElement QName matches the QName of the runtime element data of the single WSDL message part.
+  - There exists a catch activity with a matching faultName value that has a faultVariable whose associated faultElement QName matches the QName of the runtime element data of the single WSDL message part.
 
 Then, the fault is sent to the identified catch activity with the faultVariable initialized to the value in the single part's element.
 
-•	Otherwise, if there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity. In this case, the fault value is not available from within the fault handler, but is available to the rethrow activity.
+- Otherwise, if there is a catch activity with a matching faultName value that does not specify a faultVariable attribute, the fault is sent to the identified catch activity. In this case, the fault value is not available from within the fault handler, but is available to the rethrow activity.
 
-•	Otherwise, if there is a catch construct without a faultName attribute that has a faultVariable whose type matches the type of the runtime fault data, then the fault is sent to the identified catch activity.
+- Otherwise, if there is a catch construct without a faultName attribute that has a faultVariable whose type matches the type of the runtime fault data, then the fault is sent to the identified catch activity.
 
-•	Otherwise, if the fault data is a WSDL message type in which the message contains a single part defined by an element and there exists a catch activity without a faultName attribute that has a faultVariable whose associated faultElement's QName matches the QName of the runtime element data of the single WSDL message part, the fault is sent to the identified catch activity with the faultVariable initialized to the value in the single part's element.
+- Otherwise, if the fault data is a WSDL message type in which the message contains a single part defined by an element and there exists a catch activity without a faultName attribute that has a faultVariable whose associated faultElement's QName matches the QName of the runtime element data of the single WSDL message part, the fault is sent to the identified catch activity with the faultVariable initialized to the value in the single part's element.
 
-•	Otherwise, if there is a catchAll activity, the fault is sent to the catchAll fault handler.
+- Otherwise, if there is a catchAll activity, the fault is sent to the catchAll fault handler.
 
-•	Otherwise, the fault is handled by the default fault handler.
+- Otherwise, the fault is handled by the default fault handler.
 
 ## 5.2	Categories of BPEL Faults
 
@@ -536,17 +536,12 @@ The Catch mechanism handles a specific application or standard fault.  In cases 
 
 When designing fault handlers, consider the following options:
 
-•	Catch a fault and try to correct the problem, allowing the business process to continue to normal completion.
-
-•	Catch a fault and find that it is not resolvable at this scope. Additional options can be used: 
-
-o	Throw a new fault.
-
-o	Re-throw the original fault to allow another scope to handle it.
-
-o	Reply with a fault to the process initiator. 
-
-o	Invoke a human task to correct the issue. 
+- Catch a fault and try to correct the problem, allowing the business process to continue to normal completion.
+- Catch a fault and find that it is not resolvable at this scope. Additional options can be used: 
+  - Throw a new fault.
+  - Re-throw the original fault to allow another scope to handle it.
+  - Reply with a fault to the process initiator. 
+  - Invoke a human task to correct the issue. 
 
 o	If the fault handler cannot resolve the issue, you might need to rollback and compensate.
 ## 5.4 BPEL activities to propagate a fault
@@ -678,16 +673,16 @@ A project name SHOULD:
  - Be a noun, in mixed case with the first letter of each internal word capitalized.
  - Be simple and meaningful.
 - Be abstract.
-•	Be abbreviated, where possible.
-o	Common government acronyms are acceptable.
+- Be abbreviated, where possible.
+  - Common government acronyms are acceptable.
 A project name SHOULD NOT:
-•	Identify a particular department, bureau, agency, or other entity. 
-•	Identify a particular product or technology, e.g. SOA, OSB, ESB, etc.
-•	Identify the type of service, e.g. synchronous/sync or asynchronous/asynchronous.
-•	Include the following word(s):
-•	Project,
-•	Proxy, and/or
-•	Service.
+- Identify a particular department, bureau, agency, or other entity. 
+- Identify a particular product or technology, e.g. SOA, OSB, ESB, etc.
+- Identify the type of service, e.g. synchronous/sync or asynchronous/asynchronous.
+- Include the following word(s):
+- Project,
+- Proxy, and/or
+- Service.
 ## 7.18	Follow variable name conventions.
 
 A variable name SHOULD:
