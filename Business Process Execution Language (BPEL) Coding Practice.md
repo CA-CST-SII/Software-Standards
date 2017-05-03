@@ -47,7 +47,7 @@
   - [5.7 Use the terminate activity to stop a business process instance](#43-bpel-activities)
 - [6 Code level Metrics](#43-bpel-activities)	
 - [7 Simple coding guidelines](#43-bpel-activities)	
-  - [7.1 Avoid interruptible processes](#43-bpel-activities)
+  - [7.1 Avoid interruptible processes](#71-avoid-interruptible-processes)
   - [7.2 Avoid missing otherwise in switch statements](#43-bpel-activities)
   - [7.3 Avoid using invoke without catch](#43-bpel-activities)
   - [7.4 Create Scopes For Each Step Of the Flow in the Process](#43-bpel-activities)
