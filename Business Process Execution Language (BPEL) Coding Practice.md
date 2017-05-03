@@ -675,11 +675,9 @@ Extensive use of activities such as alarm and wait can lower system performance.
 ## 7.17	Follow project name conventions.
 
 A project name SHOULD:
-•	Be a noun, in mixed case with the first letter of each internal word capitalized.
-
-•	Be simple and meaningful.
-
-•	Be abstract.
+ - Be a noun, in mixed case with the first letter of each internal word capitalized.
+ - Be simple and meaningful.
+- Be abstract.
 •	Be abbreviated, where possible.
 o	Common government acronyms are acceptable.
 A project name SHOULD NOT:
