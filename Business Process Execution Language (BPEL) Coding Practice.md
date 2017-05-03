@@ -45,7 +45,7 @@
   - [5.5 Use a Fault Handler Within a Scope](#55-use-a-fault-handler-within-a-scope)
   - [5.6 Use Compensation After Undoing a series of Operations](#56-use-compensation-after-undoing-a-series-of-operations)
   - [5.7 Use the terminate activity to stop a business process instance](#57-use-the-terminate-activity-to-stop-a-business-instance)
-- [6 Code level Metrics](#6-code-level)	
+- [6 Code level Metrics](#6-code-level-metrics)	
 - [7 Simple coding guidelines](#43-bpel-activities)	
   - [7.1 Avoid interruptible processes](#71-avoid-interruptible-processes)
   - [7.2 Avoid missing otherwise in switch statements](#43-bpel-activities)
