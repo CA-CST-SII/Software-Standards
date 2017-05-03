@@ -676,7 +676,9 @@ Extensive use of activities such as alarm and wait can lower system performance.
 
 A project name SHOULD:
 •	Be a noun, in mixed case with the first letter of each internal word capitalized.
+
 •	Be simple and meaningful.
+
 •	Be abstract.
 •	Be abbreviated, where possible.
 o	Common government acronyms are acceptable.
