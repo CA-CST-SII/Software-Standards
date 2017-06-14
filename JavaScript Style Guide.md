@@ -1,13 +1,13 @@
-#JavaScript Style Guide
-###Background
+# JavaScript Style Guide
+### Background
 JavaScript is the main client-side scripting language used by many of Consular Systems and Technology (CST) web applications projects. This style guide is a list of dos and don'ts for JavaScript programs. This content was adapted from the Google JavaScript Style Guide retrieved from https://google.github.io/styleguide/javascriptguide.xml by Aaron Whyte, Bob Jervis, Dan Pupius, Erik Arvidsson, Fritz Schneider, and Robby Walker. Content was modified for use in CST. It is distributed under the CC-By 3.0 License for open source. Content was added from input of the Systems Integration, and Innovation (SII) Branch as well as from various Government and industry subject matter experts.
-##1. JavaScript Language Rules
-###var
+## 1. JavaScript Language Rules
+### var
 Declarations with `var:` Always
 
 **Decision:** When you fail to specify `var`, the variable gets placed in the global context, potentially clobbering existing values. Also, if there's no declaration, it's hard to tell in what scope a variable lives (e.g., it could be in the Document or Window just as easily as in the local scope). So always declare with `var`.
 
-###Constants
+### Constants
 •	Use `NAMES_LIKE_THIS` for constant values.
 
 •	Use `@const` to indicate a constant (non-overwritable) *pointer* (a variable or property).
@@ -55,7 +55,7 @@ sloth.MyFinalClass = function() {};
 ```
 In this case, the pointer can never be overwritten, but value is highly mutable and not constant (and thus in `camelCase`, not `ALL_CAPS`).
 
-###Semicolons
+### Semicolons
 
 Always use semicolons.
 
@@ -87,17 +87,17 @@ var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // No semicolon here.
 // 3. conditional execution a la bash
 -1 == resultOfOperation() || die();
 ```
-####So what happens?
+#### So what happens?
 1.	JavaScript error - first the function returning 42 is called with the second function as a parameter, then the number 42 is "called" resulting in an error.
 2.	You will most likely get a 'no such property in undefined' error at runtime as it tries to call `x[ffVersion, ieVersion][isIE]()`.
 3.	`die` is always called since the array minus 1 is `NaN` which is never equal to anything (not even if `resultOfOperation()` returns `NaN`) and `THINGS_TO_EAT` gets assigned the result of `die()`.
 
-####Why?
+#### Why?
 JavaScript requires statements to end with a semicolon, except when it thinks it can safely infer their existence. In each of these examples, a function declaration or object or array literal is used inside a statement. The closing brackets are not enough to signal the end of the statement. Javascript never ends a statement if the next token is an infix or bracket operator.
 
 This has really surprised people, so make sure your assignments end with semicolons.
 
-####Clarification: Semicolons and functions
+#### Clarification: Semicolons and functions
 Semicolons should be included at the end of function expressions, but not at the end of function declarations. The distinction is best illustrated with an example:
 ```javascript
 var foo = function() {
@@ -108,12 +108,12 @@ function foo() {
   return true;
 }  // no semicolon here.
 ```
-###Nested functions
+### Nested functions
 Yes
 
 Nested functions can be very useful, for example in the creation of continuations and for the task of hiding helper functions. Feel free to use them.
 
-###Function Declarations Within Blocks
+### Function Declarations Within Blocks
 No
 
 Do not do this:
@@ -128,23 +128,23 @@ if (x) {
   var foo = function() {};
 }
 ```
-###Exceptions
+### Exceptions
 Yes
 
 You basically can't avoid exceptions if you're doing something non-trivial (using an application development framework, etc.). Go for it.
 
-###Custom exceptions
+### Custom exceptions
 Yes
 
 Without custom exceptions, returning error information from a function that also returns a value can be tricky, not to mention inelegant. Bad solutions include passing in a reference type to hold error information or always returning Objects with a potential error member. These basically amount to a primitive exception handling hack. Feel free to use custom exceptions when appropriate.
 
-###Standards features
+### Standards features
 
 Always preferred over non-standards features
 
 For maximum portability and compatibility, always prefer standards features over non-standards features (e.g., `string.charAt(3)` over `string[3]` and element access with DOM functions instead of using an application-specific shorthand).
 
-###Wrapper objects for primitive types
+### Wrapper objects for primitive types
 No
 
 There's no reason to use wrapper objects for primitive types, plus they're dangerous:
@@ -166,7 +166,7 @@ typeof new Boolean(0) == 'object';
 ```
 This is very useful for casting things to `number`, `string` and `boolean`.
 
-###Multi-level prototype hierarchies
+### Multi-level prototype hierarchies
 Not preferred
 
 Multi-level prototype hierarchies are how JavaScript implements inheritance. You have a multi-level hierarchy if you have a user-defined class D with another user-defined class B as its prototype. These hierarchies are much harder to get right than they first appear!
@@ -182,7 +182,7 @@ D.prototype.method = function() {
   ...
 };
 ```
-###Method and property definitions
+### Method and property definitions
 ```javascript
 /** @constructor */ function SomeConstructor() { this.someProperty = 1; } Foo.prototype.someMethod = function() { ... };
 ```
@@ -199,10 +199,10 @@ function Foo() {
   this.bar = value;
 }
 ```
-####Why?
+#### Why?
 Current JavaScript engines optimize based on the "shape" of an object, [adding a property to an object (including overriding a value set on the prototype) changes the shape and can degrade performance].(https://developers.google.com/v8/design#prop_access)
 
-###delete
+### delete
 ```javascript
 Prefer this.foo = null.
 Foo.prototype.dispose = function() {
@@ -217,7 +217,7 @@ Foo.prototype.dispose = function() {
 ```
 In modern JavaScript engines, changing the number of properties on an object is much slower than reassigning the values. The delete keyword should be avoided except when it is necessary to remove a property from an object's iterated list of keys, or to change the result of if `(key in obj)`.
 
-###Closures
+### Closures
 
 Yes, but be careful.
 
@@ -238,7 +238,7 @@ function bar(a, b) {
   return function() { /* uses a and b */ };
 }
 ```
-###eval()
+### eval()
 
 Only for code loaders and REPL (Read–eval–print loop)
 
@@ -261,7 +261,7 @@ var email = userInfo['email'];
 ```
 With `JSON.parse`, invalid JSON (including all executable JavaScript) will cause an exception to be thrown.
 
-###with() {}
+### with() {}
 
 No
 
@@ -274,7 +274,7 @@ with (foo) {
 ```
 Answer: anything. The local variable `x` could be clobbered by a property of `foo` and perhaps it even has a setter, in which case assigning `3` could cause lots of other code to execute. Don't use `with`.
 
-###this
+### this
 
 Only in object constructors, methods, and in setting up closures
 
@@ -283,7 +283,7 @@ Because this is so easy to get wrong, limit its use to those places where it is 
 •	in constructors
 •	in methods of objects (including in the creation of closures)
 
-###for-in loop
+### for-in loop
 
 Only for iterating over keys in an object/map/hash
 
@@ -320,13 +320,13 @@ function printArray(arr) {
   }
 }
 ```
-###Associative Arrays
+### Associative Arrays
 
 Never use `Array` as a map/hash/associative array
 
 Associative Arrays are not allowed... or more precisely you are not allowed to use non number indexes for arrays. If you need a map/hash use `Object` instead of `Array` in these cases because the features that you want are actually features of `Object` and not of `Array`. `Array` just happens to extend `Object` (like any other object in JS and therefore you might as well have used `Date`, `RegExp` or `String`).
 
-###Multiline string literals
+### Multiline string literals
 
 No
 
@@ -349,7 +349,7 @@ var myString = 'A rather long string of English text, an error message ' +
     'you\'ve got an error and all the extraneous whitespace is ' +
     'just gravy.  Have a nice day.';
 ```
-###Array and Object literals
+### Array and Object literals
 
 Yes
 
@@ -399,13 +399,13 @@ var o2 = {
   'strange key': 3
 };
 ```
-###Modifying prototypes of builtin objects
+### Modifying prototypes of builtin objects
 
 No
 
 Modifying builtins like `Object.prototype` and `Array.prototype` are strictly forbidden. Modifying other builtins like `Function.prototype` is less dangerous but still leads to hard to debug issues in production and should be avoided.
 
-###Internet Explorer's Conditional Comments
+### Internet Explorer's Conditional Comments
 
 No
 
@@ -416,22 +416,22 @@ var f = function () {
 };
 ```
 Conditional Comments hinder automated tools as they can vary the JavaScript syntax tree at runtime.
-##2. JavaScript Style Rules
-###Naming
+## 2. JavaScript Style Rules
+### Naming
 
 In general, use `functionNamesLikeThis, variableNamesLikeThis, ClassNamesLikeThis, EnumNamesLikeThis, methodNamesLikeThis, CONSTANT_VALUES_LIKE_THIS,foo.namespaceNamesLikeThis.bar`, and `filenameslikethis.js`.
 
-####Properties and methods
+#### Properties and methods
 •	Private properties and methods should be named with a trailing underscore.
 •	Protected properties and methods should be named without a trailing underscore (like public ones).
 For more information on private and protected, read the section on visibility.
 
-####Method and function parameter
+#### Method and function parameter
 Optional function arguments start with `opt_`.
 Functions that take a variable number of arguments should have the last argument named `var_args`. You may not refer to `var_args` in the code; use the `arguments` array.
 Optional and variable arguments can also be specified in `@param` annotations. Although either convention is acceptable to the compiler, using both together is preferred.
 
-####Getters and Setters
+#### Getters and Setters
 EcmaScript 5 getters and setters for properties are discouraged. However, if they are used, then getters must not change observable state.
 ```javascript
 /**
@@ -439,15 +439,15 @@ EcmaScript 5 getters and setters for properties are discouraged. However, if the
  */
 var foo = { get next() { return this.nextId++; } };
 ```
-####Accessor functions
+#### Accessor functions
 Getters and setters methods for properties are not required. However, if they are used, then getters must be named `getFoo()` and setters must be named `setFoo(value)`. (For boolean getters, `isFoo()` is also acceptable, and often sounds more natural.)
 
-####Namespaces
+#### Namespaces
 JavaScript has no inherent packaging or namespacing support.
 
 Global name conflicts are difficult to debug, and can cause intractable problems when two projects try to integrate. In order to make it possible to share common JavaScript code, we've adopted conventions to prevent collisions.
 
-#####Use namespaces for global code
+##### Use namespaces for global code
 ALWAYS prefix identifiers in the global scope with a unique pseudo namespace related to the project or library. If you are working on "Project Sloth", a reasonable pseudo namespace would be `sloth.*`.
 ```javascript
 var sloth = {};
@@ -464,10 +464,10 @@ sloth.sleep = function() {
   ...
 };
 ```
-#####Respect namespace ownership
+##### Respect namespace ownership
 When choosing a child-namespace, make sure that the owners of the parent namespace know what you are doing. If you start a project that creates hats for sloths, make sure that the Sloth team knows that you're using `sloth.hats`.
 
-#####Use different namespaces for external code and internal code
+##### Use different namespaces for external code and internal code
 "External code" is code that comes from outside your codebase, and is compiled independently. Internal and external names should be kept strictly separate. If you're using an external library that makes things available in `foo.hats.*`, your internal code should not define all its symbols in `foo.hats.*`, because it will break if the other team defines new symbols.
 ```javascript
 foo.require('foo.hats');
@@ -496,7 +496,7 @@ googleyhats.BowlerHat = function() {
 
 goog.exportSymbol('foo.hats.BowlerHat', googleyhats.BowlerHat);
 ```
-#####Alias long type names to improve readability
+##### Alias long type names to improve readability
 Use local aliases for fully-qualified types if doing so improves readability. The name of a local alias should match the last part of the type.
 ```javascript
 /**
@@ -549,28 +549,28 @@ myapp.main = function() {
 ```
 Never create aliases in the global scope. Use them only in function blocks.
 
-#####Filenames
+##### Filenames
 Filenames should be all lowercase in order to avoid confusion on case-sensitive platforms. Filenames should end in .js, and should contain no punctuation except for - or _ (prefer - to _).
 
-###Custom toString() methods
+### Custom toString() methods
 
 Must always succeed without side effects.
 
 You can control how your objects string-ify themselves by defining a custom `toString()` method. This is fine, but you need to ensure that your method (1) always succeeds and (2) does not have side-effects. If your method doesn't meet these criteria, it's very easy to run into serious problems. For example, if `toString()` calls a method that does an `assert`, `assert` might try to output the name of the object in which it failed, which of course requires calling `toString()`.
 
-###Deferred initialization
+### Deferred initialization
 
 OK
 
 It isn't always possible to initialize variables at the point of declaration, so deferred initialization is fine.
 
-###Explicit scope
+### Explicit scope
 
 Always
 
 Always use explicit scope - doing so increases portability and clarity. For example, don't rely on window being in the scope chain. You might want to use your function in another application for which window is not the content window.
 
-###Code formatting
+### Code formatting
 
 Expand for more information.
 
@@ -585,7 +585,7 @@ if (something) {
   // ...
 }
 ```
-####Array and Object Initializers
+#### Array and Object Initializers
 Single-line array and object initializers are allowed when they fit on a line:
 ```javascript
 var arr = [1, 2, 3];  // No space after [ or before ].
@@ -634,7 +634,7 @@ WRONG_Object.prototype = {
   lengthyName: 2
 };
 ```
-####Function Arguments
+#### Function Arguments
 When possible, all function arguments should be listed on the same line. If doing so would exceed the 80-column limit, the arguments must be line-wrapped in a readable way. To save space, you may wrap as close to 80 as possible, or put each argument on its own line to enhance readability. The indentation may be either four spaces, or aligned to the parenthesis. Below are the most common patterns for argument wrapping:
 ```javascript
 // Four-space, wrap at 80.  Works with very long function names, survives
@@ -682,7 +682,7 @@ if (veryLongFunctionNameA(
           veryLongFunctionNameF)));
 }
 ```
-####Passing Anonymous Functions
+#### Passing Anonymous Functions
 When declaring an anonymous function in the list of arguments for a function call, the body of the function is indented two spaces from the left edge of the statement, or two spaces from the left edge of the function keyword. This is to make the body of the anonymous function easier to read (i.e. not be all squished up into the right half of the screen).
 
 ```javascript
@@ -701,7 +701,7 @@ var names = prefix.something.myExcellentMapFunction(
     });
 ```
 
-####Aliasing with goog.scope
+#### Aliasing with goog.scope
 `goog.scope` may be used to shorten references to namespaced symbols in programs using the Closure Library.
 Only one `goog.scope` invocation may be added per file. Always place it in the global scope.
 The opening `goog.scope(function() {` invocation must be preceded by exactly one blank line and follow any `goog.provide` statements, `goog.require` statements, or top-level comments. The invocation must be closed on the last line in the file. Append `// goog.scope` to the closing statement of the scope. Separate the comment from the semicolon by two spaces.
@@ -737,7 +737,7 @@ SomeType.prototype.findButton = function() {
 ...
 });  // goog.scope
 ```
-####Indenting wrapped lines
+#### Indenting wrapped lines
 Except for array literals, object literals, and anonymous functions, all wrapped lines should be indented either left-aligned to a sibling expression above, or four spaces (not two spaces) deeper than a parent expression (where "sibling" and "parent" refer to parenthesis nesting level).
 ```javascript
 someWonderfulHtml = '' +
@@ -769,7 +769,7 @@ if (searchableCollection(allYourStuff).contains(theStuffYouWant) &&
   ambientNotification.activate();
 }
 ```
-####Blank lines
+#### Blank lines
 Use newlines to group logically related pieces of code. For example:
 ```javascript
 doSomethingTo(x);
@@ -780,7 +780,7 @@ nowDoSomethingWith(y);
 
 andNowWith(z);
 ```
-####Binary and Ternary Operators
+#### Binary and Ternary Operators
 Always put the operator on the preceding line. Otherwise, line breaks and indentation follow the same rules as in other Google style guides. This operator placement was initially agreed upon out of concerns about automatic semicolon insertion. In fact, semicolon insertion cannot happen before a binary operator, but new code should stick to this style for consistency.
 
 ```javascript
@@ -797,21 +797,21 @@ var x = foo.bar().
     doSomething().
     doSomethingElse();
 ```
-###Parentheses
+### Parentheses
 
 Only where required
 
 Use sparingly and in general only where required by the syntax and semantics.
 Never use parentheses for unary operators such as `delete`, `typeof` and `void` or after keywords such as `return`, `throw` as well as others (`case`, `in` or `new`).
 
-###Strings
+### Strings
 
 Prefer `'` over `"`
 
 For consistency single-quotes (`'`) are preferred to double-quotes (`"`). This is helpful when creating strings that include HTML:
 `var msg = 'This is some HTML';`
 
-###Visibility (private and protected fields)
+### Visibility (private and protected fields)
 
 Encouraged, use JSDoc annotations `@private` and `@protected`
 
@@ -898,13 +898,13 @@ AA_SubClass.prototype.method = function() {
 ```
 Notice that in JavaScript, there is no distinction between a type (like `AA_PrivateClass_`) and the constructor for that type. There is no way to express both that a type is public and its constructor is private (because the constructor could easily be aliased in a way that would defeat the privacy check).
 
-###JavaScript Types
+### JavaScript Types
 
 Encouraged and enforced by the compiler.
 
 When documenting a type in JSDoc, be as specific and accurate as possible. The types we support are based on the EcmaScript 4 spec.
 
-####The JavaScript Type Language
+#### The JavaScript Type Language
 The ES4 proposal contained a language for specifying JavaScript types. We use this language in JsDoc to express the types of function parameters and return values.
 As the ES4 proposal has evolved, this language has changed. The compiler still supports old syntaxes for types, but those syntaxes are deprecated.
 <xml>
@@ -1171,7 +1171,7 @@ As the ES4 proposal has evolved, this language has changed. The compiler still s
           </table>
 </XML>
 	
-####Types in JavaScript
+#### Types in JavaScript
 <XML>
 <table border="0" style="border-collapse:collapse" cellpadding="2">
             <thead>
@@ -1522,13 +1522,13 @@ As the ES4 proposal has evolved, this language has changed. The compiler still s
 </XML>          
 
 
-####Type Casts
+#### Type Casts
 In cases where type-checking doesn't accurately infer the type of an expression, it is possible to add a type cast comment by adding a type annotation comment and enclosing the expression in parentheses. The parentheses are required.
 ```javascript
 /** @type {number} */ (x)
 ```
 
-####Nullable vs. Optional Parameters and Properties
+#### Nullable vs. Optional Parameters and Properties
 Because JavaScript is a loosely-typed language, it is very important to understand the subtle differences between optional, nullable, and undefined function parameters and class properties.
 Instances of classes and interfaces are nullable by default. For example, the following declaration
 ```javascript
@@ -1596,7 +1596,7 @@ function strangeButTrue(nonNull, mayBeNull, opt_nonNull, opt_mayBeNull) {
   // ...
 };
 ```
-####Typedefs
+#### Typedefs
 Sometimes types can get complicated. A function that accepts content for an Element might look like:
 ```javascript
 /**
@@ -1622,7 +1622,7 @@ goog.createElement = function(tagName, contents) {
 ...
 };
 ```
-####Template types
+#### Template types
 The compiler has limited support for template types. It can only infer the type of this inside an anonymous function literal from the type of the this argument and whether the this argument is missing.
 ```javascript
 /**
@@ -1639,7 +1639,7 @@ goog.bind(function() { this.someProperty; }, new SomeClass());
 // Generates an undefined this warning.
 goog.bind(function() { this.someProperty; });
 ```
-###Comments
+### Comments
 
 Use JSDoc
 
@@ -1649,7 +1649,7 @@ comments with the appropriate <a href="#JSDoc_Tag_Reference">tags</a> and <a hre
 Inline comments should be of the // variety.
 Complete sentences are recommended but not required. Complete sentences should use appropriate capitalization and punctuation.
 
-####Comment Syntax
+#### Comment Syntax
 The JSDoc syntax is based on JavaDoc. Many tools extract metadata from JSDoc comments to perform code validation and optimizations. These comments must be well-formed.
 ```javascript
 /**
@@ -1658,7 +1658,7 @@ The JSDoc syntax is based on JavaDoc. Many tools extract metadata from JSDoc com
  * @desc Block tags should always start on their own line.
  */
  ```
-####JSDoc Indentation
+#### JSDoc Indentation
 If you have to line break a block tag, you should treat this as breaking a code statement and indent it four spaces.
 ```javascript
 /**
@@ -1686,7 +1686,7 @@ project.MyClass.prototype.method = function(foo) {
   return 5;
 };
 ```
-####HTML in JSDoc
+#### HTML in JSDoc
 Like JavaDoc, JSDoc supports many HTML tags, like `<code>, <pre>, <tt>, <strong>, <ul>, <ol>, <li>, <a>,` and others.
 This means that plaintext formatting is not respected. So, don't rely on whitespace to format JSDoc:
 ```javascript
@@ -1713,7 +1713,7 @@ Instead, do this:
 The <a href="https://www.oracle.com/technetwork/java/javase/documentation/index-137868.html">
           JavaDoc</a> style guide is a useful resource on how to write well-formed doc comments.
           
-####Top/File-Level Comments
+#### Top/File-Level Comments
 A <a href="copyright.html">copyright notice</a> and author information are optional. File overviews are generally recommended whenever a file consists of more than a single class definition. The top level comment is designed to orient readers unfamiliar with the code to what is in this file. If present, it should provide a description of the file's contents and any dependencies or compatibility information. As an example:
 ```javascript
 /**
@@ -1721,7 +1721,7 @@ A <a href="copyright.html">copyright notice</a> and author information are optio
  * about its dependencies.
  */
  ```
-####Class Comments
+#### Class Comments
 Classes must be documented with a description and a type tag that identifies the constructor.
 ```javascript
 /**
@@ -1736,7 +1736,7 @@ project.MyClass = function(arg1, arg2) {
 };
 goog.inherits(project.MyClass, goog.Disposable);
 ```
-####Method and Function Comments
+#### Method and Function Comments
 Parameter and return types should be documented. The method description may be omitted if it is obvious from the parameter or return type descriptions. Method descriptions should start with a sentence written in the third person declarative voice.
 ```javascript
 /**
@@ -1749,7 +1749,7 @@ function PR_someMethod(obj) {
   // ...
 }
 ```
-####Property Comments
+#### Property Comments
 ```javascript
 /** @constructor */
 project.MyClass = function() {
@@ -1760,7 +1760,7 @@ project.MyClass = function() {
   this.someProperty = 4;
 }
 ```
-####JSDoc Tag Reference
+#### JSDoc Tag Reference
 <table style="width: 100%" cellpadding="0" cellspacing="0">
             <thead>
               <tr>
@@ -2715,9 +2715,9 @@ You may also see other types of JSDoc annotations in third-party code. These ann
 
 •	`@version`
 
-###Providing Dependencies With `goog.provide`
+### Providing Dependencies With `goog.provide`
 
-####Only provide top-level symbols.
+#### Only provide top-level symbols.
 All members defined on a class should be in the same file. So, only top-level classes should be provided in a file that contains multiple members defined on the same class (e.g. enums, inner classes, etc).
 Do this:
 ```javascript
@@ -2738,13 +2738,13 @@ goog.provide('foo.bar');
 goog.provide('foo.bar.method');
 goog.provide('foo.bar.CONSTANT');
 ```
-###Compiling
+### Compiling
 
 Required
 
 Use of JS compilers such as the <a href="https://code.google.com/closure/compiler/">Closure Compiler</a> is required for all customer-facing code.
 
-###Tips and Tricks
+### Tips and Tricks
 <XML>
 <SUMMARY>JavaScript tidbits</SUMMARY>
       <BODY>
@@ -2930,15 +2930,15 @@ Use of JS compilers such as the <a href="https://code.google.com/closure/compile
       </BODY>
       </XML>
       
-###Parting Words
+### Parting Words
 *BE CONSISTENT.*
 
 If you're editing code, take a few minutes to look at the code around you and determine its style. If they use spaces around all their arithmetic operators, you should too. If their comments have little boxes of hash marks around them, make your comments have little boxes of hash marks around them too.
 
 The point of having style guidelines is to have a common vocabulary of coding so people can concentrate on what you're saying rather than on how you're saying it. We present global style rules here so people know the vocabulary, but local style is also important. If code you add to a file looks drastically different from the existing code around it, it throws readers out of their rhythm when they go to read it. Avoid this.
 
-##License
+## License
 This style guides are licensed under the CC-By 3.0 License, which encourages you to share these documents. See http://creativecommons.org/licenses/by/3.0/ for more details.
 
-##References
+## References
 Whyte, A., Jervis, B., Pupius, D., Arvidsson, E., Schneider, F., Walker, R. (November 22, 2015). Google JavaScript Style Guide. Retrieved from https://google.github.io/styleguide/javascriptguide.xml
