@@ -911,43 +911,14 @@ As the ES4 proposal has evolved, this language has changed. The compiler still s
 
 |Syntax Name|Syntax|Description|Deprecated Syntaxes|
 |--- |--- |--- |--- |
-|Primitive Type|There are 5 primitive types in JavaScript:
-                  {null},
-                  {undefined},
-                  {boolean},
-                  {number}, and
-                  {string}.|Simply the name of a type.|
-|Instance Type|{Object}
-                  An instance of Object or null.
-                  {Function}
-                  An instance of Function or null.
-                  {EventTarget}
-                  An instance of a constructor that implements the EventTarget
-                  interface, or null.|An instance of a constructor or interface function.
-
-                Constructor functions are functions defined with the
-                @constructor JSDoc tag.
-                Interface functions are functions defined with the
-                @interface JSDoc tag.
-
-                By default, instance types will accept null. This is the only
-		type syntax that makes the type nullable. Other type syntaxes
-		in this table will not accept null.|
-|Enum Type|{goog.events.EventType}
-                  One of the properties of the object literal initializer
-                  of goog.events.EventType.|An enum must be initialized as an object literal, or as
-                an alias of another enum, annotated with the @enum
-                JSDoc tag. The properties of this literal are the instances
-                of the enum. The syntax of the enum is defined
-                below.
-
-                Note that this is one of the few things in our type system
-                that were not in the ES4 spec.|
-|Type Application|{Array.<string>}An array of strings.
-                  {Object.<string, number>}
-                  An object in which the keys are strings and the values
-                  are numbers.|Parameterizes a type, by applying a set of type arguments
-                  to that type. The idea is analogous to generics in Java.|
+|Primitive Type|There are 5 primitive types in JavaScript:{null}, {undefined}, {boolean}, {number}, and {string}.|Simply the name of a type.|
+|Instance Type|{Object} An instance of Object or null. {Function} An instance of Function or null. {EventTarget} An instance of a constructor that implements the EventTarget interface, or null.|An instance of a constructor or interface function. Constructor functions are functions defined with the @constructor JSDoc tag. Interface functions are functions defined with the @interface JSDoc tag. By default, instance types will accept null. This is the only type syntax that makes the type nullable. Other type syntaxes in this table will not accept null.|
+|Enum Type|{goog.events.EventType} One of the properties of the object literal initializer of goog.events.EventType.|An enum must be initialized as an object literal, or as an alias of another enum, annotated with the @enum JSDoc tag. The properties of this literal are the instances of the enum. The syntax of the enum is defined below. Note that this is one of the few things in our type system that were not in the ES4 spec.|
+|Type Application|* {Array.<string>}An array of strings. 
+		  * {Object.<string, number>}
+                  * An object in which the keys are strings and the values
+                  * are numbers.|Parameterizes a type, by applying a set of type arguments
+                  * to that type. The idea is analogous to generics in Java.|
 |Type Union|{(number|boolean)}A number or a boolean.|Indicates that a value might have type A OR type B.
 
                   The parentheses may be omitted at the top-level
