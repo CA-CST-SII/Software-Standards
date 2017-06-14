@@ -576,7 +576,7 @@ Expand for more information.
 
 We follow the [C++ formatting rules](http://google.github.io/styleguide/cppguide.html#Formatting) in spirit, with the following additional clarifications.
 
-####Curly Braces
+#### Curly Braces
 Because of implicit semicolon insertion, always start your curly braces on the same line as whatever they're opening. For example:
 ```javascript
 if (something) {
