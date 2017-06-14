@@ -908,619 +908,175 @@ When documenting a type in JSDoc, be as specific and accurate as possible. The t
 The ES4 proposal contained a language for specifying JavaScript types. We use this language in JsDoc to express the types of function parameters and return values.
 As the ES4 proposal has evolved, this language has changed. The compiler still supports old syntaxes for types, but those syntaxes are deprecated.
 
-<xml>
-<table border="0" style="border-collapse:collapse" cellpadding="2">
-            <thead>
-              <tr>
-                <th>Syntax Name</th>
-                <th>Syntax</th>
-                <th>Description</th>
-                <th>Deprecated Syntaxes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Primitive Type</td>
-                <td>
-                  There are 5 primitive types in JavaScript:
-                  <code>{null}</code>,
-                  <code>{undefined}</code>,
-                  <code>{boolean}</code>,
-                  <code>{number}</code>, and
-                  <code>{string}</code>.
-                </td>
-                <td>Simply the name of a type.</td>
-                <td/>
-              </tr>
 
-              <tr>
-                <td>Instance Type</td>
-                <td>
-                  <code>{Object}</code><br/>
-                  An instance of Object or null.<p/>
-                  <code>{Function}</code><br/>
-                  An instance of Function or null.<p/>
-                  <code>{EventTarget}</code><br/>
+|Syntax Name|Syntax|Description|Deprecated Syntaxes|
+|--- |--- |--- |--- |
+|Primitive Type|There are 5 primitive types in JavaScript:
+                  {null},
+                  {undefined},
+                  {boolean},
+                  {number}, and
+                  {string}.|Simply the name of a type.|
+|Instance Type|{Object}
+                  An instance of Object or null.
+                  {Function}
+                  An instance of Function or null.
+                  {EventTarget}
                   An instance of a constructor that implements the EventTarget
-                  interface, or null.
-                </td>
-                <td>An instance of a constructor or interface function.<p/>
+                  interface, or null.|An instance of a constructor or interface function.
 
                 Constructor functions are functions defined with the
-                <code>@constructor</code> JSDoc tag.
+                @constructor JSDoc tag.
                 Interface functions are functions defined with the
-                <code>@interface</code> JSDoc tag.<p/>
+                @interface JSDoc tag.
 
                 By default, instance types will accept null. This is the only
 		type syntax that makes the type nullable. Other type syntaxes
-		in this table will not accept null.
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>Enum Type</td>
-                <td>
-                  <code>{goog.events.EventType}</code><br/>
+		in this table will not accept null.|
+|Enum Type|{goog.events.EventType}
                   One of the properties of the object literal initializer
-                  of <code>goog.events.EventType</code>.
-                </td>
-                <td>An enum must be initialized as an object literal, or as
-                an alias of another enum, annotated with the <code>@enum</code>
+                  of goog.events.EventType.|An enum must be initialized as an object literal, or as
+                an alias of another enum, annotated with the @enum
                 JSDoc tag. The properties of this literal are the instances
                 of the enum. The syntax of the enum is defined
-                <a href="#enums">below</a>.<p/>
+                below.
 
                 Note that this is one of the few things in our type system
-                that were not in the ES4 spec.
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>Type Application</td>
-                <td>
-                  <code>{Array.&lt;string&gt;}</code><br/>An array of strings.<p/>
-                  <code>{Object.&lt;string, number&gt;}</code>
-                  <br/>An object in which the keys are strings and the values
-                  are numbers.
-                </td>
-                <td>Parameterizes a type, by applying a set of type arguments
-                  to that type. The idea is analogous to generics in Java.
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>Type Union</td>
-                <td>
-                  <code>{(number|boolean)}</code><br/>A number or a boolean.
-                </td>
-                <td>Indicates that a value might have type A OR type B.<p/>
+                that were not in the ES4 spec.|
+|Type Application|{Array.<string>}An array of strings.
+                  {Object.<string, number>}
+                  An object in which the keys are strings and the values
+                  are numbers.|Parameterizes a type, by applying a set of type arguments
+                  to that type. The idea is analogous to generics in Java.|
+|Type Union|{(number|boolean)}A number or a boolean.|Indicates that a value might have type A OR type B.
 
                   The parentheses may be omitted at the top-level
                   expression, but the parentheses should be included in
-                  sub-expressions to avoid ambiguity.<br/>
-                  <code>{number|boolean}</code><br/>
-                  <code>{function(): (number|boolean)}</code>
-                </td>
-                <td>
-                  <code>{(number,boolean)}</code>,<br/>
-                  <code>{(number||boolean)}</code>
-                </td>
-              </tr>
-
-              <tr>
-                <td>Nullable type</td>
-                <td>
-                  <code>{?number}</code><br/> A number or null.
-                </td>
-                <td>Shorthand for the union of the null type with any
-                other type. This is just syntactic sugar.
-                </td>
-                <td>
-                  <code>{number?}</code>
-                </td>
-              </tr>
-
-              <tr>
-                <td>Non-nullable type</td>
-                <td>
-                  <code>{!Object}</code><br/> An Object, but never the
-                  <code>null</code> value.
-                </td>
-                <td>Filters null out of nullable types. Most often used
-                with instance types, which are nullable by default.
-                </td>
-                <td>
-                  <code>{Object!}</code>
-                </td>
-              </tr>
-
-              <tr>
-                <td>Record Type</td>
-                <td>
-                  <code>{{myNum: number, myObject}}</code>
-                  <br/>An anonymous type with the given type members.
-                </td>
-                <td>
-                  <p>Indicates that the value has the specified members with the
-                    specified types. In this case, <code>myNum</code> with a
-                    type <code>number</code> and <code>myObject</code> with any
-                    type.</p>
-                  <p>Notice that the braces are part of the type syntax. For
-                    example, to denote an <code>Array</code> of objects that
-                    have a <code>length</code> property, you might write
-                  <code>Array.&lt;{length}&gt;</code>.</p>
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>Function Type</td>
-                <td>
-                  <code>{function(string, boolean)}</code><br/>
+                  sub-expressions to avoid ambiguity.
+                  {number|boolean}
+                  {function(): (number|boolean)}|{(number,boolean)},
+                  {(number||boolean)}|
+|Nullable type|{?number} A number or null.|Shorthand for the union of the null type with any
+                other type. This is just syntactic sugar.|{number?}|
+|Non-nullable type|{!Object} An Object, but never the
+                  null value.|Filters null out of nullable types. Most often used
+                with instance types, which are nullable by default.|{Object!}|
+|Record Type|{{myNum: number, myObject}}
+                  An anonymous type with the given type members.|Indicates that the value has the specified members with the
+                    specified types. In this case, myNum with a
+                    type number and myObject with any
+                    type.
+                  Notice that the braces are part of the type syntax. For
+                    example, to denote an Array of objects that
+                    have a length property, you might write
+                  Array.<{length}>.|
+|Function Type|{function(string, boolean)}
                   A function that takes two arguments (a string and a boolean),
-                  and has an unknown return value.<br/>
-                </td>
-                <td>Specifies a function.</td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>Function Return Type</td>
-                <td>
-                  <code>{function(): number}</code><br/>
-                  A function that takes no arguments and returns a number.<br/>
-                </td>
-                <td>Specifies a function return type.</td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>Function <code>this</code> Type</td>
-                <td>
-                  <code>{function(this:goog.ui.Menu, string)}</code><br/>
+                  and has an unknown return value.|Specifies a function.|
+|Function Return Type|{function(): number}
+                  A function that takes no arguments and returns a number.|Specifies a function return type.|
+|Function this Type|{function(this:goog.ui.Menu, string)}
                   A function that takes one argument (a string), and executes
-                  in the context of a goog.ui.Menu.
-                </td>
-                <td>Specifies the context type of a function type.</td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>Function <code>new</code> Type</td>
-                <td>
-                  <code>{function(new:goog.ui.Menu, string)}</code><br/>
+                  in the context of a goog.ui.Menu.|Specifies the context type of a function type.|
+|Function new Type|{function(new:goog.ui.Menu, string)}
                   A constructor that takes one argument (a string), and
                   creates a new instance of goog.ui.Menu when called
-                  with the 'new' keyword.
-                </td>
-                <td>Specifies the constructed type of a constructor.</td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>Variable arguments</td>
-                <td>
-                  <code>{function(string, ...[number]): number}</code><br/>
+                  with the 'new' keyword.|Specifies the constructed type of a constructor.|
+|Variable arguments|{function(string, ...[number]): number}
                   A function that takes one argument (a string), and then a
-                  variable number of arguments that must be numbers.
-                </td>
-                <td>Specifies variable arguments to a function.</td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>
-                  <a name="var-args-annotation"/>
-                  Variable arguments (in <code>@param</code> annotations)
-                </td>
-                <td>
-                  <code>@param {...number} var_args</code><br/>
-                  A variable number of arguments to an annotated function.
-                </td>
-                <td>
-                  Specifies that the annotated function accepts a variable
-                  number of arguments.
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>Function <a href="#optional">optional arguments</a></td>
-                <td>
-                  <code>{function(?string=, number=)}</code><br/>
+                  variable number of arguments that must be numbers.|Specifies variable arguments to a function.|
+|Variable arguments (in @param annotations)|@param {...number} var_args
+                  A variable number of arguments to an annotated function.|Specifies that the annotated function accepts a variable
+                  number of arguments.|
+|Function optional arguments|{function(?string=, number=)}
                   A function that takes one optional, nullable string and one
-                  optional number as arguments. The <code>=</code> syntax is
-                  only for <code>function</code> type declarations.
-                </td>
-                <td>Specifies optional arguments to a function.</td>
-                <td/>
-              </tr>
+                  optional number as arguments. The = syntax is
+                  only for function type declarations.|Specifies optional arguments to a function.|
+|Function optional arguments
+                  (in @param annotations)|@param {number=} opt_argument
+                  An optional parameter of type number.|Specifies that the annotated function accepts an optional
+                  argument.|
+|The ALL type|{*}|Indicates that the variable can take on any type.|
+|The UNKNOWN type|{?}|Indicates that the variable can take on any type,
+                    and the compiler should not type-check any uses of it.|
 
-              <tr>
-                <td>
-                  <a name="optional-arg-annotation"/>
-                  Function <a href="#optional">optional arguments</a>
-                  (in <code>@param</code> annotations)
-                </td>
-                <td>
-                  <code>@param {number=} opt_argument</code><br/>
-                  An optional parameter of type <code>number</code>.
-                </td>
-                <td>Specifies that the annotated function accepts an optional
-                  argument.</td>
-                <td/>
-              </tr>
 
-              <tr>
-                <td>The ALL type</td>
-                <td><code>{*}</code></td>
-                <td>Indicates that the variable can take on any type.</td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>The UNKNOWN type</td>
-                <td><code>{?}</code></td>
-                <td>Indicates that the variable can take on any type,
-                    and the compiler should not type-check any uses of it.</td>
-                <td/>
-              </tr>
-            </tbody>
-          </table>
-</XML>
 	
 #### Types in JavaScript
-<XML>
-<table border="0" style="border-collapse:collapse" cellpadding="2">
-            <thead>
-              <tr>
-                <th>Type Example</th>
-                <th>Value Examples</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
 
-              <tr>
-                <td>number</td>
-                <td>
-                  <CODE_SNIPPET>
-                    1
+
+|Type Example|Value Examples|Description|
+|--- |--- |--- |
+|number|1
                     1.0
                     -5
                     1e5
-                    Math.PI
-                  </CODE_SNIPPET>
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>Number</td>
-                <td>
-                  <CODE_SNIPPET>
-                    new Number(true)
-                  </CODE_SNIPPET>
-                </td>
-                <td>
-                  <a href="#Wrapper_objects_for_primitive_types">
-                    Number object
-                  </a>
-                </td>
-              </tr>
-
-              <tr>
-                <td>string</td>
-                <td>
-                  <CODE_SNIPPET>
-                    'Hello'
+                    Math.PI|
+|Number|new Number(true)|Number object|
+|string|'Hello'
                     "World"
-                    String(42)
-                  </CODE_SNIPPET>
-                </td>
-                <td>
-                  String value
-                </td>
-              </tr>
-
-              <tr>
-                <td>String</td>
-                <td>
-                  <CODE_SNIPPET>
-                    new String('Hello')
-                    new String(42)
-                  </CODE_SNIPPET>
-                </td>
-                <td>
-                  <a href="#Wrapper_objects_for_primitive_types">
-                    String object
-                  </a>
-                </td>
-              </tr>
-
-              <tr>
-                <td>boolean</td>
-                <td>
-                  <CODE_SNIPPET>
-                    true
+                    String(42)|String value|
+|String|new String('Hello')
+                    new String(42)|String object|
+|boolean|true
                     false
-                    Boolean(0)
-                  </CODE_SNIPPET>
-                </td>
-                <td>
-                  Boolean value
-                </td>
-              </tr>
-
-              <tr>
-                <td>Boolean</td>
-                <td>
-                  <CODE_SNIPPET>
-                    new Boolean(true)
-                  </CODE_SNIPPET>
-                </td>
-                <td>
-                  <a href="#Wrapper_objects_for_primitive_types">
-                    Boolean object
-                  </a>
-                </td>
-              </tr>
-
-              <tr>
-                <td>RegExp</td>
-                <td>
-                  <CODE_SNIPPET>
-                    new RegExp('hello')
-                    /world/g
-                  </CODE_SNIPPET></td><td>
-                </td>
-              </tr>
-
-              <tr>
-                <td>Date</td>
-                <td>
-                  <CODE_SNIPPET>
-                    new Date
-                    new Date()
-                  </CODE_SNIPPET></td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>
-                  
-                  null
-                  
-                </td>
-                <td>
-                  <CODE_SNIPPET>
-                    null
-                  </CODE_SNIPPET>
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>
-                  
-                  undefined
-                  
-                </td>
-                <td>
-                  <CODE_SNIPPET>
-                    undefined
-                  </CODE_SNIPPET>
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>void</td>
-                <td>
-                  <CODE_SNIPPET>
-                    function f() {
+                    Boolean(0)|Boolean value|
+|Boolean|new Boolean(true)|Boolean object|
+|RegExp|new RegExp('hello')
+                    /world/g||
+|Date|new Date
+                    new Date()|
+|null|null|
+|undefined|undefined|
+|void|function f() {
                       return;
-                    }
-                  </CODE_SNIPPET>
-                </td>
-                <td>No return value</td>
-              </tr>
-
-              <tr>
-                <td>Array</td>
-                <td>
-                  <CODE_SNIPPET>
-                    ['foo', 0.3, null]
-                    []
-                  </CODE_SNIPPET>
-                </td>
-                <td>Untyped Array</td>
-              </tr>
-
-              <tr>
-                <td>Array.&lt;number&gt;</td>
-                <td>
-                  <CODE_SNIPPET>
-                    [11, 22, 33]
-                  </CODE_SNIPPET>
-                </td>
-                <td>
-                  An Array of numbers
-                </td>
-              </tr>
-
-              <tr>
-                <td>Array.&lt;Array.&lt;string&gt;&gt;</td>
-                <td>
-                  <CODE_SNIPPET>
-                    [['one', 'two', 'three'], ['foo', 'bar']]
-                  </CODE_SNIPPET>
-                </td>
-                <td>Array of Arrays of strings</td>
-              </tr>
-
-              <tr>
-                <td>Object</td>
-                <td>
-                  <CODE_SNIPPET>
-                    {}
-                    {foo: 'abc', bar: 123, baz: null}
-                  </CODE_SNIPPET>
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>Object.&lt;string&gt;</td>
-                <td>
-                  <CODE_SNIPPET>
-                    {'foo': 'bar'}
-                  </CODE_SNIPPET>
-                </td>
-                <td>
-                  An Object in which the values are strings.
-                </td>
-              </tr>
-
-              <tr>
-                <td>Object.&lt;number, string&gt;</td>
-                <td>
-                  <CODE_SNIPPET>
-                    var obj = {};
-                    obj[1] = 'bar';
-                  </CODE_SNIPPET>
-                </td>
-                <td>
-                  An Object in which the keys are numbers and the values are
-                  strings.  <p/>Note that in JavaScript, the keys are always
+                    }|No return value|
+|Array|['foo', 0.3, null]
+                    []|Untyped Array|
+|Array.<number>|[11, 22, 33]|An Array of numbers|
+|Array.<Array.<string>>|[['one', 'two', 'three'], ['foo', 'bar']]|Array of Arrays of strings|
+|Object|{}
+                    {foo: 'abc', bar: 123, baz: null}|
+|Object.<string>|{'foo': 'bar'}|An Object in which the values are strings.|
+|Object.<number, string>|var obj = {};
+                    obj[1] = 'bar';|An Object in which the keys are numbers and the values are
+                  strings.  Note that in JavaScript, the keys are always
                   implicitly converted to strings, so
-                  <code>obj['1'] == obj[1]</code>.
+                  obj['1'] == obj[1].
                   So the key will always be a string in for...in loops. But the
                   compiler will verify the type of the key when indexing into
-                  the object.
-                </td>
-              </tr>
-
-              <tr>
-                <td>Function</td>
-                <td>
-                  <CODE_SNIPPET>
-                    function(x, y) {
+                  the object.|
+|Function|function(x, y) {
                       return x * y;
-                    }
-                  </CODE_SNIPPET>
-                </td>
-                <td>
-                  <a href="#Wrapper_objects_for_primitive_types">
-                    Function object
-                  </a>
-                </td>
-              </tr>
-
-              <tr>
-                <td>function(number, number): number</td>
-                <td>
-                  <CODE_SNIPPET>
-                    function(x, y) {
+                    }|Function object|
+|function(number, number): number|function(x, y) {
                       return x * y;
-                    }
-                  </CODE_SNIPPET>
-                </td>
-                <td>function value</td>
-              </tr>
-
-              <tr>
-                <td><a name="constructor-tag">SomeClass</a></td>
-                <td>
-                  <CODE_SNIPPET>
-                    /** @constructor */
+                    }|function value|
+|SomeClass|/** @constructor */
                     function SomeClass() {}
 
-                    new SomeClass();
-                  </CODE_SNIPPET>
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>SomeInterface</td>
-                <td>
-                  <CODE_SNIPPET>
-                    /** @interface */
+                    new SomeClass();|
+|SomeInterface|/** @interface */
                     function SomeInterface() {}
 
-                    SomeInterface.prototype.draw = function() {};
-                  </CODE_SNIPPET>
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>project.MyClass</td>
-                <td>
-                  <CODE_SNIPPET>
-                    /** @constructor */
+                    SomeInterface.prototype.draw = function() {};|
+|project.MyClass|/** @constructor */
                     project.MyClass = function () {}
 
-                    new project.MyClass()
-                  </CODE_SNIPPET>
-                </td>
-                <td/>
-              </tr>
-
-              <tr>
-                <td>project.MyEnum</td>
-                <td>
-                  <CODE_SNIPPET>
-                    /** @enum {string} */
+                    new project.MyClass()|
+|project.MyEnum|/** @enum {string} */
                     project.MyEnum = {
                       /** The color blue. */
                       BLUE: '#0000dd',
                       /** The color red. */
                       RED: '#dd0000'
-                    };
-                  </CODE_SNIPPET>
-                </td>
-                <td><a name="enums">Enumeration</a><p/>
-                  JSDoc comments on enum values are optional.
-                </td>
-              </tr>
+                    };|Enumeration
+                  JSDoc comments on enum values are optional.|
+|Element|document.createElement('div')|Elements in the DOM.|
+|Node|document.body.firstChild|Nodes in the DOM.|
+|HTMLInputElement|htmlDocument.getElementsByTagName('input')[0]|A specific type of DOM element.|
 
-              <tr>
-                <td>Element</td>
-                <td>
-                  <CODE_SNIPPET>
-                    document.createElement('div')
-                  </CODE_SNIPPET>
-                </td>
-                <td>Elements in the DOM.</td>
-              </tr>
-
-              <tr>
-                <td>Node</td>
-                <td>
-                  <CODE_SNIPPET>
-                    document.body.firstChild
-                  </CODE_SNIPPET>
-                </td>
-                <td>Nodes in the DOM.</td>
-              </tr>
-
-              <tr>
-                <td>HTMLInputElement</td>
-                <td>
-                  <CODE_SNIPPET>
-                    htmlDocument.getElementsByTagName('input')[0]
-                  </CODE_SNIPPET>
-                </td>
-                <td>A specific type of DOM element.</td>
-              </tr>
-            </tbody>
-          </table>
-</XML>          
+     
 
 
 #### Type Casts
