@@ -1,5 +1,7 @@
 # Development Standards and Guidelines (C#)
+
 ##[Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md#contents)
+
 [1	About the Guide](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md#1--about-the-guide)
 
 [2	Purpose](https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md#2--purpose)
@@ -83,9 +85,7 @@
 ## 1.  About the Guide
 This guide covers structuring and naming of the Apptis/Project libraries in such a manner that other developers/teams can easily determine whether or not an object that provides desired functionality already exists, easily locate objects slated for modification, and decide where to include new development.  The guide also covers software coding standards; and although the primary focus will be on programs written in C #, many of the rules and principles are useful and apply to programs written in other languages.  Finally, the guide will briefly cover embedded XML documentation and includes a more extensive elaboration on usage in [Appendix A] (https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md#appendix-a---xml-documentation-tags) - taken from a white paper article written by Anson Horton from the .NET Framework community website. 
 
-##[Contents] (https://github.com/CA-CST-SII/Software-Standards/blob/master/C%23_Standards.md#contents)
-
-##2.  Purpose
+## 2.  Purpose
 Project specific C# coding standards are maintained by the lead developer for each project.
 
 It is expected that all new C# code will adhere to these standards; existing code can be retrofitted to meet the standards to whatever degree possible, as modifications to that code are required. 
